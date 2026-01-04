@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Which Coach Do You Need? | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --teal: #2d8f8f;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(45, 143, 143, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .quiz-container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 60px 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-bottom: 40px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    .intro {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .intro h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--text-main), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .intro p {
+      color: var(--text-soft);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .disclaimer {
+      background: rgba(201, 118, 61, 0.1);
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 32px 0;
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    .progress-container {
+      margin-bottom: 32px;
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border-radius: 999px;
+      transition: width 0.4s ease;
+    }
+
+    .progress-text {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-align: center;
+    }
+
+    .question-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 40px 32px;
+      margin-bottom: 24px;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .question-text {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      text-align: left;
+    }
+
+    .option:hover {
+      border-color: rgba(163, 59, 92, 0.4);
+      background: rgba(163, 59, 92, 0.05);
+      color: var(--text-main);
+    }
+
+    .option.selected {
+      border-color: var(--primary);
+      background: rgba(163, 59, 92, 0.15);
+      color: var(--text-main);
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      border: none;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.05);
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--text-main);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: white;
+      box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5);
+    }
+
+    .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .results {
+      display: none;
+      animation: fadeIn 0.6s ease;
+    }
+
+    .results.show {
+      display: block;
+    }
+
+    .result-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+      padding: 48px 32px;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .result-card.bpd {
+      border-color: rgba(124, 92, 191, 0.4);
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(12, 11, 16, 0.95));
+    }
+
+    .result-card.adhd {
+      border-color: rgba(45, 143, 143, 0.4);
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.1), rgba(12, 11, 16, 0.95));
+    }
+
+    .result-card.npd {
+      border-color: rgba(163, 59, 92, 0.4);
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95));
+    }
+
+    .result-icon {
+      font-size: 64px;
+      margin-bottom: 24px;
+    }
+
+    .result-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 8px 20px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .result-card.bpd .result-label {
+      background: rgba(124, 92, 191, 0.2);
+      color: var(--secondary);
+    }
+
+    .result-card.adhd .result-label {
+      background: rgba(45, 143, 143, 0.2);
+      color: var(--teal);
+    }
+
+    .result-card.npd .result-label {
+      background: rgba(163, 59, 92, 0.2);
+      color: var(--primary);
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .result-subtitle {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+
+    .result-description {
+      color: var(--text-soft);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .result-features {
+      list-style: none;
+      text-align: left;
+      max-width: 400px;
+      margin: 0 auto 32px;
+    }
+
+    .result-features li {
+      padding: 10px 0;
+      color: var(--text-soft);
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.95rem;
+    }
+
+    .result-features li::before {
+      content: "✓";
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .result-card.bpd .result-features li::before { color: var(--secondary); }
+    .result-card.adhd .result-features li::before { color: var(--teal); }
+    .result-card.npd .result-features li::before { color: var(--primary); }
+
+    .cta-section {
+      margin-top: 32px;
+    }
+
+    .btn-coach {
+      display: inline-block;
+      padding: 18px 40px;
+      border-radius: 999px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .result-card.bpd .btn-coach {
+      background: linear-gradient(135deg, var(--secondary), #5a3d9e);
+      box-shadow: 0 8px 30px rgba(124, 92, 191, 0.4);
+    }
+
+    .result-card.adhd .btn-coach {
+      background: linear-gradient(135deg, var(--teal), #1f6b6b);
+      box-shadow: 0 8px 30px rgba(45, 143, 143, 0.4);
+    }
+
+    .result-card.npd .btn-coach {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+    }
+
+    .btn-coach:hover {
+      transform: translateY(-3px);
+    }
+
+    .secondary-options {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .secondary-options p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+    }
+
+    .other-coaches {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .other-coach-link {
+      padding: 10px 20px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: 999px;
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .other-coach-link:hover {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-main);
+    }
+
+    .score-breakdown {
+      background: rgba(0,0,0,0.3);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .score-breakdown h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      color: var(--text-soft);
+    }
+
+    .score-bar {
+      margin-bottom: 12px;
+    }
+
+    .score-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+    }
+
+    .score-label span:first-child {
+      color: var(--text-soft);
+    }
+
+    .score-label span:last-child {
+      color: var(--text-dim);
+    }
+
+    .score-track {
+      height: 8px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .score-fill.bpd { background: var(--secondary); }
+    .score-fill.adhd { background: var(--teal); }
+    .score-fill.npd { background: var(--primary); }
+
+    .restart-section {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .restart-btn {
+      background: transparent;
+      border: 1px solid var(--border-glass);
+      color: var(--text-soft);
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .restart-btn:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+
+    .quiz-section.hidden {
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      .quiz-container { padding: 40px 16px; }
+      .question-card { padding: 32px 20px; }
+      .result-card { padding: 32px 20px; }
+      .question-text { font-size: 1.25rem; }
+      .result-title { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <a href="/coaching.html" class="back-link">← Back to Coaching</a>
+
+    <div class="intro">
+      <h1>Which Coach Do You Need?</h1>
+      <p>Answer these questions honestly. Your nervous system knows the answer. We're just helping you see it clearly.</p>
+      <div class="disclaimer">
+        ⚠️ This quiz is for insight only. It does not diagnose anything. If you're in crisis, please reach out to a professional.
+      </div>
+    </div>
+
+    <div class="quiz-section" id="quizSection">
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text" id="progressText">Question 1 of 15</div>
+      </div>
+
+      <div class="question-card" id="questionCard">
+        <div class="question-text" id="questionText"></div>
+        <div class="options" id="optionsContainer"></div>
+      </div>
+
+      <div class="nav-buttons">
+        <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" style="display: none;">Previous</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
+      </div>
+    </div>
+
+    <div class="results" id="resultsSection">
+      <div class="result-card" id="resultCard">
+        <div class="result-icon" id="resultIcon"></div>
+        <div class="result-label" id="resultLabel"></div>
+        <h2 class="result-title" id="resultTitle"></h2>
+        <p class="result-subtitle" id="resultSubtitle"></p>
+        <p class="result-description" id="resultDescription"></p>
+        
+        <ul class="result-features" id="resultFeatures"></ul>
+
+        <div class="score-breakdown">
+          <h4>Your Pattern Profile</h4>
+          <div class="score-bar">
+            <div class="score-label">
+              <span>BPD-Informed Support</span>
+              <span id="bpdPercent">0%</span>
+            </div>
+            <div class="score-track">
+              <div class="score-fill bpd" id="bpdBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="score-bar">
+            <div class="score-label">
+              <span>ADHD-Informed Support</span>
+              <span id="adhdPercent">0%</span>
+            </div>
+            <div class="score-track">
+              <div class="score-fill adhd" id="adhdBar" style="width: 0%"></div>
+            </div>
+          </div>
+          <div class="score-bar">
+            <div class="score-label">
+              <span>NPD-Informed Support</span>
+              <span id="npdPercent">0%</span>
+            </div>
+            <div class="score-track">
+              <div class="score-fill npd" id="npdBar" style="width: 0%"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <a href="" class="btn-coach" id="coachBtn">Book Your Coach →</a>
+        </div>
+
+        <div class="secondary-options">
+          <p>Also resonated with another pattern?</p>
+          <div class="other-coaches" id="otherCoaches"></div>
+        </div>
+      </div>
+
+      <div class="restart-section">
+        <button class="restart-btn" onclick="restartQuiz()">Take Quiz Again</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "When someone you love pulls away, even slightly, you feel...",
+        options: [
+          { text: "Panicked. Like they're about to leave forever.", scores: { bpd: 3, adhd: 0, npd: 0 } },
+          { text: "Distracted. You forget about it quickly.", scores: { bpd: 0, adhd: 2, npd: 0 } },
+          { text: "Angry. They should know better.", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Concerned, but able to wait it out.", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "Your emotions tend to...",
+        options: [
+          { text: "Shift rapidly and intensely throughout the day", scores: { bpd: 3, adhd: 1, npd: 0 } },
+          { text: "Come in bursts when you're bored or understimulated", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Depend heavily on how others are treating you", scores: { bpd: 1, adhd: 0, npd: 3 } },
+          { text: "Stay relatively stable with occasional spikes", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "You sometimes feel like you don't know who you really are.",
+        options: [
+          { text: "Yes, my sense of self changes depending on who I'm with", scores: { bpd: 3, adhd: 1, npd: 0 } },
+          { text: "I know who I am, I just can't stay focused on my goals", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "I know exactly who I am, but others don't see it", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Sometimes, but it's not a major issue", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "In relationships, you tend to...",
+        options: [
+          { text: "Idealize them at first, then feel deeply disappointed", scores: { bpd: 3, adhd: 0, npd: 1 } },
+          { text: "Forget important dates and details", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Feel like you give more than you receive", scores: { bpd: 1, adhd: 0, npd: 3 } },
+          { text: "Work on maintaining steady connection", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "Fear of abandonment is...",
+        options: [
+          { text: "My constant companion. It runs my decisions.", scores: { bpd: 3, adhd: 0, npd: 0 } },
+          { text: "Not really my issue. Rejection sensitivity is worse.", scores: { bpd: 1, adhd: 3, npd: 0 } },
+          { text: "Something I avoid by being in control", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Present but manageable", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "Starting tasks feels...",
+        options: [
+          { text: "Impossible until the last minute panic kicks in", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Okay if someone is depending on me", scores: { bpd: 2, adhd: 1, npd: 1 } },
+          { text: "Easy if I'm interested or if it makes me look good", scores: { bpd: 0, adhd: 1, npd: 3 } },
+          { text: "Challenging but I can push through", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "Your brain at night is...",
+        options: [
+          { text: "Racing with every conversation and interaction from the day", scores: { bpd: 3, adhd: 1, npd: 0 } },
+          { text: "Unable to shut off. Random ideas, songs, plans.", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Reviewing how people treated you and planning responses", scores: { bpd: 1, adhd: 0, npd: 3 } },
+          { text: "Usually pretty calm", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "When someone criticizes you, you...",
+        options: [
+          { text: "Feel devastated and wonder if they're about to leave", scores: { bpd: 3, adhd: 1, npd: 0 } },
+          { text: "Feel it physically, like a punch to the gut", scores: { bpd: 1, adhd: 3, npd: 0 } },
+          { text: "Get defensive and point out their flaws too", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Consider it and try to learn from it", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "Time feels...",
+        options: [
+          { text: "Irrelevant when I'm in emotional crisis", scores: { bpd: 3, adhd: 1, npd: 0 } },
+          { text: "Completely unreliable. 5 minutes or 5 hours, I can't tell.", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Wasted when I'm not being productive or recognized", scores: { bpd: 0, adhd: 1, npd: 3 } },
+          { text: "Something I can manage reasonably well", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "You frequently...",
+        options: [
+          { text: "Need reassurance that people still love you", scores: { bpd: 3, adhd: 0, npd: 0 } },
+          { text: "Lose things, forget appointments, interrupt people", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Feel like others don't appreciate your efforts", scores: { bpd: 1, adhd: 0, npd: 3 } },
+          { text: "Handle daily life without major issues", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "When you're not getting attention or recognition, you feel...",
+        options: [
+          { text: "Like you don't exist", scores: { bpd: 3, adhd: 0, npd: 1 } },
+          { text: "Bored and understimulated", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Resentful. You deserve to be seen.", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Okay, I don't need constant validation", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "In conflict, your first instinct is to...",
+        options: [
+          { text: "Apologize and try to fix it immediately", scores: { bpd: 3, adhd: 0, npd: 0 } },
+          { text: "Get overwhelmed and shut down or zone out", scores: { bpd: 1, adhd: 3, npd: 0 } },
+          { text: "Make sure they understand YOUR perspective first", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Listen and try to find middle ground", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "Your self-esteem...",
+        options: [
+          { text: "Depends entirely on how my relationships are going", scores: { bpd: 3, adhd: 0, npd: 0 } },
+          { text: "Crashes after perceived failures or criticism", scores: { bpd: 1, adhd: 3, npd: 0 } },
+          { text: "Swings between feeling superior and secretly worthless", scores: { bpd: 1, adhd: 0, npd: 3 } },
+          { text: "Is relatively stable", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "You've been told you...",
+        options: [
+          { text: "Are 'too much' or 'too intense'", scores: { bpd: 3, adhd: 1, npd: 0 } },
+          { text: "Don't listen or seem distracted all the time", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Always make it about yourself", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "Rarely get negative feedback like this", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      },
+      {
+        text: "What do you most need help with?",
+        options: [
+          { text: "Emotional regulation and fear of abandonment", scores: { bpd: 3, adhd: 0, npd: 0 } },
+          { text: "Focus, follow-through, and rejection sensitivity", scores: { bpd: 0, adhd: 3, npd: 0 } },
+          { text: "Self-worth that doesn't depend on others' opinions", scores: { bpd: 0, adhd: 0, npd: 3 } },
+          { text: "General relationship improvement", scores: { bpd: 1, adhd: 1, npd: 1 } }
+        ]
+      }
+    ];
+
+    const coachData = {
+      bpd: {
+        icon: "💜",
+        label: "BPD-Informed Coach",
+        title: "You Need a BPD Coach",
+        subtitle: "Your emotions aren't too much. They just need a translator.",
+        description: "Your patterns point to intense emotional experiences, fear of abandonment, and identity shifts that can feel overwhelming. A BPD-informed coach understands this wiring and won't shame you for it.",
+        features: [
+          "Splitting awareness & pattern interrupts",
+          "Abandonment alarm regulation",
+          "Identity stabilization work",
+          "Before-you-text-them support",
+          "Relationship repair scripts"
+        ],
+        link: "/coach-bpd.html"
+      },
+      adhd: {
+        icon: "⚡",
+        label: "ADHD-Informed Coach",
+        title: "You Need an ADHD Coach",
+        subtitle: "Your brain isn't broken. It needs a different operating system.",
+        description: "Your patterns point to executive function challenges, rejection sensitivity, and a brain that works differently, not worse. An ADHD-informed coach helps you work WITH your wiring, not against it.",
+        features: [
+          "Body doubling & accountability",
+          "Task initiation strategies",
+          "Rejection sensitivity coaching",
+          "Time blindness support",
+          "Relationship-specific ADHD help"
+        ],
+        link: "/coach-adhd.html"
+      },
+      npd: {
+        icon: "🔥",
+        label: "NPD-Informed Coach",
+        title: "You Need an NPD Coach",
+        subtitle: "You're not a monster. You're wired for protection.",
+        description: "Your patterns point to ego regulation challenges and self-worth that depends heavily on external validation. An NPD-informed coach helps you build genuine self-esteem without shame or attack.",
+        features: [
+          "Ego regulation without shame",
+          "Supply-free self-worth building",
+          "Accountability without attack",
+          "Partner impact awareness",
+          "Grandiosity-to-groundedness work"
+        ],
+        link: "/coach-npd.html"
+      }
+    };
+
+    let currentQuestion = 0;
+    let answers = [];
+    let scores = { bpd: 0, adhd: 0, npd: 0 };
+
+    function init() {
+      showQuestion();
+    }
+
+    function showQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById('questionText').textContent = q.text;
+      
+      const container = document.getElementById('optionsContainer');
+      container.innerHTML = '';
+      
+      q.options.forEach((opt, idx) => {
+        const div = document.createElement('div');
+        div.className = 'option' + (answers[currentQuestion] === idx ? ' selected' : '');
+        div.textContent = opt.text;
+        div.onclick = () => selectOption(idx);
+        container.appendChild(div);
+      });
+
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progressText').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+
+      document.getElementById('prevBtn').style.display = currentQuestion > 0 ? 'block' : 'none';
+      document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next';
+      document.getElementById('nextBtn').disabled = answers[currentQuestion] === undefined;
+    }
+
+    function selectOption(idx) {
+      answers[currentQuestion] = idx;
+      
+      document.querySelectorAll('.option').forEach((opt, i) => {
+        opt.className = 'option' + (i === idx ? ' selected' : '');
+      });
+
+      document.getElementById('nextBtn').disabled = false;
+    }
+
+    function nextQuestion() {
+      if (currentQuestion < questions.length - 1) {
+        currentQuestion++;
+        showQuestion();
+      } else {
+        calculateResults();
+      }
+    }
+
+    function prevQuestion() {
+      if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+      }
+    }
+
+    function calculateResults() {
+      scores = { bpd: 0, adhd: 0, npd: 0 };
+      
+      questions.forEach((q, qIdx) => {
+        if (answers[qIdx] !== undefined) {
+          const opt = q.options[answers[qIdx]];
+          scores.bpd += opt.scores.bpd;
+          scores.adhd += opt.scores.adhd;
+          scores.npd += opt.scores.npd;
+        }
+      });
+
+      const total = scores.bpd + scores.adhd + scores.npd;
+      const percents = {
+        bpd: Math.round((scores.bpd / total) * 100),
+        adhd: Math.round((scores.adhd / total) * 100),
+        npd: Math.round((scores.npd / total) * 100)
+      };
+
+      let winner = 'bpd';
+      if (scores.adhd > scores[winner]) winner = 'adhd';
+      if (scores.npd > scores[winner]) winner = 'npd';
+
+      showResults(winner, percents);
+    }
+
+    function showResults(winner, percents) {
+      document.getElementById('quizSection').classList.add('hidden');
+      document.getElementById('resultsSection').classList.add('show');
+
+      const data = coachData[winner];
+      const card = document.getElementById('resultCard');
+      card.className = 'result-card ' + winner;
+
+      document.getElementById('resultIcon').textContent = data.icon;
+      document.getElementById('resultLabel').textContent = data.label;
+      document.getElementById('resultTitle').textContent = data.title;
+      document.getElementById('resultSubtitle').textContent = data.subtitle;
+      document.getElementById('resultDescription').textContent = data.description;
+
+      const featuresEl = document.getElementById('resultFeatures');
+      featuresEl.innerHTML = data.features.map(f => `<li>${f}</li>`).join('');
+
+      document.getElementById('coachBtn').href = data.link;
+
+      document.getElementById('bpdBar').style.width = percents.bpd + '%';
+      document.getElementById('bpdPercent').textContent = percents.bpd + '%';
+      document.getElementById('adhdBar').style.width = percents.adhd + '%';
+      document.getElementById('adhdPercent').textContent = percents.adhd + '%';
+      document.getElementById('npdBar').style.width = percents.npd + '%';
+      document.getElementById('npdPercent').textContent = percents.npd + '%';
+
+      const others = Object.keys(coachData).filter(k => k !== winner);
+      const othersEl = document.getElementById('otherCoaches');
+      othersEl.innerHTML = others.map(k => 
+        `<a href="${coachData[k].link}" class="other-coach-link">${coachData[k].icon} ${coachData[k].label}</a>`
+      ).join('');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function restartQuiz() {
+      currentQuestion = 0;
+      answers = [];
+      scores = { bpd: 0, adhd: 0, npd: 0 };
+      
+      document.getElementById('quizSection').classList.remove('hidden');
+      document.getElementById('resultsSection').classList.remove('show');
+      
+      showQuestion();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    init();
+  </script>
+  <script id="unscarredRootRewriter">
+  (function(){
+    if(window.location.protocol !== "file:") return;
+    var path = window.location.pathname.replace(/\\/g,"/");
+    var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+    if(!match) match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+    var root = match ? match[1] : null;
+    if(!root) return;
+    var afterRoot = path.slice(root.length);
+    var depth = afterRoot.split('/').filter(Boolean).length - 1;
+    var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+    document.querySelectorAll('a[href^="/"]').forEach(function(a){
+      var href = a.getAttribute('href');
+      if(!href || href.startsWith('//')) return;
+      a.setAttribute('href', prefix + href.replace(/^\//,''));
+    });
+  })();
+  </script>
+</body>
+</html>

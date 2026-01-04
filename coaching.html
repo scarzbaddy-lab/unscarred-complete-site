@@ -902,7 +902,7 @@
 
       <div style="text-align: center; margin-top: 32px;">
         <p style="color: var(--text-dim); font-size: 0.9rem; max-width: 500px; margin: 0 auto;">
-          Not sure which coach fits? Take our <a href="quiz/nervous-system.html" style="color: var(--accent);">Nervous System Quiz</a> or book a free 15-minute consult.
+          Not sure which coach fits? Take our <a href="/quiz/which-coach.html" style="color: var(--accent);">Which Coach Quiz</a> or book a free 15-minute consult.
         </p>
       </div>
     </div>
@@ -1150,6 +1150,25 @@
         }
       });
     });
+  </script>
+
+  <script id="unscarredRootRewriter">
+  (function(){
+    if(window.location.protocol !== "file:") return;
+    var path = window.location.pathname.replace(/\\/g,"/");
+    var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+    if(!match) match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+    var root = match ? match[1] : null;
+    if(!root) return;
+    var afterRoot = path.slice(root.length);
+    var depth = afterRoot.split('/').filter(Boolean).length - 1;
+    var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+    document.querySelectorAll('a[href^="/"]').forEach(function(a){
+      var href = a.getAttribute('href');
+      if(!href || href.startsWith('//')) return;
+      a.setAttribute('href', prefix + href.replace(/^\//,''));
+    });
+  })();
   </script>
 
 </body>
