@@ -1,0 +1,58 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="patternBundleGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a33b5c" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a853"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#patternBundleGlow)"/>
+  
+  <!-- 4 Pattern Nodes - All Highlighted -->
+  <g transform="translate(800, 340)">
+    <!-- Node 1 -->
+    <circle cx="-120" cy="-60" r="40" fill="#a33b5c" fill-opacity="0.15" stroke="#a33b5c" stroke-width="3"/>
+    <circle cx="-120" cy="-60" r="15" fill="#a33b5c"/>
+    <text x="-120" y="-55" font-family="Outfit, sans-serif" font-size="20" font-weight="700" fill="#050507" text-anchor="middle">1</text>
+    
+    <!-- Node 2 -->
+    <circle cx="40" cy="-80" r="40" fill="#a33b5c" fill-opacity="0.15" stroke="#a33b5c" stroke-width="3"/>
+    <circle cx="40" cy="-80" r="15" fill="#a33b5c"/>
+    <text x="40" y="-75" font-family="Outfit, sans-serif" font-size="20" font-weight="700" fill="#050507" text-anchor="middle">2</text>
+    
+    <!-- Node 3 -->
+    <circle cx="-60" cy="60" r="40" fill="#a33b5c" fill-opacity="0.15" stroke="#a33b5c" stroke-width="3"/>
+    <circle cx="-60" cy="60" r="15" fill="#a33b5c"/>
+    <text x="-60" y="65" font-family="Outfit, sans-serif" font-size="20" font-weight="700" fill="#050507" text-anchor="middle">3</text>
+    
+    <!-- Node 4 -->
+    <circle cx="120" cy="40" r="40" fill="#a33b5c" fill-opacity="0.15" stroke="#a33b5c" stroke-width="3"/>
+    <circle cx="120" cy="40" r="15" fill="#a33b5c"/>
+    <text x="120" y="45" font-family="Outfit, sans-serif" font-size="20" font-weight="700" fill="#050507" text-anchor="middle">4</text>
+    
+    <!-- Connections between all -->
+    <line x1="-85" y1="-50" x2="5" y2="-75" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="-100" y1="-25" x2="-75" y2="25" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="40" y1="-40" x2="100" y2="10" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="-20" y1="55" x2="80" y2="45" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="-80" y1="-30" x2="80" y2="15" stroke="#a33b5c" stroke-width="1" stroke-opacity="0.2" stroke-dasharray="5,5"/>
+  </g>
+  
+  <!-- 4 Sessions Badge -->
+  <rect x="60" y="60" width="200" height="45" rx="22" fill="rgba(184,134,11,0.2)" stroke="rgba(184,134,11,0.5)" stroke-width="1"/>
+  <text x="160" y="92" font-family="Outfit, sans-serif" font-size="18" font-weight="600" fill="#d4a853" text-anchor="middle" letter-spacing="0.1em">4 SESSIONS</text>
+  
+  <!-- Save badge -->
+  <rect x="280" y="60" width="150" height="45" rx="22" fill="url(#goldGrad4)"/>
+  <text x="355" y="92" font-family="Outfit, sans-serif" font-size="16" font-weight="600" fill="#050507" text-anchor="middle" letter-spacing="0.08em">SAVE $31</text>
+  
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#d4a853" text-anchor="middle">$157</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Pattern Tracking</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">4-SESSION BUNDLE</text>
+</svg>

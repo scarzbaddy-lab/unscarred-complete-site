@@ -1,0 +1,41 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="fixerGlow" cx="30%" cy="60%" r="60%">
+      <stop offset="0%" stop-color="#c9763d" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#a33b5c" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#fixerGlow)"/>
+  
+  <!-- Wrench + Heart Combined -->
+  <g transform="translate(400, 380)">
+    <!-- Wrench -->
+    <path d="M-60,-80 L-40,-60 L-40,-20 L-20,0 L20,0 L40,-20 L40,-60 L60,-80 L40,-80 L40,-70 L20,-50 L-20,-50 L-40,-70 L-40,-80 Z" 
+          fill="none" stroke="#c9763d" stroke-width="4" transform="rotate(45)"/>
+    
+    <!-- Heart at the handle end -->
+    <path d="M50,60 C50,35 25,35 25,60 C25,85 50,110 50,110 C50,110 75,85 75,60 C75,35 50,35 50,60" 
+          fill="#a33b5c" stroke="none" transform="rotate(-45, 50, 80) translate(20, -10)"/>
+    
+    <!-- Fixing motion lines -->
+    <path d="M-100,-40 L-80,-40" stroke="#c9763d" stroke-width="3" stroke-linecap="round" stroke-opacity="0.5"/>
+    <path d="M-90,-20 L-70,-20" stroke="#c9763d" stroke-width="2" stroke-linecap="round" stroke-opacity="0.4"/>
+    <path d="M-95,0 L-75,0" stroke="#c9763d" stroke-width="3" stroke-linecap="round" stroke-opacity="0.5"/>
+    
+    <!-- Exhaustion hint - small sparkles from effort -->
+    <circle cx="100" cy="-60" r="3" fill="#c9763d" fill-opacity="0.5"/>
+    <circle cx="90" cy="-40" r="2" fill="#c9763d" fill-opacity="0.4"/>
+    <circle cx="105" cy="-30" r="2" fill="#c9763d" fill-opacity="0.3"/>
+  </g>
+  
+  <rect x="60" y="60" width="260" height="45" rx="22" fill="rgba(201,118,61,0.15)" stroke="rgba(201,118,61,0.4)" stroke-width="1"/>
+  <text x="190" y="92" font-family="Outfit, sans-serif" font-size="18" font-weight="500" fill="#c9763d" text-anchor="middle" letter-spacing="0.1em">SURVIVOR TYPE</text>
+  
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#c9763d" text-anchor="middle">$15</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">The Fixer</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">SURVIVOR TYPE WORKBOOK</text>
+</svg>

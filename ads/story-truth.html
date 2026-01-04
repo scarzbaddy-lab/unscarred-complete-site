@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Hard Truth</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      transform: scale(0.25);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 80% at 50% 50%, rgba(163, 59, 92, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 80px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 0 40px;
+    }
+
+    .small-text {
+      font-size: 32px;
+      color: #5c5955;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 88px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 60px;
+    }
+
+    h1 em { color: #a33b5c; }
+
+    .truth-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .truth-card {
+      display: flex;
+      gap: 24px;
+      padding: 36px 44px;
+      background: linear-gradient(135deg, rgba(20, 18, 25, 0.95), rgba(12, 11, 16, 0.9));
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 20px;
+      text-align: left;
+    }
+
+    .truth-card .wrong {
+      font-size: 36px;
+      color: #5c5955;
+      text-decoration: line-through;
+      flex: 1;
+    }
+
+    .truth-card .right {
+      font-size: 36px;
+      color: #a33b5c;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .arrow {
+      font-size: 32px;
+      color: #5c5955;
+    }
+
+    .bottom-message {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-style: italic;
+      color: #ece8e1;
+      line-height: 1.4;
+    }
+
+    .bottom-message em { color: #7d9a8c; }
+
+    .cta-area {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 56px 90px;
+      background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(163, 59, 92, 0.5);
+    }
+
+    .cta-sub {
+      margin-top: 36px;
+      font-size: 30px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="logo">un<span>scarred</span></div>
+
+    <div class="hero-section">
+      <p class="small-text">Hard truth</p>
+      <h1>It's not a <em>character flaw.</em><br>It's a nervous system<br>in survival mode.</h1>
+
+      <div class="truth-cards">
+        <div class="truth-card">
+          <span class="wrong">"I'm too sensitive"</span>
+          <span class="arrow">→</span>
+          <span class="right">Hypervigilance</span>
+        </div>
+        <div class="truth-card">
+          <span class="wrong">"I'm too needy"</span>
+          <span class="arrow">→</span>
+          <span class="right">Anxious attachment</span>
+        </div>
+        <div class="truth-card">
+          <span class="wrong">"I push people away"</span>
+          <span class="arrow">→</span>
+          <span class="right">Protective avoidance</span>
+        </div>
+        <div class="truth-card">
+          <span class="wrong">"I'm broken"</span>
+          <span class="arrow">→</span>
+          <span class="right">Unhealed patterns</span>
+        </div>
+      </div>
+
+      <p class="bottom-message">Your patterns are not your fault.<br><em>Learning them is your power.</em></p>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">Learn Your Patterns →</a>
+      <p class="cta-sub">unscarred.com</p>
+    </div>
+  </div>
+</body>
+</html>
+

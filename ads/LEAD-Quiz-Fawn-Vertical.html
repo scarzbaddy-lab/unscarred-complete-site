@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Fawn Response</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      transform: scale(0.25);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 50% at 50% 0%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 20% 100%, rgba(125, 154, 140, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 80px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .deer-icon {
+      font-size: 120px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 95px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.15;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    h1 em { color: #c9763d; }
+
+    .questions {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .question {
+      padding: 36px 44px;
+      background: linear-gradient(135deg, rgba(201, 118, 61, 0.08), rgba(20, 18, 25, 0.9));
+      border: 1px solid rgba(201, 118, 61, 0.15);
+      border-radius: 20px;
+      font-size: 36px;
+      color: #9a958c;
+      line-height: 1.4;
+    }
+
+    .question strong {
+      color: #ece8e1;
+    }
+
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #c9763d, transparent);
+      margin: 60px auto;
+    }
+
+    .bottom-text {
+      text-align: center;
+      font-size: 40px;
+      color: #9a958c;
+      line-height: 1.6;
+    }
+
+    .bottom-text em {
+      color: #7d9a8c;
+      font-style: italic;
+    }
+
+    .cta-area {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 56px 90px;
+      background: linear-gradient(135deg, #c9763d, #a85c2a);
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(201, 118, 61, 0.4);
+    }
+
+    .cta-sub {
+      margin-top: 36px;
+      font-size: 30px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="logo">un<span>scarred</span></div>
+
+    <div class="hero-section">
+      <div class="deer-icon">🦌</div>
+      <h1>Do you <em>disappear</em><br>to keep the peace?</h1>
+
+      <div class="questions">
+        <div class="question"><strong>Say yes</strong> when you mean no?</div>
+        <div class="question"><strong>Manage everyone's mood</strong> except your own?</div>
+        <div class="question"><strong>Apologize</strong> even when it's not your fault?</div>
+        <div class="question"><strong>Shrink yourself</strong> so others feel bigger?</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <p class="bottom-text">That's not kindness.<br>That's a <em>fawn response.</em></p>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">Take the Fawn Quiz →</a>
+      <p class="cta-sub">18 questions · 4 minutes</p>
+    </div>
+  </div>
+</body>
+</html>
+

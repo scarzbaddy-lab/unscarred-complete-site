@@ -1,0 +1,553 @@
+<!--
+====================================================
+UNSCARRED PAYHIP BUY BUTTON EMBEDS
+====================================================
+Copy these embed codes into your website pages to add 
+direct Payhip buy buttons.
+
+IMPORTANT: Replace [PRODUCT-ID] with your actual Payhip 
+product ID after you create each product in Payhip.
+
+To find your product ID:
+1. Go to Payhip > Products
+2. Click on a product
+3. Look at the URL - it will be like: payhip.com/b/XXXXX
+4. The XXXXX part is your product ID
+====================================================
+-->
+
+<!-- ===== REQUIRED SCRIPT (Add once per page in <head>) ===== -->
+<script src="https://payhip.com/embed.js"></script>
+
+<!-- ===== STYLE BLOCK (Add once per page) ===== -->
+<style>
+  /* Unscarred Buy Button Styles */
+  .payhip-button-wrapper {
+    display: inline-block;
+    margin: 10px 0;
+  }
+
+  .unscarred-buy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #a33b5c 0%, #8a2a4a 100%);
+    color: white;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+  }
+
+  .unscarred-buy-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5);
+  }
+
+  .unscarred-buy-btn.secondary {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #9a958c;
+    box-shadow: none;
+  }
+
+  .unscarred-buy-btn.secondary:hover {
+    border-color: rgba(163, 59, 92, 0.5);
+    color: #ece8e1;
+  }
+
+  .unscarred-buy-btn.free {
+    background: linear-gradient(135deg, #2d8f8f 0%, #1f6b6b 100%);
+    box-shadow: 0 8px 30px rgba(45, 143, 143, 0.3);
+  }
+
+  .unscarred-buy-btn.free:hover {
+    box-shadow: 0 12px 40px rgba(45, 143, 143, 0.4);
+  }
+
+  /* Price badge */
+  .btn-price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+</style>
+
+
+<!-- ===================================================================
+     OPTION 1: PAYHIP EMBED BUTTONS (Popup Checkout)
+     These open Payhip checkout in a popup - keeps users on your site
+     =================================================================== -->
+
+<!-- EXAMPLE: Anxious Healing Program -->
+<a href="https://payhip.com/b/[PRODUCT-ID]" class="payhip-buy-button" data-theme="none" data-product="[PRODUCT-ID]">
+  Buy Anxious Healing Program - $147
+</a>
+
+<!-- EXAMPLE: Free Crisis Toolkit -->
+<a href="https://payhip.com/b/[PRODUCT-ID]" class="payhip-buy-button" data-theme="none" data-product="[PRODUCT-ID]">
+  Get Crisis Toolkit - Free
+</a>
+
+
+<!-- ===================================================================
+     OPTION 2: STYLED LINK BUTTONS (Direct to Payhip Store)
+     These link directly to your Payhip product page
+     =================================================================== -->
+
+<!-- FREE PRODUCTS -->
+<a href="https://shop.unscarred.site/l/crisis-toolkit" class="unscarred-buy-btn free" target="_blank">
+  Get Crisis Toolkit <span class="btn-price">Free</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/pattern-tracking-guide" class="unscarred-buy-btn free" target="_blank">
+  Pattern Tracking Guide <span class="btn-price">Free</span>
+</a>
+
+
+<!-- PROGRAMS -->
+<a href="https://shop.unscarred.site/l/anxious-healing" class="unscarred-buy-btn" target="_blank">
+  Enroll Now <span class="btn-price">$147</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/avoidant-healing" class="unscarred-buy-btn" target="_blank">
+  Enroll Now <span class="btn-price">$197</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/fearful-avoidant" class="unscarred-buy-btn" target="_blank">
+  Enroll Now <span class="btn-price">$247</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/break-trauma-bond" class="unscarred-buy-btn" target="_blank">
+  Start Now <span class="btn-price">$47</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/centered-man" class="unscarred-buy-btn" target="_blank">
+  Enroll Now <span class="btn-price">$197</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/centered-woman" class="unscarred-buy-btn" target="_blank">
+  Enroll Now <span class="btn-price">$197</span>
+</a>
+
+
+<!-- WORKBOOKS -->
+<a href="https://shop.unscarred.site/l/bpd-healing" class="unscarred-buy-btn" target="_blank">
+  Get Workbook <span class="btn-price">$37</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/regulation-workbook" class="unscarred-buy-btn" target="_blank">
+  Get Workbook <span class="btn-price">$37</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/conflict-scripts" class="unscarred-buy-btn" target="_blank">
+  Get Scripts <span class="btn-price">$29</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/fa-drills" class="unscarred-buy-btn" target="_blank">
+  Get Drills <span class="btn-price">$37</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/date-better" class="unscarred-buy-btn" target="_blank">
+  Get Toolkit <span class="btn-price">$33</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/coming-home" class="unscarred-buy-btn" target="_blank">
+  Get Workbook <span class="btn-price">$37</span>
+</a>
+
+
+<!-- SURVIVOR TYPE WORKBOOKS -->
+<a href="https://shop.unscarred.site/l/fixer-workbook" class="unscarred-buy-btn" target="_blank">
+  The Fixer <span class="btn-price">$15</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/analyzer-workbook" class="unscarred-buy-btn" target="_blank">
+  The Analyzer <span class="btn-price">$15</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/chameleon-workbook" class="unscarred-buy-btn" target="_blank">
+  The Chameleon <span class="btn-price">$15</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/performer-workbook" class="unscarred-buy-btn" target="_blank">
+  The Performer <span class="btn-price">$15</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/vanisher-workbook" class="unscarred-buy-btn" target="_blank">
+  The Vanisher <span class="btn-price">$15</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/warrior-workbook" class="unscarred-buy-btn" target="_blank">
+  The Warrior <span class="btn-price">$15</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/survivor-bundle" class="unscarred-buy-btn" target="_blank">
+  Get All 6 <span class="btn-price">$47</span>
+</a>
+
+
+<!-- COACHING -->
+<a href="https://shop.unscarred.site/l/npd-coach-single" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$67</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/npd-coach-bundle" class="unscarred-buy-btn" target="_blank">
+  4 Sessions <span class="btn-price">$227</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/bpd-coach-single" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$67</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/bpd-coach-bundle" class="unscarred-buy-btn" target="_blank">
+  4 Sessions <span class="btn-price">$227</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/adhd-body-doubling" class="unscarred-buy-btn" target="_blank">
+  Book Now <span class="btn-price">$17</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/adhd-coach-single" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$57</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/adhd-monthly" class="unscarred-buy-btn" target="_blank">
+  Subscribe <span class="btn-price">$147/mo</span>
+</a>
+
+
+<!-- TRANSLATION SESSIONS -->
+<a href="https://shop.unscarred.site/l/couples-translation" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$97</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/parent-child-translation" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$87</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/sibling-translation" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$87</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/relationship-translation" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$87</span>
+</a>
+
+
+<!-- PATTERN TRACKING -->
+<a href="https://shop.unscarred.site/l/pattern-tracking-single" class="unscarred-buy-btn" target="_blank">
+  Book Session <span class="btn-price">$47</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/pattern-tracking-bundle" class="unscarred-buy-btn" target="_blank">
+  4 Sessions <span class="btn-price">$157</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/pattern-tracking-weekly" class="unscarred-buy-btn" target="_blank">
+  Subscribe <span class="btn-price">$127/mo</span>
+</a>
+
+
+<!-- TEXT SUPPORT -->
+<a href="https://shop.unscarred.site/l/screenshot-review" class="unscarred-buy-btn" target="_blank">
+  Get Review <span class="btn-price">$33</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/crisis-week" class="unscarred-buy-btn" target="_blank">
+  Crisis Week <span class="btn-price">$27</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/pattern-interrupt" class="unscarred-buy-btn" target="_blank">
+  14 Days <span class="btn-price">$47</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/best-friend-mode" class="unscarred-buy-btn" target="_blank">
+  30 Days <span class="btn-price">$127</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/vip-intensive" class="unscarred-buy-btn" target="_blank">
+  Apply Now <span class="btn-price">$197/mo</span>
+</a>
+
+
+<!-- BUNDLES -->
+<a href="https://shop.unscarred.site/l/complete-bundle" class="unscarred-buy-btn" target="_blank">
+  Get Bundle <span class="btn-price">$97</span>
+</a>
+
+<a href="https://shop.unscarred.site/l/all-programs" class="unscarred-buy-btn" target="_blank">
+  Get Everything <span class="btn-price">$497</span>
+</a>
+
+
+<!-- ===================================================================
+     OPTION 3: PRODUCT CARDS (For landing pages)
+     =================================================================== -->
+
+<!-- Product Card Component - Customizable -->
+<div style="
+  background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 400px;
+  text-align: center;
+  transition: all 0.3s ease;
+">
+  <h3 style="
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 12px;
+  ">Anxious Healing Program</h3>
+  
+  <p style="
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: #9a958c;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  ">4 weeks to calm your body, clean up your asks, and build steady connection. Includes 2 coaching calls.</p>
+  
+  <div style="margin-bottom: 20px;">
+    <span style="
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(124, 92, 191, 0.2);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: #7c5cbf;
+      margin: 0 4px;
+    ">4 WEEKS</span>
+    <span style="
+      display: inline-block;
+      padding: 4px 12px;
+      background: rgba(163, 59, 92, 0.2);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: #a33b5c;
+      margin: 0 4px;
+    ">2 CALLS INCLUDED</span>
+  </div>
+  
+  <div style="
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #a33b5c;
+    margin-bottom: 20px;
+  ">$147</div>
+  
+  <a href="https://shop.unscarred.site/l/anxious-healing" target="_blank" style="
+    display: inline-block;
+    padding: 16px 40px;
+    background: linear-gradient(135deg, #a33b5c 0%, #8a2a4a 100%);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+  ">Enroll Now →</a>
+</div>
+
+
+<!-- ===================================================================
+     EXAMPLE: Full Landing Page Section with Multiple Products
+     =================================================================== -->
+
+<section style="
+  background: #050507;
+  padding: 80px 24px;
+  font-family: 'Outfit', sans-serif;
+">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    
+    <!-- Section Header -->
+    <div style="text-align: center; margin-bottom: 48px;">
+      <span style="
+        font-size: 0.7rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #c9763d;
+      ">MOST POPULAR</span>
+      <h2 style="
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 2.5rem;
+        font-weight: 600;
+        font-style: italic;
+        color: #ece8e1;
+        margin-top: 12px;
+      ">Start Your Healing Journey</h2>
+    </div>
+    
+    <!-- Product Grid -->
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    ">
+      
+      <!-- Product 1 -->
+      <a href="https://shop.unscarred.site/l/anxious-healing" target="_blank" style="
+        background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      ">
+        <span style="
+          display: inline-block;
+          padding: 6px 14px;
+          background: rgba(163, 59, 92, 0.2);
+          border-radius: 999px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #a33b5c;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        ">2 Calls Included</span>
+        <h3 style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #ece8e1;
+          margin-bottom: 8px;
+        ">Anxious Healing Program</h3>
+        <p style="
+          font-size: 0.9rem;
+          color: #9a958c;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        ">4 weeks to calm your body and build steady connection.</p>
+        <div style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #a33b5c;
+        ">$147</div>
+      </a>
+      
+      <!-- Product 2 -->
+      <a href="https://shop.unscarred.site/l/bpd-healing" target="_blank" style="
+        background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      ">
+        <span style="
+          display: inline-block;
+          padding: 6px 14px;
+          background: rgba(124, 92, 191, 0.2);
+          border-radius: 999px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #7c5cbf;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        ">6 Modules</span>
+        <h3 style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #ece8e1;
+          margin-bottom: 8px;
+        ">BPD Healing Workbook</h3>
+        <p style="
+          font-size: 0.9rem;
+          color: #9a958c;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        ">Compassionate exercises for understanding borderline patterns.</p>
+        <div style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #a33b5c;
+        ">$37</div>
+      </a>
+      
+      <!-- Free Product -->
+      <a href="https://shop.unscarred.site/l/crisis-toolkit" target="_blank" style="
+        background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+        border: 1px solid rgba(45, 143, 143, 0.2);
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      ">
+        <span style="
+          display: inline-block;
+          padding: 6px 14px;
+          background: rgba(45, 143, 143, 0.2);
+          border-radius: 999px;
+          font-size: 0.7rem;
+          font-weight: 600;
+          color: #2d8f8f;
+          text-transform: uppercase;
+          margin-bottom: 16px;
+        ">Free</span>
+        <h3 style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #ece8e1;
+          margin-bottom: 8px;
+        ">Crisis Toolkit</h3>
+        <p style="
+          font-size: 0.9rem;
+          color: #9a958c;
+          line-height: 1.6;
+          margin-bottom: 16px;
+        ">Emergency grounding techniques for when you're in it.</p>
+        <div style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.8rem;
+          font-weight: 700;
+          color: #2d8f8f;
+        ">Free</div>
+      </a>
+      
+    </div>
+    
+    <!-- View All Button -->
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="https://shop.unscarred.site" target="_blank" style="
+        display: inline-block;
+        padding: 14px 32px;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #9a958c;
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.9rem;
+        font-weight: 500;
+        text-decoration: none;
+        border-radius: 999px;
+        transition: all 0.3s ease;
+      ">View All Products →</a>
+    </div>
+    
+  </div>
+</section>
+
+
+
+

@@ -1,0 +1,66 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="memberGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a33b5c" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#7c5cbf" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="loopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a33b5c"/>
+      <stop offset="50%" stop-color="#7c5cbf"/>
+      <stop offset="100%" stop-color="#a33b5c"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#memberGlow)"/>
+  
+  <!-- Infinity/Recurring Loop Symbol -->
+  <g transform="translate(800, 320)">
+    <!-- Infinity symbol made of two loops -->
+    <path d="M-120,0 
+             C-120,-60 -60,-60 -30,-30 
+             C0,0 0,0 30,-30 
+             C60,-60 120,-60 120,0 
+             C120,60 60,60 30,30 
+             C0,0 0,0 -30,30 
+             C-60,60 -120,60 -120,0" 
+          fill="none" stroke="url(#loopGrad)" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Inner glow -->
+    <ellipse cx="-60" cy="0" rx="50" ry="40" fill="#a33b5c" fill-opacity="0.1"/>
+    <ellipse cx="60" cy="0" rx="50" ry="40" fill="#7c5cbf" fill-opacity="0.1"/>
+    
+    <!-- Center connection point -->
+    <circle cx="0" cy="0" r="15" fill="#a33b5c"/>
+    
+    <!-- Pulse rings -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#a33b5c" stroke-width="1" stroke-opacity="0.2"/>
+    <circle cx="0" cy="0" r="130" fill="none" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.1"/>
+    
+    <!-- Monthly indicators around -->
+    <g transform="translate(0, -120)">
+      <circle cx="-60" cy="0" r="6" fill="#a33b5c" fill-opacity="0.6"/>
+      <circle cx="-20" cy="0" r="6" fill="#7c5cbf" fill-opacity="0.7"/>
+      <circle cx="20" cy="0" r="6" fill="#a33b5c" fill-opacity="0.8"/>
+      <circle cx="60" cy="0" r="6" fill="#7c5cbf" fill-opacity="0.9"/>
+    </g>
+    
+    <!-- Calendar hint -->
+    <g transform="translate(150, -80)">
+      <rect x="0" y="0" width="50" height="45" rx="6" fill="none" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.4"/>
+      <line x1="0" y1="12" x2="50" y2="12" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.3"/>
+      <text x="25" y="35" font-family="Outfit, sans-serif" font-size="16" fill="#7c5cbf" fill-opacity="0.6" text-anchor="middle">∞</text>
+    </g>
+  </g>
+  
+  <!-- Monthly badge -->
+  <rect x="60" y="60" width="180" height="50" rx="25" fill="rgba(163,59,92,0.2)" stroke="rgba(163,59,92,0.5)" stroke-width="1"/>
+  <text x="150" y="95" font-family="Outfit, sans-serif" font-size="18" font-weight="600" fill="#a33b5c" text-anchor="middle" letter-spacing="0.1em">MONTHLY</text>
+  
+  <text x="800" y="600" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Inner Circle</text>
+  <text x="800" y="680" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">MONTHLY MEMBERSHIP</text>
+  
+  <line x1="600" y1="760" x2="1000" y2="760" stroke="rgba(163,59,92,0.3)" stroke-width="1"/>
+</svg>
+

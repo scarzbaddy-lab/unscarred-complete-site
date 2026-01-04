@@ -4,36 +4,127 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Worth Types Assessment</title>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { box-sizing: border-box; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .fade-in { animation: fadeIn 0.4s ease-out; }
-    .question-card { transition: all 0.2s ease; }
-    .scale-button { transition: all 0.2s ease; }
-    .scale-button:hover { transform: scale(1.05); }
-    .scale-button.selected { transform: scale(1.1); }
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap');
+    
+    :root {
+      --bg-color: #f8f4f0;
+      --card-color: #ffffff;
+      --text-color: #2c2c2c;
+      --primary-color: #6b4e71;
+      --accent-color: #d4a574;
+    }
+    
+    body {
+      box-sizing: border-box;
+      background: var(--bg-color);
+      font-family: 'Nunito', system-ui, sans-serif;
+      color: var(--text-color);
+    }
+    
+    h1, h2, h3, .result-type {
+      font-family: 'Cormorant Garamond', serif;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.4s ease-out;
+    }
+    
+    .slide-up {
+      animation: slideUp 0.5s ease-out;
+    }
+    
+    .question-card {
+      transition: all 0.2s ease;
+      background: var(--card-color);
+    }
+    
+    .question-card:hover {
+      box-shadow: 0 4px 20px rgba(107, 78, 113, 0.1);
+    }
+    
+    .scale-button {
+      transition: all 0.2s ease;
+      background: var(--card-color);
+      border-color: #e5e5e5;
+    }
+    
+    .scale-button:hover {
+      transform: scale(1.03);
+      border-color: var(--primary-color);
+    }
+    
+    .scale-button.selected {
+      transform: scale(1.05);
+      background: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .btn-primary {
+      background: var(--primary-color);
+      transition: all 0.2s ease;
+    }
+    
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+    
+    .btn-secondary {
+      border-color: var(--primary-color);
+      color: var(--primary-color);
+      transition: all 0.2s ease;
+    }
+    
+    .btn-secondary:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+    
+    .progress-bar {
+      background: rgba(107, 78, 113, 0.15);
+    }
+    
+    .progress-fill {
+      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+      transition: width 0.3s ease;
+    }
+    
+    .result-card {
+      background: var(--card-color);
+      border-left: 4px solid var(--primary-color);
+    }
+    
+    .score-badge {
+      background: linear-gradient(135deg, var(--primary-color), #8b6e91);
+    }
+    
+    .script-box {
+      background: linear-gradient(135deg, rgba(107, 78, 113, 0.08), rgba(212, 165, 116, 0.08));
+      border-left: 3px solid var(--accent-color);
+    }
+    
+    .toast {
+      background: var(--primary-color);
+    }
   </style>
-  <style>@view-transition { navigation: auto; }</style>
 </head>
 <body class="h-full">
   <div id="app" class="w-full h-full overflow-auto"></div>
+  
   <script>
-    const defaultConfig = {
-      background_color: "#f8f4f0",
-      card_color: "#ffffff",
-      text_color: "#2c2c2c",
-      primary_color: "#6b4e71",
-      accent_color: "#d4a574",
-      title_text: "Worth Types Assessment",
-      subtitle_text: "Discover your worth patterns",
-      instructions_text: "Rate each statement based on how true it feels",
-      font_family: "system-ui",
-      font_size: 16
-    };
-
     const questions = [
       "I feel worthy when I like who I am even without praise.",
       "Compliments change my mood more than they should.",
@@ -61,7 +152,7 @@
       "I can be messy and still feel worthy."
     ];
 
-    const scaleLabels = ["Never", "Sometimes", "Often", "Almost always"];
+    const scaleLabels = ["Never", "Sometimes", "Often", "Almost Always"];
 
     const scoringMap = {
       internal: [1, 7, 10, 14, 17, 19, 24],
@@ -71,151 +162,96 @@
     };
 
     const results = {
-      internal: { title: "Internal Worth", core: "Your worth is rooted.", risk: "You can outgrow people fast.", upgrade: "Choose partners who respect your no." },
-      external: { title: "External Worth", core: "You feel real when mirrored.", risk: "You become easy to manipulate with attention.", upgrade: "Build self validation rituals before dating decisions.", script: "I like attention, but I choose consistency." },
-      conditional: { title: "Conditional Worth", core: "Your worth is tied to approval and harmony.", risk: "You accept crumbs to avoid rejection.", upgrade: "Practice being disliked and staying soft.", script: "I can be loved and still disappoint you." },
-      performance: { title: "Performance Worth", core: "Your worth is tied to output, beauty, intelligence, usefulness.", risk: "You burnout, then resent, then collapse.", upgrade: "Replace proving with receiving.", script: "I don't have to earn love. I only have to be honest." }
+      internal: {
+        title: "Internal Worth",
+        emoji: "🌿",
+        core: "Your worth is rooted. You have a stable sense of self that doesn't depend heavily on external validation.",
+        risk: "You can outgrow people fast. Your groundedness may feel threatening to those with fragile worth.",
+        upgrade: "Choose partners who respect your no. Surround yourself with people who celebrate your boundaries.",
+        script: "My worth is mine. I don't need to prove it."
+      },
+      external: {
+        title: "External Worth",
+        emoji: "🪞",
+        core: "You feel real when mirrored. Your sense of value often depends on being seen, wanted, or validated by others.",
+        risk: "You become easy to manipulate with attention. Love-bombing hits different when you're starving for reflection.",
+        upgrade: "Build self-validation rituals before making dating decisions. Learn to mirror yourself first.",
+        script: "I like attention, but I choose consistency."
+      },
+      conditional: {
+        title: "Conditional Worth",
+        emoji: "🎭",
+        core: "Your worth is tied to approval and harmony. You feel valuable when everyone is happy with you.",
+        risk: "You accept crumbs to avoid rejection. You'd rather be small than be left.",
+        upgrade: "Practice being disliked and staying soft. Your worth isn't a vote.",
+        script: "I can be loved and still disappoint you."
+      },
+      performance: {
+        title: "Performance Worth",
+        emoji: "🏆",
+        core: "Your worth is tied to output—beauty, intelligence, usefulness, achievement. You prove to exist.",
+        risk: "You burnout, then resent, then collapse. The cycle repeats until you learn rest isn't earned.",
+        upgrade: "Replace proving with receiving. Let yourself be helped without earning it first.",
+        script: "I don't have to earn love. I only have to be honest."
+      }
     };
 
     let currentAnswers = {};
     let currentView = 'assessment';
     let assessmentHistory = [];
+    let selectedHistoryIndex = null;
 
-    const dataHandler = {
-      onDataChanged(data) {
-        assessmentHistory = data.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
-        render();
+    // Load history from localStorage
+    function loadHistory() {
+      try {
+        const saved = localStorage.getItem('worthTypesHistory');
+        if (saved) {
+          assessmentHistory = JSON.parse(saved);
+          assessmentHistory.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
+        }
+      } catch (e) {
+        console.error('Failed to load history:', e);
+        assessmentHistory = [];
       }
-    };
+    }
 
-    async function initializeApp() {
-      const initResult = await window.dataSdk.init(dataHandler);
-      if (!initResult.isOk) console.error("Failed to initialize data SDK");
-      if (window.elementSdk) {
-        window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
+    // Save history to localStorage
+    function saveHistory() {
+      try {
+        localStorage.setItem('worthTypesHistory', JSON.stringify(assessmentHistory));
+      } catch (e) {
+        console.error('Failed to save history:', e);
       }
+    }
+
+    function setAnswer(questionNum, value) {
+      currentAnswers[`q${questionNum}`] = value;
       render();
     }
 
-    function onConfigChange(config) {
-      const baseSize = config.font_size || defaultConfig.font_size;
-      const customFont = config.font_family || defaultConfig.font_family;
-      const baseFontStack = 'system-ui, -apple-system, sans-serif';
-      document.body.style.background = config.background_color || defaultConfig.background_color;
-      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      const app = document.getElementById('app');
-      if (!app) return;
-      const titleEl = app.querySelector('[data-title]');
-      if (titleEl) {
-        titleEl.textContent = config.title_text || defaultConfig.title_text;
-        titleEl.style.fontSize = `${baseSize * 2}px`;
-        titleEl.style.color = config.text_color || defaultConfig.text_color;
-        titleEl.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      }
-      const subtitleEl = app.querySelector('[data-subtitle]');
-      if (subtitleEl) {
-        subtitleEl.textContent = config.subtitle_text || defaultConfig.subtitle_text;
-        subtitleEl.style.fontSize = `${baseSize * 1.1}px`;
-        subtitleEl.style.color = config.text_color || defaultConfig.text_color;
-        subtitleEl.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      }
-      const instructionsEl = app.querySelector('[data-instructions]');
-      if (instructionsEl) {
-        instructionsEl.textContent = config.instructions_text || defaultConfig.instructions_text;
-        instructionsEl.style.fontSize = `${baseSize}px`;
-        instructionsEl.style.color = config.text_color || defaultConfig.text_color;
-        instructionsEl.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      }
-      app.querySelectorAll('[data-card]').forEach(card => { card.style.background = config.card_color || defaultConfig.card_color; });
-      app.querySelectorAll('[data-question-text]').forEach(q => {
-        q.style.fontSize = `${baseSize * 0.95}px`;
-        q.style.color = config.text_color || defaultConfig.text_color;
-        q.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-      app.querySelectorAll('[data-scale-label]').forEach(label => {
-        label.style.fontSize = `${baseSize * 0.8}px`;
-        label.style.color = config.text_color || defaultConfig.text_color;
-        label.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-      app.querySelectorAll('[data-scale-button]').forEach(btn => {
-        const isSelected = btn.classList.contains('selected');
-        btn.style.background = isSelected ? (config.primary_color || defaultConfig.primary_color) : (config.card_color || defaultConfig.card_color);
-        btn.style.color = isSelected ? '#ffffff' : (config.text_color || defaultConfig.text_color);
-        btn.style.borderColor = config.primary_color || defaultConfig.primary_color;
-      });
-      app.querySelectorAll('[data-button-primary]').forEach(btn => {
-        btn.style.background = config.primary_color || defaultConfig.primary_color;
-        btn.style.fontSize = `${baseSize}px`;
-        btn.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-      app.querySelectorAll('[data-button-secondary]').forEach(btn => {
-        btn.style.color = config.primary_color || defaultConfig.primary_color;
-        btn.style.borderColor = config.primary_color || defaultConfig.primary_color;
-        btn.style.fontSize = `${baseSize}px`;
-        btn.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-      app.querySelectorAll('[data-result-type]').forEach(el => {
-        el.style.color = config.primary_color || defaultConfig.primary_color;
-        el.style.fontSize = `${baseSize * 1.5}px`;
-        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-      app.querySelectorAll('[data-result-section]').forEach(el => {
-        el.style.fontSize = `${baseSize}px`;
-        el.style.color = config.text_color || defaultConfig.text_color;
-        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-      app.querySelectorAll('[data-history-date]').forEach(el => {
-        el.style.fontSize = `${baseSize * 0.85}px`;
-        el.style.color = config.text_color || defaultConfig.text_color;
-        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
-      });
-    }
-
-    function mapToCapabilities(config) {
-      return {
-        recolorables: [
-          { get: () => config.background_color || defaultConfig.background_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ background_color: value }); } },
-          { get: () => config.card_color || defaultConfig.card_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ card_color: value }); } },
-          { get: () => config.text_color || defaultConfig.text_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ text_color: value }); } },
-          { get: () => config.primary_color || defaultConfig.primary_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ primary_color: value }); } },
-          { get: () => config.accent_color || defaultConfig.accent_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value }); } }
-        ],
-        borderables: [],
-        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ font_family: value }); } },
-        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ font_size: value }); } }
-      };
-    }
-
-    function mapToEditPanelValues(config) {
-      return new Map([
-        ["title_text", config.title_text || defaultConfig.title_text],
-        ["subtitle_text", config.subtitle_text || defaultConfig.subtitle_text],
-        ["instructions_text", config.instructions_text || defaultConfig.instructions_text]
-      ]);
-    }
-
-    function setAnswer(questionNum, value) { currentAnswers[`q${questionNum}`] = value; render(); }
-
-    function calculateScores() {
+    function calculateScores(answers = currentAnswers) {
       const scores = { internal: 0, external: 0, conditional: 0, performance: 0 };
       for (const [type, questionNums] of Object.entries(scoringMap)) {
         for (const qNum of questionNums) {
-          const answer = currentAnswers[`q${qNum}`];
+          const answer = answers[`q${qNum}`];
           if (answer !== undefined) scores[type] += answer;
         }
       }
       return scores;
     }
 
-    async function submitAssessment() {
+    function submitAssessment() {
       const allAnswered = questions.every((_, idx) => currentAnswers[`q${idx + 1}`] !== undefined);
-      if (!allAnswered) { showToast("Please answer all questions before submitting"); return; }
+      if (!allAnswered) {
+        showToast("Please answer all questions before submitting");
+        return;
+      }
+
       const scores = calculateScores();
       const sortedTypes = Object.entries(scores).sort((a, b) => b[1] - a[1]);
       const primaryType = sortedTypes[0][0];
       const secondaryType = sortedTypes[1][0];
-      const saveButton = document.querySelector('[data-submit-button]');
-      if (saveButton) { saveButton.disabled = true; saveButton.textContent = 'Saving...'; }
+
       const assessment = {
         assessment_id: Date.now().toString(),
         completed_at: new Date().toISOString(),
@@ -227,68 +263,101 @@
         conditional_score: scores.conditional,
         performance_score: scores.performance
       };
-      const result = await window.dataSdk.create(assessment);
-      if (saveButton) { saveButton.disabled = false; saveButton.textContent = 'View Results'; }
-      if (result.isOk) { currentView = 'results'; render(); } else { showToast("Failed to save assessment. Please try again."); }
+
+      assessmentHistory.unshift(assessment);
+      saveHistory();
+      selectedHistoryIndex = 0;
+      currentView = 'results';
+      render();
+      window.scrollTo(0, 0);
     }
 
     function showToast(message) {
       const existing = document.getElementById('toast');
       if (existing) existing.remove();
+      
       const toast = document.createElement('div');
       toast.id = 'toast';
-      toast.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 fade-in';
-      toast.style.background = window.elementSdk?.config?.primary_color || defaultConfig.primary_color;
-      toast.style.color = '#ffffff';
+      toast.className = 'toast fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 fade-in text-white font-medium';
       toast.textContent = message;
       document.body.appendChild(toast);
       setTimeout(() => toast.remove(), 3000);
     }
 
-    function startNewAssessment() { currentAnswers = {}; currentView = 'assessment'; render(); window.scrollTo(0, 0); }
-    function viewHistory() { currentView = 'history'; render(); }
-    function viewResults() { currentView = 'results'; render(); }
+    function startNewAssessment() {
+      currentAnswers = {};
+      currentView = 'assessment';
+      selectedHistoryIndex = null;
+      render();
+      window.scrollTo(0, 0);
+    }
+
+    function viewHistory() {
+      currentView = 'history';
+      render();
+    }
+
+    function viewResults(index = 0) {
+      selectedHistoryIndex = index;
+      currentView = 'results';
+      render();
+    }
+
+    function deleteAssessment(index) {
+      if (confirm('Delete this assessment?')) {
+        assessmentHistory.splice(index, 1);
+        saveHistory();
+        if (assessmentHistory.length === 0) {
+          currentView = 'assessment';
+        } else if (selectedHistoryIndex >= assessmentHistory.length) {
+          selectedHistoryIndex = assessmentHistory.length - 1;
+        }
+        render();
+      }
+    }
 
     function render() {
       const app = document.getElementById('app');
-      const config = window.elementSdk?.config || defaultConfig;
-      if (currentView === 'assessment') app.innerHTML = renderAssessmentView(config);
-      else if (currentView === 'results') app.innerHTML = renderResultsView(config);
-      else if (currentView === 'history') app.innerHTML = renderHistoryView(config);
-      if (window.elementSdk) onConfigChange(config);
+      if (currentView === 'assessment') {
+        app.innerHTML = renderAssessmentView();
+      } else if (currentView === 'results') {
+        app.innerHTML = renderResultsView();
+      } else if (currentView === 'history') {
+        app.innerHTML = renderHistoryView();
+      }
     }
 
-    function renderAssessmentView(config) {
+    function renderAssessmentView() {
       const progress = Object.keys(currentAnswers).length;
       const progressPercent = (progress / questions.length) * 100;
+      
       return `
-        <div class="max-w-4xl mx-auto p-6">
-          <div class="text-center mb-8 fade-in">
-            <h1 data-title class="font-bold mb-2">${config.title_text || defaultConfig.title_text}</h1>
-            <p data-subtitle class="mb-4">${config.subtitle_text || defaultConfig.subtitle_text}</p>
-            <p data-instructions class="opacity-75">${config.instructions_text || defaultConfig.instructions_text}</p>
+        <div class="max-w-3xl mx-auto p-6 pb-20">
+          <div class="text-center mb-10 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">Worth Types</h1>
+            <p class="text-lg text-gray-600 mb-2">Discover your worth patterns</p>
+            <p class="text-sm text-gray-500">Rate each statement based on how true it feels for you</p>
           </div>
-          <div class="mb-6">
-            <div class="h-2 rounded-full overflow-hidden" style="background: rgba(0,0,0,0.1)">
-              <div class="h-full transition-all duration-300"
-                   style="width: ${progressPercent}%; background: ${config.primary_color || defaultConfig.primary_color}"></div>
+          
+          <div class="mb-8 fade-in">
+            <div class="progress-bar h-2 rounded-full overflow-hidden">
+              <div class="progress-fill h-full" style="width: ${progressPercent}%"></div>
             </div>
-            <p class="text-center mt-2 text-sm opacity-75">${progress} of ${questions.length} completed</p>
+            <p class="text-center mt-2 text-sm text-gray-500">${progress} of ${questions.length} completed</p>
           </div>
-          <div class="space-y-4 mb-8">
+          
+          <div class="space-y-4 mb-10">
             ${questions.map((q, idx) => `
-              <div data-card class="question-card rounded-lg p-5 shadow-sm">
-                <p data-question-text class="font-medium mb-4">${idx + 1}. ${q}</p>
+              <div class="question-card rounded-xl p-5 shadow-sm slide-up" style="animation-delay: ${idx * 0.02}s">
+                <p class="font-medium mb-4 text-gray-700">${idx + 1}. ${q}</p>
                 <div class="grid grid-cols-4 gap-2">
                   ${scaleLabels.map((label, value) => {
-                    const isSelected = currentAnswers[\`q${idx + 1}\`] === value;
+                    const isSelected = currentAnswers[`q${idx + 1}`] === value;
                     return `
                       <button
-                        data-scale-button
                         class="scale-button ${isSelected ? 'selected' : ''} p-3 rounded-lg border-2 text-center font-medium"
-                        onclick="setAnswer(${idx + 1}, ${value})"
-                        aria-label="${label} for question ${idx + 1}">
-                        <div data-scale-label class="text-xs mb-1">${label}</div>
+                        onclick="setAnswer(${idx + 1}, ${value})">
+                        <div class="text-xs">${label}</div>
                       </button>
                     `;
                   }).join('')}
@@ -296,20 +365,18 @@
               </div>
             `).join('')}
           </div>
-          <div class="flex gap-3 justify-center">
+          
+          <div class="flex gap-3 justify-center flex-wrap">
             <button
-              data-submit-button
-              data-button-primary
               onclick="submitAssessment()"
-              class="px-8 py-3 rounded-lg font-semibold text-white shadow-md hover:shadow-lg transition-all">
-              View Results
+              class="btn-primary px-8 py-3 rounded-lg font-semibold text-white shadow-md">
+              View My Results
             </button>
             ${assessmentHistory.length > 0 ? `
               <button
-                data-button-secondary
                 onclick="viewHistory()"
-                class="px-8 py-3 rounded-lg font-semibold border-2 bg-white transition-all">
-                Past Results
+                class="btn-secondary px-8 py-3 rounded-lg font-semibold border-2 bg-white">
+                Past Results (${assessmentHistory.length})
               </button>
             ` : ''}
           </div>
@@ -317,66 +384,118 @@
       `;
     }
 
-    function renderResultsView(config) {
+    function renderResultsView() {
       if (assessmentHistory.length === 0) {
         return `
-          <div class="max-w-4xl mx-auto p-6 text-center">
-            <p class="mb-4">No assessment results yet.</p>
+          <div class="max-w-3xl mx-auto p-6 text-center">
+            <p class="mb-4 text-gray-600">No assessment results yet.</p>
             <button
-              data-button-primary
               onclick="startNewAssessment()"
-              class="px-8 py-3 rounded-lg font-semibold text-white">
+              class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
               Take Assessment
             </button>
           </div>
         `;
       }
-      const latest = assessmentHistory[0];
-      const primary = results[latest.primary_type];
-      const secondary = results[latest.secondary_type];
+
+      const index = selectedHistoryIndex ?? 0;
+      const assessment = assessmentHistory[index];
+      const primary = results[assessment.primary_type];
+      const secondary = results[assessment.secondary_type];
+      const maxScore = Math.max(assessment.internal_score, assessment.external_score, assessment.conditional_score, assessment.performance_score);
+
       return `
-        <div class="max-w-4xl mx-auto p-6">
-          <div class="text-center mb-8 fade-in">
-            <h1 data-title class="font-bold mb-2">Your Worth Types</h1>
-            <p data-subtitle class="opacity-75">Completed ${new Date(latest.completed_at).toLocaleDateString()}</p>
+        <div class="max-w-3xl mx-auto p-6 pb-20">
+          <div class="text-center mb-10 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">Your Worth Types</h1>
+            <p class="text-gray-500">Completed ${new Date(assessment.completed_at).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
           </div>
-          <div class="space-y-6 mb-8">
-            <div data-card class="rounded-lg p-6 shadow-md fade-in">
-              <h2 data-result-type class="font-bold mb-4">Primary: ${primary.title}</h2>
-              <div class="space-y-3">
-                <div data-result-section><strong>Core:</strong> ${primary.core}</div>
-                <div data-result-section><strong>Risk:</strong> ${primary.risk}</div>
-                <div data-result-section><strong>Upgrade:</strong> ${primary.upgrade}</div>
-                ${primary.script ? `<div data-result-section class="mt-4 p-4 rounded-lg italic" style="background: rgba(0,0,0,0.03)">"${primary.script}"</div>` : ''}
+          
+          <!-- Primary Type -->
+          <div class="result-card rounded-xl p-6 shadow-md mb-6 slide-up">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">${primary.emoji}</span>
+              <div>
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Primary Type</p>
+                <h2 class="result-type text-2xl md:text-3xl font-bold" style="color: var(--primary-color)">${primary.title}</h2>
               </div>
             </div>
-            <div data-card class="rounded-lg p-6 shadow-md fade-in">
-              <h2 data-result-type class="font-bold mb-4">Secondary: ${secondary.title}</h2>
-              <div class="space-y-3">
-                <div data-result-section><strong>Core:</strong> ${secondary.core}</div>
-                <div data-result-section><strong>Risk:</strong> ${secondary.risk}</div>
-                <div data-result-section><strong>Upgrade:</strong> ${secondary.upgrade}</div>
-                ${secondary.script ? `<div data-result-section class="mt-4 p-4 rounded-lg italic" style="background: rgba(0,0,0,0.03)">"${secondary.script}"</div>` : ''}
+            <div class="space-y-4 text-gray-700">
+              <div>
+                <p class="font-semibold text-gray-800 mb-1">Core Pattern</p>
+                <p>${primary.core}</p>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800 mb-1">Risk</p>
+                <p>${primary.risk}</p>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800 mb-1">Upgrade Path</p>
+                <p>${primary.upgrade}</p>
+              </div>
+              <div class="script-box p-4 rounded-lg mt-4">
+                <p class="italic text-lg">"${primary.script}"</p>
               </div>
             </div>
-            <div data-card class="rounded-lg p-6 shadow-sm">
-              <h3 class="font-semibold mb-3" data-result-section>All Scores</h3>
-              <div class="grid grid-cols-2 gap-4">
-                ${Object.entries({ Internal: latest.internal_score, External: latest.external_score, Conditional: latest.conditional_score, Performance: latest.performance_score }).map(([type, score]) => `
-                  <div data-result-section>
-                    <div class="text-sm opacity-75">${type}</div>
-                    <div class="font-bold">${score}</div>
+          </div>
+          
+          <!-- Secondary Type -->
+          <div class="result-card rounded-xl p-6 shadow-md mb-6 slide-up" style="animation-delay: 0.1s">
+            <div class="flex items-center gap-3 mb-4">
+              <span class="text-3xl">${secondary.emoji}</span>
+              <div>
+                <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Secondary Type</p>
+                <h2 class="result-type text-2xl md:text-3xl font-bold" style="color: var(--primary-color)">${secondary.title}</h2>
+              </div>
+            </div>
+            <div class="space-y-4 text-gray-700">
+              <div>
+                <p class="font-semibold text-gray-800 mb-1">Core Pattern</p>
+                <p>${secondary.core}</p>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800 mb-1">Risk</p>
+                <p>${secondary.risk}</p>
+              </div>
+              <div>
+                <p class="font-semibold text-gray-800 mb-1">Upgrade Path</p>
+                <p>${secondary.upgrade}</p>
+              </div>
+              <div class="script-box p-4 rounded-lg mt-4">
+                <p class="italic text-lg">"${secondary.script}"</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Score Breakdown -->
+          <div class="bg-white rounded-xl p-6 shadow-sm slide-up" style="animation-delay: 0.2s">
+            <h3 class="font-semibold mb-4 text-gray-800">Score Breakdown</h3>
+            <div class="space-y-3">
+              ${[
+                { type: 'Internal', score: assessment.internal_score, emoji: '🌿' },
+                { type: 'External', score: assessment.external_score, emoji: '🪞' },
+                { type: 'Conditional', score: assessment.conditional_score, emoji: '🎭' },
+                { type: 'Performance', score: assessment.performance_score, emoji: '🏆' }
+              ].map(({ type, score, emoji }) => `
+                <div class="flex items-center gap-3">
+                  <span class="text-xl">${emoji}</span>
+                  <span class="w-28 font-medium text-gray-700">${type}</span>
+                  <div class="flex-1 h-3 rounded-full bg-gray-100 overflow-hidden">
+                    <div class="h-full rounded-full transition-all duration-500" 
+                         style="width: ${(score / maxScore) * 100}%; background: ${score === maxScore ? 'var(--primary-color)' : 'var(--accent-color)'}"></div>
                   </div>
-                `).join('')}
-              </div>
+                  <span class="w-8 text-right font-bold" style="color: ${score === maxScore ? 'var(--primary-color)' : 'var(--text-color)'}">${score}</span>
+                </div>
+              `).join('')}
             </div>
           </div>
-          <div class="flex gap-3 justify-center flex-wrap">
-            <button data-button-primary onclick="startNewAssessment()" class="px-8 py-3 rounded-lg font-semibold text-white">
+          
+          <div class="flex gap-3 justify-center flex-wrap mt-10">
+            <button onclick="startNewAssessment()" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
               Take Again
             </button>
             ${assessmentHistory.length > 1 ? `
-              <button data-button-secondary onclick="viewHistory()" class="px-8 py-3 rounded-lg font-semibold border-2 bg-white">
+              <button onclick="viewHistory()" class="btn-secondary px-8 py-3 rounded-lg font-semibold border-2 bg-white">
                 View History
               </button>
             ` : ''}
@@ -385,42 +504,62 @@
       `;
     }
 
-    function renderHistoryView(config) {
+    function renderHistoryView() {
       return `
-        <div class="max-w-4xl mx-auto p-6">
-          <div class="text-center mb-8">
-            <h1 data-title class="font-bold mb-2">Assessment History</h1>
-            <p data-subtitle>${assessmentHistory.length} assessment${assessmentHistory.length !== 1 ? 's' : ''} completed</p>
+        <div class="max-w-3xl mx-auto p-6 pb-20">
+          <div class="text-center mb-10 fade-in">
+            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">Assessment History</h1>
+            <p class="text-gray-500">${assessmentHistory.length} assessment${assessmentHistory.length !== 1 ? 's' : ''} completed</p>
           </div>
-          <div class="space-y-4 mb-8">
-            ${assessmentHistory.map(assessment => `
-              <div data-card class="rounded-lg p-5 shadow-sm">
+          
+          <div class="space-y-4 mb-10">
+            ${assessmentHistory.map((assessment, idx) => `
+              <div class="bg-white rounded-xl p-5 shadow-sm slide-up cursor-pointer hover:shadow-md transition-shadow" 
+                   style="animation-delay: ${idx * 0.05}s"
+                   onclick="viewResults(${idx})">
                 <div class="flex justify-between items-start mb-3">
-                  <div>
-                    <div data-result-section class="font-semibold">
-                      ${results[assessment.primary_type].title} / ${results[assessment.secondary_type].title}
-                    </div>
-                    <div data-history-date class="opacity-75">
-                      ${new Date(assessment.completed_at).toLocaleString()}
+                  <div class="flex items-center gap-3">
+                    <span class="text-2xl">${results[assessment.primary_type].emoji}</span>
+                    <div>
+                      <div class="font-semibold text-gray-800">
+                        ${results[assessment.primary_type].title} / ${results[assessment.secondary_type].title}
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        ${new Date(assessment.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                      </div>
                     </div>
                   </div>
+                  <button 
+                    onclick="event.stopPropagation(); deleteAssessment(${idx})"
+                    class="text-gray-400 hover:text-red-500 transition-colors p-1"
+                    title="Delete">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                    </svg>
+                  </button>
                 </div>
                 <div class="grid grid-cols-4 gap-3 text-sm">
-                  ${Object.entries({ Internal: assessment.internal_score, External: assessment.external_score, Conditional: assessment.conditional_score, Performance: assessment.performance_score }).map(([type, score]) => `
-                    <div data-result-section>
-                      <div class="opacity-75">${type}</div>
-                      <div class="font-semibold">${score}</div>
+                  ${[
+                    { type: 'Internal', score: assessment.internal_score },
+                    { type: 'External', score: assessment.external_score },
+                    { type: 'Conditional', score: assessment.conditional_score },
+                    { type: 'Performance', score: assessment.performance_score }
+                  ].map(({ type, score }) => `
+                    <div class="text-center">
+                      <div class="text-gray-500 text-xs">${type}</div>
+                      <div class="font-bold" style="color: var(--primary-color)">${score}</div>
                     </div>
                   `).join('')}
                 </div>
               </div>
             `).join('')}
           </div>
+          
           <div class="flex gap-3 justify-center">
-            <button data-button-primary onclick="viewResults()" class="px-8 py-3 rounded-lg font-semibold text-white">
+            <button onclick="viewResults(0)" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
               Latest Results
             </button>
-            <button data-button-secondary onclick="startNewAssessment()" class="px-8 py-3 rounded-lg font-semibold border-2 bg-white">
+            <button onclick="startNewAssessment()" class="btn-secondary px-8 py-3 rounded-lg font-semibold border-2 bg-white">
               New Assessment
             </button>
           </div>
@@ -428,7 +567,9 @@
       `;
     }
 
-    initializeApp();
+    // Initialize
+    loadHistory();
+    render();
   </script>
 </body>
 </html>

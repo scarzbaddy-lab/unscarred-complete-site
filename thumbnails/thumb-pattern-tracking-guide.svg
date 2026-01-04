@@ -1,0 +1,44 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="tealGlow2" cx="80%" cy="20%" r="50%">
+      <stop offset="0%" stop-color="#2d8f8f" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#tealGlow2)"/>
+  
+  <!-- Pattern Dots Connected -->
+  <g transform="translate(800, 350)" fill="none" stroke="#2d8f8f" stroke-width="2">
+    <!-- Connection lines -->
+    <path d="M-180,-80 L-60,40 L60,-20 L180,60" stroke-opacity="0.5"/>
+    <path d="M-120,80 L0,-40 L120,20" stroke-opacity="0.3"/>
+    
+    <!-- Dots -->
+    <circle cx="-180" cy="-80" r="16" fill="#2d8f8f" stroke="none"/>
+    <circle cx="-60" cy="40" r="12" fill="#2d8f8f" stroke="none"/>
+    <circle cx="60" cy="-20" r="20" fill="#2d8f8f" stroke="none"/>
+    <circle cx="180" cy="60" r="14" fill="#2d8f8f" stroke="none"/>
+    <circle cx="-120" cy="80" r="10" fill="#1a5555" stroke="none"/>
+    <circle cx="0" cy="-40" r="18" fill="#1a5555" stroke="none"/>
+    <circle cx="120" cy="20" r="12" fill="#1a5555" stroke="none"/>
+    
+    <!-- Highlight ring on main dot -->
+    <circle cx="60" cy="-20" r="35" fill="none" stroke="#2d8f8f" stroke-opacity="0.4" stroke-width="2"/>
+    <circle cx="60" cy="-20" r="50" fill="none" stroke="#2d8f8f" stroke-opacity="0.2" stroke-width="1"/>
+  </g>
+  
+  <!-- FREE Badge -->
+  <rect x="1320" y="60" width="220" height="60" rx="30" fill="#2d8f8f"/>
+  <text x="1430" y="102" font-family="Outfit, sans-serif" font-size="28" font-weight="600" fill="white" text-anchor="middle" letter-spacing="0.15em">FREE</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Pattern Tracking</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">DOCUMENT REALITY · SEE CLEARLY</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(45,143,143,0.3)" stroke-width="1"/>
+</svg>

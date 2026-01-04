@@ -117,7 +117,7 @@ Paste this in: "Footer Code" section
       text-decoration: none;
       transition: color 0.3s;
     " onmouseover="this.style.color='#a33b5c'" onmouseout="this.style.color='#9a958c'">Blog</a>
-    <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" style="
+    <a href="https://unscarred.site/calls.html" style="
       font-family: 'Outfit', sans-serif;
       font-size: 0.85rem;
       color: #a33b5c;
@@ -598,6 +598,8 @@ WHERE TO PASTE EACH SECTION IN PAYHIP
 4. CHECKOUT BANNER (optional):
    Settings > Store Settings > Custom Code > Header Code
    (Add after the other header code)
+
+
 
 
 

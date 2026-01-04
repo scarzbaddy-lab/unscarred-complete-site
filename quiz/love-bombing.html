@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -165,7 +165,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
         
         <div id="quiz-section">
             <h1>Is This Real or Manipulation </h1>
@@ -330,7 +330,7 @@
                 ];
                 ctas = [
                     { text: "Coercive Control Quiz", url: "coercive-control.html", icon: "🚩" },
-                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??️" }
+                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "️" }
                 ];
             } else if (scores.lovebomb >= 3 || scores.mixed >= 5) {
                 color = "#f39c12";
@@ -376,7 +376,7 @@
                     "Trust yourself to notice if things change"
                 ];
                 ctas = [
-                    { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" },
+                    { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" },
                     { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "🔄" }
                 ];
             }
@@ -429,7 +429,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

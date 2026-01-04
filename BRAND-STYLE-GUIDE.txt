@@ -1,0 +1,292 @@
+====================================================
+UNSCARRED BRAND STYLE GUIDE
+====================================================
+Quick Reference for Payhip, Social Media, and All Marketing
+Last Updated: January 4, 2026
+
+====================================================
+BRAND IDENTITY
+====================================================
+
+BRAND NAME: Unscarred
+STYLIZED: un<scarred> (with "scarred" in primary rose color)
+
+TAGLINE: 
+"Pattern support for the ones who feel too much and see too clearly."
+
+FOUNDER: Scar Kade
+
+VOICE: 
+- Direct, not clinical
+- Compassionate, not soft
+- Real, not performative
+- Educational, not therapeutic
+- No shame, just clarity
+
+POSITIONING:
+"I'm not a therapist. I'm a survivor, pattern reader, and educator.
+Pattern tracking kept me alive. Now I teach it.
+Your patterns are not your fault. Learning them is your power."
+
+
+====================================================
+COLOR PALETTE
+====================================================
+
+PRIMARY COLORS:
+------------------------------------------
+Primary Rose:        #a33b5c    (main accent, CTAs, links)
+Secondary Purple:    #7c5cbf    (alt accent, programs)
+Accent Orange:       #c9763d    (warmth, urgency, labels)
+Teal:                #2d8f8f    (free items, calm, success)
+Gold:                #b8860b    (premium, bundles)
+
+BACKGROUNDS:
+------------------------------------------
+Void Black:          #050507    (deepest background)
+Deep Black:          #0a0a0f    (surface background)
+Card Glass:          rgba(12, 12, 18, 0.85)
+
+TEXT:
+------------------------------------------
+Main Text:           #ece8e1    (cream white)
+Soft Text:           #9a958c    (muted descriptions)
+Dim Text:            #5c5955    (footer, fine print)
+
+GLOWS & ACCENTS:
+------------------------------------------
+Primary Glow:        rgba(163, 59, 92, 0.4)
+Secondary Glow:      rgba(124, 92, 191, 0.3)
+Border Glass:        rgba(255,255,255,0.06)
+
+
+====================================================
+TYPOGRAPHY
+====================================================
+
+DISPLAY FONT (Headlines, Titles, Prices):
+  Font: Cormorant Garamond
+  Weight: 600 (semibold) or 700 (bold)
+  Style: Italic
+  Source: Google Fonts
+  Import: https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400
+
+BODY FONT (Text, Buttons, UI):
+  Font: Outfit
+  Weights: 300 (light), 400 (regular), 500 (medium), 600 (semibold)
+  Source: Google Fonts
+  Import: https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700
+
+USAGE:
+  Headlines:       Cormorant Garamond, italic, 600
+  Body text:       Outfit, 400, 16px
+  Buttons:         Outfit, 600, uppercase, 0.08em letter-spacing
+  Labels/Tags:     Outfit, 600, uppercase, 0.1em letter-spacing, 11-12px
+  Prices:          Cormorant Garamond, 700
+
+
+====================================================
+BUTTON STYLES
+====================================================
+
+PRIMARY BUTTON (CTAs, Buy Now):
+  Background: linear-gradient(135deg, #a33b5c, #8a2a4a)
+  Color: white
+  Border-radius: 999px (pill)
+  Padding: 16px 32px
+  Font: Outfit, 600, uppercase, 0.08em spacing
+  Shadow: 0 8px 30px rgba(163, 59, 92, 0.4)
+  Hover: translateY(-2px), increased shadow
+
+SECONDARY BUTTON (Browse, Learn More):
+  Background: transparent
+  Border: 1px solid rgba(255,255,255,0.15)
+  Color: #9a958c
+  Hover: border-color to 0.3, color to #ece8e1
+
+FREE BUTTON (Download Free):
+  Background: linear-gradient(135deg, #2d8f8f, #1f6b6b)
+  Color: white
+  Shadow: 0 8px 30px rgba(45, 143, 143, 0.3)
+
+
+====================================================
+CARD STYLES
+====================================================
+
+PRODUCT CARD:
+  Background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95))
+  Border: 1px solid rgba(255, 255, 255, 0.06)
+  Border-radius: 20px
+  Hover: border-color rgba(163, 59, 92, 0.3), translateY(-4px)
+
+FEATURED CARD:
+  Same as above, but with:
+  Border: 1px solid rgba(163, 59, 92, 0.3)
+  Background includes rose gradient accent
+
+
+====================================================
+BADGE/TAG STYLES
+====================================================
+
+FREE TAG:
+  Background: rgba(45, 143, 143, 0.2) or solid #2d8f8f
+  Text: white or #2d8f8f
+
+POPULAR TAG:
+  Background: rgba(163, 59, 92, 0.2)
+  Text: #a33b5c
+
+BUNDLE TAG:
+  Background: #b8860b
+  Text: #050507
+
+NEW TAG:
+  Background: #7c5cbf
+  Text: white
+
+CATEGORY LABELS:
+  Font: Outfit, 600, 0.65rem
+  Transform: uppercase
+  Letter-spacing: 0.2em
+  Color: #c9763d
+
+
+====================================================
+THUMBNAIL SPECS
+====================================================
+
+DIMENSIONS: 1600 x 900px (16:9)
+FORMAT: PNG (SVG converted to PNG for Payhip)
+BACKGROUND: #050507 base with colored accent glows
+
+CATEGORY VISUAL SYSTEM:
+  Free Resources:     Teal accent, "FREE" badge
+  Workbooks:          Rose accent, notebook icon
+  Programs:           Purple gradient, course icon
+  Scripts & Tools:    Orange accent, quote marks
+  Coaching:           Rose-purple gradient, headset
+  Text Support:       Teal, phone/message icon
+  Bundles:            Gold, "BUNDLE" ribbon
+
+FILE NAMING: thumb-[product-slug].png
+  Examples: thumb-crisis-toolkit.png, thumb-anxious-healing.png
+
+
+====================================================
+ICONOGRAPHY
+====================================================
+
+STYLE: Line art, geometric, minimal
+DO NOT USE: Cartoon icons, stock photos of people
+
+CATEGORY ICONS:
+  ⚔️  War Path / Survival
+  🔥  Trauma / Intensity
+  💔  Anxious Attachment
+  🧊  Avoidant Attachment
+  💜  BPD / Borderline
+  🧠  ADHD / Neurodivergent
+  🎯  Pattern Tracking
+  💬  Text Support
+  📓  Workbooks
+  🎓  Programs
+
+
+====================================================
+WRITING STYLE
+====================================================
+
+HEADLINES:
+- Short, direct, evocative
+- Use "you/your" language
+- Examples:
+  "Break The Bond"
+  "Anxious Healing"
+  "Coming Home"
+
+DESCRIPTIONS:
+- Start with the pain point (you...)
+- Explain what this solves
+- List what's included (bullets)
+- End with who it's for
+- No clinical jargon
+- No shame language
+
+SIGNATURE PHRASES:
+- "Your patterns are not your fault. Learning them is your power."
+- "I turn scars into mirrors."
+- "This isn't about fixing you. It's about understanding you."
+- "No shame. Just clarity."
+- "For the ones who feel too much and see too clearly."
+
+
+====================================================
+DONT'S
+====================================================
+
+❌ Don't use clinical/diagnostic language ("disorder," "treatment")
+❌ Don't use shame-based language
+❌ Don't use light backgrounds
+❌ Don't use stock photos of people
+❌ Don't use generic sans-serif fonts (Arial, Helvetica)
+❌ Don't use cartoon/clip-art icons
+❌ Don't promise therapy or medical advice
+❌ Don't use bright/neon colors
+
+
+====================================================
+QUICK COPY REFERENCE
+====================================================
+
+GOOGLE FONTS LINK:
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+CSS VARIABLES:
+:root {
+  --bg-void: #050507;
+  --bg-deep: #0a0a0f;
+  --primary: #a33b5c;
+  --primary-glow: rgba(163, 59, 92, 0.4);
+  --secondary: #7c5cbf;
+  --accent: #c9763d;
+  --teal: #2d8f8f;
+  --gold: #b8860b;
+  --text-main: #ece8e1;
+  --text-soft: #9a958c;
+  --text-dim: #5c5955;
+  --border-glass: rgba(255,255,255,0.06);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+}
+
+
+====================================================
+FILES REFERENCE
+====================================================
+
+PAYHIP SETUP:
+- PAYHIP-STORE-SETUP.txt (store name, bio, categories)
+- PAYHIP-CUSTOM-CSS.txt (full store styling)
+- PAYHIP-CODE-INJECTION.txt (header/footer code)
+- PAYHIP-PRODUCT-DESCRIPTIONS.txt (all product copy)
+- PAYHIP-MASTER-CHECKLIST.txt (setup guide)
+- PAYHIP-BUY-BUTTONS.html (embed codes)
+
+THUMBNAILS:
+- thumbnails/ (43 SVG files)
+- thumbnails-png/ (converted PNGs after running script)
+- THUMBNAIL-GUIDE.txt (specs for each thumbnail)
+- convert-thumbnails.ps1 (conversion script)
+
+WEBSITE:
+- shop.html (shop page with product cards)
+- payhip-menu-widget-full.html (Payhip homepage widget)
+
+
+====================================================
+
+
+
+

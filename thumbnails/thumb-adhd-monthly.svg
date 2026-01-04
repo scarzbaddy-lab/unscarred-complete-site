@@ -1,0 +1,59 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="calendarGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#7c5cbf" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a853"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#calendarGlow)"/>
+  
+  <!-- Calendar Grid with Checkmarks -->
+  <g transform="translate(800, 320)">
+    <!-- Calendar frame -->
+    <rect x="-180" y="-120" width="360" height="280" rx="16" fill="none" stroke="#7c5cbf" stroke-width="3"/>
+    
+    <!-- Header bar -->
+    <rect x="-180" y="-120" width="360" height="50" rx="16" fill="#7c5cbf" fill-opacity="0.2"/>
+    <line x1="-180" y1="-70" x2="180" y2="-70" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.5"/>
+    
+    <!-- Grid lines -->
+    <line x1="-60" y1="-70" x2="-60" y2="160" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.2"/>
+    <line x1="60" y1="-70" x2="60" y2="160" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.2"/>
+    <line x1="-180" y1="0" x2="180" y2="0" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.2"/>
+    <line x1="-180" y1="70" x2="180" y2="70" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.2"/>
+    
+    <!-- Checkmarks in cells -->
+    <path d="M-130,-45 L-115,-30 L-95,-55" fill="none" stroke="#2d8f8f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-10,-45 L5,-30 L25,-55" fill="none" stroke="#2d8f8f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M110,-45 L125,-30 L145,-55" fill="none" stroke="#2d8f8f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-130,25 L-115,40 L-95,15" fill="none" stroke="#2d8f8f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-10,25 L5,40 L25,15" fill="none" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M110,25 L125,40 L145,15" fill="none" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-130,95 L-115,110 L-95,85" fill="none" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Current day highlight -->
+    <circle cx="5" cy="100" r="25" fill="#7c5cbf" fill-opacity="0.3" stroke="#7c5cbf" stroke-width="2"/>
+  </g>
+  
+  <!-- Monthly badge -->
+  <rect x="60" y="60" width="200" height="50" rx="25" fill="rgba(124,92,191,0.15)" stroke="rgba(124,92,191,0.4)" stroke-width="1"/>
+  <text x="160" y="95" font-family="Outfit, sans-serif" font-size="20" font-weight="500" fill="#7c5cbf" text-anchor="middle" letter-spacing="0.1em">MONTHLY</text>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#7c5cbf" text-anchor="middle">$147</text>
+  
+  <!-- Headline -->
+  <text x="800" y="660" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">ADHD Accountability</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="740" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">ONGOING SUPPORT</text>
+  
+  <line x1="600" y1="820" x2="1000" y2="820" stroke="rgba(124,92,191,0.3)" stroke-width="1"/>
+</svg>

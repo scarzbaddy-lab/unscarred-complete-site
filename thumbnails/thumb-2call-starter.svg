@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="tcBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a0f"/>
+      <stop offset="50%" stop-color="#1a1520"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="tcGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7c5cbf" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7c5cbf" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="500" fill="url(#tcBg)"/>
+  <ellipse cx="200" cy="100" rx="150" ry="90" fill="url(#tcGlow)"/>
+  
+  <!-- Session 1 -->
+  <rect x="80" y="110" width="100" height="120" rx="12" fill="#7c5cbf" fill-opacity="0.15" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="80" y="110" width="100" height="30" rx="12" fill="#7c5cbf"/>
+  <rect x="92" y="122" width="8" height="3" rx="1" fill="#ece8e1"/>
+  <rect x="108" y="122" width="8" height="3" rx="1" fill="#ece8e1"/>
+  <rect x="160" y="122" width="8" height="3" rx="1" fill="#ece8e1"/>
+  <text x="130" y="170" font-family="Georgia, serif" font-size="14" fill="#7c5cbf" text-anchor="middle" font-weight="600">SESSION</text>
+  <text x="130" y="210" font-family="Georgia, serif" font-size="36" fill="#ece8e1" text-anchor="middle" font-weight="700">1</text>
+  
+  <!-- Session 2 -->
+  <rect x="220" y="130" width="100" height="120" rx="12" fill="#a33b5c" fill-opacity="0.15" stroke="#a33b5c" stroke-width="2"/>
+  <rect x="220" y="130" width="100" height="30" rx="12" fill="#a33b5c"/>
+  <rect x="232" y="142" width="8" height="3" rx="1" fill="#ece8e1"/>
+  <rect x="248" y="142" width="8" height="3" rx="1" fill="#ece8e1"/>
+  <rect x="300" y="142" width="8" height="3" rx="1" fill="#ece8e1"/>
+  <text x="270" y="190" font-family="Georgia, serif" font-size="14" fill="#a33b5c" text-anchor="middle" font-weight="600">SESSION</text>
+  <text x="270" y="230" font-family="Georgia, serif" font-size="36" fill="#ece8e1" text-anchor="middle" font-weight="700">2</text>
+  
+  <!-- Connecting arrow -->
+  <line x1="185" y1="180" x2="210" y2="180" stroke="#c9763d" stroke-width="3" stroke-dasharray="6,4"/>
+  <polygon points="210,175 222,180 210,185" fill="#c9763d"/>
+  
+  <!-- Time frame indicator -->
+  <rect x="130" y="275" width="140" height="28" rx="14" fill="#c9763d" fill-opacity="0.15" stroke="#c9763d" stroke-opacity="0.5"/>
+  <text x="200" y="294" font-family="Georgia, serif" font-size="11" fill="#c9763d" text-anchor="middle" font-weight="600">USE WITHIN 6 WEEKS</text>
+  
+  <!-- Title -->
+  <text x="200" y="370" font-family="Georgia, serif" font-size="30" fill="#ece8e1" text-anchor="middle" font-style="italic">2-Call Starter</text>
+  <text x="200" y="405" font-family="Georgia, serif" font-size="14" fill="#9a958c" text-anchor="middle">Map patterns and create a plan</text>
+  
+  <!-- Price badge -->
+  <rect x="130" y="430" width="140" height="40" rx="20" fill="#7c5cbf" fill-opacity="0.2" stroke="#7c5cbf" stroke-opacity="0.5"/>
+  <text x="200" y="450" font-family="Georgia, serif" font-size="16" fill="#7c5cbf" text-anchor="middle" font-weight="700">$87</text>
+  <text x="200" y="464" font-family="Georgia, serif" font-size="10" fill="#9a958c" text-anchor="middle">SAVE $7</text>
+</svg>

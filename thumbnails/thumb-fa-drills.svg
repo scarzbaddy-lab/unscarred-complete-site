@@ -1,0 +1,58 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="faDrillsGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#7c5cbf" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="pushPullGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a33b5c"/>
+      <stop offset="50%" stop-color="#7c5cbf"/>
+      <stop offset="100%" stop-color="#2d8f8f"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#faDrillsGlow)"/>
+  
+  <!-- Push-Pull Wave Visual -->
+  <g transform="translate(800, 340)">
+    <!-- Push arrow (hot/anxious) -->
+    <path d="M-200,0 L-120,0" fill="none" stroke="#a33b5c" stroke-width="6" stroke-linecap="round"/>
+    <polygon points="-120,0 -140,-15 -140,15" fill="#a33b5c"/>
+    
+    <!-- Pull arrow (cold/avoidant) -->
+    <path d="M200,0 L120,0" fill="none" stroke="#2d8f8f" stroke-width="6" stroke-linecap="round"/>
+    <polygon points="120,0 140,-15 140,15" fill="#2d8f8f"/>
+    
+    <!-- Central oscillating point -->
+    <circle cx="0" cy="0" r="40" fill="#7c5cbf" fill-opacity="0.2" stroke="#7c5cbf" stroke-width="4"/>
+    <circle cx="0" cy="0" r="15" fill="#7c5cbf"/>
+    
+    <!-- Oscillation wave hints -->
+    <path d="M-80,-60 Q-40,-80 0,-60 Q40,-40 80,-60" fill="none" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.4"/>
+    <path d="M-80,60 Q-40,40 0,60 Q40,80 80,60" fill="none" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.4"/>
+    
+    <!-- Mini drill checkmarks -->
+    <g transform="translate(-60, 100)">
+      <circle cx="0" cy="0" r="15" fill="#7c5cbf" fill-opacity="0.3" stroke="#7c5cbf" stroke-width="2"/>
+      <path d="M-6,0 L-2,4 L6,-4" fill="none" stroke="#7c5cbf" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(0, 100)">
+      <circle cx="0" cy="0" r="15" fill="#7c5cbf" fill-opacity="0.3" stroke="#7c5cbf" stroke-width="2"/>
+      <path d="M-6,0 L-2,4 L6,-4" fill="none" stroke="#7c5cbf" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <g transform="translate(60, 100)">
+      <circle cx="0" cy="0" r="15" fill="#7c5cbf" fill-opacity="0.3" stroke="#7c5cbf" stroke-width="2"/>
+      <path d="M-6,0 L-2,4 L6,-4" fill="none" stroke="#7c5cbf" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Labels -->
+    <text x="-160" y="-30" font-family="Outfit, sans-serif" font-size="16" fill="#a33b5c" fill-opacity="0.7" text-anchor="middle">PUSH</text>
+    <text x="160" y="-30" font-family="Outfit, sans-serif" font-size="16" fill="#2d8f8f" fill-opacity="0.7" text-anchor="middle">PULL</text>
+  </g>
+  
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#7c5cbf" text-anchor="middle">$37</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">FA Micro-Drills</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">FEARFUL-AVOIDANT EXERCISES</text>
+</svg>

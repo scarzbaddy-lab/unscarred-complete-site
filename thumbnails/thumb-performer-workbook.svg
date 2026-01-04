@@ -1,0 +1,44 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="spotlightGlow" cx="50%" cy="30%" r="50%">
+      <stop offset="0%" stop-color="#c9763d" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#spotlightGlow)"/>
+  
+  <!-- Theatrical Mask with Spotlight -->
+  <g transform="translate(400, 380)">
+    <!-- Spotlight beam from above -->
+    <polygon points="0,-180 -80,100 80,100" fill="#c9763d" fill-opacity="0.08"/>
+    
+    <!-- Comedy/tragedy mask -->
+    <ellipse cx="0" cy="0" rx="80" ry="70" fill="none" stroke="#c9763d" stroke-width="4"/>
+    
+    <!-- Smiling face (performance mask) -->
+    <ellipse cx="-25" cy="-15" rx="15" ry="12" fill="none" stroke="#c9763d" stroke-width="3"/>
+    <ellipse cx="25" cy="-15" rx="15" ry="12" fill="none" stroke="#c9763d" stroke-width="3"/>
+    <path d="M-35,25 Q0,55 35,25" fill="none" stroke="#c9763d" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Sparkles around -->
+    <circle cx="-100" cy="-60" r="3" fill="#c9763d"/>
+    <circle cx="100" cy="-60" r="3" fill="#c9763d"/>
+    <circle cx="-90" cy="40" r="2" fill="#c9763d" fill-opacity="0.6"/>
+    <circle cx="90" cy="40" r="2" fill="#c9763d" fill-opacity="0.6"/>
+    <path d="M-110,-30 L-105,-30 M-107.5,-32.5 L-107.5,-27.5" stroke="#c9763d" stroke-width="2"/>
+    <path d="M110,-30 L115,-30 M112.5,-32.5 L112.5,-27.5" stroke="#c9763d" stroke-width="2"/>
+    
+    <!-- Exhaustion hint - small crack -->
+    <path d="M60,-40 L65,-35 L62,-30" fill="none" stroke="#c9763d" stroke-width="1" stroke-opacity="0.4"/>
+  </g>
+  
+  <rect x="60" y="60" width="260" height="45" rx="22" fill="rgba(201,118,61,0.15)" stroke="rgba(201,118,61,0.4)" stroke-width="1"/>
+  <text x="190" y="92" font-family="Outfit, sans-serif" font-size="18" font-weight="500" fill="#c9763d" text-anchor="middle" letter-spacing="0.1em">SURVIVOR TYPE</text>
+  
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#c9763d" text-anchor="middle">$15</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">The Performer</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">SURVIVOR TYPE WORKBOOK</text>
+</svg>

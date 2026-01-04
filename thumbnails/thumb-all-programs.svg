@@ -1,0 +1,66 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="ultimateGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.4"/>
+      <stop offset="30%" stop-color="#7c5cbf" stop-opacity="0.25"/>
+      <stop offset="60%" stop-color="#a33b5c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="ultimateGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a853"/>
+      <stop offset="50%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#d4a853"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#ultimateGlow)"/>
+  
+  <!-- Library/Collection Visual -->
+  <g transform="translate(800, 300)">
+    <!-- Stacked books/programs -->
+    <rect x="-180" y="-60" width="50" height="180" rx="4" fill="none" stroke="#a33b5c" stroke-width="3"/>
+    <rect x="-120" y="-80" width="50" height="200" rx="4" fill="none" stroke="#7c5cbf" stroke-width="3"/>
+    <rect x="-60" y="-70" width="50" height="190" rx="4" fill="none" stroke="#2d8f8f" stroke-width="3"/>
+    <rect x="0" y="-90" width="50" height="210" rx="4" fill="none" stroke="#c9763d" stroke-width="3"/>
+    <rect x="60" y="-75" width="50" height="195" rx="4" fill="none" stroke="#a33b5c" stroke-width="3"/>
+    <rect x="120" y="-65" width="50" height="185" rx="4" fill="none" stroke="#7c5cbf" stroke-width="3"/>
+    
+    <!-- Fills (subtle) -->
+    <rect x="-180" y="-60" width="50" height="180" rx="4" fill="#a33b5c" fill-opacity="0.1"/>
+    <rect x="-120" y="-80" width="50" height="200" rx="4" fill="#7c5cbf" fill-opacity="0.1"/>
+    <rect x="-60" y="-70" width="50" height="190" rx="4" fill="#2d8f8f" fill-opacity="0.1"/>
+    <rect x="0" y="-90" width="50" height="210" rx="4" fill="#c9763d" fill-opacity="0.1"/>
+    <rect x="60" y="-75" width="50" height="195" rx="4" fill="#a33b5c" fill-opacity="0.1"/>
+    <rect x="120" y="-65" width="50" height="185" rx="4" fill="#7c5cbf" fill-opacity="0.1"/>
+    
+    <!-- Book spine details -->
+    <line x1="-155" y1="-40" x2="-155" y2="100" stroke="#a33b5c" stroke-width="1" stroke-opacity="0.3"/>
+    <line x1="-95" y1="-60" x2="-95" y2="100" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.3"/>
+    <line x1="-35" y1="-50" x2="-35" y2="100" stroke="#2d8f8f" stroke-width="1" stroke-opacity="0.3"/>
+    <line x1="25" y1="-70" x2="25" y2="100" stroke="#c9763d" stroke-width="1" stroke-opacity="0.3"/>
+    <line x1="85" y1="-55" x2="85" y2="100" stroke="#a33b5c" stroke-width="1" stroke-opacity="0.3"/>
+    <line x1="145" y1="-45" x2="145" y2="100" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.3"/>
+    
+    <!-- Golden glow around collection -->
+    <ellipse cx="0" cy="30" rx="220" ry="160" fill="none" stroke="#d4a853" stroke-width="2" stroke-opacity="0.2"/>
+    <ellipse cx="0" cy="30" rx="250" ry="180" fill="none" stroke="#d4a853" stroke-width="1" stroke-opacity="0.1"/>
+    
+    <!-- Crown on top -->
+    <path d="M-30,-120 L-40,-90 L-10,-105 L20,-85 L50,-105 L80,-90 L70,-120 Z" 
+          fill="none" stroke="url(#ultimateGold)" stroke-width="3" transform="translate(-25, 0) scale(0.8)"/>
+  </g>
+  
+  <!-- Ultimate ribbon corner -->
+  <polygon points="1600,0 1350,0 1600,250" fill="url(#ultimateGold)"/>
+  <text x="1500" y="100" font-family="Outfit, sans-serif" font-size="20" font-weight="700" fill="#050507" text-anchor="middle" letter-spacing="0.1em" transform="rotate(45, 1500, 100)">ULTIMATE</text>
+  
+  <!-- Badge -->
+  <rect x="60" y="60" width="200" height="50" rx="25" fill="url(#ultimateGold)"/>
+  <text x="160" y="95" font-family="Outfit, sans-serif" font-size="20" font-weight="700" fill="#050507" text-anchor="middle" letter-spacing="0.12em">EVERYTHING</text>
+  
+  <text x="1350" y="320" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#d4a853" text-anchor="middle">$497</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">All Programs</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">COMPLETE ACCESS BUNDLE</text>
+</svg>

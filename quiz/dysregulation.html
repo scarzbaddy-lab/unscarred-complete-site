@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -91,7 +91,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
         <div id="quiz-section">
             <h1>How Dysregulated Are You </h1>
             <p class="subtitle">Assess your nervous system regulation capacity</p>
@@ -168,7 +168,7 @@
                 description = "You have solid regulation capacity. You can recognize when you're getting dysregulated and have tools that actually work. You're not immune to stress, but you can return to baseline relatively quickly. You feel safe in your body most of the time and can stay present even when things are hard.";
                 signs = ["You can self-soothe effectively", "You recognize dysregulation early", "You have a window of tolerance that allows for emotional range", "You can stay present without dissociating", "You feel safe in your body most of the time"];
                 tools = ["Keep practicing the tools that work for you", "Notice what helps you stay regulated and do more of it", "Support others in learning regulation skills", "Maintain boundaries that protect your nervous system"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "🔄" }];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "🔄" }];
             } else if (percentage <= 50) {
                 level = "Moderate Dysregulation";
                 color = "#f39c12";
@@ -192,7 +192,7 @@
                 description = "You're living in a constant state of survival activation. Your nervous system is so overwhelmed that regulation feels impossible. You might feel numb, panicked, or alternate between the two. You're exhausted but can't rest. Your body doesn't feel safe, and you've likely been this way for so long you don't remember what regulated feels like.";
                 signs = ["You're in constant survival mode", "You can't calm down or you can't feel anything at all", "Sleep is severely disrupted", "You experience frequent physical symptoms", "Dissociation or panic are regular experiences", "You feel trapped in your own nervous system", "Basic functioning feels impossible"];
                 tools = ["Seek immediate support from a trauma specialist", "Consider intensive treatment (IOP, PHP, or residential if needed)", "Work with both therapy and medical support", "Start with the smallest possible regulation practices", "Focus on external stabilization (safety, sleep, basic needs)", "Give yourself permission to do less while you heal", "Build a support system that understands nervous system trauma"];
-                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "??" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "??" }];
+                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "" }];
             }
             const resultContent = document.getElementById('result-content');
             resultContent.innerHTML = `
@@ -226,7 +226,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

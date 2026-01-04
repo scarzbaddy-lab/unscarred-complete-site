@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Unscarred Ad - Banner Free Resources</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1200px;
+      height: 628px;
+      transform-origin: top left;
+      transform: scale(0.333);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 100% at 50% 0%, rgba(45, 143, 143, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 80% at 100% 100%, rgba(125, 154, 140, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+    }
+
+    .left-section {
+      flex: 1;
+    }
+
+    .free-badge {
+      display: inline-block;
+      padding: 16px 32px;
+      background: #2d8f8f;
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      border-radius: 999px;
+      margin-bottom: 28px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 80px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.05;
+      margin-bottom: 24px;
+    }
+
+    h1 em { color: #7d9a8c; }
+
+    .subtext {
+      font-size: 30px;
+      color: #9a958c;
+      line-height: 1.5;
+      max-width: 520px;
+      margin-bottom: 36px;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 36px 64px;
+      background: linear-gradient(135deg, #2d8f8f, #1f6b6b);
+      color: white;
+      font-size: 26px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 12px 40px rgba(45, 143, 143, 0.4);
+    }
+
+    .right-section {
+      display: flex;
+      gap: 24px;
+    }
+
+    .resource-card {
+      width: 200px;
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.12), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(45, 143, 143, 0.25);
+      border-radius: 24px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .resource-card .icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+    }
+
+    .resource-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .resource-card p {
+      font-size: 18px;
+      color: #9a958c;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 40px;
+      right: 80px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 40px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: #a33b5c; }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="left-section">
+      <div class="free-badge">✓ 100% Free</div>
+      <h1>Start your<br><em>pattern journey</em></h1>
+      <p class="subtext">Free quizzes, toolkits, and resources to help you understand what's really driving your patterns.</p>
+      <a href="#" class="cta-btn">Get Free Resources →</a>
+    </div>
+
+    <div class="right-section">
+      <div class="resource-card">
+        <div class="icon">📊</div>
+        <h3>Quizzes</h3>
+        <p>10+ pattern quizzes</p>
+      </div>
+      <div class="resource-card">
+        <div class="icon">🛠️</div>
+        <h3>Toolkit</h3>
+        <p>Crisis support tools</p>
+      </div>
+      <div class="resource-card">
+        <div class="icon">📚</div>
+        <h3>Lessons</h3>
+        <p>Free pattern education</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="logo">un<span>scarred</span></div>
+</body>
+</html>
+

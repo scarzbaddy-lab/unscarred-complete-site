@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="warBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#1a1520"/>
+      <stop offset="100%" style="stop-color:#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="warGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c9763d;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#c9763d;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="warBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="500" fill="url(#warBg)"/>
+  <ellipse cx="200" cy="100" rx="180" ry="80" fill="url(#warGlow)" filter="url(#warBlur)"/>
+  
+  <!-- Grid lines representing a map -->
+  <g stroke="#c9763d" stroke-opacity="0.2" stroke-width="1">
+    <line x1="50" y1="120" x2="350" y2="120"/>
+    <line x1="50" y1="170" x2="350" y2="170"/>
+    <line x1="50" y1="220" x2="350" y2="220"/>
+    <line x1="50" y1="270" x2="350" y2="270"/>
+    <line x1="100" y1="80" x2="100" y2="310"/>
+    <line x1="200" y1="80" x2="200" y2="310"/>
+    <line x1="300" y1="80" x2="300" y2="310"/>
+  </g>
+  
+  <!-- Compass rose -->
+  <circle cx="200" cy="195" r="60" fill="none" stroke="#c9763d" stroke-opacity="0.3" stroke-width="2"/>
+  <circle cx="200" cy="195" r="40" fill="none" stroke="#c9763d" stroke-opacity="0.5" stroke-width="1"/>
+  
+  <!-- Compass points -->
+  <polygon points="200,135 190,185 200,175 210,185" fill="#c9763d"/>
+  <polygon points="200,255 190,205 200,215 210,205" fill="#c9763d" fill-opacity="0.5"/>
+  <polygon points="140,195 190,185 180,195 190,205" fill="#c9763d" fill-opacity="0.5"/>
+  <polygon points="260,195 210,185 220,195 210,205" fill="#c9763d" fill-opacity="0.5"/>
+  
+  <!-- Location markers -->
+  <circle cx="120" cy="140" r="8" fill="#e74c3c"/>
+  <circle cx="280" cy="160" r="8" fill="#a33b5c"/>
+  <circle cx="150" cy="250" r="8" fill="#7c5cbf"/>
+  <circle cx="270" cy="270" r="8" fill="#c9763d"/>
+  
+  <!-- Connecting lines -->
+  <path d="M120,140 L200,195 L280,160" stroke="#c9763d" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+  <path d="M200,195 L150,250" stroke="#a33b5c" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+  <path d="M200,195 L270,270" stroke="#7c5cbf" stroke-width="2" fill="none" stroke-dasharray="4,4"/>
+  
+  <!-- Title -->
+  <text x="200" y="380" font-family="Georgia, serif" font-size="32" fill="#ece8e1" text-anchor="middle" font-style="italic">Map Your War</text>
+  <text x="200" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#9a958c" text-anchor="middle">Find your internal battlefield</text>
+  
+  <!-- War badge -->
+  <rect x="135" y="440" width="130" height="30" rx="15" fill="rgba(201,118,61,0.2)" stroke="#c9763d" stroke-opacity="0.5"/>
+  <text x="200" y="461" font-family="system-ui, sans-serif" font-size="12" fill="#c9763d" text-anchor="middle" font-weight="600">WAR PATH</text>
+</svg>

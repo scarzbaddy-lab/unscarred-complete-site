@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="chkBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#1a1520"/>
+      <stop offset="100%" style="stop-color:#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="chkGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c9763d;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#c9763d;stop-opacity:0"/>
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="500" fill="url(#chkBg)"/>
+  <ellipse cx="200" cy="100" rx="150" ry="80" fill="url(#chkGlow)"/>
+  
+  <!-- Clock face -->
+  <circle cx="200" cy="200" r="90" fill="none" stroke="#c9763d" stroke-width="4"/>
+  <circle cx="200" cy="200" r="80" fill="rgba(201,118,61,0.05)"/>
+  
+  <!-- Clock marks -->
+  <line x1="200" y1="120" x2="200" y2="135" stroke="#c9763d" stroke-width="3"/>
+  <line x1="200" y1="265" x2="200" y2="280" stroke="#c9763d" stroke-width="3"/>
+  <line x1="120" y1="200" x2="135" y2="200" stroke="#c9763d" stroke-width="3"/>
+  <line x1="265" y1="200" x2="280" y2="200" stroke="#c9763d" stroke-width="3"/>
+  
+  <!-- Clock hands - 30 minutes -->
+  <line x1="200" y1="200" x2="200" y2="150" stroke="#ece8e1" stroke-width="4" stroke-linecap="round"/>
+  <line x1="200" y1="200" x2="200" y2="265" stroke="#a33b5c" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Center dot -->
+  <circle cx="200" cy="200" r="8" fill="#c9763d"/>
+  
+  <!-- 30 highlight arc -->
+  <path d="M200,120 A80,80 0 0,1 200,280" stroke="#a33b5c" stroke-width="6" fill="none" stroke-linecap="round"/>
+  
+  <!-- Title -->
+  <text x="200" y="360" font-family="Georgia, serif" font-size="28" fill="#ece8e1" text-anchor="middle" font-style="italic">30-Minute</text>
+  <text x="200" y="395" font-family="Georgia, serif" font-size="28" fill="#ece8e1" text-anchor="middle" font-style="italic">Check-In</text>
+  <text x="200" y="430" font-family="system-ui, sans-serif" font-size="14" fill="#9a958c" text-anchor="middle">Quick clarity session</text>
+  
+  <!-- Price badge -->
+  <rect x="155" y="450" width="90" height="30" rx="15" fill="rgba(201,118,61,0.2)" stroke="#c9763d" stroke-opacity="0.5"/>
+  <text x="200" y="471" font-family="system-ui, sans-serif" font-size="12" fill="#c9763d" text-anchor="middle" font-weight="600">$27</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="interruptGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2d8f8f" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#interruptGlow)"/>
+  
+  <!-- Repeating Pattern with Break Point -->
+  <g transform="translate(800, 340)">
+    <!-- Repeating pattern (left side) -->
+    <circle cx="-200" cy="-30" r="20" fill="none" stroke="#9a958c" stroke-width="2"/>
+    <circle cx="-150" cy="30" r="20" fill="none" stroke="#9a958c" stroke-width="2"/>
+    <circle cx="-100" cy="-30" r="20" fill="none" stroke="#9a958c" stroke-width="2"/>
+    <circle cx="-50" cy="30" r="20" fill="none" stroke="#9a958c" stroke-width="2"/>
+    
+    <!-- Pattern line -->
+    <path d="M-200,-30 L-150,30 L-100,-30 L-50,30" fill="none" stroke="#9a958c" stroke-width="2" stroke-opacity="0.5"/>
+    
+    <!-- BREAK POINT -->
+    <g transform="translate(0, 0)">
+      <!-- Lightning bolt break -->
+      <path d="M-20,-50 L10,-10 L-5,-10 L20,50 L-10,10 L5,10 Z" 
+            fill="#2d8f8f" stroke="none"/>
+      
+      <!-- Break flash -->
+      <circle cx="0" cy="0" r="60" fill="#2d8f8f" fill-opacity="0.15"/>
+      <circle cx="0" cy="0" r="40" fill="#2d8f8f" fill-opacity="0.1"/>
+    </g>
+    
+    <!-- New pattern (right side) - different, healthier -->
+    <circle cx="60" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="120" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="180" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    
+    <!-- New stable line -->
+    <line x1="85" y1="0" x2="155" y2="0" stroke="#2d8f8f" stroke-width="3"/>
+    
+    <!-- Checkmarks in new pattern -->
+    <path d="M52,0 L58,6 L68,-6" fill="none" stroke="#2d8f8f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M112,0 L118,6 L128,-6" fill="none" stroke="#2d8f8f" stroke-width="3" stroke-linecap="round"/>
+    <path d="M172,0 L178,6 L188,-6" fill="none" stroke="#2d8f8f" stroke-width="3" stroke-linecap="round"/>
+  </g>
+  
+  <rect x="60" y="60" width="160" height="45" rx="22" fill="rgba(45,143,143,0.15)" stroke="rgba(45,143,143,0.4)" stroke-width="1"/>
+  <text x="140" y="92" font-family="Outfit, sans-serif" font-size="18" font-weight="500" fill="#2d8f8f" text-anchor="middle" letter-spacing="0.1em">14 DAYS</text>
+  
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#2d8f8f" text-anchor="middle">$47</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Pattern Interrupt</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">14 DAYS ACTIVE SUPPORT</text>
+</svg>

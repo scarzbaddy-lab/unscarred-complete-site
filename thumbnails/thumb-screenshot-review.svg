@@ -1,0 +1,52 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="phoneGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2d8f8f" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#phoneGlow)"/>
+  
+  <!-- Phone with Magnifying Glass -->
+  <g transform="translate(800, 340)">
+    <!-- Phone frame -->
+    <rect x="-80" y="-140" width="160" height="280" rx="20" fill="none" stroke="#2d8f8f" stroke-width="4"/>
+    
+    <!-- Screen area -->
+    <rect x="-65" y="-120" width="130" height="220" rx="4" fill="#2d8f8f" fill-opacity="0.1"/>
+    
+    <!-- Message bubbles on screen -->
+    <rect x="-55" y="-100" width="80" height="25" rx="8" fill="#5c5955" fill-opacity="0.5"/>
+    <rect x="-15" y="-65" width="70" height="25" rx="8" fill="#2d8f8f" fill-opacity="0.4"/>
+    <rect x="-55" y="-30" width="90" height="25" rx="8" fill="#5c5955" fill-opacity="0.5"/>
+    <rect x="-15" y="5" width="60" height="25" rx="8" fill="#2d8f8f" fill-opacity="0.4"/>
+    <rect x="-55" y="40" width="70" height="25" rx="8" fill="#5c5955" fill-opacity="0.5"/>
+    
+    <!-- Home button hint -->
+    <circle cx="0" cy="115" r="12" fill="none" stroke="#2d8f8f" stroke-width="2" stroke-opacity="0.5"/>
+    
+    <!-- Magnifying glass overlay -->
+    <circle cx="60" cy="20" r="70" fill="none" stroke="#2d8f8f" stroke-width="4"/>
+    <line x1="110" y1="70" x2="160" y2="120" stroke="#2d8f8f" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Highlight inside magnifier -->
+    <circle cx="60" cy="20" r="55" fill="#2d8f8f" fill-opacity="0.15"/>
+    
+    <!-- Checkmark inside magnifier -->
+    <path d="M30,20 L50,40 L90,-10" fill="none" stroke="#2d8f8f" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#2d8f8f" text-anchor="middle">$33</text>
+  
+  <!-- Headline -->
+  <text x="800" y="640" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Screenshot Review</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="720" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">DECODE ANY CONVERSATION</text>
+  
+  <line x1="600" y1="800" x2="1000" y2="800" stroke="rgba(45,143,143,0.3)" stroke-width="1"/>
+</svg>

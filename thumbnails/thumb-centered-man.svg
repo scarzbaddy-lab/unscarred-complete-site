@@ -1,0 +1,53 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="deepBlueGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#7c5cbf" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#2d4a7c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#deepBlueGlow)"/>
+  
+  <!-- Grounded Masculine Symbol -->
+  <g transform="translate(800, 320)">
+    <!-- Ground/foundation line -->
+    <line x1="-150" y1="120" x2="150" y2="120" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round"/>
+    <line x1="-120" y1="130" x2="120" y2="130" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.5"/>
+    <line x1="-90" y1="140" x2="90" y2="140" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.3"/>
+    
+    <!-- Mars symbol (masculine) - centered and rooted -->
+    <circle cx="0" cy="0" r="80" fill="none" stroke="#7c5cbf" stroke-width="4"/>
+    <line x1="56" y1="-56" x2="110" y2="-110" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round"/>
+    <line x1="110" y1="-110" x2="70" y2="-110" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round"/>
+    <line x1="110" y1="-110" x2="110" y2="-70" stroke="#7c5cbf" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Root extending down from circle -->
+    <line x1="0" y1="80" x2="0" y2="120" stroke="#7c5cbf" stroke-width="4"/>
+    
+    <!-- Inner stability -->
+    <circle cx="0" cy="0" r="30" fill="#7c5cbf" fill-opacity="0.15"/>
+    <circle cx="0" cy="0" r="8" fill="#7c5cbf"/>
+    
+    <!-- Subtle energy rings -->
+    <circle cx="0" cy="0" r="100" fill="none" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.3"/>
+    <circle cx="0" cy="0" r="120" fill="none" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.15"/>
+  </g>
+  
+  <!-- Includes badge -->
+  <rect x="60" y="60" width="280" height="50" rx="25" fill="rgba(124,92,191,0.15)" stroke="rgba(124,92,191,0.4)" stroke-width="1"/>
+  <text x="200" y="95" font-family="Outfit, sans-serif" font-size="18" font-weight="500" fill="#7c5cbf" text-anchor="middle" letter-spacing="0.08em">6 WEEKS + COACHING</text>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#7c5cbf" text-anchor="middle">$197</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Centered Man</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">MASCULINE LEADERSHIP BLUEPRINT</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(124,92,191,0.3)" stroke-width="1"/>
+</svg>

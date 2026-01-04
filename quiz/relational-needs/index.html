@@ -1,16 +1,14 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Relational Needs Matrix | Unscarred</title>
   <meta name="description" content="What you actually need vs what you ask for. Get top needs, ask-pattern, and repair scripts." />
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -178,9 +176,9 @@
           You can have a real need and still ask sideways.
         </p>
         <div class="navRow">
-          <a class="btn secondary" href="/quizzes/">Mirror hub</a>
+          <a class="btn secondary" href="/quiz/">Quiz hub</a>
           <a class="btn secondary" href="/war/">War hub</a>
-          <a class="btn secondary" href="/quizzes/nervous-system/">Nervous system scan</a>
+          <a class="btn secondary" href="/quiz/nervous-system/">Nervous system scan</a>
         </div>
       </section>
 
@@ -224,8 +222,8 @@
         </div>
 
         <div class="navRow" style="margin-top:14px;">
-          <a class="btn secondary" href="/quizzes/partner-draw/">Partner Draw</a>
-          <a class="btn secondary" href="/quizzes/ego-structure/">Ego Structure</a>
+          <a class="btn secondary" href="/quiz/partner-draw/">Partner Draw</a>
+          <a class="btn secondary" href="/quiz/ego-structure/">Ego Structure</a>
           <button class="btn" id="backBtn" type="button">Back to quiz</button>
         </div>
       </section>
@@ -258,7 +256,7 @@
         title: "Testing",
         desc: "You ask indirectly by running little tests to see if they care.",
         miss: "Partners only see the test and miss the need underneath.",
-        script: "I am feeling insecure. I need reassurance, not a game. Can you be clear with me "
+        script: "I am feeling insecure. I need reassurance, not a game. Can you be clear with me?"
       },
       performing: {
         title: "Performing",
@@ -270,13 +268,13 @@
         title: "Withdrawing",
         desc: "You shut down, go quiet, or detach because asking feels unsafe.",
         miss: "Partners think you do not care or you are punishing them.",
-        script: "I pull back when I feel unsafe. I want repair and respect. Can we slow down and talk clean "
+        script: "I pull back when I feel unsafe. I want repair and respect. Can we slow down and talk clean?"
       },
       escalating: {
         title: "Escalating",
         desc: "You get sharp because you feel unseen. Intensity becomes the delivery system.",
         miss: "Partners focus on your tone and ignore your message.",
-        script: "My tone is rising because I feel unheard. The need is respect and consistency. Can you meet that "
+        script: "My tone is rising because I feel unheard. The need is respect and consistency. Can you meet that?"
       }
     };
 
@@ -408,7 +406,7 @@
       Object.keys(ASK_STYLES).forEach(k => askScores[k] = 0);
 
       QUESTIONS.forEach((q, i) => {
-        const v = state.answers[i]   0;
+        const v = state.answers[i] ?? 0;
         needScores[q.need] += v;
         askScores[q.ask] += v;
       });
@@ -471,11 +469,11 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
-  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
   var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
@@ -486,4 +484,3 @@
 </script>
 </body>
 </html>
-

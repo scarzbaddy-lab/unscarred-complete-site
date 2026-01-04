@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-void: #050507;
@@ -930,7 +930,7 @@
   <!-- Simple Header -->
   <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(5,5,7,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
     <a href="../index.html" style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text-main); text-decoration: none; letter-spacing: 0.02em;">un<span style="font-weight: 400; opacity: 0.7;">scarred</span></a>
-    <a href="/quizzes/" style="font-size: 0.85rem; color: var(--text-soft); text-decoration: none; display: flex; align-items: center; gap: 6px;">? All Quizzes</a>
+    <a href="/quizzes/" style="font-size: 0.85rem; color: var(--text-soft); text-decoration: none; display: flex; align-items: center; gap: 6px;">← All Quizzes</a>
   </header>
 
   <div class="quiz-shell" style="padding-top: 80px;">
@@ -955,7 +955,7 @@
         <div class="footer-nav">
           <div class="nav-left">
             <button class="nav-btn" id="backBtn">
-              <span class="icon">?</span>
+              <span class="icon">→</span>
               Back
             </button>
           </div>
@@ -965,7 +965,7 @@
             </button>
             <button class="nav-btn primary" id="nextBtn">
               Next
-              <span class="icon">?</span>
+              <span class="icon">→</span>
             </button>
           </div>
         </div>
@@ -1324,7 +1324,7 @@
       const selectedAnswer = answers[q.id];
 
       let optionsHTML = q.options.map(opt => {
-        const selectedClass = selectedAnswer === opt.letter   "selected" : "";
+        const selectedClass = selectedAnswer === opt.letter ? "selected" : "";
         return `
           <button class="answer-btn ${selectedClass}" data-letter="${opt.letter}">
             <span class="letter">${opt.letter}.</span>
@@ -1337,7 +1337,7 @@
         <div class="question-wrap">
           <div class="question-label">${q.label}</div>
           <div class="question-text">${q.text}</div>
-          ${q.subtext   `<div class="question-subtext">${q.subtext}</div>` : ""}
+          ${q.subtext ? `<div class="question-subtext">${q.subtext}</div>` : ""}
           <div class="answers-wrap">
             ${optionsHTML}
           </div>
@@ -1380,9 +1380,9 @@
       const hasAnswer = answers[q.id] !== undefined;
       
       if (currentIndex === questions.length - 1) {
-        nextBtn.innerHTML = `Finish <span class="icon">?</span>`;
+        nextBtn.innerHTML = `Finish <span class="icon">→</span>`;
       } else {
-        nextBtn.innerHTML = `Next <span class="icon">?</span>`;
+        nextBtn.innerHTML = `Next <span class="icon">→</span>`;
       }
       
       nextBtn.disabled = !hasAnswer;
@@ -1491,18 +1491,18 @@
 
       let contributionHTML = "";
       Object.entries(contributionsByWar).forEach(([warKey, items]) => {
-        const warTitle = warKey === "general"   "General Patterns" : labelWar(warKey);
+        const warTitle = warKey === "general" ? "General Patterns" : labelWar(warKey);
         const itemsHTML = items.map((c, i) => `
           <li class="contribution-question-item">
             <span class="contribution-question-rank">${i + 1}.</span>
             <span>${c.label}</span>
-            <span class="contribution-answer">${c.answer.substring(0, 60)}${c.answer.length > 60   "..." : ""}</span>
+            <span class="contribution-answer">${c.answer.substring(0, 60)}${c.answer.length > 60 ? "..." : ""}</span>
           </li>
         `).join("");
         
         contributionHTML += `
           <div class="contribution-war-block">
-            <div class="contribution-war-title">?? ${warTitle}</div>
+            <div class="contribution-war-title"> ${warTitle}</div>
             <ul class="contribution-question-list">${itemsHTML}</ul>
           </div>
         `;
@@ -1630,7 +1630,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

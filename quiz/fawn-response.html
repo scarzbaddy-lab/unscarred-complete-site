@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -90,7 +90,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
         <div id="quiz-section">
             <h1>Fawn Response Assessment</h1>
             <p class="subtitle">How deep does your people-pleasing go </p>
@@ -166,7 +166,7 @@
                 title = "You're Not Trapped In Fawning";
                 description = "You maintain healthy boundaries and can prioritize yourself without excessive guilt. You're able to say no, identify your needs, and show up authentically without constantly monitoring others' reactions. This doesn't mean you're selfish - it means you've learned that your worth isn't contingent on being useful.";
                 patterns = ["You can say no without guilt spirals", "You prioritize yourself when needed", "You don't feel responsible for others' emotions", "You can be authentic without performing", "Your self-worth isn't tied to usefulness"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "🔄" }];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "🔄" }];
             } else if (percentage <= 50) {
                 level = "Moderate Fawning";
                 color = "#f39c12";
@@ -180,7 +180,7 @@
                 title = "Fawning Is Your Default Survival Mode";
                 description = "You've learned that keeping others happy keeps you safe. You anticipate needs, manage emotions, and abandon yourself to avoid conflict or rejection. You're so practiced at this that you might not even know what you actually want anymore. This isn't weakness - it's a survival adaptation that worked once but now costs you your sense of self.";
                 patterns = ["You consistently put others first", "You struggle to know your own needs", "You feel responsible for managing emotions", "You avoid conflict through self-abandonment", "You perform versions of yourself to stay safe", "Your worth feels tied to being useful"];
-                ctas = [{ text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "??" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "??" }];
+                ctas = [{ text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "" }];
             } else {
                 level = "Severe Fawning";
                 color = "#e74c3c";
@@ -223,7 +223,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

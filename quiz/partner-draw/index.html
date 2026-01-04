@@ -1,16 +1,14 @@
-<!doctype html>
+ï»¿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Partner Draw Diagnostic | Unscarred</title>
   <meta name="description" content="Who you're wired to attract and why. A pattern based diagnostic with results, scripts, and next steps." />
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -96,10 +94,53 @@
     }
     .sub { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 66ch; }
 
-    /* Added trust controls */
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+    @media(max-width:800px){ .row { grid-template-columns: 1fr; } }
+    .panel { padding: 18px; border-radius: 16px; border: 1px solid var(--border); background: rgba(255,255,255,0.02); }
+    .metaTitle { font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; font-weight: 700; }
+    .pillRow { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { padding: 8px 12px; border-radius: 999px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); font-size: 13px; }
+    .progressWrap { margin-top: 14px; }
+    .bar { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.06); overflow: hidden; }
+    .bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width 0.3s; }
+    .pct { margin-top: 6px; font-size: 13px; color: var(--muted); }
+    .ctaRow { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { appearance: none; border: 1px solid rgba(163,59,92,0.55); background: linear-gradient(180deg, rgba(163,59,92,0.95), rgba(163,59,92,0.72)); color: #fff; padding: 12px 16px; border-radius: 14px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; font-size: 12px; cursor: pointer; box-shadow: 0 14px 40px rgba(163,59,92,0.22); text-decoration: none; }
+    .btn.secondary { border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text); box-shadow: none; }
+    .note { margin: 12px 0 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+
     .trustRow { display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap; }
     .saveLabel { display:inline-flex; gap:8px; align-items:center; font-size:13px; color:var(--muted); }
     .saveLabel input[type="checkbox"] { width:16px; height:16px; }
+
+    .quiz { margin-top: 18px; padding: 18px; border-radius: var(--radius); border: 1px solid var(--border); background: linear-gradient(180deg, rgba(18,18,24,0.70), rgba(10,10,15,0.55)); box-shadow: var(--shadow2); }
+    .q { padding: 14px 12px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.02); margin-bottom: 12px; }
+    .qTop { display: flex; gap: 10px; align-items: baseline; }
+    .qNum { color: var(--muted); font-size: 12px; letter-spacing: 0.10em; text-transform: uppercase; min-width: 92px; }
+    .qText { flex: 1; font-size: 15px; line-height: 1.5; }
+    .choices { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 12px; }
+    @media(max-width:700px){ .choices { grid-template-columns: 1fr 1fr; } }
+    .choice { display: flex; align-items: center; justify-content: center; padding: 10px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.02); cursor: pointer; user-select: none; text-align: center; font-size: 13px; color: var(--text); min-height: 44px; }
+    .choice input { display: none; }
+    .choice.selected { border-color: rgba(163,59,92,0.75); background: rgba(163,59,92,0.10); box-shadow: 0 14px 34px rgba(163,59,92,0.14); }
+    .footerRow { margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+    .error { display: none; margin: 12px 0 0; padding: 12px; border-radius: 14px; border: 1px solid rgba(163,59,92,0.45); background: rgba(163,59,92,0.10); font-size: 13px; line-height: 1.5; }
+
+    .results { display: none; margin-top: 18px; padding: 18px; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.10); background: linear-gradient(180deg, rgba(18,18,24,0.82), rgba(10,10,15,0.60)); box-shadow: var(--shadow); }
+    .kicker { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+    .resultTitle { margin: 0 0 10px; font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: clamp(26px,3.4vw,38px); line-height: 1.06; }
+    .tag { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; border-radius: 999px; border: 1px solid rgba(163,59,92,0.45); background: rgba(163,59,92,0.10); font-size: 13px; margin-bottom: 14px; }
+    .tag b { color: #fff; }
+    .resultGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media(max-width:700px){ .resultGrid { grid-template-columns: 1fr; } }
+    .card { border: 1px solid rgba(255,255,255,0.09); background: rgba(255,255,255,0.02); border-radius: 18px; padding: 14px; }
+    .card h3 { margin: 0 0 10px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+    .card p { margin: 0; color: var(--text); font-size: 14px; line-height: 1.65; }
+    .scores { margin-top: 14px; padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,0.02); }
+    .scores .line { font-size: 14px; margin-bottom: 6px; }
+    .shareBox { margin-top: 18px; padding: 14px; border-radius: 14px; border: 1px solid var(--border); background: rgba(255,255,255,0.02); }
+    .shareBox textarea { width: 100%; min-height: 80px; border-radius: 10px; border: 1px solid var(--border); background: rgba(255,255,255,0.03); color: var(--text); padding: 10px; font-size: 13px; resize: vertical; }
+    .tiny { font-size: 12px; color: var(--muted); margin-top: 8px; }
   </style>
 </head>
 
@@ -108,7 +149,7 @@
     <div class="container">
 
       <section class="hero" id="top">
-        <div class="brand"><span class="dot"></span><span>Unscarred</span></div>
+        <div class="brand"><span class="dot"></span><span>Unscarred Mirror</span></div>
         <h1>Partner Draw Diagnostic</h1>
         <p class="sub">Who you are wired to attract, what you broadcast when you like someone, and the loop you keep walking into. This is pattern language, not a diagnosis.</p>
 
@@ -162,7 +203,7 @@
             <button class="btn" id="scoreBtn" type="button">See my results</button>
             <button class="btn secondary" id="resetBtn" type="button">Reset</button>
           </div>
-          <div class="note" style="margin:0;">Not sure  pick the answer that matches your last two relationships.</div>
+          <div class="note" style="margin:0;">Not sure? pick the answer that matches your last two relationships.</div>
         </div>
 
         <div class="error" id="errorBox" role="alert"></div>
@@ -190,15 +231,13 @@
             <button class="btn secondary" id="copyBtn" type="button">Copy</button>
             <button class="btn" id="backBtn" type="button">Back to quiz</button>
           </div>
-          <p class="tiny">Optional caption: “I attract this when I am unhealed. I choose something else when I am grown.”</p>
+          <p class="tiny">Optional caption: "I attract this when I am unhealed. I choose something else when I am grown."</p>
         </div>
 
         <div style="margin-top:18px; text-align:center;">
-          <a class="btn" style="background: linear-gradient(180deg, rgba(139,92,246,0.95), rgba(139,92,246,0.72)); color:#fff;" href="/quizzes/relational-needs/">Next: Relational Needs Matrix ?</a>
-          <a class="btn" style="background:#a33b5c; color:#fff; margin-left:12px;" href="/quizzes/nervous-system/">Nervous System Scan ?</a>
+          <a class="btn" style="background: linear-gradient(180deg, rgba(139,92,246,0.95), rgba(139,92,246,0.72)); color:#fff;" href="/quiz/relational-needs/">Next: Relational Needs Matrix â†’</a>
+          <a class="btn" style="background:#a33b5c; color:#fff; margin-left:12px;" href="/quiz/nervous-system/">Nervous System Scan â†’</a>
         </div>
-
-        <p class="note" style="margin-top:14px;">If you want, add a CTA under this result that links to your Relational Needs Matrix or your Nervous System State quiz.</p>
       </section>
 
     </div>
@@ -273,7 +312,7 @@
           title: "The Authority Loop",
           happen: "You attach to strong personalities, then shrink or fight for position. Power becomes the relationship theme.",
           why: "Power felt like safety, or approval felt like survival. So dominance can feel like stability until it costs you yourself.",
-          cue: "You start monitoring tone, control, status, or who is “leading.”",
+          cue: "You start monitoring tone, control, status, or who is \"leading.\"",
           upgrade: "Lead your life, not me.",
           boundary: "Dominance without tenderness is not my partner.",
           blindspot: "You tolerate control because it looks like certainty."
@@ -294,7 +333,7 @@
           cue: "Peace feels like boredom and intensity feels like love.",
           upgrade: "My body wants chaos. My life wants peace.",
           boundary: "If your life is on fire, I am not moving in.",
-          blindspot: "You call activation “fate” instead of a pattern."
+          blindspot: "You call activation \"fate\" instead of a pattern."
         },
         equal: {
           title: "The Equal Match Candidate",
@@ -407,12 +446,11 @@
       } catch (e) {}
     }
 
-    // Toggle and persist save preference
     if (saveToggle) {
       saveToggle.addEventListener("change", () => {
         saveEnabled = saveToggle.checked;
         try {
-          localStorage.setItem(STORAGE_SAVE_KEY, saveEnabled   "1" : "0");
+          localStorage.setItem(STORAGE_SAVE_KEY, saveEnabled ? "1" : "0");
         } catch (e) {}
       });
     }
@@ -460,7 +498,7 @@
     function updateProgress() {
       const done = answeredCount();
       const total = state.answers.length;
-      const pct = total   Math.round((done / total) * 100) : 0;
+      const pct = total ? Math.round((done / total) * 100) : 0;
       barFill.style.width = pct + "%";
       pctText.textContent = done + " of " + total;
     }
@@ -531,7 +569,7 @@
       items.forEach(idx1 => {
         const idx = idx1 - 1;
         const val = state.answers[idx];
-        s += (val === null   0 : val);
+        s += (val === null ? 0 : val);
       });
       return s;
     }
@@ -636,18 +674,24 @@
       return false;
     }
 
+    function makeTagLine(label, value) {
+      const span = document.createElement("span");
+      span.innerHTML = `<b>${label}:</b> ${value}`;
+      return span;
+    }
+
     function renderResults() {
       const scores = computeDrawScores();
       const topTwo = pickTopTwo(scores);
 
       const primary = topTwo.top.key;
-      const secondary = topTwo.second   topTwo.second.key : null;
+      const secondary = topTwo.second ? topTwo.second.key : null;
 
       const role = computeRole();
       const write = QUIZ.drawWriteups[primary];
 
       const primaryName = write.title;
-      const secondaryName = secondary   QUIZ.drawWriteups[secondary].title : "None";
+      const secondaryName = secondary ? QUIZ.drawWriteups[secondary].title : "None";
 
       primaryTitle.textContent = primaryName;
 
@@ -661,7 +705,7 @@
       cueText.textContent = write.cue;
 
       const blind = computeBlindSpot(primary, role.key);
-      const upgradeBlock = write.upgrade + " " + "Boundary: " + write.boundary + " " + "Blind spot: " + blind;
+      const upgradeBlock = write.upgrade + " Boundary: " + write.boundary + " Blind spot: " + blind;
       upgradeText.textContent = upgradeBlock;
 
       const breakdown = computeRoleScoreBreakdown();
@@ -673,21 +717,14 @@
         scoreBreakdown.appendChild(div);
       });
 
+      shareText.value = `My Partner Draw: ${primaryName}\nSecondary: ${secondaryName}\nRole: ${role.title}\n\n${write.happen}\n\nUpgrade: ${write.upgrade}`;
+
       resultsSection.style.display = "block";
       quizSection.style.display = "none";
       window.scrollTo({ top: resultsSection.offsetTop, behavior: "smooth" });
     }
 
     function computeRoleScoreBreakdown() {
-      const role = computeRole();
-      const map = {
-        audition: "The Auditioning Lover",
-        translator: "The Translator",
-        coolmask: "The Cool Girl Mask",
-        investigator: "The Investigator",
-        lightning: "The Lightning Chaser"
-      };
-
       const scores = QUIZ.roles.map(r => {
         let s = sumItems(r.items);
         if (r.special && r.special.lowItem) {
@@ -726,6 +763,25 @@
       return extras[key] || "";
     }
 
+    if (jumpBtn) jumpBtn.addEventListener("click", () => {
+      quizSection.scrollIntoView({ behavior: "smooth" });
+    });
+
+    if (resetBtnTop) resetBtnTop.addEventListener("click", resetAll);
+    if (scoreBtn) scoreBtn.addEventListener("click", () => { hideError(); if (!ensureComplete()) return; renderResults(); });
+    if (resetBtn) resetBtn.addEventListener("click", resetAll);
+    if (backBtn) backBtn.addEventListener("click", () => {
+      resultsSection.style.display = "none";
+      quizSection.style.display = "block";
+      window.scrollTo({ top: quizSection.offsetTop - 8, behavior: "smooth" });
+    });
+    if (copyBtn) copyBtn.addEventListener("click", () => {
+      shareText.select();
+      document.execCommand("copy");
+      copyBtn.textContent = "Copied!";
+      setTimeout(() => { copyBtn.textContent = "Copy"; }, 1500);
+    });
+
     load();
     renderQuestions();
     updateProgress();
@@ -734,11 +790,11 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
-  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
   var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
@@ -749,4 +805,3 @@
 </script>
 </body>
 </html>
-

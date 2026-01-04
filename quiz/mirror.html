@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,7 +7,7 @@
   <meta name="description" content="Map your survival strategy, attachment wounds, neurotype, partner patterns, and self-sabotage style. 32 questions. The full picture, not a label.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
   <style>
     :root {
@@ -506,7 +506,7 @@
     }
 
     .result-card--do li::before {
-      content: '?';
+      content: '✓';
       position: absolute;
       left: 0;
       color: var(--sage);
@@ -514,7 +514,7 @@
     }
 
     .result-card--avoid li::before {
-      content: '?';
+      content: '✗';
       position: absolute;
       left: 0;
       color: var(--rose);
@@ -675,7 +675,7 @@
   <div class="quiz-shell">
     <header class="quiz-header">
       <a href="../index.html" class="logo">un<span>scarred</span></a>
-      <a href="../index.html" class="back-link">? Back to home</a>
+      <a href="../index.html" class="back-link">← Back to home</a>
     </header>
 
     <!-- Intro -->
@@ -685,14 +685,14 @@
       <p class="intro-lead">This is not a personality test. We map five dimensions of how your nervous system fights for safety in love.</p>
       
       <div class="intro-dimensions">
-        <div class="dim-pill"><span>??️</span> War your system fights</div>
+        <div class="dim-pill"><span>️</span> War your system fights</div>
         <div class="dim-pill"><span>🎭</span> Mask you wear</div>
-        <div class="dim-pill"><span>??</span> Attachment pattern</div>
+        <div class="dim-pill"><span></span> Attachment pattern</div>
         <div class="dim-pill"><span>💞</span> Partner draw</div>
         <div class="dim-pill"><span>🧠</span> Neurotype lens</div>
       </div>
       
-      <button class="btn-start" id="startBtn">Begin the Quiz ?</button>
+      <button class="btn-start" id="startBtn">Begin the Quiz →</button>
       <p class="intro-note">32 questions · 8-10 minutes · No email required</p>
     </div>
 
@@ -713,8 +713,8 @@
       </div>
 
       <div class="nav-row">
-        <button class="nav-btn nav-btn--ghost" id="backBtn">? Back</button>
-        <button class="nav-btn nav-btn--primary" id="nextBtn" disabled>Next ?</button>
+        <button class="nav-btn nav-btn--ghost" id="backBtn">← Back</button>
+        <button class="nav-btn nav-btn--primary" id="nextBtn" disabled>Next →</button>
       </div>
 
       <p class="quiz-footer-note">Answer with what you actually do, not what you wish you would do.</p>
@@ -727,13 +727,13 @@
   </div>
 
   <script>
-    // ???????????????????????????????????????????????????????????????
+    // ?
     // THE UNSCARRED MIRROR QUIZ - COMPREHENSIVE TRIAGE
     // Dimensions: War, Mask, Attachment, Partner Draw, Neurotype
-    // ???????????????????????????????????????????????????????????????
+    // ?
 
     const questions = [
-      // ??? STAGE CHECK (not scored) ???
+      // ? STAGE CHECK (not scored) ?
       {
         id: "stage",
         dim: "meta",
@@ -748,7 +748,7 @@
         ]
       },
 
-      // ??? WAR + MASK QUESTIONS (16 questions) ???
+      // ? WAR + MASK QUESTIONS (16 questions) ?
       {
         id: "w1",
         dim: "war",
@@ -942,7 +942,7 @@
         ]
       },
 
-      // ??? ATTACHMENT QUESTIONS (7 questions) ???
+      // ? ATTACHMENT QUESTIONS (7 questions) ?
       {
         id: "a1",
         dim: "attachment",
@@ -1028,7 +1028,7 @@
         ]
       },
 
-      // ??? PARTNER DRAW QUESTIONS (4 questions) ???
+      // ? PARTNER DRAW QUESTIONS (4 questions) ?
       {
         id: "p1",
         dim: "partner",
@@ -1078,7 +1078,7 @@
         ]
       },
 
-      // ??? NEUROTYPE QUESTIONS (4 questions) ???
+      // ? NEUROTYPE QUESTIONS (4 questions) ?
       {
         id: "n1",
         dim: "neuro",
@@ -1129,9 +1129,9 @@
       }
     ];
 
-    // ???????????????????????????????????????????????????????????????
+    // ?
     // CLUSTER DEFINITIONS
-    // ???????????????????????????????????????????????????????????????
+    // ?
 
     const clusters = {
       "abandonment-flooded": {
@@ -1323,9 +1323,9 @@
       }
     };
 
-    // ???????????????????????????????????????????????????????????????
+    // ?
     // QUIZ ENGINE
-    // ???????????????????????????????????????????????????????????????
+    // ?
 
     let current = 0;
     let answers = {};
@@ -1386,7 +1386,7 @@
       questionCard.innerHTML = `
         <div class="question-label">${q.label}</div>
         <div class="question-text">${q.text}</div>
-        ${q.subtext   `<div class="question-subtext">${q.subtext}</div>` : ''}
+        ${q.subtext ? `<div class="question-subtext">${q.subtext}</div>` : ''}
         <div class="options-list">
           ${q.options.map(opt => `
             <button class="option-btn ${selected === opt.letter ? 'selected' : ''}" data-letter="${opt.letter}">
@@ -1403,7 +1403,7 @@
 
       backBtn.disabled = current === 0;
       nextBtn.disabled = !selected;
-      nextBtn.textContent = current === questions.length - 1 ? 'See Results' : 'Next ?';
+      nextBtn.textContent = current === questions.length - 1 ? 'See Results' : 'Next →';
     }
 
     function selectAnswer(letter) {
@@ -1457,7 +1457,7 @@
       const minWar = Math.min(...warValues);
       const isGroundZero = (maxWar - minWar) <= 2 && maxWar >= 3;
 
-      let clusterKey = isGroundZero   'ground-zero' : `${topWar[0]}-${topMask[0]}`;
+      let clusterKey = isGroundZero ? 'ground-zero' : `${topWar[0]}-${topMask[0]}`;
 
       return {
         clusterKey,
@@ -1528,7 +1528,7 @@
         </div>
 
         <div class="result-card result-card--do">
-          <h3>? Try This Week</h3>
+          <h3>✓ Try This Week</h3>
           <ul>${cluster.doThis.map(i => `<li>${i}</li>`).join('')}</ul>
         </div>
 
@@ -1566,22 +1566,22 @@
         <div class="result-card dimensions-card">
           <h3>Your Full Profile</h3>
           <div class="dim-grid">
-            <span class="dim-tag">??️ ${labelWar(r.topWar[0])} War</span>
+            <span class="dim-tag">️ ${labelWar(r.topWar[0])} War</span>
             <span class="dim-tag">🎭 ${labelMask(r.topMask[0])} Mask</span>
-            <span class="dim-tag">?? ${labelAttach(r.topAttach[0])} Attachment</span>
+            <span class="dim-tag"> ${labelAttach(r.topAttach[0])} Attachment</span>
             <span class="dim-tag">💞 ${labelPartner(r.topPartner[0])} Partner Draw</span>
             <span class="dim-tag">🧠 ${labelNeuro(r.topNeuro[0])}</span>
           </div>
         </div>
 
         <div class="result-ctas">
-          <a href="${cluster.primaryCTA.url}" class="cta-btn cta-btn--primary">${cluster.primaryCTA.text} ?</a>
+          <a href="${cluster.primaryCTA.url}" class="cta-btn cta-btn--primary">${cluster.primaryCTA.text} →</a>
           <a href="${cluster.secondaryCTA.url}" class="cta-btn cta-btn--secondary">${cluster.secondaryCTA.text}</a>
         </div>
 
         <div class="result-footer">
           <p>Your pattern is not your fault. Healing it is your power.</p>
-          <a href="../index.html" class="back-link">? Back to Home</a>
+          <a href="../index.html" class="back-link">← Back to Home</a>
         </div>
       `;
     }
@@ -1590,7 +1590,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

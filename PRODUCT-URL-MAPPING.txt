@@ -113,15 +113,21 @@ VIP Intensive (monthly)         $197     /l/vip-intensive             [ ] Create
 
 
 ====================================================
-PHONE CALLS (Google Calendar Booking)
+PHONE CALLS (Pay via Payhip → Book via Google Calendar)
 ====================================================
 
-SERVICE                         PRICE    BOOKING URL
+Flow: Client pays on Payhip → Receives booking link in confirmation email
+Google Calendar Booking Link: https://calendar.app.google/aySTQmpfSfueAD6V9
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
 ------------------------------------------------------------------------------------------
-30-Minute Check-In              $27      https://calendar.app.google/aySTQmpfSfueAD6V9
-Single Call (60 min)            $47      https://calendar.app.google/aySTQmpfSfueAD6V9
-2-Call Starter                  $87      https://calendar.app.google/aySTQmpfSfueAD6V9
-4-Call Bundle                   $147     https://calendar.app.google/aySTQmpfSfueAD6V9
+30-Minute Check-In              $27      /l/30min-checkin             [ ] Create in Payhip
+Single Call (60 min)            $47      /l/single-call               [ ] Create in Payhip
+2-Call Starter                  $87      /l/2call-starter             [ ] Create in Payhip
+4-Call Bundle                   $147     /l/4call-bundle              [ ] Create in Payhip
+
+NOTE: In Payhip, set up each product to include the Google Calendar booking link
+in the purchase confirmation page and/or confirmation email.
 
 
 ====================================================

@@ -1,0 +1,54 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="breakGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a33b5c" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="chainGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5c5955"/>
+      <stop offset="45%" stop-color="#a33b5c"/>
+      <stop offset="55%" stop-color="#a33b5c"/>
+      <stop offset="100%" stop-color="#5c5955"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#breakGlow)"/>
+  
+  <!-- Breaking Chain -->
+  <g transform="translate(800, 340)">
+    <!-- Left chain links -->
+    <ellipse cx="-200" cy="0" rx="35" ry="50" fill="none" stroke="#5c5955" stroke-width="8"/>
+    <ellipse cx="-130" cy="0" rx="35" ry="50" fill="none" stroke="#5c5955" stroke-width="8"/>
+    <ellipse cx="-60" cy="0" rx="35" ry="50" fill="none" stroke="#9a958c" stroke-width="8"/>
+    
+    <!-- Breaking link - split in middle -->
+    <path d="M-25,-45 C5,-45 25,-25 25,0" fill="none" stroke="#a33b5c" stroke-width="8" stroke-linecap="round"/>
+    <path d="M-25,45 C5,45 25,25 25,0" fill="none" stroke="#a33b5c" stroke-width="8" stroke-linecap="round" transform="rotate(180, 0, 0) translate(-50, 0)"/>
+    
+    <!-- Break effect - sparks/fragments -->
+    <line x1="10" y1="-20" x2="30" y2="-40" stroke="#a33b5c" stroke-width="3" stroke-linecap="round"/>
+    <line x1="15" y1="0" x2="40" y2="0" stroke="#c9506e" stroke-width="2" stroke-linecap="round"/>
+    <line x1="10" y1="20" x2="30" y2="40" stroke="#a33b5c" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="35" cy="-30" r="4" fill="#a33b5c"/>
+    <circle cx="45" cy="10" r="3" fill="#c9506e"/>
+    <circle cx="30" cy="35" r="4" fill="#a33b5c"/>
+    
+    <!-- Right chain links (separated, fading) -->
+    <ellipse cx="90" cy="5" rx="35" ry="50" fill="none" stroke="#5c5955" stroke-width="6" stroke-opacity="0.6"/>
+    <ellipse cx="160" cy="10" rx="35" ry="50" fill="none" stroke="#5c5955" stroke-width="5" stroke-opacity="0.4"/>
+    <ellipse cx="230" cy="15" rx="35" ry="50" fill="none" stroke="#5c5955" stroke-width="4" stroke-opacity="0.2"/>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#a33b5c" text-anchor="middle">$47</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="90" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Break The Bond</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">5-DAY TRAUMA BOND PROGRAM</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(163,59,92,0.3)" stroke-width="1"/>
+</svg>

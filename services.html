@@ -175,7 +175,7 @@
       background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
-      padding: 32px;
+      overflow: hidden;
       text-align: center;
       transition: all 0.3s ease;
     }
@@ -205,11 +205,20 @@
       letter-spacing: 0.1em;
       padding: 6px 16px;
       border-radius: 999px;
+      z-index: 10;
     }
 
-    .service-card__icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+    .service-card__image {
+      height: 140px;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: var(--bg-void);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .service-card__content {
+      padding: 24px;
     }
 
     .service-card h3 {
@@ -446,11 +455,11 @@
     <div class="header-inner">
       <a href="index.html" class="logo">un<span>scarred</span></a>
       <nav>
-        <a href="/quizzes/">Quizzes</a>
+        <a href="quizzes/index.html">Quizzes</a>
         <a href="programs.html">Programs</a>
+        <a href="shop.html">Shop</a>
         <a href="coaching.html">Coaching</a>
         <a href="services.html">Services</a>
-        <a href="about.html">About</a>
       </nav>
     </div>
   </header>
@@ -473,64 +482,72 @@
       <div class="cards-grid">
         
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>30 Minute Check-In</h3>
-          <div class="service-card__price">$27 <small>/ 30 min</small></div>
-          <div class="service-card__savings"></div>
-          <p>Quick check-in for a specific situation or script review.</p>
-          <ul>
-            <li>30 minute call</li>
-            <li>One specific topic</li>
-            <li>Script feedback</li>
-            <li>Quick clarity</li>
-          </ul>
-          <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" class="btn btn-secondary" target="_blank">Book Check-In</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-30min-checkin.svg');"></div>
+          <div class="service-card__content">
+            <h3>30 Minute Check-In</h3>
+            <div class="service-card__price">$27 <small>/ 30 min</small></div>
+            <div class="service-card__savings"></div>
+            <p>Quick check-in for a specific situation or script review.</p>
+            <ul>
+              <li>30 minute call</li>
+              <li>One specific topic</li>
+              <li>Script feedback</li>
+              <li>Quick clarity</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/30min-checkin" class="btn btn-secondary" target="_blank">Book Check-In</a>
+          </div>
         </div>
 
         <div class="service-card">
-          <div class="service-card__icon">?</div>
-          <h3>Single Call</h3>
-          <div class="service-card__price">$47 <small>/ hour</small></div>
-          <div class="service-card__savings"></div>
-          <p>One focused session to work through what is happening right now.</p>
-          <ul>
-            <li>60 minute call</li>
-            <li>Pattern identification</li>
-            <li>Actionable next steps</li>
-            <li>Follow-up resources</li>
-          </ul>
-          <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" class="btn btn-secondary" target="_blank">Book a Call</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-single-call.svg');"></div>
+          <div class="service-card__content">
+            <h3>Single Call</h3>
+            <div class="service-card__price">$47 <small>/ hour</small></div>
+            <div class="service-card__savings"></div>
+            <p>One focused session to work through what is happening right now.</p>
+            <ul>
+              <li>60 minute call</li>
+              <li>Pattern identification</li>
+              <li>Actionable next steps</li>
+              <li>Follow-up resources</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/single-call" class="btn btn-secondary" target="_blank">Book a Call</a>
+          </div>
         </div>
 
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>2-Call Starter</h3>
-          <div class="service-card__price">$87 <small>/ 2 hours</small></div>
-          <div class="service-card__savings">Save $7</div>
-          <p>Two calls to map patterns and create a plan.</p>
-          <ul>
-            <li>2 x 60 minute calls</li>
-            <li>Use within 6 weeks</li>
-            <li>Pattern mapping session</li>
-            <li>Follow-up implementation</li>
-          </ul>
-          <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" class="btn btn-secondary" target="_blank">Get 2 Calls</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-2call-starter.svg');"></div>
+          <div class="service-card__content">
+            <h3>2-Call Starter</h3>
+            <div class="service-card__price">$87 <small>/ 2 hours</small></div>
+            <div class="service-card__savings">Save $7</div>
+            <p>Two calls to map patterns and create a plan.</p>
+            <ul>
+              <li>2 x 60 minute calls</li>
+              <li>Use within 6 weeks</li>
+              <li>Pattern mapping session</li>
+              <li>Follow-up implementation</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/2call-starter" class="btn btn-secondary" target="_blank">Get 2 Calls</a>
+          </div>
         </div>
 
         <div class="service-card featured">
-          <div class="service-card__icon">??</div>
-          <h3>4-Call Bundle</h3>
-          <div class="service-card__price">$147 <small>/ 4 hours</small></div>
-          <div class="service-card__savings">Save $41 (22% off)</div>
-          <p>Ongoing support to work through patterns over time.</p>
-          <ul>
-            <li>4 x 60 minute calls</li>
-            <li>Use within 3 months</li>
-            <li>Pattern tracking between calls</li>
-            <li>Text check-ins between sessions</li>
-            <li>Priority scheduling</li>
-          </ul>
-          <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" class="btn btn-primary" target="_blank">Get the Bundle</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-4call-bundle.svg');"></div>
+          <div class="service-card__content">
+            <h3>4-Call Bundle</h3>
+            <div class="service-card__price">$147 <small>/ 4 hours</small></div>
+            <div class="service-card__savings">Save $41 (22% off)</div>
+            <p>Ongoing support to work through patterns over time.</p>
+            <ul>
+              <li>4 x 60 minute calls</li>
+              <li>Use within 3 months</li>
+              <li>Pattern tracking between calls</li>
+              <li>Text check-ins between sessions</li>
+              <li>Priority scheduling</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/4call-bundle" class="btn btn-primary" target="_blank">Get the Bundle</a>
+          </div>
         </div>
 
       </div>
@@ -549,45 +566,51 @@
       <div class="cards-grid cards-grid-3">
         
         <div class="service-card" style="border-color: rgba(163, 59, 92, 0.2);">
-          <div class="service-card__icon">??</div>
-          <h3>NPD Pattern Coach</h3>
-          <div class="service-card__price">$67 <small>/ session</small></div>
-          <div class="service-card__savings"></div>
-          <p>Ego regulation, accountability without shame, supply-free self-worth.</p>
-          <ul>
-            <li>Pattern awareness without attack</li>
-            <li>Relationship repair scripts</li>
-            <li>Grandiosity-to-groundedness</li>
-          </ul>
-          <a href="coach-npd.html" class="btn btn-primary">Learn More</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-npd-coach-single.svg');"></div>
+          <div class="service-card__content">
+            <h3>NPD Pattern Coach</h3>
+            <div class="service-card__price">$67 <small>/ session</small></div>
+            <div class="service-card__savings"></div>
+            <p>Ego regulation, accountability without shame, supply-free self-worth.</p>
+            <ul>
+              <li>Pattern awareness without attack</li>
+              <li>Relationship repair scripts</li>
+              <li>Grandiosity-to-groundedness</li>
+            </ul>
+            <a href="coach-npd.html" class="btn btn-primary">Learn More</a>
+          </div>
         </div>
 
         <div class="service-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <div class="service-card__icon">??</div>
-          <h3>BPD Pattern Coach</h3>
-          <div class="service-card__price">$67 <small>/ session</small></div>
-          <div class="service-card__savings"></div>
-          <p>Splitting interrupts, abandonment alarm regulation, identity work.</p>
-          <ul>
-            <li>Before-you-text support</li>
-            <li>Favorite person detox</li>
-            <li>Emotional translation</li>
-          </ul>
-          <a href="coach-bpd.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #7c5cbf, #5a3d9e); color: white; border: none;">Learn More</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-bpd-coach-single.svg');"></div>
+          <div class="service-card__content">
+            <h3>BPD Pattern Coach</h3>
+            <div class="service-card__price">$67 <small>/ session</small></div>
+            <div class="service-card__savings"></div>
+            <p>Splitting interrupts, abandonment alarm regulation, identity work.</p>
+            <ul>
+              <li>Before-you-text support</li>
+              <li>Favorite person detox</li>
+              <li>Emotional translation</li>
+            </ul>
+            <a href="coach-bpd.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #7c5cbf, #5a3d9e); color: white; border: none;">Learn More</a>
+          </div>
         </div>
 
         <div class="service-card" style="border-color: rgba(45, 143, 143, 0.2);">
-          <div class="service-card__icon">?</div>
-          <h3>ADHD Pattern Coach</h3>
-          <div class="service-card__price">$57 <small>/ session</small></div>
-          <div class="service-card__savings"></div>
-          <p>Body doubling, task initiation, rejection sensitivity support.</p>
-          <ul>
-            <li>Accountability check-ins</li>
-            <li>Hyperfocus management</li>
-            <li>Time-blindness help</li>
-          </ul>
-          <a href="coach-adhd.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #2d8f8f, #1f6b6b); color: white; border: none;">Learn More</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-adhd-coach-single.svg');"></div>
+          <div class="service-card__content">
+            <h3>ADHD Pattern Coach</h3>
+            <div class="service-card__price">$57 <small>/ session</small></div>
+            <div class="service-card__savings"></div>
+            <p>Body doubling, task initiation, rejection sensitivity support.</p>
+            <ul>
+              <li>Accountability check-ins</li>
+              <li>Hyperfocus management</li>
+              <li>Time-blindness help</li>
+            </ul>
+            <a href="coach-adhd.html" class="btn btn-secondary" style="background: linear-gradient(135deg, #2d8f8f, #1f6b6b); color: white; border: none;">Learn More</a>
+          </div>
         </div>
 
       </div>
@@ -612,64 +635,72 @@
       <div class="cards-grid cards-grid-4">
         
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>Screenshot Review</h3>
-          <div class="service-card__price">$33</div>
-          <div class="service-card__savings"></div>
-          <p>One situation, one voice note plus written summary.</p>
-          <ul>
-            <li>Send screenshots/situation</li>
-            <li>Voice note analysis</li>
-            <li>Written summary</li>
-            <li>Script suggestions</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/screenshot-review" class="btn btn-secondary" target="_blank">Get Review</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-screenshot-review.svg');"></div>
+          <div class="service-card__content">
+            <h3>Screenshot Review</h3>
+            <div class="service-card__price">$33</div>
+            <div class="service-card__savings"></div>
+            <p>One situation, one voice note plus written summary.</p>
+            <ul>
+              <li>Send screenshots/situation</li>
+              <li>Voice note analysis</li>
+              <li>Written summary</li>
+              <li>Script suggestions</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/screenshot-review" class="btn btn-secondary" target="_blank">Get Review</a>
+          </div>
         </div>
 
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>Crisis Week</h3>
-          <div class="service-card__price">$27 <small>/ 7 days</small></div>
-          <div class="service-card__savings"></div>
-          <p>Urgent support when you are in the thick of it.</p>
-          <ul>
-            <li>7 days of text support</li>
-            <li>Replies during set hours</li>
-            <li>Pattern interrupts</li>
-            <li>Crisis navigation</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/crisis-week" class="btn btn-secondary" target="_blank">Get Crisis Support</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-crisis-week.svg');"></div>
+          <div class="service-card__content">
+            <h3>Crisis Week</h3>
+            <div class="service-card__price">$27 <small>/ 7 days</small></div>
+            <div class="service-card__savings"></div>
+            <p>Urgent support when you are in the thick of it.</p>
+            <ul>
+              <li>7 days of text support</li>
+              <li>Replies during set hours</li>
+              <li>Pattern interrupts</li>
+              <li>Crisis navigation</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/crisis-week" class="btn btn-secondary" target="_blank">Get Crisis Support</a>
+          </div>
         </div>
 
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>Pattern Interrupt</h3>
-          <div class="service-card__price">$47 <small>/ 14 days</small></div>
-          <div class="service-card__savings"></div>
-          <p>Two weeks of support to break a specific pattern.</p>
-          <ul>
-            <li>14 days of text support</li>
-            <li>Focus on one pattern</li>
-            <li>Daily check-ins</li>
-            <li>Script practice</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/pattern-interrupt" class="btn btn-secondary" target="_blank">Start Pattern Work</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-pattern-interrupt.svg');"></div>
+          <div class="service-card__content">
+            <h3>Pattern Interrupt</h3>
+            <div class="service-card__price">$47 <small>/ 14 days</small></div>
+            <div class="service-card__savings"></div>
+            <p>Two weeks of support to break a specific pattern.</p>
+            <ul>
+              <li>14 days of text support</li>
+              <li>Focus on one pattern</li>
+              <li>Daily check-ins</li>
+              <li>Script practice</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/pattern-interrupt" class="btn btn-secondary" target="_blank">Start Pattern Work</a>
+          </div>
         </div>
 
         <div class="service-card featured">
-          <div class="service-card__icon">??</div>
-          <h3>Best Friend Mode</h3>
-          <div class="service-card__price">$127 <small>/ month</small></div>
-          <div class="service-card__savings">or $37/week trial</div>
-          <p>Like having a healing coach in your phone.</p>
-          <ul>
-            <li>30 days of text support</li>
-            <li>Weekday replies</li>
-            <li>Pattern tracking</li>
-            <li>Script library access</li>
-            <li>Voice note check-ins</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/best-friend-mode" class="btn btn-primary" target="_blank">Join Best Friend Mode</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-best-friend.svg');"></div>
+          <div class="service-card__content">
+            <h3>Best Friend Mode</h3>
+            <div class="service-card__price">$127 <small>/ month</small></div>
+            <div class="service-card__savings">or $37/week trial</div>
+            <p>Like having a healing coach in your phone.</p>
+            <ul>
+              <li>30 days of text support</li>
+              <li>Weekday replies</li>
+              <li>Pattern tracking</li>
+              <li>Script library access</li>
+              <li>Voice note check-ins</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/best-friend-mode" class="btn btn-primary" target="_blank">Join Best Friend Mode</a>
+          </div>
         </div>
 
       </div>
@@ -770,48 +801,54 @@
       <div class="cards-grid cards-grid-3">
         
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>Regulation Workbook</h3>
-          <div class="service-card__price">$37</div>
-          <div class="service-card__savings"></div>
-          <p>Micro drills and scripts for anxious activation.</p>
-          <ul>
-            <li>3-minute reset drills</li>
-            <li>Clean ask scripts</li>
-            <li>Before-you-text checklist</li>
-            <li>Printable formats</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/regulation-workbook" class="btn btn-secondary" target="_blank">Get Workbook</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-regulation-workbook.svg');"></div>
+          <div class="service-card__content">
+            <h3>Regulation Workbook</h3>
+            <div class="service-card__price">$37</div>
+            <div class="service-card__savings"></div>
+            <p>Micro drills and scripts for anxious activation.</p>
+            <ul>
+              <li>3-minute reset drills</li>
+              <li>Clean ask scripts</li>
+              <li>Before-you-text checklist</li>
+              <li>Printable formats</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/regulation-workbook" class="btn btn-secondary" target="_blank">Get Workbook</a>
+          </div>
         </div>
 
         <div class="service-card">
-          <div class="service-card__icon">📝</div>
-          <h3>Conflict Scripts Pack</h3>
-          <div class="service-card__price">$29</div>
-          <div class="service-card__savings"></div>
-          <p>Repair, ownership, and boundary scripts.</p>
-          <ul>
-            <li>Ownership opener scripts</li>
-            <li>De-escalation frameworks</li>
-            <li>Boundary setting language</li>
-            <li>Repair request templates</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/conflict-scripts" class="btn btn-secondary" target="_blank">Get Scripts</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-conflict-scripts.svg');"></div>
+          <div class="service-card__content">
+            <h3>Conflict Scripts Pack</h3>
+            <div class="service-card__price">$29</div>
+            <div class="service-card__savings"></div>
+            <p>Repair, ownership, and boundary scripts.</p>
+            <ul>
+              <li>Ownership opener scripts</li>
+              <li>De-escalation frameworks</li>
+              <li>Boundary setting language</li>
+              <li>Repair request templates</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/conflict-scripts" class="btn btn-secondary" target="_blank">Get Scripts</a>
+          </div>
         </div>
 
         <div class="service-card">
-          <div class="service-card__icon">??</div>
-          <h3>FA Micro Drills</h3>
-          <div class="service-card__price">$37</div>
-          <div class="service-card__savings"></div>
-          <p>Daily drills for fearful-avoidant patterns.</p>
-          <ul>
-            <li>Safety signal drills</li>
-            <li>Space-not-distance scripts</li>
-            <li>Push-pull interrupts</li>
-            <li>5-minute rituals</li>
-          </ul>
-          <a href="https://shop.unscarred.site/l/fa-drills" class="btn btn-secondary" target="_blank">Get FA Drills</a>
+          <div class="service-card__image" style="background-image: url('thumbnails/thumb-fa-drills.svg');"></div>
+          <div class="service-card__content">
+            <h3>FA Micro Drills</h3>
+            <div class="service-card__price">$37</div>
+            <div class="service-card__savings"></div>
+            <p>Daily drills for fearful-avoidant patterns.</p>
+            <ul>
+              <li>Safety signal drills</li>
+              <li>Space-not-distance scripts</li>
+              <li>Push-pull interrupts</li>
+              <li>5-minute rituals</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/fa-drills" class="btn btn-secondary" target="_blank">Get FA Drills</a>
+          </div>
         </div>
 
       </div>

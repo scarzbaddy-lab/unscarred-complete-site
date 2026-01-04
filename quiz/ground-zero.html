@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -79,7 +79,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
         <div id="quiz-section">
             <h1>Ground Zero Assessment</h1>
             <p class="subtitle">For people who are too many things at once</p>
@@ -110,7 +110,7 @@
                 description: "You exist in the impossible space between desperate and distant. You chase connection because abandonment feels lethal, but closeness triggers suffocation. You're stuck in a pattern where the thing you want most is also the thing you can't tolerate. Traditional attachment theory calls you 'disorganized' but that doesn't capture it - you're not chaotic, you're experiencing two completely valid but opposing survival strategies at once.",
                 patterns: ["You pursue connection and then panic when you get it", "You feel abandoned even when you're the one creating distance", "You can't trust that closeness is safe, but isolation feels like death", "Your nervous system is stuck between protest and shutdown", "You experience intense longing and intense fear simultaneously"],
                 core: "You're not broken - you're holding two conflicting attachment patterns that both saved you once but now trap you in an exhausting loop.",
-                ctas: [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Push Pull Guide", url: "/learn/push-pull.html", icon: "??" }, { text: "Anxious Healing Program", url: "/program/anxious-healing.html", icon: "??" }]
+                ctas: [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" }, { text: "Push Pull Guide", url: "/learn/push-pull.html", icon: "" }, { text: "Anxious Healing Program", url: "/program/anxious-healing.html", icon: "" }]
             },
             "trauma-neuro": {
                 name: "The Trauma-Neurodivergence Intersection",
@@ -196,7 +196,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

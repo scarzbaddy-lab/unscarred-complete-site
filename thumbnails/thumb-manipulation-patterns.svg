@@ -1,0 +1,58 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="manipGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#c9763d" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#a33b5c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#manipGlow)"/>
+  
+  <!-- Puppet Strings Being Cut / Red Flags -->
+  <g transform="translate(800, 340)">
+    <!-- Hand silhouette (manipulator) - faded -->
+    <path d="M-80,-150 L-80,-100 L-60,-80 L-40,-100 L-40,-80 L-20,-60 L0,-80 L0,-60 L20,-40 L40,-60 L40,-100 L60,-120 L60,-150" 
+          fill="none" stroke="#9a958c" stroke-width="2" stroke-opacity="0.3"/>
+    
+    <!-- Strings being cut -->
+    <line x1="-60" y1="-80" x2="-60" y2="40" stroke="#c9763d" stroke-width="2" stroke-dasharray="8,4"/>
+    <line x1="-20" y1="-60" x2="-20" y2="60" stroke="#c9763d" stroke-width="2" stroke-dasharray="8,4"/>
+    <line x1="20" y1="-40" x2="20" y2="80" stroke="#c9763d" stroke-width="2" stroke-dasharray="8,4"/>
+    <line x1="60" y1="-60" x2="60" y2="50" stroke="#c9763d" stroke-width="2" stroke-dasharray="8,4"/>
+    
+    <!-- Scissors cutting -->
+    <g transform="translate(0, 20)">
+      <path d="M-15,-10 L15,10 M-15,10 L15,-10" stroke="#2d8f8f" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="-20" cy="-15" r="10" fill="none" stroke="#2d8f8f" stroke-width="3"/>
+      <circle cx="-20" cy="15" r="10" fill="none" stroke="#2d8f8f" stroke-width="3"/>
+    </g>
+    
+    <!-- Red flags -->
+    <g transform="translate(-120, -40)">
+      <line x1="0" y1="-30" x2="0" y2="50" stroke="#a33b5c" stroke-width="3"/>
+      <path d="M0,-30 L40,-15 L0,0 Z" fill="#a33b5c"/>
+    </g>
+    <g transform="translate(120, -20)">
+      <line x1="0" y1="-30" x2="0" y2="50" stroke="#a33b5c" stroke-width="3"/>
+      <path d="M0,-30 L40,-15 L0,0 Z" fill="#a33b5c"/>
+    </g>
+    
+    <!-- Eye (seeing clearly) -->
+    <g transform="translate(0, 100)">
+      <ellipse cx="0" cy="0" rx="50" ry="25" fill="none" stroke="#2d8f8f" stroke-width="3"/>
+      <circle cx="0" cy="0" r="15" fill="#2d8f8f"/>
+      <circle cx="5" cy="-5" r="5" fill="#ece8e1" fill-opacity="0.8"/>
+    </g>
+  </g>
+  
+  <!-- FREE Badge -->
+  <rect x="1320" y="60" width="220" height="60" rx="30" fill="#2d8f8f"/>
+  <text x="1430" y="102" font-family="Outfit, sans-serif" font-size="28" font-weight="600" fill="white" text-anchor="middle" letter-spacing="0.15em">FREE</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="76" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Manipulation Patterns</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">PATTERN DETECTION GUIDE</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(45,143,143,0.3)" stroke-width="1"/>
+</svg>

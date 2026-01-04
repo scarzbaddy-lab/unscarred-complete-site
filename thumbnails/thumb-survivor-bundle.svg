@@ -1,0 +1,88 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="goldBundleGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#a33b5c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="goldRibbon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4a853"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#goldBundleGlow)"/>
+  
+  <!-- 6 Icons Grid -->
+  <g transform="translate(800, 300)">
+    <!-- Row 1 -->
+    <!-- Fixer: Wrench + Heart -->
+    <g transform="translate(-180, -80)">
+      <circle cx="0" cy="0" r="50" fill="rgba(163,59,92,0.1)" stroke="#a33b5c" stroke-width="2"/>
+      <path d="M-15,-15 L15,15 M10,10 L20,5 L15,-5" fill="none" stroke="#a33b5c" stroke-width="3" stroke-linecap="round"/>
+      <circle cx="5" cy="-5" r="8" fill="#a33b5c" fill-opacity="0.5"/>
+    </g>
+    
+    <!-- Analyzer: Brain + Magnifier -->
+    <g transform="translate(0, -80)">
+      <circle cx="0" cy="0" r="50" fill="rgba(124,92,191,0.1)" stroke="#7c5cbf" stroke-width="2"/>
+      <circle cx="-5" cy="-5" r="18" fill="none" stroke="#7c5cbf" stroke-width="2"/>
+      <line x1="8" y1="8" x2="20" y2="20" stroke="#7c5cbf" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Chameleon: Shape shifter -->
+    <g transform="translate(180, -80)">
+      <circle cx="0" cy="0" r="50" fill="rgba(45,143,143,0.1)" stroke="#2d8f8f" stroke-width="2"/>
+      <path d="M-15,-10 Q0,-20 15,-10 Q20,0 15,10 Q0,20 -15,10 Q-20,0 -15,-10" fill="none" stroke="#2d8f8f" stroke-width="2"/>
+      <path d="M-8,-5 Q0,-10 8,-5 Q10,0 8,5 Q0,10 -8,5 Q-10,0 -8,-5" fill="#2d8f8f" fill-opacity="0.4"/>
+    </g>
+    
+    <!-- Row 2 -->
+    <!-- Performer: Mask -->
+    <g transform="translate(-180, 80)">
+      <circle cx="0" cy="0" r="50" fill="rgba(201,118,61,0.1)" stroke="#c9763d" stroke-width="2"/>
+      <ellipse cx="0" cy="0" rx="25" ry="18" fill="none" stroke="#c9763d" stroke-width="2"/>
+      <circle cx="-10" cy="-3" r="4" fill="#c9763d"/>
+      <circle cx="10" cy="-3" r="4" fill="#c9763d"/>
+      <path d="M-8,8 Q0,14 8,8" fill="none" stroke="#c9763d" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Vanisher: Fading figure -->
+    <g transform="translate(0, 80)">
+      <circle cx="0" cy="0" r="50" fill="rgba(154,149,140,0.1)" stroke="#9a958c" stroke-width="2"/>
+      <circle cx="-10" cy="-5" r="10" fill="none" stroke="#9a958c" stroke-width="2" stroke-opacity="0.8"/>
+      <line x1="-10" y1="5" x2="-10" y2="20" stroke="#9a958c" stroke-width="2" stroke-opacity="0.6"/>
+      <circle cx="10" cy="-5" r="10" fill="none" stroke="#9a958c" stroke-width="2" stroke-opacity="0.4" stroke-dasharray="3,3"/>
+      <line x1="10" y1="5" x2="10" y2="20" stroke="#9a958c" stroke-width="2" stroke-opacity="0.2" stroke-dasharray="3,3"/>
+    </g>
+    
+    <!-- Warrior: Shield -->
+    <g transform="translate(180, 80)">
+      <circle cx="0" cy="0" r="50" fill="rgba(163,59,92,0.1)" stroke="#a33b5c" stroke-width="2"/>
+      <path d="M0,-20 L20,-10 L20,10 L0,25 L-20,10 L-20,-10 Z" fill="none" stroke="#a33b5c" stroke-width="2"/>
+      <line x1="0" y1="-10" x2="0" y2="15" stroke="#a33b5c" stroke-width="2"/>
+      <line x1="-10" y1="0" x2="10" y2="0" stroke="#a33b5c" stroke-width="2"/>
+    </g>
+  </g>
+  
+  <!-- Bundle ribbon corner -->
+  <polygon points="1600,0 1400,0 1600,200" fill="url(#goldRibbon)"/>
+  <text x="1520" y="85" font-family="Outfit, sans-serif" font-size="22" font-weight="700" fill="#050507" text-anchor="middle" letter-spacing="0.05em" transform="rotate(45, 1520, 85)">BUNDLE</text>
+  
+  <!-- Save badge -->
+  <rect x="60" y="60" width="180" height="50" rx="25" fill="url(#goldRibbon)"/>
+  <text x="150" y="95" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#050507" text-anchor="middle" letter-spacing="0.08em">SAVE $43</text>
+  
+  <!-- Price -->
+  <text x="1350" y="280" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#d4a853" text-anchor="middle">$47</text>
+  
+  <!-- Headline -->
+  <text x="800" y="580" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Survivor Types</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="660" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">COMPLETE 6-WORKBOOK BUNDLE</text>
+  
+  <line x1="600" y1="740" x2="1000" y2="740" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+</svg>

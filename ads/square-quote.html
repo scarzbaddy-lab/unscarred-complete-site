@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Quote</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1080px;
+      transform-origin: top left;
+      transform: scale(0.296);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(124, 92, 191, 0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Large quote mark */
+    .quote-mark {
+      position: absolute;
+      top: 120px;
+      left: 80px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 400px;
+      color: rgba(163, 59, 92, 0.12);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 100px;
+      text-align: center;
+    }
+
+    blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 78px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.3;
+      margin-bottom: 56px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    blockquote em { color: #a33b5c; }
+
+    .attribution {
+      font-size: 32px;
+      color: #5c5955;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 64px;
+    }
+
+    .divider {
+      width: 80px;
+      height: 3px;
+      background: linear-gradient(90deg, #a33b5c, #7c5cbf);
+      margin: 0 auto 64px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 64px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .website {
+      margin-top: 24px;
+      font-size: 28px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="quote-mark">"</div>
+
+  <div class="content">
+    <blockquote>
+      "Your patterns are not your fault.<br><em>Learning them is your power.</em>"
+    </blockquote>
+
+    <div class="attribution">— Scar Kade</div>
+
+    <div class="divider"></div>
+
+    <div class="logo">un<span>scarred</span></div>
+    <p class="website">unscarred.com</p>
+  </div>
+</body>
+</html>
+

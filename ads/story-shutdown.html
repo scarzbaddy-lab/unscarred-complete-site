@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Shutdown</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      transform: scale(0.25);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 60% at 50% 20%, rgba(45, 143, 143, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 50% at 80% 80%, rgba(124, 92, 191, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* Fading bars effect */
+    .fade-bars {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      opacity: 0.15;
+    }
+
+    .fade-bar {
+      height: 80px;
+      background: linear-gradient(90deg, rgba(45, 143, 143, 0.8), transparent 60%);
+    }
+
+    .fade-bar:nth-child(2) { opacity: 0.7; margin-left: 100px; }
+    .fade-bar:nth-child(3) { opacity: 0.5; margin-left: 200px; }
+    .fade-bar:nth-child(4) { opacity: 0.3; margin-left: 300px; }
+    .fade-bar:nth-child(5) { opacity: 0.15; margin-left: 400px; }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 80px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .icon-lock {
+      font-size: 140px;
+      margin-bottom: 48px;
+      opacity: 0.9;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 105px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 40px;
+    }
+
+    h1 em { color: #2d8f8f; }
+
+    .subtext {
+      font-size: 42px;
+      color: #9a958c;
+      line-height: 1.6;
+      max-width: 850px;
+      margin: 0 auto 60px;
+    }
+
+    .trigger-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .trigger-item {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      padding: 32px 40px;
+      background: rgba(45, 143, 143, 0.08);
+      border: 1px solid rgba(45, 143, 143, 0.2);
+      border-radius: 20px;
+      font-size: 36px;
+      color: #ece8e1;
+    }
+
+    .trigger-item span { color: #2d8f8f; }
+
+    .cta-area {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 56px 90px;
+      background: linear-gradient(135deg, #2d8f8f, #1f6b6b);
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(45, 143, 143, 0.4);
+    }
+
+    .cta-sub {
+      margin-top: 36px;
+      font-size: 30px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="fade-bars">
+    <div class="fade-bar"></div>
+    <div class="fade-bar"></div>
+    <div class="fade-bar"></div>
+    <div class="fade-bar"></div>
+    <div class="fade-bar"></div>
+  </div>
+
+  <div class="content">
+    <div class="logo">un<span>scarred</span></div>
+
+    <div class="hero-section">
+      <div class="icon-lock">🔒</div>
+      <h1>Why do you<br><em>shut down?</em></h1>
+      <p class="subtext">Your brain doesn't freeze for no reason. There's a pattern. Find yours.</p>
+
+      <div class="trigger-list">
+        <div class="trigger-item"><span>→</span> When someone raises their voice</div>
+        <div class="trigger-item"><span>→</span> When you feel criticized</div>
+        <div class="trigger-item"><span>→</span> When intimacy gets too close</div>
+        <div class="trigger-item"><span>→</span> When you can't find the "right" words</div>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">Map Your Shutdown Pattern →</a>
+      <p class="cta-sub">Free quiz · 4 minutes</p>
+    </div>
+  </div>
+</body>
+</html>
+

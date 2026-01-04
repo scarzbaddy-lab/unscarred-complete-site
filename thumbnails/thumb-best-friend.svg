@@ -1,0 +1,56 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="warmGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a33b5c" stop-opacity="0.25"/>
+      <stop offset="50%" stop-color="#2d8f8f" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#warmGlow)"/>
+  
+  <!-- Phone with Heart / Constant Connection -->
+  <g transform="translate(800, 340)">
+    <!-- Phone frame -->
+    <rect x="-70" y="-120" width="140" height="240" rx="18" fill="none" stroke="#2d8f8f" stroke-width="3"/>
+    
+    <!-- Screen glow -->
+    <rect x="-55" y="-100" width="110" height="180" rx="4" fill="#2d8f8f" fill-opacity="0.08"/>
+    
+    <!-- Heart on screen -->
+    <path d="M0,-40 C0,-70 -40,-70 -40,-40 C-40,-10 0,30 0,30 C0,30 40,-10 40,-40 C40,-70 0,-70 0,-40" 
+          fill="#a33b5c" stroke="none"/>
+    
+    <!-- Pulse rings around heart -->
+    <circle cx="0" cy="-10" r="60" fill="none" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.3"/>
+    <circle cx="0" cy="-10" r="80" fill="none" stroke="#a33b5c" stroke-width="1.5" stroke-opacity="0.2"/>
+    <circle cx="0" cy="-10" r="100" fill="none" stroke="#a33b5c" stroke-width="1" stroke-opacity="0.1"/>
+    
+    <!-- Message notification dots -->
+    <circle cx="50" cy="-90" r="10" fill="#a33b5c"/>
+    <text x="50" y="-85" font-family="Outfit, sans-serif" font-size="14" font-weight="600" fill="white" text-anchor="middle">∞</text>
+    
+    <!-- Connection indicator bars -->
+    <rect x="-45" y="60" width="8" height="20" rx="2" fill="#2d8f8f"/>
+    <rect x="-30" y="50" width="8" height="30" rx="2" fill="#2d8f8f"/>
+    <rect x="-15" y="40" width="8" height="40" rx="2" fill="#2d8f8f"/>
+    <rect x="0" y="35" width="8" height="45" rx="2" fill="#a33b5c"/>
+  </g>
+  
+  <!-- Duration badge -->
+  <rect x="60" y="60" width="180" height="50" rx="25" fill="rgba(163,59,92,0.15)" stroke="rgba(163,59,92,0.4)" stroke-width="1"/>
+  <text x="150" y="95" font-family="Outfit, sans-serif" font-size="20" font-weight="500" fill="#a33b5c" text-anchor="middle" letter-spacing="0.1em">30 DAYS</text>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#a33b5c" text-anchor="middle">$127</text>
+  
+  <!-- Headline -->
+  <text x="800" y="640" font-family="Cormorant Garamond, Georgia, serif" font-size="86" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Best Friend Mode</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="720" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">ON-CALL TEXT SUPPORT</text>
+  
+  <line x1="600" y1="800" x2="1000" y2="800" stroke="rgba(163,59,92,0.3)" stroke-width="1"/>
+</svg>

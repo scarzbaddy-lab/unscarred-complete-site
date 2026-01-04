@@ -1,0 +1,56 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="rosePurpleFlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a33b5c" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#7c5cbf" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#rosePurpleFlow)"/>
+  
+  <!-- Rooted Feminine Symbol -->
+  <g transform="translate(800, 320)">
+    <!-- Venus symbol (feminine) - rooted -->
+    <circle cx="0" cy="-20" r="80" fill="none" stroke="#a33b5c" stroke-width="4"/>
+    
+    <!-- Cross extending down -->
+    <line x1="0" y1="60" x2="0" y2="140" stroke="#a33b5c" stroke-width="4" stroke-linecap="round"/>
+    <line x1="-40" y1="100" x2="40" y2="100" stroke="#a33b5c" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Root system below cross -->
+    <path d="M0,140 L-30,170 M0,140 L0,175 M0,140 L30,170" 
+          stroke="#a33b5c" stroke-width="2" stroke-linecap="round" stroke-opacity="0.6"/>
+    <path d="M-30,170 L-45,185 M30,170 L45,185" 
+          stroke="#a33b5c" stroke-width="1.5" stroke-linecap="round" stroke-opacity="0.4"/>
+    
+    <!-- Inner power center -->
+    <circle cx="0" cy="-20" r="30" fill="#a33b5c" fill-opacity="0.15"/>
+    <circle cx="0" cy="-20" r="10" fill="#a33b5c"/>
+    
+    <!-- Flowing energy around -->
+    <ellipse cx="0" cy="-20" rx="110" ry="100" fill="none" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.2"/>
+    <ellipse cx="0" cy="-20" rx="130" ry="115" fill="none" stroke="#7c5cbf" stroke-width="1" stroke-opacity="0.1"/>
+    
+    <!-- Decorative flourish -->
+    <path d="M-100,-20 Q-120,-60 -80,-80" fill="none" stroke="#a33b5c" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M100,-20 Q120,-60 80,-80" fill="none" stroke="#a33b5c" stroke-width="1.5" stroke-opacity="0.4"/>
+  </g>
+  
+  <!-- Includes badge -->
+  <rect x="60" y="60" width="280" height="50" rx="25" fill="rgba(163,59,92,0.15)" stroke="rgba(163,59,92,0.4)" stroke-width="1"/>
+  <text x="200" y="95" font-family="Outfit, sans-serif" font-size="18" font-weight="500" fill="#a33b5c" text-anchor="middle" letter-spacing="0.08em">6 WEEKS + COACHING</text>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#a33b5c" text-anchor="middle">$197</text>
+  
+  <!-- Headline -->
+  <text x="800" y="640" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Centered Woman</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="720" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">FEMININE POWER BLUEPRINT</text>
+  
+  <line x1="600" y1="800" x2="1000" y2="800" stroke="rgba(163,59,92,0.3)" stroke-width="1"/>
+</svg>

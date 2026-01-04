@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -237,7 +237,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
         
         <div id="quiz-section">
             <h1>Coercive Control Recognition</h1>
@@ -404,7 +404,7 @@
                         </ul>
                     </div>
 
-                    ${score > 0   `
+                    ${score > 0 ? `
                     <div class="warning-box">
                         <h3>You are not crazy for noticing this</h3>
                         <p>Your mind will try to talk you out of what your body already knows. You do not have to decide anything today. You can just let yourself admit that this pattern is real. That is the first step to getting your reality back.</p>
@@ -441,7 +441,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

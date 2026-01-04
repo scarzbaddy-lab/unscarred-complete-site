@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Centered Woman</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      transform: scale(0.25);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124, 92, 191, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(163, 59, 92, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 80px;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .badge {
+      padding: 18px 32px;
+      background: rgba(124, 92, 191, 0.15);
+      border: 1px solid rgba(124, 92, 191, 0.3);
+      border-radius: 999px;
+      font-size: 26px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #7c5cbf;
+    }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .sparkle-icon {
+      font-size: 100px;
+      margin-bottom: 40px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 100px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 40px;
+    }
+
+    h1 em { color: #7c5cbf; }
+
+    .subtext {
+      font-size: 42px;
+      color: #9a958c;
+      line-height: 1.6;
+      max-width: 820px;
+      margin: 0 auto 64px;
+    }
+
+    .pillars-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .pillar-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 36px;
+      background: rgba(124, 92, 191, 0.08);
+      border: 1px solid rgba(124, 92, 191, 0.15);
+      border-radius: 16px;
+      font-size: 34px;
+      color: #ece8e1;
+    }
+
+    .pillar-item .icon {
+      font-size: 32px;
+    }
+
+    .cta-area {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 56px 90px;
+      background: linear-gradient(135deg, #7c5cbf, #5a3d9c);
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(124, 92, 191, 0.4);
+    }
+
+    .cta-sub {
+      margin-top: 36px;
+      font-size: 30px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="header-row">
+      <div class="logo">un<span>scarred</span></div>
+      <div class="badge">6-Week Program</div>
+    </div>
+
+    <div class="hero-section">
+      <div class="sparkle-icon">✨</div>
+      <h1>Stop shrinking.<br><em>Start choosing.</em></h1>
+      <p class="subtext">Build rooted self-trust so you can set boundaries without walls—and stay soft without losing yourself.</p>
+
+      <div class="pillars-list">
+        <div class="pillar-item"><span class="icon">🌿</span> Root into your own value</div>
+        <div class="pillar-item"><span class="icon">🗣️</span> Speak without apologizing</div>
+        <div class="pillar-item"><span class="icon">💜</span> Receive without guilt</div>
+        <div class="pillar-item"><span class="icon">🚪</span> Leave what doesn't serve you</div>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">Join Centered Woman →</a>
+      <p class="cta-sub">6 weeks + 2 coaching calls</p>
+    </div>
+  </div>
+</body>
+</html>
+

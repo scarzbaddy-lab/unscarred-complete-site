@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Path Quizzes | Unscarred</title>
+  <meta name="description" content="Quizzes for survival mode. Map your wars, shields, masks, and the patterns that run when your nervous system is fighting. No shame. Just clarity.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --accent-glow: rgba(201, 118, 61, 0.35);
+      --warning: #e74c3c;
+      --teal: #2d8f8f;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --border-war: rgba(201, 118, 61, 0.25);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(163, 59, 92, 0.1) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(231, 76, 60, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-war);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--accent); }
+    .logo-tag {
+      font-size: 0.55em;
+      color: var(--accent);
+      margin-left: 8px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .nav-relational {
+      color: #7d9a8c !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      padding: 10px 20px;
+      background: rgba(201, 118, 61, 0.12);
+      border-radius: 999px;
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em { color: var(--accent); font-style: italic; }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 640px;
+      margin: 0 auto 16px;
+      line-height: 1.7;
+    }
+
+    .hero-note {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      margin-top: 24px;
+    }
+
+    .hero-note a {
+      color: #7d9a8c;
+      text-decoration: none;
+    }
+
+    .hero-note a:hover { text-decoration: underline; }
+
+    /* Intro Section */
+    .intro-box {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-war);
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .intro-box h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .intro-box p {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 700px;
+      margin: 0 auto 12px;
+      line-height: 1.8;
+    }
+
+    .intro-box p strong { color: var(--text-main); }
+
+    /* Validation Box */
+    .validation-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 60px;
+      padding: 0 20px;
+    }
+
+    .validation-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px;
+      background: rgba(201, 118, 61, 0.06);
+      border: 1px solid rgba(201, 118, 61, 0.15);
+      border-radius: 999px;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .validation-icon {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    @media (max-width: 600px) {
+      .validation-item {
+        width: 100%;
+        justify-content: flex-start;
+      }
+    }
+
+    /* Category Labels */
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .category-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201, 118, 61, 0.4), transparent);
+    }
+
+    /* Quiz Grid */
+    .quiz-section {
+      margin-bottom: 60px;
+    }
+
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-grid { grid-template-columns: 1fr; }
+    }
+
+    .quiz-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quiz-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .quiz-card:hover {
+      border-color: rgba(201, 118, 61, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(201, 118, 61, 0.15);
+    }
+
+    .quiz-card:hover::before { opacity: 1; }
+
+    .quiz-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(201, 118, 61, 0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .quiz-card__content { flex: 1; }
+
+    .quiz-card__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .quiz-card__content p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    .quiz-card__meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Featured Quiz */
+    .featured-quiz {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.12), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 24px;
+      padding: 36px 40px;
+      margin-bottom: 48px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-quiz::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(201, 118, 61, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+
+    .featured-quiz__icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(201, 118, 61, 0.15);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      flex-shrink: 0;
+    }
+
+    .featured-quiz__content { flex: 1; }
+
+    .featured-quiz__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .featured-quiz__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .featured-quiz__content p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+    }
+
+    .btn-war {
+      background: linear-gradient(135deg, var(--accent), #a85d2d);
+      color: white;
+      box-shadow: 0 8px 30px var(--accent-glow);
+    }
+
+    .btn-war:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: var(--text-main);
+    }
+
+    @media (max-width: 700px) {
+      .featured-quiz { flex-direction: column; text-align: center; }
+    }
+
+    /* Intense Warning Badge */
+    .intense-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(163, 59, 92, 0.15);
+      color: var(--primary);
+      margin-left: 8px;
+    }
+
+    /* Relational CTA */
+    .relational-cta {
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(125, 154, 140, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      text-align: center;
+      margin: 80px 0 60px;
+    }
+
+    .relational-cta h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .relational-cta p {
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-sage {
+      background: linear-gradient(135deg, #7d9a8c, #5a7d6c);
+      color: white;
+      box-shadow: 0 8px 30px rgba(125, 154, 140, 0.3);
+    }
+
+    .btn-sage:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(125, 154, 140, 0.4);
+    }
+
+    /* Resources Link */
+    .resources-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .resources-box__icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .resources-box__content {
+      flex: 1;
+    }
+
+    .resources-box__content h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .resources-box__content p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .resources-box a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+
+    .resources-box a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .resources-box { flex-direction: column; text-align: center; }
+    }
+
+    /* Section Headers */
+    .section-header-centered {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-header-centered h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .section-header-centered h2 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .section-header-centered p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+    }
+
+    /* After Section */
+    .after-section {
+      margin: 80px 0;
+    }
+
+    .after-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .after-grid { grid-template-columns: 1fr; }
+    }
+
+    .after-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+    }
+
+    .after-card__number {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      background: rgba(201, 118, 61, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    .after-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+      padding-right: 40px;
+    }
+
+    .after-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    /* Testimonials */
+    .testimonials-section {
+      margin: 80px 0;
+    }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .testimonials-grid { grid-template-columns: 1fr; }
+    }
+
+    .testimonial-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+
+    .testimonial-card.featured {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));
+      border-color: rgba(201, 118, 61, 0.2);
+    }
+
+    .testimonial-card p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    .testimonial-card.featured p {
+      color: var(--text-main);
+    }
+
+    /* Why Section */
+    .why-section {
+      margin: 80px 0;
+    }
+
+    .why-box {
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+    }
+
+    .why-box h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .why-content {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 800px) {
+      .why-content { grid-template-columns: 1fr; }
+      .why-box { padding: 32px 24px; }
+    }
+
+    .why-block h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .why-block p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      line-height: 1.65;
+    }
+
+    .why-block p em {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* Coming Soon */
+    .coming-soon-section {
+      margin: 60px 0;
+    }
+
+    .coming-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .coming-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .coming-grid { grid-template-columns: 1fr; }
+    }
+
+    .coming-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px dashed rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      padding: 24px 20px;
+      text-align: center;
+      opacity: 0.7;
+    }
+
+    .coming-card__icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .coming-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text-soft);
+    }
+
+    .coming-card p {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    /* Crisis Box */
+    .crisis-box {
+      background: linear-gradient(165deg, rgba(231, 76, 60, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(231, 76, 60, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .crisis-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--warning);
+      margin-bottom: 12px;
+    }
+
+    .crisis-box > p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      max-width: 600px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    .crisis-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .crisis-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 16px 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .crisis-link:hover {
+      border-color: rgba(231, 76, 60, 0.4);
+      background: rgba(231, 76, 60, 0.08);
+    }
+
+    .crisis-link__name {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+    }
+
+    .crisis-link__number {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0 40px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text-main); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/index.html" class="logo">un<span>scarred</span><span class="logo-tag">WAR</span></a>
+      <nav>
+        <a href="/war/">Ground Zero</a>
+        <a href="/war/patterns.html">Patterns</a>
+        <a href="/war/glossary.html">Glossary</a>
+        <a href="/quiz/" class="nav-relational">● Relational Quizzes</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">⚔️ War Path Quizzes</div>
+      <h1>Map the war your <em>nervous system</em> is fighting</h1>
+      <p class="hero-sub">These quizzes go deeper than relationship patterns. They map survival architecture—shields, masks, internal wars, and the rules your system built to keep you alive.</p>
+      <p class="hero-note">Not in survival mode? <a href="/quiz/">Go to Relational Quizzes →</a></p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="intro-box">
+      <h2>This is not regular self-help</h2>
+      <p>If you are here, you have probably tried normal advice and it did not land. <strong>These quizzes are for people whose nervous systems organized around early chaos</strong>—complex trauma, suspected abuse, BPD patterns, fragmented selves, or the feeling that you are too much, too broken, or too complicated for standard healing.</p>
+      <p>This is pattern language, not diagnosis. <strong>No shame. Just clarity about what is running.</strong></p>
+    </div>
+
+    <!-- Validation Box -->
+    <div class="validation-box">
+      <div class="validation-item">
+        <span class="validation-icon">✓</span>
+        <span>If you've been told you're "too sensitive" or "too much"</span>
+      </div>
+      <div class="validation-item">
+        <span class="validation-icon">✓</span>
+        <span>If you feel like you're performing normalcy while dying inside</span>
+      </div>
+      <div class="validation-item">
+        <span class="validation-icon">✓</span>
+        <span>If your childhood was chaos but you "turned out fine"</span>
+      </div>
+      <div class="validation-item">
+        <span class="validation-icon">✓</span>
+        <span>If you've wondered if you're the abuser</span>
+      </div>
+      <div class="validation-item">
+        <span class="validation-icon">✓</span>
+        <span>If regular relationship advice feels like it's for a different species</span>
+      </div>
+    </div>
+
+    <!-- Featured Quiz -->
+    <a href="/war/war-mapping/" class="featured-quiz" style="text-decoration: none;">
+      <div class="featured-quiz__icon">⚔️</div>
+      <div class="featured-quiz__content">
+        <div class="featured-quiz__label">Start Here</div>
+        <h3>War Mapping Diagnostic</h3>
+        <p>Which war is your nervous system fighting in love? Abandonment, exposure, entrapment, or erasure. Find the internal rule-set that runs your protective system.</p>
+        <span class="btn btn-war">Take This Quiz →</span>
+      </div>
+    </a>
+
+    <!-- Survival Architecture -->
+    <section class="quiz-section">
+      <div class="category-label">Survival Architecture</div>
+      <div class="quiz-grid">
+
+        <a href="/quiz/mirror-archetype.html" class="quiz-card">
+          <div class="quiz-card__icon">🎭</div>
+          <div class="quiz-card__content">
+            <h3>Mirror Archetype Quiz</h3>
+            <p>Map your survival archetype. Judge, Wolf, Ghost, Doll, Hero, Jester, Oracle, or Machine.</p>
+            <span class="quiz-card__meta">21 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/mask-shield.html" class="quiz-card">
+          <div class="quiz-card__icon">🛡️</div>
+          <div class="quiz-card__content">
+            <h3>Mask & Shield Quiz</h3>
+            <p>What mask did you build to survive? What shield is it protecting? See the layers.</p>
+            <span class="quiz-card__meta">24 questions · 6 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/ground-zero.html" class="quiz-card">
+          <div class="quiz-card__icon">🔥</div>
+          <div class="quiz-card__content">
+            <h3>Ground Zero Assessment</h3>
+            <p>How early did the chaos start? Map what got built before age seven.</p>
+            <span class="quiz-card__meta">18 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/war/worth-types/" class="quiz-card">
+          <div class="quiz-card__icon">💎</div>
+          <div class="quiz-card__content">
+            <h3>Self-Worth Diagnostic</h3>
+            <p>What is your internal worth structure? Performance-based, approval-based, or somewhere else.</p>
+            <span class="quiz-card__meta">20 questions · 5 min</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Recognizing Patterns -->
+    <section class="quiz-section">
+      <div class="category-label">Recognizing Patterns</div>
+      <div class="quiz-grid">
+
+        <a href="/quiz/coercive-control.html" class="quiz-card">
+          <div class="quiz-card__icon">🕸️</div>
+          <div class="quiz-card__content">
+            <h3>Coercive Control Checklist<span class="intense-badge">Intense</span></h3>
+            <p>Pattern checklist for control, isolation, and manipulation tactics. Evidence-building tool.</p>
+            <span class="quiz-card__meta">25 items · 6 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/gaslight-recognition.html" class="quiz-card">
+          <div class="quiz-card__icon">💨</div>
+          <div class="quiz-card__content">
+            <h3>Gaslight Recognition Quiz</h3>
+            <p>Is it you or is it them? Identify reality-bending patterns in your relationship.</p>
+            <span class="quiz-card__meta">20 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/love-bombing.html" class="quiz-card">
+          <div class="quiz-card__icon">💣</div>
+          <div class="quiz-card__content">
+            <h3>Love Bombing Detector</h3>
+            <p>Is it real affection or strategic intensity? Map the difference.</p>
+            <span class="quiz-card__meta">15 questions · 4 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/is-my-partner-a-narc.html" class="quiz-card">
+          <div class="quiz-card__icon">👁️</div>
+          <div class="quiz-card__content">
+            <h3>Partner Pattern Scan<span class="intense-badge">Intense</span></h3>
+            <p>Not a diagnosis. A pattern scan for narcissistic traits and protective ego structures.</p>
+            <span class="quiz-card__meta">28 questions · 7 min</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Understanding Yourself -->
+    <section class="quiz-section">
+      <div class="category-label">Understanding Your System</div>
+      <div class="quiz-grid">
+
+        <a href="/quiz/do-you-hurt-people-on-purpose.html" class="quiz-card">
+          <div class="quiz-card__icon">❓</div>
+          <div class="quiz-card__content">
+            <h3>Do I Hurt People on Purpose?</h3>
+            <p>For people who worry they might be the problem. Honest assessment, no shame.</p>
+            <span class="quiz-card__meta">22 questions · 6 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/am-i-abusive.html" class="quiz-card">
+          <div class="quiz-card__icon">⚖️</div>
+          <div class="quiz-card__content">
+            <h3>Am I Abusive?<span class="intense-badge">Intense</span></h3>
+            <p>Hard questions for people willing to look at themselves honestly. Pattern scan, not judgment.</p>
+            <span class="quiz-card__meta">24 questions · 6 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/ego-structure/" class="quiz-card">
+          <div class="quiz-card__icon">🪞</div>
+          <div class="quiz-card__content">
+            <h3>Ego Structure Scan</h3>
+            <p>Grandiose, collapsed, compensatory, or oscillating. How your ego protects you.</p>
+            <span class="quiz-card__meta">28 statements · 6 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/nervous-system/" class="quiz-card">
+          <div class="quiz-card__icon">⚡</div>
+          <div class="quiz-card__content">
+            <h3>Nervous System Response Scan</h3>
+            <p>Fight, flight, freeze, fawn, or faint. How your body responds to threat.</p>
+            <span class="quiz-card__meta">25 questions · 5 min</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Deep Patterns -->
+    <section class="quiz-section">
+      <div class="category-label">Deep Patterns</div>
+      <div class="quiz-grid">
+
+        <a href="/quiz/dissociation-check.html" class="quiz-card">
+          <div class="quiz-card__icon">🌫️</div>
+          <div class="quiz-card__content">
+            <h3>Dissociation Check</h3>
+            <p>Do you leave your body when things get real? Map your disconnection patterns.</p>
+            <span class="quiz-card__meta">20 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/fragmentation.html" class="quiz-card">
+          <div class="quiz-card__icon">🧩</div>
+          <div class="quiz-card__content">
+            <h3>Fragmentation Assessment<span class="intense-badge">Intense</span></h3>
+            <p>For people who feel like they contain multitudes. Parts work, not pathology.</p>
+            <span class="quiz-card__meta">26 questions · 7 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/shame-core.html" class="quiz-card">
+          <div class="quiz-card__icon">🕳️</div>
+          <div class="quiz-card__content">
+            <h3>Shame Core Scan</h3>
+            <p>What is the shame story running underneath everything? Find the root message.</p>
+            <span class="quiz-card__meta">22 questions · 6 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/parentification.html" class="quiz-card">
+          <div class="quiz-card__icon">👶</div>
+          <div class="quiz-card__content">
+            <h3>Parentified Child Check</h3>
+            <p>Did you raise your parents? Map the role reversal and its echoes in adult life.</p>
+            <span class="quiz-card__meta">18 questions · 5 min</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Escape & Exit Patterns -->
+    <section class="quiz-section">
+      <div class="category-label">Escape & Exit Patterns</div>
+      <div class="quiz-grid">
+
+        <a href="/quiz/exit-strategy.html" class="quiz-card">
+          <div class="quiz-card__icon">🚪</div>
+          <div class="quiz-card__content">
+            <h3>Exit Strategy Scan</h3>
+            <p>How do you leave? Ghosting, slow fade, explosion, or clean break. Map your exit style.</p>
+            <span class="quiz-card__meta">16 questions · 4 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/numbing.html" class="quiz-card">
+          <div class="quiz-card__icon">🧊</div>
+          <div class="quiz-card__content">
+            <h3>Numbing Patterns Quiz</h3>
+            <p>Work, substances, screens, sex, food, sleep. What do you use to turn off?</p>
+            <span class="quiz-card__meta">20 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/relationship-arson.html" class="quiz-card">
+          <div class="quiz-card__icon">🔥</div>
+          <div class="quiz-card__content">
+            <h3>Relationship Arson Quiz<span class="intense-badge">Intense</span></h3>
+            <p>Do you burn it down before they can leave? Map the sabotage patterns.</p>
+            <span class="quiz-card__meta">18 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/staying-too-long.html" class="quiz-card">
+          <div class="quiz-card__icon">⏳</div>
+          <div class="quiz-card__content">
+            <h3>Staying Too Long Quiz</h3>
+            <p>Why do you stay after the evidence is clear? Map the hooks keeping you there.</p>
+            <span class="quiz-card__meta">15 questions · 4 min</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Why This Matters -->
+    <section class="why-section">
+      <div class="why-box">
+        <h2>Why this matters</h2>
+        <div class="why-content">
+          <div class="why-block">
+            <h4>Most healing content is not built for you</h4>
+            <p>If your nervous system was built in chaos, normal advice feels like it's for a different species. "Just communicate." "Set boundaries." "Be vulnerable." Yeah. You tried that. It doesn't land the same way when your system learned that vulnerability gets punished.</p>
+          </div>
+          <div class="why-block">
+            <h4>Pattern language changes everything</h4>
+            <p>When you can name what's running—not as a diagnosis but as a <em>strategy your system built to survive</em>—shame drops and clarity rises. You're not broken. You're adapted. Now you can choose something different.</p>
+          </div>
+          <div class="why-block">
+            <h4>This is not therapy</h4>
+            <p>This is translation. Therapy goes deep into the story. This goes deep into the pattern. Some people need one, some need the other, some need both. This is for people who want to understand what's running so they can interrupt it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="coming-soon-section">
+      <div class="category-label">Coming Soon</div>
+      <div class="coming-grid">
+        <div class="coming-card">
+          <span class="coming-card__icon">🧬</span>
+          <h4>Generational Pattern Tracker</h4>
+          <p>Map what you inherited vs. what you built.</p>
+        </div>
+        <div class="coming-card">
+          <span class="coming-card__icon">🎭</span>
+          <h4>Split Self Scanner</h4>
+          <p>For people who are one person at work, another alone.</p>
+        </div>
+        <div class="coming-card">
+          <span class="coming-card__icon">⛓️</span>
+          <h4>Repetition Compulsion Map</h4>
+          <p>Why you keep picking the same person in different bodies.</p>
+        </div>
+        <div class="coming-card">
+          <span class="coming-card__icon">🌑</span>
+          <h4>Emotional Flashback Scan</h4>
+          <p>Is this now, or is this then? Learn to tell the difference.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What Happens After Section -->
+    <section class="after-section">
+      <div class="section-header-centered">
+        <h2>What happens after you take a quiz</h2>
+        <p>These aren't just assessments. They're the start of seeing clearly.</p>
+      </div>
+
+      <div class="after-grid">
+        <div class="after-card">
+          <div class="after-card__number">1</div>
+          <h3>You get a pattern read</h3>
+          <p>Not a diagnosis. Not a label. A clear translation of what's running in your system and why it makes sense given your history.</p>
+        </div>
+        <div class="after-card">
+          <div class="after-card__number">2</div>
+          <h3>You understand the "why"</h3>
+          <p>Every quiz result explains why your nervous system built this pattern. It's not a flaw—it was protection. Now you can see it.</p>
+        </div>
+        <div class="after-card">
+          <div class="after-card__number">3</div>
+          <h3>You get something to try</h3>
+          <p>Real moves. Not vague advice. Things you can do in the next 24 hours to interrupt the pattern or soothe your system.</p>
+        </div>
+        <div class="after-card">
+          <div class="after-card__number">4</div>
+          <h3>You decide what's next</h3>
+          <p>Go deeper with more quizzes, explore the glossary, or book a call if you want a real-time translation of your specific situation.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- War Path Testimonials -->
+    <section class="testimonials-section">
+      <div class="section-header-centered">
+        <h2>What people say about <em>this work</em></h2>
+        <p>From people who thought they were too complicated to be understood.</p>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>"I understood what was happening in 10 minutes. After years of therapy that never clicked."</p>
+        </div>
+        <div class="testimonial-card featured">
+          <p>"She didn't pathologize me. She translated me. For the first time I felt like someone got the whole picture, not just the parts that fit a diagnosis."</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"I finally saw my part without shame."</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"I stopped spiraling and handled the conversation differently. The pattern was so clear once I could see it."</p>
+        </div>
+        <div class="testimonial-card featured">
+          <p>"You told me the truth so clean it shocked me. And then you told me what to do with it. That's what I needed."</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"I always thought I was the problem. Now I see I was just surviving."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources Box -->
+    <div class="resources-box">
+      <div class="resources-box__icon">📚</div>
+      <div class="resources-box__content">
+        <h4>Need context for your results?</h4>
+        <p>The War Path Glossary explains terms like dissociation, limerence, trauma bonds, and more in plain language.</p>
+      </div>
+      <a href="/war/glossary.html">Read the Glossary →</a>
+    </div>
+
+    <!-- Crisis Resources -->
+    <div class="crisis-box">
+      <h3>⚠️ If you're in crisis right now</h3>
+      <p>These quizzes are for pattern clarity, not crisis intervention. If you are in immediate danger, having thoughts of harming yourself or others, or need emergency support, please reach out:</p>
+      <div class="crisis-links">
+        <a href="tel:988" class="crisis-link">
+          <span class="crisis-link__name">Suicide & Crisis Lifeline</span>
+          <span class="crisis-link__number">988</span>
+        </a>
+        <a href="tel:18007997233" class="crisis-link">
+          <span class="crisis-link__name">Domestic Violence Hotline</span>
+          <span class="crisis-link__number">1-800-799-7233</span>
+        </a>
+        <a href="sms:741741" class="crisis-link">
+          <span class="crisis-link__name">Crisis Text Line</span>
+          <span class="crisis-link__number">Text HOME to 741741</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Relational CTA -->
+    <div class="relational-cta">
+      <h3>● Looking for relationship quizzes?</h3>
+      <p>If you are working on attachment, communication, and healthier connection patterns, the Relational Quiz Hub has tools built for that.</p>
+      <a href="/quiz/" class="btn btn-sage">Go to Relational Quizzes →</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/war/">Ground Zero</a>
+        <a href="/war/patterns.html">Patterns</a>
+        <a href="/coaching.html">Coaching</a>
+        <a href="/shop.html">Shop</a>
+      </div>
+      <p>© 2025 Unscarred. Your patterns are not your fault. Learning them is your power.</p>
+    </div>
+  </footer>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+
+

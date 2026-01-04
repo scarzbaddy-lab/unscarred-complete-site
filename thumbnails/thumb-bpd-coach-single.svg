@@ -1,0 +1,53 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="rosePulse" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#a33b5c" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#rosePulse)"/>
+  
+  <!-- Heartbeat Line Stabilizing -->
+  <g transform="translate(800, 340)">
+    <!-- Pulse background glow -->
+    <ellipse cx="0" cy="0" rx="200" ry="100" fill="#a33b5c" fill-opacity="0.08"/>
+    
+    <!-- Main heartbeat line -->
+    <path d="M-280,0 
+             L-200,0 
+             L-180,-80 L-160,100 L-140,-60 L-120,40 L-100,0
+             L-60,0 
+             L-40,-40 L-20,50 L0,-30 L20,20 L40,0
+             L80,0
+             L100,-20 L120,15 L140,-10 L160,5 L180,0
+             L280,0" 
+          fill="none" stroke="#a33b5c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Stability glow at end -->
+    <circle cx="230" cy="0" r="30" fill="#a33b5c" fill-opacity="0.2"/>
+    <circle cx="230" cy="0" r="15" fill="#a33b5c" fill-opacity="0.3"/>
+    <circle cx="230" cy="0" r="6" fill="#a33b5c"/>
+    
+    <!-- Heart accent -->
+    <path d="M0,-100 C0,-120 -20,-120 -20,-100 C-20,-80 0,-60 0,-60 C0,-60 20,-80 20,-100 C20,-120 0,-120 0,-100" 
+          fill="#a33b5c" fill-opacity="0.4" stroke="none" transform="scale(0.8)"/>
+  </g>
+  
+  <!-- Session badge -->
+  <rect x="60" y="60" width="200" height="50" rx="25" fill="rgba(163,59,92,0.15)" stroke="rgba(163,59,92,0.4)" stroke-width="1"/>
+  <text x="160" y="95" font-family="Outfit, sans-serif" font-size="20" font-weight="500" fill="#a33b5c" text-anchor="middle" letter-spacing="0.1em">60 MINUTES</text>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#a33b5c" text-anchor="middle">$67</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">BPD Coaching</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">SUPPORT SESSION</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(163,59,92,0.3)" stroke-width="1"/>
+</svg>

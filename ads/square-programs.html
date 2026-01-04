@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Programs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1080px;
+      transform-origin: top left;
+      transform: scale(0.296);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 60% at 30% 20%, rgba(124, 92, 191, 0.18) 0%, transparent 50%),
+        radial-gradient(ellipse 70% 50% at 80% 80%, rgba(125, 154, 140, 0.12) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 70px;
+    }
+
+    .header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .eyebrow {
+      font-size: 22px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #7c5cbf;
+      padding: 14px 28px;
+      background: rgba(124, 92, 191, 0.15);
+      border-radius: 999px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 82px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    h1 em { color: #7c5cbf; }
+
+    /* Program cards */
+    .programs-grid {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .program-card {
+      flex: 1;
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.95), rgba(12, 11, 16, 0.9));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 28px;
+      padding: 36px;
+      text-align: center;
+    }
+
+    .program-card.anxious {
+      border-color: rgba(163, 59, 92, 0.3);
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95));
+    }
+
+    .program-card.centered-m {
+      border-color: rgba(125, 154, 140, 0.3);
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.1), rgba(12, 11, 16, 0.95));
+    }
+
+    .program-card.centered-w {
+      border-color: rgba(124, 92, 191, 0.3);
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(12, 11, 16, 0.95));
+    }
+
+    .program-icon {
+      font-size: 56px;
+      margin-bottom: 20px;
+    }
+
+    .program-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .program-card p {
+      font-size: 24px;
+      color: #9a958c;
+      line-height: 1.4;
+    }
+
+    .program-duration {
+      margin-top: 20px;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #c9763d;
+    }
+
+    .cta-area {
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 40px 64px;
+      background: linear-gradient(135deg, #7c5cbf, #5a3d9c);
+      color: white;
+      font-size: 30px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 16px 50px rgba(124, 92, 191, 0.4);
+    }
+
+    .tagline {
+      margin-top: 32px;
+      font-size: 26px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="header-row">
+      <div class="logo">un<span>scarred</span></div>
+      <div class="eyebrow">Guided Programs</div>
+    </div>
+
+    <h1>Heal the <em>pattern,</em><br>not just the pain</h1>
+
+    <div class="programs-grid">
+      <div class="program-card anxious">
+        <div class="program-icon">💔</div>
+        <h3>Anxious Healing</h3>
+        <p>Calm body. Clean asks. Steady connection.</p>
+        <div class="program-duration">4 Weeks + Calls</div>
+      </div>
+
+      <div class="program-card centered-m">
+        <div class="program-icon">🏛️</div>
+        <h3>Centered Man</h3>
+        <p>Grounded presence. Honest pursuit.</p>
+        <div class="program-duration">6 Weeks + Calls</div>
+      </div>
+
+      <div class="program-card centered-w">
+        <div class="program-icon">✨</div>
+        <h3>Centered Woman</h3>
+        <p>Rooted self-trust. Clear voice.</p>
+        <div class="program-duration">6 Weeks + Calls</div>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">View Programs →</a>
+      <p class="tagline">unscarred.com/programs</p>
+    </div>
+  </div>
+</body>
+</html>
+

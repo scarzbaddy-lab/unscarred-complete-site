@@ -1,0 +1,344 @@
+====================================================
+UNSCARRED PAYHIP MASTER SETUP CHECKLIST
+====================================================
+Last Updated: January 4, 2026
+Your Store: https://shop.unscarred.site
+
+Follow this checklist IN ORDER for complete setup.
+
+====================================================
+PHASE 1: STORE SETTINGS (Do This First)
+====================================================
+
+[ ] 1. Log into Payhip (https://payhip.com/auth/login)
+
+[ ] 2. Go to Settings > Store Settings
+
+[ ] 3. Set Store Name:
+      Unscarred
+
+[ ] 4. Set Tagline:
+      Pattern support for the ones who feel too much and see too clearly.
+
+[ ] 5. Set About/Bio:
+      (Copy from PAYHIP-STORE-SETUP.txt - "STORE DESCRIPTION" section)
+
+[ ] 6. Add Store Logo:
+      Upload your logo or leave blank for text
+
+[ ] 7. Set Custom Domain (if not already):
+      shop.unscarred.site
+
+
+====================================================
+PHASE 2: BRANDING (CSS & Code Injection)
+====================================================
+
+[ ] 8. Go to Settings > Store Settings > Custom CSS
+      - Copy ENTIRE contents of PAYHIP-CUSTOM-CSS.txt
+      - Paste into the Custom CSS field
+      - Click Save
+
+[ ] 9. Go to Settings > Store Settings > Custom Code > Header Code
+      - Copy the HEADER CODE section from PAYHIP-CODE-INJECTION.txt
+      - Paste into Header Code field
+      - Click Save
+
+[ ] 10. Go to Settings > Store Settings > Custom Code > Footer Code
+       - Copy the FOOTER CODE section from PAYHIP-CODE-INJECTION.txt
+       - Paste into Footer Code field
+       - Click Save
+
+[ ] 11. Preview your store to verify the dark theme is working
+
+
+====================================================
+PHASE 3: CONVERT THUMBNAILS TO PNG
+====================================================
+
+[ ] 12. Run the conversion script:
+       - Open PowerShell in project folder
+       - Run: .\convert-thumbnails.ps1
+       - OR use online converter: https://cloudconvert.com/svg-to-png
+       - OR convert manually in Canva
+
+[ ] 13. Verify all PNGs are in thumbnails-png folder
+       (Should have 43 PNG files)
+
+
+====================================================
+PHASE 4: CREATE CATEGORIES
+====================================================
+
+[ ] 14. Go to Products > Categories
+
+[ ] 15. Create these categories:
+       [ ] Free Resources
+       [ ] Programs
+       [ ] Workbooks
+       [ ] Scripts & Tools
+       [ ] Survivor Types
+       [ ] Coaching
+       [ ] Translation
+       [ ] Pattern Tracking
+       [ ] Text Support
+       [ ] Bundles
+
+
+====================================================
+PHASE 5: CREATE FREE PRODUCTS FIRST (Lead Magnets)
+====================================================
+
+These are important for list building!
+
+[ ] 16. CRISIS TOOLKIT (Free)
+       - Click "Add Product"
+       - Product Type: Digital Download
+       - Name: Crisis Toolkit
+       - Price: $0 (Free)
+       - Description: (copy from PAYHIP-PRODUCT-DESCRIPTIONS.txt)
+       - Upload: Crisis Toolkit PDF
+       - Thumbnail: thumb-crisis-toolkit.png
+       - URL Slug: crisis-toolkit
+       - Category: Free Resources
+       - Require email for free download: YES (important!)
+       - Save & Publish
+
+[ ] 17. PATTERN TRACKING GUIDE (Free)
+       - Name: Pattern Tracking Guide
+       - Price: $0 (Free)
+       - Description: (copy from PAYHIP-PRODUCT-DESCRIPTIONS.txt)
+       - Thumbnail: thumb-pattern-tracking-guide.png
+       - URL Slug: pattern-tracking-guide
+       - Category: Free Resources
+       - Require email: YES
+
+
+====================================================
+PHASE 6: CREATE PAID PRODUCTS
+====================================================
+
+For each product:
+1. Click "Add Product"
+2. Choose product type (Digital Download or Course)
+3. Copy name, price, description from PAYHIP-PRODUCT-DESCRIPTIONS.txt
+4. Upload the corresponding file (PDF, DOCX, video, etc.)
+5. Upload the corresponding PNG thumbnail
+6. Set the URL slug as specified
+7. Set the category
+8. Save & Publish
+
+PROGRAMS (Course type if using video):
+[ ] 18. Anxious Healing Program ($147)
+[ ] 19. Avoidant Healing Program ($197)
+[ ] 20. Fearful-Avoidant Track ($247)
+[ ] 21. Break The Trauma Bond ($47)
+[ ] 22. Centered Man Blueprint ($197)
+[ ] 23. Centered Woman Blueprint ($197)
+
+WORKBOOKS (Digital Download):
+[ ] 24. BPD Healing Workbook ($37)
+[ ] 25. Regulation Workbook ($37)
+[ ] 26. Coming Home Workbook ($37)
+[ ] 27. Conflict Scripts Pack ($29)
+[ ] 28. FA Micro-Drills ($37)
+[ ] 29. Date Better Toolkit ($33)
+
+SURVIVOR TYPE WORKBOOKS:
+[ ] 30. Fixer Workbook ($15)
+[ ] 31. Analyzer Workbook ($15)
+[ ] 32. Chameleon Workbook ($15)
+[ ] 33. Performer Workbook ($15)
+[ ] 34. Vanisher Workbook ($15)
+[ ] 35. Warrior Workbook ($15)
+[ ] 36. Survivor Type Bundle ($47)
+
+COACHING (Use "Digital Download" type - deliver booking link):
+[ ] 37. NPD Coaching Session ($67)
+[ ] 38. NPD Coaching Bundle 4-pack ($227)
+[ ] 39. BPD Coaching Session ($67)
+[ ] 40. BPD Coaching Bundle 4-pack ($227)
+[ ] 41. ADHD Body Doubling ($17)
+[ ] 42. ADHD Coaching Session ($57)
+[ ] 43. ADHD Monthly Accountability ($147)
+
+TRANSLATION SESSIONS:
+[ ] 44. Couples Translation ($97)
+[ ] 45. Parent-Child Translation ($87)
+[ ] 46. Sibling Translation ($87)
+[ ] 47. Relationship Translation ($87)
+
+PATTERN TRACKING:
+[ ] 48. Pattern Tracking Session ($47)
+[ ] 49. Pattern Tracking Bundle 4-pack ($157)
+[ ] 50. Weekly Pattern Review ($127)
+
+TEXT SUPPORT:
+[ ] 51. Screenshot Review ($33)
+[ ] 52. Crisis Week ($27)
+[ ] 53. Pattern Interrupt ($47)
+[ ] 54. Best Friend Mode ($127)
+[ ] 55. VIP Intensive ($197)
+
+BUNDLES:
+[ ] 56. Complete Workbook Bundle ($97)
+[ ] 57. All Programs Bundle ($497)
+
+
+====================================================
+PHASE 7: SET UP HOMEPAGE WIDGET
+====================================================
+
+[ ] 58. Go to your Payhip store page
+       - Look for "Add Custom Content" or similar option
+       - If Payhip supports custom HTML on store page:
+         Paste contents of payhip-menu-widget-full.html
+
+[ ] 59. If Payhip doesn't support custom HTML:
+       - Just use the default product grid
+       - The CSS will style it correctly
+
+
+====================================================
+PHASE 8: UPDATE YOUR WEBSITE LINKS
+====================================================
+
+[ ] 60. Open PRODUCT-URL-MAPPING.txt
+
+[ ] 61. For each product you created, update the status:
+       Change [ ] to [x]
+
+[ ] 62. Verify all links in shop.html point to correct Payhip URLs
+
+[ ] 63. Test a few links from your website to Payhip store
+
+
+====================================================
+PHASE 9: PAYMENT & DELIVERY SETUP
+====================================================
+
+[ ] 64. Go to Settings > Payment Settings
+       - Connect PayPal and/or Stripe
+       - Set your payout preferences
+
+[ ] 65. Go to Settings > Email Settings
+       - Customize purchase confirmation email
+       - Add your brand voice to emails
+       - Test email delivery
+
+[ ] 66. For coaching/call products:
+       - Create a "booking instructions" PDF
+       - Include: calendar link, what to expect, how to prepare
+       - Deliver this PDF as the "product"
+
+
+====================================================
+PHASE 10: FINAL TESTING
+====================================================
+
+[ ] 67. View your store in incognito mode
+       - Does the dark theme show correctly?
+       - Are product cards styled properly?
+       - Does the footer appear?
+
+[ ] 68. Test purchase flow:
+       - Buy a free product with a test email
+       - Verify email delivery
+       - Verify download access
+
+[ ] 69. Test one paid product (use a coupon for 100% off):
+       - Create test coupon: Settings > Coupons
+       - Test the full purchase flow
+       - Verify file delivery
+
+[ ] 70. Check mobile view
+       - Does the store look good on phone?
+       - Are buttons tappable?
+       - Is text readable?
+
+
+====================================================
+PHASE 11: LAUNCH CHECKLIST
+====================================================
+
+[ ] 71. Final store preview - everything working?
+
+[ ] 72. Announce on your channels:
+       - Social media
+       - Email list
+       - Website banner
+
+[ ] 73. Set up analytics (optional):
+       - Add Google Analytics to header code
+       - Set up conversion tracking
+
+[ ] 74. Create launch discount (optional):
+       - Settings > Coupons
+       - Create LAUNCH10 or similar
+
+
+====================================================
+TROUBLESHOOTING
+====================================================
+
+CSS NOT SHOWING?
+- Clear browser cache (Ctrl+Shift+R)
+- Make sure CSS is pasted in Custom CSS, not Custom Code
+- Check for error messages in browser console (F12)
+
+PRODUCTS NOT APPEARING?
+- Make sure products are Published (not Draft)
+- Check category assignment
+- Refresh store page
+
+THUMBNAILS LOOK WEIRD?
+- Use 1600x900 PNG images
+- Make sure they're uploaded, not just linked
+
+EMAILS NOT SENDING?
+- Check spam folder
+- Verify email settings in Payhip
+- Contact Payhip support if persistent
+
+CHECKOUT LOOKS WRONG?
+- The checkout CSS should be in the same Custom CSS field
+- Scroll to bottom of PAYHIP-CUSTOM-CSS.txt for checkout styles
+
+
+====================================================
+SUPPORT
+====================================================
+
+Payhip Help: https://help.payhip.com
+Payhip Email: support@payhip.com
+
+Your files:
+- PAYHIP-PRODUCT-DESCRIPTIONS.txt (all product copy)
+- PAYHIP-CUSTOM-CSS.txt (store styling)
+- PAYHIP-CODE-INJECTION.txt (header/footer code)
+- PAYHIP-STORE-SETUP.txt (store info)
+- payhip-menu-widget-full.html (homepage widget)
+
+
+====================================================
+ESTIMATED TIME
+====================================================
+
+Phase 1-2 (Setup & Branding): 15 minutes
+Phase 3 (Convert Thumbnails): 10 minutes
+Phase 4-6 (Create Products): 2-3 hours
+Phase 7-8 (Homepage & Links): 30 minutes
+Phase 9-10 (Payment & Testing): 30 minutes
+Phase 11 (Launch): Whenever you're ready!
+
+TOTAL: ~4-5 hours for complete setup
+
+You can do this in chunks! Start with free products, 
+then add paid products over a few sessions.
+
+
+====================================================
+
+
+
+

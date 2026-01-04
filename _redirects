@@ -1,6 +1,8 @@
-# Canonical quiz hubs
-/quizzes.html   /quizzes/   301
-/quizzes        /quizzes/   301
+# Canonical quiz hubs - redirect old /quizzes/ to new /quiz/
+/quizzes.html   /quiz/   301
+/quizzes        /quiz/   301
+/quizzes/       /quiz/   301
+/quizzes/*      /quiz/:splat   301
 
 # Mirror quizzes (catch common filename requests)
 /quizzes/partner-draw.html      /quizzes/partner-draw/      301

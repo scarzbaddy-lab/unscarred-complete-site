@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,7 @@
     <meta name="description" content="Assess your awareness, conscience, and intent. Understand if you hurt people intentionally or accidentally.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
     <style>
         :root {
@@ -669,7 +669,7 @@
     <header>
         <div class="header-inner">
             <a href="../index.html" class="logo">un<span>scarred</span></a>
-            <a href="../quizzes.html" class="back-link">? All Quizzes</a>
+            <a href="../quizzes.html" class="back-link">← All Quizzes</a>
         </div>
     </header>
 
@@ -717,7 +717,7 @@
                     <div id="questionsContainer"></div>
                     
                     <div class="quiz-nav">
-                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>? Previous</button>
+                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>← Previous</button>
                         <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Next ?</button>
                     </div>
                 </div>
@@ -1254,7 +1254,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

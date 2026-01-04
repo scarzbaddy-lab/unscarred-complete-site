@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,10 +7,10 @@
   <meta name="description" content="When peace shows up, what does your system do  Identify your sabotage pattern and learn to break the loop.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔄</text></svg>">
   <style>
-    :root { --bg-void: #050507; --bg-deep: #0a0a0f; --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4); --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c; --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955; --border-glass: rgba(255,255,255,0.06); --radius-lg: 20px; --radius-xl: 28px; --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'Outfit', system-ui, sans-serif; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem; --shadow-md: 0 4px 20px rgba(0,0,0,0.3); --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --duration-fast: 150ms; }
+    :root { --bg-void: #050507; --bg-deep: #0a0a0f; --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4); --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c; --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955; --border-glass: rgba(255,255,255,0.06); --radius-lg: 20px; --radius-xl: 28px; --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'Outfit', system-ui, sans-serif; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem; --shadow-md: 0 4px 20px rgba(0,0,0,0.3); --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --duration-fast: 150ms; --paper: rgba(18, 18, 24, 0.95); --cream: #0a0a0f; --ink: #ece8e1; --rose: #a33b5c; --muted: #9a958c; --amber: #c9763d; --radius-full: 999px; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); line-height: 1.6; min-height: 100vh; }
     body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.1) 0%, transparent 40%); pointer-events: none; z-index: 0; }
@@ -35,7 +35,7 @@
   <header id="header">
     <div class="header__inner">
       <a href="../index.html" class="logo">un<span>scarred</span></a>
-      <a href="/quizzes/" class="btn btn--ghost btn--sm">? All Quizzes</a>
+      <a href="/quiz/" class="btn btn--ghost btn--sm">← All Quizzes</a>
     </div>
   </header>
 
@@ -54,7 +54,7 @@
           <div class="dimension-pill"><span>👻</span> Vanisher</div>
         </div>
         
-        <button class="btn btn--rose btn--lg" id="start-quiz">Take the Quiz ?</button>
+        <button class="btn btn--rose btn--lg" id="start-quiz">Take the Quiz →</button>
         <p class="quiz-intro__note">12 scenarios · 4 minutes · No email required</p>
       </div>
 
@@ -319,6 +319,34 @@
       }
 
       resultsEl.innerHTML = `
+        <!-- Shareable Result Card -->
+        <div class="share-card" id="share-card">
+          <div class="share-card__header">
+            <span class="share-card__logo">unscarred</span>
+            <span class="share-card__quiz">Self-Sabotage Style</span>
+          </div>
+          <div class="share-card__result">
+            <h2>${r.name}</h2>
+            <p>${r.tagline}</p>
+          </div>
+          <div class="share-card__scores">
+            ${Object.entries(scores).map(([k, v]) => `
+              <div class="share-score">
+                <span class="share-score__label">${results[k].name.replace('The ', '')}</span>
+                <div class="share-score__bar"><div class="share-score__fill" style="width: ${(v / 12) * 100}%"></div></div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="share-card__footer">
+            <span>unscarred.com/quiz/self-sabotage</span>
+          </div>
+        </div>
+
+        <div class="share-actions">
+          <button class="btn btn--ghost btn--sm" onclick="copyResult()">📋 Copy My Result</button>
+          <button class="btn btn--ghost btn--sm" onclick="shareResult()">📤 Share</button>
+        </div>
+
         <div class="result-header">
           <h1>${r.name}</h1>
           <p class="result-clinical">${r.tagline}</p>
@@ -342,7 +370,7 @@
         ${comboNote}
 
         <div class="result-card result-card--do">
-          <h3>? Try This Week</h3>
+          <h3>✓ Try This Week</h3>
           <ul>${r.doThis.map(i => `<li>${i}</li>`).join('')}</ul>
         </div>
 
@@ -365,15 +393,78 @@
         </div>
 
         <div class="result-ctas">
-          <a href="${r.cta.url}" class="btn btn--rose btn--lg">${r.cta.text} ?</a>
+          <a href="${r.cta.url}" class="btn btn--rose btn--lg">${r.cta.text} →</a>
           <a href="../quiz/mirror.html" class="btn btn--secondary">Take the Full Mirror Quiz</a>
         </div>
 
         <div class="result-share">
           <p>Your pattern is not your fault. Breaking it is your power.</p>
-          <a href="/quizzes/" class="btn btn--ghost btn--sm">? More Quizzes</a>
+          <a href="/quiz/" class="btn btn--ghost btn--sm">← More Quizzes</a>
         </div>
       `;
+    }
+
+    // Copy result to clipboard
+    function copyResult() {
+      const scores = { tester: 0, chaos: 0, freeze: 0, vanish: 0 };
+      Object.values(answers).forEach(v => scores[v]++);
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const top = sorted[0][0];
+      const r = results[top];
+      
+      const text = `🔄 My Self-Sabotage Style: ${r.name}
+
+"${r.tagline}"
+
+${r.profile}
+
+Scores:
+• Tester: ${scores.tester}/12
+• Chaos Maker: ${scores.chaos}/12
+• Freezer: ${scores.freeze}/12
+• Vanisher: ${scores.vanish}/12
+
+Take the quiz: unscarred.com/quiz/self-sabotage.html`;
+
+      navigator.clipboard.writeText(text).then(function() {
+        const btns = document.querySelectorAll('.share-actions button');
+        btns[0].textContent = '✓ Copied!';
+        btns[0].classList.add('copied');
+        setTimeout(function() {
+          btns[0].textContent = '📋 Copy My Result';
+          btns[0].classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Share result (native share or fallback)
+    function shareResult() {
+      const scores = { tester: 0, chaos: 0, freeze: 0, vanish: 0 };
+      Object.values(answers).forEach(v => scores[v]++);
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const top = sorted[0][0];
+      const r = results[top];
+
+      const shareData = {
+        title: `My Self-Sabotage Style: ${r.name}`,
+        text: `I got "${r.name}" - ${r.tagline}\n\nTake the quiz:`,
+        url: 'https://unscarred.com/quiz/self-sabotage.html'
+      };
+
+      if (navigator.share) {
+        navigator.share(shareData);
+      } else {
+        // Fallback: copy URL
+        navigator.clipboard.writeText(`${shareData.text} ${shareData.url}`).then(function() {
+          const btns = document.querySelectorAll('.share-actions button');
+          btns[1].textContent = '✓ Link Copied!';
+          btns[1].classList.add('copied');
+          setTimeout(function() {
+            btns[1].textContent = '📤 Share';
+            btns[1].classList.remove('copied');
+          }, 2000);
+        });
+      }
     }
   </script>
 
@@ -548,8 +639,8 @@
 
     .result-card ul { list-style: none; padding: 0; }
     .result-card li { position: relative; padding-left: var(--space-6); margin-bottom: var(--space-2); font-size: var(--text-sm); color: var(--muted); }
-    .result-card--do li::before { content: '?'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
-    .result-card--avoid li::before { content: '?'; position: absolute; left: 0; color: var(--rose); font-weight: 600; }
+    .result-card--do li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
+    .result-card--avoid li::before { content: '✗'; position: absolute; left: 0; color: var(--rose); font-weight: 600; }
 
     .score-bars { display: flex; flex-direction: column; gap: var(--space-3); }
     .score-row { display: flex; align-items: center; gap: var(--space-3); }
@@ -573,6 +664,138 @@
       margin-bottom: var(--space-4);
     }
 
+    /* Shareable Result Card */
+    .share-card {
+      background: linear-gradient(165deg, #0a0a0f, #050507);
+      border: 1px solid rgba(163, 59, 92, 0.3);
+      border-radius: var(--radius-xl);
+      padding: var(--space-6);
+      margin-bottom: var(--space-6);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .share-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--rose), var(--amber), var(--secondary));
+    }
+
+    .share-card__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+    }
+
+    .share-card__logo {
+      font-family: var(--font-display);
+      font-size: var(--text-lg);
+      font-weight: 700;
+      color: #ece8e1;
+      letter-spacing: -0.5px;
+    }
+
+    .share-card__quiz {
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(236, 232, 225, 0.5);
+    }
+
+    .share-card__result {
+      text-align: center;
+      padding: var(--space-6) 0;
+    }
+
+    .share-card__result h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-style: italic;
+      color: #ece8e1;
+      margin-bottom: var(--space-2);
+    }
+
+    .share-card__result p {
+      color: rgba(236, 232, 225, 0.6);
+      font-size: var(--text-sm);
+      font-style: italic;
+    }
+
+    .share-card__scores {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      padding: var(--space-4);
+      background: rgba(255,255,255,0.03);
+      border-radius: var(--radius-lg);
+    }
+
+    .share-score {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+    }
+
+    .share-score__label {
+      width: 80px;
+      font-size: var(--text-xs);
+      color: rgba(236, 232, 225, 0.5);
+    }
+
+    .share-score__bar {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .share-score__fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--amber));
+      border-radius: 2px;
+    }
+
+    .share-card__footer {
+      text-align: center;
+      margin-top: var(--space-4);
+      padding-top: var(--space-4);
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .share-card__footer span {
+      font-size: var(--text-xs);
+      color: rgba(236, 232, 225, 0.3);
+    }
+
+    .share-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-8);
+    }
+
+    .share-actions .btn--ghost {
+      background: var(--paper);
+      border-color: rgba(163, 59, 92, 0.2);
+    }
+
+    .share-actions .btn--ghost:hover {
+      border-color: var(--rose);
+      background: rgba(163, 59, 92, 0.05);
+    }
+
+    .share-actions .btn.copied {
+      background: rgba(125, 154, 140, 0.1);
+      border-color: var(--sage);
+      color: var(--sage);
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -582,7 +805,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,8 +7,8 @@
     <meta name="description" content="Discover how your nervous system protects you and what that means for your healing path. A 22-question assessment mapping your protection patterns.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>???</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
     <style>
         :root {
             --bg-void: #050507;
@@ -681,7 +681,7 @@
     <header>
         <div class="header-inner">
             <a href="../homepage.html" class="logo">un<span>scarred</span></a>
-    <a href="/quizzes/" class="back-link">? All Quizzes</a>
+    <a href="/quizzes/" class="back-link">← All Quizzes</a>
         </div>
     </header>
 
@@ -690,7 +690,7 @@
 
             <!-- Email Capture -->
             <div id="emailCapture" class="email-capture">
-                <div class="badge">??? Protection Mapping</div>
+                <div class="badge">🛡️ Protection Mapping</div>
                 <h1>How Does Your Nervous System <em>Protect</em> You </h1>
                 <p class="lead">This isn't a personality test. It maps how your system defends you, whether you see the harm you cause, and what that means for your healing path.</p>
                 
@@ -705,7 +705,7 @@
                         </div>
                         <button type="button" class="btn btn-primary" onclick="startQuiz()">Start the Assessment ?</button>
                     </form>
-                    <p class="email-note">?? Your results will be sent to this email. No spam, ever.</p>
+                    <p class="email-note"> Your results will be sent to this email. No spam, ever.</p>
                 </div>
 
                 <div class="quiz-meta">
@@ -731,7 +731,7 @@
                     <div id="questionsContainer"></div>
                     
                     <div class="quiz-nav">
-                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>? Previous</button>
+                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>← Previous</button>
                         <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Next ?</button>
                     </div>
                 </div>
@@ -745,8 +745,8 @@
 
     <footer>
         <div class="container">
-            <p>� 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
-            <p style="margin-top: 8px;"><a href="../homepage.html">Home</a> � <a href="/quizzes/">More Quizzes</a> � <a href="../booking.html">Book a Session</a></p>
+            <p>� 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
+            <p style="margin-top: 8px;"><a href="../homepage.html">Home</a> � <a href="/quizzes/">More Quizzes</a> � <a href="../booking.html">Book a Session</a></p>
         </div>
     </footer>
 
@@ -1440,7 +1440,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

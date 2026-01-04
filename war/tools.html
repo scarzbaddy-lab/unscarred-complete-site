@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stabilization Tools | War Path | Unscarred</title>
+  <meta name="description" content="Grounding scripts, nervous system resets, and practical tools for when your system is in chaos. Not healing. Stabilizing.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; align-items: center; gap: 28px; }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(201, 118, 61, 0.15);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Section Headers */
+    .section-header {
+      text-align: center;
+      margin: 60px 0 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Intro Box */
+    .intro-box {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+
+    .intro-box p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .intro-box p:last-child { margin-bottom: 0; }
+    .intro-box p strong { color: var(--text-main); }
+
+    /* Tool Cards */
+    .tool-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .tool-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .tool-card h3 span { font-size: 1.6rem; }
+
+    .tool-card .when-to-use {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .tool-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 24px 0 12px;
+    }
+
+    .tool-card p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .tool-card ul, .tool-card ol {
+      margin: 0 0 16px 20px;
+      color: var(--text-soft);
+    }
+
+    .tool-card li { margin-bottom: 10px; }
+
+    /* Script Box */
+    .script-box {
+      background: rgba(124, 92, 191, 0.1);
+      border: 1px solid rgba(124, 92, 191, 0.25);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 20px 0;
+    }
+
+    .script-box h4 {
+      color: var(--secondary);
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+
+    .script-box p {
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      padding-left: 16px;
+      border-left: 2px solid rgba(124, 92, 191, 0.4);
+    }
+
+    .script-box p:last-child { margin-bottom: 0; }
+
+    /* Quick Access Grid */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .quick-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .quick-card:hover {
+      border-color: rgba(201, 118, 61, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .quick-card__icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .quick-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .quick-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    /* Time Estimate */
+    .time-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(125, 154, 140, 0.15);
+      color: var(--success);
+      margin-left: 12px;
+    }
+
+    /* Warning Box */
+    .warning-box {
+      background: linear-gradient(165deg, rgba(231, 76, 60, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(231, 76, 60, 0.25);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .warning-box h4 {
+      color: var(--warning);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .warning-box p {
+      color: var(--text-soft);
+      margin-bottom: 0;
+    }
+
+    /* CTA Box */
+    .cta-box {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(163, 59, 92, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .cta-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      color: var(--text-soft);
+      margin-bottom: 24px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+    }
+
+    .btn-war {
+      background: linear-gradient(135deg, var(--accent), #a85d2d);
+      color: white;
+      box-shadow: 0 8px 30px rgba(201, 118, 61, 0.35);
+    }
+
+    .btn-war:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(201, 118, 61, 0.45);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="index.html">Ground Zero</a>
+        <a href="quizzes.html">Quizzes</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="/quiz/">Relational Path</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🛠️ Stabilization Tools</div>
+      <h1>When your system is <em>on fire</em></h1>
+      <p class="hero-sub">Not healing. Stabilizing. These are tools for when you need to function, not fall apart.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="intro-box">
+      <p><strong>You cannot heal while your system is in crisis.</strong></p>
+      <p>Deep work requires a stable enough platform to stand on. These tools are for building that platform. Use them when you are flooded, triggered, or stuck in survival mode.</p>
+      <p>Stabilize first. Then heal.</p>
+    </div>
+
+    <!-- Quick Access -->
+    <div class="quick-grid">
+      <div class="quick-card">
+        <div class="quick-card__icon">🧊</div>
+        <h4>Cold Reset</h4>
+        <p>Splash cold water on face. Hold ice. Run cold water on wrists. Shocks the vagus nerve and interrupts flooding.</p>
+      </div>
+      <div class="quick-card">
+        <div class="quick-card__icon">👐</div>
+        <h4>Butterfly Hug</h4>
+        <p>Cross arms over chest, hands on shoulders. Tap alternating sides slowly. Bilateral stimulation calms the nervous system.</p>
+      </div>
+      <div class="quick-card">
+        <div class="quick-card__icon">🦶</div>
+        <h4>Feet on Ground</h4>
+        <p>Press feet firmly into floor. Notice the pressure. Say "I am here. I am now. My feet are on the ground."</p>
+      </div>
+      <div class="quick-card">
+        <div class="quick-card__icon">📦</div>
+        <h4>Container It</h4>
+        <p>Put the feeling in an imaginary box with a lid. Set a time to open it later. This is containment, not avoidance.</p>
+      </div>
+    </div>
+
+    <!-- GROUNDING SECTION -->
+    <div class="section-header">
+      <h2>Grounding Tools</h2>
+      <p>For when you are dissociating, floating away, or not in your body.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🔢</span> 5-4-3-2-1 Grounding <span class="time-badge">2 min</span></h3>
+      <p class="when-to-use">Use when: Dissociating, floating, not feeling real</p>
+      
+      <h4>How to do it</h4>
+      <ol>
+        <li><strong>5 things you can SEE</strong> - Name them out loud. "I see the wall. I see the lamp. I see my hands."</li>
+        <li><strong>4 things you can TOUCH</strong> - Actually touch them. Feel the texture.</li>
+        <li><strong>3 things you can HEAR</strong> - Listen for anything. AC hum. Traffic. Your own breath.</li>
+        <li><strong>2 things you can SMELL</strong> - Sniff your shirt. Your coffee. The air.</li>
+        <li><strong>1 thing you can TASTE</strong> - Notice what's in your mouth right now.</li>
+      </ol>
+      
+      <p><strong>Why it works:</strong> Forces your brain to use the present-moment senses instead of the memory/fear circuits.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>📍</span> Orientation Script <span class="time-badge">1 min</span></h3>
+      <p class="when-to-use">Use when: Flashback, time confusion, feeling like you're "back there"</p>
+      
+      <div class="script-box">
+        <h4>Say out loud:</h4>
+        <p>"My name is [name]."</p>
+        <p>"I am [age] years old."</p>
+        <p>"I am in [location]."</p>
+        <p>"Today is [day, date, year]."</p>
+        <p>"I am safe right now. That was then. This is now."</p>
+      </div>
+      
+      <p><strong>Why it works:</strong> Your brain needs concrete facts to know it's not in the past. Date and age are especially important.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🧱</span> Physical Anchor Sequence <span class="time-badge">3 min</span></h3>
+      <p class="when-to-use">Use when: Heavily dissociated, can't feel your body</p>
+      
+      <h4>The sequence</h4>
+      <ol>
+        <li><strong>Stamp feet</strong> hard on the ground, 10 times each foot</li>
+        <li><strong>Squeeze thighs</strong> with your hands, firmly</li>
+        <li><strong>Press palms together</strong> as hard as you can for 10 seconds</li>
+        <li><strong>Rub arms</strong> vigorously from shoulder to wrist</li>
+        <li><strong>Hold something cold</strong> or run cold water on wrists</li>
+      </ol>
+      
+      <p><strong>Why it works:</strong> Strong physical sensations force the nervous system to register the body as present and real.</p>
+    </div>
+
+    <!-- CALMING SECTION -->
+    <div class="section-header">
+      <h2>Calming Tools</h2>
+      <p>For when you are activated, flooded, panicking, or rage-filled.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🌬️</span> Extended Exhale Breathing <span class="time-badge">2 min</span></h3>
+      <p class="when-to-use">Use when: Panic, anxiety, heart racing, can't calm down</p>
+      
+      <h4>How to do it</h4>
+      <ol>
+        <li>Breathe in for <strong>4 counts</strong></li>
+        <li>Breathe out for <strong>8 counts</strong></li>
+        <li>Repeat 5-10 times</li>
+      </ol>
+      
+      <p><strong>Why it works:</strong> The extended exhale activates the parasympathetic nervous system (rest and digest). It physically cannot stay in panic when you breathe this way.</p>
+      
+      <div class="warning-box" style="margin-top: 20px;">
+        <h4>If you can't do 4-8</h4>
+        <p>Start with whatever you can. 2-4 is fine. 3-6 is fine. The point is exhale longer than inhale.</p>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🧊</span> Dive Reflex Reset <span class="time-badge">30 sec</span></h3>
+      <p class="when-to-use">Use when: Extreme panic, rage, need to stop flooding NOW</p>
+      
+      <h4>How to do it</h4>
+      <ol>
+        <li>Fill a bowl with cold water</li>
+        <li>Hold your breath</li>
+        <li>Put your face in the water for 15-30 seconds</li>
+        <li>Or: hold ice packs to your cheeks and temples while holding breath</li>
+      </ol>
+      
+      <p><strong>Why it works:</strong> Triggers the mammalian dive reflex, which automatically slows heart rate and redirects blood flow. It's a biological override of panic.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🤲</span> Vagal Toning <span class="time-badge">5 min</span></h3>
+      <p class="when-to-use">Use when: Chronically activated, can't settle, always on alert</p>
+      
+      <h4>Three options</h4>
+      <ul>
+        <li><strong>Humming:</strong> Hum a low note for as long as your exhale allows. Feel the vibration in your chest. Repeat 10 times.</li>
+        <li><strong>Cold shower:</strong> End your shower with 30 seconds of cold water on your chest and back of neck.</li>
+        <li><strong>Gargling:</strong> Gargle water aggressively for 30-60 seconds. (Sounds weird. Works.)</li>
+      </ul>
+      
+      <p><strong>Why it works:</strong> All of these stimulate the vagus nerve, which runs the relaxation response. Regular practice builds tone over time.</p>
+    </div>
+
+    <!-- INTERRUPTING LOOPS SECTION -->
+    <div class="section-header">
+      <h2>Pattern Interrupt Tools</h2>
+      <p>For when you are stuck in a spiral, loop, or obsessive thought.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🛑</span> The Stop-Name-Choose Protocol <span class="time-badge">1 min</span></h3>
+      <p class="when-to-use">Use when: Spiraling, obsessing, can't stop the loop</p>
+      
+      <div class="script-box">
+        <h4>Say to yourself:</h4>
+        <p>"STOP." (Say it out loud or firmly in your head)</p>
+        <p>"I notice I am [spiraling about X / replaying Y / obsessing over Z]."</p>
+        <p>"This is a pattern. It is not helping me right now."</p>
+        <p>"I am choosing to [do one grounding thing] for the next 5 minutes."</p>
+      </div>
+      
+      <p><strong>Why it works:</strong> Naming the pattern activates the prefrontal cortex. Choosing an action gives your brain something else to do.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>📝</span> Brain Dump <span class="time-badge">5 min</span></h3>
+      <p class="when-to-use">Use when: Racing thoughts, can't sleep, overwhelmed by everything at once</p>
+      
+      <h4>How to do it</h4>
+      <ol>
+        <li>Set a timer for 5 minutes</li>
+        <li>Write everything in your head onto paper - don't edit, don't organize</li>
+        <li>When the timer goes off, close the notebook</li>
+        <li>Say: "I put it on paper. I can come back to it. Right now I am done."</li>
+      </ol>
+      
+      <p><strong>Why it works:</strong> Your brain is holding everything because it's afraid you'll forget. Putting it on paper tells your brain it doesn't need to keep spinning.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🔄</span> The Opposite Action <span class="time-badge">Varies</span></h3>
+      <p class="when-to-use">Use when: Urge to do something destructive, impulse that will make things worse</p>
+      
+      <h4>The formula</h4>
+      <ol>
+        <li>Name the urge: "I want to [text them / drink / yell / isolate]"</li>
+        <li>Ask: "Will this make tomorrow better or worse?"</li>
+        <li>If worse: "What is the opposite action?"</li>
+        <li>Do the opposite for 10 minutes only. Then reassess.</li>
+      </ol>
+      
+      <h4>Examples</h4>
+      <ul>
+        <li>Urge to isolate → Opposite: Text one person, even just "thinking of you"</li>
+        <li>Urge to text them → Opposite: Put phone in another room for 30 min</li>
+        <li>Urge to numb → Opposite: Feel one thing for 2 minutes, then reassess</li>
+      </ul>
+      
+      <p><strong>Why it works:</strong> Urges feel permanent but they peak and pass. Opposite action buys time for the urge to fade.</p>
+    </div>
+
+    <!-- SCRIPTS SECTION -->
+    <div class="section-header">
+      <h2>Scripts For Hard Moments</h2>
+      <p>Things to say to yourself when you are in the fire.</p>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>💔</span> When You Feel Like You Are Too Much</h3>
+      <div class="script-box">
+        <h4>Say to yourself:</h4>
+        <p>"I am not too much. I am having a big feeling."</p>
+        <p>"Big feelings are not the same as being a problem."</p>
+        <p>"My system is doing what it learned to do. I can learn something new."</p>
+        <p>"I am allowed to take up space. Even when I am not calm."</p>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>😨</span> When You Are Terrified Of Being Abandoned</h3>
+      <div class="script-box">
+        <h4>Say to yourself:</h4>
+        <p>"This feeling is real, and it may not be about right now."</p>
+        <p>"I have survived people leaving before. I survived."</p>
+        <p>"My fear is not proof that they will leave."</p>
+        <p>"I can ask for what I need without demanding. I can tolerate not knowing."</p>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🔥</span> When You Want To Burn It All Down</h3>
+      <div class="script-box">
+        <h4>Say to yourself:</h4>
+        <p>"I am angry. Anger is information, not instructions."</p>
+        <p>"If I burn this down, I have to live in the ashes."</p>
+        <p>"I can wait 24 hours before I make any permanent decisions."</p>
+        <p>"What do I actually need right now? Not to win. What do I need?"</p>
+      </div>
+    </div>
+
+    <div class="tool-card">
+      <h3><span>🕳️</span> When You Feel Like Nothing Is Real</h3>
+      <div class="script-box">
+        <h4>Say to yourself:</h4>
+        <p>"I am dissociating. This is my body's protection, not reality breaking."</p>
+        <p>"I am going to do something physical to come back."</p>
+        <p>"I am [name]. I am in [place]. Today is [date]. I am safe right now."</p>
+        <p>"This will pass. It always passes."</p>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3>Need more than tools?</h3>
+      <p>If you are in crisis or these tools are not enough, you might need real-time support with someone who speaks your language.</p>
+      <a href="/calls.html" class="btn btn-war">Book a Call →</a>
+    </div>
+
+    <!-- Warning -->
+    <div class="warning-box">
+      <h4>⚠️ These are not replacements for professional help</h4>
+      <p>If you are in danger, having thoughts of harming yourself or others, or in active crisis, please reach out to emergency services or crisis lines. These tools are for nervous system regulation, not crisis intervention.</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path Home</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

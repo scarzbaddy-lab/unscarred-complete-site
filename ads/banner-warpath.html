@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Unscarred Ad - War Path Banner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1200px;
+      height: 628px;
+      transform-origin: top left;
+      transform: scale(0.333);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 50% 100% at 0% 50%, rgba(163, 59, 92, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 40% 80% at 100% 50%, rgba(163, 59, 92, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    /* Fracture lines */
+    .fracture {
+      position: absolute;
+      background: rgba(163, 59, 92, 0.2);
+      transform: rotate(-20deg);
+    }
+
+    .fracture-1 { width: 2px; height: 300px; left: 200px; top: -50px; }
+    .fracture-2 { width: 2px; height: 200px; right: 300px; bottom: -30px; opacity: 0.5; }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px;
+    }
+
+    .left-section {
+      flex: 1;
+    }
+
+    .war-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 24px;
+      background: rgba(163, 59, 92, 0.2);
+      border: 1px solid rgba(163, 59, 92, 0.4);
+      border-radius: 999px;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #a33b5c;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 68px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    h1 em { color: #a33b5c; }
+
+    .subtext {
+      font-size: 26px;
+      color: #9a958c;
+      line-height: 1.5;
+      max-width: 480px;
+    }
+
+    .right-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 20px;
+    }
+
+    .wars-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .war-item {
+      padding: 20px 28px;
+      background: rgba(163, 59, 92, 0.1);
+      border: 1px solid rgba(163, 59, 92, 0.2);
+      border-radius: 12px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 28px 48px;
+      background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+      color: white;
+      font-size: 22px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5);
+      margin-top: 8px;
+    }
+
+    .logo {
+      position: absolute;
+      bottom: 40px;
+      left: 80px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: #a33b5c; }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="fracture fracture-1"></div>
+  <div class="fracture fracture-2"></div>
+
+  <div class="content">
+    <div class="left-section">
+      <div class="war-badge">⚔️ War Path</div>
+      <h1>Which war is your<br><em>nervous system</em> fighting?</h1>
+      <p class="subtext">When you're in survival mode, regular relationship advice doesn't work. Map your war first.</p>
+    </div>
+
+    <div class="right-section">
+      <div class="wars-grid">
+        <div class="war-item">Abandonment</div>
+        <div class="war-item">Exposure</div>
+        <div class="war-item">Entrapment</div>
+        <div class="war-item">Erasure</div>
+      </div>
+      <a href="#" class="cta-btn">Take the War Mapping Quiz →</a>
+    </div>
+  </div>
+
+  <div class="logo">un<span>scarred</span></div>
+</body>
+</html>
+

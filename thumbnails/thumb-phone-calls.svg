@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="phoneBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#1a1520"/>
+      <stop offset="100%" style="stop-color:#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="phoneGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a33b5c;stop-opacity:0.4"/>
+      <stop offset="100%" style="stop-color:#a33b5c;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="phoneBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3"/>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="500" fill="url(#phoneBg)"/>
+  <ellipse cx="200" cy="120" rx="160" ry="100" fill="url(#phoneGlow)" filter="url(#phoneBlur)"/>
+  
+  <!-- Phone handset -->
+  <path d="M130,150 
+           Q110,160 100,190 
+           Q95,210 100,230 
+           Q110,250 130,260
+           L150,245
+           Q140,235 140,215
+           Q140,195 150,175
+           Z" 
+        fill="#a33b5c" stroke="#a33b5c" stroke-width="2"/>
+  
+  <path d="M270,150 
+           Q290,160 300,190 
+           Q305,210 300,230 
+           Q290,250 270,260
+           L250,245
+           Q260,235 260,215
+           Q260,195 250,175
+           Z" 
+        fill="#a33b5c" stroke="#a33b5c" stroke-width="2"/>
+  
+  <!-- Curved connector -->
+  <path d="M150,170 Q200,120 250,170" stroke="#a33b5c" stroke-width="12" fill="none" stroke-linecap="round"/>
+  
+  <!-- Sound waves -->
+  <path d="M160,200 Q180,185 200,200 Q220,215 240,200" stroke="#7c5cbf" stroke-width="2" fill="none" opacity="0.6"/>
+  <path d="M150,220 Q180,200 200,220 Q220,240 250,220" stroke="#7c5cbf" stroke-width="2" fill="none" opacity="0.4"/>
+  <path d="M140,240 Q180,215 200,240 Q220,265 260,240" stroke="#7c5cbf" stroke-width="2" fill="none" opacity="0.3"/>
+  
+  <!-- Connection dots -->
+  <circle cx="120" cy="290" r="6" fill="#a33b5c" opacity="0.8"/>
+  <circle cx="160" cy="300" r="4" fill="#7c5cbf" opacity="0.6"/>
+  <circle cx="200" cy="295" r="5" fill="#c9763d" opacity="0.7"/>
+  <circle cx="240" cy="300" r="4" fill="#7c5cbf" opacity="0.6"/>
+  <circle cx="280" cy="290" r="6" fill="#a33b5c" opacity="0.8"/>
+  
+  <!-- Connecting lines -->
+  <line x1="126" y1="290" x2="154" y2="298" stroke="#a33b5c" stroke-width="1" opacity="0.4"/>
+  <line x1="164" y1="299" x2="195" y2="296" stroke="#7c5cbf" stroke-width="1" opacity="0.4"/>
+  <line x1="205" y1="296" x2="236" y2="299" stroke="#c9763d" stroke-width="1" opacity="0.4"/>
+  <line x1="244" y1="298" x2="274" y2="290" stroke="#7c5cbf" stroke-width="1" opacity="0.4"/>
+  
+  <!-- Title -->
+  <text x="200" y="380" font-family="Georgia, serif" font-size="32" fill="#ece8e1" text-anchor="middle" font-style="italic">Phone Calls</text>
+  <text x="200" y="415" font-family="system-ui, sans-serif" font-size="14" fill="#9a958c" text-anchor="middle">Direct support when you need it</text>
+  
+  <!-- Price badge -->
+  <rect x="140" y="440" width="120" height="30" rx="15" fill="rgba(163,59,92,0.2)" stroke="#a33b5c" stroke-opacity="0.5"/>
+  <text x="200" y="461" font-family="system-ui, sans-serif" font-size="12" fill="#a33b5c" text-anchor="middle" font-weight="600">$47/HOUR</text>
+</svg>

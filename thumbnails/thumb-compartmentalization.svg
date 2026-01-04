@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="compBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#1a1520"/>
+      <stop offset="100%" style="stop-color:#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="compGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a33b5c;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#a33b5c;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="compBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="500" fill="url(#compBg)"/>
+  <ellipse cx="200" cy="100" rx="160" ry="90" fill="url(#compGlow)" filter="url(#compBlur)"/>
+  
+  <!-- Grid of compartmentalized boxes -->
+  <!-- Row 1 -->
+  <rect x="70" y="90" width="75" height="75" rx="8" fill="rgba(163,59,92,0.2)" stroke="#a33b5c" stroke-width="2"/>
+  <rect x="162" y="90" width="75" height="75" rx="8" fill="rgba(201,118,61,0.2)" stroke="#c9763d" stroke-width="2"/>
+  <rect x="255" y="90" width="75" height="75" rx="8" fill="rgba(124,92,191,0.2)" stroke="#7c5cbf" stroke-width="2"/>
+  
+  <!-- Row 2 -->
+  <rect x="70" y="180" width="75" height="75" rx="8" fill="rgba(231,76,60,0.2)" stroke="#e74c3c" stroke-width="2"/>
+  <rect x="162" y="180" width="75" height="75" rx="8" fill="none" stroke="#5c5955" stroke-width="2" stroke-dasharray="4,4"/>
+  <rect x="255" y="180" width="75" height="75" rx="8" fill="rgba(163,59,92,0.15)" stroke="#a33b5c" stroke-width="2"/>
+  
+  <!-- Row 3 -->
+  <rect x="70" y="270" width="75" height="75" rx="8" fill="rgba(124,92,191,0.15)" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="162" y="270" width="75" height="75" rx="8" fill="rgba(201,118,61,0.15)" stroke="#c9763d" stroke-width="2"/>
+  <rect x="255" y="270" width="75" height="75" rx="8" fill="rgba(231,76,60,0.15)" stroke="#e74c3c" stroke-width="2"/>
+  
+  <!-- Icons in boxes representing different aspects -->
+  <!-- Fire in one box (chaos) -->
+  <path d="M107,125 Q100,140 107,155 Q115,140 107,125" fill="#e74c3c" opacity="0.8"/>
+  <path d="M115,130 Q108,145 115,160 Q123,145 115,130" fill="#c9763d" opacity="0.6"/>
+  
+  <!-- Lock in another (contained) -->
+  <rect x="185" y="122" width="30" height="25" rx="4" fill="none" stroke="#c9763d" stroke-width="2"/>
+  <path d="M190,122 L190,110 Q200,105 210,110 L210,122" fill="none" stroke="#c9763d" stroke-width="2"/>
+  
+  <!-- Heart (relationships) -->
+  <path d="M285,120 Q275,105 290,120 Q305,105 295,120 L290,135 Z" fill="#7c5cbf" opacity="0.7"/>
+  
+  <!-- X in chaos box -->
+  <line x1="85" y1="195" x2="130" y2="240" stroke="#e74c3c" stroke-width="3" opacity="0.6"/>
+  <line x1="130" y1="195" x2="85" y2="240" stroke="#e74c3c" stroke-width="3" opacity="0.6"/>
+  
+  <!-- Check in contained box -->
+  <path d="M275,215 L290,230 L315,200" fill="none" stroke="#a33b5c" stroke-width="3"/>
+  
+  <!-- Small symbols in bottom row -->
+  <circle cx="107" cy="307" r="12" fill="none" stroke="#7c5cbf" stroke-width="2"/>
+  <text x="200" y="315" font-family="system-ui, sans-serif" font-size="24" fill="#c9763d" text-anchor="middle">⟡</text>
+  <polygon points="292,295 285,320 300,320" fill="none" stroke="#e74c3c" stroke-width="2"/>
+  
+  <!-- Title -->
+  <text x="200" y="395" font-family="Georgia, serif" font-size="26" fill="#ece8e1" text-anchor="middle" font-style="italic">Strategic</text>
+  <text x="200" y="430" font-family="Georgia, serif" font-size="26" fill="#ece8e1" text-anchor="middle" font-style="italic">Compartmentalization</text>
+  <text x="200" y="460" font-family="system-ui, sans-serif" font-size="13" fill="#9a958c" text-anchor="middle">Contain the fire</text>
+  
+  <!-- War badge - top corner -->
+  <rect x="290" y="15" width="95" height="26" rx="13" fill="rgba(201,118,61,0.2)" stroke="#c9763d" stroke-opacity="0.5"/>
+  <text x="337" y="33" font-family="system-ui, sans-serif" font-size="11" fill="#c9763d" text-anchor="middle" font-weight="600">WAR PATH</text>
+</svg>

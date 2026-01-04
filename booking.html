@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Relationship Pattern Mapping Sessions | Unscarred</title>
+  <title>Book a Call | Unscarred</title>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -117,49 +117,25 @@
 
     main {
       flex: 1;
-      padding: 32px 16px 48px;
+      padding: 48px 16px 64px;
     }
 
-    .layout {
-      max-width: 1080px;
+    .content {
+      max-width: 900px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 28px;
-      align-items: flex-start;
     }
 
-    @media (max-width: 880px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Left column: intro and session types */
-
-    .intro-card {
-      background: radial-gradient(circle at top left, rgba(163, 59, 92, 0.22), transparent 55%), var(--card-glass);
-      border-radius: 26px;
-      padding: 26px 24px 22px;
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .intro-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top right, rgba(201, 118, 61, 0.16), transparent 55%);
-      pointer-events: none;
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
     }
 
     .pill {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 4px 11px;
+      padding: 6px 14px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.14);
       background: rgba(8, 7, 10, 0.84);
@@ -167,9 +143,7 @@
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--text-soft);
-      margin-bottom: 14px;
-      position: relative;
-      z-index: 1;
+      margin-bottom: 20px;
     }
 
     .pill-dot {
@@ -180,223 +154,268 @@
       box-shadow: 0 0 0 4px rgba(201, 118, 61, 0.14);
     }
 
-    .intro-card h1 {
+    .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      font-size: clamp(2.2rem, 4vw, 3rem);
       line-height: 1.16;
-      margin: 0 0 10px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+      margin: 0 0 16px;
+      letter-spacing: 0.04em;
     }
 
-    .intro-card h1 span {
-      color: var(--primary);
-      letter-spacing: 0.18em;
-      font-size: 0.63em;
-      text-transform: uppercase;
-      display: block;
-      margin-bottom: 4px;
-    }
-
-    .intro-sub {
-      font-size: 0.98rem;
+    .hero-sub {
+      font-size: 1.05rem;
       line-height: 1.7;
       color: var(--text-soft);
-      max-width: 34rem;
-      margin-bottom: 18px;
-      position: relative;
-      z-index: 1;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .intro-sub strong {
-      color: #fdf9ff;
-      font-weight: 500;
-    }
-
-    .intro-quote {
-      font-size: 0.9rem;
-      color: var(--text-soft);
-      border-left: 2px solid rgba(255, 255, 255, 0.09);
-      padding-left: 12px;
-      margin-bottom: 18px;
-    }
-
-    .intro-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 18px;
-      font-size: 0.82rem;
-      color: var(--text-soft);
-      margin-bottom: 16px;
-    }
-
-    .intro-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .dot-soft {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(245, 242, 247, 0.7);
-      opacity: 0.7;
-    }
-
-    .intro-note {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.55);
-      margin-top: 4px;
-      opacity: 0.9;
-    }
-
-    .sessions-grid {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .session-card {
-      background: rgba(10, 9, 13, 0.96);
+    /* How It Works */
+    .how-it-works {
+      background: var(--card-glass);
       border-radius: var(--radius-xl);
       border: 1px solid var(--border-subtle);
-      padding: 16px 16px 14px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .how-it-works h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin: 0 0 20px;
+      text-align: center;
+    }
+
+    .steps {
       display: grid;
-      grid-template-columns: 1.4fr auto;
-      gap: 12px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .steps {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .step {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      border-radius: 50%;
+      display: flex;
       align-items: center;
-      transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0 auto 12px;
+    }
+
+    .step h3 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      margin: 0 0 8px;
+    }
+
+    .step p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Call Cards Grid */
+    .calls-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 750px) {
+      .calls-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .call-card {
+      background: var(--card-glass);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
       position: relative;
       overflow: hidden;
     }
 
-    .session-card::before {
+    .call-card::before {
       content: "";
       position: absolute;
       inset: 0;
       background: radial-gradient(circle at top left, var(--primary-soft), transparent 70%);
       opacity: 0;
-      transition: opacity 140ms ease;
+      transition: opacity 200ms ease;
       pointer-events: none;
     }
 
-    .session-card:hover {
+    .call-card:hover {
       border-color: rgba(163, 59, 92, 0.45);
-      box-shadow: 0 16px 40px rgba(3, 3, 6, 0.9);
-      transform: translateY(-3px);
+      box-shadow: 0 20px 50px rgba(3, 3, 6, 0.9);
+      transform: translateY(-4px);
     }
 
-    .session-card:hover::before {
+    .call-card:hover::before {
       opacity: 1;
     }
 
-    .session-card h3 {
+    .call-card.featured {
+      border-color: rgba(163, 59, 92, 0.35);
+    }
+
+    .call-card.featured::after {
+      content: "BEST VALUE";
+      position: absolute;
+      top: 16px;
+      right: -32px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 6px 40px;
+      transform: rotate(45deg);
+    }
+
+    .call-card h3 {
       font-family: var(--font-display);
-      font-size: 1.25rem;
-      margin: 0 0 4px;
+      font-size: 1.5rem;
+      margin: 0 0 8px;
+      position: relative;
+      z-index: 1;
     }
 
-    .session-tagline {
-      font-size: 0.86rem;
+    .call-card__price {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .call-card__price small {
+      font-size: 0.9rem;
+      font-weight: 400;
       color: var(--text-soft);
-      margin-bottom: 6px;
     }
 
-    .session-meta-line {
+    .call-card__savings {
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+      min-height: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .call-card p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .call-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 24px;
+      flex-grow: 1;
+      position: relative;
+      z-index: 1;
+    }
+
+    .call-card li {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      padding: 6px 0;
       display: flex;
-      flex-wrap: wrap;
+      align-items: flex-start;
       gap: 10px;
-      font-size: 0.78rem;
-      color: rgba(245, 242, 247, 0.7);
     }
 
-    .session-meta-pill {
-      padding: 3px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      background: rgba(6, 5, 8, 0.9);
-    }
-
-    .session-price-block {
-      text-align: right;
-      font-size: 0.84rem;
-    }
-
-    .price-main {
-      font-size: 1.1rem;
+    .call-card li::before {
+      content: "✓";
+      color: var(--accent);
       font-weight: 600;
     }
 
-    .price-note {
-      font-size: 0.78rem;
-      color: var(--text-soft);
-    }
-
-    .session-cta {
-      margin-top: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      font-size: 0.78rem;
-      color: rgba(245, 242, 247, 0.88);
-    }
-
-    .session-cta span {
-      font-size: 0.7rem;
-      opacity: 0.7;
-    }
-
-    /* Right column: calendar */
-
-    .calendar-card {
-      background: radial-gradient(circle at top right, rgba(163, 59, 92, 0.22), transparent 60%), var(--card-glass);
-      border-radius: 26px;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      padding: 20px 18px 18px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .calendar-header {
-      margin-bottom: 12px;
-    }
-
-    .calendar-header h2 {
-      font-family: var(--font-display);
-      font-size: 1.4rem;
-      margin: 0 0 4px;
-    }
-
-    .calendar-header p {
-      margin: 0;
-      font-size: 0.9rem;
-      color: var(--text-soft);
-    }
-
-    .calendar-info {
-      font-size: 0.78rem;
-      color: rgba(245, 242, 247, 0.7);
-      margin-bottom: 10px;
-    }
-
-    .calendar-embed {
-      border-radius: 18px;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      overflow: hidden;
-      background: #050507;
-    }
-
-    .calendar-embed iframe {
-      display: block;
+    .btn {
+      display: inline-block;
       width: 100%;
-      height: 600px;
-      border: 0;
+      padding: 16px 28px;
+      text-align: center;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: white;
+      box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.3);
+      color: var(--text-main);
+    }
+
+    /* Info Note */
+    .info-note {
+      background: rgba(201, 118, 61, 0.1);
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      border-radius: 16px;
+      padding: 24px 28px;
+      text-align: center;
+    }
+
+    .info-note h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      margin: 0 0 8px;
+    }
+
+    .info-note p {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin: 0;
+      line-height: 1.6;
     }
 
     footer {
@@ -434,104 +453,111 @@
     </header>
 
     <main>
-      <div class="layout">
-        <!-- Left column -->
-        <section class="intro-card">
+      <div class="content">
+        
+        <!-- Hero -->
+        <div class="hero">
           <div class="pill">
             <span class="pill-dot"></span>
-            Relationship Pattern Mapping
+            1:1 Support
           </div>
-
-          <h1>
-            <span>Relationship Clarity Lab</span>
-            Book a session and see the pattern, not just the excuse
-          </h1>
-
-          <p class="intro-sub">
-            In these sessions we take your situation out of your head and put it on paper.  
-            We map reactions, run them through the concern and ownership test, and separate normal conflict from long term manipulation.  
-            You leave with language, perspective, and a plan that feels emotionally grown and doable.
+          <h1>Book a Call with Scar</h1>
+          <p class="hero-sub">
+            Pattern mapping, relationship clarity, and real-time support. 
+            Choose your session type below and secure your spot.
           </p>
+        </div>
 
-          <p class="intro-quote">
-            This is not therapy. This is a clarity lab for people who are tired of confusion, mixed signals, and being told they are the problem when the pattern says otherwise.
-          </p>
+        <!-- How It Works -->
+        <div class="how-it-works">
+          <h2>How It Works</h2>
+          <div class="steps">
+            <div class="step">
+              <div class="step-number">1</div>
+              <h3>Choose & Pay</h3>
+              <p>Select your session type below and complete payment securely through Payhip.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">2</div>
+              <h3>Book Your Time</h3>
+              <p>After payment, you'll receive a link to choose your preferred date and time.</p>
+            </div>
+            <div class="step">
+              <div class="step-number">3</div>
+              <h3>Get Clarity</h3>
+              <p>We meet, map your patterns, and you leave with a clear plan forward.</p>
+            </div>
+          </div>
+        </div>
 
-          <div class="intro-meta">
-            <span><span class="dot-soft"></span> Relationship pattern mapping</span>
-            <span><span class="dot-soft"></span> Nervous system informed, no sugar coating</span>
-            <span><span class="dot-soft"></span> Online session, audio or video</span>
+        <!-- Call Options -->
+        <div class="calls-grid">
+          
+          <div class="call-card">
+            <h3>30 Minute Check-In</h3>
+            <div class="call-card__price">$27 <small>/ 30 min</small></div>
+            <div class="call-card__savings"></div>
+            <p>Quick check-in for a specific situation or script review.</p>
+            <ul>
+              <li>30 minute call</li>
+              <li>One specific topic</li>
+              <li>Script feedback</li>
+              <li>Quick clarity</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/30min-checkin" class="btn btn-secondary" target="_blank">Book Check-In</a>
           </div>
 
-          <p class="intro-note">
-            Choose a session type below. You will confirm the details inside the booking form after you pick a time.
-          </p>
-
-          <div class="sessions-grid">
-            <article class="session-card">
-              <div>
-                <h3>Check in</h3>
-                <p class="session-tagline">
-                  Quick check-in for a specific situation or script review.
-                </p>
-                <div class="session-meta-line">
-                  <span class="session-meta-pill">30 minutes</span>
-                  <span class="session-meta-pill">Check in</span>
-                  <span class="session-meta-pill">Specific topic</span>
-                </div>
-              </div>
-              <div class="session-price-block">
-                <div class="price-main">$27</div>
-                <div class="price-note">Pay at confirmation</div>
-                <div class="session-cta">
-                  Book this
-                  <span>choose time on the right</span>
-                </div>
-              </div>
-            </article>
-
-            <article class="session-card">
-              <div>
-                <h3>Single focus call</h3>
-                <p class="session-tagline">
-                  Session for one ongoing pattern, trauma loaded cycle, or complicated on and off connection.
-                </p>
-                <div class="session-meta-line">
-                  <span class="session-meta-pill">60 minutes</span>
-                  <span class="session-meta-pill">One scenarios</span>
-                  <span class="session-meta-pill">Next steps plan</span>
-                </div>
-              </div>
-              <div class="session-price-block">
-                <div class="price-main">$47</div>
-                <div class="price-note">Pay at confirmation</div>
-                <div class="session-cta">
-                  Book this
-                  <span>choose time on the right</span>
-                </div>
-              </div>
-            </article>
+          <div class="call-card">
+            <h3>Single Call</h3>
+            <div class="call-card__price">$47 <small>/ hour</small></div>
+            <div class="call-card__savings"></div>
+            <p>One focused session to work through what is happening right now.</p>
+            <ul>
+              <li>60 minute call</li>
+              <li>Pattern identification</li>
+              <li>Actionable next steps</li>
+              <li>Follow-up resources</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/single-call" class="btn btn-secondary" target="_blank">Book a Call</a>
           </div>
-        </section>
 
-        <!-- Right column -->
-        <section class="calendar-card" id="calendar">
-          <div class="calendar-header">
-            <h2>Choose your time</h2>
-            <p>Select the day and time that works best for you. You will see your time zone inside the calendar.</p>
+          <div class="call-card">
+            <h3>2-Call Starter</h3>
+            <div class="call-card__price">$87 <small>/ 2 hours</small></div>
+            <div class="call-card__savings">Save $7</div>
+            <p>Two calls to map patterns and create a plan.</p>
+            <ul>
+              <li>2 x 60 minute calls</li>
+              <li>Use within 6 weeks</li>
+              <li>Pattern mapping session</li>
+              <li>Follow-up implementation call</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/2call-starter" class="btn btn-secondary" target="_blank">Get 2 Calls</a>
           </div>
-          <p class="calendar-info">
-            After you book, you will receive an automatic email with your confirmation and session details.
-          </p>
 
-          <div class="calendar-embed">
-            <!-- Google Calendar Appointment Scheduling begin -->
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zgTjLaj3qYAFLPRsZG3CjJDho4hYBkiIfHjnYC_bRRR0SCsdOtU6R6oYc7tUV62Tvl9MCE9lZ?gv=true">
-            </iframe>
-            <!-- Google Calendar Appointment Scheduling end -->
+          <div class="call-card featured">
+            <h3>4-Call Bundle</h3>
+            <div class="call-card__price">$147 <small>/ 4 hours</small></div>
+            <div class="call-card__savings">Save $41 (22% off)</div>
+            <p>Ongoing support to work through patterns over time.</p>
+            <ul>
+              <li>4 x 60 minute calls</li>
+              <li>Use within 3 months</li>
+              <li>Pattern tracking between calls</li>
+              <li>Text check-ins between sessions</li>
+              <li>Priority scheduling</li>
+            </ul>
+            <a href="https://shop.unscarred.site/l/4call-bundle" class="btn btn-primary" target="_blank">Get the Bundle</a>
           </div>
-        </section>
+
+        </div>
+
+        <!-- Info Note -->
+        <div class="info-note">
+          <h3>After you pay</h3>
+          <p>You'll receive an email with a link to book your session time. Check your inbox (and spam folder) for confirmation. If you don't see it within a few minutes, email me and I'll get you sorted.</p>
+        </div>
+
       </div>
     </main>
 
@@ -541,7 +567,3 @@
   </div>
 </body>
 </html>
-
-
-
-

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learn | Free Lessons & Skills | Unscarred</title>
+  <meta name="description" content="Free pattern lessons, communication scripts, and nervous system tools. Learn the skills that change how you show up in relationships.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --secondary-glow: rgba(124, 92, 191, 0.3);
+      --accent: #c9763d;
+      --teal: #2d8f8f;
+      --teal-glow: rgba(45, 143, 143, 0.3);
+      --sage: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 143, 143, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(163, 59, 92, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--primary); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    nav a.active { color: var(--teal); }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      padding: 10px 20px;
+      background: rgba(45, 143, 143, 0.12);
+      border-radius: 999px;
+      border: 1px solid rgba(45, 143, 143, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em { color: var(--teal); font-style: italic; }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto 16px;
+      line-height: 1.7;
+    }
+
+    /* Intro Section */
+    .intro-box {
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(45, 143, 143, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 40px 48px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .intro-box h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--teal);
+      margin-bottom: 16px;
+    }
+
+    .intro-box p {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.8;
+    }
+
+    .intro-box p strong { color: var(--text-main); }
+
+    /* Category Labels */
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--teal);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .category-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(45, 143, 143, 0.4), transparent);
+    }
+
+    /* Lesson Grid */
+    .lesson-section {
+      margin-bottom: 60px;
+    }
+
+    .lesson-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 768px) {
+      .lesson-grid { grid-template-columns: 1fr; }
+    }
+
+    .lesson-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      gap: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lesson-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--teal), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .lesson-card:hover {
+      border-color: rgba(45, 143, 143, 0.35);
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    }
+
+    .lesson-card:hover::before { opacity: 1; }
+
+    .lesson-card__icon {
+      width: 52px;
+      height: 52px;
+      background: rgba(45, 143, 143, 0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
+
+    .lesson-card__content { flex: 1; }
+
+    .lesson-card__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .lesson-card__content p {
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+      line-height: 1.55;
+    }
+
+    .lesson-card__meta {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--teal);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .free-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(45, 143, 143, 0.15);
+      color: var(--teal);
+      margin-left: 8px;
+    }
+
+    /* Featured Lesson */
+    .featured-lesson {
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.12), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(45, 143, 143, 0.25);
+      border-radius: 24px;
+      padding: 36px 40px;
+      margin-bottom: 48px;
+      display: flex;
+      gap: 32px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-lesson::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(45, 143, 143, 0.15), transparent 60%);
+      pointer-events: none;
+    }
+
+    .featured-lesson__icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(45, 143, 143, 0.15);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      flex-shrink: 0;
+    }
+
+    .featured-lesson__content { flex: 1; }
+
+    .featured-lesson__label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    .featured-lesson__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .featured-lesson__content p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+    }
+
+    .btn-teal {
+      background: linear-gradient(135deg, var(--teal), #1f6b6b);
+      color: white;
+      box-shadow: 0 8px 30px var(--teal-glow);
+    }
+
+    .btn-teal:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--teal-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.25);
+      color: var(--text-main);
+    }
+
+    @media (max-width: 700px) {
+      .featured-lesson { flex-direction: column; text-align: center; }
+    }
+
+    /* CTA Boxes */
+    .cta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 80px 0 60px;
+    }
+
+    @media (max-width: 768px) {
+      .cta-grid { grid-template-columns: 1fr; }
+    }
+
+    .cta-box {
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .cta-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .cta-box p {
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .cta-quiz {
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(125, 154, 140, 0.25);
+    }
+
+    .cta-programs {
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.25);
+    }
+
+    .btn-sage {
+      background: linear-gradient(135deg, #7d9a8c, #5a7d6c);
+      color: white;
+      box-shadow: 0 8px 30px rgba(125, 154, 140, 0.3);
+    }
+
+    .btn-sage:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(125, 154, 140, 0.4);
+    }
+
+    .btn-purple {
+      background: linear-gradient(135deg, var(--secondary), #5c3d9f);
+      color: white;
+      box-shadow: 0 8px 30px var(--secondary-glow);
+    }
+
+    .btn-purple:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--secondary-glow);
+    }
+
+    /* War Path CTA */
+    .war-cta {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(163, 59, 92, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .war-cta h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .war-cta p {
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-war {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: white;
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+
+    .btn-war:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--primary-glow);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0 40px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text-main); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <nav>
+        <a href="/quiz/">Quizzes</a>
+        <a href="/programs.html">Programs</a>
+        <a href="/learn.html" class="active">Learn</a>
+        <a href="/shop.html">Shop</a>
+        <a href="/coaching.html">Coaching</a>
+        <a href="/blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">📚 Free Lessons</div>
+      <h1>Skills that change how you <em>show up</em></h1>
+      <p class="hero-sub">Short, actionable lessons on communication, nervous system regulation, and relationship patterns. Free. No fluff. Just tools.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="intro-box">
+      <h2>Pattern education, not therapy</h2>
+      <p>Each lesson teaches one skill you can use immediately. <strong>How to ask for what you need. How to reset your nervous system. How to recognize patterns before they run you.</strong> These are the micro-skills that add up to real change.</p>
+    </div>
+
+    <!-- Featured Lesson -->
+    <a href="/learn/clean-ask.html" class="featured-lesson" style="text-decoration: none;">
+      <div class="featured-lesson__icon">💬</div>
+      <div class="featured-lesson__content">
+        <div class="featured-lesson__label">Most Popular</div>
+        <h3>The Clean Ask That Stops Over-Explaining</h3>
+        <p>Ask for what you need without turning it into a whole trial, TED Talk, or self cross-examination. Learn the formula that works.</p>
+        <span class="btn btn-teal">Read This Lesson →</span>
+      </div>
+    </a>
+
+    <!-- Communication Skills -->
+    <section class="lesson-section">
+      <div class="category-label">Communication Skills</div>
+      <div class="lesson-grid">
+
+        <a href="/learn/clean-ask.html" class="lesson-card">
+          <div class="lesson-card__icon">💬</div>
+          <div class="lesson-card__content">
+            <h3>The Clean Ask<span class="free-badge">Free</span></h3>
+            <p>Stop over-explaining. Learn to ask for what you need in one clear sentence.</p>
+            <span class="lesson-card__meta">5 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/repair-after-conflict.html" class="lesson-card">
+          <div class="lesson-card__icon">🔧</div>
+          <div class="lesson-card__content">
+            <h3>Repair After Conflict<span class="free-badge">Free</span></h3>
+            <p>The script that reconnects you after a fight without rehashing the whole thing.</p>
+            <span class="lesson-card__meta">6 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/safety-signals.html" class="lesson-card">
+          <div class="lesson-card__icon">🚦</div>
+          <div class="lesson-card__content">
+            <h3>Safety Signals<span class="free-badge">Free</span></h3>
+            <p>What safety looks like to a nervous system, and how to create it in conversation.</p>
+            <span class="lesson-card__meta">5 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/when-you-shut-down.html" class="lesson-card">
+          <div class="lesson-card__icon">🔒</div>
+          <div class="lesson-card__content">
+            <h3>When You Shut Down<span class="free-badge">Free</span></h3>
+            <p>What to say when you cannot speak. Scripts for the frozen moments.</p>
+            <span class="lesson-card__meta">4 min read</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Nervous System -->
+    <section class="lesson-section">
+      <div class="category-label">Nervous System Regulation</div>
+      <div class="lesson-grid">
+
+        <a href="/learn/breath-reset.html" class="lesson-card">
+          <div class="lesson-card__icon">🌬️</div>
+          <div class="lesson-card__content">
+            <h3>The 3-Minute Breath Reset<span class="free-badge">Free</span></h3>
+            <p>A hard reset for anxious spirals, before you respond, or during conflict.</p>
+            <span class="lesson-card__meta">3 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/anxious-urgency.html" class="lesson-card">
+          <div class="lesson-card__icon">⚡</div>
+          <div class="lesson-card__content">
+            <h3>Anxious Urgency Without Losing Momentum<span class="free-badge">Free</span></h3>
+            <p>Your body screams "do something now" but if you obey it, you overreach. Find the middle lane.</p>
+            <span class="lesson-card__meta">6 min read</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Relationship Patterns -->
+    <section class="lesson-section">
+      <div class="category-label">Relationship Patterns</div>
+      <div class="lesson-grid">
+
+        <a href="/learn/push-pull.html" class="lesson-card">
+          <div class="lesson-card__icon">🔄</div>
+          <div class="lesson-card__content">
+            <h3>Push-Pull Dynamics<span class="free-badge">Free</span></h3>
+            <p>Why you push away and then pull back. How the cycle works and how to break it.</p>
+            <span class="lesson-card__meta">7 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/let-him-miss-you.html" class="lesson-card">
+          <div class="lesson-card__icon">🌙</div>
+          <div class="lesson-card__content">
+            <h3>Let Him Miss You<span class="free-badge">Free</span></h3>
+            <p>Stop chasing. Create the space that makes someone want to come closer.</p>
+            <span class="lesson-card__meta">5 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/steady-pursuit.html" class="lesson-card">
+          <div class="lesson-card__icon">🎯</div>
+          <div class="lesson-card__content">
+            <h3>Steady Pursuit<span class="free-badge">Free</span></h3>
+            <p>How to show interest without being needy. The energy that draws people in.</p>
+            <span class="lesson-card__meta">6 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/bpd-pattern-tracking.html" class="lesson-card">
+          <div class="lesson-card__icon">📊</div>
+          <div class="lesson-card__content">
+            <h3>BPD Pattern Tracking<span class="free-badge">Free</span></h3>
+            <p>How to track your patterns when your emotional range feels like a liability.</p>
+            <span class="lesson-card__meta">8 min read</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Pattern Recognition -->
+    <section class="lesson-section">
+      <div class="category-label">Pattern Recognition</div>
+      <div class="lesson-grid">
+
+        <a href="/learn/manipulation-patterns.html" class="lesson-card">
+          <div class="lesson-card__icon">🕸️</div>
+          <div class="lesson-card__content">
+            <h3>The Manipulation Handbook<span class="free-badge">Free</span></h3>
+            <p>Track patterns, not promises. Recognize the tactics before they work on you.</p>
+            <span class="lesson-card__meta">12 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/manipulation_freebie.html" class="lesson-card">
+          <div class="lesson-card__icon">📋</div>
+          <div class="lesson-card__content">
+            <h3>Manipulation Patterns Quick Guide<span class="free-badge">Free</span></h3>
+            <p>The short version. Common manipulation tactics in one quick reference.</p>
+            <span class="lesson-card__meta">4 min read</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Centered Identity -->
+    <section class="lesson-section">
+      <div class="category-label">Centered Identity</div>
+      <div class="lesson-grid">
+
+        <a href="/learn/centered-leadership.html" class="lesson-card">
+          <div class="lesson-card__icon">👑</div>
+          <div class="lesson-card__content">
+            <h3>Centered Leadership<span class="free-badge">Free</span></h3>
+            <p>Lead without dominating. How grounded presence changes every room you walk into.</p>
+            <span class="lesson-card__meta">7 min read</span>
+          </div>
+        </a>
+
+        <a href="/learn/centered-women.html" class="lesson-card">
+          <div class="lesson-card__icon">🌸</div>
+          <div class="lesson-card__content">
+            <h3>Centered Women<span class="free-badge">Free</span></h3>
+            <p>What it means to be rooted in yourself. Boundaries without walls, voice without performance.</p>
+            <span class="lesson-card__meta">6 min read</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- CTA Grid -->
+    <div class="cta-grid">
+      <div class="cta-box cta-quiz">
+        <h3>🔍 Find your patterns first</h3>
+        <p>Take a quiz to see what you're working with before diving into the lessons.</p>
+        <a href="/quiz/" class="btn btn-sage">Take a Quiz →</a>
+      </div>
+      <div class="cta-box cta-programs">
+        <h3>🎓 Go deeper with programs</h3>
+        <p>These lessons are free samples. The full programs have videos, scripts, and weekly structure.</p>
+        <a href="/programs.html" class="btn btn-purple">View Programs →</a>
+      </div>
+    </div>
+
+    <!-- War Path CTA -->
+    <div class="war-cta">
+      <h3>⚔️ In survival mode?</h3>
+      <p>If you're fighting wars in your nervous system, the War Path has tools built for complex trauma and survival patterns.</p>
+      <a href="/war/" class="btn btn-war">Enter War Path →</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/quiz/">Quizzes</a>
+        <a href="/programs.html">Programs</a>
+        <a href="/coaching.html">Coaching</a>
+        <a href="/shop.html">Shop</a>
+      </div>
+      <p>© 2025 Unscarred. Your patterns are not your fault. Learning them is your power.</p>
+    </div>
+  </footer>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+

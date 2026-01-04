@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500">
+  <defs>
+    <linearGradient id="shopBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f"/>
+      <stop offset="50%" style="stop-color:#1a1520"/>
+      <stop offset="100%" style="stop-color:#0a0a0f"/>
+    </linearGradient>
+    <linearGradient id="shopGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#c9763d;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#c9763d;stop-opacity:0"/>
+    </linearGradient>
+    <filter id="shopBlur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+  </defs>
+  
+  <rect width="400" height="500" fill="url(#shopBg)"/>
+  <ellipse cx="200" cy="100" rx="160" ry="90" fill="url(#shopGlow)" filter="url(#shopBlur)"/>
+  
+  <!-- Grid of product cards -->
+  <!-- Row 1 -->
+  <rect x="60" y="80" width="80" height="100" rx="8" fill="rgba(163,59,92,0.2)" stroke="#a33b5c" stroke-width="2"/>
+  <rect x="160" y="80" width="80" height="100" rx="8" fill="rgba(124,92,191,0.2)" stroke="#7c5cbf" stroke-width="2"/>
+  <rect x="260" y="80" width="80" height="100" rx="8" fill="rgba(201,118,61,0.2)" stroke="#c9763d" stroke-width="2"/>
+  
+  <!-- Row 2 -->
+  <rect x="60" y="195" width="80" height="100" rx="8" fill="rgba(201,118,61,0.15)" stroke="#c9763d" stroke-width="2"/>
+  <rect x="160" y="195" width="80" height="100" rx="8" fill="rgba(163,59,92,0.15)" stroke="#a33b5c" stroke-width="2"/>
+  <rect x="260" y="195" width="80" height="100" rx="8" fill="rgba(124,92,191,0.15)" stroke="#7c5cbf" stroke-width="2"/>
+  
+  <!-- Simple icons in cards -->
+  <!-- Book icon -->
+  <rect x="85" y="110" width="30" height="40" rx="3" fill="none" stroke="#a33b5c" stroke-width="2"/>
+  <line x1="100" y1="110" x2="100" y2="150" stroke="#a33b5c" stroke-width="1"/>
+  
+  <!-- Heart icon -->
+  <path d="M190,120 Q180,110 190,125 Q200,110 210,125 L200,145 Z" fill="#7c5cbf" opacity="0.8"/>
+  
+  <!-- Lightning icon -->
+  <path d="M300,105 L290,130 L300,130 L285,155 L310,125 L295,125 L310,105 Z" fill="#c9763d" opacity="0.8"/>
+  
+  <!-- Chat icon -->
+  <rect x="80" y="220" width="40" height="30" rx="5" fill="none" stroke="#c9763d" stroke-width="2"/>
+  <polygon points="85,250 95,250 90,265" fill="#c9763d"/>
+  
+  <!-- Person icon -->
+  <circle cx="200" cy="225" r="12" fill="none" stroke="#a33b5c" stroke-width="2"/>
+  <path d="M180,265 Q200,250 220,265" stroke="#a33b5c" stroke-width="2" fill="none"/>
+  
+  <!-- Check icon -->
+  <circle cx="300" cy="245" r="20" fill="none" stroke="#7c5cbf" stroke-width="2"/>
+  <path d="M288,245 L296,255 L315,235" stroke="#7c5cbf" stroke-width="3" fill="none"/>
+  
+  <!-- Arrow pointing right -->
+  <path d="M180,340 L220,340 M210,330 L220,340 L210,350" stroke="#c9763d" stroke-width="4" fill="none" stroke-linecap="round"/>
+  
+  <!-- Title -->
+  <text x="200" y="400" font-family="Georgia, serif" font-size="30" fill="#ece8e1" text-anchor="middle" font-style="italic">View All Products</text>
+  <text x="200" y="435" font-family="system-ui, sans-serif" font-size="14" fill="#9a958c" text-anchor="middle">Browse the full collection</text>
+  
+  <!-- Shop badge -->
+  <rect x="150" y="455" width="100" height="30" rx="15" fill="rgba(201,118,61,0.2)" stroke="#c9763d" stroke-opacity="0.5"/>
+  <text x="200" y="476" font-family="system-ui, sans-serif" font-size="12" fill="#c9763d" text-anchor="middle" font-weight="600">SHOP →</text>
+</svg>

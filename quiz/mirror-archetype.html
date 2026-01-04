@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -7,10 +7,10 @@
   <meta name="description" content="Discover your survival strategy under stress. Analyzer, Fixer, Performer, Warrior, Vanisher, Chameleon, or Quiet Sanctuary ">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
   <style>
-    :root { --bg-void: #050507; --bg-deep: #0a0a0f; --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4); --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c; --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955; --border-glass: rgba(255,255,255,0.06); --radius-lg: 20px; --radius-xl: 28px; --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'Outfit', system-ui, sans-serif; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem; --shadow-md: 0 4px 20px rgba(0,0,0,0.3); --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --duration-fast: 150ms; }
+    :root { --bg-void: #050507; --bg-deep: #0a0a0f; --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4); --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c; --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955; --border-glass: rgba(255,255,255,0.06); --radius-lg: 20px; --radius-xl: 28px; --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'Outfit', system-ui, sans-serif; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem; --shadow-md: 0 4px 20px rgba(0,0,0,0.3); --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --duration-fast: 150ms; --paper: rgba(18, 18, 24, 0.95); --cream: #0a0a0f; --ink: #ece8e1; --rose: #a33b5c; --muted: #9a958c; --amber: #c9763d; --radius-full: 999px; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); line-height: 1.6; min-height: 100vh; }
     body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.1) 0%, transparent 40%); pointer-events: none; z-index: 0; }
@@ -31,7 +31,7 @@
   <header id="header">
     <div class="header__inner">
       <a href="../index.html" class="logo">un<span>scarred</span></a>
-      <a href="/quizzes/" class="btn btn--ghost btn--sm">? All Quizzes</a>
+      <a href="/quizzes/" class="btn btn--ghost btn--sm">← All Quizzes</a>
     </div>
   </header>
 
@@ -74,7 +74,7 @@
           </div>
         </div>
         
-        <button class="btn btn--rose btn--lg" id="start-quiz">Start the Quiz ?</button>
+        <button class="btn btn--rose btn--lg" id="start-quiz">Start the Quiz →</button>
         
         <p class="quiz-intro__note">21 questions · 3 min · No email required</p>
       </div>
@@ -385,7 +385,7 @@
         </div>
 
         <div class="result-card result-card--do">
-          <h3>? Do This Week</h3>
+          <h3>✓ Do This Week</h3>
           <ul>
             ${result.doThisWeek.map(item => `<li>${item}</li>`).join('')}
           </ul>
@@ -413,8 +413,8 @@
         <div class="result-share">
           <p>Explore more:</p>
           <div class="result-share__links">
-            <a href="../quiz/mirror.html" class="btn btn--ghost btn--sm">Full Mirror Quiz ?</a>
-            <a href="../quiz/self-sabotage.html" class="btn btn--ghost btn--sm">Self-Sabotage Quiz ?</a>
+            <a href="../quiz/mirror.html" class="btn btn--ghost btn--sm">Full Mirror Quiz →</a>
+            <a href="../quiz/self-sabotage.html" class="btn btn--ghost btn--sm">Self-Sabotage Quiz →</a>
           </div>
         </div>
       `;
@@ -671,7 +671,7 @@
     }
 
     .result-card--do li::before {
-      content: '?';
+      content: '✓';
       position: absolute;
       left: 0;
       color: var(--sage);
@@ -679,7 +679,7 @@
     }
 
     .result-card--avoid li::before {
-      content: '?';
+      content: '✗';
       position: absolute;
       left: 0;
       color: var(--rose);
@@ -740,7 +740,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

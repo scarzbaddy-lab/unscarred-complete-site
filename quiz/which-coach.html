@@ -911,7 +911,7 @@
     if(window.location.protocol !== "file:") return;
     var path = window.location.pathname.replace(/\\/g,"/");
     var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
-    if(!match) match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+    if(!match) match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
     var root = match ? match[1] : null;
     if(!root) return;
     var afterRoot = path.slice(root.length);

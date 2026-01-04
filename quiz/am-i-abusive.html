@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -80,7 +80,7 @@
 </head>
 <body>
     <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
         <div id="quiz-section">
             <h1>Am I Abusive </h1>
             <p class="subtitle">A self-reflection tool for examining your behavior patterns. This takes courage to ask.</p>
@@ -135,7 +135,7 @@
             const container = document.getElementById(`options-${questionIndex}`);
             const options = container.getElementsByClassName('yes-no-option');
             Array.from(options).forEach(opt => opt.classList.remove('selected'));
-            options[value === 1   0 : 1].classList.add('selected');
+            options[value === 1 ? 0 : 1].classList.add('selected');
             answers[questionIndex] = value;
             if (Object.keys(answers).length === questions.length) {
                 document.getElementById('submit-btn').disabled = false;
@@ -160,7 +160,7 @@
                 title = "You're Showing Some Controlling Behaviors";
                 description = "You're engaging in some behaviors that are concerning. They might feel justified in the moment, or you might rationalize them as care or protection, but they're controlling. This is your wake-up call. You're not irredeemable, but you need to take this seriously before it escalates.";
                 nextSteps = ["Stop the behaviors you identified immediately", "Talk to your partner about what you've realized", "Seek individual therapy focused on relationship patterns", "Take full accountability without expecting praise", "Give your partner space to process and respond", "Learn about healthy boundaries and autonomy"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }];
             } else if (score <= 12) {
                 level = "Abusive Behavior Pattern";
                 color = "#e67e22";
@@ -210,7 +210,7 @@
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

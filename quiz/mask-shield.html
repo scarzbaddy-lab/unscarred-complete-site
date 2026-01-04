@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
@@ -126,14 +126,14 @@
 </head>
 <body>
   <div class="wrap">
-    <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+    <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
     
     <div class="card" id="intro">
       <h1>Unmasking Ego and Trauma</h1>
       <p class="lead">Find your current mask and the shields under it. 36 questions across 10 survival patterns plus ego vs trauma tilt assessment.</p>
       <div class="meta-info">
         <span>📋 36 questions</span>
-        <span>?️ 8-12 minutes</span>
+        <span>🕐 8-12 minutes</span>
         <span>🎭 10 mask types</span>
       </div>
       <div class="hr"></div>
@@ -192,7 +192,7 @@ const MASKS = {
     micro:["Two clarifying questions before conclusions","Reality check journal for top three triggers","Pause for one minute before sending the heat text"],
     mirror:["What proof do I have","What would change my mind today"],
     nextSteps: [
-      { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" },
+      { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" },
       { text: "Safety Signals Guide", url: "../learn/safety-signals.html", icon: "📖" }
     ]
   },
@@ -231,7 +231,7 @@ const MASKS = {
     micro:["Ninety second pause before impulses","Map one ripple effect before action","Repair within twenty four hours after harm"],
     mirror:["Who pays when I win","What strength serves us both"],
     nextSteps: [
-      { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??️" },
+      { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "️" },
       { text: "Repair After Conflict Guide", url: "../learn/repair-after-conflict.html", icon: "📖" }
     ]
   },
@@ -244,7 +244,7 @@ const MASKS = {
     micro:["Cold face reset or paced breath when spiking","Make a check in plan before separation","Use a twenty four hour rule before cut off"],
     mirror:["What else could this mean","What does calm action look like"],
     nextSteps: [
-      { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "??" },
+      { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "" },
       { text: "Push Pull Guide", url: "../learn/push-pull.html", icon: "📖" }
     ]
   },
@@ -270,7 +270,7 @@ const MASKS = {
     micro:["Daily humility rep, name one fault","Give one repair this week","Share one win that is not about status"],
     mirror:["What am I defending right now","What would repair require"],
     nextSteps: [
-      { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??️" },
+      { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "️" },
       { text: "Centered Leadership Guide", url: "../learn/centered-leadership.html", icon: "📖" }
     ]
   },
@@ -283,7 +283,7 @@ const MASKS = {
     micro:["One brave message today","Attend for thirty minutes then reassess","Body scan release drill before and after social time"],
     mirror:["What tiny reach out can I do","What feedback is data not doom"],
     nextSteps: [
-      { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" },
+      { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" },
       { text: "When You Shut Down Guide", url: "../learn/when-you-shut-down.html", icon: "📖" }
     ]
   },
@@ -296,7 +296,7 @@ const MASKS = {
     micro:["Two independent choices daily","No rescue for twenty four hours unless agreed","Write a clear boundary for one recurring issue"],
     mirror:["What do I want","What boundary protects that want"],
     nextSteps: [
-      { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "??" },
+      { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "" },
       { text: "Centered For Women Guide", url: "../learn/centered-women.html", icon: "📖" }
     ]
   },
@@ -396,7 +396,7 @@ function renderPage(){
       <div class="q-text">${qIndex+1}. ${q.t}</div>
       <div class="likert" role="group" aria-label="Choose one option">
         ${SCALE.map(s => {
-          const sel = saved === s.v   "true" : "false";
+          const sel = saved === s.v ? "true" : "false";
           return `<div class="chip" data-q="${qIndex}" data-v="${s.v}" data-selected="${sel}">${s.label}</div>`;
         }).join("")}
       </div>
@@ -415,7 +415,7 @@ function renderPage(){
   });
 
   prevBtn.disabled = page === 0;
-  nextBtn.textContent = page === totalPages-1   "See result" : "Next";
+  nextBtn.textContent = page === totalPages-1 ? "See result" : "Next";
   elProgressLabel.textContent = `Page ${page+1} of ${totalPages}`;
   updateProgress();
 }
@@ -475,7 +475,7 @@ function showResult(){
   const scores = {watchtower:0, ghost:0, oracle:0, outlaw:0, storm:0, spotlight:0, crown:0, invisible:0, loyalist:0, perfectionist:0};
   let ego = 0, trauma = 0;
   QUESTIONS.forEach((q, idx) => {
-    const val = answers[idx]   0;
+    const val = answers[idx] || 0;
     if(q.m){ scores[q.m] += val; }
     if(q.k === "ego"){ ego += val; }
     if(q.k === "trauma"){ trauma += val; }
@@ -536,7 +536,7 @@ function showResult(){
             </ul>
           </div>
         </div>
-        ${isPrimary && mask.nextSteps   `
+        ${isPrimary && mask.nextSteps ? `
         <div class="cta-section">
           <h3>Recommended Next Steps</h3>
           <div class="cta-links">
@@ -553,7 +553,7 @@ function showResult(){
   }
 
   // Build score breakdown
-  const maxScore = 15; // 3 questions � 5 max
+  const maxScore = 15; // 3 questions � 5 max
   function scoreBar(key, score) {
     const pct = Math.round((score / maxScore) * 100);
     const mask = MASKS[key];
@@ -571,8 +571,8 @@ function showResult(){
   const resultHTML = `
     <p class="lead">Primary mask right now</p>
     ${blockFor(primary, true)}
-    ${close   `<p class="lead" style="margin-top:16px">Secondary overlay (close behind)</p>${blockFor(secondary, false)}` : ""}
-    ${close && thirdClose   `<p class="lead" style="margin-top:16px">Tertiary influence</p>${blockFor(tertiary, false)}` : ""}
+    ${close ? `<p class="lead" style="margin-top:16px">Secondary overlay (close behind)</p>${blockFor(secondary, false)}` : ""}
+    ${close && thirdClose ? `<p class="lead" style="margin-top:16px">Tertiary influence</p>${blockFor(tertiary, false)}` : ""}
     
     <div class="hr"></div>
     <h3>All Mask Scores</h3>
@@ -628,7 +628,7 @@ document.getElementById("restartBtn").addEventListener("click", () => {
 (function(){
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
   var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);

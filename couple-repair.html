@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Couple Repair | Unscarred</title>
+  <meta name="description" content="Couple repair requires two willing adults. If both people are not in, we are not doing repair. Real-time pattern translation and repair steps.">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="Couple Repair | Unscarred">
+  <meta property="og:description" content="Couple repair requires two willing adults. Real-time pattern translation and repair steps.">
+  <meta property="og:type" content="website">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --secondary-glow: rgba(124, 92, 191, 0.3);
+      --accent: #c9763d;
+      --teal: #2d8f8f;
+      --sage: #7d9a8c;
+      --sage-glow: rgba(125, 154, 140, 0.3);
+      --gold: #b8860b;
+      --gold-glow: rgba(184, 134, 11, 0.3);
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #7a7670;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(184, 134, 11, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(163, 59, 92, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--sage); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .nav-war {
+      color: var(--accent) !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Mobile Navigation */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border-glass);
+      }
+
+      nav.active { right: 0; }
+      nav a { font-size: 1.1rem; }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      padding: 10px 20px;
+      background: rgba(184, 134, 11, 0.12);
+      border-radius: 999px;
+      border: 1px solid rgba(184, 134, 11, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em { 
+      color: var(--gold); 
+      font-style: italic; 
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Boundary Box */
+    .boundary-box {
+      background: linear-gradient(165deg, rgba(184, 134, 11, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(184, 134, 11, 0.25);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .boundary-box h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .boundary-box p {
+      font-size: 1.05rem;
+      color: var(--text-soft);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    .boundary-box p strong {
+      color: var(--text-main);
+    }
+
+    /* Choice Cards */
+    .choice-section {
+      padding: 40px 0 60px;
+    }
+
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .choice-grid { grid-template-columns: 1fr; }
+    }
+
+    .choice-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      padding: 36px;
+      text-align: center;
+      transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .choice-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--card-accent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .choice-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .choice-card:hover::before { opacity: 1; }
+
+    .choice-card.together { --card-accent: var(--gold); }
+    .choice-card.together:hover { border-color: rgba(184, 134, 11, 0.4); }
+
+    .choice-card.solo { --card-accent: var(--sage); }
+    .choice-card.solo:hover { border-color: rgba(125, 154, 140, 0.4); }
+
+    .choice-card__icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      margin: 0 auto 24px;
+      border: 1px solid var(--border-glass);
+    }
+
+    .choice-card.together .choice-card__icon { background: rgba(184, 134, 11, 0.1); }
+    .choice-card.solo .choice-card__icon { background: rgba(125, 154, 140, 0.1); }
+
+    .choice-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .choice-card__sub {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+
+    .choice-card p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold), #8b6914);
+      color: white;
+      box-shadow: 0 8px 30px var(--gold-glow);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--gold-glow);
+    }
+
+    .btn-sage {
+      background: linear-gradient(135deg, var(--sage), #5a7d6c);
+      color: white;
+      box-shadow: 0 8px 30px var(--sage-glow);
+    }
+
+    .btn-sage:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--sage-glow);
+    }
+
+    /* What It Is Sections */
+    .info-section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 48px;
+    }
+
+    @media (max-width: 700px) {
+      .info-grid { grid-template-columns: 1fr; gap: 32px; }
+    }
+
+    .info-column h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-style: italic;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .info-column.for h3 { color: var(--gold); }
+    .info-column.not h3 { color: var(--primary); }
+
+    .info-column ul {
+      list-style: none;
+    }
+
+    .info-column li {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      padding: 10px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .info-column li:last-child { border-bottom: none; }
+
+    .info-column.for li::before { content: "✓"; color: var(--gold); font-weight: 600; }
+    .info-column.not li::before { content: "✕"; color: var(--primary); font-weight: 600; }
+
+    /* Invite Script */
+    .script-section {
+      padding: 60px 0;
+    }
+
+    .script-box {
+      background: linear-gradient(165deg, rgba(184, 134, 11, 0.06), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(184, 134, 11, 0.2);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+    }
+
+    .script-box h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--gold);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    .script-box > p {
+      text-align: center;
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+
+    .script-content {
+      background: rgba(0,0,0,0.3);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      font-size: 1rem;
+      color: var(--text-main);
+      line-height: 1.8;
+      font-style: italic;
+      position: relative;
+    }
+
+    .script-content::before {
+      content: """;
+      position: absolute;
+      top: 8px;
+      left: 16px;
+      font-family: var(--font-display);
+      font-size: 4rem;
+      color: var(--gold);
+      opacity: 0.2;
+      line-height: 1;
+    }
+
+    .copy-btn {
+      display: block;
+      margin: 20px auto 0;
+      padding: 12px 24px;
+      background: transparent;
+      border: 1px solid rgba(184, 134, 11, 0.3);
+      border-radius: 999px;
+      color: var(--gold);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(184, 134, 11, 0.1);
+      border-color: rgba(184, 134, 11, 0.5);
+    }
+
+    .copy-btn.copied {
+      background: rgba(184, 134, 11, 0.2);
+      color: var(--text-main);
+    }
+
+    /* Solo Alternative */
+    .solo-section {
+      padding: 60px 0;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .solo-box {
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(125, 154, 140, 0.2);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    @media (max-width: 700px) {
+      .solo-box { 
+        grid-template-columns: 1fr; 
+        text-align: center;
+      }
+    }
+
+    .solo-box__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--sage);
+      margin-bottom: 16px;
+    }
+
+    .solo-box__content p {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .solo-box__content ul {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .solo-box__content li {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    @media (max-width: 700px) {
+      .solo-box__content li { justify-content: center; }
+    }
+
+    .solo-box__content li::before {
+      content: "→";
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    .solo-box__cta {
+      text-align: center;
+    }
+
+    .solo-box__cta .btn {
+      margin-bottom: 12px;
+    }
+
+    .solo-box__cta p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0 40px;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text-main); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="main-nav">
+        <a href="/programs.html">Programs</a>
+        <a href="/quiz/">Quizzes</a>
+        <a href="/learn.html">Learn</a>
+        <a href="/shop.html">Shop</a>
+        <a href="/coaching.html">Coaching</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/war/quizzes.html" class="nav-war">⚔️ War Path</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">💛 Couple Repair</div>
+      <h1>Repair work is a <em>two person job</em>.</h1>
+      <p class="hero-sub">I don't fix relationships where only one person shows up. If you want couple repair, I need both people. Period.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- The Boundary -->
+    <div class="boundary-box">
+      <h2>If both people are not in, we are not doing repair.</h2>
+      <p>Couple repair only works when both people participate. If your partner is not willing, that tells you something important — and there's still work you can do. <strong>But it's not couple repair.</strong></p>
+    </div>
+
+    <!-- Choice Section -->
+    <section class="choice-section">
+      <div class="choice-grid">
+        
+        <!-- Both In -->
+        <div class="choice-card together">
+          <div class="choice-card__icon">👫</div>
+          <h3>Book Couple Repair</h3>
+          <div class="choice-card__sub">Both attend. Real-time pattern translation. Repair steps.</div>
+          <p>You both join the call. I help you see each other's patterns, translate what you're actually trying to say, and give you a shared vocabulary for future conflicts. You leave with scripts and a plan.</p>
+          <a href="https://shop.unscarred.site/l/couples-translation" class="btn btn-gold" target="_blank">Book Couple Session</a>
+        </div>
+
+        <!-- Not Both In -->
+        <div class="choice-card solo">
+          <div class="choice-card__icon">🧭</div>
+          <h3>Not Both In Yet?</h3>
+          <div class="choice-card__sub">Stabilize. Get clarity. Influence from a grounded place.</div>
+          <p>If your partner isn't willing yet, you can still get clear on your patterns, stabilize your nervous system, and learn how to invite them in without begging or demanding.</p>
+          <a href="#solo-options" class="btn btn-sage">See Your Options</a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- What Couple Repair Is / Is Not -->
+    <section class="info-section">
+      <div class="info-grid">
+        
+        <div class="info-column for">
+          <h3>✓ Couple Repair is for</h3>
+          <ul>
+            <li>Both people willing to attend</li>
+            <li>Both people willing to hear feedback</li>
+            <li>Both people willing to practice a repair step</li>
+            <li>Partners stuck in loops of misunderstanding</li>
+            <li>Couples who mean well but keep missing each other</li>
+          </ul>
+        </div>
+
+        <div class="info-column not">
+          <h3>✕ Couple Repair is not for</h3>
+          <ul>
+            <li>Convincing a partner to care</li>
+            <li>Diagnosing someone as the villain</li>
+            <li>One person doing all the emotional labor</li>
+            <li>Validating one side against the other</li>
+            <li>Fixing someone who doesn't want to change</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Invite Script -->
+    <section class="script-section">
+      <div class="script-box">
+        <h3>The "Bring Them With You" Script</h3>
+        <p>Not sure how to ask your partner? Use this:</p>
+        <div class="script-content" id="invite-script">
+          I'm not trying to argue or prove you wrong. I want us to get help from someone who can translate what we keep missing. I'm booking a couple repair session. I need you there with me. Are you willing to come with me on [date and time we pick]?
+        </div>
+        <button class="copy-btn" onclick="copyScript()">📋 Copy Script</button>
+      </div>
+    </section>
+
+    <!-- Solo Options -->
+    <section class="solo-section" id="solo-options">
+      <div class="solo-box">
+        <div class="solo-box__content">
+          <h3>If they're not ready yet</h3>
+          <p>I won't pretend to do couple repair when only one person shows up. But that doesn't mean you're stuck. Here's what you can do solo:</p>
+          <ul>
+            <li>Identify the pattern and the stuck loop</li>
+            <li>Clarify the one move that reduces harm</li>
+            <li>Create a clean invite script to bring them in</li>
+            <li>Set a boundary plan if they refuse</li>
+          </ul>
+        </div>
+        <div class="solo-box__cta">
+          <a href="/booking.html" class="btn btn-sage">Book Pattern Clarity Call</a>
+          <p>$47 · 60 minutes · Solo session</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/start.html">Start Here</a>
+        <a href="/coaching.html">All Coaching</a>
+        <a href="/faq.html">FAQ</a>
+      </div>
+      <p>© 2025 Unscarred. Your patterns are not your fault. Learning them is your power.</p>
+    </div>
+  </footer>
+
+<script>
+// Copy script function
+function copyScript() {
+  const script = document.getElementById('invite-script').innerText;
+  navigator.clipboard.writeText(script).then(function() {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = '📋 Copy Script';
+      btn.classList.remove('copied');
+    }, 2000);
+  });
+}
+
+// Mobile navigation toggle
+(function() {
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.getElementById('main-nav');
+  
+  if (toggle && nav) {
+    toggle.addEventListener('click', function() {
+      const isActive = nav.classList.toggle('active');
+      toggle.classList.toggle('active');
+      toggle.setAttribute('aria-expanded', isActive);
+    });
+
+    nav.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && nav.classList.contains('active')) {
+        nav.classList.remove('active');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.focus();
+      }
+    });
+  }
+})();
+</script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="crisisGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#2d8f8f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#crisisGlow)"/>
+  
+  <!-- 7 Days Connected -->
+  <g transform="translate(800, 340)">
+    <!-- 7 day dots -->
+    <circle cx="-180" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="-120" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="-60" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="0" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="60" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="120" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    <circle cx="180" cy="0" r="25" fill="#2d8f8f" fill-opacity="0.3" stroke="#2d8f8f" stroke-width="3"/>
+    
+    <!-- Day numbers -->
+    <text x="-180" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">1</text>
+    <text x="-120" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">2</text>
+    <text x="-60" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">3</text>
+    <text x="0" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">4</text>
+    <text x="60" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">5</text>
+    <text x="120" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">6</text>
+    <text x="180" y="7" font-family="Outfit, sans-serif" font-size="20" font-weight="600" fill="#2d8f8f" text-anchor="middle">7</text>
+    
+    <!-- Connection line -->
+    <line x1="-155" y1="0" x2="155" y2="0" stroke="#2d8f8f" stroke-width="3" stroke-opacity="0.4"/>
+    
+    <!-- Phone/message icon above -->
+    <g transform="translate(0, -100)">
+      <rect x="-30" y="-50" width="60" height="100" rx="10" fill="none" stroke="#2d8f8f" stroke-width="3"/>
+      <rect x="-20" y="-35" width="40" height="60" rx="4" fill="#2d8f8f" fill-opacity="0.15"/>
+      <!-- Message bubbles -->
+      <ellipse cx="-5" cy="-20" rx="15" ry="10" fill="#2d8f8f" fill-opacity="0.4"/>
+      <ellipse cx="5" cy="0" rx="12" ry="8" fill="#2d8f8f" fill-opacity="0.3"/>
+      <ellipse cx="-3" cy="18" rx="14" ry="9" fill="#2d8f8f" fill-opacity="0.2"/>
+    </g>
+    
+    <!-- Urgent pulse rings -->
+    <circle cx="0" cy="-100" r="80" fill="none" stroke="#2d8f8f" stroke-width="1" stroke-opacity="0.2"/>
+    <circle cx="0" cy="-100" r="100" fill="none" stroke="#2d8f8f" stroke-width="1" stroke-opacity="0.1"/>
+  </g>
+  
+  <rect x="60" y="60" width="160" height="45" rx="22" fill="rgba(45,143,143,0.15)" stroke="rgba(45,143,143,0.4)" stroke-width="1"/>
+  <text x="140" y="92" font-family="Outfit, sans-serif" font-size="18" font-weight="500" fill="#2d8f8f" text-anchor="middle" letter-spacing="0.1em">7 DAYS</text>
+  
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#2d8f8f" text-anchor="middle">$27</text>
+  
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Crisis Week</text>
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">EMERGENCY TEXT SUPPORT</text>
+</svg>

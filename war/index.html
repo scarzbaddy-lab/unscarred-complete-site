@@ -174,7 +174,7 @@
       background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
       border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
-      padding: 36px;
+      overflow: hidden;
       text-decoration: none;
       transition: all 0.3s ease;
     }
@@ -185,9 +185,17 @@
       box-shadow: 0 20px 50px rgba(201, 118, 61, 0.15);
     }
 
-    .section-card__icon {
-      font-size: 2.5rem;
-      margin-bottom: 16px;
+    .section-card__image {
+      height: 200px;
+      background-size: contain;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-color: var(--bg-void);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .section-card__content {
+      padding: 28px 32px 32px;
     }
 
     .section-card h3 {
@@ -229,6 +237,10 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 24px;
+    }
+
+    .featured-grid .section-card__image {
+      height: 180px;
     }
 
     @media (max-width: 700px) {
@@ -277,11 +289,12 @@
 
   <header>
     <div class="header-inner">
-      <a href="/index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <a href="../index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
       <nav>
-        <a href="/quizzes/">Quizzes</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/services.html">Services</a>
+        <a href="../quizzes/index.html">Quizzes</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../shop.html">Shop</a>
+        <a href="../services.html">Services</a>
       </nav>
     </div>
   </header>
@@ -305,71 +318,85 @@
 
     <div class="section-cards">
 
-      <a href="/war/war-mapping/" class="section-card">
-        <div class="section-card__icon">🗺️</div>
-        <h3>Map Your War</h3>
-        <p>Find out which war you are fighting inside your own mind and body. Identify your shields, your maps, and the internal rules that run the show.</p>
-        <span class="section-card__btn">Take War Mapping Quizzes</span>
+      <a href="war-mapping/index.html" class="section-card">
+        <div class="section-card__image" style="background-image: url('../thumbnails/thumb-war-mapping.svg');"></div>
+        <div class="section-card__content">
+          <h3>Map Your War</h3>
+          <p>Find out which war you are fighting inside your own mind and body. Identify your shields, your maps, and the internal rules that run the show.</p>
+          <span class="section-card__btn">Take War Mapping Quizzes</span>
+        </div>
       </a>
 
       <div class="featured-grid">
-        <a href="/war/survivor-types/" class="section-card">
-          <div class="section-card__icon">🎭</div>
-          <h3>Your Survivor Role</h3>
-          <p>Judge, Wolf, Ghost, Doll, Hero, Jester, Oracle, Machine. See which mask you built to survive, and what shield it is protecting.</p>
-          <span class="section-card__btn">Find Your Type</span>
+        <a href="survivor-types.html" class="section-card">
+          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-survivor-types.svg');"></div>
+          <div class="section-card__content">
+            <h3>Your Survivor Role</h3>
+            <p>Judge, Wolf, Ghost, Doll, Hero, Jester, Oracle, Machine. See which mask you built to survive, and what shield it is protecting.</p>
+            <span class="section-card__btn">Find Your Type</span>
+          </div>
         </a>
 
-        <a href="/war/patterns/" class="section-card">
-          <div class="section-card__icon">🔍</div>
-          <h3>What Is Actually Happening</h3>
-          <p>Deep breakdowns of BPD, narcissistic shields, autism confusion, fragmented selves, and the patterns that look like personality disorders.</p>
-          <span class="section-card__btn">Explore Patterns</span>
+        <a href="patterns.html" class="section-card">
+          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-war-patterns.svg');"></div>
+          <div class="section-card__content">
+            <h3>What Is Actually Happening</h3>
+            <p>Deep breakdowns of BPD, narcissistic shields, autism confusion, fragmented selves, and the patterns that look like personality disorders.</p>
+            <span class="section-card__btn">Explore Patterns</span>
+          </div>
         </a>
       </div>
 
-      <a href="/tools.html" class="section-card">
-        <div class="section-card__icon">⚡</div>
-        <h3>Stabilize Your System</h3>
-        <p>Grounding scripts, pattern trackers, and small steps that calm war mode. Not healing. Stabilizing. Because you cannot heal while your system is still in crisis.</p>
-        <span class="section-card__btn">Get Tools</span>
+      <a href="../tools.html" class="section-card">
+        <div class="section-card__image" style="background-image: url('../thumbnails/thumb-stabilize-system.svg');"></div>
+        <div class="section-card__content">
+          <h3>Stabilize Your System</h3>
+          <p>Grounding scripts, pattern trackers, and small steps that calm war mode. Not healing. Stabilizing. Because you cannot heal while your system is still in crisis.</p>
+          <span class="section-card__btn">Get Tools</span>
+        </div>
       </a>
 
       <div class="featured-grid">
-        <a href="/war/glossary/" class="section-card">
-          <div class="section-card__icon">📖</div>
-          <h3>Glossary of Terms</h3>
-          <p>Plain language definitions for dissociation, limerence, neurodivergence, trauma bonds, and other terms nobody explains properly.</p>
-          <span class="section-card__btn">Learn the Language</span>
+        <a href="glossary.html" class="section-card">
+          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-glossary.svg');"></div>
+          <div class="section-card__content">
+            <h3>Glossary of Terms</h3>
+            <p>Plain language definitions for dissociation, limerence, neurodivergence, trauma bonds, and other terms nobody explains properly.</p>
+            <span class="section-card__btn">Learn the Language</span>
+          </div>
         </a>
 
-        <a href="/war/strategic-compartmentalization/" class="section-card">
-          <div class="section-card__icon">📦</div>
-          <h3>Strategic Compartmentalization</h3>
-          <p>How to function when your system is in chaos. Contain the fire so you can keep living while you figure things out.</p>
-          <span class="section-card__btn">Learn the Method</span>
+        <a href="strategic-compartmentalization.html" class="section-card">
+          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-compartmentalization.svg');"></div>
+          <div class="section-card__content">
+            <h3>Strategic Compartmentalization</h3>
+            <p>How to function when your system is in chaos. Contain the fire so you can keep living while you figure things out.</p>
+            <span class="section-card__btn">Learn the Method</span>
+          </div>
         </a>
       </div>
 
-      <a href="/services.html" class="section-card">
-        <div class="section-card__icon">🛟</div>
-        <h3>Get Help That Speaks Your Language</h3>
-        <p>Sessions, text support, and workbooks made for people who feel like the problem. No judgment. No "just think positive." Real pattern work.</p>
-        <span class="section-card__btn">See War Programs</span>
+      <a href="../services.html" class="section-card">
+        <div class="section-card__image" style="background-image: url('../thumbnails/thumb-war-services.svg');"></div>
+        <div class="section-card__content">
+          <h3>Get Help That Speaks Your Language</h3>
+          <p>Sessions, text support, and workbooks made for people who feel like the problem. No judgment. No "just think positive." Real pattern work.</p>
+          <span class="section-card__btn">See War Programs</span>
+        </div>
       </a>
 
     </div>
 
     <div class="regular-path-link">
       <p>Not in war mode? Looking for relationship and attachment content?</p>
-      <a href="/index.html">Go to Centered Path</a>
+      <a href="../index.html">Go to Centered Path</a>
     </div>
 
   </div>
 
   <footer>
     <div class="container">
-      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+      <p>© 2025 Unscarred. <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></p>
     </div>
   </footer>
 

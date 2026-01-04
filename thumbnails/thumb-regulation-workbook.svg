@@ -1,0 +1,52 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="purpleRoseGlow" cx="30%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#7c5cbf" stop-opacity="0.2"/>
+      <stop offset="50%" stop-color="#a33b5c" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#purpleRoseGlow)"/>
+  
+  <!-- Wave becoming stable line -->
+  <g transform="translate(800, 350)">
+    <!-- Chaotic wave on left -->
+    <path d="M-300,0 
+             C-280,-60 -260,70 -220,-50 
+             C-180,60 -140,-40 -100,30 
+             C-60,-20 -20,15 20,-8 
+             C60,5 100,-3 140,1 
+             C180,0 220,0 300,0" 
+          fill="none" stroke="#a33b5c" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Glow effect on stable end -->
+    <circle cx="200" cy="0" r="40" fill="#7c5cbf" fill-opacity="0.15"/>
+    <circle cx="200" cy="0" r="8" fill="#7c5cbf"/>
+    
+    <!-- Stability indicator dots -->
+    <circle cx="140" cy="1" r="4" fill="#a33b5c" fill-opacity="0.6"/>
+    <circle cx="180" cy="0" r="4" fill="#a33b5c" fill-opacity="0.8"/>
+    <circle cx="220" cy="0" r="4" fill="#7c5cbf"/>
+    <circle cx="260" cy="0" r="4" fill="#7c5cbf"/>
+    <circle cx="300" cy="0" r="4" fill="#7c5cbf"/>
+  </g>
+  
+  <!-- Notebook accent -->
+  <g transform="translate(800, 350)">
+    <rect x="-350" y="-80" width="16" height="160" rx="2" fill="#a33b5c" fill-opacity="0.3"/>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#a33b5c" text-anchor="middle">$37</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Regulation</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">NERVOUS SYSTEM WORKBOOK</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(163,59,92,0.3)" stroke-width="1"/>
+</svg>

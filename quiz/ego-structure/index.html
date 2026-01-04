@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
   <title>Ego Structure Scan</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root { --bg:#050507; --bg2:#0a0a0f; --card:rgba(18,18,24,0.92); --text:#f5f5f7; --muted:#b8b8c4; --accent:#a33b5c; --accent2:rgba(163,59,92,0.30); --radius:20px; }
     *{box-sizing:border-box;margin:0;padding:0}
@@ -27,6 +27,10 @@
     .results{margin-top:22px;}
     .card{margin-top:12px;padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);} 
     .small{color:var(--muted);font-size:13px;margin-top:6px;}
+    .score-bar-wrap{margin-bottom:14px;}
+    .score-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:var(--muted);}
+    .score-track{height:10px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden;}
+    .score-fill{height:100%;border-radius:999px;transition:width 0.5s ease;}
   </style>
 </head>
 <body>
@@ -69,30 +73,34 @@
     const PATTERNS = {
       grandiose: {
         title: "Grandiose Pattern",
-        happen: "Inflated self, entitlement, dominance, image protection when exposed.",
-        watch: "Defensiveness, blame shifting, superiority coating loneliness.",
-        move: "Replace 'respect me' with 'connect with me.' Practice short accountability.",
+        subtitle: "Your ego protects you by inflating.",
+        explain: "When you feel exposed, criticized, or not enough, your system puffs up. You become the smartest, the most capable, the one who doesn't need anyone. It's not arrogance. It's armor. Underneath is usually a fear of being seen as ordinary or incompetent.",
+        signs: "Getting defensive fast. Rewriting stories so you're not at fault. Feeling disrespected when people don't recognize what you bring. Needing to be right more than connected.",
+        shift: "The move is from 'respect me' to 'connect with me.' Practice short accountability: 'I got defensive. Here's what I can own.' You don't have to be perfect to be valued.",
         script: "I got defensive because I felt exposed. Here's what I can own."
       },
       collapsed: {
         title: "Collapsed Pattern",
-        happen: "Shame, self-erasure, appeasing to stay safe.",
-        watch: "Over-apologizing, disappearing, choosing people who like you small.",
-        move: "Swap 'I'm sorry' with 'Here's what I need.' One boundary per week.",
+        subtitle: "Your ego protects you by shrinking.",
+        explain: "When you feel exposed or criticized, your system collapses inward. You become small, apologetic, invisible. You assume you're the problem before anyone says anything. It's not weakness. It's a survival strategy that kept you safe when being seen was dangerous.",
+        signs: "Over-apologizing. Disappearing after conflict. Tolerating disrespect because speaking up feels dangerous. Feeling behind in life no matter what you accomplish.",
+        shift: "The move is from 'I'm sorry' to 'Here's what I need.' One boundary per week. You're allowed to take up space without earning it first.",
         script: "I'm not available for being talked to like that. I'll talk when it's respectful."
       },
       comp: {
         title: "Compensatory Pattern",
-        happen: "Looks humble or helpful but runs on control/status avoidance of shame.",
-        watch: "Performing goodness, fixing, intellectualizing, resentment brewing.",
-        move: "Trade helpfulness for honesty. Say one true need out loud.",
+        subtitle: "Your ego protects you by performing.",
+        explain: "You look humble, helpful, wise. But underneath, you're controlling the narrative so no one sees the shame. You give so much that no one can call you selfish. You fix others so you don't have to feel your own needs. It's not fake. It's a very clever protection.",
+        signs: "Overgiving, then feeling resentful when it's not appreciated. Performing 'the mature one.' Using logic or spirituality to bypass feelings. Keeping your real needs hidden and calling it independence.",
+        shift: "The move is from helpfulness to honesty. Say one true need out loud. Not what you can offer, but what you actually want.",
         script: "I've been overgiving to avoid feeling needy. What I actually need is..."
       },
       osc: {
-        title: "Oscillating Blend",
-        happen: "Swings between inflation and collapse; intensity then retreat.",
-        watch: "Push-pull, dramatic highs/lows tied to admiration and threat.",
-        move: "Slow swings with regulation and consistent accountability scripts.",
+        title: "Oscillating Pattern",
+        subtitle: "Your ego swings between inflation and collapse.",
+        explain: "You don't stay in one pattern. You swing. One moment you're confident, in control, maybe even grandiose. The next, you're shame-spiraling, wanting to disappear. The swings are often tied to whether you feel admired or threatened. It's exhausting, and it's real.",
+        signs: "Going from 'I'm amazing' to 'I'm nothing' fast. Chasing closeness, then pushing it away. Loving intensity, then getting overwhelmed. Feeling misunderstood, then isolating.",
+        shift: "The move is to slow the swings. Regulation first. Notice when you're inflating or collapsing before it takes over. Consistent accountability scripts help anchor you in the middle.",
         script: "I'm noticing I swing between control and retreat. I want to stay steady. Here's my next honest move."
       }
     };
@@ -106,15 +114,21 @@
       const g = sum('grandiose');
       const c = sum('collapsed');
       const p = sum('comp');
-      const oAvg = QUESTIONS.filter(q=>q.cat==='osc').reduce((s,q)=>s+(state.answers[q.id]||0),0)/7;
-      const maxMain = Math.max(g,c,p);
-      const minMain = Math.min(g,c,p);
-      const oscScore = oAvg + 0.25*(maxMain - minMain);
-      let primary = 'grandiose';
-      let scoreMap = {grandiose:g, collapsed:c, comp:p, osc:oscScore};
-      const mainSorted = [{k:'grandiose',v:g},{k:'collapsed',v:c},{k:'comp',v:p}].sort((a,b)=>b.v-a.v);
-      primary = mainSorted[0].k;
-      if(oscScore > 2.5 || Math.abs(mainSorted[0].v - mainSorted[1].v)/(mainSorted[0].v||1) < 0.1){ primary = 'osc'; }
+      const o = sum('osc'); // oscillating is now scored the same way (out of 28)
+      
+      let scoreMap = {grandiose:g, collapsed:c, comp:p, osc:o};
+      const sorted = [{k:'grandiose',v:g},{k:'collapsed',v:c},{k:'comp',v:p},{k:'osc',v:o}].sort((a,b)=>b.v-a.v);
+      
+      // Primary is simply whoever scored highest
+      let primary = sorted[0].k;
+      
+      // If top two are within 3 points AND oscillating is in top 2, call it oscillating
+      // (This catches genuine oscillators without overriding clear patterns)
+      const gap = sorted[0].v - sorted[1].v;
+      if(gap <= 3 && (sorted[0].k === 'osc' || sorted[1].k === 'osc')) {
+        primary = 'osc';
+      }
+      
       return { primary, scoreMap };
     }
 
@@ -179,15 +193,64 @@
       }
       const {primary, scoreMap} = score();
       const info = PATTERNS[primary];
+      
+      // Calculate percentages for visual bars (max score is 28 for all patterns)
+      const gPct = Math.round((scoreMap.grandiose / 28) * 100);
+      const cPct = Math.round((scoreMap.collapsed / 28) * 100);
+      const pPct = Math.round((scoreMap.comp / 28) * 100);
+      const oPct = Math.round((scoreMap.osc / 28) * 100);
+      
+      // Build score bars HTML
+      const scoreBars = `
+        <div class="score-bar-wrap">
+          <div class="score-label"><span>Grandiose</span><span>${scoreMap.grandiose}/28</span></div>
+          <div class="score-track"><div class="score-fill" style="width:${gPct}%;background:${primary==='grandiose'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-label"><span>Collapsed</span><span>${scoreMap.collapsed}/28</span></div>
+          <div class="score-track"><div class="score-fill" style="width:${cPct}%;background:${primary==='collapsed'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-label"><span>Compensatory</span><span>${scoreMap.comp}/28</span></div>
+          <div class="score-track"><div class="score-fill" style="width:${pPct}%;background:${primary==='comp'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
+        </div>
+        <div class="score-bar-wrap">
+          <div class="score-label"><span>Oscillating</span><span>${scoreMap.osc}/28</span></div>
+          <div class="score-track"><div class="score-fill" style="width:${oPct}%;background:${primary==='osc'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
+        </div>
+      `;
+
       app.innerHTML = `
         <h1>${info.title}</h1>
-        <p class="lead">Primary pattern based on your answers.</p>
-        <div class="card"><strong>What is happening</strong><div class="small">${info.happen}</div></div>
-        <div class="card"><strong>What to watch</strong><div class="small">${info.watch}</div></div>
-        <div class="card"><strong>Move</strong><div class="small">${info.move}</div></div>
-        <div class="card"><strong>Script</strong><div class="small">${info.script}</div></div>
-        <div class="card"><strong>Scores</strong><div class="small">Grandiose ${scoreMap.grandiose||0} � Collapsed ${scoreMap.collapsed||0} � Compensatory ${scoreMap.comp||0} � Oscillating ${scoreMap.osc.toFixed(2)}</div></div>
-        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+        <p class="lead" style="font-size:1.1rem;color:var(--text);margin-bottom:24px;">${info.subtitle}</p>
+        
+        <div class="card">
+          <strong>What this means</strong>
+          <p style="color:var(--muted);margin-top:8px;line-height:1.7;">${info.explain}</p>
+        </div>
+        
+        <div class="card">
+          <strong>Signs this is running</strong>
+          <p style="color:var(--muted);margin-top:8px;line-height:1.7;">${info.signs}</p>
+        </div>
+        
+        <div class="card">
+          <strong>The shift</strong>
+          <p style="color:var(--muted);margin-top:8px;line-height:1.7;">${info.shift}</p>
+        </div>
+        
+        <div class="card" style="background:rgba(163,59,92,0.1);border-color:rgba(163,59,92,0.25);">
+          <strong>A script to try</strong>
+          <p style="color:var(--text);margin-top:8px;font-style:italic;line-height:1.7;">"${info.script}"</p>
+        </div>
+        
+        <div class="card">
+          <strong>Your scores</strong>
+          <p style="color:var(--muted);margin:8px 0 16px;font-size:14px;">Higher scores mean that pattern showed up more in your answers. Most people have a mix.</p>
+          ${scoreBars}
+        </div>
+        
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
           <button class="primary" onclick="renderQuiz()">Back to questions</button>
           <button class="primary" style="background:rgba(255,255,255,0.05);color:var(--text);border:1px solid rgba(255,255,255,0.12);" onclick="resetScan()">Start over</button>
         </div>
