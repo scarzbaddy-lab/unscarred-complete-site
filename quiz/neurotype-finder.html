@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -509,7 +509,7 @@
     <!-- Quiz Section -->
     <div id="quiz-section">
       <div class="quiz-header">
-        <div class="quiz-badge">ðŸ§  Neurodivergence</div>
+        <div class="quiz-badge">🧠 Neurodivergence</div>
         <h1>Is It Trauma, Neurodivergence, Or Both </h1>
         <p class="quiz-lead">You are not "too sensitive" for no reason. Your brain is wired a certain way and your story added a whole extra layer on top. This is your clarity map.</p>
       </div>
@@ -946,7 +946,7 @@
 
   <footer>
     <div class="container">
-      <p>Â© 2025 Unscarred. Not a diagnosis. A clarity map.</p>
+      <p>© 2025 Unscarred. Not a diagnosis. A clarity map.</p>
     </div>
   </footer>
 
@@ -1140,11 +1140,11 @@ You are not making this up. You are not "using neurodivergence as an excuse." Yo
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

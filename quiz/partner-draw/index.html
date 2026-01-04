@@ -1,4 +1,4 @@
-Ôªø<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -190,12 +190,12 @@
             <button class="btn secondary" id="copyBtn" type="button">Copy</button>
             <button class="btn" id="backBtn" type="button">Back to quiz</button>
           </div>
-          <p class="tiny">Optional caption: ‚ÄúI attract this when I am unhealed. I choose something else when I am grown.‚Äù</p>
+          <p class="tiny">Optional caption: ìI attract this when I am unhealed. I choose something else when I am grown.î</p>
         </div>
 
         <div style="margin-top:18px; text-align:center;">
-          <a class="btn" style="background: linear-gradient(180deg, rgba(139,92,246,0.95), rgba(139,92,246,0.72)); color:#fff;" href="/quizzes/relational-needs/">Next: Relational Needs Matrix ‚Üí</a>
-          <a class="btn" style="background:#a33b5c; color:#fff; margin-left:12px;" href="/quizzes/nervous-system/">Nervous System Scan ‚Üí</a>
+          <a class="btn" style="background: linear-gradient(180deg, rgba(139,92,246,0.95), rgba(139,92,246,0.72)); color:#fff;" href="/quizzes/relational-needs/">Next: Relational Needs Matrix ?</a>
+          <a class="btn" style="background:#a33b5c; color:#fff; margin-left:12px;" href="/quizzes/nervous-system/">Nervous System Scan ?</a>
         </div>
 
         <p class="note" style="margin-top:14px;">If you want, add a CTA under this result that links to your Relational Needs Matrix or your Nervous System State quiz.</p>
@@ -273,7 +273,7 @@
           title: "The Authority Loop",
           happen: "You attach to strong personalities, then shrink or fight for position. Power becomes the relationship theme.",
           why: "Power felt like safety, or approval felt like survival. So dominance can feel like stability until it costs you yourself.",
-          cue: "You start monitoring tone, control, status, or who is ‚Äúleading.‚Äù",
+          cue: "You start monitoring tone, control, status, or who is ìleading.î",
           upgrade: "Lead your life, not me.",
           boundary: "Dominance without tenderness is not my partner.",
           blindspot: "You tolerate control because it looks like certainty."
@@ -294,7 +294,7 @@
           cue: "Peace feels like boredom and intensity feels like love.",
           upgrade: "My body wants chaos. My life wants peace.",
           boundary: "If your life is on fire, I am not moving in.",
-          blindspot: "You call activation ‚Äúfate‚Äù instead of a pattern."
+          blindspot: "You call activation ìfateî instead of a pattern."
         },
         equal: {
           title: "The Equal Match Candidate",
@@ -735,11 +735,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

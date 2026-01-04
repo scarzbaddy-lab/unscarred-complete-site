@@ -1,0 +1,712 @@
+====================================================
+UNSCARRED STORE THUMBNAIL GUIDE
+====================================================
+Last Updated: January 4, 2026
+For use with: Payhip Store
+
+====================================================
+BRAND SPECS - ALL THUMBNAILS
+====================================================
+
+DIMENSIONS:
+- Payhip recommended: 1600 x 900px (16:9 landscape)
+- Minimum: 800 x 450px
+- Square option: 1200 x 1200px (if Payhip allows)
+
+COLOR PALETTE:
+- Background dark:     #050507 (deepest black)
+- Background surface:  #0a0a0f (slightly lighter)
+- Primary rose:        #a33b5c (main accent)
+- Secondary purple:    #7c5cbf (alt accent)
+- Accent orange:       #c9763d (warmth/urgency)
+- Teal:               #2d8f8f (free items, calm)
+- Gold:               #b8860b (premium/bundles)
+- Text main:          #ece8e1 (cream white)
+- Text soft:          #9a958c (muted)
+
+FONTS:
+- Headlines: Cormorant Garamond (italic, 600 weight)
+- Subtext: Outfit (300-500 weight, uppercase for tags)
+
+DESIGN ELEMENTS:
+- Subtle radial gradients (rose/purple glow from corners)
+- Thin glass-effect borders (rgba(255,255,255,0.06))
+- Minimal, elegant, dark
+- Icon style: line art or geometric, not cartoon
+- NO stock photos of people
+
+VISUAL SYSTEM BY CATEGORY:
+╔══════════════════════╦════════════════════════════════════════╗
+║ Category             ║ Accent Color / Visual Treatment        ║
+╠══════════════════════╬════════════════════════════════════════╣
+║ Free Resources       ║ Teal (#2d8f8f) + "FREE" badge          ║
+║ Workbooks            ║ Rose (#a33b5c) + notebook icon         ║
+║ Programs             ║ Purple gradient + course icon          ║
+║ Scripts & Tools      ║ Orange (#c9763d) + quote marks         ║
+║ Coaching Sessions    ║ Rose to purple gradient + headset      ║
+║ Text Support         ║ Teal + phone/message icon              ║
+║ Bundles              ║ Gold (#b8860b) + "BUNDLE" ribbon       ║
+╚══════════════════════╩════════════════════════════════════════╝
+
+
+====================================================
+THUMBNAIL SPECS - ALL PRODUCTS
+====================================================
+
+
+----------------------------------------------------
+FREE RESOURCES (Teal accent, "FREE" badge)
+----------------------------------------------------
+
+1. CRISIS TOOLKIT
+   Filename: thumb-crisis-toolkit.png
+   Price: Free
+   
+   Design:
+   - Background: #050507 with teal glow bottom-left
+   - Icon: Lifesaver ring or anchor (line art, teal)
+   - Headline: "Crisis Toolkit" (Cormorant, italic)
+   - Subtext: "Emergency Grounding" (Outfit uppercase)
+   - Badge: "FREE" pill (teal bg, white text)
+   
+   Mood: Urgent but calm, safety net vibe
+
+2. PATTERN TRACKING GUIDE
+   Filename: thumb-pattern-tracking-guide.png
+   Price: Free
+   
+   Design:
+   - Background: #050507 with teal glow top-right
+   - Icon: Connected dots forming pattern (line art)
+   - Headline: "Pattern Tracking" (Cormorant)
+   - Subtext: "Document Reality" (Outfit)
+   - Badge: "FREE" pill
+   
+   Mood: Clarity, seeing clearly
+
+
+----------------------------------------------------
+WORKBOOKS (Rose accent, notebook visual)
+----------------------------------------------------
+
+3. BPD HEALING WORKBOOK
+   Filename: thumb-bpd-healing-workbook.png
+   Price: $37
+   
+   Design:
+   - Background: #050507 with rose glow
+   - Icon: Open notebook with heart/waves
+   - Headline: "BPD Healing" (Cormorant, large)
+   - Subtext: "6-Module Workbook" (Outfit)
+   - Small: "$37" in rose
+   
+   Mood: Compassionate, deep work
+
+4. REGULATION WORKBOOK
+   Filename: thumb-regulation-workbook.png
+   Price: $37
+   
+   Design:
+   - Background: #050507 with soft purple-rose gradient
+   - Icon: Sine wave stabilizing to flat line
+   - Headline: "Regulation" (Cormorant)
+   - Subtext: "Nervous System Workbook" (Outfit)
+   
+   Mood: Calm, grounding, stability
+
+5. COMING HOME WORKBOOK
+   Filename: thumb-coming-home-workbook.png
+   Price: $37
+   
+   Design:
+   - Background: Dark with warm rose glow center
+   - Icon: House silhouette with heart inside
+   - Headline: "Coming Home" (Cormorant)
+   - Subtext: "Return to Yourself" (Outfit)
+   
+   Mood: Warm, safe, arrival
+
+6. FIXER WORKBOOK
+   Filename: thumb-fixer-workbook.png
+   Price: $15
+   
+   Design:
+   - Background: #050507 with orange-rose accent
+   - Icon: Wrench + heart combined
+   - Headline: "The Fixer" (Cormorant)
+   - Subtext: "Survivor Type Workbook" (Outfit, small)
+   - Tag: "SURVIVOR TYPE" (tiny badge)
+   
+   Mood: Productive, caring exhaustion
+
+7. ANALYZER WORKBOOK
+   Filename: thumb-analyzer-workbook.png
+   Price: $15
+   
+   Design:
+   - Background: #050507 with purple accent
+   - Icon: Brain with magnifying glass
+   - Headline: "The Analyzer" (Cormorant)
+   - Subtext: "Survivor Type Workbook"
+   
+   Mood: Intellectual, searching
+
+8. CHAMELEON WORKBOOK
+   Filename: thumb-chameleon-workbook.png
+   Price: $15
+   
+   Design:
+   - Background: Gradient with shifting colors
+   - Icon: Abstract shape-shifter / mirror
+   - Headline: "The Chameleon" (Cormorant)
+   - Subtext: "Survivor Type Workbook"
+   
+   Mood: Adaptive, identity questions
+
+9. PERFORMER WORKBOOK
+   Filename: thumb-performer-workbook.png
+   Price: $15
+   
+   Design:
+   - Background: #050507 with spotlight effect
+   - Icon: Mask (theatrical) or stage lights
+   - Headline: "The Performer" (Cormorant)
+   - Subtext: "Survivor Type Workbook"
+   
+   Mood: Exhausted brightness
+
+10. VANISHER WORKBOOK
+    Filename: thumb-vanisher-workbook.png
+    Price: $15
+    
+    Design:
+    - Background: #050507 fading to transparent edges
+    - Icon: Figure dissolving / fade effect
+    - Headline: "The Vanisher" (Cormorant)
+    - Subtext: "Survivor Type Workbook"
+    
+    Mood: Disappearing, avoidance
+
+11. WARRIOR WORKBOOK
+    Filename: thumb-warrior-workbook.png
+    Price: $15
+    
+    Design:
+    - Background: #050507 with red-orange glow
+    - Icon: Shield or sword (minimal)
+    - Headline: "The Warrior" (Cormorant)
+    - Subtext: "Survivor Type Workbook"
+    
+    Mood: Defensive, protective rage
+
+12. SURVIVOR TYPE BUNDLE (all 6)
+    Filename: thumb-survivor-bundle.png
+    Price: $47
+    
+    Design:
+    - Background: #050507 with gold ribbon corner
+    - Icon: 6 small icons in grid (one for each type)
+    - Headline: "Survivor Types" (Cormorant, large)
+    - Subtext: "Complete 6-Workbook Bundle"
+    - Badge: "SAVE $43" or "BUNDLE" (gold)
+    
+    Mood: Complete, comprehensive
+
+
+----------------------------------------------------
+SCRIPTS & TOOLS (Orange accent, quote marks)
+----------------------------------------------------
+
+13. CONFLICT SCRIPTS PACK
+    Filename: thumb-conflict-scripts.png
+    Price: $29
+    
+    Design:
+    - Background: #050507 with orange glow
+    - Icon: Speech bubbles with text lines
+    - Headline: "Conflict Scripts" (Cormorant)
+    - Subtext: "Word-for-Word Guides" (Outfit)
+    
+    Mood: Practical, direct, useful
+
+14. FA MICRO-DRILLS
+    Filename: thumb-fa-drills.png
+    Price: $37
+    
+    Design:
+    - Background: #050507 with push-pull wave visual
+    - Icon: Two arrows pointing opposite ways
+    - Headline: "FA Micro-Drills" (Cormorant)
+    - Subtext: "Fearful-Avoidant Exercises"
+    
+    Mood: Back-and-forth, small wins
+
+15. DATE BETTER TOOLKIT
+    Filename: thumb-date-better.png
+    Price: $33
+    
+    Design:
+    - Background: #050507 with subtle rose/purple
+    - Icon: Two circles connecting (ven diagram style)
+    - Headline: "Date Better" (Cormorant)
+    - Subtext: "Pattern-Aware Dating Toolkit"
+    
+    Mood: Hope, discernment
+
+
+----------------------------------------------------
+PROGRAMS (Purple gradient, course icon)
+----------------------------------------------------
+
+16. BREAK THE TRAUMA BOND
+    Filename: thumb-break-trauma-bond.png
+    Price: $47
+    
+    Design:
+    - Background: #050507 with breaking chain visual
+    - Icon: Chain link breaking / fracturing
+    - Headline: "Break The Bond" (Cormorant, large)
+    - Subtext: "5-Day Program"
+    
+    Mood: Liberation, breaking free
+
+17. ANXIOUS HEALING PROGRAM
+    Filename: thumb-anxious-healing.png
+    Price: $147
+    
+    Design:
+    - Background: #050507 with calming blue-purple glow
+    - Icon: Spiraling wave becoming calm
+    - Headline: "Anxious Healing" (Cormorant)
+    - Subtext: "4-Week Program + Calls"
+    - Includes indicator: "2 calls included"
+    
+    Mood: Spiraling down to peace
+
+18. AVOIDANT HEALING PROGRAM
+    Filename: thumb-avoidant-healing.png
+    Price: $197
+    
+    Design:
+    - Background: #050507 with distant glow
+    - Icon: Door opening slightly / bridge
+    - Headline: "Avoidant Healing" (Cormorant)
+    - Subtext: "Video + Journaling Program"
+    
+    Mood: Safe distance closing
+
+19. FEARFUL-AVOIDANT TRACK
+    Filename: thumb-fearful-avoidant.png
+    Price: $247
+    
+    Design:
+    - Background: Complex gradient (rose + purple + teal)
+    - Icon: Two paths converging
+    - Headline: "Fearful-Avoidant" (Cormorant)
+    - Subtext: "Complete Healing Track"
+    
+    Mood: Complexity, both sides
+
+20. CENTERED MAN BLUEPRINT
+    Filename: thumb-centered-man.png
+    Price: $197
+    
+    Design:
+    - Background: #050507 with deep blue-purple
+    - Icon: Masculine symbol, centered/grounded
+    - Headline: "Centered Man" (Cormorant)
+    - Subtext: "6-Week Blueprint + Coaching"
+    
+    Mood: Grounded masculine, steady
+
+21. CENTERED WOMAN BLUEPRINT
+    Filename: thumb-centered-woman.png
+    Price: $197
+    
+    Design:
+    - Background: #050507 with rose-to-purple flow
+    - Icon: Feminine symbol, rooted
+    - Headline: "Centered Woman" (Cormorant)
+    - Subtext: "6-Week Blueprint + Coaching"
+    
+    Mood: Rooted feminine, powerful
+
+
+----------------------------------------------------
+SPECIALTY COACHING (Rose-purple gradient, headset)
+----------------------------------------------------
+
+22. NPD COACH - SINGLE SESSION
+    Filename: thumb-npd-coach-single.png
+    Price: $67
+    
+    Design:
+    - Background: #050507 with amber/warning glow
+    - Icon: Mirror with crack / two faces
+    - Headline: "NPD Coaching" (Cormorant)
+    - Subtext: "60-Minute Strategy Session"
+    
+    Mood: Decoding, protection
+
+23. NPD COACH - 4-SESSION BUNDLE
+    Filename: thumb-npd-coach-bundle.png
+    Price: $227
+    
+    Design:
+    - Same as above with gold "4 SESSIONS" badge
+    - Add: "Save $41" text
+    
+24. BPD COACH - SINGLE SESSION
+    Filename: thumb-bpd-coach-single.png
+    Price: $67
+    
+    Design:
+    - Background: #050507 with rose pulse/heartbeat
+    - Icon: Heartbeat line with stability
+    - Headline: "BPD Coaching" (Cormorant)
+    - Subtext: "60-Minute Support Session"
+    
+    Mood: Compassionate, understanding
+
+25. BPD COACH - 4-SESSION BUNDLE
+    Filename: thumb-bpd-coach-bundle.png
+    Price: $227
+    
+    Design:
+    - Same as above with gold bundle badge
+
+26. ADHD BODY DOUBLING
+    Filename: thumb-adhd-body-doubling.png
+    Price: $17
+    
+    Design:
+    - Background: #050507 with energetic dots
+    - Icon: Two figures side by side
+    - Headline: "Body Doubling" (Cormorant)
+    - Subtext: "30-Minute Focus Session"
+    
+    Mood: Companionship, parallel work
+
+27. ADHD COACH - SINGLE SESSION
+    Filename: thumb-adhd-coach-single.png
+    Price: $57
+    
+    Design:
+    - Background: #050507 with scattered-to-focused dots
+    - Icon: Brain with lightning/sparks
+    - Headline: "ADHD Coaching" (Cormorant)
+    - Subtext: "60-Minute Strategy Session"
+    
+    Mood: Energy, focus, strategies
+
+28. ADHD MONTHLY ACCOUNTABILITY
+    Filename: thumb-adhd-monthly.png
+    Price: $147
+    
+    Design:
+    - Background: #050507 with calendar grid fading in
+    - Icon: Calendar + checkmarks
+    - Headline: "ADHD Monthly" (Cormorant)
+    - Subtext: "Ongoing Accountability"
+    
+    Mood: Consistent support
+
+
+----------------------------------------------------
+TRANSLATION SESSIONS (Purple accent, two-way)
+----------------------------------------------------
+
+29. COUPLES TRANSLATION
+    Filename: thumb-couples-translation.png
+    Price: $97
+    
+    Design:
+    - Background: #050507 with two overlapping circles
+    - Icon: Two speech bubbles with translation arrow
+    - Headline: "Couples Translation" (Cormorant)
+    - Subtext: "90-Minute Live Session"
+    
+    Mood: Bridge building, understanding
+
+30. PARENT-CHILD TRANSLATION
+    Filename: thumb-parent-child.png
+    Price: $87
+    
+    Design:
+    - Background: #050507 with connecting lines
+    - Icon: Large circle + small circle connected
+    - Headline: "Parent-Child" (Cormorant)
+    - Subtext: "Translation Session"
+    
+    Mood: Generational, healing
+
+31. SIBLING TRANSLATION
+    Filename: thumb-sibling.png
+    Price: $87
+    
+    Design:
+    - Background: #050507 with parallel lines meeting
+    - Icon: Two equal circles connecting
+    - Headline: "Sibling Translation" (Cormorant)
+    - Subtext: "Pattern Decoding Session"
+    
+    Mood: Shared history, different views
+
+32. ANY RELATIONSHIP TRANSLATION
+    Filename: thumb-relationship-translation.png
+    Price: $87
+    
+    Design:
+    - Background: #050507 with flexible connection visual
+    - Icon: Two abstract shapes meeting
+    - Headline: "Relationship Translation" (Cormorant)
+    - Subtext: "Any Dynamic Decoded"
+    
+    Mood: Flexible, any relationship
+
+
+----------------------------------------------------
+PATTERN TRACKING SESSIONS (Rose accent)
+----------------------------------------------------
+
+33. SINGLE PATTERN TRACKING
+    Filename: thumb-pattern-single.png
+    Price: $47
+    
+    Design:
+    - Background: #050507 with connected dots
+    - Icon: Single pattern node highlighted
+    - Headline: "Pattern Tracking" (Cormorant)
+    - Subtext: "1:1 Analysis Session"
+    
+    Mood: Focused, one issue
+
+34. PATTERN TRACKING BUNDLE (4)
+    Filename: thumb-pattern-bundle.png
+    Price: $157
+    
+    Design:
+    - Same as above with "4 SESSIONS" badge
+    - Gold accent for bundle
+
+35. WEEKLY PATTERN REVIEW
+    Filename: thumb-pattern-weekly.png
+    Price: $127
+    
+    Design:
+    - Background: #050507 with weekly rhythm visual
+    - Icon: Calendar with pattern overlay
+    - Headline: "Weekly Review" (Cormorant)
+    - Subtext: "1-Month Pattern Tracking"
+    
+    Mood: Consistent, ongoing
+
+
+----------------------------------------------------
+TEXT SUPPORT (Teal accent, phone icon)
+----------------------------------------------------
+
+36. SCREENSHOT REVIEW
+    Filename: thumb-screenshot-review.png
+    Price: $33
+    
+    Design:
+    - Background: #050507 with phone screen glow
+    - Icon: Phone with magnifying glass
+    - Headline: "Screenshot Review" (Cormorant)
+    - Subtext: "Decode Any Conversation"
+    
+    Mood: Detective work, clarity
+
+37. CRISIS WEEK
+    Filename: thumb-crisis-week.png
+    Price: $27
+    
+    Design:
+    - Background: #050507 with teal urgent glow
+    - Icon: 7 dots (days) with connection line
+    - Headline: "Crisis Week" (Cormorant)
+    - Subtext: "7 Days Text Support"
+    
+    Mood: Immediate support, safety net
+
+38. PATTERN INTERRUPT
+    Filename: thumb-pattern-interrupt.png
+    Price: $47
+    
+    Design:
+    - Background: #050507 with breaking pattern visual
+    - Icon: Repeating pattern with break point
+    - Headline: "Pattern Interrupt" (Cormorant)
+    - Subtext: "14 Days Active Support"
+    
+    Mood: Intervention, change
+
+39. BEST FRIEND MODE
+    Filename: thumb-best-friend.png
+    Price: $127
+    
+    Design:
+    - Background: #050507 with warm rose glow
+    - Icon: Phone with heart / constant connection
+    - Headline: "Best Friend Mode" (Cormorant)
+    - Subtext: "30 Days On-Call Support"
+    
+    Mood: Always there, trusted
+
+40. VIP INTENSIVE
+    Filename: thumb-vip-intensive.png
+    Price: $197
+    
+    Design:
+    - Background: #050507 with gold + rose premium glow
+    - Icon: Crown or star + phone
+    - Headline: "VIP Intensive" (Cormorant)
+    - Subtext: "Monthly Premium Support"
+    - Badge: "VIP" in gold
+    
+    Mood: Premium, priority access
+
+
+----------------------------------------------------
+MAJOR BUNDLES (Gold accent, ribbon)
+----------------------------------------------------
+
+41. COMPLETE WORKBOOK BUNDLE
+    Filename: thumb-complete-bundle.png
+    Price: $97
+    
+    Design:
+    - Background: #050507 with gold glowing corners
+    - Icon: Stack of notebooks / multiple items
+    - Headline: "Complete Bundle" (Cormorant)
+    - Subtext: "All Workbooks + Tools"
+    - Ribbon: "BEST VALUE" (gold diagonal)
+    
+    Mood: Everything, comprehensive
+
+42. ALL PROGRAMS BUNDLE
+    Filename: thumb-all-programs.png
+    Price: $497
+    
+    Design:
+    - Background: #050507 with premium gold + purple
+    - Icon: Library/collection visual
+    - Headline: "All Programs" (Cormorant, large)
+    - Subtext: "Complete Access Bundle"
+    - Badge: "ULTIMATE" in gold
+    
+    Mood: Ultimate investment
+
+
+====================================================
+CREATION TOOLS RECOMMENDATIONS
+====================================================
+
+FREE OPTIONS:
+- Canva (templates, easy drag-drop)
+- Figma (precise, professional)
+- GIMP (Photoshop alternative)
+
+PAID OPTIONS:
+- Adobe Photoshop
+- Affinity Designer
+- Sketch
+
+AI-ASSISTED:
+- Canva Magic Design
+- Adobe Firefly (for icons/elements)
+- Midjourney (for abstract backgrounds)
+
+ICON RESOURCES:
+- Noun Project (line icons)
+- Feather Icons (minimal)
+- Lucide Icons (open source)
+
+
+====================================================
+QUICK CANVA SETUP TEMPLATE
+====================================================
+
+1. Create new design: 1600 x 900px
+2. Background: #050507 (solid)
+3. Add rectangle overlay: 
+   - Gradient radial, #a33b5c at 0%, transparent at 60%
+   - Position: bottom-left corner
+   - Opacity: 30%
+4. Add icon: centered-left or center
+5. Add headline: Cormorant Garamond, Italic, 600, #ece8e1
+6. Add subtext: Outfit, 400, uppercase, #9a958c
+7. Add price/badge if applicable
+8. Export as PNG
+
+
+====================================================
+BATCH CREATION ORDER (priority)
+====================================================
+
+PHASE 1 - Lead Magnets (FREE items first):
+[ ] Crisis Toolkit
+[ ] Pattern Tracking Guide
+
+PHASE 2 - Core Products:
+[ ] BPD Healing Workbook
+[ ] Regulation Workbook
+[ ] Conflict Scripts Pack
+[ ] Anxious Healing Program
+[ ] Break The Trauma Bond
+
+PHASE 3 - Coaching:
+[ ] NPD Coach (single + bundle)
+[ ] BPD Coach (single + bundle)
+[ ] ADHD Coach (all 3 tiers)
+
+PHASE 4 - Survivor Types:
+[ ] All 6 individual workbooks
+[ ] Survivor Type Bundle
+
+PHASE 5 - Text Support:
+[ ] All 5 text support options
+
+PHASE 6 - Translation & Tracking:
+[ ] All translation sessions
+[ ] All pattern tracking sessions
+
+PHASE 7 - Programs & Bundles:
+[ ] Remaining programs
+[ ] All major bundles
+
+
+====================================================
+FILE NAMING CONVENTION
+====================================================
+
+Format: thumb-[product-slug].png
+
+Examples:
+- thumb-crisis-toolkit.png
+- thumb-bpd-healing.png
+- thumb-npd-coach-single.png
+- thumb-survivor-bundle.png
+
+Keep lowercase, use hyphens, match Payhip URL slugs.
+
+
+====================================================
+FINAL CHECKLIST PER THUMBNAIL
+====================================================
+
+[ ] Correct dimensions (1600 x 900px minimum)
+[ ] Dark background (#050507 base)
+[ ] Appropriate accent color for category
+[ ] Clear headline (Cormorant Garamond)
+[ ] Subtext visible (Outfit)
+[ ] Price or badge if relevant
+[ ] Consistent with brand
+[ ] Saved as PNG (transparent not needed)
+[ ] Filename matches slug
+[ ] Tested preview at small size (still readable?)
+
+
+====================================================
+

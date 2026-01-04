@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸŽ¯</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
     <style>
         :root {
             --bg-void: #050507;
@@ -678,7 +678,7 @@
 
             <!-- Email Capture -->
             <div id="emailCapture" class="email-capture">
-                <div class="badge">ðŸŽ¯ Intent Assessment</div>
+                <div class="badge">🎯 Intent Assessment</div>
                 <h1>Do You <em>Hurt People</em> On Purpose </h1>
                 <p class="lead">Assess your awareness, conscience, and intent. Understand if you hurt people intentionally or accidentally.</p>
                 
@@ -691,7 +691,7 @@
                         </div>
                         <button type="button" class="btn btn-primary" onclick="startQuiz()">Start the Assessment ?</button>
                     </form>
-                    <p class="email-note">ðŸ”’ Your results will be sent to this email. No spam, ever.</p>
+                    <p class="email-note">🔒 Your results will be sent to this email. No spam, ever.</p>
                 </div>
 
                 <div class="quiz-meta">
@@ -731,8 +731,8 @@
 
     <footer>
         <div class="container">
-            <p>Â© 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
-            <p style="margin-top: 8px;"><a href="../index.html">Home</a> Â· <a href="../quizzes.html">More Quizzes</a> Â· <a href="../booking.html">Book a Session</a></p>
+            <p>© 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
+            <p style="margin-top: 8px;"><a href="../index.html">Home</a> · <a href="../quizzes.html">More Quizzes</a> · <a href="../booking.html">Book a Session</a></p>
         </div>
     </footer>
 
@@ -857,13 +857,13 @@
                 <div class="question-text">${question.text}</div>
                 <div class="answer-options">
                     ${question.answers.map((answer, index) => `
-                        <div class="answer-option ${userAnswers[currentQuestion] === answer.value   'selected' : ''}" 
+                        <div class="answer-option ${userAnswers[currentQuestion] === answer.value ? 'selected' : ''}" 
                              onclick="selectAnswer('${answer.value}', this)">
                             <input type="radio" 
                                    id="q${currentQuestion}_${index}" 
                                    name="question${currentQuestion}" 
                                    value="${answer.value}"
-                                   ${userAnswers[currentQuestion] === answer.value   'checked' : ''}>
+                                   ${userAnswers[currentQuestion] === answer.value ? 'checked' : ''}>
                             <div class="answer-radio"></div>
                             <span class="answer-text">${answer.text}</span>
                         </div>
@@ -951,9 +951,9 @@
             const consistencyFlag = (userAnswers[20] === 'd' || userAnswers[21] === 'd');
 
             // Determine categories
-            let nervousSystem = nervousScore <= 3   'offline' : (nervousScore <= 7   'online' : 'overload');
-            let conscience = conscienceScore <= 2   'ethical' : 'nonethical';
-            let intent = intentScore <= 2   'accidental' : 'purposeful';
+            let nervousSystem = nervousScore <= 3 ? 'offline' : (nervousScore <= 7 ? 'online' : 'overload');
+            let conscience = conscienceScore <= 2 ? 'ethical' : 'nonethical';
+            let intent = intentScore <= 2 ? 'accidental' : 'purposeful';
 
             displayResults(nervousSystem, conscience, intent, consistencyFlag, nervousScore, conscienceScore, intentScore);
         }
@@ -976,7 +976,7 @@
         function getResultContent(nervous, conscience, intent, consistency, nScore, cScore, iScore) {
             const key = `${nervous}_${conscience}_${intent}`;
             
-            const nervousBadgeClass = nervous === 'overload'   'overload' : (nervous === 'online'   'online' : 'offline');
+            const nervousBadgeClass = nervous === 'overload' ? 'overload' : (nervous === 'online' ? 'online' : 'offline');
             
             const results = {
                 'overload_ethical_accidental': {
@@ -1028,7 +1028,7 @@
                         </ul>
                         <h3>What You Don't Need</h3>
                         <p>More awareness. You're already seeing too much. You need to learn you can lower the threat level and still be safe.</p>
-                        ${consistency   '<p><em>Note: You have strategic skills in getting what you want from people, but based on your other answers, this appears to be about survival and communication rather than purposeful harm. You may be effective at influence while genuinely not seeing when it crosses into hurt.</em></p>' : ''}
+                        ${consistency ? '<p><em>Note: You have strategic skills in getting what you want from people, but based on your other answers, this appears to be about survival and communication rather than purposeful harm. You may be effective at influence while genuinely not seeing when it crosses into hurt.</em></p>' : ''}
                     `
                 },
                 'online_nonethical_accidental': {
@@ -1046,7 +1046,7 @@
                         </ul>
                         <h3>What You Don't Need</h3>
                         <p>Shame about lacking empathy. If the wiring isn't there, guilting yourself won't build it. But you DO need to know whether you're protecting others from your pattern or expecting them to adapt to it.</p>
-                        ${consistency   '<p><em>Note: Your consistency check confirms strategic awareness - you know how to get what you want from people. The question is whether you can learn to track impact alongside strategy.</em></p>' : ''}
+                        ${consistency ? '<p><em>Note: Your consistency check confirms strategic awareness - you know how to get what you want from people. The question is whether you can learn to track impact alongside strategy.</em></p>' : ''}
                     `
                 },
                 'offline_nonethical_accidental': {
@@ -1255,11 +1255,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

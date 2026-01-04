@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nervous System Regulation Quiz | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
     <style>
         :root {
             --bg: #050a08;
@@ -148,7 +148,7 @@
             const options = scaleContainer.getElementsByClassName('scale-option');
             Array.from(options).forEach(opt => opt.classList.remove('selected'));
             options[value].classList.add('selected');
-            answers[questionIndex] = reverse   (4 - value) : value;
+            answers[questionIndex] = reverse ? (4 - value) : value;
             if (Object.keys(answers).length === questions.length) {
                 document.getElementById('submit-btn').disabled = false;
             }
@@ -168,7 +168,7 @@
                 description = "You have solid regulation capacity. You can recognize when you're getting dysregulated and have tools that actually work. You're not immune to stress, but you can return to baseline relatively quickly. You feel safe in your body most of the time and can stay present even when things are hard.";
                 signs = ["You can self-soothe effectively", "You recognize dysregulation early", "You have a window of tolerance that allows for emotional range", "You can stay present without dissociating", "You feel safe in your body most of the time"];
                 tools = ["Keep practicing the tools that work for you", "Notice what helps you stay regulated and do more of it", "Support others in learning regulation skills", "Maintain boundaries that protect your nervous system"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "ðŸ”„" }];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "🔄" }];
             } else if (percentage <= 50) {
                 level = "Moderate Dysregulation";
                 color = "#f39c12";
@@ -176,7 +176,7 @@
                 description = "You're managing, but it costs you. You can regulate sometimes, but other times you get overwhelmed easily. You might have tools that work occasionally, but they're not consistent. You're aware of your nervous system states but don't always have the capacity to shift them.";
                 signs = ["You regulate inconsistently", "Small stressors can tip you over", "You sometimes dissociate or shut down", "You swing between feeling too much and feeling nothing", "You're working on regulation but it's hard"];
                 tools = ["Build a regulation toolkit with multiple options", "Practice nervous system exercises daily, not just in crisis", "Learn to recognize early signs of dysregulation", "Work with a trauma-informed therapist or somatic practitioner", "Reduce unnecessary stressors where possible"];
-                ctas = [{ text: "Breath Reset Tool", url: "../learn/breath-reset.html", icon: "ðŸŒ¬ï¸" }, { text: "When You Shut Down Guide", url: "../learn/when-you-shut-down.html", icon: "ðŸ“–" }];
+                ctas = [{ text: "Breath Reset Tool", url: "../learn/breath-reset.html", icon: "🌬️" }, { text: "When You Shut Down Guide", url: "../learn/when-you-shut-down.html", icon: "📖" }];
             } else if (percentage <= 75) {
                 level = "Significant Dysregulation";
                 color = "#e67e22";
@@ -184,7 +184,7 @@
                 description = "You're in survival mode more often than not. Your nervous system is stuck in threat response - hypervigilant, reactive, or shut down. Regulation feels nearly impossible, and the tools people suggest don't seem to work. You're exhausted from trying to function while your body is constantly screaming danger.";
                 signs = ["You're constantly on edge or numb", "Sleep is difficult or non-restorative", "You startle easily and feel unsafe", "Small things feel overwhelming", "You can't calm yourself down when upset", "Physical symptoms are constant"];
                 tools = ["Work with a trauma specialist who understands nervous system work", "Start with body-based practices (somatic therapy, yoga, breathwork)", "Focus on safety and stabilization before processing trauma", "Build micro-moments of regulation throughout the day", "Consider nervous system support (therapy, bodywork, medication)", "Reduce demands on yourself while you build capacity"];
-                ctas = [{ text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }, { text: "Safety Signals Guide", url: "../learn/safety-signals.html", icon: "ðŸ“–" }];
+                ctas = [{ text: "Book a Session", url: "../booking.html", icon: "📅" }, { text: "Safety Signals Guide", url: "../learn/safety-signals.html", icon: "📖" }];
             } else {
                 level = "Severe Dysregulation";
                 color = "#e74c3c";
@@ -192,7 +192,7 @@
                 description = "You're living in a constant state of survival activation. Your nervous system is so overwhelmed that regulation feels impossible. You might feel numb, panicked, or alternate between the two. You're exhausted but can't rest. Your body doesn't feel safe, and you've likely been this way for so long you don't remember what regulated feels like.";
                 signs = ["You're in constant survival mode", "You can't calm down or you can't feel anything at all", "Sleep is severely disrupted", "You experience frequent physical symptoms", "Dissociation or panic are regular experiences", "You feel trapped in your own nervous system", "Basic functioning feels impossible"];
                 tools = ["Seek immediate support from a trauma specialist", "Consider intensive treatment (IOP, PHP, or residential if needed)", "Work with both therapy and medical support", "Start with the smallest possible regulation practices", "Focus on external stabilization (safety, sleep, basic needs)", "Give yourself permission to do less while you heal", "Build a support system that understands nervous system trauma"];
-                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "🆘" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "💗" }];
+                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "??" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "??" }];
             }
             const resultContent = document.getElementById('result-content');
             resultContent.innerHTML = `
@@ -227,11 +227,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

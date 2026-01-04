@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" class="h-full">
  <head>
   <meta charset="UTF-8">
@@ -156,11 +156,11 @@ render();
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

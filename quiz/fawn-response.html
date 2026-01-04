@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fawn Response Assessment | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
     <style>
         :root {
             --bg: #0a0808;
@@ -166,28 +166,28 @@
                 title = "You're Not Trapped In Fawning";
                 description = "You maintain healthy boundaries and can prioritize yourself without excessive guilt. You're able to say no, identify your needs, and show up authentically without constantly monitoring others' reactions. This doesn't mean you're selfish - it means you've learned that your worth isn't contingent on being useful.";
                 patterns = ["You can say no without guilt spirals", "You prioritize yourself when needed", "You don't feel responsible for others' emotions", "You can be authentic without performing", "Your self-worth isn't tied to usefulness"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "ðŸ”„" }];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "🔄" }];
             } else if (percentage <= 50) {
                 level = "Moderate Fawning";
                 color = "#f39c12";
                 title = "You're Starting To Notice The Pattern";
                 description = "You fawn sometimes, but you're beginning to catch it. You might people-please in certain situations or with specific people, but you're not completely consumed by it. You're aware of the cost and working to build boundaries, even if it's inconsistent.";
                 patterns = ["You notice when you're abandoning yourself", "You sometimes prioritize others over yourself", "You're working on saying no but it's hard", "You feel guilty about self-care but do it anyway", "You're learning to separate care from caretaking"];
-                ctas = [{ text: "Clean Ask Guide", url: "../learn/clean-ask.html", icon: "ðŸ“–" }, { text: "Centered For Women Guide", url: "../learn/centered-women.html", icon: "ðŸ“–" }];
+                ctas = [{ text: "Clean Ask Guide", url: "../learn/clean-ask.html", icon: "📖" }, { text: "Centered For Women Guide", url: "../learn/centered-women.html", icon: "📖" }];
             } else if (percentage <= 75) {
                 level = "Significant Fawning";
                 color = "#e67e22";
                 title = "Fawning Is Your Default Survival Mode";
                 description = "You've learned that keeping others happy keeps you safe. You anticipate needs, manage emotions, and abandon yourself to avoid conflict or rejection. You're so practiced at this that you might not even know what you actually want anymore. This isn't weakness - it's a survival adaptation that worked once but now costs you your sense of self.";
                 patterns = ["You consistently put others first", "You struggle to know your own needs", "You feel responsible for managing emotions", "You avoid conflict through self-abandonment", "You perform versions of yourself to stay safe", "Your worth feels tied to being useful"];
-                ctas = [{ text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "💗" }];
+                ctas = [{ text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "??" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "??" }];
             } else {
                 level = "Severe Fawning";
                 color = "#e74c3c";
                 title = "You've Disappeared Into Fawning";
                 description = "Fawning isn't something you do - it's who you've become. You've lost touch with your authentic self because survival required you to become whatever was needed. You exist in a constant state of hypervigilance, scanning for disapproval and adjusting yourself accordingly. You're exhausted from performing, but you don't know how to stop. This level of self-abandonment isn't about being 'too nice' - it's a trauma response that's kept you trapped.";
                 patterns = ["You don't know who you are outside of pleasing others", "You can't tolerate others being upset with you", "You feel like a burden when you have needs", "You're exhausted from constant self-monitoring", "You've lost your sense of self entirely", "You can't imagine prioritizing yourself", "Your nervous system is stuck in appease mode"];
-                ctas = [{ text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }, { text: "Coercive Control Quiz", url: "coercive-control.html", icon: "ðŸš©" }];
+                ctas = [{ text: "Book a Session", url: "../booking.html", icon: "📅" }, { text: "Coercive Control Quiz", url: "coercive-control.html", icon: "🚩" }];
             }
             const resultContent = document.getElementById('result-content');
             resultContent.innerHTML = `
@@ -224,11 +224,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

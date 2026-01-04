@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Am I Abusive  Self-Assessment | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
     <style>
         :root {
             --bg: #0a0a0a;
@@ -153,28 +153,28 @@
                 title = "You're Not Exhibiting Abusive Patterns";
                 description = "Based on your answers, you're not engaging in controlling or abusive behaviors. This doesn't mean your relationship is perfect or that you never make mistakes, but the specific patterns of abuse, control, isolation, intimidation, and degradation aren't present in how you show up. The fact that you're here asking this question shows you care about how your behavior impacts others.";
                 nextSteps = ["Continue reflecting on your behavior in relationships", "Stay open to feedback from your partner", "Work on healthy communication and conflict resolution", "Maintain respect for your partner's autonomy", "Keep checking in with yourself about power dynamics"];
-                ctas = [{ text: "Repair After Conflict Guide", url: "../learn/repair-after-conflict.html", icon: "ðŸ“–" }, { text: "Centered Leadership Guide", url: "../learn/centered-leadership.html", icon: "ðŸ“–" }];
+                ctas = [{ text: "Repair After Conflict Guide", url: "../learn/repair-after-conflict.html", icon: "📖" }, { text: "Centered Leadership Guide", url: "../learn/centered-leadership.html", icon: "📖" }];
             } else if (score <= 5) {
                 level = "Concerning Patterns Present";
                 color = "#f39c12";
                 title = "You're Showing Some Controlling Behaviors";
                 description = "You're engaging in some behaviors that are concerning. They might feel justified in the moment, or you might rationalize them as care or protection, but they're controlling. This is your wake-up call. You're not irredeemable, but you need to take this seriously before it escalates.";
                 nextSteps = ["Stop the behaviors you identified immediately", "Talk to your partner about what you've realized", "Seek individual therapy focused on relationship patterns", "Take full accountability without expecting praise", "Give your partner space to process and respond", "Learn about healthy boundaries and autonomy"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" }, { text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }];
             } else if (score <= 12) {
                 level = "Abusive Behavior Pattern";
                 color = "#e67e22";
                 title = "You Are Being Abusive";
                 description = "This is hard to hear, but you need to hear it: you're engaging in abusive behavior. This isn't about being a bad person, it's about the choices you're making that harm your partner. These patterns don't get better on their own. They escalate. You can change this, but only if you stop making excuses and start taking real accountability.";
                 nextSteps = ["Acknowledge the full impact of your behavior", "Stop blaming your partner or circumstances", "Seek specialized help (batterer intervention program or therapist experienced with abusive behavior)", "Give your partner autonomy to make their own choices, including leaving", "Do not expect immediate forgiveness or reconciliation", "Commit to long-term behavior change, not quick fixes"];
-                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "ðŸ†˜" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "ðŸŽ­" }];
+                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "🆘" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }];
             } else {
                 level = "Severe Abusive Pattern";
                 color = "#e74c3c";
                 title = "You Are Engaging In Severe Abuse";
                 description = "You are deeply entrenched in abusive behavior. Your partner is living under systematic control, and the damage you're causing is profound. This level of abuse doesn't happen by accident. You need to understand: this is your responsibility to change. Not your partner's job to fix you.";
                 nextSteps = ["Remove yourself from the relationship to prevent further harm", "Enter a batterer intervention program immediately", "Work with a therapist who specializes in abusive behavior", "Take full accountability for the harm you've caused", "Do not attempt to reconcile until you've done significant work", "Understand your partner may never want contact again, and that's their right"];
-                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "ðŸ†˜" }];
+                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "🆘" }];
             }
             const resultContent = document.getElementById('result-content');
             resultContent.innerHTML = `
@@ -211,11 +211,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

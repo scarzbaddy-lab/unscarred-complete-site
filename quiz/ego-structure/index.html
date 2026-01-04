@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -123,13 +123,13 @@
         <h1>Ego Structure Scan</h1>
         <p class="lead">Not a diagnosis. This maps how your ego protects you when exposed, criticized, rejected, or not enough.</p>
         <div class="pillrow">
-          <span class="pill">Grandiose · Inflated / Dominance</span>
-          <span class="pill">Collapsed · Shame / Disappear</span>
-          <span class="pill">Compensatory · Helpful / Controlling</span>
-          <span class="pill">Oscillating · Swings</span>
+          <span class="pill">Grandiose � Inflated / Dominance</span>
+          <span class="pill">Collapsed � Shame / Disappear</span>
+          <span class="pill">Compensatory � Helpful / Controlling</span>
+          <span class="pill">Oscillating � Swings</span>
         </div>
         <button class="primary" onclick="startScan()">Start the scan</button>
-        <p class="small">28 statements · ~6 minutes</p>
+        <p class="small">28 statements � ~6 minutes</p>
       `;
     }
 
@@ -137,7 +137,7 @@
       const blocks = QUESTIONS.map(q=>{
         const val = state.answers[q.id];
         const choices = SCALE.map((label,idx)=>{
-          const sel = val===idx   'selected' : '';
+          const sel = val===idx ? 'selected' : '';
           return `<div class="choice ${sel}" data-q="${q.id}" data-v="${idx}">${label}</div>`;
         }).join('');
         return `<div class="question"><div class="q-head"><div>Q${q.id}</div><div style="flex:1">${q.text}</div></div><div class="choices">${choices}</div></div>`;
@@ -186,7 +186,7 @@
         <div class="card"><strong>What to watch</strong><div class="small">${info.watch}</div></div>
         <div class="card"><strong>Move</strong><div class="small">${info.move}</div></div>
         <div class="card"><strong>Script</strong><div class="small">${info.script}</div></div>
-        <div class="card"><strong>Scores</strong><div class="small">Grandiose ${scoreMap.grandiose||0} · Collapsed ${scoreMap.collapsed||0} · Compensatory ${scoreMap.comp||0} · Oscillating ${scoreMap.osc.toFixed(2)}</div></div>
+        <div class="card"><strong>Scores</strong><div class="small">Grandiose ${scoreMap.grandiose||0} � Collapsed ${scoreMap.collapsed||0} � Compensatory ${scoreMap.comp||0} � Oscillating ${scoreMap.osc.toFixed(2)}</div></div>
         <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
           <button class="primary" onclick="renderQuiz()">Back to questions</button>
           <button class="primary" style="background:rgba(255,255,255,0.05);color:var(--text);border:1px solid rgba(255,255,255,0.12);" onclick="resetScan()">Start over</button>

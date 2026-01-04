@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1245,7 +1245,7 @@
         blurb: "You are always tracking where you stand in people's lives. A small change in effort, invitations, or energy sends you into comparison and mental scorekeeping. You are not just sensitive, you are watching for the moment you get quietly phased out."
       },
       "ground-zero": {
-        title: "Ground Zero Â· All Fronts War",
+        title: "Ground Zero · All Fronts War",
         blurb: "You are not fighting one war, you are living inside all of them. Abandonment, exposure, entrapment, erasure, your system can fire every alarm at once and switch masks faster than most people switch outfits. You do not fit one box, you are running an entire nervous system city that nobody ever taught you how to run."
       }
     };
@@ -1631,11 +1631,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

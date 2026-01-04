@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -68,8 +68,8 @@
     
     .check-list, .x-list { list-style: none; padding: 0; margin: 0; }
     .check-list li, .x-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-soft); }
-    .check-list li::before { content: 'âœ“'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
-    .x-list li::before { content: 'âœ•'; position: absolute; left: 0; color: var(--primary); font-weight: 600; }
+    .check-list li::before { content: '✓'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
+    .x-list li::before { content: '✕'; position: absolute; left: 0; color: var(--primary); font-weight: 600; }
     
     .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
     .module-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px; }
@@ -77,7 +77,7 @@
     .module-card h3 { font-size: var(--text-lg); margin-bottom: 16px; }
     .module-card ul { list-style: none; padding: 0; margin: 0; }
     .module-card li { font-size: var(--text-sm); color: var(--text-dim); margin-bottom: 8px; padding-left: 16px; position: relative; }
-    .module-card li::before { content: 'â€¢'; position: absolute; left: 0; color: var(--sage); }
+    .module-card li::before { content: '•'; position: absolute; left: 0; color: var(--sage); }
     
     .wins-timeline { position: relative; padding-left: 32px; }
     .wins-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--sage), var(--avoidant)); border-radius: 999px; }
@@ -104,7 +104,7 @@
     .faq-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
     .faq-item summary { padding: 20px; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
     .faq-item summary::after { content: '+'; font-size: var(--text-xl); color: var(--text-dim); }
-    .faq-item[open] summary::after { content: 'âˆ’'; }
+    .faq-item[open] summary::after { content: '−'; }
     .faq-item p { padding: 0 20px 20px; font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
     
     .enroll-card { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 48px; text-align: center; }
@@ -114,7 +114,7 @@
     .enroll-card__includes h4 { font-size: var(--text-sm); margin-bottom: 12px; }
     .enroll-card__includes ul { list-style: none; padding: 0; margin: 0; }
     .enroll-card__includes li { padding: 4px 0; font-size: var(--text-sm); color: var(--text-soft); }
-    .enroll-card__includes li::before { content: 'âœ“ '; color: var(--sage); }
+    .enroll-card__includes li::before { content: '✓ '; color: var(--sage); }
     .enroll-card__alt { margin-top: 16px; font-size: var(--text-sm); color: var(--text-dim); }
     .enroll-card__alt a { color: var(--primary); }
     
@@ -374,7 +374,7 @@
 
   <footer>
     <div class="container">
-      <p>Â© 2025 Unscarred. <a href="../blog.html">Blog</a> Â· <a href="../services.html">Services</a></p>
+      <p>© 2025 Unscarred. <a href="../blog.html">Blog</a> · <a href="../services.html">Services</a></p>
     </div>
   </footer>
 </body>

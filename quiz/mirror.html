@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
   <style>
     :root {
       --bg-deep: #0c0b0f;
@@ -685,15 +685,15 @@
       <p class="intro-lead">This is not a personality test. We map five dimensions of how your nervous system fights for safety in love.</p>
       
       <div class="intro-dimensions">
-        <div class="dim-pill"><span>??ï¸</span> War your system fights</div>
-        <div class="dim-pill"><span>ðŸŽ­</span> Mask you wear</div>
-        <div class="dim-pill"><span>🔗</span> Attachment pattern</div>
-        <div class="dim-pill"><span>ðŸ’ž</span> Partner draw</div>
-        <div class="dim-pill"><span>ðŸ§ </span> Neurotype lens</div>
+        <div class="dim-pill"><span>??️</span> War your system fights</div>
+        <div class="dim-pill"><span>🎭</span> Mask you wear</div>
+        <div class="dim-pill"><span>??</span> Attachment pattern</div>
+        <div class="dim-pill"><span>💞</span> Partner draw</div>
+        <div class="dim-pill"><span>🧠</span> Neurotype lens</div>
       </div>
       
       <button class="btn-start" id="startBtn">Begin the Quiz ?</button>
-      <p class="intro-note">32 questions Â· 8-10 minutes Â· No email required</p>
+      <p class="intro-note">32 questions · 8-10 minutes · No email required</p>
     </div>
 
     <!-- Quiz -->
@@ -1389,7 +1389,7 @@
         ${q.subtext   `<div class="question-subtext">${q.subtext}</div>` : ''}
         <div class="options-list">
           ${q.options.map(opt => `
-            <button class="option-btn ${selected === opt.letter   'selected' : ''}" data-letter="${opt.letter}">
+            <button class="option-btn ${selected === opt.letter ? 'selected' : ''}" data-letter="${opt.letter}">
               <span class="option-letter">${opt.letter}</span>
               <span class="option-text">${opt.text}</span>
             </button>
@@ -1403,7 +1403,7 @@
 
       backBtn.disabled = current === 0;
       nextBtn.disabled = !selected;
-      nextBtn.textContent = current === questions.length - 1   'See Results' : 'Next ?';
+      nextBtn.textContent = current === questions.length - 1 ? 'See Results' : 'Next ?';
     }
 
     function selectAnswer(letter) {
@@ -1523,7 +1523,7 @@
         </div>
 
         <div class="result-card result-card--nervous">
-          <h3>ðŸ§  Nervous System Note</h3>
+          <h3>🧠 Nervous System Note</h3>
           <p>${cluster.nervous}</p>
         </div>
 
@@ -1533,7 +1533,7 @@
         </div>
 
         <div class="result-card result-card--avoid">
-          <h3>ðŸš« What to Avoid</h3>
+          <h3>🚫 What to Avoid</h3>
           <ul>${cluster.avoid.map(i => `<li>${i}</li>`).join('')}</ul>
         </div>
 
@@ -1566,11 +1566,11 @@
         <div class="result-card dimensions-card">
           <h3>Your Full Profile</h3>
           <div class="dim-grid">
-            <span class="dim-tag">??ï¸ ${labelWar(r.topWar[0])} War</span>
-            <span class="dim-tag">ðŸŽ­ ${labelMask(r.topMask[0])} Mask</span>
-            <span class="dim-tag">🔗 ${labelAttach(r.topAttach[0])} Attachment</span>
-            <span class="dim-tag">ðŸ’ž ${labelPartner(r.topPartner[0])} Partner Draw</span>
-            <span class="dim-tag">ðŸ§  ${labelNeuro(r.topNeuro[0])}</span>
+            <span class="dim-tag">??️ ${labelWar(r.topWar[0])} War</span>
+            <span class="dim-tag">🎭 ${labelMask(r.topMask[0])} Mask</span>
+            <span class="dim-tag">?? ${labelAttach(r.topAttach[0])} Attachment</span>
+            <span class="dim-tag">💞 ${labelPartner(r.topPartner[0])} Partner Draw</span>
+            <span class="dim-tag">🧠 ${labelNeuro(r.topNeuro[0])}</span>
           </div>
         </div>
 
@@ -1591,11 +1591,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

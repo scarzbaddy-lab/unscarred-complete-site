@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Coercive Control Recognition Quiz | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
     <style>
         :root {
             --bg: #0a0a0a;
@@ -336,8 +336,8 @@
                     "Your body does not stay on alert around this person every day"
                 ];
                 ctas = [
-                    { text: "Take the gaslight quiz", url: "gaslight-recognition.html", icon: "ðŸ’¡" },
-                    { text: "Look at nervous system work", url: "dysregulation.html", icon: "ðŸ§ " }
+                    { text: "Take the gaslight quiz", url: "gaslight-recognition.html", icon: "💡" },
+                    { text: "Look at nervous system work", url: "dysregulation.html", icon: "🧠" }
                 ];
             } else if (score <= 5) {
                 level = "Your body is picking up early control patterns";
@@ -352,8 +352,8 @@
                     "Part of you wonders if you are just too sensitive"
                 ];
                 ctas = [
-                    { text: "Read about gaslighting patterns", url: "gaslight-recognition.html", icon: "ðŸ“–" },
-                    { text: "Save this page for later", url: "#top", icon: "ðŸ“Ž" }
+                    { text: "Read about gaslighting patterns", url: "gaslight-recognition.html", icon: "📖" },
+                    { text: "Save this page for later", url: "#top", icon: "📎" }
                 ];
             } else if (score <= 12) {
                 level = "Active coercive control pattern";
@@ -368,8 +368,8 @@
                     "You feel tired, confused and on edge most of the time"
                 ];
                 ctas = [
-                    { text: "Look at nervous system signs", url: "dysregulation.html", icon: "ðŸ§©" },
-                    { text: "See trauma bond patterns", url: "/war/war-mapping/", icon: "ðŸ•¸ï¸" }
+                    { text: "Look at nervous system signs", url: "dysregulation.html", icon: "🧩" },
+                    { text: "See trauma bond patterns", url: "/war/war-mapping/", icon: "🕸️" }
                 ];
             } else {
                 level = "Severe coercive control";
@@ -384,8 +384,8 @@
                     "You do not fully recognize yourself anymore"
                 ];
                 ctas = [
-                    { text: "Talk through a safety plan", url: "../booking.html", icon: "ðŸ›¡ï¸" },
-                    { text: "Open the gaslight quiz next", url: "gaslight-recognition.html", icon: "ðŸ’¡" }
+                    { text: "Talk through a safety plan", url: "../booking.html", icon: "🛡️" },
+                    { text: "Open the gaslight quiz next", url: "gaslight-recognition.html", icon: "💡" }
                 ];
             }
 
@@ -442,11 +442,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

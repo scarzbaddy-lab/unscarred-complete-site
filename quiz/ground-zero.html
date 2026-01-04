@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ground Zero Assessment | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
     <style>
         :root {
             --bg: #0a0a0a;
@@ -110,21 +110,21 @@
                 description: "You exist in the impossible space between desperate and distant. You chase connection because abandonment feels lethal, but closeness triggers suffocation. You're stuck in a pattern where the thing you want most is also the thing you can't tolerate. Traditional attachment theory calls you 'disorganized' but that doesn't capture it - you're not chaotic, you're experiencing two completely valid but opposing survival strategies at once.",
                 patterns: ["You pursue connection and then panic when you get it", "You feel abandoned even when you're the one creating distance", "You can't trust that closeness is safe, but isolation feels like death", "Your nervous system is stuck between protest and shutdown", "You experience intense longing and intense fear simultaneously"],
                 core: "You're not broken - you're holding two conflicting attachment patterns that both saved you once but now trap you in an exhausting loop.",
-                ctas: [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" }, { text: "Push Pull Guide", url: "/learn/push-pull.html", icon: "📖" }, { text: "Anxious Healing Program", url: "/program/anxious-healing.html", icon: "💗" }]
+                ctas: [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" }, { text: "Push Pull Guide", url: "/learn/push-pull.html", icon: "??" }, { text: "Anxious Healing Program", url: "/program/anxious-healing.html", icon: "??" }]
             },
             "trauma-neuro": {
                 name: "The Trauma-Neurodivergence Intersection",
                 description: "You can't separate your trauma responses from your neurodivergent traits because they've been woven together since the beginning. Did you develop hypervigilance from trauma or is that your ADHD pattern recognition  Is the sensory overwhelm autism or PTSD  The systems were never separate, so healing them separately doesn't work. You need an approach that sees the whole convergence, not just the parts.",
                 patterns: ["You can't tell where trauma ends and neurodivergence begins", "Your coping mechanisms serve both trauma and neurodivergent needs", "Traditional trauma therapy ignores your neurodivergent nervous system", "Neurodivergent support often bypasses your trauma adaptations", "Your experience doesn't fit cleanly into either framework"],
                 core: "Your trauma and neurodivergence aren't separate issues - they're an integrated system that requires integrated healing.",
-                ctas: [{ text: "Dysregulation Quiz", url: "dysregulation.html", icon: "ðŸ§ " }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "ðŸŽ­" }, { text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }]
+                ctas: [{ text: "Dysregulation Quiz", url: "dysregulation.html", icon: "🧠" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }]
             },
             "high-masking": {
                 name: "The High-Masking Convergence",
                 description: "You're drowning in plain sight. You've learned to perform competence so well that no one sees the cost. You show up, stay functional, and keep everything together on the outside while collapsing on the inside. The mask works too well - people don't believe you're struggling because you've trained yourself to hide it perfectly. This isn't strength, it's survival, and it's costing you everything.",
                 patterns: ["You appear high-functioning while barely holding on", "No one takes your struggles seriously because you 'seem fine'", "You can't stop performing even when you want to", "The gap between your external and internal reality is enormous", "You've mastered hiding the cost of survival"],
                 core: "Your ability to mask isn't a superpower - it's a trauma adaptation that's keeping you isolated in your pain.",
-                ctas: [{ text: "Fawn Response Quiz", url: "fawn-response.html", icon: "ðŸ¦Œ" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "ðŸŽ­" }, { text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }]
+                ctas: [{ text: "Fawn Response Quiz", url: "fawn-response.html", icon: "🦌" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }]
             }
         };
         let answers = {};
@@ -155,7 +155,7 @@
         function calculateResults() {
             const scores = {};
             Object.values(answers).forEach(convergence => { scores[convergence] = (scores[convergence] || 0) + 1; });
-            const dominantConvergence = Object.keys(scores).reduce((a, b) => scores[a] > scores[b]   a : b);
+            const dominantConvergence = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
             displayResults(dominantConvergence);
         }
         function displayResults(convergence) {
@@ -197,11 +197,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -503,7 +503,7 @@
 
     <div id="quiz-section">
       <div class="quiz-header">
-        <div class="quiz-badge">ðŸ§Š Shutdown Types</div>
+        <div class="quiz-badge">🧊 Shutdown Types</div>
         <h1>Is This Freeze, Autistic Shutdown, Or Fawn Mode </h1>
         <p class="quiz-lead">You shut down and everybody has an opinion about why. Anxiety. "Attitude." Avoidant. "You just do not care." This quiz helps you sort between trauma freeze, autistic shutdown, and fawn response so you can stop calling everything "me being dramatic."</p>
       </div>
@@ -874,7 +874,7 @@
 
   <footer>
     <div class="container">
-      <p>Â© 2025 Unscarred. Understanding your system, not pathologizing it.</p>
+      <p>© 2025 Unscarred. Understanding your system, not pathologizing it.</p>
     </div>
   </footer>
 
@@ -1090,11 +1090,11 @@ Sometimes you freeze from relational threat. Sometimes you shut down from overlo
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

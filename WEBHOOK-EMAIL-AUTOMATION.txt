@@ -1,0 +1,417 @@
+====================================================
+PAYHIP WEBHOOK & EMAIL AUTOMATION SETUP
+====================================================
+By Scar Kade | unscarred.site
+Last Updated: January 4, 2026
+
+
+====================================================
+OVERVIEW
+====================================================
+
+When someone purchases a product, you want:
+1. Instant notification to YOU (so you know to prep for coaching calls)
+2. Welcome email to CUSTOMER (personalized by product type)
+3. Optional: Add to email list, CRM, calendar, etc.
+
+Payhip supports webhooks that fire immediately after purchase.
+
+
+====================================================
+OPTION 1: ZAPIER (EASIEST - RECOMMENDED)
+====================================================
+
+COST: Free tier (100 tasks/month) or $20/month for more
+
+SETUP STEPS:
+
+1. Create Zapier Account
+   - Go to https://zapier.com
+   - Sign up free
+
+2. Create New Zap: "Payhip Purchase → Email"
+   
+   TRIGGER:
+   - Search for "Payhip"
+   - Select "New Sale" as trigger
+   - Connect your Payhip account (you'll get an API key)
+   
+   ACTION 1 - ALERT EMAIL TO YOU:
+   - Add "Gmail" or "Email by Zapier"
+   - Send email to: your@email.com
+   - Subject: "New Purchase: {{Product Name}}"
+   - Body: 
+     """
+     New sale on Unscarred!
+     
+     Product: {{Product Name}}
+     Customer: {{Buyer Email}}
+     Amount: {{Sale Total}}
+     Time: {{Sale Date}}
+     
+     If this is a coaching session, reach out within 24 hours.
+     """
+
+   ACTION 2 - WELCOME EMAIL TO CUSTOMER:
+   - Add another Gmail/Email action
+   - Send to: {{Buyer Email}}
+   - (See Welcome Email Templates below)
+
+3. Turn On Your Zap
+
+
+====================================================
+OPTION 2: MAKE.COM (MORE POWERFUL)
+====================================================
+
+COST: Free tier (1000 ops/month) or $9/month
+
+Better for:
+- Complex routing (different emails per product)
+- Connecting to more tools
+- Higher volume
+
+SETUP:
+
+1. Create Make.com Account
+   - Go to https://make.com
+
+2. Create Scenario:
+   
+   MODULE 1: Payhip Webhook
+   - Add "Webhooks" → "Custom Webhook"
+   - Copy the webhook URL Make gives you
+   - Go to Payhip → Settings → Webhooks
+   - Paste the URL
+   - Select "sale.completed" event
+   
+   MODULE 2: Router (for different products)
+   - Add Router module
+   - Create routes based on product name/ID
+   
+   MODULE 3: Email for Each Route
+   - Route 1: Coaching purchases → coaching welcome email
+   - Route 2: Workbooks → workbook welcome email
+   - Route 3: Free downloads → lead nurture email
+
+
+====================================================
+OPTION 3: PAYHIP BUILT-IN + EMAIL SERVICE
+====================================================
+
+Use Payhip's native features + Mailchimp/ConvertKit/Mailerlite
+
+SETUP:
+
+1. In Payhip → Settings → Integrations
+   - Connect Mailchimp, ConvertKit, or other
+   - Enable "Add buyer to list after purchase"
+
+2. In Your Email Service:
+   - Create automation: "When tag added → Send welcome email"
+   - Create different tags per product category
+   - Build welcome sequences
+
+Payhip Tags You Can Use:
+- Product name
+- Product category
+- Bundle vs single
+- Price tier
+
+
+====================================================
+PAYHIP WEBHOOK CONFIGURATION
+====================================================
+
+1. Go to: https://payhip.com → Settings → Webhooks
+
+2. Add Webhook URL:
+   - For Zapier: Use the webhook URL from your Zap
+   - For Make: Use the webhook URL from your scenario
+   - For custom: Your server endpoint
+
+3. Select Events:
+   [x] sale.completed      (purchase made)
+   [x] sale.refunded       (for your records)
+   [ ] subscription.active (if you add subscriptions)
+
+4. Webhook Payload (what you'll receive):
+   {
+     "event": "sale.completed",
+     "data": {
+       "buyer_email": "customer@email.com",
+       "buyer_name": "Jane Doe",
+       "product_name": "Anxious Healing Program",
+       "product_id": "abc123",
+       "sale_price": "147.00",
+       "currency": "USD",
+       "sale_date": "2026-01-04T14:30:00Z",
+       "download_url": "https://payhip.com/..."
+     }
+   }
+
+
+====================================================
+WELCOME EMAIL TEMPLATES BY PRODUCT TYPE
+====================================================
+
+----- COACHING SESSIONS (NPD/BPD/ADHD) -----
+
+Subject: You're in — here's what happens next
+
+Body:
+"""
+Hey {{Buyer Name}},
+
+You just booked coaching with me. That took guts.
+
+Here's what happens now:
+
+1. BOOK YOUR CALL
+   Click here to choose a time: https://calendar.app.google/aySTQmpfSfueAD6V9
+   
+2. BEFORE WE TALK
+   Think about the ONE pattern or situation you most want clarity on. We'll start there.
+   
+3. WHAT TO EXPECT
+   No judgment. No platitudes. Just pattern reading and honest talk.
+
+If you bought a bundle, you'll schedule each session as we go. No rush.
+
+Reply to this email if you have questions.
+
+— Scar
+
+
+P.S. If you're in crisis before our call, grab my free Crisis Toolkit: 
+https://shop.unscarred.site/l/crisis-toolkit
+"""
+
+
+----- PROGRAMS (Anxious/Avoidant/FA/Centered) -----
+
+Subject: Your program is ready — start here
+
+Body:
+"""
+Hey {{Buyer Name}},
+
+Welcome to {{Product Name}}.
+
+Here's how to get the most out of this:
+
+1. ACCESS YOUR PROGRAM
+   Log in to Payhip: https://payhip.com/auth/login
+   Go to "My Purchases" → Click on {{Product Name}}
+   
+2. START WITH MODULE 1
+   Don't skip ahead. The work builds on itself.
+   
+3. YOUR INCLUDED CALLS
+   This program includes coaching calls. Book when you're ready:
+   https://calendar.app.google/aySTQmpfSfueAD6V9
+   
+4. GO AT YOUR PACE
+   There's no deadline. This is lifetime access.
+
+The patterns you're working on didn't form overnight. They won't heal overnight either. But they WILL heal.
+
+— Scar
+
+
+Questions? Just reply to this email.
+"""
+
+
+----- WORKBOOKS -----
+
+Subject: Your workbook is ready to download
+
+Body:
+"""
+Hey {{Buyer Name}},
+
+Your {{Product Name}} is ready.
+
+DOWNLOAD HERE:
+Log in at https://payhip.com/auth/login → My Purchases → Download
+
+HOW TO USE IT:
+- Print it out (yes, really — handwriting helps it land)
+- Do one section at a time
+- Take breaks when it gets heavy
+- Your included 30-min call is for questions: https://calendar.app.google/aySTQmpfSfueAD6V9
+
+This work isn't about fixing you. It's about finally understanding why you do what you do.
+
+— Scar
+
+
+Having trouble downloading? Reply to this email.
+"""
+
+
+----- TEXT SUPPORT (Crisis Week, Best Friend Mode, etc.) -----
+
+Subject: I'm here — how to reach me
+
+Body:
+"""
+Hey {{Buyer Name}},
+
+Your {{Product Name}} access is now active.
+
+HOW THIS WORKS:
+
+📱 TEXT ME AT: [Your number/Signal]
+   Or DM me on Instagram: @unscarred
+
+⏰ RESPONSE TIME:
+   I check messages 2-3x daily.
+   For urgent needs, text "URGENT" and I'll prioritize.
+
+📝 WHAT TO SEND ME:
+   - Screenshots you need decoded
+   - Situations you're stuck in
+   - Pattern checks ("Is this a red flag or am I projecting?")
+   - Vent if you need to — I'll help you sort it
+
+This is YOUR time. Use it however helps you most.
+
+— Scar
+
+
+If you haven't heard from me in 24 hours, email me: [your email]
+"""
+
+
+----- FREE DOWNLOADS -----
+
+Subject: Your free toolkit is ready
+
+Body:
+"""
+Hey,
+
+Here's your {{Product Name}}: [Download Link]
+
+This is yours to keep. Print it, save it, share it.
+
+While you're here:
+
+📚 Free Learning:
+   → Pattern tracking basics: unscarred.site/learn/
+   → All my quizzes: unscarred.site/quizzes/
+   
+🛠 When You're Ready for More:
+   → Workbooks & Programs: shop.unscarred.site
+
+Your patterns aren't your fault. Learning them is your power.
+
+— Scar
+"""
+
+
+====================================================
+PRODUCT-SPECIFIC ROUTING LOGIC
+====================================================
+
+Set up IF/THEN rules in Zapier or Make:
+
+IF product name CONTAINS "Coach" OR "Session"
+   → Send Coaching Welcome Email
+   → Notify Scar immediately (text or priority email)
+   → Add "Coaching Client" tag
+
+IF product name CONTAINS "Program" OR "Healing"
+   → Send Program Welcome Email
+   → Add "Program Student" tag
+   → Start 7-day check-in sequence
+
+IF product name CONTAINS "Workbook" OR "Scripts" OR "Drills"
+   → Send Workbook Welcome Email
+   → Add "Workbook Buyer" tag
+
+IF product price = 0 OR product name CONTAINS "Free" OR "Toolkit"
+   → Send Free Download Email
+   → Add "Lead" tag
+   → Start nurture sequence
+
+IF product name CONTAINS "Text" OR "Crisis Week" OR "Best Friend"
+   → Send Text Support Email
+   → Add "Active Text Client" tag
+   → Add to active client tracking sheet
+
+
+====================================================
+AUTOMATION SEQUENCE IDEAS
+====================================================
+
+----- 7-DAY PROGRAM CHECK-IN -----
+
+Day 1: Welcome email (immediate)
+Day 3: "How's Module 1 going?" + tip
+Day 7: "You should be finishing Module 2 — here's what to watch for"
+Day 14: "Halfway check — book your call if you haven't"
+Day 21: "The hardest part is coming up — you've got this"
+Day 30: "How are you feeling? Reply and let me know"
+
+
+----- COACHING FOLLOW-UP -----
+
+After call: "Here's what we talked about" (manual, personalized)
+Day 3: "How's the homework going?"
+Day 7: "Ready to book your next session?" (if bundle)
+
+
+----- FREE LEAD NURTURE -----
+
+Day 0: Download link
+Day 2: "Did you try [specific technique from toolkit]?"
+Day 5: "Here's a pattern most people miss..."
+Day 10: "When you're ready: here's what working together looks like"
+
+
+====================================================
+QUICK SETUP CHECKLIST
+====================================================
+
+[ ] Choose your tool (Zapier recommended for simplicity)
+[ ] Set up Payhip webhook in Settings
+[ ] Create welcome email templates in your email tool
+[ ] Test with a $0 product or test purchase
+[ ] Verify you receive notification
+[ ] Verify customer receives welcome email
+[ ] Set up product routing (if using Make)
+[ ] Add follow-up sequences (optional)
+
+
+====================================================
+TOOLS & LINKS
+====================================================
+
+Zapier: https://zapier.com
+Make.com: https://make.com
+Payhip Webhooks: Payhip Dashboard → Settings → Webhooks
+
+Email Services (pick one):
+- Mailerlite: https://mailerlite.com (free up to 1000 subs)
+- ConvertKit: https://convertkit.com (free up to 1000 subs)
+- Mailchimp: https://mailchimp.com (free up to 500 subs)
+
+Calendar Booking: https://calendar.app.google/aySTQmpfSfueAD6V9
+
+
+====================================================
+NOTES
+====================================================
+
+- Test EVERYTHING before going live
+- Zapier free tier = 100 tasks/month (1 purchase = ~2-3 tasks)
+- Make free tier = 1000 operations/month (more generous)
+- For high volume, consider ConvertKit/Mailerlite native integration
+- Payhip sends its own receipt email — your welcome email is ADDITIONAL
+- Always include download/access instructions in welcome emails
+- For coaching, YOU should reach out within 24 hours
+
+

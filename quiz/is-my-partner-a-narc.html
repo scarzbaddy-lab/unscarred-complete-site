@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸŽ­</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎭</text></svg>">
     <style>
         :root {
             --bg-void: #050507;
@@ -380,11 +380,11 @@
         <div class="quiz-container">
             <!-- Intro -->
             <div id="introSection">
-                <p class="clickbait-hook">ðŸ”¥ The quiz everyone's taking...</p>
+                <p class="clickbait-hook">🔥 The quiz everyone's taking...</p>
                 <h1>Is My Partner a Narc </h1>
                 <p class="subtitle">Answer 10 quick questions and find out the truth about your relationship.</p>
                 
-                <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 24px;">10 questions Â· 3 minutes Â· You might be surprised</p>
+                <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 24px;">10 questions · 3 minutes · You might be surprised</p>
 
                 <button class="btn btn-primary" onclick="startQuiz()">Find Out Now ?</button>
             </div>
@@ -521,8 +521,8 @@
                     <div class="question-text">${q.text}</div>
                     <div class="options-grid">
                         ${q.options.map((opt, i) => `
-                            <div class="option ${answers[currentQuestion] === opt.value   'selected' : ''}" onclick="selectAnswer(${opt.value}, this)">
-                                <input type="radio" name="q${currentQuestion}" value="${opt.value}" ${answers[currentQuestion] === opt.value   'checked' : ''}>
+                            <div class="option ${answers[currentQuestion] === opt.value ? 'selected' : ''}" onclick="selectAnswer(${opt.value}, this)">
+                                <input type="radio" name="q${currentQuestion}" value="${opt.value}" ${answers[currentQuestion] === opt.value ? 'checked' : ''}>
                                 <span>${opt.text}</span>
                             </div>
                         `).join('')}
@@ -550,7 +550,7 @@
         function updateButtons() {
             document.getElementById('prevBtn').disabled = currentQuestion === 0;
             document.getElementById('nextBtn').disabled = answers[currentQuestion] === undefined;
-            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1   'See Results' : 'Next';
+            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next';
         }
 
         function nextQuestion() {
@@ -589,7 +589,7 @@
                         <p>Based on your answers, your partner shows normal human imperfections, not narcissistic patterns.</p>
                         
                         <div class="truth-reveal">
-                            <h3>ðŸŽ¯ Here's the thing nobody tells you:</h3>
+                            <h3>🎯 Here's the thing nobody tells you:</h3>
                             <p><strong>I don't believe in "narcs."</strong></p>
                             <p>Not the way the internet uses the word. The label has become a trash can where we throw everyone who hurts us, disappoints us, or fails to meet our needs.</p>
                             <p>Actual Narcissistic Personality Disorder is rare. What's common is wounded people hurting other wounded people in predictable patterns.</p>
@@ -632,7 +632,7 @@
                         <p>Your answers show some difficult dynamics, but probably not what the internet calls "narcissism."</p>
                         
                         <div class="truth-reveal">
-                            <h3>ðŸŽ¯ Let me tell you what I actually believe:</h3>
+                            <h3>🎯 Let me tell you what I actually believe:</h3>
                             <p><strong>The "narc" label is mostly useless.</strong></p>
                             <p>It's become internet shorthand for "person who hurt me" and it stops us from doing the real work: understanding patterns.</p>
                             <p>What you're describing sounds like someone who is <strong>wounded, immature, or lacking skills</strong> - not a clinical narcissist.</p>
@@ -672,7 +672,7 @@
                         <p>Your answers indicate significant harmful patterns. But I still won't call them a "narc."</p>
                         
                         <div class="truth-reveal">
-                            <h3>ðŸŽ¯ Why I refuse to use that label:</h3>
+                            <h3>🎯 Why I refuse to use that label:</h3>
                             <p>Calling someone a narcissist is <strong>intellectually lazy</strong>. It's a way to stop thinking.</p>
                             <p>What matters isn't the LABEL. What matters is:</p>
                             <ul>
@@ -721,7 +721,7 @@
                         <p>Your answers describe severe, pervasive harmful patterns. But I'm still not going to call them a narcissist.</p>
                         
                         <div class="truth-reveal">
-                            <h3>ðŸŽ¯ Here's why the label doesn't matter:</h3>
+                            <h3>🎯 Here's why the label doesn't matter:</h3>
                             <p>Whether they're a "narcissist" or not changes <strong>absolutely nothing</strong> about what you need to do.</p>
                             <p>You're describing someone who:</p>
                             <ul>
@@ -769,11 +769,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

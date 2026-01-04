@@ -1,10 +1,10 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaslighting Recognition Quiz | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
     <style>
         :root {
             --bg-void: #0a0708;
@@ -512,8 +512,8 @@
                     "You feel clear-headed after conversations"
                 ];
                 nextSteps = [
-                    { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" },
-                    { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "ðŸ”„" }
+                    { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??️" },
+                    { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "🔄" }
                 ];
             } else if (score <= 7) {
                 level = "Early Warning Signs";
@@ -528,8 +528,8 @@
                     "You feel confused after some conversations"
                 ];
                 nextSteps = [
-                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??ï¸" },
-                    { text: "Learn: Safety Signals", url: "../learn/safety-signals.html", icon: "ðŸ“–" }
+                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??️" },
+                    { text: "Learn: Safety Signals", url: "../learn/safety-signals.html", icon: "📖" }
                 ];
             } else if (score <= 14) {
                 level = "Active Gaslighting";
@@ -545,9 +545,9 @@
                     "You apologize for things you didn't do"
                 ];
                 nextSteps = [
-                    { text: "Break The Bond Program", url: "../program/break-the-bond.html", icon: "ðŸ”“" },
-                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??ï¸" },
-                    { text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }
+                    { text: "Break The Bond Program", url: "../program/break-the-bond.html", icon: "🔓" },
+                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??️" },
+                    { text: "Book a Session", url: "../booking.html", icon: "📅" }
                 ];
             } else {
                 level = "Severe Gaslighting";
@@ -565,9 +565,9 @@
                     "You blame yourself for everything"
                 ];
                 nextSteps = [
-                    { text: "Break The Bond Program", url: "../program/break-the-bond.html", icon: "ðŸ”“" },
-                    { text: "Book Emergency Session", url: "../booking.html", icon: "ðŸ†˜" },
-                    { text: "Safety Planning Guide", url: "../learn/safety-signals.html", icon: "ðŸ›¡ï¸" }
+                    { text: "Break The Bond Program", url: "../program/break-the-bond.html", icon: "🔓" },
+                    { text: "Book Emergency Session", url: "../booking.html", icon: "🆘" },
+                    { text: "Safety Planning Guide", url: "../learn/safety-signals.html", icon: "🛡️" }
                 ];
             }
             
@@ -629,11 +629,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;

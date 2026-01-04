@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>???</text></svg>">
     <style>
         :root {
             --bg-void: #050507;
@@ -520,7 +520,7 @@
         }
 
         .result-content li::before {
-            content: "→";
+            content: "?";
             position: absolute;
             left: 0;
             color: var(--accent);
@@ -681,7 +681,7 @@
     <header>
         <div class="header-inner">
             <a href="../homepage.html" class="logo">un<span>scarred</span></a>
-    <a href="/quizzes/" class="back-link">← All Quizzes</a>
+    <a href="/quizzes/" class="back-link">? All Quizzes</a>
         </div>
     </header>
 
@@ -690,7 +690,7 @@
 
             <!-- Email Capture -->
             <div id="emailCapture" class="email-capture">
-                <div class="badge">🛡️ Protection Mapping</div>
+                <div class="badge">??? Protection Mapping</div>
                 <h1>How Does Your Nervous System <em>Protect</em> You </h1>
                 <p class="lead">This isn't a personality test. It maps how your system defends you, whether you see the harm you cause, and what that means for your healing path.</p>
                 
@@ -703,9 +703,9 @@
                         <div style="position: absolute; left: -5000px;" aria-hidden="true">
                             <input type="text" name="b_XXXXX_XXXXX" tabindex="-1" value="">
                         </div>
-                        <button type="button" class="btn btn-primary" onclick="startQuiz()">Start the Assessment →</button>
+                        <button type="button" class="btn btn-primary" onclick="startQuiz()">Start the Assessment ?</button>
                     </form>
-                    <p class="email-note">🔒 Your results will be sent to this email. No spam, ever.</p>
+                    <p class="email-note">?? Your results will be sent to this email. No spam, ever.</p>
                 </div>
 
                 <div class="quiz-meta">
@@ -731,8 +731,8 @@
                     <div id="questionsContainer"></div>
                     
                     <div class="quiz-nav">
-                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>← Previous</button>
-                        <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>? Previous</button>
+                        <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Next ?</button>
                     </div>
                 </div>
             </div>
@@ -745,8 +745,8 @@
 
     <footer>
         <div class="container">
-            <p>© 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
-            <p style="margin-top: 8px;"><a href="../homepage.html">Home</a> · <a href="/quizzes/">More Quizzes</a> · <a href="../booking.html">Book a Session</a></p>
+            <p>� 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
+            <p style="margin-top: 8px;"><a href="../homepage.html">Home</a> � <a href="/quizzes/">More Quizzes</a> � <a href="../booking.html">Book a Session</a></p>
         </div>
     </footer>
 
@@ -1038,13 +1038,13 @@
                 <div class="question-text">${question.text}</div>
                 <div class="answer-options">
                     ${question.answers.map((answer, index) => `
-                        <div class="answer-option ${userAnswers[currentQuestion] === answer.value   'selected' : ''}" 
+                        <div class="answer-option ${userAnswers[currentQuestion] === answer.value ? 'selected' : ''}" 
                              onclick="selectAnswer('${answer.value}', this)">
                             <input type="radio" 
                                    id="q${currentQuestion}_${index}" 
                                    name="question${currentQuestion}" 
                                    value="${answer.value}"
-                                   ${userAnswers[currentQuestion] === answer.value   'checked' : ''}>
+                                   ${userAnswers[currentQuestion] === answer.value ? 'checked' : ''}>
                             <div class="answer-radio"></div>
                             <span class="answer-text">${answer.text}</span>
                         </div>
@@ -1080,9 +1080,9 @@
             document.getElementById('nextBtn').disabled = !userAnswers[currentQuestion];
             
             if (currentQuestion === questions.length - 1 && userAnswers[currentQuestion]) {
-                document.getElementById('nextBtn').textContent = 'See My Results →';
+                document.getElementById('nextBtn').textContent = 'See My Results ?';
             } else {
-                document.getElementById('nextBtn').textContent = 'Next →';
+                document.getElementById('nextBtn').textContent = 'Next ?';
             }
         }
 
@@ -1132,9 +1132,9 @@
             const consistencyFlag = (userAnswers[20] === 'd' || userAnswers[21] === 'd');
 
             // Determine categories
-            let nervousSystem = nervousScore <= 3   'offline' : (nervousScore <= 7   'online' : 'overload');
-            let conscience = conscienceScore <= 2   'ethical' : 'nonethical';
-            let intent = intentScore <= 2   'accidental' : 'purposeful';
+            let nervousSystem = nervousScore <= 3 ? 'offline' : (nervousScore <= 7 ? 'online' : 'overload');
+            let conscience = conscienceScore <= 2 ? 'ethical' : 'nonethical';
+            let intent = intentScore <= 2 ? 'accidental' : 'purposeful';
 
             displayResults(nervousSystem, conscience, intent, consistencyFlag, nervousScore, conscienceScore, intentScore);
         }
@@ -1157,7 +1157,7 @@
         function getResultContent(nervous, conscience, intent, consistency, nScore, cScore, iScore) {
             const key = `${nervous}_${conscience}_${intent}`;
             
-            const nervousBadgeClass = nervous === 'overload'   'overload' : (nervous === 'online'   'online' : 'offline');
+            const nervousBadgeClass = nervous === 'overload' ? 'overload' : (nervous === 'online' ? 'online' : 'offline');
             
             const results = {
                 'overload_ethical_accidental': {
@@ -1209,7 +1209,7 @@
                         </ul>
                         <h3>What You Don't Need</h3>
                         <p>More awareness. You're already seeing too much. You need to learn you can lower the threat level and still be safe.</p>
-                        ${consistency   '<p><em>Note: You have strategic skills in getting what you want from people, but based on your other answers, this appears to be about survival and communication rather than purposeful harm. You may be effective at influence while genuinely not seeing when it crosses into hurt.</em></p>' : ''}
+                        ${consistency ? '<p><em>Note: You have strategic skills in getting what you want from people, but based on your other answers, this appears to be about survival and communication rather than purposeful harm. You may be effective at influence while genuinely not seeing when it crosses into hurt.</em></p>' : ''}
                     `
                 },
                 'online_nonethical_accidental': {
@@ -1227,7 +1227,7 @@
                         </ul>
                         <h3>What You Don't Need</h3>
                         <p>Shame about lacking empathy. If the wiring isn't there, guilting yourself won't build it. But you DO need to know whether you're protecting others from your pattern or expecting them to adapt to it.</p>
-                        ${consistency   '<p><em>Note: Your consistency check confirms strategic awareness - you know how to get what you want from people. The question is whether you can learn to track impact alongside strategy.</em></p>' : ''}
+                        ${consistency ? '<p><em>Note: Your consistency check confirms strategic awareness - you know how to get what you want from people. The question is whether you can learn to track impact alongside strategy.</em></p>' : ''}
                     `
                 },
                 'offline_nonethical_accidental': {
@@ -1403,7 +1403,7 @@
                     </div>
                     
                     <div class="result-cta">
-                        <a href="../full-profile-quiz.html" class="cta-button">Take the Complete Pattern Assessment →</a>
+                        <a href="../full-profile-quiz.html" class="cta-button">Take the Complete Pattern Assessment ?</a>
                         <button class="retake-btn" onclick="retakeQuiz()">Retake This Quiz</button>
                     </div>
                 </div>
@@ -1441,11 +1441,11 @@
   if(window.location.protocol !== "file:") return;
   var path = window.location.pathname.replace(/\\/g,"/");
   var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
-  var root = match   match[1] : null;
+  var root = match ? match[1] : null;
   if(!root) return;
   var afterRoot = path.slice(root.length);
   var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
   document.querySelectorAll('a[href^="/"]').forEach(function(a){
     var href = a.getAttribute('href');
     if(!href || href.startsWith('//')) return;
