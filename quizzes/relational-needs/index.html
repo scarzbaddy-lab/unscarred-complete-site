@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Relational Needs Matrix | Unscarred</title>
+  <meta name="description" content="What you actually need vs what you ask for. Get top needs, ask-pattern, and repair scripts." />
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#050507;
+      --bg2:#0a0a0f;
+      --text:#f5f5f7;
+      --muted:#b8b8c4;
+      --border:rgba(255,255,255,0.10);
+      --accent:#a33b5c;
+      --shadow:0 18px 60px rgba(0,0,0,0.55);
+      --shadow2:0 10px 30px rgba(0,0,0,0.4);
+      --radius:22px;
+      --max:980px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"Outfit",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 500px at 18% 8%, rgba(163,59,92,0.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 16%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(700px 500px at 30% 92%, rgba(163,59,92,0.10), transparent 55%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      min-height:100vh;
+    }
+    .wrap{width:100%;margin:0 auto;padding:28px 18px 72px}
+    .container{max-width:var(--max);margin:0 auto}
+    .hero{
+      padding:28px 22px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(18,18,24,0.78), rgba(10,10,15,0.55));
+      box-shadow:var(--shadow);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      letter-spacing:0.01em;
+      font-size:clamp(34px,5vw,54px);
+      line-height:1.02;
+    }
+    .sub{margin:0;color:var(--muted);font-size:16px;line-height:1.65;max-width:70ch}
+    .navRow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap}
+    .btn{
+      appearance:none;
+      border:1px solid rgba(163,59,92,0.55);
+      background:linear-gradient(180deg, rgba(163,59,92,0.95), rgba(163,59,92,0.72));
+      color:#fff;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      font-size:12px;
+      cursor:pointer;
+      box-shadow:0 14px 40px rgba(163,59,92,0.22);
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .btn.secondary{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      color:var(--text);
+      box-shadow:none;
+    }
+    .quiz{
+      margin-top:18px;
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(18,18,24,0.70), rgba(10,10,15,0.55));
+      box-shadow:var(--shadow2);
+    }
+    .q{
+      padding:14px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.02);
+      margin-bottom:12px;
+    }
+    .qTop{display:flex;gap:10px;align-items:baseline}
+    .qNum{color:var(--muted);font-size:12px;letter-spacing:0.10em;text-transform:uppercase;min-width:92px}
+    .qText{flex:1;font-size:15px;line-height:1.5}
+    .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:12px}
+    .choice{
+      display:flex;align-items:center;justify-content:center;
+      padding:10px;border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.02);
+      cursor:pointer;user-select:none;text-align:center;
+      font-size:13px;color:var(--text);
+      min-height:44px;
+    }
+    .choice input{display:none}
+    .choice.selected{
+      border-color:rgba(163,59,92,0.75);
+      background:rgba(163,59,92,0.10);
+      box-shadow:0 14px 34px rgba(163,59,92,0.14);
+    }
+    .footerRow{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    .note{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+    .error{
+      display:none;margin:12px 0 0;padding:12px;border-radius:14px;
+      border:1px solid rgba(163,59,92,0.45);
+      background:rgba(163,59,92,0.10);
+      font-size:13px;line-height:1.5;
+    }
+    .results{
+      display:none;margin-top:18px;padding:18px;border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,0.10);
+      background:linear-gradient(180deg, rgba(18,18,24,0.82), rgba(10,10,15,0.60));
+      box-shadow:var(--shadow);
+    }
+    .kicker{font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+    .resultTitle{
+      margin:0 0 10px;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      font-size:clamp(26px,3.4vw,38px);
+      line-height:1.06;
+    }
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .card{
+      border:1px solid rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.02);
+      border-radius:18px;
+      padding:14px;
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .card p{margin:0;color:var(--text);font-size:14px;line-height:1.65}
+    .tag{
+      display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+      padding:10px 12px;border-radius:999px;
+      border:1px solid rgba(163,59,92,0.45);
+      background:rgba(163,59,92,0.10);
+      font-size:13px;margin-top:10px;
+    }
+    .tag b{color:#fff}
+    @media(max-width:840px){
+      .choices{grid-template-columns:1fr 1fr}
+      .grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="container">
+
+      <section class="hero" id="top">
+        <h1>Relational Needs Matrix</h1>
+        <p class="sub">
+          This shows your top relational needs and the way you ask for them when you are activated.
+          You can have a real need and still ask sideways.
+        </p>
+        <div class="navRow">
+          <a class="btn secondary" href="/quizzes/">Mirror hub</a>
+          <a class="btn secondary" href="/war/">War hub</a>
+          <a class="btn secondary" href="/quizzes/nervous-system-response/">Nervous system scan</a>
+        </div>
+      </section>
+
+      <section class="quiz" id="quiz">
+        <div id="questions"></div>
+
+        <div class="footerRow">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <button class="btn" id="scoreBtn" type="button">See my results</button>
+            <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+          </div>
+          <p class="note">Answer based on your last two relationships.</p>
+        </div>
+
+        <div class="error" id="errorBox" role="alert"></div>
+      </section>
+
+      <section class="results" id="results">
+        <p class="kicker">Your results</p>
+        <h2 class="resultTitle" id="title">Your Needs Profile</h2>
+
+        <div class="tag" id="tagLine"></div>
+
+        <div class="grid">
+          <div class="card">
+            <h3>Top needs</h3>
+            <p id="needsText"></p>
+          </div>
+          <div class="card">
+            <h3>How you ask under stress</h3>
+            <p id="askText"></p>
+          </div>
+          <div class="card">
+            <h3>What partners often miss</h3>
+            <p id="missText"></p>
+          </div>
+          <div class="card">
+            <h3>Upgrade script</h3>
+            <p id="scriptText"></p>
+          </div>
+        </div>
+
+        <div class="navRow" style="margin-top:14px;">
+          <a class="btn secondary" href="/quizzes/partner-draw/">Partner Draw</a>
+          <a class="btn secondary" href="/quizzes/ego-structure/">Ego Structure</a>
+          <button class="btn" id="backBtn" type="button">Back to quiz</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "unscarred_relational_needs_v1";
+
+    const SCALE = ["Never", "Sometimes", "Often", "Almost always"];
+
+    const NEEDS = {
+      reassurance: { title: "Reassurance", what: "Clarity that you matter, emotional confirmation, consistent contact." },
+      safety: { title: "Emotional Safety", what: "Respectful tone, repair after conflict, no punishment for needs." },
+      consistency: { title: "Consistency", what: "Follow through, predictable effort, fewer hot cold cycles." },
+      affection: { title: "Affection", what: "Warmth, softness, touch, words that feel like care." },
+      autonomy: { title: "Autonomy", what: "Space, independence, choice, no pressure or control." },
+      honesty: { title: "Honesty", what: "Truth, accountability, no fog, no half stories." }
+    };
+
+    const ASK_STYLES = {
+      direct: {
+        title: "Direct Ask",
+        desc: "You ask clearly when you are regulated. Under stress you still try to stay clean.",
+        miss: "Partners assume you are fine because you do not dramatize it.",
+        script: "I want to be close to you. I need clarity and follow through, not guessing."
+      },
+      testing: {
+        title: "Testing",
+        desc: "You ask indirectly by running little tests to see if they care.",
+        miss: "Partners only see the test and miss the need underneath.",
+        script: "I am feeling insecure. I need reassurance, not a game. Can you be clear with me?"
+      },
+      performing: {
+        title: "Performing",
+        desc: "You overgive, overprove, overfunction and hope they will notice your need.",
+        miss: "Partners receive your labor but do not realize it was a request for care.",
+        script: "I have been carrying too much. I need mutual effort and emotional care, not just me trying."
+      },
+      withdrawing: {
+        title: "Withdrawing",
+        desc: "You shut down, go quiet, or detach because asking feels unsafe.",
+        miss: "Partners think you do not care or you are punishing them.",
+        script: "I pull back when I feel unsafe. I want repair and respect. Can we slow down and talk clean?"
+      },
+      escalating: {
+        title: "Escalating",
+        desc: "You get sharp because you feel unseen. Intensity becomes the delivery system.",
+        miss: "Partners focus on your tone and ignore your message.",
+        script: "My tone is rising because I feel unheard. The need is respect and consistency. Can you meet that?"
+      }
+    };
+
+    const QUESTIONS = [
+      { id: 1, text: "I need consistent communication to feel safe.", need: "reassurance", ask: "testing" },
+      { id: 2, text: "I struggle when a partner is hot and cold.", need: "consistency", ask: "escalating" },
+      { id: 3, text: "I feel calm when my partner repairs after conflict.", need: "safety", ask: "direct" },
+      { id: 4, text: "I downplay what I need to avoid being rejected.", need: "reassurance", ask: "withdrawing" },
+      { id: 5, text: "I need warmth, affection, or softness to stay connected.", need: "affection", ask: "performing" },
+      { id: 6, text: "When I feel unsafe, I go quiet instead of asking.", need: "safety", ask: "withdrawing" },
+      { id: 7, text: "I want honesty even when the truth is uncomfortable.", need: "honesty", ask: "direct" },
+      { id: 8, text: "I resent when I carry the relationship emotionally.", need: "consistency", ask: "performing" },
+      { id: 9, text: "I need space without punishment or guilt.", need: "autonomy", ask: "direct" },
+      { id: 10, text: "I test how much they care instead of saying what I feel.", need: "reassurance", ask: "testing" },
+      { id: 11, text: "I feel safest with predictable effort and follow through.", need: "consistency", ask: "direct" },
+      { id: 12, text: "I get sharp when I feel dismissed.", need: "safety", ask: "escalating" },
+      { id: 13, text: "I need my partner to tell the truth without making me dig.", need: "honesty", ask: "escalating" },
+      { id: 14, text: "I act unbothered even when I am not.", need: "reassurance", ask: "withdrawing" },
+      { id: 15, text: "I need to feel chosen without having to perform for it.", need: "affection", ask: "performing" },
+      { id: 16, text: "I need emotional steadiness more than intensity.", need: "consistency", ask: "direct" },
+      { id: 17, text: "I need respect in tone, even when we disagree.", need: "safety", ask: "direct" },
+      { id: 18, text: "I feel anxious when things are vague or undefined.", need: "reassurance", ask: "escalating" },
+      { id: 19, text: "I need to be able to say no without backlash.", need: "autonomy", ask: "direct" },
+      { id: 20, text: "I need affection to be consistent, not only when things are good.", need: "affection", ask: "testing" }
+    ];
+
+    const state = { answers: Array(QUESTIONS.length).fill(null) };
+
+    const elQ = document.getElementById("questions");
+    const errorBox = document.getElementById("errorBox");
+    const scoreBtn = document.getElementById("scoreBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const results = document.getElementById("results");
+    const quiz = document.getElementById("quiz");
+    const backBtn = document.getElementById("backBtn");
+
+    const tagLine = document.getElementById("tagLine");
+    const needsText = document.getElementById("needsText");
+    const askText = document.getElementById("askText");
+    const missText = document.getElementById("missText");
+    const scriptText = document.getElementById("scriptText");
+
+    function save() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state.answers)); } catch (e) {} }
+    function load() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length === state.answers.length) state.answers = arr;
+      } catch (e) {}
+    }
+
+    function showError(msg) { errorBox.style.display = "block"; errorBox.textContent = msg; }
+    function hideError() { errorBox.style.display = "none"; errorBox.textContent = ""; }
+
+    function ensureComplete() {
+      const miss = [];
+      state.answers.forEach((v,i) => { if (v === null) miss.push(i + 1); });
+      if (!miss.length) return true;
+      showError("Answer all questions first. You missed question " + miss[0] + ".");
+      const node = document.querySelector('.q[data-index="' + (miss[0] - 1) + '"]');
+      if (node) node.scrollIntoView({ behavior: "smooth", block: "center" });
+      return false;
+    }
+
+    function renderQuestions() {
+      elQ.innerHTML = "";
+      QUESTIONS.forEach((q, i) => {
+        const wrap = document.createElement("div");
+        wrap.className = "q";
+        wrap.setAttribute("data-index", String(i));
+
+        const top = document.createElement("div");
+        top.className = "qTop";
+
+        const num = document.createElement("div");
+        num.className = "qNum";
+        num.textContent = "Question " + (i + 1);
+
+        const text = document.createElement("div");
+        text.className = "qText";
+        text.textContent = q.text;
+
+        top.appendChild(num);
+        top.appendChild(text);
+        wrap.appendChild(top);
+
+        const choices = document.createElement("div");
+        choices.className = "choices";
+
+        SCALE.forEach((label, v) => {
+          const lab = document.createElement("label");
+          lab.className = "choice";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "q_" + i;
+          input.value = String(v);
+          input.checked = state.answers[i] === v;
+
+          const span = document.createElement("span");
+          span.textContent = label;
+
+          lab.appendChild(input);
+          lab.appendChild(span);
+
+          if (input.checked) lab.classList.add("selected");
+
+          lab.addEventListener("click", () => {
+            state.answers[i] = v;
+            save();
+            hideError();
+            choices.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
+            lab.classList.add("selected");
+          });
+
+          choices.appendChild(lab);
+        });
+
+        wrap.appendChild(choices);
+        elQ.appendChild(wrap);
+      });
+    }
+
+    function compute() {
+      const needScores = {};
+      const askScores = {};
+      Object.keys(NEEDS).forEach(k => needScores[k] = 0);
+      Object.keys(ASK_STYLES).forEach(k => askScores[k] = 0);
+
+      QUESTIONS.forEach((q, i) => {
+        const v = state.answers[i] ?? 0;
+        needScores[q.need] += v;
+        askScores[q.ask] += v;
+      });
+
+      const topNeeds = Object.entries(needScores)
+        .map(([k,v]) => ({ key:k, val:v, title:NEEDS[k].title, what:NEEDS[k].what }))
+        .sort((a,b) => b.val - a.val)
+        .slice(0,3);
+
+      const topAsk = Object.entries(askScores)
+        .map(([k,v]) => ({ key:k, val:v, ...ASK_STYLES[k] }))
+        .sort((a,b) => b.val - a.val)[0];
+
+      return { topNeeds, topAsk };
+    }
+
+    function renderResults() {
+      const out = compute();
+      const needsLine = out.topNeeds.map(n => `<b>${escapeHtml(n.title)}</b>: ${escapeHtml(n.what)}`).join("<br><br>");
+
+      tagLine.innerHTML = `<b>Top needs:</b> <span>${escapeHtml(out.topNeeds[0].title)}</span> <b>Ask style:</b> <span>${escapeHtml(out.topAsk.title)}</span>`;
+      needsText.innerHTML = needsLine;
+      askText.textContent = out.topAsk.desc;
+      missText.textContent = out.topAsk.miss;
+      scriptText.textContent = out.topAsk.script;
+
+      results.style.display = "block";
+      quiz.style.display = "none";
+      window.scrollTo({ top: document.getElementById("top").offsetTop, behavior: "smooth" });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>\"']/g, s => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      }[s]));
+    }
+
+    function resetAll() {
+      state.answers = Array(QUESTIONS.length).fill(null);
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      results.style.display = "none";
+      quiz.style.display = "block";
+      hideError();
+      renderQuestions();
+      window.scrollTo({ top: document.getElementById("top").offsetTop, behavior: "smooth" });
+    }
+
+    scoreBtn.addEventListener("click", () => { hideError(); if (!ensureComplete()) return; renderResults(); });
+    resetBtn.addEventListener("click", resetAll);
+    backBtn.addEventListener("click", () => {
+      results.style.display = "none";
+      quiz.style.display = "block";
+      window.scrollTo({ top: document.getElementById("quiz").offsetTop - 8, behavior: "smooth" });
+    });
+
+    load();
+    renderQuestions();
+  </script>
+</body>
+</html>

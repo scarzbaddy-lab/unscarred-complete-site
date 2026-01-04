@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ego Structure Scan</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { box-sizing: border-box; }
+    .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .progress-bar { transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .radio-option { transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .radio-option:hover { background: rgba(0, 0, 0, 0.03) !important; }
+    .radio-option input:checked + label { font-weight: 600; }
+    .pattern-card { backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .pattern-card:hover { transform: translateY(-2px); }
+    .btn-primary { transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
+    .btn-primary:active { transform: translateY(0); }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+<body class="h-full w-full overflow-auto" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;">
+  <div id="app" class="w-full" style="min-height: 100%;"></div>
+  <script>
+    const defaultConfig = { hero_text: "Ego Parts", subtitle: "This is not \"are you a narcissist.\" It's a scan of ego defenses under stress.", cta_button: "Take the Ego Structure Scan", trust_line: "Pattern insight only. Not a diagnosis.", primary_color: "#0f0f0f", secondary_color: "#ffffff", text_color: "#0f0f0f", accent_color: "#8b5cf6", button_color: "#8b5cf6", font_family: "system-ui", font_size: 16 };
+    const questions = [
+      { id: 1, text: "I feel disrespected when people do not recognize what I bring.", category: "grandiose" },
+      { id: 2, text: "Criticism makes me want to prove I am superior.", category: "grandiose" },
+      { id: 3, text: "I believe rules apply differently when someone is incompetent.", category: "grandiose" },
+      { id: 4, text: "I avoid situations where I might look average.", category: "grandiose" },
+      { id: 5, text: "I feel anger when someone questions my authority or competence.", category: "grandiose" },
+      { id: 6, text: "I rewrite the story in my head so I am not the one at fault.", category: "grandiose" },
+      { id: 7, text: "I feel entitled to distance people who \"don't get it.\"", category: "grandiose" },
+      { id: 8, text: "After conflict, I assume I am the problem.", category: "collapsed" },
+      { id: 9, text: "I feel a heavy shame hangover even when I did nothing wrong.", category: "collapsed" },
+      { id: 10, text: "I disappear when I feel I disappointed someone.", category: "collapsed" },
+      { id: 11, text: "Compliments make me uncomfortable because I fear they are not true.", category: "collapsed" },
+      { id: 12, text: "I tolerate disrespect because speaking up feels dangerous.", category: "collapsed" },
+      { id: 13, text: "I secretly feel behind in life, no matter what I accomplish.", category: "collapsed" },
+      { id: 14, text: "When I fail, I want to give up completely.", category: "collapsed" },
+      { id: 15, text: "I over give so nobody can accuse me of being selfish.", category: "compensatory" },
+      { id: 16, text: "I perform being \"the mature one\" to avoid vulnerability.", category: "compensatory" },
+      { id: 17, text: "I need to be seen as helpful, wise, or above drama.", category: "compensatory" },
+      { id: 18, text: "I use logic or spirituality to bypass feelings.", category: "compensatory" },
+      { id: 19, text: "I choose people I can fix because equal intimacy scares me.", category: "compensatory" },
+      { id: 20, text: "I feel resentful when my effort is not appreciated, but I act fine.", category: "compensatory" },
+      { id: 21, text: "I keep my real needs hidden and call it independence.", category: "compensatory" },
+      { id: 22, text: "People experience me as very confident or very shut down, not steady.", category: "oscillating" },
+      { id: 23, text: "I can go from \"I'm amazing\" to \"I'm nothing\" fast.", category: "oscillating" },
+      { id: 24, text: "When I feel admired, I feel safe. When I feel ignored, I feel rage or despair.", category: "oscillating" },
+      { id: 25, text: "I alternate between chasing closeness and pushing it away.", category: "oscillating" },
+      { id: 26, text: "I love intensity, then I get overwhelmed by it.", category: "oscillating" },
+      { id: 27, text: "I feel misunderstood often, then I isolate.", category: "oscillating" },
+      { id: 28, text: "I crave control, then I hate myself for it.", category: "oscillating" }
+    ];
+    const scaleOptions = [ { value: 0, label: "Strongly disagree" }, { value: 1, label: "Disagree" }, { value: 2, label: "Neutral" }, { value: 3, label: "Agree" }, { value: 4, label: "Strongly agree" } ];
+    const patterns = {
+      grandiose: { title: "Grandiose Pattern", description: "Inflated self, entitlement, dominance, image protection", coreFear: "Being powerless, average, exposed, irrelevant.", defense: "Inflate, dominate, dismiss, blame shift, image manage.", hiddenCost: "Intimacy starvation, constant threat response, loneliness masked as superiority.", repairMove: "Replace \"respect me\" with \"connect with me.\"", microTask: "Practice one sentence accountability without explanation.", script: "\"I got defensive. The truth is I felt exposed. Here's what I can own.\"" },
+      collapsed: { title: "Collapsed Pattern", description: "Shame, helplessness, self erasure, defeat states", coreFear: "Being unlovable, too much, a burden, unsafe to exist fully.", defense: "Shrink, appease, self blame, disappear, numb.", hiddenCost: "Resentment, loss of self, attracting people who like you small.", repairMove: "Replace \"I'm sorry\" with \"Here's what I need.\"", microTask: "One boundary per week, tiny but real.", script: "\"I'm not available for being talked to like that. I'll talk when it's respectful.\"" },
+      compensatory: { title: "Compensatory Pattern", description: "Looks humble or helpful but is secretly driven by control, status, or avoidance of shame", coreFear: "Being seen as selfish, messy, needy, ordinary.", defense: "Perform goodness, fix others, intellectualize, spiritualize, curate.", hiddenCost: "Resentment, covert control, emotional dishonesty, burnout.", repairMove: "Trade helpfulness for honesty.", microTask: "Say one true need out loud this week, even if it feels selfish.", script: "\"I've been overgiving to avoid feeling needy. What I actually need is...\"" }
+    };
+    let currentQuestion = 0; let answers = {}; let currentView = 'intro';
+    function calculateScores() { const grandioseScore = [1,2,3,4,5,6,7].reduce((sum, id) => sum + (answers[id] || 0), 0); const collapsedScore = [8,9,10,11,12,13,14].reduce((sum, id) => sum + (answers[id] || 0), 0); const compensatoryScore = [15,16,17,18,19,20,21].reduce((sum, id) => sum + (answers[id] || 0), 0); const oscillatingAvg = [22,23,24,25,26,27,28].reduce((sum, id) => sum + (answers[id] || 0), 0) / 7; const scores = [grandioseScore, collapsedScore, compensatoryScore]; const maxScore = Math.max(...scores); const minScore = Math.min(...scores); const gap = maxScore - minScore; const oscillatingScore = oscillatingAvg + (0.25 * gap); const patternsArr = [ { name: 'grandiose', score: grandioseScore }, { name: 'collapsed', score: collapsedScore }, { name: 'compensatory', score: compensatoryScore } ]; patternsArr.sort((a, b) => b.score - a.score); const primary = patternsArr[0].name; const isOscillating = oscillatingScore > 2.5 || (Math.abs(patternsArr[0].score - patternsArr[1].score) / patternsArr[0].score < 0.1); return { grandiose: grandioseScore, collapsed: collapsedScore, compensatory: compensatoryScore, oscillating: oscillatingScore, primary, isOscillating }; }
+    function renderIntro() { const config = window.elementSdk?.config || defaultConfig; const heroText = config.hero_text || defaultConfig.hero_text; const subtitle = config.subtitle || defaultConfig.subtitle; const ctaButton = config.cta_button || defaultConfig.cta_button; const trustLine = config.trust_line || defaultConfig.trust_line; const primaryColor = config.primary_color || defaultConfig.primary_color; const secondaryColor = config.secondary_color || defaultConfig.secondary_color; const textColor = config.text_color || defaultConfig.text_color; const buttonColor = config.button_color || defaultConfig.button_color; const fontFamily = config.font_family || defaultConfig.font_family; const fontSize = config.font_size || defaultConfig.font_size; return `<div class="fade-in" style="max-width: 680px; margin: 0 auto; padding: ${fontSize * 4}px ${fontSize * 1.5}px; font-family: ${fontFamily}, sans-serif;"> <div style="text-align: center; margin-bottom: ${fontSize * 3}px;"> <h1 style="font-size: ${fontSize * 4}px; font-weight: 700; color: ${secondaryColor}; margin-bottom: ${fontSize * 1.5}px; line-height: 1.1; letter-spacing: -0.02em;"> ${heroText} </h1> <p style="font-size: ${fontSize * 1.125}px; color: ${secondaryColor}; margin-bottom: 0; opacity: 0.75; line-height: 1.6; max-width: 520px; margin-left: auto; margin-right: auto;"> ${subtitle} </p> </div> <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border-radius: ${fontSize * 1.25}px; padding: ${fontSize * 2.5}px; margin-bottom: ${fontSize * 2.5}px;"> <div style="display: grid; grid-template-columns: 1fr 1fr; gap: ${fontSize * 1.5}px; margin-bottom: ${fontSize * 2}px;"> <div class="pattern-card" style="padding: ${fontSize * 1.25}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);"> <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.5}px; font-size: ${fontSize * 0.9375}px;">Grandiose</div> <div style="font-size: ${fontSize * 0.8125}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Inflated self, entitlement, dominance</div> </div> <div class="pattern-card" style="padding: ${fontSize * 1.25}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);"> <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.5}px; font-size: ${fontSize * 0.9375}px;">Collapsed</div> <div style="font-size: ${fontSize * 0.8125}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Shame, helplessness, self erasure</div> </div> <div class="pattern-card" style="padding: ${fontSize * 1.25}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);"> <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.5}px; font-size: ${fontSize * 0.9375}px;">Compensatory</div> <div style="font-size: ${fontSize * 0.8125}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Hidden control, status seeking</div> </div> <div class="pattern-card" style="padding: ${fontSize * 1.25}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);"> <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.5}px; font-size: ${fontSize * 0.9375}px;">Oscillating</div> <div style="font-size: ${fontSize * 0.8125}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Swings between patterns</div> </div> </div> <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%); padding: ${fontSize * 1.25}px; border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: ${fontSize * 1.5}px;"> <p style="margin: 0; font-weight: 500; color: ${secondaryColor}; font-size: ${fontSize * 0.9375}px; line-height: 1.5;"> <span style="font-size: ${fontSize * 1.125}px; margin-right: ${fontSize * 0.5}px;">🛡️</span> Your ego is not your personality. It's your armor. </p> </div> <p style="font-size: ${fontSize * 0.875}px; color: ${secondaryColor}; opacity: 0.7; line-height: 1.6; margin: 0;"> This scan shows how you protect yourself when you feel exposed, criticized, rejected, or not enough. Then it gives you the "grown" version of your pattern. </p> </div> <div style="text-align: center;"> <button onclick="startScan()" class="btn-primary" style="background: ${buttonColor}; color: ${secondaryColor}; font-size: ${fontSize * 1}px; font-weight: 600; padding: ${fontSize * 1}px ${fontSize * 2.5}px; border-radius: ${fontSize * 0.625}px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4); font-family: ${fontFamily}, sans-serif;" > ${ctaButton} </button> <p style="margin-top: ${fontSize * 1.25}px; font-size: ${fontSize * 0.8125}px; color: ${secondaryColor}; opacity: 0.5;"> ${trustLine} </p> </div> </div>`; }

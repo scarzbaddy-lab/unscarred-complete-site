@@ -1,0 +1,1665 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>When Your Diagnosis Becomes The Weapon - Complete Pattern Tracking Course</title>
+  <meta name="description" content="Interactive pattern tracking course for people with BPD: learn to document reality when your diagnosis is used to dismiss your perceptions.">
+  <style>
+    :root {
+      --bg-dark: #0a0a0a;
+      --card-dark: #151515;
+      --card-soft: #181818;
+      --primary: #8b1e3f;
+      --secondary: #6c4bb6;
+      --accent: #d36b1f;
+      --text-main: #f5f5f5;
+      --text-soft: #c7c7c7;
+      --border-subtle: #242424;
+      --radius-lg: 18px;
+      --success: #2d7a3e;
+    }
+    
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #1a1015 0, #0a0a0a 45%, #000000 100%);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+    
+    .nav-bar {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 16px 24px;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+    
+    .nav-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    
+    .nav-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+    
+    .nav-links a {
+      color: var(--text-soft);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+    
+    .hero {
+      text-align: center;
+      padding: 60px 0;
+      margin-bottom: 40px;
+    }
+    
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+      margin: 0 0 16px 0;
+      line-height: 1.2;
+    }
+    
+    .subtitle {
+      font-size: 1.4rem;
+      color: var(--text-soft);
+      font-weight: 500;
+      margin: 0 0 24px 0;
+    }
+    
+    .badge {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-main);
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .toc {
+      background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.5));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 32px;
+      margin: 40px 0;
+    }
+    
+    .toc h2 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+    
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    
+    .toc-item {
+      background: var(--card-dark);
+      padding: 16px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      color: var(--text-soft);
+      display: block;
+    }
+    
+    .toc-item:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 30, 63, 0.3);
+    }
+    
+    .toc-number {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 4px;
+    }
+    
+    .toc-title {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+    
+    .section {
+      margin: 60px 0;
+      scroll-margin-top: 80px;
+    }
+    
+    h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0 0 24px 0;
+      letter-spacing: 0.01em;
+    }
+    
+    h3 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin: 32px 0 16px 0;
+    }
+    
+    p {
+      margin: 0 0 20px 0;
+      color: var(--text-soft);
+      font-size: 1.05rem;
+    }
+    
+    strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    
+    .content-block {
+      background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.5));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 32px;
+      margin: 24px 0;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    
+    .highlight {
+      background: rgba(139, 30, 63, 0.15);
+      border-left: 4px solid var(--primary);
+      padding: 24px 28px;
+      margin: 24px 0;
+      border-radius: 8px;
+    }
+    
+    .tracker-tool {
+      background: var(--card-dark);
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin: 32px 0;
+    }
+    
+    .tracker-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    
+    .tracker-title {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+    
+    .btn {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-main);
+      border: none;
+      padding: 12px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.95rem;
+    }
+    
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(139, 30, 63, 0.5);
+    }
+    
+    .btn-secondary {
+      background: var(--card-soft);
+      border: 1px solid var(--border-subtle);
+    }
+    
+    .btn-secondary:hover {
+      border-color: var(--accent);
+      box-shadow: 0 4px 12px rgba(211, 107, 31, 0.3);
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      color: var(--text-main);
+      font-weight: 600;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+    
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      background: var(--card-soft);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    
+    input:focus,
+    textarea:focus,
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+    
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    
+    .entry-list {
+      margin-top: 24px;
+    }
+    
+    .entry-item {
+      background: var(--card-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 16px;
+    }
+    
+    .entry-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .entry-date {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+    
+    .entry-delete {
+      background: transparent;
+      border: none;
+      color: var(--text-soft);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    
+    .entry-delete:hover {
+      color: #cf3b3b;
+    }
+    
+    .entry-content {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    
+    .entry-label {
+      color: var(--text-main);
+      font-weight: 600;
+      display: inline-block;
+      margin-right: 8px;
+    }
+    
+    .dimension-tracker {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin: 24px 0;
+    }
+    
+    .dimension-card {
+      background: var(--card-soft);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    
+    .dimension-name {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+    
+    .score-selector {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    
+    .score-btn {
+      flex: 1;
+      background: var(--card-dark);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    
+    .score-btn:hover {
+      border-color: var(--primary);
+    }
+    
+    .score-btn.active {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: var(--text-main);
+      border-color: var(--primary);
+    }
+    
+    .results-display {
+      background: linear-gradient(145deg, rgba(139, 30, 63, 0.1), rgba(108, 75, 182, 0.1));
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin: 32px 0;
+    }
+    
+    .results-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    
+    .results-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+    
+    .results-subtitle {
+      color: var(--text-soft);
+      font-size: 1rem;
+    }
+    
+    .score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin: 24px 0;
+    }
+    
+    .score-item {
+      text-align: center;
+      padding: 20px;
+      background: var(--card-dark);
+      border-radius: 12px;
+    }
+    
+    .score-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    
+    .score-label {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+    
+    .interpretation {
+      background: var(--card-soft);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
+    }
+    
+    .interpretation h4 {
+      color: var(--primary);
+      margin-bottom: 12px;
+      font-size: 1.2rem;
+    }
+    
+    .tab-container {
+      margin: 32px 0;
+    }
+    
+    .tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid var(--border-subtle);
+      margin-bottom: 24px;
+    }
+    
+    .tab {
+      background: transparent;
+      border: none;
+      color: var(--text-soft);
+      padding: 12px 24px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+    
+    .tab:hover {
+      color: var(--text-main);
+    }
+    
+    .tab.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .example-box {
+      background: var(--card-dark);
+      border-left: 4px solid var(--accent);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 16px 0;
+    }
+    
+    .example-label {
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+    
+    .download-section {
+      background: linear-gradient(135deg, rgba(139, 30, 63, 0.2), rgba(108, 75, 182, 0.2));
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin: 40px 0;
+    }
+    
+    .download-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    
+    .download-desc {
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+    
+    .btn-group {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--text-soft);
+    }
+    
+    .footer {
+      text-align: center;
+      color: var(--text-soft);
+      font-style: italic;
+      margin: 80px 0 40px 0;
+      padding: 32px 0;
+      border-top: 1px solid var(--border-subtle);
+    }
+    
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2rem;
+      }
+      
+      h2 {
+        font-size: 1.6rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+      
+      .container {
+        padding: 24px 16px;
+      }
+      
+      .tracker-tool {
+        padding: 20px;
+      }
+      
+      .dimension-tracker {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-bar">
+    <div class="nav-content">
+      <div class="nav-title">Pattern Tracking Course</div>
+      <ul class="nav-links">
+        <li><a onclick="scrollToSection('lesson')">Lesson</a></li>
+        <li><a onclick="scrollToSection('tracker')">Tracker</a></li>
+        <li><a onclick="scrollToSection('scoring')">Scoring</a></li>
+        <li><a onclick="scrollToSection('download')">Download</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>When Your Diagnosis Becomes The Weapon</h1>
+      <p class="subtitle">Complete Pattern Tracking Course For People With BPD</p>
+      <span class="badge">Interactive Lesson + Tools</span>
+    </div>
+    
+    <div class="toc">
+      <h2>Course Contents</h2>
+      <div class="toc-grid">
+        <a class="toc-item" onclick="scrollToSection('diagnosis')">
+          <div class="toc-number">PART 1</div>
+          <div class="toc-title">Your Diagnosis Has Been Used Against You</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('impossible')">
+          <div class="toc-number">PART 2</div>
+          <div class="toc-title">The Impossible Position</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('manipulation')">
+          <div class="toc-number">PART 3</div>
+          <div class="toc-title">BPD And Manipulation</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('ignorance')">
+          <div class="toc-number">PART 4</div>
+          <div class="toc-title">Two Kinds of Ignorance</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('difference')">
+          <div class="toc-number">PART 5</div>
+          <div class="toc-title">How To Tell The Difference</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('system')">
+          <div class="toc-number">PART 6</div>
+          <div class="toc-title">How BPD Gets Weaponized</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('why')">
+          <div class="toc-number">PART 7</div>
+          <div class="toc-title">Why You Need Pattern Tracking</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('tracker')">
+          <div class="toc-number">TOOL 1</div>
+          <div class="toc-title">Interactive Pattern Tracker</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('scoring')">
+          <div class="toc-number">TOOL 2</div>
+          <div class="toc-title">Four Dimensions Scoring</div>
+        </a>
+        <a class="toc-item" onclick="scrollToSection('how')">
+          <div class="toc-number">GUIDE</div>
+          <div class="toc-title">How To Actually Track</div>
+        </a>
+      </div>
+    </div>
+
+    <section id="diagnosis" class="section">
+      <h2>Your Diagnosis Has Been Used Against You</h2>
+      
+      <p>You have BPD, or someone told you that you do. Either way, it's become the explanation for everything you do and everything that happens to you.</p>
+      
+      <p>When you notice someone's behavior is hurting you and you say so, they point to your diagnosis. "That's just your BPD making you see abandonment where there isn't any." When you recognize a pattern and call it out, they cite your symptoms back to you. "You're splitting again." When you get upset about genuine mistreatment, they pathologize your reaction. "Your emotional dysregulation is making you paranoid."</p>
+      
+      <div class="highlight">
+        <p><strong>Your diagnosis has become the reason you can't trust your own perception.</strong></p>
+      </div>
+      
+      <p>Here's what nobody tells you: people with BPD often developed those protection patterns because they were in genuinely manipulative environments. Your nervous system learned to track subtle shifts in emotional temperature because that was actual survival information you needed. You learned to detect micro-expressions, tone changes, energy shifts because those were real threats you had to navigate.</p>
+      
+      <p><strong>You're not imagining patterns. You're detecting real ones.</strong></p>
+      
+      <p>The problem is you were also taught that your detection system is broken, that your perceptions are symptoms, that your reality is just your disorder talking.</p>
+    </section>
+
+    <section id="impossible" class="section">
+      <h2>The Impossible Position</h2>
+      
+      <p>You know something is wrong, but your diagnosis makes it impossible to name.</p>
+      
+      <div class="content-block">
+        <p>When you stay quiet about harm, people say your silence proves you're fine with it. When you speak up about harm, people say you're being emotionally manipulative. When you call out what they're doing, your BPD becomes evidence you're unstable. When you don't call it out, they point to your silence as consent.</p>
+        
+        <p>The same people who tell you your emotional intensity is the problem also use your sense of justice as a button they can press. They know you can't let unfairness stand. They count on it. They provoke your biggest reactions and then point to those reactions as proof you're the problem.</p>
+      </div>
+      
+      <div class="highlight">
+        <p><strong>So which is it?</strong></p>
+        <p>Are you genuinely being mistreated or is your BPD creating problems that aren't there? Are your perceptions real or are they symptoms? Is your pain valid or is it just emotional dysregulation?</p>
+        <p><strong>You're suspended between two impossible answers: "I'm being abused" and "I'm crazy."</strong></p>
+        <p>And that suspension is exactly where they need you to stay.</p>
+      </div>
+    </section>
+
+    <section id="manipulation" class="section">
+      <h2>What Nobody Tells You About BPD And Manipulation</h2>
+      
+      <p>Here's the truth they don't say in therapy: <strong>your emotional intensity doesn't mean your perceptions are wrong.</strong></p>
+      
+      <p>You can have huge feelings about something AND be accurately reading a harmful pattern. These things aren't mutually exclusive. Your fear of abandonment can be disproportionate to a single incident AND you can be correctly tracking a pattern of someone actually abandoning you in small ways over time.</p>
+      
+      <p>But here's how manipulation works when you have BPD: they focus only on the size of your emotional reaction while completely erasing the behavior pattern that caused it.</p>
+      
+      <div class="content-block">
+        <h3>Healthy Response vs Manipulative Response</h3>
+        
+        <p><strong>Healthy people respond to your distress</strong> by looking at the whole situation. They ask what happened. They're curious about the context. They separate "your reaction was big" from "your reaction was baseless." They can hold both truths: yes, your emotions are intense, AND yes, this situation would upset anyone.</p>
+        
+        <p><strong>Manipulative people turn the size of your emotions</strong> into proof that nothing they did matters. They turn the conversation into a diagnostic assessment where you're defending your right to be upset instead of addressing what actually happened.</p>
+        
+        <p>They don't want repair. They want you focused on managing your symptoms.</p>
+        
+        <p><strong>Because while you're working on your emotional regulation, you're not tracking their behavior pattern.</strong></p>
+      </div>
+    </section>
+
+    <section id="ignorance" class="section">
+      <h2>Two Kinds of Ignorance</h2>
+      
+      <p><strong>Your natural state is chaos.</strong> All your trauma responses fire at once. Not because you're manipulative, but because you genuinely don't know which one to trust.</p>
+      
+      <p>You have multiple survival patterns in your head, each one learned from a different threat, each one with different rules:</p>
+      
+      <div class="content-block">
+        <p>One pattern says "disappear completely to stay safe."</p>
+        <p>Another says "fight like hell or they'll destroy you."</p>
+        <p>A third says "perform perfect competence or they'll abandon you."</p>
+        <p>A fourth says "become whoever they need so they'll love you."</p>
+        <p>A fifth says "trust no one ever."</p>
+      </div>
+      
+      <p>When a trigger hits, they all activate at once. You're not choosing to be inconsistent. You're getting contradictory survival instructions from patterns that were each correct in different contexts.</p>
+      
+      <h3>Real Ignorance</h3>
+      
+      <p>This is real ignorance. It learns. When someone explains how your behavior hurt them and they do it without weaponizing your diagnosis, something shifts. Maybe not immediately, maybe not perfectly, but there's movement. You adjust. You try something different next time, even if you're still scared.</p>
+      
+      <h3>Weaponized Ignorance</h3>
+      
+      <p>Someone using weaponized ignorance claims they "didn't know" their repeated behavior would hurt you, even though they've done the same thing seventeen times. Watch what happens after you explain. They don't adjust. They don't try something different. They do the exact same thing next week with a better excuse.</p>
+      
+      <div class="highlight">
+        <p>They're not confused. They're making you do all the labor:</p>
+        <p>Experience the harm, recognize the pattern, find words for what happened despite your emotions being huge, explain why it matters while they stay calm and you look "unstable," prove it was intentional when they have plausible deniability, watch them use your explanation to hurt you more accurately next time.</p>
+        <p><strong>Real ignorance says "I didn't know, help me understand, I'll try to do better."</strong></p>
+        <p><strong>Weaponized ignorance says "I didn't know" while internally cataloguing which wounds to press harder next time.</strong></p>
+      </div>
+      
+      <div class="example-box">
+        <div class="example-label">The Key Difference</div>
+        <p>Whether the ignorance ends after you explain it once, or whether you're explaining the same pattern for the 47th time while they perfect their performance of surprise.</p>
+      </div>
+    </section>
+
+    <section id="difference" class="section">
+      <h2>How To Tell The Difference</h2>
+      
+      <h3>Ego At Core</h3>
+      
+      <div class="content-block">
+        <p>Someone with ego at core uses emotional language as camouflage. They perform empathy when it serves them. They say "I care about your feelings" while their actual pattern shows they're just managing your reactions to maintain control.</p>
+        
+        <p>Track them across time and you'll see consistent zeros on the things that matter:</p>
+        
+        <p><strong>Concern:</strong> They don't actually care how their behavior affected you, they care how your reaction affects their image.</p>
+        
+        <p><strong>Curiosity:</strong> They don't ask what happened for you, they tell you what you should have felt, then cite your BPD as the reason you felt something different.</p>
+        
+        <p><strong>Ownership:</strong> They don't acknowledge their part, they list everything you did (with your "unstable" emotions) that justified their behavior.</p>
+        
+        <p><strong>Repair:</strong> The behavior never changes, they just get better at apologizing, better at using therapeutic language, better at making you feel crazy for bringing it up again.</p>
+      </div>
+      
+      <h3>Trauma At Core</h3>
+      
+      <div class="content-block">
+        <p>Someone operating from trauma at core (which is most people with BPD) shows something completely different.</p>
+        
+        <p>You spike high on concern and curiosity in moments when you feel safe. You genuinely care, you ask real questions, you want to understand, you're trying to connect. Then your protection pattern crashes back in when threat activates, and you shut down or lash out or disappear.</p>
+        
+        <p>That's not you performing empathy to manipulate. That's genuine connection fighting with genuine terror.</p>
+      </div>
+      
+      <div class="highlight">
+        <p><strong>The difference shows up in what happens after the moment of connection:</strong></p>
+        <p>Ego at core returns to the same manipulation immediately, just with better therapeutic vocabulary.</p>
+        <p>Trauma at core fights themselves about whether that vulnerable moment was safe or stupid. You can see that fight happening. You can see them trying to stay present while their nervous system is screaming at them to run.</p>
+      </div>
+    </section>
+
+    <section id="system" class="section">
+      <h2>How Your BPD Diagnosis Gets Weaponized As A System</h2>
+      
+      <p>Here's how one person's manipulation becomes everyone's reality when you have BPD.</p>
+      
+      <p>Your diagnosis does most of the work automatically. People don't have to actively campaign against you. The stigma does it for them.</p>
+      
+      <div class="content-block">
+        <p>Someone tells the group you have BPD, or you tell them yourself trying to be honest, and now everything you do gets filtered through that lens:</p>
+        
+        <p>You recognize a harmful pattern and name it? "That's your BPD making you see things that aren't there."</p>
+        
+        <p>You set a boundary? "You're being controlling because of your fear of abandonment."</p>
+        
+        <p>You get upset about genuine mistreatment? "You're splitting, you're seeing everyone as all-bad."</p>
+        
+        <p>You ask for repair? "Your expectations are unrealistic due to your disorder."</p>
+      </div>
+      
+      <h3>The Manipulation Pattern</h3>
+      
+      <div class="content-block">
+        <p>The person manipulating you doesn't have to work hard. They just have to:</p>
+        
+        <p>1. Make sure everyone knows your diagnosis</p>
+        <p>2. Stay calm while you react</p>
+        <p>3. Use clinical language to describe your "symptoms"</p>
+        <p>4. Position themselves as the patient one dealing with your instability</p>
+        
+        <p><strong>Now watch what happens:</strong></p>
+        
+        <p>When you call out their pattern, the group sees your emotional intensity, not their behavioral pattern. When you try to explain what's happening, your emotions are "proof" you're overreacting. When you set a boundary, you're being "difficult." When you fight back against genuine unfairness, you're being "emotionally manipulative."</p>
+        
+        <p>Both responses lead back to the same place: you're the problem because you have BPD.</p>
+      </div>
+      
+      <div class="highlight">
+        <p>The trap has no exit. Your diagnosis has become a prison where all the doors are locked from outside.</p>
+        <p><strong>Except there is one exit. They just really don't want you to find it.</strong></p>
+      </div>
+    </section>
+
+    <section id="why" class="section">
+      <h2>Why You Actually Need Pattern Tracking</h2>
+      
+      <p>Look, you've been burned before. You've tried DBT, you've done the skills, you've worked on your emotional regulation. Maybe it helped, maybe it didn't. Either way, you're tired of tools that are really just dressed-up ways of telling you to manage your symptoms better while nobody addresses the actual harm being done to you.</p>
+      
+      <div class="content-block">
+        <p>You're tired of "communication strategies" that amount to "stay calm while someone hurts you."</p>
+        <p>You're tired of "interpersonal effectiveness" that means "don't react to mistreatment."</p>
+        <p>You're tired of being told your perceptions are symptoms that need to be managed rather than information that needs to be trusted.</p>
+      </div>
+      
+      <p><strong>So why the fuck would pattern tracking be any different?</strong></p>
+      
+      <div class="highlight">
+        <p style="font-size: 1.2rem;"><strong>Here's why: because pattern tracking isn't about fixing you. It's about documenting reality.</strong></p>
+      </div>
+      
+      <p>Every other tool you've been given treats your BPD as the problem that needs solving. Pattern tracking treats your BPD as irrelevant to whether someone's behavior pattern is harmful or not.</p>
+      
+      <h3>What Makes It Different</h3>
+      
+      <div class="content-block">
+        <p><strong>1. It doesn't require you to have the "right" emotions.</strong></p>
+        <p>DBT teaches you to regulate your emotions before addressing problems. But what if your emotions are giving you accurate information about a genuine threat? Pattern tracking doesn't care how big your feelings are. It cares what the behavior pattern shows across time.</p>
+        
+        <p><strong>2. It gives you evidence that can't be gaslit away.</strong></p>
+        <p>When your perception is "you're hurting me" and their response is "you're too sensitive," it's your word against theirs. But pattern tracking creates documented behavior over time. The facts exist whether or not your emotional reaction to those facts was "appropriate."</p>
+        
+        <p><strong>3. It distinguishes between your trauma response and someone else's genuine harmful pattern.</strong></p>
+        <p>You have BPD. That means you WILL react intensely to things. But some of those threats are real. Pattern tracking helps you tell the difference.</p>
+        
+        <p><strong>4. It removes your diagnosis from the equation entirely.</strong></p>
+        <p>Pattern tracking doesn't care if you have BPD. The behavior pattern either exists or it doesn't. That's measurable. That's observable.</p>
+        
+        <p><strong>5. It protects you from the therapy-speak trap.</strong></p>
+        <p>Did the behavior change? Yes or no. That's the only question that matters. Everything else is noise.</p>
+        
+        <p><strong>6. It gives you permission to trust yourself again.</strong></p>
+        <p>Pattern tracking gives you evidence that your perception exists independent of your emotional state.</p>
+      </div>
+    </section>
+
+    <section id="tracker" class="section">
+      <h2>Interactive Pattern Tracker</h2>
+      
+      <div class="tracker-tool">
+        <div class="tracker-header">
+          <h3 class="tracker-title">Log Incidents</h3>
+          <button class="btn btn-secondary" onclick="clearAllEntries()">Clear All</button>
+        </div>
+        
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" id="incidentDate">
+        </div>
+        
+        <div class="form-group">
+          <label>What Happened (Observable Facts Only)</label>
+          <textarea id="incidentBehavior" placeholder="Example: They canceled plans 2 hours before we were supposed to meet. Reason given: 'something came up with work.' This is the 4th cancellation in 3 weeks."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>What They Said About It</label>
+          <textarea id="incidentResponse" placeholder="Their explanation, excuse, or apology"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>What Changed Afterward</label>
+          <select id="incidentChange">
+            <option value="">Select...</option>
+            <option value="behavior_stopped">Behavior stopped</option>
+            <option value="behavior_continued">Behavior continued unchanged</option>
+            <option value="behavior_improved">Behavior improved somewhat</option>
+            <option value="behavior_worsened">Behavior got worse</option>
+          </select>
+        </div>
+        
+        <button class="btn" onclick="addEntry()">Add Entry</button>
+        
+        <div class="entry-list" id="entryList">
+          <div class="empty-state">
+            <p>No entries yet. Start documenting patterns to see them here.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="tab-container">
+        <div class="tabs">
+          <button class="tab active" onclick="switchTab('guidelines')">Documentation Guidelines</button>
+          <button class="tab" onclick="switchTab('examples')">Examples</button>
+        </div>
+        
+        <div class="tab-content active" id="guidelines">
+          <div class="content-block">
+            <h3>How To Document Effectively</h3>
+            <p><strong>Record observable facts only:</strong> Don't write about your feelings, interpretations, or theories about why they're doing it. Stick to what actually happened that anyone could observe.</p>
+            
+            <p><strong>Be specific:</strong> Include dates, times, exact words when possible, and concrete details.</p>
+            
+            <p><strong>Track across time:</strong> Patterns don't show up in single incidents. They show up across weeks and months. Aim for at least 30 days of tracking.</p>
+            
+            <p><strong>Note the response:</strong> What did they say when confronted? Did they acknowledge, deflect, blame, or cite your BPD?</p>
+            
+            <p><strong>Track change (or lack thereof):</strong> Did the behavior actually stop, or did it continue despite promises to change?</p>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="examples">
+          <div class="example-box">
+            <div class="example-label">❌ Wrong</div>
+            <p>"They abandoned me again because they don't care."</p>
+          </div>
+          
+          <div class="example-box">
+            <div class="example-label">✅ Right</div>
+            <p>"They canceled plans 2 hours before we were supposed to meet. Reason given: 'something came up with work.' This is the 4th cancellation in 3 weeks."</p>
+          </div>
+          
+          <div class="example-box">
+            <div class="example-label">❌ Wrong</div>
+            <p>"They're gaslighting me about my BPD."</p>
+          </div>
+          
+          <div class="example-box">
+            <div class="example-label">✅ Right</div>
+            <p>"I said their comment hurt me. They responded: 'You're being too sensitive because of your BPD.' I asked them not to bring up my diagnosis when I express hurt. They said: 'I'm just trying to help you see reality.'"</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="scoring" class="section">
+      <h2>Four Dimensions Scoring Tool</h2>
+      
+      <p>After 30 days of tracking, use this tool to score the four dimensions of their behavior pattern based on your documented evidence.</p>
+      
+      <div class="tracker-tool">
+        <div class="tracker-header">
+          <h3 class="tracker-title">Score Each Dimension (0-3)</h3>
+          <button class="btn btn-secondary" onclick="resetScores()">Reset Scores</button>
+        </div>
+        
+        <div class="dimension-tracker">
+          <div class="dimension-card">
+            <div class="dimension-name">Concern</div>
+            <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 12px;">Do they actually care how their behavior affects you?</p>
+            <div class="score-selector">
+              <button class="score-btn" onclick="setScore('concern', 0)">0</button>
+              <button class="score-btn" onclick="setScore('concern', 1)">1</button>
+              <button class="score-btn" onclick="setScore('concern', 2)">2</button>
+              <button class="score-btn" onclick="setScore('concern', 3)">3</button>
+            </div>
+          </div>
+          
+          <div class="dimension-card">
+            <div class="dimension-name">Curiosity</div>
+            <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 12px;">Do they genuinely want to understand your experience?</p>
+            <div class="score-selector">
+              <button class="score-btn" onclick="setScore('curiosity', 0)">0</button>
+              <button class="score-btn" onclick="setScore('curiosity', 1)">1</button>
+              <button class="score-btn" onclick="setScore('curiosity', 2)">2</button>
+              <button class="score-btn" onclick="setScore('curiosity', 3)">3</button>
+            </div>
+          </div>
+          
+          <div class="dimension-card">
+            <div class="dimension-name">Ownership</div>
+            <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 12px;">Do they acknowledge their role in the dynamic?</p>
+            <div class="score-selector">
+              <button class="score-btn" onclick="setScore('ownership', 0)">0</button>
+              <button class="score-btn" onclick="setScore('ownership', 1)">1</button>
+              <button class="score-btn" onclick="setScore('ownership', 2)">2</button>
+              <button class="score-btn" onclick="setScore('ownership', 3)">3</button>
+            </div>
+          </div>
+          
+          <div class="dimension-card">
+            <div class="dimension-name">Repair</div>
+            <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 12px;">Does the behavior actually change?</p>
+            <div class="score-selector">
+              <button class="score-btn" onclick="setScore('repair', 0)">0</button>
+              <button class="score-btn" onclick="setScore('repair', 1)">1</button>
+              <button class="score-btn" onclick="setScore('repair', 2)">2</button>
+              <button class="score-btn" onclick="setScore('repair', 3)">3</button>
+            </div>
+          </div>
+        </div>
+        
+        <button class="btn" style="width: 100%; margin-top: 24px;" onclick="calculateResults()">Calculate Pattern Assessment</button>
+        
+        <div id="resultsArea"></div>
+      </div>
+      
+      <div class="content-block">
+        <h3>Scoring Guide</h3>
+        
+        <p><strong>0 = Never/Not at all</strong> - They consistently show no evidence of this dimension. The behavior is absent entirely.</p>
+        
+        <p><strong>1 = Rarely/Minimally</strong> - They occasionally show signs of this dimension, but it doesn't inform their behavior or lead to change.</p>
+        
+        <p><strong>2 = Sometimes/Moderately</strong> - They regularly demonstrate this dimension with some genuine follow-through, though not consistently.</p>
+        
+        <p><strong>3 = Consistently/Fully</strong> - They reliably demonstrate this dimension across time and situations. It clearly matters to them and informs their actions.</p>
+      </div>
+    </section>
+
+    <section id="how" class="section">
+      <h2>How To Actually Track Patterns</h2>
+      
+      <div class="content-block">
+        <h3>Step 1: Pick One Behavior</h3>
+        <p>Don't try to track everything. Pick ONE specific behavior pattern you've noticed:</p>
+        <p>They promise to stop doing something, then keep doing it. They cancel plans at the last minute. They share your private information with others. They invalidate your emotions by citing your BPD. They say they're listening but nothing changes. They apologize but the behavior repeats.</p>
+      </div>
+      
+      <div class="content-block">
+        <h3>Step 2: Track For Minimum 30 Days</h3>
+        <p>Patterns don't show up in single incidents. They show up across weeks and months. One cancellation might be legitimate. Four cancellations in three weeks is a pattern. Track for at least 30 days before drawing conclusions.</p>
+      </div>
+      
+      <div class="content-block">
+        <h3>Step 3: Review Your Documentation</h3>
+        <p>After 30 days, review your entries and look for:</p>
+        <p>How many times did the same behavior occur? Did the frequency increase or decrease? What was their response each time? Did their explanations evolve while the behavior stayed the same? Did anything actually change?</p>
+      </div>
+      
+      <div class="content-block">
+        <h3>Step 4: Score The Four Dimensions</h3>
+        <p>Use the scoring tool above to objectively measure their pattern based on your documented evidence, not on your feelings about them.</p>
+      </div>
+      
+      <div class="content-block">
+        <h3>Step 5: Make Decisions Based On Patterns, Not Promises</h3>
+        <p>After 60-90 days of tracking, you'll have enough data to make informed decisions. If the pattern shows consistent zeros on all four dimensions and no behavior change despite multiple conversations, this person is either unwilling or unable to stop harming you. Your BPD didn't create this pattern. Your BPD might make you more sensitive to this pattern, but the pattern is real.</p>
+      </div>
+    </section>
+
+    <section id="download" class="section">
+      <div class="download-section">
+        <h2 class="download-title">Download Your Tracking Tools</h2>
+        <p class="download-desc">Get printable PDF worksheets and templates to track patterns offline</p>
+        <div class="btn-group">
+          <button class="btn" onclick="downloadTracker()">Download Pattern Tracker (PDF)</button>
+          <button class="btn btn-secondary" onclick="downloadGuide()">Download Full Guide (PDF)</button>
+          <button class="btn btn-secondary" onclick="exportData()">Export Your Data (JSON)</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>What This Means For You</h2>
+      
+      <div class="content-block">
+        <p>If someone responds to your distress by citing your BPD instead of addressing their behavior, you're not in a repair conversation. You're in a diagnostic assessment where your perception is the symptom being treated.</p>
+        
+        <p>If your emotional intensity gets used as evidence that you can't accurately perceive patterns, pattern tracking gives you documentation that exists outside your emotions.</p>
+        
+        <p>If someone keeps doing the thing that hurts you while claiming they "didn't know" it would hurt you, track how long the ignorance lasts after you explain. Real ignorance learns. Weaponized ignorance just catalogs your vulnerabilities more accurately.</p>
+        
+        <p>If your BPD diagnosis has become the reason everyone dismisses your reality, pattern tracking removes your diagnosis from the conversation entirely. The behavior pattern either exists or it doesn't. That's observable by anyone, regardless of diagnostic status.</p>
+      </div>
+      
+      <div class="highlight">
+        <p><strong>Your job isn't to have smaller emotions or better symptom management.</strong></p>
+        <p>Your job is to recognize when someone's behavior pattern shows they're not addressing your concerns. They're managing your perception of your concerns.</p>
+        <p><strong>Your emotions are yours to feel. The behavior pattern is theirs to address.</strong></p>
+        <p>Pattern tracking separates those two variables so you can finally see both clearly.</p>
+      </div>
+      
+      <div class="content-block">
+        <p style="font-size: 1.2rem; text-align: center; color: var(--text-main); font-weight: 600;">Your diagnosis has been the weapon they've been using to make you doubt everything you notice.</p>
+        <p style="font-size: 1.2rem; text-align: center; color: var(--text-main); font-weight: 600;">Pattern tracking is how you document reality without needing anyone else to validate that your reality exists.</p>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>From the Unscarred manipulation detection handbook: turning your scars into mirrors.</p>
+      <p>For people who've lived through impact, not textbooks.</p>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script>
+    // Pattern Tracker Data
+    let entries = [];
+    let scores = {
+      concern: null,
+      curiosity: null,
+      ownership: null,
+      repair: null
+    };
+    
+    // Load saved data
+    function loadData() {
+      const saved = localStorage.getItem('patternTrackerEntries');
+      if (saved) {
+        entries = JSON.parse(saved);
+        renderEntries();
+      }
+      
+      const savedScores = localStorage.getItem('patternTrackerScores');
+      if (savedScores) {
+        scores = JSON.parse(savedScores);
+        updateScoreButtons();
+      }
+    }
+    
+    // Save data
+    function saveData() {
+      localStorage.setItem('patternTrackerEntries', JSON.stringify(entries));
+      localStorage.setItem('patternTrackerScores', JSON.stringify(scores));
+    }
+    
+    // Add entry
+    function addEntry() {
+      const date = document.getElementById('incidentDate').value;
+      const behavior = document.getElementById('incidentBehavior').value;
+      const response = document.getElementById('incidentResponse').value;
+      const change = document.getElementById('incidentChange').value;
+      
+      if (!date || !behavior) {
+        alert('Please fill in date and behavior details');
+        return;
+      }
+      
+      const entry = {
+        id: Date.now(),
+        date,
+        behavior,
+        response,
+        change
+      };
+      
+      entries.unshift(entry);
+      saveData();
+      renderEntries();
+      
+      // Clear form
+      document.getElementById('incidentDate').value = '';
+      document.getElementById('incidentBehavior').value = '';
+      document.getElementById('incidentResponse').value = '';
+      document.getElementById('incidentChange').value = '';
+    }
+    
+    // Delete entry
+    function deleteEntry(id) {
+      if (confirm('Delete this entry?')) {
+        entries = entries.filter(e => e.id !== id);
+        saveData();
+        renderEntries();
+      }
+    }
+    
+    // Clear all entries
+    function clearAllEntries() {
+      if (confirm('Delete ALL entries? This cannot be undone.')) {
+        entries = [];
+        saveData();
+        renderEntries();
+      }
+    }
+    
+    // Render entries
+    function renderEntries() {
+      const container = document.getElementById('entryList');
+      
+      if (entries.length === 0) {
+        container.innerHTML = '<div class="empty-state"><p>No entries yet. Start documenting patterns to see them here.</p></div>';
+        return;
+      }
+      
+      const changeLabels = {
+        'behavior_stopped': 'Behavior stopped',
+        'behavior_continued': 'Behavior continued unchanged',
+        'behavior_improved': 'Behavior improved somewhat',
+        'behavior_worsened': 'Behavior got worse'
+      };
+      
+      container.innerHTML = entries.map(entry => `
+        <div class="entry-item">
+          <div class="entry-header">
+            <span class="entry-date">${new Date(entry.date).toLocaleDateString()}</span>
+            <button class="entry-delete" onclick="deleteEntry(${entry.id})">Delete</button>
+          </div>
+          <div class="entry-content">
+            <p><span class="entry-label">What Happened:</span> ${entry.behavior}</p>
+            ${entry.response ? `<p><span class="entry-label">Their Response:</span> ${entry.response}</p>` : ''}
+            ${entry.change ? `<p><span class="entry-label">Outcome:</span> ${changeLabels[entry.change]}</p>` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+    
+    // Set score
+    function setScore(dimension, value) {
+      scores[dimension] = value;
+      saveData();
+      updateScoreButtons();
+    }
+    
+    // Update score button states
+    function updateScoreButtons() {
+      Object.keys(scores).forEach(dimension => {
+        const buttons = document.querySelectorAll(`[onclick*="setScore('${dimension}"]`);
+        buttons.forEach((btn, index) => {
+          btn.classList.toggle('active', index === scores[dimension]);
+        });
+      });
+    }
+    
+    // Reset scores
+    function resetScores() {
+      if (confirm('Reset all scores?')) {
+        scores = { concern: null, curiosity: null, ownership: null, repair: null };
+        saveData();
+        updateScoreButtons();
+        document.getElementById('resultsArea').innerHTML = '';
+      }
+    }
+    
+    // Calculate results
+    function calculateResults() {
+      if (Object.values(scores).some(s => s === null)) {
+        alert('Please score all four dimensions before calculating results.');
+        return;
+      }
+      
+      const total = Object.values(scores).reduce((a, b) => a + b, 0);
+      const average = (total / 4).toFixed(1);
+      
+      let interpretation = '';
+      let patternType = '';
+      
+      if (total <= 4) {
+        patternType = 'Ego At Core (High Risk Pattern)';
+        interpretation = `
+          <p>This pattern shows consistent scores of 0-1 across all dimensions. This strongly suggests manipulation rather than trauma response.</p>
+          <p><strong>What this means:</strong> The person is either unwilling or unable to stop harming you. They score low on all measures of genuine repair: they don't care how their behavior affects you, don't want to understand your experience, don't take ownership of their actions, and don't change their behavior despite repeated conversations.</p>
+          <p><strong>Your BPD didn't create this pattern.</strong> Your BPD might make you more sensitive to detecting this pattern, but the pattern itself is real and measurable by anyone tracking the data.</p>
+          <p><strong>Next steps:</strong> This data gives you evidence to make informed decisions about this relationship. The pattern shows someone consistently choosing not to repair harm across time.</p>
+        `;
+      } else if (total <= 8) {
+        patternType = 'Inconsistent Pattern (Mixed Signals)';
+        interpretation = `
+          <p>This pattern shows mixed scores across dimensions. Some areas show genuine effort while others remain consistently low.</p>
+          <p><strong>What this means:</strong> This could indicate someone struggling with their own trauma responses, or someone who performs empathy in some areas while avoiding accountability in others. Look at which specific dimensions score high vs low.</p>
+          <p><strong>Questions to consider:</strong> Do the high scores lead to actual behavior change (Repair)? Or do they perform Concern and Curiosity without ever reaching Ownership or Repair? Are the scores inconsistent because they're fighting their nervous system, or because they're selectively engaging?</p>
+          <p><strong>Next steps:</strong> Continue tracking for another 30-60 days. Watch for whether the pattern improves, stays the same, or gets worse. Pattern direction matters as much as current scores.</p>
+        `;
+      } else {
+        patternType = 'Trauma At Core (Genuine Effort Pattern)';
+        interpretation = `
+          <p>This pattern shows moderate to high scores across most dimensions, suggesting genuine effort to repair and change behavior.</p>
+          <p><strong>What this means:</strong> This person is likely fighting their own trauma responses rather than deliberately manipulating you. They show concern, curiosity, ownership, and actual behavior change, even if imperfectly.</p>
+          <p><strong>Important note:</strong> Genuine effort doesn't mean you have to stay in the relationship. It means your BPD isn't inventing the problems, but both of you are dealing with trauma responses. Whether the relationship is workable depends on whether the changes are sustainable and whether the relationship meets your needs.</p>
+          <p><strong>Next steps:</strong> Continue tracking to see if improvements are sustained over time. Watch for backsliding or continued growth. Sustainable change looks like: behavior changes stick even when environment feels less safe, they can hold onto progress during conflicts, pattern trend line points upward over months.</p>
+        `;
+      }
+      
+      const resultsHTML = `
+        <div class="results-display" style="margin-top: 32px;">
+          <div class="results-header">
+            <h3 class="results-title">Pattern Assessment Results</h3>
+            <p class="results-subtitle">Based on ${entries.length} documented incident${entries.length !== 1 ? 's' : ''}</p>
+          </div>
+          
+          <div class="score-grid">
+            <div class="score-item">
+              <div class="score-value">${scores.concern}</div>
+              <div class="score-label">Concern</div>
+            </div>
+            <div class="score-item">
+              <div class="score-value">${scores.curiosity}</div>
+              <div class="score-label">Curiosity</div>
+            </div>
+            <div class="score-item">
+              <div class="score-value">${scores.ownership}</div>
+              <div class="score-label">Ownership</div>
+            </div>
+            <div class="score-item">
+              <div class="score-value">${scores.repair}</div>
+              <div class="score-label">Repair</div>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin: 24px 0;">
+            <p style="font-size: 0.9rem; color: var(--text-soft); margin-bottom: 8px;">Total Score</p>
+            <p style="font-size: 3rem; font-weight: 700; color: var(--primary); margin: 0;">${total}/12</p>
+            <p style="font-size: 1rem; color: var(--text-soft); margin-top: 4px;">Average: ${average}</p>
+          </div>
+          
+          <div class="interpretation">
+            <h4>${patternType}</h4>
+            ${interpretation}
+          </div>
+        </div>
+      `;
+      
+      document.getElementById('resultsArea').innerHTML = resultsHTML;
+      document.getElementById('resultsArea').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    
+    // Tab switching
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      
+      event.target.classList.add('active');
+      document.getElementById(tabName).classList.add('active');
+    }
+    
+    // Smooth scroll
+    function scrollToSection(id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+    
+    // Download functions
+    function downloadTracker() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      doc.setFontSize(20);
+      doc.setTextColor(139, 30, 63);
+      doc.text('Pattern Tracker Worksheet', 20, 20);
+      
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text('BPD Pattern Tracking - Documented Incidents', 20, 30);
+      
+      let yPos = 45;
+      
+      if (entries.length === 0) {
+        doc.setFontSize(11);
+        doc.text('No entries yet. Use this worksheet to track incidents:', 20, yPos);
+        yPos += 15;
+        
+        for (let i = 1; i <= 5; i++) {
+          if (yPos > 250) {
+            doc.addPage();
+            yPos = 20;
+          }
+          
+          doc.setFontSize(10);
+          doc.setFont(undefined, 'bold');
+          doc.text(`Entry ${i}`, 20, yPos);
+          yPos += 7;
+          
+          doc.setFont(undefined, 'normal');
+          doc.text('Date: _________________', 20, yPos);
+          yPos += 10;
+          
+          doc.text('What Happened (Observable Facts):', 20, yPos);
+          yPos += 7;
+          doc.text('_______________________________________________________________', 20, yPos);
+          yPos += 7;
+          doc.text('_______________________________________________________________', 20, yPos);
+          yPos += 10;
+          
+          doc.text('Their Response:', 20, yPos);
+          yPos += 7;
+          doc.text('_______________________________________________________________', 20, yPos);
+          yPos += 10;
+          
+          doc.text('What Changed: _______________________________________________', 20, yPos);
+          yPos += 15;
+        }
+      } else {
+        doc.setFontSize(11);
+        doc.text(`Total Entries: ${entries.length}`, 20, yPos);
+        yPos += 15;
+        
+        entries.forEach((entry, index) => {
+          if (yPos > 250) {
+            doc.addPage();
+            yPos = 20;
+          }
+          
+          doc.setFont(undefined, 'bold');
+          doc.setFontSize(10);
+          doc.text(`${index + 1}. ${new Date(entry.date).toLocaleDateString()}`, 20, yPos);
+          yPos += 7;
+          
+          doc.setFont(undefined, 'normal');
+          doc.setFontSize(9);
+          
+          doc.text('What Happened:', 20, yPos);
+          yPos += 5;
+          const behaviorLines = doc.splitTextToSize(entry.behavior, 170);
+          doc.text(behaviorLines, 20, yPos);
+          yPos += (behaviorLines.length * 5) + 5;
+          
+          if (entry.response) {
+            doc.text('Their Response:', 20, yPos);
+            yPos += 5;
+            const responseLines = doc.splitTextToSize(entry.response, 170);
+            doc.text(responseLines, 20, yPos);
+            yPos += (responseLines.length * 5) + 5;
+          }
+          
+          if (entry.change) {
+            const changeLabels = {
+              'behavior_stopped': 'Behavior stopped',
+              'behavior_continued': 'Behavior continued unchanged',
+              'behavior_improved': 'Behavior improved somewhat',
+              'behavior_worsened': 'Behavior got worse'
+            };
+            doc.text(`Outcome: ${changeLabels[entry.change]}`, 20, yPos);
+            yPos += 10;
+          }
+          
+          yPos += 5;
+        });
+      }
+      
+      doc.addPage();
+      yPos = 20;
+      
+      doc.setFontSize(16);
+      doc.setTextColor(139, 30, 63);
+      doc.text('Four Dimensions Scoring', 20, yPos);
+      yPos += 15;
+      
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      
+      const dimensions = [
+        { name: 'Concern', desc: 'Do they actually care how their behavior affects you?' },
+        { name: 'Curiosity', desc: 'Do they genuinely want to understand your experience?' },
+        { name: 'Ownership', desc: 'Do they acknowledge their role in the dynamic?' },
+        { name: 'Repair', desc: 'Does the behavior actually change?' }
+      ];
+      
+      dimensions.forEach(dim => {
+        doc.setFont(undefined, 'bold');
+        doc.text(`${dim.name}:`, 20, yPos);
+        yPos += 5;
+        doc.setFont(undefined, 'normal');
+        doc.text(dim.desc, 20, yPos);
+        yPos += 7;
+        doc.text('Score (0-3): ____', 20, yPos);
+        yPos += 12;
+      });
+      
+      if (scores.concern !== null) {
+        yPos += 10;
+        doc.setFont(undefined, 'bold');
+        doc.text('Your Current Scores:', 20, yPos);
+        yPos += 7;
+        doc.setFont(undefined, 'normal');
+        doc.text(`Concern: ${scores.concern}/3`, 20, yPos);
+        yPos += 6;
+        doc.text(`Curiosity: ${scores.curiosity}/3`, 20, yPos);
+        yPos += 6;
+        doc.text(`Ownership: ${scores.ownership}/3`, 20, yPos);
+        yPos += 6;
+        doc.text(`Repair: ${scores.repair}/3`, 20, yPos);
+        yPos += 6;
+        const total = scores.concern + scores.curiosity + scores.ownership + scores.repair;
+        doc.text(`Total: ${total}/12`, 20, yPos);
+      }
+      
+      doc.save('pattern-tracker-worksheet.pdf');
+    }
+    
+    function downloadGuide() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      
+      doc.setFontSize(24);
+      doc.setTextColor(139, 30, 63);
+      doc.text('When Your Diagnosis', 105, 40, { align: 'center' });
+      doc.text('Becomes The Weapon', 105, 50, { align: 'center' });
+      
+      doc.setFontSize(14);
+      doc.setTextColor(100, 100, 100);
+      doc.text('Pattern Tracking For People With BPD', 105, 65, { align: 'center' });
+      
+      doc.setFontSize(10);
+      doc.text('Complete Course Guide', 105, 75, { align: 'center' });
+      
+      doc.setFontSize(9);
+      doc.text('From the Unscarred manipulation detection handbook', 105, 260, { align: 'center' });
+      doc.text('For people who\'ve lived through impact, not textbooks', 105, 267, { align: 'center' });
+      
+      doc.addPage();
+      let yPos = 20;
+      
+      doc.setFontSize(16);
+      doc.setTextColor(139, 30, 63);
+      doc.text('Your Diagnosis Has Been Used Against You', 20, yPos);
+      yPos += 10;
+      
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      
+      const intro = [
+        'You have BPD, or someone told you that you do. Either way, it\'s become the',
+        'explanation for everything you do and everything that happens to you.',
+        '',
+        'When you notice someone\'s behavior is hurting you and you say so, they point',
+        'to your diagnosis. When you recognize a pattern and call it out, they cite your',
+        'symptoms back to you. When you get upset about genuine mistreatment, they',
+        'pathologize your reaction.',
+        '',
+        'Your diagnosis has become the reason you can\'t trust your own perception.',
+        '',
+        'Here\'s what nobody tells you: people with BPD often developed those protection',
+        'patterns because they were in genuinely manipulative environments. Your nervous',
+        'system learned to track subtle shifts in emotional temperature because that was',
+        'actual survival information you needed.',
+        '',
+        'You\'re not imagining patterns. You\'re detecting real ones.'
+      ];
+      
+      intro.forEach(line => {
+        if (yPos > 270) {
+          doc.addPage();
+          yPos = 20;
+        }
+        doc.text(line, 20, yPos);
+        yPos += 6;
+      });
+      
+      doc.addPage();
+      yPos = 20;
+      
+      doc.setFontSize(16);
+      doc.setTextColor(139, 30, 63);
+      doc.text('Key Concepts', 20, yPos);
+      yPos += 15;
+      
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.setFont(undefined, 'bold');
+      doc.text('Real Ignorance vs Weaponized Ignorance', 20, yPos);
+      yPos += 7;
+      
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      const ignoranceText = doc.splitTextToSize(
+        'Real ignorance learns. When someone explains how your behavior hurt them, something shifts. Weaponized ignorance claims "I didn\'t know" while making you explain the same pattern for the 47th time.',
+        170
+      );
+      doc.text(ignoranceText, 20, yPos);
+      yPos += (ignoranceText.length * 5) + 10;
+      
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('Ego At Core vs Trauma At Core', 20, yPos);
+      yPos += 7;
+      
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      const patternText = doc.splitTextToSize(
+        'Ego at core: Uses emotional language as camouflage. Scores consistently low on all four dimensions. Returns to same manipulation immediately. Trauma at core: Spikes high in safe moments, crashes back when threat activates. Fights themselves about whether vulnerability was safe or stupid.',
+        170
+      );
+      doc.text(patternText, 20, yPos);
+      yPos += (patternText.length * 5) + 10;
+      
+      doc.setFontSize(12);
+      doc.setFont(undefined, 'bold');
+      doc.text('The Four Dimensions', 20, yPos);
+      yPos += 7;
+      
+      doc.setFontSize(10);
+      doc.setFont(undefined, 'normal');
+      doc.text('1. Concern: Do they care how their behavior affects you?', 25, yPos);
+      yPos += 6;
+      doc.text('2. Curiosity: Do they want to understand your experience?', 25, yPos);
+      yPos += 6;
+      doc.text('3. Ownership: Do they acknowledge their role?', 25, yPos);
+      yPos += 6;
+      doc.text('4. Repair: Does the behavior actually change?', 25, yPos);
+      yPos += 15;
+      
+      doc.setFontSize(16);
+      doc.setTextColor(139, 30, 63);
+      doc.text('How To Track Patterns', 20, yPos);
+      yPos += 10;
+      
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+      
+      const steps = [
+        'Step 1: Pick ONE specific behavior pattern to track',
+        'Step 2: Document observable facts only (not feelings or interpretations)',
+        'Step 3: Track for minimum 30 days',
+        'Step 4: Score the four dimensions based on evidence',
+        'Step 5: Make decisions based on patterns, not promises'
+      ];
+      
+      steps.forEach(step => {
+        doc.setFont(undefined, 'bold');
+        doc.text(step.split(':')[0] + ':', 20, yPos);
+        yPos += 6;
+        doc.setFont(undefined, 'normal');
+        const stepText = doc.splitTextToSize(step.split(':')[1], 160);
+        doc.text(stepText, 30, yPos);
+        yPos += (stepText.length * 5) + 8;
+      });
+      
+      doc.save('pattern-tracking-guide.pdf');
+    }
+    
+    function exportData() {
+      const data = {
+        entries: entries,
+        scores: scores,
+        exportDate: new Date().toISOString(),
+        totalEntries: entries.length
+      };
+      
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `pattern-tracker-export-${new Date().toISOString().split('T')[0]}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+    
+    // Initialize
+    loadData();
+  </script>
+</body>
+</html>

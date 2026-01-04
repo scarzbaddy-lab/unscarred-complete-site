@@ -1,0 +1,1109 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is This Freeze, Autistic Shutdown, Or Fawn Mode  | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --panel: #0d0d12;
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --nd-color: #9d7ee8;
+      --freeze-color: #5c8fa3;
+      --shutdown-color: #9d7ee8;
+      --fawn-color: #7d9c84;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 16px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(92, 143, 163, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(157, 126, 232, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--primary); }
+
+    .back-link {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    /* Quiz Header */
+    .quiz-header {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+
+    .quiz-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--freeze-color);
+      padding: 8px 16px;
+      background: rgba(92, 143, 163, 0.1);
+      border-radius: 999px;
+      border: 1px solid rgba(92, 143, 163, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .quiz-lead {
+      font-size: 1rem;
+      color: var(--text-soft);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      background: var(--panel);
+      border-radius: 999px;
+      height: 6px;
+      margin: 32px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--freeze-color), var(--shutdown-color));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* Section Labels */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--freeze-color);
+      margin: 48px 0 24px;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-glass);
+    }
+
+    /* Question Card */
+    .question-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+
+    .question-num {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .option.selected {
+      background: rgba(92, 143, 163, 0.1);
+      border-color: rgba(92, 143, 163, 0.3);
+    }
+
+    .option input { display: none; }
+
+    .option-radio {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--text-dim);
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .option.selected .option-radio {
+      border-color: var(--freeze-color);
+      background: var(--freeze-color);
+    }
+
+    .option.selected .option-radio::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      background: var(--bg-void);
+      border-radius: 50%;
+    }
+
+    .option-text {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .option.selected .option-text { color: var(--text-main); }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--freeze-color), var(--shutdown-color));
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 40px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(92, 143, 163, 0.3);
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(92, 143, 163, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Results */
+    .results {
+      display: none;
+      padding: 40px 0 80px;
+    }
+
+    .results.show { display: block; }
+
+    .result-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+
+    .result-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .result-badge.freeze {
+      background: rgba(92, 143, 163, 0.15);
+      color: var(--freeze-color);
+      border: 1px solid rgba(92, 143, 163, 0.3);
+    }
+
+    .result-badge.shutdown {
+      background: rgba(157, 126, 232, 0.15);
+      color: var(--shutdown-color);
+      border: 1px solid rgba(157, 126, 232, 0.3);
+    }
+
+    .result-badge.fawn {
+      background: rgba(125, 156, 132, 0.15);
+      color: var(--fawn-color);
+      border: 1px solid rgba(125, 156, 132, 0.3);
+    }
+
+    .result-badge.mixed {
+      background: rgba(201, 118, 61, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .result-description {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    /* Score Bars */
+    .score-section { margin: 32px 0; }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .score-label {
+      width: 140px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .score-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .score-fill.freeze { background: linear-gradient(90deg, var(--freeze-color), #78b4c8); }
+    .score-fill.shutdown { background: linear-gradient(90deg, var(--shutdown-color), #b794f6); }
+    .score-fill.fawn { background: linear-gradient(90deg, var(--fawn-color), #a3c9a8); }
+
+    .score-value {
+      width: 50px;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Breakdown */
+    .breakdown-section {
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .breakdown-section h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+    }
+
+    .breakdown-list li {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      padding: 10px 0;
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .breakdown-list li:last-child { border-bottom: none; }
+
+    .breakdown-list li::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      color: var(--freeze-color);
+      font-weight: 600;
+    }
+
+    /* CTA */
+    .result-cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      flex: 1;
+      min-width: 200px;
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn.primary {
+      background: linear-gradient(135deg, var(--freeze-color), var(--shutdown-color));
+      color: white;
+      box-shadow: 0 8px 30px rgba(92, 143, 163, 0.3);
+    }
+
+    .cta-btn.primary:hover { transform: translateY(-2px); }
+
+    .cta-btn.secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid var(--border-glass);
+    }
+
+    .cta-btn.secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../homepage.html" class="logo">un<span>scarred</span></a>
+      <a href="/quizzes/" class="back-link">? All Quizzes</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div id="quiz-section">
+      <div class="quiz-header">
+        <div class="quiz-badge">ðŸ§Š Shutdown Types</div>
+        <h1>Is This Freeze, Autistic Shutdown, Or Fawn Mode </h1>
+        <p class="quiz-lead">You shut down and everybody has an opinion about why. Anxiety. "Attitude." Avoidant. "You just do not care." This quiz helps you sort between trauma freeze, autistic shutdown, and fawn response so you can stop calling everything "me being dramatic."</p>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">Answer all questions to see your results</div>
+
+      <form id="quiz-form">
+
+        <!-- WHAT TRIGGERS IT -->
+        <div class="section-label">What Triggers Your Shutdown</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 1 of 15</div>
+          <div class="question-text">What usually triggers your shutdown </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q1" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Conflict, rejection, feeling unsafe, or sensing that someone is upset with me.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Too much sensory input, social overload, or having to switch tasks/contexts too fast.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Sensing tension or someone's mood shifting. I go into "fix it" or "make them okay" mode.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 2 of 15</div>
+          <div class="question-text">When you are overwhelmed, what does your body do </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q2" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">I freeze. I cannot speak, move, or think. My body goes still and I feel paralyzed.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">I shut down. I can not process language, my brain goes offline, everything feels muffled.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">I go on autopilot. I smile, agree, make everything smooth, while dying inside.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 3 of 15</div>
+          <div class="question-text">Is your shutdown more about relational threat or sensory overload </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q3" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Relational threat. Abandonment, rejection, someone being mad at me.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q3" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Sensory overload. Too much noise, light, people, or demands on my brain.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q3" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Relational threat, but I do not freeze. I start performing to make it okay.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- HOW IT FEELS -->
+        <div class="section-label">How It Feels Inside</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 4 of 15</div>
+          <div class="question-text">What is happening in your mind when you shut down </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q4" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Fear. Panic. Hypervigilance. My mind is racing but I can not move or speak.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q4" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Nothing. Static. My mind goes blank or loops on one thing. Language stops working.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q4" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Calculation. I am scanning for what they need, what will make this okay, how to fix it.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 5 of 15</div>
+          <div class="question-text">Do you feel like you are in danger, or do you feel like your brain just hit a wall </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q5" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">In danger. My body thinks something terrible is about to happen.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q5" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Like my brain hit a wall. Not fear exactly, just... offline. Depleted. Done.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q5" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">In danger, but I respond by trying to fix it, not by freezing or shutting down.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 6 of 15</div>
+          <div class="question-text">When you are shut down, can you still speak </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q6" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Sometimes. But my voice sounds flat or I can only say "I do not know."</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q6" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">No. Words do not come. I might be able to text but talking feels impossible.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q6" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, I can speak fine. I might even sound calm and reasonable while I am dying inside.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- HOW OTHERS READ IT -->
+        <div class="section-label">How Others Read It</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 7 of 15</div>
+          <div class="question-text">What do people usually think is happening when you shut down </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q7" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">That I am being cold, avoidant, or "shutting them out" on purpose.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">That I am being rude, ignoring them, or have an "attitude."</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">They think I am fine. They have no idea anything is wrong because I hide it so well.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 8 of 15</div>
+          <div class="question-text">After you shut down, do people know something happened </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q8" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes. They can tell I went somewhere else. They ask if I am okay or get frustrated.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Sometimes. If I am with people who know me. Otherwise I just seem quiet or checked out.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">No. They have no idea. I perform through the whole thing and crash later alone.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- RECOVERY -->
+        <div class="section-label">Recovery & Coming Back</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 9 of 15</div>
+          <div class="question-text">How long does your shutdown usually last </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q9" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Until the threat feels resolved. Could be minutes or hours depending on repair.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Hours to days. I need serious recovery time even after the situation is over.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Until I am alone. Then I crash hard and need days to recover from the performance.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 10 of 15</div>
+          <div class="question-text">What brings you back online </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q10" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Knowing the conflict is resolved. Reassurance. Feeling safe again.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q10" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Time alone in quiet. Stimming. A specific routine or comfort activity.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q10" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Being completely alone with no one to perform for. Then I can finally let go.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 11 of 15</div>
+          <div class="question-text">Can another person help you come back, or do you need to be alone </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q11" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Another person helps. A safe person co-regulating with me brings me back faster.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q11" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">I need to be alone. People make it worse even when they are trying to help.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q11" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">I need to be alone. If anyone is there, I will keep performing instead of resting.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- PATTERNS -->
+        <div class="section-label">Patterns Over Time</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 12 of 15</div>
+          <div class="question-text">Did this start after trauma, or have you always been this way </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q12" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">After trauma. I was not like this before. Something rewired my nervous system.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Always. I have been shutting down from overload since I was a kid.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Started early with family. I learned to perform to survive before I knew I was doing it.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 13 of 15</div>
+          <div class="question-text">Does this happen even when you are alone, or only around people </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q13" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Only around people or when I am anticipating conflict or rejection.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q13" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">It can happen alone if I am overstimulated or have too much going on.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q13" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">Only around people. When I am alone I can finally be myself without performing.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 14 of 15</div>
+          <div class="question-text">Do you feel emotionally numb during shutdown, or emotionally flooded </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q14" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">Flooded but paralyzed. The feelings are there, I just can not access or express them.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q14" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">Numb. It is like the emotional processing system turned off entirely.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q14" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">I feel everything, but I suppress it completely to take care of the other person.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 15 of 15</div>
+          <div class="question-text">Which statement fits you best </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q15" value="freeze">
+              <span class="option-radio"></span>
+              <span class="option-text">"I freeze when I feel unsafe. My body shuts down to protect me from threat."</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q15" value="shutdown">
+              <span class="option-radio"></span>
+              <span class="option-text">"I shut down when I am overloaded. My brain hits a wall and needs to reboot."</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q15" value="fawn">
+              <span class="option-radio"></span>
+              <span class="option-text">"I perform when I feel unsafe. I go on autopilot to smooth things over and collapse later."</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn" disabled>See My Results</button>
+
+      </form>
+    </div>
+
+    <!-- Results -->
+    <div class="results" id="results-section">
+      <div id="result-content"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Â© 2025 Unscarred. Understanding your system, not pathologizing it.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('quiz-form');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const submitBtn = document.getElementById('submit-btn');
+    const quizSection = document.getElementById('quiz-section');
+    const resultsSection = document.getElementById('results-section');
+    const resultContent = document.getElementById('result-content');
+
+    const totalQuestions = 15;
+    const questions = Array.from({length: totalQuestions}, (_, i) => `q${i + 1}`);
+
+    function updateProgress() {
+      let answered = 0;
+      questions.forEach(q => {
+        if (document.querySelector(`input[name="${q}"]:checked`)) answered++;
+      });
+      const pct = (answered / totalQuestions) * 100;
+      progressBar.style.width = pct + '%';
+      progressText.textContent = `${answered} of ${totalQuestions} answered`;
+      submitBtn.disabled = answered < totalQuestions;
+    }
+
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const options = this.closest('.options').querySelectorAll('.option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        this.closest('.option').classList.add('selected');
+        updateProgress();
+      });
+    });
+
+    const results = {
+      freeze: {
+        badge: 'freeze',
+        badgeText: 'Trauma Freeze Response',
+        title: 'Your shutdown is trauma freeze',
+        description: `Your body goes into freeze when it senses relational threat. Conflict, rejection, abandonment cues, walking on eggshells. Your nervous system learned that going still was the safest option when fight and flight were not available.
+
+This is not you being cold or avoidant. This is a survival response that got wired in when you were not safe. The freeze protected you once. Now it fires even when the threat is not as real as your body thinks it is.`,
+        signs: [
+          'Triggered mainly by conflict, rejection, or sensing someone is upset',
+          'Body goes still but mind is racing with fear or panic',
+          'You can not speak or think clearly even though you want to',
+          'Recovery comes from repair and reassurance, not just time alone',
+          'Started or intensified after trauma, abuse, or unsafe relationships'
+        ],
+        whatHelps: [
+          'Safe co-regulation with someone who can stay calm',
+          'Verbal reassurance that the relationship is okay',
+          'Gentle movement to get out of freeze (shake, walk, stretch)',
+          'Learning to recognize the freeze as a survival response, not a flaw',
+          'Trauma-informed support to rewire the nervous system'
+        ]
+      },
+      shutdown: {
+        badge: 'shutdown',
+        badgeText: 'Autistic Shutdown',
+        title: 'Your shutdown is sensory/cognitive overload',
+        description: `Your brain shuts down when there is too much input. Too much noise, light, social demand, context-switching, or accumulated overwhelm. This is not a trauma response. It is your nervous system protecting itself from overload.
+
+Your shutdown is not attitude, avoidance, or you being difficult. Your brain literally hits a processing wall and needs to reboot. The world is not built for your bandwidth, and that is not your fault.`,
+        signs: [
+          'Triggered mainly by sensory overload, social exhaustion, or too many demands',
+          'Mind goes blank or static. Language stops working.',
+          'You feel numb rather than flooded. Processing shuts off.',
+          'Recovery requires alone time, quiet, and possibly stimming or a ritual',
+          'This has happened your whole life, not just after trauma'
+        ],
+        whatHelps: [
+          'Immediate reduction of sensory input (quiet, dim, alone)',
+          'Stimming or comfort activities without judgment',
+          'No pressure to talk or explain. Text if needed.',
+          'Pre-planned recovery time after high-demand situations',
+          'Accommodations, not pushing through. Your brain needs what it needs.'
+        ]
+      },
+      fawn: {
+        badge: 'fawn',
+        badgeText: 'Fawn Response',
+        title: 'Your shutdown is masked by fawn',
+        description: `You do not freeze or shut down visibly. You perform. When you sense threat, you go into "make it okay" mode. You smile, agree, smooth things over, anticipate needs, and suppress everything you are actually feeling. Then you crash alone.
+
+This is not you being "too nice." This is a survival response. You learned that keeping others calm was the way to stay safe. The fawn looks functional on the outside, but it is exhausting and it costs you your real self.`,
+        signs: [
+          'You look calm and reasonable while dying inside',
+          'You can speak and function, but you are on autopilot',
+          'Others have no idea anything is wrong because you hide it so well',
+          'You crash hard when you are finally alone',
+          'Started early with family. You learned to perform to survive.'
+        ],
+        whatHelps: [
+          'Solitude to finally stop performing and feel what is real',
+          'Permission to not be okay without fixing it for others',
+          'Practice saying no or expressing discomfort in low-stakes situations',
+          'Recognizing fawn as survival, not personality',
+          'Support to rebuild your actual self underneath the performance'
+        ]
+      },
+      mixed: {
+        badge: 'mixed',
+        badgeText: 'Mixed Pattern',
+        title: 'You have multiple shutdown types',
+        description: `Your answers show a mix of trauma freeze, autistic shutdown, and fawn response. This is common, especially if you are neurodivergent AND have experienced trauma. The two systems interact and can trigger each other.
+
+Sometimes you freeze from relational threat. Sometimes you shut down from overload. Sometimes you fawn to survive. The trick is learning which one is happening in the moment so you can give yourself what you actually need.`,
+        signs: [
+          'Your shutdown looks different depending on the trigger',
+          'Relational threat AND sensory overload both shut you down',
+          'Sometimes you freeze, sometimes you go blank, sometimes you perform',
+          'Recovery needs vary: sometimes alone time, sometimes repair, sometimes both',
+          'You may be neurodivergent with trauma layered on top'
+        ],
+        whatHelps: [
+          'Learn to identify which shutdown is happening in the moment',
+          'Build different recovery tools for different types',
+          'Integrated support that addresses both wiring and wounds',
+          'Do not try to fix all of it the same way. Match the intervention to the type.',
+          'Give yourself permission to need what you need without explanation'
+        ]
+      }
+    };
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const scores = { freeze: 0, shutdown: 0, fawn: 0 };
+      questions.forEach(q => {
+        const checked = document.querySelector(`input[name="${q}"]:checked`);
+        if (checked) scores[checked.value]++;
+      });
+
+      // Determine result
+      let resultType;
+      const max = Math.max(scores.freeze, scores.shutdown, scores.fawn);
+      const values = Object.values(scores);
+      const closeEnough = values.filter(v => v >= max - 2).length >= 2;
+
+      if (closeEnough && max < 10) {
+        resultType = 'mixed';
+      } else if (scores.freeze >= scores.shutdown && scores.freeze >= scores.fawn) {
+        resultType = 'freeze';
+      } else if (scores.shutdown >= scores.freeze && scores.shutdown >= scores.fawn) {
+        resultType = 'shutdown';
+      } else {
+        resultType = 'fawn';
+      }
+
+      const result = results[resultType];
+
+      resultContent.innerHTML = `
+        <div class="result-card">
+          <span class="result-badge ${result.badge}">${result.badgeText}</span>
+          <h2 class="result-title">${result.title}</h2>
+          <p class="result-description">${result.description}</p>
+
+          <div class="score-section">
+            <div class="score-row">
+              <span class="score-label">Trauma Freeze</span>
+              <div class="score-track">
+                <div class="score-fill freeze" style="width: ${(scores.freeze / totalQuestions) * 100}%"></div>
+              </div>
+              <span class="score-value">${scores.freeze}/${totalQuestions}</span>
+            </div>
+            <div class="score-row">
+              <span class="score-label">Autistic Shutdown</span>
+              <div class="score-track">
+                <div class="score-fill shutdown" style="width: ${(scores.shutdown / totalQuestions) * 100}%"></div>
+              </div>
+              <span class="score-value">${scores.shutdown}/${totalQuestions}</span>
+            </div>
+            <div class="score-row">
+              <span class="score-label">Fawn Response</span>
+              <div class="score-track">
+                <div class="score-fill fawn" style="width: ${(scores.fawn / totalQuestions) * 100}%"></div>
+              </div>
+              <span class="score-value">${scores.fawn}/${totalQuestions}</span>
+            </div>
+          </div>
+
+          <div class="breakdown-section">
+            <h4>What This Looks Like:</h4>
+            <ul class="breakdown-list">
+              ${result.signs.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="breakdown-section">
+            <h4>What Actually Helps:</h4>
+            <ul class="breakdown-list">
+              ${result.whatHelps.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="result-cta">
+            <a href="social-battery.html" class="cta-btn primary">Take the Social Battery Quiz</a>
+            <a href="/quizzes/" class="cta-btn secondary">Back to All Quizzes</a>
+          </div>
+        </div>
+      `;
+
+      quizSection.classList.add('hidden');
+      resultsSection.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

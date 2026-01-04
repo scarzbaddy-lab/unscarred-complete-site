@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ground Zero Reset Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #050509;
+      --card: #111019;
+      --card-soft: #181628;
+      --accent: #b13b5f;
+      --text-main: #f5f5f7;
+      --text-soft: #c0c0cf;
+      --border-subtle: #26243a;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #231b35 0, #050509 55%);
+      color: var(--text-main);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+      gap: 8px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #f7f2f5;
+    }
+
+    .back-link {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(5, 5, 12, 0.9);
+    }
+
+    h1 {
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      margin: 4px 0 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .note {
+      max-width: 740px;
+      margin: 0 auto 22px;
+      font-size: 0.87rem;
+      color: var(--text-soft);
+      background: rgba(10, 10, 20, 0.88);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px;
+      line-height: 1.4;
+    }
+
+    .card {
+      background: linear-gradient(145deg, var(--card), var(--card-soft));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 14px 10px;
+      margin-bottom: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .section-title {
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .section-note {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .question {
+      margin: 12px 0 8px;
+      padding: 10px 10px 8px;
+      border-radius: var(--radius-md);
+      background: rgba(12, 12, 22, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .question-label {
+      font-size: 0.94rem;
+      margin-bottom: 4px;
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: #9b9bb0;
+      margin-bottom: 4px;
+    }
+
+    .options {
+      margin-top: 2px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin: 3px 0;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      cursor: pointer;
+    }
+
+    .option input {
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .submit-wrap {
+      text-align: center;
+      margin: 24px 0 10px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: radial-gradient(circle at top left, #e0608b, #b13b5f);
+      color: white;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #ff9494;
+      text-align: center;
+    }
+
+    .results {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .result-header {
+      margin-bottom: 8px;
+    }
+
+    .result-title {
+      font-size: 1.3rem;
+      margin: 0 0 4px;
+    }
+
+    .result-tagline {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 10, 22, 0.9);
+      color: var(--text-soft);
+    }
+
+    .results-body h3 {
+      font-size: 0.98rem;
+      margin: 10px 0 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .results-body p {
+      font-size: 0.9rem;
+      margin: 2px 0 8px;
+      color: var(--text-soft);
+    }
+
+    .results-body ul {
+      padding-left: 16px;
+      margin: 4px 0 10px;
+    }
+
+    .results-body li {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+      color: var(--text-soft);
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 28px 0 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <div id="intro-screen">
+            <h1>War Mapping Diagnostic</h1>
+            <div class="intro">
+                <p>This assessment identifies specific complications that may be blocking your recovery.</p>
+                <p style="margin-top: 15px;">Unlike personality typing, this maps which patterns are actively interfering with your healing process. You may have multiple flags active simultaneously.</p>
+            </div>
+
+            <div class="diagnostic-preview">
+                <p style="margin-bottom: 15px; color: #d4737a;"><strong>This diagnostic measures:</strong></p>
+                <div class="flag-item"><strong>Hyperactivity Mode:</strong> Racing thoughts, can't slow down, constant stimulation seeking</div>
+                <div class="flag-item"><strong>Trauma + Neurodivergence Mixed:</strong> Can't distinguish ADHD from hypervigilance, executive dysfunction under stress</div>
+                <div class="flag-item"><strong>Undiagnosed Neurodivergence:</strong> Masking exhaustion, "broken" narrative, standard advice fails</div>
+                <div class="flag-item"><strong>Prolonged Survival Mode:</strong> Stuck in threat detection, can't access rest, nervous system won't downregulate</div>
+                <div class="flag-item"><strong>Dissociation:</strong> Disconnection from body/emotions, autopilot living, numbing out</div>
+            </div>
+
+            <button class="start-button" onclick="startQuiz()">Begin Diagnostic</button>
+        </div>
+
+        <div id="quiz-screen" style="display: none;">
+            <div class="progress">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+
+            <div id="questions-container"></div>
+
+            <div class="navigation">
+                <button id="prev-btn" onclick="previousQuestion()" disabled>Previous</button>
+                <button id="next-btn" onclick="nextQuestion()" disabled>Next</button>
+                <button id="submit-btn" onclick="calculateResults()" style="display: none;">See Results</button>
+            </div>
+        </div>
+
+        <div id="results-screen" class="results"></div>
+    </div>
+
+    <script>
+        const questions = [
+            // Hyperactivity Mode
+            {
+                question: "Your mind races constantly, jumping between thoughts without being able to slow down.",
+                category: "hyperactivity"
+            },
+            {
+                question: "You seek constant stimulation because stillness feels physically uncomfortable or unbearable.",
+                category: "hyperactivity"
+            },
+            {
+                question: "You feel compelled to keep moving, doing, producing, even when exhausted.",
+                category: "hyperactivity"
+            },
+            {
+                question: "Slowing down triggers anxiety or a sense that something terrible will happen.",
+                category: "hyperactivity"
+            },
+            {
+                question: "You can't sit still without your phone, a task, or some form of input.",
+                category: "hyperactivity"
+            },
+            // Trauma + Neurodivergence Mixed
+            {
+                question: "You can't tell if your focus issues are ADHD, trauma, or both.",
+                category: "trauma_nd"
+            },
+            {
+                question: "Your executive function collapses under stress in ways that feel different from just being overwhelmed.",
+                category: "trauma_nd"
+            },
+            {
+                question: "Time blindness and emotional dysregulation make you question what's 'normal' for you.",
+                category: "trauma_nd"
+            },
+            {
+                question: "You've been told you're sensitive or overreacting, but you can't tell if it's neurodivergence or trauma response.",
+                category: "trauma_nd"
+            },
+            {
+                question: "Sensory overload and hypervigilance feel tangled together in ways you can't separate.",
+                category: "trauma_nd"
+            },
+            // Undiagnosed Neurodivergence
+            {
+                question: "You've always felt like everyone else got an instruction manual you never received.",
+                category: "undiagnosed_nd"
+            },
+            {
+                question: "Masking or performing 'normal' takes enormous energy, leaving you depleted.",
+                category: "undiagnosed_nd"
+            },
+            {
+                question: "Standard advice and coping strategies don't work for you, and no one can explain why.",
+                category: "undiagnosed_nd"
+            },
+            {
+                question: "You've built your entire life around compensating for differences you can't name.",
+                category: "undiagnosed_nd"
+            },
+            {
+                question: "People are surprised when you struggle because you're 'so capable' in other areas.",
+                category: "undiagnosed_nd"
+            },
+            // Prolonged Survival Mode
+            {
+                question: "Your body feels constantly on alert, waiting for the next threat even when logically safe.",
+                category: "survival"
+            },
+            {
+                question: "You can't remember what genuine relaxation feels like without forcing it.",
+                category: "survival"
+            },
+            {
+                question: "Small changes or surprises send your nervous system into immediate overdrive.",
+                category: "survival"
+            },
+            {
+                question: "You're exhausted but can't actually rest because your system won't let you.",
+                category: "survival"
+            },
+            {
+                question: "Threat detection is automatic and constant, scanning for danger even in safe situations.",
+                category: "survival"
+            },
+            // Dissociation
+            {
+                question: "You feel disconnected from your body, like you're observing yourself from outside.",
+                category: "dissociation"
+            },
+            {
+                question: "Large chunks of time pass without you really being present or remembering them.",
+                category: "dissociation"
+            },
+            {
+                question: "You go through motions on autopilot, functioning but not fully conscious.",
+                category: "dissociation"
+            },
+            {
+                question: "Emotions feel distant or muted, like you're watching them through glass.",
+                category: "dissociation"
+            },
+            {
+                question: "You numb out when things get intense, disappearing inside yourself without choosing to.",
+                category: "dissociation"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let answers = {};
+        const totalQuestions = questions.length;
+
+        function startQuiz() {
+            document.getElementById('intro-screen').style.display = 'none';
+            document.getElementById('quiz-screen').style.display = 'block';
+            renderQuestions();
+            showQuestion(0);
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions-container');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+                questionDiv.id = `question-${index}`;
+                
+                questionDiv.innerHTML = `
+                    <div class="question-number">Question ${index + 1} of ${totalQuestions}</div>
+                    <div class="question">${q.question}</div>
+                    <div class="options">
+                        <div class="option" data-value="2" onclick="selectAnswer(${index}, 2, this)">
+                            Strongly Agree
+                        </div>
+                        <div class="option" data-value="1" onclick="selectAnswer(${index}, 1, this)">
+                            Agree
+                        </div>
+                        <div class="option" data-value="0" onclick="selectAnswer(${index}, 0, this)">
+                            Neutral / Sometimes
+                        </div>
+                        <div class="option" data-value="0" onclick="selectAnswer(${index}, 0, this)">
+                            Disagree
+                        </div>
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function showQuestion(index) {
+            document.querySelectorAll('.question-container').forEach(q => q.classList.remove('active'));
+            document.getElementById(`question-${index}`).classList.add('active');
+            currentQuestion = index;
+            updateProgress();
+            updateNavButtons();
+        }
+
+        function selectAnswer(questionIndex, value, element) {
+            const questionContainer = element.closest('.question-container');
+            questionContainer.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            answers[questionIndex] = {
+                value: value,
+                category: questions[questionIndex].category
+            };
+            
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            prevBtn.disabled = currentQuestion === 0;
+            
+            if (currentQuestion === totalQuestions - 1) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = answers[currentQuestion] ? 'block' : 'none';
+            } else {
+                nextBtn.style.display = 'block';
+                submitBtn.style.display = 'none';
+                nextBtn.disabled = !answers[currentQuestion];
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions - 1) {
+                showQuestion(currentQuestion + 1);
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                showQuestion(currentQuestion - 1);
+            }
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / totalQuestions) * 100;
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+
+        function calculateResults() {
+            const scores = {
+                hyperactivity: 0,
+                trauma_nd: 0,
+                undiagnosed_nd: 0,
+                survival: 0,
+                dissociation: 0
+            };
+
+            Object.values(answers).forEach(answer => {
+                scores[answer.category] += answer.value;
+            });
+
+            // Convert to 0-10 scale (5 questions per category, max 2 points each = 10 max)
+            const normalizedScores = {
+                hyperactivity: scores.hyperactivity,
+                trauma_nd: scores.trauma_nd,
+                undiagnosed_nd: scores.undiagnosed_nd,
+                survival: scores.survival,
+                dissociation: scores.dissociation
+            };
+
+            displayResults(normalizedScores);
+        }
+
+        function getScoreClass(score) {
+            if (score >= 8) return 'score-critical';
+            if (score >= 6) return 'score-high';
+            if (score >= 4) return 'score-moderate';
+            if (score >= 2) return 'score-mild';
+            return 'score-minimal';
+        }
+
+        function getSeverityText(score) {
+            if (score >= 8) return 'Critical - Requires immediate attention';
+            if (score >= 6) return 'High - Significant interference';
+            if (score >= 4) return 'Moderate - Active complication';
+            if (score >= 2) return 'Mild - Present but manageable';
+            return 'Minimal - Not a primary concern';
+        }
+
+        function displayResults(scores) {
+            const flagDetails = {
+                hyperactivity: {
+                    title: "Hyperactivity Mode",
+                    description: "Your system is stuck in constant motion, unable to downregulate. This isn't just busy, it's a compulsive need for stimulation and activity that masks as productivity but is actually a trauma response or neurodivergent coping mechanism.",
+                    indicators: [
+                        "Racing thoughts that won't slow down",
+                        "Physical restlessness and constant need to move",
+                        "Seeking stimulation to avoid stillness",
+                        "Anxiety when forced to slow down or be still",
+                        "Using busyness to regulate or escape emotions"
+                    ]
+                },
+                trauma_nd: {
+                    title: "Trauma + Neurodivergence Mixed",
+                    description: "You can't distinguish between ADHD symptoms and trauma responses because they're so entangled. Executive dysfunction, emotional dysregulation, and sensory issues could be either or both, making it nearly impossible to know what needs healing versus what needs accommodation.",
+                    indicators: [
+                        "Can't separate ADHD from hypervigilance symptoms",
+                        "Executive function collapse under stress",
+                        "Time blindness mixed with dissociation",
+                        "Emotional dysregulation that could be either source",
+                        "Sensory overload tangled with threat detection"
+                    ]
+                },
+                undiagnosed_nd: {
+                    title: "Undiagnosed Neurodivergence",
+                    description: "You've spent your life compensating for a brain that works differently, without ever getting confirmation or support. Masking takes enormous energy, standard advice doesn't work, and you've built your entire identity around being 'broken' when actually you're just undiagnosed neurodivergent.",
+                    indicators: [
+                        "Feeling like you missed the instruction manual",
+                        "Exhaustion from constant masking and compensating",
+                        "Standard coping strategies consistently fail",
+                        "High capability in some areas, surprising struggles in others",
+                        "Life built around compensations you can't name"
+                    ]
+                },
+                survival: {
+                    title: "Prolonged Survival Mode",
+                    description: "Your nervous system is stuck in perpetual threat detection. This isn't a choice or a mindset, it's your autonomic nervous system running a program designed for acute danger that's been active so long it became your baseline. You can't access the parasympathetic state required for healing.",
+                    indicators: [
+                        "Constant body-level vigilance and scanning",
+                        "Unable to genuinely relax without forcing it",
+                        "Nervous system overreacts to minor changes",
+                        "Exhausted but can't rest or downregulate",
+                        "Threat detection runs automatically in safe situations"
+                    ]
+                },
+                dissociation: {
+                    title: "Dissociation",
+                    description: "You disconnect from your body and emotions as a protective mechanism. This can range from mild spacing out to complete autopilot functioning. You're present physically but absent internally, which makes embodied healing work nearly impossible until this is addressed.",
+                    indicators: [
+                        "Feeling disconnected from your body",
+                        "Time passing without full presence or memory",
+                        "Going through motions on autopilot",
+                        "Emotions feel distant or muted",
+                        "Numbing out automatically when things get intense"
+                    ]
+                }
+            };
+
+            const resultsScreen = document.getElementById('results-screen');
+            document.getElementById('quiz-screen').style.display = 'none';
+
+            let resultsHTML = `
+                <div class="results-header">
+                    <h2>Your War Mapping Results</h2>
+                    <p class="results-intro">These scores indicate which complications are currently active in your system. Higher scores represent patterns that are significantly interfering with your recovery process.</p>
+                </div>
+            `;
+
+            // Sort by score to show most critical first
+            const sortedFlags = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+            sortedFlags.forEach(([flag, score]) => {
+                const details = flagDetails[flag];
+                resultsHTML += `
+                    <div class="flag-result">
+                        <div class="flag-header">
+                            <div>
+                                <div class="flag-title">${details.title}</div>
+                                <div class="severity-indicator">${getSeverityText(score)}</div>
+                            </div>
+                            <div class="flag-score ${getScoreClass(score)}">${score}/10</div>
+                        </div>
+                        <div class="flag-description">${details.description}</div>
+                        <div class="flag-indicators">
+                            <h4>Key Indicators:</h4>
+                            <ul>
+                                ${details.indicators.map(i => `<li>${i}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Add next steps based on highest scores
+            const criticalFlags = sortedFlags.filter(([flag, score]) => score >= 6);
+            
+            resultsHTML += `
+                <div class="next-steps">
+                    <h3>What This Means for Your Recovery:</h3>
+            `;
+
+            if (criticalFlags.length > 0) {
+                resultsHTML += `<p>You have ${criticalFlags.length} critical flag${criticalFlags.length > 1 ? 's' : ''} that are significantly blocking your healing. These need to be addressed before traditional trauma work will be effective.</p>`;
+                
+                if (scores.undiagnosed_nd >= 6 || scores.trauma_nd >= 6) {
+                    resultsHTML += `<p><strong>Priority:</strong> Get proper neurodivergent assessment. You can't heal trauma effectively while using tools designed for neurotypical brains.</p>`;
+                }
+                
+                if (scores.survival >= 6) {
+                    resultsHTML += `<p><strong>Priority:</strong> Focus on nervous system regulation and somatic work before diving into trauma processing. Your system needs to learn safety first.</p>`;
+                }
+                
+                if (scores.dissociation >= 6) {
+                    resultsHTML += `<p><strong>Priority:</strong> Work on grounding and embodiment practices. Healing requires being present in your body, which isn't currently accessible.</p>`;
+                }
+            } else {
+                resultsHTML += `<p>While you have some complications present, none are at critical levels. Your healing work can proceed, but keep these patterns in mind as potential obstacles.</p>`;
+            }
+
+            resultsHTML += `
+                </div>
+                <div class="action-buttons">
+                    <a href="https://unscarred.online" class="action-button">Explore Resources</a>
+                    <button class="action-button" onclick="location.reload()">Retake Diagnostic</button>
+                </div>
+            `;
+
+            resultsScreen.innerHTML = resultsHTML;
+            resultsScreen.classList.add('active');
+        }
+    </script>
+</body>
+</html>

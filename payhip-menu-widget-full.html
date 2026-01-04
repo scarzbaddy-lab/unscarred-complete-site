@@ -1,0 +1,1002 @@
+<!-- 
+====================================================
+UNSCARRED PAYHIP HOMEPAGE - FULL VERSION
+====================================================
+Copy everything below and paste into Payhip's 
+"Custom HTML" section on your storefront.
+
+Includes:
+- About Me (personalized)
+- What I Do
+- Who I Help
+- Testimonials
+- FAQ
+- Product Card Styles
+====================================================
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+  
+  .unscarred-menu {
+    font-family: 'Outfit', system-ui, sans-serif;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .unscarred-menu * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header */
+  .menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .menu-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .menu-logo span {
+    color: #a33b5c;
+  }
+  
+  .menu-tagline {
+    font-size: 15px;
+    color: #9a958c;
+    font-weight: 300;
+    font-style: italic;
+  }
+  
+  /* Tab Navigation */
+  .menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .menu-tab {
+    padding: 10px 20px;
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    color: #9a958c;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-tab:hover {
+    border-color: rgba(163, 59, 92, 0.4);
+    color: #ece8e1;
+  }
+  
+  .menu-tab.active {
+    background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+    border-color: #a33b5c;
+    color: white;
+    box-shadow: 0 4px 20px rgba(163, 59, 92, 0.3);
+  }
+  
+  /* Content Panels */
+  .menu-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  
+  .menu-panel.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* About Panel - Clean Scannable Version */
+  .about-simple {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .about-simple h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 16px;
+  }
+  
+  .about-simple .intro {
+    font-size: 18px;
+    color: #c9763d;
+    line-height: 1.6;
+    margin-bottom: 32px;
+  }
+  
+  .about-points {
+    text-align: left;
+    margin: 24px 0;
+  }
+  
+  .point {
+    display: flex;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .point:last-child {
+    border-bottom: none;
+  }
+  
+  .point-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    width: 32px;
+    text-align: center;
+  }
+  
+  .point div {
+    font-size: 14px;
+    color: #9a958c;
+    line-height: 1.6;
+  }
+  
+  .point strong {
+    color: #ece8e1;
+    display: block;
+    margin-bottom: 4px;
+  }
+  
+  .closer {
+    font-size: 15px;
+    color: #9a958c;
+    line-height: 1.7;
+    margin: 32px 0 24px;
+  }
+  
+  .closer strong {
+    color: #a33b5c;
+    font-size: 17px;
+  }
+  
+  .highlight-quote {
+    background: linear-gradient(165deg, rgba(163, 59, 92, 0.12), rgba(124, 92, 191, 0.06));
+    border-left: 3px solid #a33b5c;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 0 12px 12px 0;
+  }
+  
+  .highlight-quote p {
+    font-style: italic;
+    color: #ece8e1 !important;
+    margin: 0 !important;
+    font-size: 15px !important;
+  }
+  
+  .credentials {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 700px) {
+    .credentials { justify-content: center; }
+  }
+  
+  .credential-badge {
+    padding: 6px 14px;
+    background: rgba(124, 92, 191, 0.15);
+    border: 1px solid rgba(124, 92, 191, 0.2);
+    border-radius: 8px;
+    font-size: 11px;
+    color: #9a958c;
+    font-weight: 500;
+  }
+  
+  /* Services Panel */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .service-item {
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  
+  .service-item:hover {
+    border-color: rgba(163, 59, 92, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+  }
+  
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  
+  .service-item h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .service-item p {
+    font-size: 13px;
+    color: #9a958c;
+    line-height: 1.6;
+  }
+  
+  /* Who Panel */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  @media (max-width: 700px) {
+    .who-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .who-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .who-card {
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .who-card:hover {
+    border-color: rgba(201, 118, 61, 0.4);
+    transform: translateY(-2px);
+  }
+  
+  .who-card.highlight {
+    border-color: rgba(163, 59, 92, 0.3);
+    background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(20, 18, 25, 0.9));
+  }
+  
+  .who-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+  }
+  
+  .who-card h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 6px;
+  }
+  
+  .who-card p {
+    font-size: 12px;
+    color: #9a958c;
+    line-height: 1.5;
+  }
+  
+  /* Testimonials Panel */
+  .testimonials-grid {
+    display: grid;
+    gap: 20px;
+  }
+  
+  .testimonial-card {
+    background: linear-gradient(165deg, rgba(124, 92, 191, 0.08), rgba(20, 18, 25, 0.9));
+    border: 1px solid rgba(124, 92, 191, 0.15);
+    border-radius: 20px;
+    padding: 28px;
+    position: relative;
+  }
+  
+  .testimonial-card::before {
+    content: """;
+    position: absolute;
+    top: 16px;
+    left: 24px;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 64px;
+    color: rgba(124, 92, 191, 0.2);
+    line-height: 1;
+  }
+  
+  .testimonial-text {
+    font-size: 15px;
+    color: #ece8e1;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 16px;
+    padding-left: 20px;
+  }
+  
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 20px;
+  }
+  
+  .testimonial-avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #a33b5c, #7c5cbf);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  
+  .testimonial-info {
+    font-size: 13px;
+  }
+  
+  .testimonial-info strong {
+    color: #ece8e1;
+    display: block;
+  }
+  
+  .testimonial-info span {
+    color: #9a958c;
+  }
+  
+  /* FAQ Panel */
+  .faq-list {
+    display: grid;
+    gap: 12px;
+  }
+  
+  .faq-item {
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .faq-item:hover {
+    border-color: rgba(201, 118, 61, 0.3);
+  }
+  
+  .faq-question {
+    padding: 18px 24px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #ece8e1;
+    font-size: 14px;
+    font-weight: 500;
+  }
+  
+  .faq-question::after {
+    content: "+";
+    font-size: 20px;
+    color: #c9763d;
+    transition: transform 0.3s ease;
+  }
+  
+  .faq-item.open .faq-question::after {
+    transform: rotate(45deg);
+  }
+  
+  .faq-answer {
+    display: none;
+    padding: 0 24px 18px;
+    font-size: 13px;
+    color: #9a958c;
+    line-height: 1.7;
+  }
+  
+  .faq-item.open .faq-answer {
+    display: block;
+  }
+  
+  /* CTA Section */
+  .menu-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding: 32px;
+    background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(124, 92, 191, 0.05));
+    border: 1px solid rgba(163, 59, 92, 0.2);
+    border-radius: 20px;
+  }
+  
+  .menu-cta h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .menu-cta p {
+    font-size: 14px;
+    color: #9a958c;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+    color: white;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(163, 59, 92, 0.3);
+    margin: 0 8px 8px 0;
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+  }
+  
+  .cta-button.secondary {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: #9a958c;
+    box-shadow: none;
+  }
+  
+  .cta-button.secondary:hover {
+    border-color: rgba(255,255,255,0.4);
+    color: #ece8e1;
+  }
+  
+  /* Quick Links */
+  .quick-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .quick-link {
+    font-size: 13px;
+    color: #9a958c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .quick-link:hover {
+    color: #a33b5c;
+  }
+  
+  /* ========================================
+     PRODUCT CARDS SECTION
+     Add this below the menu on your Payhip page
+     ======================================== */
+  
+  .products-section {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  
+  .products-header {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  
+  .products-header h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .products-header p {
+    font-size: 14px;
+    color: #9a958c;
+  }
+  
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  @media (max-width: 800px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  
+  @media (max-width: 500px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+  
+  .product-card {
+    background: rgba(20, 18, 25, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .product-card:hover {
+    border-color: rgba(163, 59, 92, 0.4);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+  }
+  
+  .product-card.featured {
+    background: linear-gradient(165deg, rgba(163, 59, 92, 0.12), rgba(20, 18, 25, 0.95));
+    border-color: rgba(163, 59, 92, 0.3);
+  }
+  
+  .product-icon {
+    font-size: 40px;
+    margin-bottom: 16px;
+  }
+  
+  .product-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(201, 118, 61, 0.15);
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #c9763d;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+  }
+  
+  .product-card h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .product-card p {
+    font-size: 12px;
+    color: #9a958c;
+    line-height: 1.5;
+    margin-bottom: 16px;
+  }
+  
+  .product-price {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: #a33b5c;
+  }
+  
+  .product-price.free {
+    color: #4CAF50;
+  }
+  
+  .product-price small {
+    font-size: 12px;
+    font-weight: 400;
+    color: #9a958c;
+  }
+  
+  /* Category Dividers */
+  .category-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #c9763d;
+    text-align: center;
+    margin: 40px 0 20px;
+  }
+</style>
+
+<div class="unscarred-menu">
+  
+  <!-- Header -->
+  <div class="menu-header">
+    <div class="menu-logo">un<span>scarred</span></div>
+    <p class="menu-tagline">Pattern support for the ones who feel too much and see too clearly.</p>
+  </div>
+  
+  <!-- Tab Navigation -->
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="showPanel('about')">About Me</button>
+    <button class="menu-tab" onclick="showPanel('services')">What I Do</button>
+    <button class="menu-tab" onclick="showPanel('who')">Who I Help</button>
+    <button class="menu-tab" onclick="showPanel('testimonials')">Testimonials</button>
+    <button class="menu-tab" onclick="showPanel('faq')">FAQ</button>
+  </div>
+  
+  <!-- ======== ABOUT PANEL ======== -->
+  <div id="panel-about" class="menu-panel active">
+    <div class="about-simple">
+      
+      <h2>Hey, I'm Scar Kade.</h2>
+      
+      <p class="intro">I turn scars into mirrors.<br>I help you see what's really happening.</p>
+      
+      <div class="about-points">
+        <div class="point">
+          <span class="point-icon">🔥</span>
+          <div>
+            <strong>I didn't learn this from a textbook.</strong><br>
+            I learned it inside a family of survival mode, emotional chaos, and trauma nobody had words for.
+          </div>
+        </div>
+        
+        <div class="point">
+          <span class="point-icon">🎭</span>
+          <div>
+            <strong>I've been the scapegoat. The golden child. The black sheep.</strong><br>
+            The one who sees too much and gets punished for it.
+          </div>
+        </div>
+        
+        <div class="point">
+          <span class="point-icon">🧠</span>
+          <div>
+            <strong>Pattern tracking kept me alive.</strong><br>
+            Now I teach it.
+          </div>
+        </div>
+      </div>
+      
+      <div class="highlight-quote">
+        <p>Your patterns are not your fault.<br>Learning them is your power.</p>
+      </div>
+      
+      <div class="about-points">
+        <div class="point">
+          <span class="point-icon">❌</span>
+          <div>
+            <strong>I'm not a therapist.</strong><br>
+            I'm a survivor, pattern reader, and educator.
+          </div>
+        </div>
+        
+        <div class="point">
+          <span class="point-icon">✓</span>
+          <div>
+            <strong>People come to me because my work actually fits.</strong><br>
+            It describes their inner world without shaming them.
+          </div>
+        </div>
+      </div>
+      
+      <p class="closer">Feel like you're losing your mind but you KNOW you're seeing something real?<br><strong>You're my people.</strong></p>
+      
+      <div class="credentials">
+        <span class="credential-badge">Trauma-Informed</span>
+        <span class="credential-badge">Attachment Specialist</span>
+        <span class="credential-badge">Pattern Reader</span>
+        <span class="credential-badge">Nervous System Nerd</span>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- ======== SERVICES PANEL ======== -->
+  <div id="panel-services" class="menu-panel">
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">📓</div>
+        <h3>Workbooks & Toolkits</h3>
+        <p>Self-paced resources with exercises, scripts, and frameworks. Print them, fill them in, track your patterns. Includes regulation drills, conflict scripts, and healing modules.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🎓</div>
+        <h3>Programs & Courses</h3>
+        <p>Week-by-week curriculum with video lessons, micro-drills, and included 1:1 calls. Real transformation, not just information. For anxious, avoidant, and fearful-avoidant patterns.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">📞</div>
+        <h3>1:1 Phone Calls</h3>
+        <p>Direct support for your specific situation. Pattern identification, script feedback, and actionable next steps. Single calls or bundles available. $47/hour or save with a 4-call bundle.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">💬</div>
+        <h3>Text Support</h3>
+        <p>Real-time pattern interrupts when you need them. Before-you-text check-ins, daily support, and someone who gets it in your pocket. Crisis week, pattern interrupt, or monthly Best Friend Mode.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🎯</div>
+        <h3>Pattern Tracking Sessions</h3>
+        <p>90-minute deep-dive where we map your specific triggers, automatic responses, and nervous system patterns. You leave with a visual pattern map and custom interrupt scripts.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">💑</div>
+        <h3>Translation Sessions</h3>
+        <p>For couples, parent-child, siblings, or any two people stuck in cycles of misunderstanding. I help translate what you're both actually trying to say.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ======== WHO I HELP PANEL ======== -->
+  <div id="panel-who" class="menu-panel">
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-icon">💔</div>
+        <h4>Anxious Attachers</h4>
+        <p>Chasers, over-explainers, and those who spiral when they don't hear back.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🧊</div>
+        <h4>Avoidant Attachers</h4>
+        <p>Those who shut down, need space, or feel suffocated by intimacy.</p>
+      </div>
+      <div class="who-card highlight">
+        <div class="who-icon">🔥</div>
+        <h4>Fearful-Avoidants</h4>
+        <p>The push-pull. Want closeness and distance at the same time.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">⚔️</div>
+        <h4>Trauma Survivors</h4>
+        <p>Complex PTSD, toxic relationships, patterns that started in childhood.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">💜</div>
+        <h4>BPD Traits</h4>
+        <p>Intense emotions, fear of abandonment, splitting, identity confusion.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🎭</div>
+        <h4>Scapegoats & Golden Children</h4>
+        <p>Family role survivors who carry patterns they didn't choose.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🔗</div>
+        <h4>Trauma Bonded</h4>
+        <p>Stuck in a relationship that feels like love and addiction at once.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🧠</div>
+        <h4>Neurodivergent</h4>
+        <p>ADHD, autism, or traits that make relationships feel harder to navigate.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🪞</div>
+        <h4>Pattern Breakers</h4>
+        <p>Anyone stuck in cycles they can't explain but desperately want to end.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- ======== TESTIMONIALS PANEL ======== -->
+  <div id="panel-testimonials" class="menu-panel">
+    <div class="testimonials-grid">
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">I stopped trying to convince her to want me and started showing up as someone worth wanting. The difference in her response was immediate.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">👤</div>
+          <div class="testimonial-info">
+            <strong>Centered Man Graduate</strong>
+            <span>6-week program</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">This is the most accurate thing I've ever read about myself. I felt seen in a way that therapy never made me feel. No shame, just clarity.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">💜</div>
+          <div class="testimonial-info">
+            <strong>BPD Healing Workbook</strong>
+            <span>Customer</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">The pattern tracking session changed everything. I finally understood WHY I do what I do. Now I can catch myself before I spiral.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">🎯</div>
+          <div class="testimonial-info">
+            <strong>Pattern Tracking Client</strong>
+            <span>1:1 Session</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <p class="testimonial-text">Best Friend Mode literally saved my relationship. Having someone in my pocket who understood my patterns meant I didn't send the texts I would have regretted.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">💬</div>
+          <div class="testimonial-info">
+            <strong>Text Support Subscriber</strong>
+            <span>Best Friend Mode</span>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- ======== FAQ PANEL ======== -->
+  <div id="panel-faq" class="menu-panel">
+    <div class="faq-list">
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Are you a therapist?</div>
+        <div class="faq-answer">Nope. I'm Scar. Trauma-informed educator, pattern reader, and survivor. I don't diagnose, treat, or provide clinical care. What I offer is pattern support: helping you understand your attachment style, nervous system responses, and relationship dynamics. It's the curriculum nobody taught you.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">What if I'm in crisis right now?</div>
+        <div class="faq-answer">If you're in immediate danger or having thoughts of harming yourself, please contact emergency services or a crisis line first. My work is meant to supplement professional care, not replace it. Once you're stable, I can help you understand the patterns that got you there.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Which product should I start with?</div>
+        <div class="faq-answer">Start with a quiz to map your patterns. If you're anxious-attached, try the Regulation Workbook. If you're in a complicated relationship dynamic, the Pattern Tracking session gives you a full map. If you need daily support, Best Friend Mode is the way to go.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">How is this different from therapy?</div>
+        <div class="faq-answer">Therapy treats clinical conditions and processes deep trauma with professional protocols. I focus on pattern education: helping you understand WHY you react the way you do and giving you practical scripts and tools to respond differently. Many of my clients use my work alongside therapy.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Do you offer refunds?</div>
+        <div class="faq-answer">Digital products are non-refundable once accessed. For 1:1 calls, I offer rescheduling with 24-hour notice. If something doesn't feel right, reach out and we'll figure it out together.</div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">Can I book a call to ask questions first?</div>
+        <div class="faq-answer">Yes! I offer a free 15-minute consult if you're not sure which service fits. DM me or hit the "Book a Call" button and we'll figure out what makes sense for where you are.</div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <!-- CTA -->
+  <div class="menu-cta">
+    <h3>Ready to see your patterns clearly?</h3>
+    <p>Start with a quiz, grab a workbook, or book a call with me. I'll meet you where you are.</p>
+    <a href="https://unscarred.site/quizzes/" class="cta-button" target="_blank">Take a Quiz →</a>
+    <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" class="cta-button secondary" target="_blank">Book a Call with Scar</a>
+  </div>
+  
+  <!-- Quick Links -->
+  <div class="quick-links">
+    <a href="https://unscarred.site" class="quick-link" target="_blank">Main Website</a>
+    <a href="https://unscarred.site/programs.html" class="quick-link" target="_blank">All Programs</a>
+    <a href="https://unscarred.site/blog.html" class="quick-link" target="_blank">Blog</a>
+    <a href="https://unscarred.site/coaching.html" class="quick-link" target="_blank">Coaching</a>
+  </div>
+  
+  <!-- ======== PRODUCT CARDS SECTION ======== -->
+  <!-- This gives a preview of products before Payhip's native product grid -->
+  
+  <div class="products-section">
+    <div class="products-header">
+      <h2>Start Your Healing Journey</h2>
+      <p>Choose what fits where you are right now</p>
+    </div>
+    
+    <p class="category-label">📚 Most Popular</p>
+    
+    <div class="products-grid">
+      
+      <a href="#" class="product-card featured">
+        <div class="product-icon">📓</div>
+        <span class="product-badge">Best Seller</span>
+        <h3>BPD Healing Workbook</h3>
+        <p>6 modules of compassionate exercises for understanding and healing borderline patterns.</p>
+        <div class="product-price">$37</div>
+      </a>
+      
+      <a href="#" class="product-card featured">
+        <div class="product-icon">⚡</div>
+        <span class="product-badge">Includes 2 Calls</span>
+        <h3>Anxious Healing Program</h3>
+        <p>4-week curriculum to calm your body, clean up your asks, and build steady connection.</p>
+        <div class="product-price">$147</div>
+      </a>
+      
+      <a href="#" class="product-card">
+        <div class="product-icon">🔥</div>
+        <span class="product-badge">5 Days</span>
+        <h3>Break The Trauma Bond</h3>
+        <p>Understand why you can't leave and build the safety to finally get free.</p>
+        <div class="product-price">$47</div>
+      </a>
+      
+    </div>
+    
+    <p class="category-label">🆓 Free Resources</p>
+    
+    <div class="products-grid">
+      
+      <a href="#" class="product-card">
+        <div class="product-icon">🆘</div>
+        <h3>Crisis Toolkit</h3>
+        <p>Emergency grounding techniques and resources for when you're in it.</p>
+        <div class="product-price free">Free</div>
+      </a>
+      
+      <a href="#" class="product-card">
+        <div class="product-icon">📊</div>
+        <h3>Pattern Tracking Guide</h3>
+        <p>Learn to document reality when your diagnosis is used against you.</p>
+        <div class="product-price free">Free</div>
+      </a>
+      
+      <a href="#" class="product-card">
+        <div class="product-icon">🎯</div>
+        <h3>Manipulation Detection</h3>
+        <p>The Scenario Lab method for seeing patterns others miss.</p>
+        <div class="product-price free">Free</div>
+      </a>
+      
+    </div>
+    
+  </div>
+  
+</div>
+
+<script>
+function showPanel(panelName) {
+  // Remove active from all tabs and panels
+  document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.menu-panel').forEach(panel => panel.classList.remove('active'));
+  
+  // Add active to clicked tab
+  event.target.classList.add('active');
+  
+  // Show corresponding panel
+  document.getElementById('panel-' + panelName).classList.add('active');
+}
+
+function toggleFaq(element) {
+  const faqItem = element.parentElement;
+  faqItem.classList.toggle('open');
+}
+</script>
+

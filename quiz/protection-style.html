@@ -1,0 +1,1463 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protection Style Mapping | Unscarred</title>
+    <meta name="description" content="Discover how your nervous system protects you and what that means for your healing path. A 22-question assessment mapping your protection patterns.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <style>
+        :root {
+            --bg-void: #050507;
+            --bg-deep: #0a0a0f;
+            --card-glass: rgba(12, 12, 18, 0.85);
+            --primary: #a33b5c;
+            --primary-glow: rgba(163, 59, 92, 0.4);
+            --secondary: #7c5cbf;
+            --secondary-glow: rgba(124, 92, 191, 0.3);
+            --accent: #c9763d;
+            --accent-soft: #e8a165;
+            --text-main: #ece8e1;
+            --text-soft: #9a958c;
+            --text-dim: #5c5955;
+            --border-glass: rgba(255,255,255,0.06);
+            --radius-lg: 20px;
+            --radius-sm: 12px;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Outfit', system-ui, sans-serif;
+            --success: #4a9d6e;
+            --warning: #d4a535;
+            --danger: #c94a4a;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-void);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201, 118, 61, 0.06) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-glass);
+        }
+
+        .header-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .back-link {
+            font-size: 14px;
+            color: var(--text-soft);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover { color: var(--text-main); }
+
+        /* Quiz Container */
+        .quiz-wrapper {
+            padding: 60px 0 100px;
+        }
+
+        /* Email Capture */
+        .email-capture {
+            text-align: center;
+            padding: 60px 40px;
+            background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .email-capture .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            padding: 8px 16px;
+            background: rgba(201, 118, 61, 0.1);
+            border-radius: 999px;
+            border: 1px solid rgba(201, 118, 61, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .email-capture h1 {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 600;
+            font-style: italic;
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .email-capture h1 em { color: var(--primary); }
+
+        .email-capture .lead {
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            max-width: 500px;
+            margin: 0 auto 32px;
+            line-height: 1.7;
+        }
+
+        .email-form {
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .email-form input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .email-form input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(163, 59, 92, 0.2);
+        }
+
+        .email-form input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 16px 32px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), #8a2a4a);
+            color: white;
+            box-shadow: 0 8px 30px var(--primary-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--primary-glow);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-soft);
+            border: 1px solid var(--border-glass);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.08);
+            color: var(--text-main);
+        }
+
+        .email-note {
+            margin-top: 16px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .quiz-meta {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .quiz-meta span {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Quiz Section */
+        .quiz-section {
+            display: none;
+        }
+
+        .quiz-section.active {
+            display: block;
+            animation: fadeUp 0.4s ease-out;
+        }
+
+        /* Progress Bar */
+        .progress-wrap {
+            margin-bottom: 40px;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.4s ease;
+            border-radius: 999px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 12px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        /* Question Card */
+        .question-card {
+            background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+        }
+
+        .question-section {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .question-number {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 16px;
+        }
+
+        .question-text {
+            font-family: var(--font-display);
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--text-main);
+            line-height: 1.4;
+            margin-bottom: 28px;
+        }
+
+        .answer-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .answer-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 20px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .answer-option:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(255,255,255,0.12);
+        }
+
+        .answer-option.selected {
+            background: rgba(163, 59, 92, 0.1);
+            border-color: rgba(163, 59, 92, 0.3);
+        }
+
+        .answer-option input {
+            display: none;
+        }
+
+        .answer-radio {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-dim);
+            border-radius: 50%;
+            flex-shrink: 0;
+            margin-top: 2px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .answer-option.selected .answer-radio {
+            border-color: var(--primary);
+            background: var(--primary);
+        }
+
+        .answer-option.selected .answer-radio::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .answer-text {
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            line-height: 1.5;
+        }
+
+        .answer-option.selected .answer-text {
+            color: var(--text-main);
+        }
+
+        /* Navigation */
+        .quiz-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        .nav-btn {
+            padding: 14px 28px;
+            border-radius: 999px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn.prev {
+            background: rgba(255,255,255,0.05);
+            color: var(--text-soft);
+        }
+
+        .nav-btn.prev:hover:not(:disabled) {
+            background: rgba(255,255,255,0.08);
+            color: var(--text-main);
+        }
+
+        .nav-btn.next {
+            background: linear-gradient(135deg, var(--primary), #8a2a4a);
+            color: white;
+        }
+
+        .nav-btn.next:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px var(--primary-glow);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Result Page */
+        .result-page {
+            display: none;
+        }
+
+        .result-page.active {
+            display: block;
+            animation: fadeUp 0.6s ease-out;
+        }
+
+        .result-card {
+            background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+            border: 1px solid var(--border-glass);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+        }
+
+        .result-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 8px 16px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+        }
+
+        .result-badge.overload {
+            background: rgba(201, 74, 74, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(201, 74, 74, 0.3);
+        }
+
+        .result-badge.online {
+            background: rgba(212, 165, 53, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(212, 165, 53, 0.3);
+        }
+
+        .result-badge.offline {
+            background: rgba(124, 92, 191, 0.15);
+            color: var(--secondary);
+            border: 1px solid rgba(124, 92, 191, 0.3);
+        }
+
+        .result-title {
+            font-family: var(--font-display);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            font-weight: 600;
+            font-style: italic;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        .result-subtitle {
+            font-size: 1.1rem;
+            color: var(--accent);
+            margin-bottom: 24px;
+        }
+
+        .result-content {
+            color: var(--text-soft);
+            line-height: 1.8;
+        }
+
+        .result-content p {
+            margin-bottom: 20px;
+        }
+
+        .result-content h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 32px 0 16px;
+        }
+
+        .result-content ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .result-content li {
+            position: relative;
+            padding-left: 24px;
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        .result-content li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .result-content strong {
+            color: var(--text-main);
+        }
+
+        .result-content em {
+            color: var(--text-main);
+            font-style: italic;
+            display: block;
+            padding: 20px;
+            background: rgba(201, 118, 61, 0.08);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+            margin: 24px 0;
+        }
+
+        .result-cta {
+            margin-top: 40px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-glass);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 36px;
+            background: linear-gradient(135deg, var(--primary), #8a2a4a);
+            color: white;
+            text-decoration: none;
+            border-radius: 999px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px var(--primary-glow);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--primary-glow);
+        }
+
+        .retake-btn {
+            padding: 14px 28px;
+            background: transparent;
+            color: var(--text-soft);
+            border: 1px solid var(--border-glass);
+            border-radius: 999px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .retake-btn:hover {
+            border-color: rgba(255,255,255,0.2);
+            color: var(--text-main);
+        }
+
+        /* Score Breakdown */
+        .score-breakdown {
+            background: rgba(255,255,255,0.02);
+            border-radius: var(--radius-sm);
+            padding: 24px;
+            margin: 32px 0;
+        }
+
+        .score-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .score-row:last-child {
+            margin-bottom: 0;
+        }
+
+        .score-label {
+            width: 120px;
+            font-size: 0.85rem;
+            color: var(--text-soft);
+        }
+
+        .score-track {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 999px;
+            overflow: hidden;
+        }
+
+        .score-fill {
+            height: 100%;
+            border-radius: 999px;
+            transition: width 0.6s ease;
+        }
+
+        .score-fill.nervous { background: linear-gradient(90deg, var(--secondary), #9d7ee8); }
+        .score-fill.conscience { background: linear-gradient(90deg, var(--primary), #c94a6d); }
+        .score-fill.intent { background: linear-gradient(90deg, var(--accent), #e8a165); }
+
+        .score-value {
+            width: 50px;
+            text-align: right;
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-glass);
+        }
+
+        footer a {
+            color: var(--text-soft);
+            text-decoration: none;
+        }
+
+        footer a:hover { color: var(--text-main); }
+
+        /* Mobile Responsive */
+        @media (max-width: 640px) {
+            .email-capture,
+            .question-card,
+            .result-card {
+                padding: 28px 20px;
+            }
+
+            .question-text {
+                font-size: 1.2rem;
+            }
+
+            .quiz-nav {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-inner">
+            <a href="../homepage.html" class="logo">un<span>scarred</span></a>
+    <a href="/quizzes/" class="back-link">← All Quizzes</a>
+        </div>
+    </header>
+
+    <div class="quiz-wrapper">
+        <div class="container">
+
+            <!-- Email Capture -->
+            <div id="emailCapture" class="email-capture">
+                <div class="badge">🛡️ Protection Mapping</div>
+                <h1>How Does Your Nervous System <em>Protect</em> You </h1>
+                <p class="lead">This isn't a personality test. It maps how your system defends you, whether you see the harm you cause, and what that means for your healing path.</p>
+                
+                <div class="email-form">
+                    <!-- Mailchimp Form - Replace action URL with your Mailchimp form action -->
+                    <form id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" novalidate>
+                        <input type="email" name="EMAIL" id="mce-EMAIL" placeholder="Enter your email for results" required>
+                        <input type="hidden" name="QUIZ" value="protection-style">
+                        <!-- Honeypot field for bot detection -->
+                        <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                            <input type="text" name="b_XXXXX_XXXXX" tabindex="-1" value="">
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="startQuiz()">Start the Assessment →</button>
+                    </form>
+                    <p class="email-note">🔒 Your results will be sent to this email. No spam, ever.</p>
+                </div>
+
+                <div class="quiz-meta">
+                    <span>22 questions</span>
+                    <span>~8 minutes</span>
+                    <span>12 possible results</span>
+                </div>
+            </div>
+
+            <!-- Quiz Section -->
+            <div id="quizSection" class="quiz-section">
+                <div class="progress-wrap">
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-text">
+                        <span id="progressLabel">Question 1 of 22</span>
+                        <span id="sectionLabel">Section 1: Nervous System</span>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <div id="questionsContainer"></div>
+                    
+                    <div class="quiz-nav">
+                        <button class="nav-btn prev" id="prevBtn" onclick="previousQuestion()" disabled>← Previous</button>
+                        <button class="nav-btn next" id="nextBtn" onclick="nextQuestion()" disabled>Next →</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Result Page -->
+            <div id="resultPage" class="result-page"></div>
+
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2025 Unscarred. This is a pattern assessment, not a diagnosis.</p>
+            <p style="margin-top: 8px;"><a href="../homepage.html">Home</a> · <a href="/quizzes/">More Quizzes</a> · <a href="../booking.html">Book a Session</a></p>
+        </div>
+    </footer>
+
+    <script>
+        const questions = [
+            // Section 1: Nervous System Awareness (Q1-10)
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "When someone close to you says 'we need to talk,' what happens in your body/mind first ",
+                answers: [
+                    { text: "I don't really notice much, I just wait to hear what they want to say", value: "a" },
+                    { text: "I immediately start running through what I might have done wrong and planning responses", value: "b" },
+                    { text: "I feel something shift but I can't really name what it is", value: "c" },
+                    { text: "I notice their tone, posture, timing - I'm already gathering data before they speak", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "How much do you remember about arguments or conflicts after they happen ",
+                answers: [
+                    { text: "I remember the feeling of it but details are fuzzy or gone", value: "a" },
+                    { text: "I remember specific words, sequence of events, what I said vs what they said", value: "b" },
+                    { text: "Honestly, sometimes I'm surprised when people tell me we fought", value: "c" },
+                    { text: "I replay the conversation multiple times, catching things I missed in the moment", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "When you're in a situation where someone might get upset with you, what's happening internally ",
+                answers: [
+                    { text: "I'm usually caught off guard when they react - I didn't see it coming", value: "a" },
+                    { text: "I'm tracking micro-expressions and adjusting what I say based on what I'm reading", value: "b" },
+                    { text: "I tend to space out or go blank during tense moments", value: "c" },
+                    { text: "I'm running multiple scenarios of how this could go and what I'll do for each one", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "Do you notice yourself changing how you act depending on who you're with ",
+                answers: [
+                    { text: "Not really - I'm pretty much the same with everyone", value: "a" },
+                    { text: "Yes, and I'm very aware of making those adjustments in real-time", value: "b" },
+                    { text: "People tell me I'm different with different people but I don't notice myself doing it", value: "c" },
+                    { text: "Absolutely - I'm constantly calibrating based on what I notice works with each person", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "When someone accuses you of something you don't think you did, what happens ",
+                answers: [
+                    { text: "I feel confused and disconnected, like we're talking about different realities", value: "a" },
+                    { text: "I immediately know whether I did it or not and can trace back the exact moment they're referencing", value: "b" },
+                    { text: "I genuinely can't remember if I did it or not", value: "c" },
+                    { text: "I can see how they interpreted it that way even if that wasn't my intent - I'm tracking both narratives", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "How aware are you of what you're trying to accomplish in conversations ",
+                answers: [
+                    { text: "I'm usually just responding, not really aware of an agenda", value: "a" },
+                    { text: "Very aware - I know what I want and I'm steering toward it", value: "b" },
+                    { text: "I often realize afterward what I was probably trying to do, but not during", value: "c" },
+                    { text: "I'm simultaneously having the conversation and watching myself have it", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "When you hurt someone's feelings, how do you typically find out ",
+                answers: [
+                    { text: "They tell me later and I'm genuinely surprised", value: "a" },
+                    { text: "I usually know in the moment from their reaction, even if it's subtle", value: "b" },
+                    { text: "Sometimes I never find out unless someone else tells me", value: "c" },
+                    { text: "I can tell immediately - I saw it land and I'm already calculating next moves", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "How much energy does it take to be around other people ",
+                answers: [
+                    { text: "Not much - I kind of go on autopilot", value: "a" },
+                    { text: "A lot - I'm working the entire time, tracking and adjusting constantly", value: "b" },
+                    { text: "I don't notice it draining me until way after, then I crash", value: "c" },
+                    { text: "Exhausting - I'm aware of everything I'm doing and everything they're doing simultaneously", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "When you think back on your own behavior in relationships, what do you see ",
+                answers: [
+                    { text: "Patterns other people point out but I have trouble seeing myself", value: "a" },
+                    { text: "Very clear patterns - I can see exactly what I do and when I do it", value: "b" },
+                    { text: "Mostly blank spots or a general feeling that I wasn't really there", value: "c" },
+                    { text: "Too much - I see every move I made and I analyze it constantly", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                sectionName: "Nervous System Awareness",
+                text: "If someone asked 'why did you just do that ' in the moment, how would you respond ",
+                answers: [
+                    { text: "'Do what  I don't know what you mean' (genuinely confused)", value: "a" },
+                    { text: "I'd know exactly what they meant and have reasons ready", value: "b" },
+                    { text: "I'd probably freeze or go blank trying to figure out what they're referring to", value: "c" },
+                    { text: "I'd have multiple explanations available depending on what response seems safest", value: "d" }
+                ]
+            },
+            // Section 2: Conscience Check (Q11-15)
+            {
+                section: 2,
+                sectionName: "Conscience Check",
+                text: "When you realize you've hurt someone, what happens inside you ",
+                answers: [
+                    { text: "I feel terrible and it stays with me for days", value: "a" },
+                    { text: "I feel bad in the moment but it fades pretty quickly", value: "b" },
+                    { text: "I think about how to fix it so things go back to normal", value: "c" },
+                    { text: "I mostly think about whether they'll hold it against me or cause problems for me", value: "d" }
+                ]
+            },
+            {
+                section: 2,
+                sectionName: "Conscience Check",
+                text: "If you could go back and undo hurt you've caused, would you ",
+                answers: [
+                    { text: "Absolutely - I'd give anything to take back specific things I've done", value: "a" },
+                    { text: "Yes, though I'm not always sure what I'd do differently", value: "b" },
+                    { text: "Only if it would improve my current situation", value: "c" },
+                    { text: "Probably not - what's done is done, I'd rather move forward", value: "d" }
+                ]
+            },
+            {
+                section: 2,
+                sectionName: "Conscience Check",
+                text: "When someone tells you that you hurt them, what's your first internal response ",
+                answers: [
+                    { text: "Guilt or shame, even before I know what I did", value: "a" },
+                    { text: "Concern about what happened and how they're feeling", value: "b" },
+                    { text: "Frustration that they're making this a problem", value: "c" },
+                    { text: "Calculation about how to respond to minimize consequences", value: "d" }
+                ]
+            },
+            {
+                section: 2,
+                sectionName: "Conscience Check",
+                text: "Do you think about people you've hurt after the relationship ends ",
+                answers: [
+                    { text: "Yes, and it haunts me sometimes", value: "a" },
+                    { text: "Sometimes - I wonder if they're okay or if I could have done better", value: "b" },
+                    { text: "Only if it's relevant to my current life somehow", value: "c" },
+                    { text: "Not really - once it's over, I move on", value: "d" }
+                ]
+            },
+            {
+                section: 2,
+                sectionName: "Conscience Check",
+                text: "If you knew you could hurt someone and get away with it completely, what stops you ",
+                answers: [
+                    { text: "I couldn't live with myself", value: "a" },
+                    { text: "It would feel wrong even if no one knew", value: "b" },
+                    { text: "Nothing stops me if I have a good reason", value: "c" },
+                    { text: "Only the possibility that I might not actually get away with it", value: "d" }
+                ]
+            },
+            // Section 3: Intent Assessment (Q16-20)
+            {
+                section: 3,
+                sectionName: "Intent Assessment",
+                text: "If you've ever been unfaithful or emotionally involved with someone outside your relationship, what was happening ",
+                answers: [
+                    { text: "I've never done anything like that", value: "a" },
+                    { text: "It happened gradually and I didn't realize I'd crossed a line until it was already complicated", value: "b" },
+                    { text: "I knew something was developing but I told myself it wasn't technically cheating / convinced myself they wouldn't mind", value: "c" },
+                    { text: "I compartmentalized it - I knew what I was doing, kept it separate, managed both situations", value: "d" }
+                ]
+            },
+            {
+                section: 3,
+                sectionName: "Intent Assessment",
+                text: "When you're upset with someone, do you pull away emotionally ",
+                answers: [
+                    { text: "No, I stay engaged even when things are hard", value: "a" },
+                    { text: "I disappear into myself but I don't realize I'm doing it until they point it out", value: "b" },
+                    { text: "I go quiet because I need space, and I know they'll notice but I'm not trying to punish them", value: "c" },
+                    { text: "I've learned that going cold gets their attention and makes them more likely to accommodate me", value: "d" }
+                ]
+            },
+            {
+                section: 3,
+                sectionName: "Intent Assessment",
+                text: "When someone sets a boundary you don't like, what do you do ",
+                answers: [
+                    { text: "I respect it even if I disagree", value: "a" },
+                    { text: "I push back in the moment because it feels unfair, but I'm not trying to violate it", value: "b" },
+                    { text: "I test whether they really mean it or if there's flexibility", value: "c" },
+                    { text: "I find ways around it while technically not breaking their rule", value: "d" }
+                ]
+            },
+            {
+                section: 3,
+                sectionName: "Intent Assessment",
+                text: "Have you ever kept something from a partner because you knew telling them would cause problems for you ",
+                answers: [
+                    { text: "No, I'm transparent even when it's uncomfortable", value: "a" },
+                    { text: "Yes, and I felt guilty about it the whole time", value: "b" },
+                    { text: "Yes, but I convinced myself it was better for both of us if they didn't know", value: "c" },
+                    { text: "Yes, I weighed the risk/benefit and decided withholding was the smarter move", value: "d" }
+                ]
+            },
+            {
+                section: 3,
+                sectionName: "Intent Assessment",
+                text: "Think of a time you really hurt someone's feelings. Did you know what you were saying/doing would hurt them ",
+                answers: [
+                    { text: "I've never intentionally hurt someone", value: "a" },
+                    { text: "Not in the moment - I only realized later how it landed", value: "b" },
+                    { text: "I knew they'd be upset but I didn't think it would hurt them as much as it did", value: "c" },
+                    { text: "Yes, I knew exactly how it would land and said/did it anyway because I wanted to make a point", value: "d" }
+                ]
+            },
+            // Section 4: Consistency Check (Q21-22)
+            {
+                section: 4,
+                sectionName: "Pattern Confirmation",
+                text: "People who know you well would probably say you...",
+                answers: [
+                    { text: "Always consider how your actions affect others", value: "a" },
+                    { text: "Sometimes don't realize you've hurt someone until they tell you", value: "b" },
+                    { text: "Can be focused on your own needs without meaning to hurt anyone", value: "c" },
+                    { text: "Know how to get what you want from people", value: "d" }
+                ]
+            },
+            {
+                section: 4,
+                sectionName: "Pattern Confirmation",
+                text: "When you want something from someone and they're resistant, you...",
+                answers: [
+                    { text: "Drop it and respect their no", value: "a" },
+                    { text: "Keep trying to explain hoping they'll understand", value: "b" },
+                    { text: "Get frustrated but eventually give up", value: "c" },
+                    { text: "Find another angle or wait for a better time to ask again", value: "d" }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        let userAnswers = [];
+        let userEmail = '';
+
+        function startQuiz() {
+            const emailInput = document.getElementById('mce-EMAIL');
+            const email = emailInput.value.trim();
+            
+            if (!email || !email.includes('@') || !email.includes('.')) {
+                emailInput.style.borderColor = 'var(--danger)';
+                emailInput.focus();
+                return;
+            }
+            
+            userEmail = email;
+            
+            // Here you would typically submit to Mailchimp via AJAX
+            // For now, we'll store the email and proceed
+            console.log('Email captured:', userEmail);
+            
+            // TODO: Add Mailchimp API integration
+            // submitToMailchimp(email);
+            
+            document.getElementById('emailCapture').style.display = 'none';
+            document.getElementById('quizSection').classList.add('active');
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const question = questions[currentQuestion];
+            const container = document.getElementById('questionsContainer');
+            
+            container.innerHTML = `
+                <div class="question-section">Section ${question.section}: ${question.sectionName}</div>
+                <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
+                <div class="question-text">${question.text}</div>
+                <div class="answer-options">
+                    ${question.answers.map((answer, index) => `
+                        <div class="answer-option ${userAnswers[currentQuestion] === answer.value   'selected' : ''}" 
+                             onclick="selectAnswer('${answer.value}', this)">
+                            <input type="radio" 
+                                   id="q${currentQuestion}_${index}" 
+                                   name="question${currentQuestion}" 
+                                   value="${answer.value}"
+                                   ${userAnswers[currentQuestion] === answer.value   'checked' : ''}>
+                            <div class="answer-radio"></div>
+                            <span class="answer-text">${answer.text}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+            
+            updateProgress();
+            updateButtons();
+        }
+
+        function selectAnswer(value, element) {
+            userAnswers[currentQuestion] = value;
+            
+            // Update visual selection
+            document.querySelectorAll('.answer-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            updateButtons();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+            document.getElementById('progressLabel').textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+            
+            const question = questions[currentQuestion];
+            document.getElementById('sectionLabel').textContent = `Section ${question.section}: ${question.sectionName}`;
+        }
+
+        function updateButtons() {
+            document.getElementById('prevBtn').disabled = currentQuestion === 0;
+            document.getElementById('nextBtn').disabled = !userAnswers[currentQuestion];
+            
+            if (currentQuestion === questions.length - 1 && userAnswers[currentQuestion]) {
+                document.getElementById('nextBtn').textContent = 'See My Results →';
+            } else {
+                document.getElementById('nextBtn').textContent = 'Next →';
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                calculateResults();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        }
+
+        function calculateResults() {
+            // Calculate nervous system score (Q1-10)
+            let nervousScore = 0;
+            for (let i = 0; i < 10; i++) {
+                if (userAnswers[i] === 'b' || userAnswers[i] === 'd') {
+                    nervousScore++;
+                }
+            }
+
+            // Calculate conscience score (Q11-15)
+            let conscienceScore = 0;
+            for (let i = 10; i < 15; i++) {
+                if (userAnswers[i] === 'c' || userAnswers[i] === 'd') {
+                    conscienceScore++;
+                }
+            }
+
+            // Calculate intent score (Q16-20)
+            let intentScore = 0;
+            if (userAnswers[15] === 'd') intentScore++;
+            if (userAnswers[16] === 'd') intentScore++;
+            if (userAnswers[17] === 'c' || userAnswers[17] === 'd') intentScore++;
+            if (userAnswers[18] === 'd') intentScore++;
+            if (userAnswers[19] === 'd') intentScore++;
+
+            // Consistency checks (Q21-22)
+            const consistencyFlag = (userAnswers[20] === 'd' || userAnswers[21] === 'd');
+
+            // Determine categories
+            let nervousSystem = nervousScore <= 3   'offline' : (nervousScore <= 7   'online' : 'overload');
+            let conscience = conscienceScore <= 2   'ethical' : 'nonethical';
+            let intent = intentScore <= 2   'accidental' : 'purposeful';
+
+            displayResults(nervousSystem, conscience, intent, consistencyFlag, nervousScore, conscienceScore, intentScore);
+        }
+
+        function displayResults(nervous, conscience, intent, consistency, nScore, cScore, iScore) {
+            document.getElementById('quizSection').style.display = 'none';
+            const resultPage = document.getElementById('resultPage');
+            resultPage.classList.add('active');
+
+            let resultHTML = getResultContent(nervous, conscience, intent, consistency, nScore, cScore, iScore);
+            resultPage.innerHTML = resultHTML;
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Log for debugging
+            console.log('Scores:', { nervous: nScore, conscience: cScore, intent: iScore });
+            console.log('Categories:', { nervous, conscience, intent, consistency });
+        }
+
+        function getResultContent(nervous, conscience, intent, consistency, nScore, cScore, iScore) {
+            const key = `${nervous}_${conscience}_${intent}`;
+            
+            const nervousBadgeClass = nervous === 'overload'   'overload' : (nervous === 'online'   'online' : 'offline');
+            
+            const results = {
+                'overload_ethical_accidental': {
+                    title: 'System Overload + Ethical + Accidental',
+                    subtitle: 'The Burnout Cycle',
+                    content: `
+                        <p>Your system is cycling between extreme hypervigilance and total shutdown. You're tracking everything until you collapse, and when you hurt people, you're genuinely blind to it even when you're hyperaware of everything else. You DO have guilt circuits - the shame stays with you - but your nervous system is approaching breakdown.</p>
+                        <h3>What This Means</h3>
+                        <p>You're not manipulative, you're exhausted. Your system is screaming for stabilization before it fractures completely.</p>
+                        <h3>Your Immediate Path</h3>
+                        <ul>
+                            <li><strong>Ground Zero Framework</strong> - Intensive nervous system regulation for crisis patterns</li>
+                            <li>If you're losing time, having reality feel unstable, or thoughts you can't control: seek professional clinical support immediately</li>
+                            <li>Once stabilized: All War Fronts work to understand why every defense is firing at once</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>More awareness tools. You're already drowning in awareness. You need help turning the threat scanner OFF.</p>
+                    `
+                },
+                'offline_ethical_accidental': {
+                    title: 'Offline Protection + Ethical + Accidental',
+                    subtitle: 'The Disappearing Act',
+                    content: `
+                        <p>You're operating mostly offline - your system protects you by removing you from intense situations. You go blank, space out, genuinely don't remember conflicts. When people say you hurt them, you're confused because you weren't really present when it happened. You DO have conscience - you feel terrible when you find out - but you can't see your patterns in real-time.</p>
+                        <h3>What This Means</h3>
+                        <p>You're not choosing to disappear, your system learned that not being there = safer. But now it's keeping you offline when you need to be present.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li><strong>Mirror Archetype Quiz</strong> - Find out which specific protection pattern you're running (Fixer  Vanisher  Analyzer )</li>
+                            <li><strong>Wound Matrix</strong> - Identify which of 18 core wounds is driving your system offline</li>
+                            <li><strong>Your archetype workbook</strong> - Learn to recognize your pattern before you disappear</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>People yelling at you to 'pay attention.' You need to understand what you're protecting so your system can learn it's safe to stay online.</p>
+                    `
+                },
+                'online_ethical_accidental': {
+                    title: 'Online Protection + Ethical + Accidental',
+                    subtitle: 'The Constant Scanner',
+                    content: `
+                        <p>You're hypervigilant - constantly tracking micro-expressions, adjusting in real-time, remembering every detail. You're exhausted from social interaction even when it 'goes well.' When you hurt people, you're genuinely surprised because you thought you were tracking everything. You have conscience - the guilt stays with you - but somehow you're blind to causing harm while being hyperaware of everything else.</p>
+                        <h3>What This Means</h3>
+                        <p>That 'awareness' people admire is your threat response running 24/7. You're not manipulative, you're just trying to stay safe in a world that taught you missing one signal = danger.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li><strong>All War Fronts Framework</strong> - Understand what it means when every defense system is active simultaneously</li>
+                            <li><strong>War Types Assessment</strong> - Find out which threat responses (Fight/Flight/Freeze/Fawn) dominate your system</li>
+                            <li><strong>Ground Zero Framework</strong> if the intensity is making it hard to function</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>More awareness. You're already seeing too much. You need to learn you can lower the threat level and still be safe.</p>
+                        ${consistency   '<p><em>Note: You have strategic skills in getting what you want from people, but based on your other answers, this appears to be about survival and communication rather than purposeful harm. You may be effective at influence while genuinely not seeing when it crosses into hurt.</em></p>' : ''}
+                    `
+                },
+                'online_nonethical_accidental': {
+                    title: 'Online Protection + Non-Ethical + Accidental',
+                    subtitle: 'Strategic But Blind',
+                    content: `
+                        <p>You're hypervigilant and strategic - you track reactions, adjust tactics, know how to get what you want from people. But based on your answers, when you hurt people it's genuinely not on purpose. You're blind to causing harm even while being hyperaware of everything else. Your conscience circuits either aren't firing or are overridden by survival needs.</p>
+                        <h3>What This Means</h3>
+                        <p>You're effective at influence but disconnected from impact. The strategy and the harm exist in separate compartments. This might be architectural fracture - permanent compartmentalization that won't integrate through conventional healing.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li><strong>Ground Zero Framework</strong> - This addresses compartmentalization that can't be 'integrated'</li>
+                            <li><strong>All War Fronts work</strong> - Your hypervigilance is about survival, not malice, but it's still causing damage</li>
+                            <li>Honest assessment: Can you ACCESS remorse if you tried, or is that wiring genuinely absent  The answer changes everything.</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>Shame about lacking empathy. If the wiring isn't there, guilting yourself won't build it. But you DO need to know whether you're protecting others from your pattern or expecting them to adapt to it.</p>
+                        ${consistency   '<p><em>Note: Your consistency check confirms strategic awareness - you know how to get what you want from people. The question is whether you can learn to track impact alongside strategy.</em></p>' : ''}
+                    `
+                },
+                'offline_nonethical_accidental': {
+                    title: 'Offline Protection + Non-Ethical + Accidental',
+                    subtitle: 'Disconnected Defense',
+                    content: `
+                        <p>You're mostly offline - dissociated, can't remember conflicts, genuinely confused when people say you hurt them. AND your conscience circuits aren't firing - no guilt staying with you, you move on quickly. When you hurt people, it's accidental (you're not aware enough to be purposeful), but you also don't seem to feel bad about it after.</p>
+                        <h3>What This Means</h3>
+                        <p>This could be two things: (1) Extreme dissociation is blocking access to both memory AND feelings, or (2) The wiring for remorse was never built/got shut off permanently early.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li><strong>Mirror Archetype Quiz FIRST</strong> - You need to see your patterns before anything else can work</li>
+                            <li>Reassess conscience after you're more online - The 'non-ethical' score might be survival override, not true absence</li>
+                            <li>If remorse circuits genuinely aren't there: this work focuses on managing your pattern, not healing a wound that might not exist</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>People telling you that you 'should' feel bad. If you don't, you don't. The question is whether you CAN'T access it or genuinely don't have it.</p>
+                    `
+                },
+                'overload_nonethical_purposeful': {
+                    title: 'System Overload + Non-Ethical + Purposeful',
+                    subtitle: 'Critical Alert',
+                    content: `
+                        <p>Your system is cycling between hypervigilance and collapse, you're not accessing remorse about damage you cause, AND you're purposefully hurting people when you're aware enough to do so.</p>
+                        <h3>What This Means</h3>
+                        <p>You're approaching complete system breakdown while also being actively harmful to others. This is the most dangerous combination - for you AND for people around you.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li>Immediate professional clinical support - This is beyond self-guided frameworks</li>
+                            <li>Honest question: Are you trying to stop the cycle or trying to survive it while continuing to harm </li>
+                            <li>If you're genuinely trying to change: intensive stabilization + accountability work with clinical supervision</li>
+                            <li>If you're not trying to change: at minimum, warn people around you what they're dealing with</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>Self-guided trauma healing content. You need supervised intervention before you fracture completely or cause irreparable damage.</p>
+                    `
+                },
+                'overload_nonethical_accidental': {
+                    title: 'System Overload + Non-Ethical + Accidental',
+                    subtitle: 'Critical Cycle Without Remorse',
+                    content: `
+                        <p>Your system is cycling between extreme hypervigilance and complete shutdown, you're not accessing remorse circuits, but when you hurt people it's genuinely accidental - you're blind to it even in your hypervigilant states.</p>
+                        <h3>What This Means</h3>
+                        <p>You're approaching system breakdown while being disconnected from your impact. The lack of remorse might be survival override (your system can't handle more feelings), or it might be structural absence. You need stabilization to even assess which one it is.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li><strong>Ground Zero Framework</strong> - Immediate nervous system stabilization before anything else</li>
+                            <li>Once stable enough: reassess whether conscience circuits can come online or if they're genuinely absent</li>
+                            <li>Professional support if you're losing time or reality feels unstable</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>Shame about not feeling bad. Your system is in crisis. First priority is stabilization, then we can assess what's actually there.</p>
+                    `
+                },
+                'overload_ethical_purposeful': {
+                    title: 'System Overload + Ethical + Purposeful',
+                    subtitle: 'Aware and Hurting',
+                    content: `
+                        <p>Your system is cycling between hypervigilance and collapse, you DO have active conscience (the guilt stays with you), but you've admitted to purposefully causing harm when you're aware enough to do so.</p>
+                        <h3>What This Means</h3>
+                        <p>This is rare - you feel remorse but you still choose to hurt people. Either you're in so much pain that causing harm feels like the only option, or there's a disconnect between feeling bad and stopping the behavior.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li>Immediate professional support - this pattern needs clinical intervention</li>
+                            <li>Honest question: What are you getting from causing purposeful harm that feels worth the guilt </li>
+                            <li>Ground Zero Framework + intensive accountability work</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>Self-guided frameworks alone. You need supervised support to address both the system breakdown and the purposeful harm pattern.</p>
+                    `
+                },
+                'offline_ethical_purposeful': {
+                    title: 'Offline Protection + Ethical + Purposeful',
+                    subtitle: 'Contradiction to Examine',
+                    content: `
+                        <p>Your answers suggest you're mostly offline/dissociated, you have active conscience, but you've also indicated purposeful harm. This is contradictory - you can't strategically hurt people while genuinely dissociated.</p>
+                        <h3>What This Might Mean</h3>
+                        <p>Either: (1) You're cycling between states (offline sometimes, calculated other times), (2) Some questions didn't land right, or (3) You're purposeful in ways you're not consciously aware of.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li>Retake the quiz focusing on your most common state</li>
+                            <li>Or book a session for personalized interpretation of this pattern</li>
+                            <li>Consider whether you're actually cycling (which would be System Overload)</li>
+                        </ul>
+                    `
+                },
+                'offline_nonethical_purposeful': {
+                    title: 'Offline Protection + Non-Ethical + Purposeful',
+                    subtitle: 'Contradiction to Examine',
+                    content: `
+                        <p>Your answers suggest you're mostly offline/dissociated, no active conscience, AND purposeful harm. This is contradictory - you can't strategically hurt people while dissociated.</p>
+                        <h3>What This Might Mean</h3>
+                        <p>Either: (1) You're more aware than "offline" suggests, (2) You're cycling between states, or (3) Some questions need clarification.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li>Retake focusing on whether you're actually "online" (tracking, remembering, aware)</li>
+                            <li>Or book a session for personalized pattern interpretation</li>
+                        </ul>
+                    `
+                },
+                'online_ethical_purposeful': {
+                    title: 'Online Protection + Ethical + Purposeful',
+                    subtitle: 'Strategic But Remorseful',
+                    content: `
+                        <p>You're hypervigilant (tracking everything constantly), you have active conscience (guilt stays with you), but you've admitted to purposefully causing harm.</p>
+                        <h3>What This Means</h3>
+                        <p>You see what you're doing, you feel bad about it, but you do it anyway. Either the harm feels necessary for survival, or there's a disconnect between remorse and behavior change.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li>Professional accountability work - this needs more than self-guided frameworks</li>
+                            <li>Honest assessment: What are you getting from purposeful harm that feels worth the guilt </li>
+                            <li>All War Fronts work alongside intensive accountability</li>
+                        </ul>
+                    `
+                },
+                'online_nonethical_purposeful': {
+                    title: 'Online Protection + Non-Ethical + Purposeful',
+                    subtitle: 'Strategic and Calculating',
+                    content: `
+                        <p>You're hypervigilant (tracking everything), you're not accessing remorse, AND you purposefully hurt people. You see what you're doing and choose to do it without guilt stopping you.</p>
+                        <h3>What This Means</h3>
+                        <p>This is calculated harm without conscience anchoring your behavior. The hypervigilance gives you data, and you use it strategically without remorse.</p>
+                        <h3>Your Path</h3>
+                        <ul>
+                            <li>Honest question: Are you here to change or to get better at this </li>
+                            <li>If genuinely trying to change: intensive clinical accountability work</li>
+                            <li>If not: this framework isn't for you</li>
+                        </ul>
+                        <h3>What You Don't Need</h3>
+                        <p>Self-guided trauma healing. You need supervised intervention if you want to change, or honest acknowledgment if you don't.</p>
+                    `
+                }
+            };
+
+            const result = results[key] || {
+                title: 'Your Protection Style',
+                subtitle: `${nervous.charAt(0).toUpperCase() + nervous.slice(1)} + ${conscience.charAt(0).toUpperCase() + conscience.slice(1)} + ${intent.charAt(0).toUpperCase() + intent.slice(1)}`,
+                content: `<p>Your results show a unique combination of patterns. Book a session for personalized guidance on your specific pattern combination.</p>`
+            };
+
+            return `
+                <div class="result-card">
+                    <span class="result-badge ${nervousBadgeClass}">${nervous.replace('_', ' ').toUpperCase()}</span>
+                    <h1 class="result-title">${result.title}</h1>
+                    <p class="result-subtitle">${result.subtitle}</p>
+                    
+                    <div class="score-breakdown">
+                        <div class="score-row">
+                            <span class="score-label">Nervous System</span>
+                            <div class="score-track">
+                                <div class="score-fill nervous" style="width: ${(nScore / 10) * 100}%"></div>
+                            </div>
+                            <span class="score-value">${nScore}/10</span>
+                        </div>
+                        <div class="score-row">
+                            <span class="score-label">Conscience</span>
+                            <div class="score-track">
+                                <div class="score-fill conscience" style="width: ${(cScore / 5) * 100}%"></div>
+                            </div>
+                            <span class="score-value">${cScore}/5</span>
+                        </div>
+                        <div class="score-row">
+                            <span class="score-label">Intent</span>
+                            <div class="score-track">
+                                <div class="score-fill intent" style="width: ${(iScore / 5) * 100}%"></div>
+                            </div>
+                            <span class="score-value">${iScore}/5</span>
+                        </div>
+                    </div>
+                    
+                    <div class="result-content">
+                        ${result.content}
+                    </div>
+                    
+                    <div class="result-cta">
+                        <a href="../full-profile-quiz.html" class="cta-button">Take the Complete Pattern Assessment →</a>
+                        <button class="retake-btn" onclick="retakeQuiz()">Retake This Quiz</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function retakeQuiz() {
+            currentQuestion = 0;
+            userAnswers = [];
+            document.getElementById('resultPage').classList.remove('active');
+            document.getElementById('quizSection').classList.add('active');
+            document.getElementById('quizSection').style.display = '';
+            renderQuestion();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Mailchimp Integration (placeholder - replace with actual implementation)
+        function submitToMailchimp(email) {
+            // TODO: Replace with your actual Mailchimp form action URL and list ID
+            // Option 1: Use Mailchimp's embedded form action URL
+            // Option 2: Use Mailchimp API with your server as proxy
+            
+            const mailchimpConfig = {
+                // Replace these with your actual Mailchimp details
+                formAction: 'https://unscarred.us21.list-manage.com/subscribe/post u=YOUR_USER_ID&id=YOUR_LIST_ID',
+                listId: 'YOUR_LIST_ID'
+            };
+            
+            // For now, just log - implement based on your Mailchimp setup
+            console.log('Would submit to Mailchimp:', email);
+        }
+    </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
+

@@ -1,0 +1,24 @@
+# Canonical quiz hubs
+/quizzes.html   /quizzes/   301
+/quizzes        /quizzes/   301
+
+# Mirror quizzes (catch common filename requests)
+/quizzes/partner-draw.html      /quizzes/partner-draw/      301
+/quizzes/ego-structure.html     /quizzes/ego-structure/     301
+/quizzes/nervous-system.html    /quizzes/nervous-system/    301
+/quizzes/relational-needs.html  /quizzes/relational-needs/  301
+
+# War hub and mapping quiz legacy paths
+/war/index.html           /war/                301
+/war/war-mapping.html     /war/war-mapping/    301
+/war/war-mapping          /war/war-mapping/    301
+/WAR/*                    /war/:splat          301
+/quiz/war-mapping.html    /war/war-mapping/    301
+/quiz/war-mappings.html   /war/war-mapping/    301
+/quiz/war-path.html       /war/                301
+
+# Additional redirects for new quiz slugs
+/fight-flight-freeze-fawn/*   /quizzes/nervous-system-response/   301
+/ego-structure-scan/*         /quizzes/ego-structure/             301
+/partner-draw/*               /quizzes/partner-draw/              301
+/war-mapping/*                /war/war-mapping/                   301

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADHD Pattern Coach | Unscarred</title>
+  <meta name="description" content="ADHD-informed coaching for executive function, accountability, and relationship patterns. Your brain isn't broken—it needs a different operating system.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #2d8f8f;
+      --primary-glow: rgba(45, 143, 143, 0.4);
+      --secondary: #a33b5c;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(45, 143, 143, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(45, 143, 143, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--secondary); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 24px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      padding: 8px 16px;
+      background: rgba(45, 143, 143, 0.15);
+      border-radius: 999px;
+      border: 1px solid rgba(45, 143, 143, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* Section */
+    section {
+      padding: 60px 0;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* Content blocks */
+    .content-block {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+
+    .content-block p {
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-block strong {
+      color: var(--text-main);
+    }
+
+    .highlight-block {
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.12), rgba(12, 11, 16, 0.95));
+      border-color: rgba(45, 143, 143, 0.3);
+    }
+
+    /* Lists */
+    .feature-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .feature-list li {
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-soft);
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* Pricing cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    @media (max-width: 900px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    .pricing-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .pricing-card.featured {
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.12), rgba(12, 11, 16, 0.95));
+      border-color: rgba(45, 143, 143, 0.3);
+    }
+
+    .pricing-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-soft);
+    }
+
+    .pricing-card p {
+      color: var(--text-soft);
+      font-size: 0.85rem;
+      margin-bottom: 24px;
+      min-height: 40px;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card li {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      padding: 6px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .pricing-card li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      text-align: center;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #1f6b6b);
+      color: white;
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--primary-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: var(--text-main);
+    }
+
+    .btn-full { width: 100%; }
+
+    /* Quote */
+    .quote-block {
+      border-left: 3px solid var(--primary);
+      padding-left: 24px;
+      margin: 32px 0;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--text-soft);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--text-soft);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FAQ */
+    .faq-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .faq-a {
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    /* Body Doubling Callout */
+    .callout-box {
+      background: linear-gradient(165deg, rgba(45, 143, 143, 0.15), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(45, 143, 143, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin: 32px 0;
+      text-align: center;
+    }
+
+    .callout-box h3 {
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .callout-box p {
+      color: var(--text-soft);
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span></a>
+      <nav>
+        <a href="/quizzes/">Quizzes</a>
+        <a href="programs.html">Programs</a>
+        <a href="coaching.html">Coaching</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">⚡ ADHD-Informed Coaching</div>
+      <h1>Your brain isn't broken.<br>It needs a different operating system.</h1>
+      <p class="hero-sub">ADHD pattern coaching for people who are tired of productivity hacks that don't work for their actual brain.</p>
+    </div>
+  </section>
+
+  <!-- Who This Is For -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>This is for you if...</h2>
+        <ul class="feature-list">
+          <li>You have 47 tabs open in your brain and none of them are loading</li>
+          <li>You know exactly what you need to do but can't make yourself start</li>
+          <li>Rejection feels like a physical wound that takes days to heal</li>
+          <li>Your partner thinks you don't care because you forgot the thing (again)</li>
+          <li>You hyperfocus on the wrong things and can't focus on the right ones</li>
+          <li>You've tried every productivity system and none of them stick</li>
+          <li>Time is either "now" or "not now" and "not now" might as well be never</li>
+        </ul>
+      </div>
+
+      <div class="quote-block">
+        "You're not lazy. You're not careless. You're running a different operating system in a world designed for neurotypical brains. Let's build systems that actually work for yours."
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Work On -->
+  <section>
+    <div class="container">
+      <div class="content-block highlight-block">
+        <h2>What we work on together</h2>
+        <ul class="feature-list">
+          <li><strong>Task initiation support</strong> — Getting past the "I know I should but I can't make myself" wall</li>
+          <li><strong>Body doubling sessions</strong> — Having someone on the call while you do the thing</li>
+          <li><strong>Rejection sensitivity coaching</strong> — Managing the RSD spiral when criticism hits</li>
+          <li><strong>Accountability that actually works</strong> — Not shame-based, not punishment-based, actually works for ADHD brains</li>
+          <li><strong>Hyperfocus management</strong> — Using your superpower without losing entire weekends</li>
+          <li><strong>Relationship time-blindness</strong> — Scripts for when your partner needs you to understand time differently</li>
+          <li><strong>Executive function scaffolding</strong> — External structure that becomes internal habit</li>
+        </ul>
+      </div>
+
+      <div class="callout-box">
+        <h3>⚡ Body Doubling Sessions</h3>
+        <p>Can't start the task alone? Book a body doubling session where I'm on the call with you while you work. Surprisingly effective for ADHD brains. 30-minute sessions, no talking required.</p>
+        <a href="https://shop.unscarred.site/l/adhd-body-doubling" class="btn btn-primary" target="_blank">Book Body Doubling</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>How it works</h2>
+        <p><strong>This isn't ADHD coaching that tells you to "just use a planner."</strong> This is pattern coaching from someone who actually understands how ADHD brains work—the task paralysis, the rejection sensitivity, the time blindness, all of it.</p>
+        <p>Sessions are practical and action-oriented. We're not going to spend an hour talking about feelings unless that's specifically what you need. We're going to identify the block, build the workaround, and get you moving.</p>
+        <p>You'll leave each session with:</p>
+        <ul class="feature-list">
+          <li>Clear understanding of what's blocking you (it's probably not what you think)</li>
+          <li>A specific next action that's actually doable for your brain</li>
+          <li>External accountability structure for the week ahead</li>
+          <li>Scripts for the relationship stuff that ADHD complicates</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section>
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 32px;">Pricing</h2>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Body Doubling</h3>
+          <div class="price">$17 <small>/ 30 min</small></div>
+          <p>I'm on the call while you do the thing.</p>
+          <ul>
+            <li>30-minute session</li>
+            <li>Camera on or off</li>
+            <li>No talking required</li>
+            <li>Just get it done</li>
+          </ul>
+          <a href="https://shop.unscarred.site/l/adhd-body-doubling" class="btn btn-secondary btn-full" target="_blank">Book Now</a>
+        </div>
+
+        <div class="pricing-card">
+          <h3>Single Session</h3>
+          <div class="price">$57 <small>/ 60 min</small></div>
+          <p>Pattern work for a specific block.</p>
+          <ul>
+            <li>60 minute call</li>
+            <li>Block identification</li>
+            <li>Custom workaround</li>
+            <li>Action plan</li>
+          </ul>
+          <a href="https://shop.unscarred.site/l/adhd-coach-single" class="btn btn-secondary btn-full" target="_blank">Book Session</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <h3>Monthly Accountability</h3>
+          <div class="price">$147 <small>/ month</small></div>
+          <p>Ongoing structure + unlimited body doubling.</p>
+          <ul>
+            <li>2 x 45-min calls/month</li>
+            <li>Unlimited body doubling</li>
+            <li>Weekly check-in texts</li>
+            <li>Task initiation support</li>
+            <li>Priority scheduling</li>
+          </ul>
+          <a href="https://shop.unscarred.site/l/adhd-monthly" class="btn btn-primary btn-full" target="_blank">Start Monthly</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>Common questions</h2>
+        
+        <div class="faq-item">
+          <div class="faq-q">Do I need an ADHD diagnosis?</div>
+          <div class="faq-a">No. If you recognize yourself in the patterns above (the task paralysis, the rejection sensitivity, the time blindness), this can help whether or not you have a formal diagnosis. Many adults are undiagnosed or self-diagnosed.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What is body doubling exactly?</div>
+          <div class="faq-a">Body doubling is having another person present (physically or virtually) while you work. For ADHD brains, this external presence often makes task initiation much easier. You don't have to talk or interact—just knowing someone is there creates enough structure to start.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">How is this different from regular ADHD coaching?</div>
+          <div class="faq-a">I focus specifically on relational patterns and emotional regulation alongside executive function. If ADHD is affecting your relationships—your partner thinks you don't care, you can't manage shared responsibilities, RSD is destroying your connections—that's what we work on together.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What if I need medication management?</div>
+          <div class="faq-a">That's outside my scope—you'll need a psychiatrist or prescriber for medication. I can help you build habits and structures that work with or without medication, and help you track what's working to share with your prescriber.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">I've tried everything and nothing works</div>
+          <div class="faq-a">You've probably tried systems designed for neurotypical brains. We'll build something designed for yours—starting small, building on dopamine, and creating external scaffolding that gradually becomes internal habit.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to work with your brain instead of against it?</h2>
+      <p>Stop fighting yourself. Let's build systems that actually work for how you're wired.</p>
+      <div class="cta-buttons">
+        <a href="https://shop.unscarred.site/l/adhd-coach-single" class="btn btn-primary" target="_blank">Book a Session</a>
+        <a href="coaching.html" class="btn btn-secondary">See All Coaching Options</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+      <p style="margin-top: 12px; font-size: 0.8rem;">This is coaching, not therapy. Please seek professional help for clinical needs.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

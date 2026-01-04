@@ -1,0 +1,92 @@
+<!-- 
+====================================================
+UNSCARRED PAYHIP MENU BUTTONS
+====================================================
+Copy and paste into Payhip's "Custom HTML" section.
+Just the navigation buttons - links to your website.
+====================================================
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600&display=swap');
+  
+  .unscarred-nav {
+    font-family: 'Outfit', system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .nav-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 38px;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin-bottom: 8px;
+  }
+  
+  .nav-logo span {
+    color: #c45a7b;
+  }
+  
+  .nav-tagline {
+    font-size: 14px;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  
+  .nav-btn {
+    display: inline-block;
+    padding: 14px 28px;
+    background: #fff;
+    border: 2px solid #e8e0e4;
+    border-radius: 999px;
+    color: #444;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+  }
+  
+  .nav-btn:hover {
+    background: #c45a7b;
+    border-color: #c45a7b;
+    color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(196, 90, 123, 0.3);
+  }
+  
+  @media (max-width: 500px) {
+    .nav-buttons {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .nav-btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<div class="unscarred-nav">
+  
+  <div class="nav-logo">un<span>scarred</span></div>
+  <p class="nav-tagline">Pattern support for the ones who feel too much and see too clearly.</p>
+  
+  <div class="nav-buttons">
+    <a href="https://unscarred.site/services.html" class="nav-btn" target="_blank">What I Do</a>
+    <a href="https://unscarred.site/about.html" class="nav-btn" target="_blank">Who I Help</a>
+    <a href="https://unscarred.site/about.html#testimonials" class="nav-btn" target="_blank">Testimonials</a>
+    <a href="https://unscarred.site/about.html#faq" class="nav-btn" target="_blank">FAQ</a>
+  </div>
+  
+</div>
+

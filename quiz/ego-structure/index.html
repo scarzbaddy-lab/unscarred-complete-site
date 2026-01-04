@@ -1,0 +1,225 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ego Structure Scan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#050507; --bg2:#0a0a0f; --card:rgba(18,18,24,0.92); --text:#f5f5f7; --muted:#b8b8c4; --accent:#a33b5c; --accent2:rgba(163,59,92,0.30); --radius:20px; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Outfit',system-ui,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);min-height:100vh;padding:28px 16px;}
+    .wrap{max-width:960px;margin:0 auto;}
+    .panel{background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.45);}
+    h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;margin-bottom:8px;}
+    p.lead{color:var(--muted);margin-bottom:18px;}
+    .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px;}
+    .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.03);color:var(--text);font-size:13px;}
+    button.primary{background:linear-gradient(135deg,var(--accent),#8a2a4a);color:#fff;border:none;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:0 12px 28px rgba(163,59,92,0.35);} 
+    button.primary:active{transform:translateY(1px);}
+    .question{margin-top:16px;padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);}
+    .q-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;font-weight:600;}
+    .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px;}
+    .choice{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);cursor:pointer;text-align:center;font-size:14px;}
+    .choice.selected{border-color:var(--accent);background:rgba(163,59,92,0.12);}
+    .results{margin-top:22px;}
+    .card{margin-top:12px;padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);} 
+    .small{color:var(--muted);font-size:13px;margin-top:6px;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="panel" id="app"></div>
+  </div>
+
+  <script>
+    const QUESTIONS = [
+      { id: 1, text: "I feel disrespected when people do not recognize what I bring.", cat: "grandiose" },
+      { id: 2, text: "Criticism makes me want to prove I am superior.", cat: "grandiose" },
+      { id: 3, text: "I believe rules apply differently when someone is incompetent.", cat: "grandiose" },
+      { id: 4, text: "I avoid situations where I might look average.", cat: "grandiose" },
+      { id: 5, text: "I feel anger when someone questions my authority or competence.", cat: "grandiose" },
+      { id: 6, text: "I rewrite the story in my head so I am not the one at fault.", cat: "grandiose" },
+      { id: 7, text: "I feel entitled to distance people who 'don't get it.'", cat: "grandiose" },
+      { id: 8, text: "After conflict, I assume I am the problem.", cat: "collapsed" },
+      { id: 9, text: "I feel a heavy shame hangover even when I did nothing wrong.", cat: "collapsed" },
+      { id: 10, text: "I disappear when I feel I disappointed someone.", cat: "collapsed" },
+      { id: 11, text: "Compliments make me uncomfortable because I fear they are not true.", cat: "collapsed" },
+      { id: 12, text: "I tolerate disrespect because speaking up feels dangerous.", cat: "collapsed" },
+      { id: 13, text: "I secretly feel behind in life, no matter what I accomplish.", cat: "collapsed" },
+      { id: 14, text: "When I fail, I want to give up completely.", cat: "collapsed" },
+      { id: 15, text: "I over give so nobody can accuse me of being selfish.", cat: "comp" },
+      { id: 16, text: "I perform being 'the mature one' to avoid vulnerability.", cat: "comp" },
+      { id: 17, text: "I need to be seen as helpful, wise, or above drama.", cat: "comp" },
+      { id: 18, text: "I use logic or spirituality to bypass feelings.", cat: "comp" },
+      { id: 19, text: "I choose people I can fix because equal intimacy scares me.", cat: "comp" },
+      { id: 20, text: "I feel resentful when my effort is not appreciated, but I act fine.", cat: "comp" },
+      { id: 21, text: "I keep my real needs hidden and call it independence.", cat: "comp" },
+      { id: 22, text: "People experience me as very confident or very shut down, not steady.", cat: "osc" },
+      { id: 23, text: "I can go from 'I'm amazing' to 'I'm nothing' fast.", cat: "osc" },
+      { id: 24, text: "When I feel admired, I feel safe. When I feel ignored, I feel rage or despair.", cat: "osc" },
+      { id: 25, text: "I alternate between chasing closeness and pushing it away.", cat: "osc" },
+      { id: 26, text: "I love intensity, then I get overwhelmed by it.", cat: "osc" },
+      { id: 27, text: "I feel misunderstood often, then I isolate.", cat: "osc" },
+      { id: 28, text: "I crave control, then I hate myself for it.", cat: "osc" }
+    ];
+
+    const PATTERNS = {
+      grandiose: {
+        title: "Grandiose Pattern",
+        happen: "Inflated self, entitlement, dominance, image protection when exposed.",
+        watch: "Defensiveness, blame shifting, superiority coating loneliness.",
+        move: "Replace 'respect me' with 'connect with me.' Practice short accountability.",
+        script: "I got defensive because I felt exposed. Here's what I can own."
+      },
+      collapsed: {
+        title: "Collapsed Pattern",
+        happen: "Shame, self-erasure, appeasing to stay safe.",
+        watch: "Over-apologizing, disappearing, choosing people who like you small.",
+        move: "Swap 'I'm sorry' with 'Here's what I need.' One boundary per week.",
+        script: "I'm not available for being talked to like that. I'll talk when it's respectful."
+      },
+      comp: {
+        title: "Compensatory Pattern",
+        happen: "Looks humble or helpful but runs on control/status avoidance of shame.",
+        watch: "Performing goodness, fixing, intellectualizing, resentment brewing.",
+        move: "Trade helpfulness for honesty. Say one true need out loud.",
+        script: "I've been overgiving to avoid feeling needy. What I actually need is..."
+      },
+      osc: {
+        title: "Oscillating Blend",
+        happen: "Swings between inflation and collapse; intensity then retreat.",
+        watch: "Push-pull, dramatic highs/lows tied to admiration and threat.",
+        move: "Slow swings with regulation and consistent accountability scripts.",
+        script: "I'm noticing I swing between control and retreat. I want to stay steady. Here's my next honest move."
+      }
+    };
+
+    const SCALE = ["Strongly disagree","Disagree","Neutral","Agree","Strongly agree"];
+    const state = { view: "intro", answers: {} };
+    const app = document.getElementById('app');
+
+    function score() {
+      const sum = (cat) => QUESTIONS.filter(q=>q.cat===cat).reduce((s,q)=>s+(state.answers[q.id]||0),0);
+      const g = sum('grandiose');
+      const c = sum('collapsed');
+      const p = sum('comp');
+      const oAvg = QUESTIONS.filter(q=>q.cat==='osc').reduce((s,q)=>s+(state.answers[q.id]||0),0)/7;
+      const maxMain = Math.max(g,c,p);
+      const minMain = Math.min(g,c,p);
+      const oscScore = oAvg + 0.25*(maxMain - minMain);
+      let primary = 'grandiose';
+      let scoreMap = {grandiose:g, collapsed:c, comp:p, osc:oscScore};
+      const mainSorted = [{k:'grandiose',v:g},{k:'collapsed',v:c},{k:'comp',v:p}].sort((a,b)=>b.v-a.v);
+      primary = mainSorted[0].k;
+      if(oscScore > 2.5 || Math.abs(mainSorted[0].v - mainSorted[1].v)/(mainSorted[0].v||1) < 0.1){ primary = 'osc'; }
+      return { primary, scoreMap };
+    }
+
+    function renderIntro(){
+      app.innerHTML = `
+        <h1>Ego Structure Scan</h1>
+        <p class="lead">Not a diagnosis. This maps how your ego protects you when exposed, criticized, rejected, or not enough.</p>
+        <div class="pillrow">
+          <span class="pill">Grandiose · Inflated / Dominance</span>
+          <span class="pill">Collapsed · Shame / Disappear</span>
+          <span class="pill">Compensatory · Helpful / Controlling</span>
+          <span class="pill">Oscillating · Swings</span>
+        </div>
+        <button class="primary" onclick="startScan()">Start the scan</button>
+        <p class="small">28 statements · ~6 minutes</p>
+      `;
+    }
+
+    function renderQuiz(){
+      const blocks = QUESTIONS.map(q=>{
+        const val = state.answers[q.id];
+        const choices = SCALE.map((label,idx)=>{
+          const sel = val===idx   'selected' : '';
+          return `<div class="choice ${sel}" data-q="${q.id}" data-v="${idx}">${label}</div>`;
+        }).join('');
+        return `<div class="question"><div class="q-head"><div>Q${q.id}</div><div style="flex:1">${q.text}</div></div><div class="choices">${choices}</div></div>`;
+      }).join('');
+
+      app.innerHTML = `
+        <h1>Ego Structure Scan</h1>
+        <p class="lead">Tap one answer per line. Score is instant.</p>
+        ${blocks}
+        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+          <button class="primary" onclick="showResults()">See my result</button>
+          <button class="primary" style="background:rgba(255,255,255,0.05);color:var(--text);border:1px solid rgba(255,255,255,0.12);" onclick="resetScan()">Reset</button>
+          <p class="small" id="progress"></p>
+        </div>
+      `;
+
+      app.querySelectorAll('.choice').forEach(el=>{
+        el.addEventListener('click',()=>{
+          const q = Number(el.getAttribute('data-q'));
+          const v = Number(el.getAttribute('data-v'));
+          state.answers[q] = v;
+          renderQuiz();
+        });
+      });
+      updateProgress();
+    }
+
+    function updateProgress(){
+      const done = Object.keys(state.answers).length;
+      const total = QUESTIONS.length;
+      const p = app.querySelector('#progress');
+      if(p) p.textContent = `${done} of ${total} answered`;
+    }
+
+    function showResults(){
+      if(Object.keys(state.answers).length < QUESTIONS.length){
+        alert('Answer all questions first.');
+        return;
+      }
+      const {primary, scoreMap} = score();
+      const info = PATTERNS[primary];
+      app.innerHTML = `
+        <h1>${info.title}</h1>
+        <p class="lead">Primary pattern based on your answers.</p>
+        <div class="card"><strong>What is happening</strong><div class="small">${info.happen}</div></div>
+        <div class="card"><strong>What to watch</strong><div class="small">${info.watch}</div></div>
+        <div class="card"><strong>Move</strong><div class="small">${info.move}</div></div>
+        <div class="card"><strong>Script</strong><div class="small">${info.script}</div></div>
+        <div class="card"><strong>Scores</strong><div class="small">Grandiose ${scoreMap.grandiose||0} · Collapsed ${scoreMap.collapsed||0} · Compensatory ${scoreMap.comp||0} · Oscillating ${scoreMap.osc.toFixed(2)}</div></div>
+        <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;">
+          <button class="primary" onclick="renderQuiz()">Back to questions</button>
+          <button class="primary" style="background:rgba(255,255,255,0.05);color:var(--text);border:1px solid rgba(255,255,255,0.12);" onclick="resetScan()">Start over</button>
+        </div>
+      `;
+    }
+
+    function startScan(){ state.view='quiz'; renderQuiz(); }
+    function resetScan(){ state.answers={}; renderQuiz(); }
+
+    renderIntro();
+  </script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if (location.protocol !== 'file:') return;
+  const parts = location.pathname.split('/');
+  const idx = parts.lastIndexOf('unscarred.site');
+  const root = idx > -1 ? parts.slice(0, idx + 1).join('/') + '/' : location.pathname;
+  function toLocal(url){
+    if(!url) return null;
+    if(/^[a-z]+:|^\/\//i.test(url)) return url; // http/https/mailto/tel
+    if(url.startsWith('/')) return root + url.slice(1);
+    return root + url;
+  }
+  document.querySelectorAll('a[href]').forEach(a => {
+    const options = [a.getAttribute('href'), a.getAttribute('data-fallback'), a.getAttribute('data-alt')].filter(Boolean);
+    for (const opt of options){
+      const local = toLocal(opt);
+      if(local){ a.setAttribute('href', local); break; }
+    }
+  });
+})();
+</script>
+</body>
+</html>

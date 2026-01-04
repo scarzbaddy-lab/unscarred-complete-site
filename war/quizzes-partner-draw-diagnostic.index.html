@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Partner Draw Diagnostic | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg-void:#050507;--bg-deep:#0a0a0f;--line:#232334;--text:#f4f2f6;--muted:#bdb8c6;--primary:#a33b5c;--accent:#d6a35d;--r:22px}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 700px at 20% 10%, rgba(163,59,92,.18), transparent 60%), linear-gradient(180deg, var(--bg-void), var(--bg-deep)); color:var(--text); font-family:Outfit, system-ui, -apple-system, Segoe UI, sans-serif}
+    .quiz_wrap{max-width:980px;margin:0 auto;padding:40px 16px}
+    .quiz_head{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+    .quiz_brand{display:flex;gap:14px;align-items:flex-end}
+    .quiz_mark{letter-spacing:.18em;font-size:12px;color:var(--muted)}
+    .quiz_title{margin:0;font-family:"Cormorant Garamond", serif;font-size:44px;line-height:1}
+    .quiz_subtitle{margin:8px 0 0;color:var(--muted);max-width:62ch}
+    .quiz_progressbar{width:260px;height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--line)}
+    .quiz_progressfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .quiz_progresslabel{margin-top:8px;color:var(--muted);font-size:12px;text-align:right}
+    .quiz_card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .quiz_qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .quiz_qcount{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .quiz_q{margin:6px 0 10px;font-size:22px;line-height:1.25}
+    .quiz_opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .quiz_opt{display:flex;gap:10px;align-items:center;padding:12px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);cursor:pointer}
+    .quiz_opt input{accent-color:var(--primary)}
+    .quiz_opt_label{font-weight:500}
+    .quiz_notice{margin-bottom:12px;padding:10px 12px;border-radius:14px;border:1px solid rgba(214,163,93,.4);background:rgba(214,163,93,.08);color:var(--text)}
+    .quiz_foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+    .quiz_nav{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid rgba(163,59,92,.55);background:rgba(163,59,92,.18);color:var(--text);text-decoration:none;cursor:pointer;font-weight:600}
+    .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03);font-weight:600}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .results_badge{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(214,163,93,.35);background:rgba(214,163,93,.08);color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .results_title{margin:10px 0 6px;font-family:"Cormorant Garamond", serif;font-size:34px}
+    .results_sub{margin:0;color:var(--muted);line-height:1.6}
+    .results_top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+    .results_focus{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(255,255,255,.02)}
+    .results_focus_top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);overflow:hidden}
+    .barfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .results_actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .results_footer{margin:14px 0 0;color:var(--muted);line-height:1.6}
+    @media (max-width:760px){
+      .quiz_title{font-size:38px}
+      .quiz_opts{grid-template-columns:1fr}
+      .results_top{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="/assets/js/quiz-engine.js"></script>
+  <script>
+    const dimensions = [
+      { id:"intensity", label:"Intensity Magnet", micro:"You confuse activation with chemistry. Sparks feel like safety because your system knows that frequency.", blurb:"You get pulled to big energy fast.", tools:["Slow the first two weeks", "Ask boring questions on purpose", "Notice if calm feels empty"] },
+      { id:"unavailable", label:"Unavailable Glamour", micro:"You want what you cannot fully have. Distance makes the bond feel valuable.", blurb:"You are wired to chase the gap.", tools:["Track availability not charm", "Do not reward inconsistency", "Ask for a clear pace"] },
+      { id:"rescuer", label:"Rescuer Hook", micro:"You attract wounded people because your nervous system equates love with fixing.", blurb:"Your care becomes currency.", tools:["Stop earning love", "Offer support without self abandonment", "Let adults manage themselves"] },
+      { id:"dominance", label:"Power Partner Pull", micro:"You get drawn to control energy because it temporarily removes uncertainty.", blurb:"Certainty feels like relief.", tools:["Check for respect not dominance", "Practice voice without escalation", "Choose boundaries over compliance"] },
+      { id:"chaos_familiar", label:"Chaos Familiarity", micro:"Peace feels suspicious. You scan for the next drop, so you pick people who confirm it.", blurb:"You are loyal to a pattern, not a person.", tools:["Name your baseline anxiety", "Date consistent people even if it feels boring", "Build safety in your body first"] },
+      { id:"stable_ready", label:"Stable Readiness", micro:"You are learning to choose steady love over addictive love.", blurb:"This is the shift.", tools:["Pick partners with repair skills", "Vet values, not vibes", "Match effort with effort"] }
+    ];
+
+    const questions = [
+      { text:"I feel bored when someone is consistent and emotionally steady.", mapsTo:[{dim:"intensity"}] },
+      { text:"I get hooked fastest when someone is hard to read.", mapsTo:[{dim:"unavailable"}] },
+      { text:"I often date people who need help, guidance, or saving.", mapsTo:[{dim:"rescuer"}] },
+      { text:"I feel safer with someone who leads, even if it feels controlling.", mapsTo:[{dim:"dominance"}] },
+
+      { text:"I mistake anxiety for excitement in early dating.", mapsTo:[{dim:"intensity"}] },
+      { text:"Inconsistency makes me try harder instead of stepping back.", mapsTo:[{dim:"unavailable"}] },
+      { text:"I over extend early to prove I am different from their past.", mapsTo:[{dim:"rescuer"}] },
+      { text:"I minimize my needs to avoid conflict or rejection.", mapsTo:[{dim:"dominance"}] },
+
+      { text:"I bond through late night talks, intensity, or emotional storms.", mapsTo:[{dim:"intensity"}] },
+      { text:"I feel drawn to people who are busy, distant, or not fully available.", mapsTo:[{dim:"unavailable"}] },
+      { text:"I feel guilty if I do not help someone who is struggling.", mapsTo:[{dim:"rescuer"}] },
+      { text:"I freeze when someone questions me, like I will be punished.", mapsTo:[{dim:"dominance"}] },
+
+      { text:"My relationships often start fast and burn hot.", mapsTo:[{dim:"intensity"}] },
+      { text:"I chase closure more than I chase compatibility.", mapsTo:[{dim:"unavailable"}] },
+      { text:"I feel valuable when I am needed.", mapsTo:[{dim:"rescuer"}] },
+      { text:"I attract partners who test boundaries or push limits.", mapsTo:[{dim:"dominance"}] },
+
+      { text:"Drama or chaos feels familiar to my body.", mapsTo:[{dim:"chaos_familiar"}] },
+      { text:"When things are peaceful, I start looking for what is wrong.", mapsTo:[{dim:"chaos_familiar"}] },
+      { text:"I repeat dynamics even when I know better in my head.", mapsTo:[{dim:"chaos_familiar"}] },
+      { text:"I stay too long hoping consistency will appear.", mapsTo:[{dim:"chaos_familiar"}] },
+
+      { text:"I am learning to pace myself even when I feel strong chemistry.", mapsTo:[{dim:"stable_ready"}] },
+      { text:"I care more about repair and accountability than charm now.", mapsTo:[{dim:"stable_ready"}] },
+      { text:"I can walk away when someone cannot meet me emotionally.", mapsTo:[{dim:"stable_ready"}] },
+      { text:"I can ask for what I need without testing or chasing.", mapsTo:[{dim:"stable_ready"}] }
+    ];
+
+    UnscarredQuiz.initQuiz({
+      root:"#app",
+      slug:"partner-draw-diagnostic",
+      brandMark:"UNSCARRED",
+      title:"Partner Draw Diagnostic",
+      subtitle:"Who you are wired to attract, and why it keeps happening.",
+      cta:{ href:"/quizzes/", label:"Back to quizzes" },
+      dimensions,
+      questions,
+      resultsFooter:"Your top draw is not your destiny. It is your nervous system preference. Preferences can be retrained."
+    });
+  </script>
+</body>
+</html>

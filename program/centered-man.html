@@ -1,0 +1,383 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Man Blueprint | Unscarred</title>
+  <meta name="description" content="Grounded presence. Honest pursuit. Boundaries that hold. A 6-week program for men who want steadiness without control.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507; --bg-deep: #0a0a0f;
+      --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c;
+      --avoidant: #5c7d8a;
+      --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px; --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+      --space-12: 48px; --space-16: 64px; --space-20: 80px;
+      --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem;
+      --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); line-height: 1.6; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(92, 125, 138, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(125, 154, 140, 0.1) 0%, transparent 40%); pointer-events: none; z-index: 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .container--narrow { max-width: 700px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(5, 5, 7, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-glass); }
+    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--primary); }
+    .nav { display: flex; gap: 32px; }
+    .nav a { font-size: 14px; color: var(--text-soft); text-decoration: none; }
+    .nav a:hover { color: var(--text-main); }
+    footer { text-align: center; padding: 60px 0; color: var(--text-dim); font-size: 0.85rem; border-top: 1px solid var(--border-glass); }
+    footer a { color: var(--text-soft); text-decoration: none; }
+    .btn { display: inline-block; padding: 16px 32px; border-radius: 999px; text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.3s ease; }
+    .btn--primary { background: linear-gradient(135deg, var(--avoidant), #4a6670); color: white; box-shadow: 0 8px 30px rgba(92, 125, 138, 0.3); }
+    .btn--primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(92, 125, 138, 0.4); }
+    .btn--secondary { background: transparent; color: var(--text-soft); border: 1px solid var(--border-glass); }
+    .btn--secondary:hover { border-color: rgba(255,255,255,0.2); color: var(--text-main); }
+    .btn--lg { padding: 18px 40px; font-size: 1rem; }
+    
+    .program-hero { padding: 160px 0 80px; background: linear-gradient(135deg, rgba(92, 125, 138, 0.1), rgba(12, 11, 16, 0.95)); }
+    .program-hero__content { max-width: 700px; }
+    .program-hero__badge { display: inline-block; padding: 8px 20px; background: rgba(92, 125, 138, 0.2); color: var(--avoidant); border-radius: 999px; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; border: 1px solid rgba(92, 125, 138, 0.3); }
+    .program-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; margin-bottom: 16px; }
+    .program-hero__outcome { font-family: var(--font-display); font-size: var(--text-2xl); font-style: italic; color: var(--text-soft); margin-bottom: 32px; }
+    .program-hero__actions { display: flex; flex-wrap: wrap; gap: 16px; }
+    
+    .program-section { padding: var(--space-20) 0; }
+    .program-section--alt { background: rgba(255,255,255,0.02); }
+    .program-section--cta { background: linear-gradient(135deg, rgba(92, 125, 138, 0.15), rgba(12, 11, 16, 0.98)); }
+    
+    h2 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; margin-bottom: var(--space-6); }
+    h3 { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: var(--space-4); }
+    .text-center { text-align: center; }
+    .mb-8 { margin-bottom: var(--space-8); }
+    .mb-12 { margin-bottom: var(--space-12); }
+    
+    .program-block { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 32px; margin-bottom: 24px; }
+    .program-block--alt { background: rgba(92, 125, 138, 0.08); }
+    
+    .check-list, .x-list { list-style: none; padding: 0; margin: 0; }
+    .check-list li, .x-list li { position: relative; padding-left: 28px; margin-bottom: 12px; color: var(--text-soft); }
+    .check-list li::before { content: 'âœ“'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
+    .x-list li::before { content: 'âœ•'; position: absolute; left: 0; color: var(--primary); font-weight: 600; }
+    
+    .module-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .module-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px; }
+    .module-card__number { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; color: rgba(92, 125, 138, 0.3); margin-bottom: 8px; }
+    .module-card h3 { font-size: var(--text-lg); margin-bottom: 16px; }
+    .module-card ul { list-style: none; padding: 0; margin: 0; }
+    .module-card li { font-size: var(--text-sm); color: var(--text-dim); margin-bottom: 8px; padding-left: 16px; position: relative; }
+    .module-card li::before { content: 'â€¢'; position: absolute; left: 0; color: var(--sage); }
+    
+    .wins-timeline { position: relative; padding-left: 32px; }
+    .wins-timeline::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--sage), var(--avoidant)); border-radius: 999px; }
+    .win-item { position: relative; padding: 16px 0 16px 24px; }
+    .win-item::before { content: ''; position: absolute; left: -37px; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; background: var(--sage); border-radius: 50%; border: 2px solid var(--bg-void); }
+    .win-item__week { display: block; font-size: var(--text-xs); font-weight: 600; color: var(--avoidant); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .win-item p { color: var(--text-main); font-size: var(--text-base); margin: 0; }
+    
+    .sample-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 16px; }
+    .sample-card h3 { font-size: var(--text-lg); margin-bottom: 12px; }
+    .sample-card blockquote { margin: 16px 0 0; padding: 16px; background: rgba(92, 125, 138, 0.1); border-left: 3px solid var(--sage); border-radius: 8px; font-style: italic; color: var(--text-main); }
+    .sample-card ul { list-style: none; padding: 0; margin: 12px 0 0; }
+    .sample-card li { padding: 4px 0; color: var(--text-dim); font-size: var(--text-sm); }
+    
+    .testimonial-stack { display: flex; flex-direction: column; gap: 16px; }
+    .testimonial-card { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 24px; border-left: 3px solid var(--sage); }
+    .testimonial-card p { font-style: italic; color: var(--text-main); margin: 0; }
+    
+    .story-block { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 40px; }
+    .story-block h2 { margin-bottom: 24px; }
+    .story-block p { font-size: var(--text-lg); margin-bottom: 16px; color: var(--text-soft); }
+    
+    .faq-list { max-width: 600px; margin: 0 auto; }
+    .faq-item { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+    .faq-item summary { padding: 20px; font-weight: 500; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; }
+    .faq-item summary::after { content: '+'; font-size: var(--text-xl); color: var(--text-dim); }
+    .faq-item[open] summary::after { content: 'âˆ’'; }
+    .faq-item p { padding: 0 20px 20px; font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
+    
+    .enroll-card { background: rgba(255,255,255,0.05); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: 48px; text-align: center; }
+    .enroll-card h2 { margin-bottom: 12px; }
+    .enroll-card__outcome { font-family: var(--font-display); font-size: var(--text-xl); font-style: italic; color: var(--text-soft); margin-bottom: 32px; }
+    .enroll-card__includes { background: rgba(92, 125, 138, 0.1); border-radius: var(--radius-lg); padding: 24px; margin-bottom: 32px; text-align: left; max-width: 400px; margin-left: auto; margin-right: auto; }
+    .enroll-card__includes h4 { font-size: var(--text-sm); margin-bottom: 12px; }
+    .enroll-card__includes ul { list-style: none; padding: 0; margin: 0; }
+    .enroll-card__includes li { padding: 4px 0; font-size: var(--text-sm); color: var(--text-soft); }
+    .enroll-card__includes li::before { content: 'âœ“ '; color: var(--sage); }
+    .enroll-card__alt { margin-top: 16px; font-size: var(--text-sm); color: var(--text-dim); }
+    .enroll-card__alt a { color: var(--primary); }
+    
+    @media (max-width: 900px) { .module-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .module-grid { grid-template-columns: 1fr; } .nav { display: none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header__inner">
+      <a href="../index.html" class="logo">un<span>scarred</span></a>
+      <nav class="nav">
+        <a href="/quizzes/">Quizzes</a>
+        <a href="../programs.html">Programs</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../services.html">Services</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="program-hero">
+    <div class="container">
+      <div class="program-hero__content">
+        <span class="program-hero__badge">6-Week Blueprint</span>
+        <h1>Centered Man Blueprint</h1>
+        <p class="program-hero__outcome">Grounded presence. Honest pursuit. Boundaries that hold.</p>
+        <div class="program-hero__actions">
+          <a href="#enroll" class="btn btn--primary btn--lg">Step into Centered Man</a>
+          <a href="#preview" class="btn btn--secondary">See what's inside</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who This Is For -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <div class="program-block">
+        <h2>Is this you?</h2>
+        <ul class="check-list">
+          <li>You want steadiness without control or disappearing</li>
+          <li>You recognize the pattern of pursuing too hard then pulling back</li>
+          <li>You want to lead with calm presence instead of pressure or shutdown</li>
+          <li>You're ready to learn pursuit that builds safety and attraction together</li>
+          <li>You want scripts for repair that don't require defending yourself</li>
+          <li>You want to show up consistently without losing yourself</li>
+        </ul>
+      </div>
+
+      <div class="program-block program-block--alt">
+        <h3>This is not for you if:</h3>
+        <ul class="x-list">
+          <li>You want tactics to control outcomes or manipulate attraction</li>
+          <li>You're looking to be more aggressive or dominant</li>
+          <li>You want to convince someone to want you</li>
+          <li>You're not ready to own your part</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Modules -->
+  <section class="program-section program-section--alt" id="preview">
+    <div class="container">
+      <div class="text-center mb-12">
+        <span class="program-hero__badge">The Blueprint</span>
+        <h2>Six weeks of grounded leadership</h2>
+      </div>
+
+      <div class="module-grid">
+        <div class="module-card">
+          <div class="module-card__number">01</div>
+          <h3>Grounded Presence</h3>
+          <ul>
+            <li>Weekly labs on ownership without control</li>
+            <li>Nervous system training for shutdown spikes</li>
+            <li>Leadership framework that invites instead of demands</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card__number">02</div>
+          <h3>Honest Pursuit</h3>
+          <ul>
+            <li>Date frame that builds safety and attraction together</li>
+            <li>Pursuit cadence that is steady, not pushy</li>
+            <li>Pressure vs invitation awareness check</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card__number">03</div>
+          <h3>Repair Without Defense</h3>
+          <ul>
+            <li>Conflict scripts that acknowledge without apologizing for existing</li>
+            <li>Ownership opener that de-escalates without losing position</li>
+            <li>Micro agreements that rebuild trust after tension</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card__number">04</div>
+          <h3>Boundaries That Hold</h3>
+          <ul>
+            <li>Space setting without punishment or distance</li>
+            <li>Clear communication during activation</li>
+            <li>Consistency framework that builds security over time</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card__number">05</div>
+          <h3>Integration</h3>
+          <ul>
+            <li>Weekly rhythm for maintaining centered energy</li>
+            <li>Crisis repair protocols for when you lose your center</li>
+            <li>Partnership scripts for ongoing connection</li>
+          </ul>
+        </div>
+        <div class="module-card">
+          <div class="module-card__number">06</div>
+          <h3>Advanced Dynamics</h3>
+          <ul>
+            <li>Co-regulation with anxious partners</li>
+            <li>Leading without fixing</li>
+            <li>Long term vision for calm partnership</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wins Timeline -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">Tiny wins each week</h2>
+      
+      <div class="wins-timeline">
+        <div class="win-item"><span class="win-item__week">Week 1</span><p>You pause instead of reacting when conflict starts</p></div>
+        <div class="win-item"><span class="win-item__week">Week 2</span><p>You pursue without pressure and notice the difference in response</p></div>
+        <div class="win-item"><span class="win-item__week">Week 3</span><p>You own your part without defending every detail</p></div>
+        <div class="win-item"><span class="win-item__week">Week 4</span><p>You hold boundaries without explaining why they matter</p></div>
+        <div class="win-item"><span class="win-item__week">Week 5</span><p>You repair connection without losing yourself</p></div>
+        <div class="win-item"><span class="win-item__week">Week 6</span><p>You maintain steady presence even during her activation</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sample Scripts -->
+  <section class="program-section program-section--alt">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-8">Try these now</h2>
+      <p class="text-center mb-12" style="color: var(--text-dim);">Scripts from the program you can use today</p>
+
+      <div class="sample-card">
+        <h3>The Ownership Opener</h3>
+        <p style="color: var(--text-soft);">When conflict starts:</p>
+        <blockquote>"I can see my part in this. Can we talk about how to do it differently next time?"</blockquote>
+      </div>
+
+      <div class="sample-card">
+        <h3>Pursuit Without Pressure Cadence</h3>
+        <p style="color: var(--text-soft);">The rhythm that works:</p>
+        <ul>
+          <li>Make contact twice per week</li>
+          <li>If she responds, continue</li>
+          <li>If she doesn't respond twice in a row, step back and let her reach out</li>
+        </ul>
+      </div>
+
+      <div class="sample-card">
+        <h3>Repair Request Framework</h3>
+        <p style="color: var(--text-soft);">When you need to reconnect:</p>
+        <blockquote>"I want to repair this. Can you help me understand what you need right now?"</blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">What men say</h2>
+      
+      <div class="testimonial-stack">
+        <div class="testimonial-card">
+          <p>"I stopped trying to convince her to want me and started showing up as someone worth wanting. The difference in her response was immediate."</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"The ownership opener changed everything. I can take responsibility without feeling like I have to defend myself."</p>
+        </div>
+        <div class="testimonial-card">
+          <p>"I used to either chase or disappear. Now I have a middle path that actually works. Steady pursuit without pressure."</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy -->
+  <section class="program-section program-section--alt">
+    <div class="container container--narrow">
+      <div class="story-block">
+        <h2>The story behind this approach</h2>
+        <p>Most relationship advice for men falls into two camps: be more alpha or be more sensitive. Both miss the point.</p>
+        <p>Centered presence is not about dominance or submission. It's about knowing who you are and showing up consistently from that place.</p>
+        <p><strong style="color: var(--text-main);">Calm leadership is not about controlling outcomes.</strong> It's about managing your own nervous system so you can show up for what actually needs your attention.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">Questions</h2>
+      
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Is this just for men with avoidant attachment?</summary>
+          <p>No. These tools work regardless of your attachment style. The focus is on grounded presence, which benefits any man who wants to lead with calm instead of pressure.</p>
+        </details>
+        <details class="faq-item">
+          <summary>What if she's not responsive to these approaches?</summary>
+          <p>These tools help you show up consistently regardless of her response. If someone consistently doesn't respond to healthy pursuit, that gives you information about compatibility.</p>
+        </details>
+        <details class="faq-item">
+          <summary>How is this different from other men's programs?</summary>
+          <p>Most programs focus on tactics or mindset. This blueprint focuses on nervous system regulation and practical scripts you can use in real time. No manipulation, no games.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Will this work with anxious partners?</summary>
+          <p>Yes. Grounded presence is especially helpful with anxious partners because it provides the steady energy their nervous system needs to calm down.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="program-section program-section--cta" id="enroll">
+    <div class="container container--narrow">
+      <div class="enroll-card">
+        <h2>Ready to step in?</h2>
+        <p class="enroll-card__outcome">Grounded presence. Honest pursuit. Boundaries that hold.</p>
+        
+        <div class="enroll-card__includes">
+          <h4>Includes:</h4>
+          <ul>
+            <li>6 weeks of video labs</li>
+            <li>Conflict and repair scripts</li>
+            <li>Nervous system training</li>
+            <li>Lifetime access</li>
+            <li>Community of men doing the work</li>
+          </ul>
+        </div>
+
+        <a href="https://shop.unscarred.site" class="btn btn--primary btn--lg" target="_blank">Step into Centered Man</a>
+        
+        <p class="enroll-card__alt">Or <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" target="_blank">book a session</a> to talk it through</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Â© 2025 Unscarred. <a href="../blog.html">Blog</a> Â· <a href="../services.html">Services</a></p>
+    </div>
+  </footer>
+</body>
+</html>
+
+

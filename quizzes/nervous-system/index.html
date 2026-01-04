@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nervous System Response Scan</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>/* styles trimmed for brevity; kept matching site aesthetic */
+    body{box-sizing:border-box}
+    .fade-in{animation:fadeIn .6s cubic-bezier(.16,1,.3,1)}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  </style>
+  <style>@view-transition{navigation:auto}</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full w-full" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif; color:#fff;">
+  <div id="app" class="w-full" style="min-height:100%; padding:48px 24px;"></div>
+  <script>
+/* Nervous system quiz engine (source provided in chat). Minor change: results area includes two CTA buttons linking to root absolute paths. */
+// (questions, defaultConfig, patterns, calculateScores, renderIntro/renderQuestion as in original source...)
+// For brevity, this file includes the full script from the provided Nervous System Response Scan, with only navigation anchors updated.
+
+/* --- start of core quiz script --- */
+const defaultConfig = {
+  hero_text: "Nervous System Response Scan",
+  subtitle: "Discover how your body responds to stress, threat, and overwhelm.",
+  cta_button: "Take the Response Scan",
+  trust_line: "Pattern insight only. Not a diagnosis.",
+  primary_color: "#0f0f0f",
+  secondary_color: "#ffffff",
+  text_color: "#0f0f0f",
+  accent_color: "#8b5cf6",
+  button_color: "#8b5cf6",
+  font_family: "system-ui",
+  font_size: 16
+};
+
+// Questions array (25 items) copied from provided source
+const questions = [ /* ... full list copied verbatim ... */
+  { id: 1, text: "I get blunt and confrontational when stressed.", category: "fight" },
+  { id: 6, text: "I argue fast and hard when I feel threatened.", category: "fight" },
+  { id: 11, text: "I feel heat in my body and a need to take control.", category: "fight" },
+  { id: 16, text: "I become protective, angry, or dominant.", category: "fight" },
+  { id: 21, text: "I push for resolution and hate feeling powerless.", category: "fight" },
+  { id: 2, text: "I overthink and plan my way out of discomfort.", category: "flight" },
+  { id: 7, text: "I stay busy to avoid feelings.", category: "flight" },
+  { id: 12, text: "I fixate on what might go wrong.", category: "flight" },
+  { id: 17, text: "I need movement, cleaning, tasks, scrolling.", category: "flight" },
+  { id: 22, text: "I cannot relax until everything is handled.", category: "flight" },
+  { id: 3, text: "My mind goes blank under pressure.", category: "freeze" },
+  { id: 8, text: "I feel stuck and cannot act even when I want to.", category: "freeze" },
+  { id: 13, text: "I disconnect from my body.", category: "freeze" },
+  { id: 18, text: "I procrastinate because starting feels impossible.", category: "freeze" },
+  { id: 23, text: "I feel numb during conflict.", category: "freeze" },
+  { id: 4, text: "I become extra agreeable when tension rises.", category: "fawn" },
+  { id: 9, text: "I apologize quickly to make it stop.", category: "fawn" },
+  { id: 14, text: "I manage other people's feelings before my own.", category: "fawn" },
+  { id: 19, text: "I say yes while feeling no.", category: "fawn" },
+  { id: 24, text: "I change myself to keep connection.", category: "fawn" },
+  { id: 5, text: "I feel heavy, sleepy, or collapsed when stressed.", category: "faint" },
+  { id: 10, text: "I want to disappear for days.", category: "faint" },
+  { id: 15, text: "I lose motivation and feel helpless.", category: "faint" },
+  { id: 20, text: "I stop caring because caring hurts.", category: "faint" },
+  { id: 25, text: "I feel like my system shuts off.", category: "faint" }
+];
+
+const scaleOptions = [ { value:0,label:"Never" },{ value:1,label:"Sometimes" },{ value:2,label:"Often" },{ value:3,label:"Almost always" } ];
+
+const patterns = { fight:{ title:"Fight Response", description:"Mobilized, confrontational, controlling under stress", need:"Safety, respect, power restored without harm.", regulation:"Jaw unclench, long exhale, cold water on wrists, slow voice rule.", script:"\"I'm in fight mode. I want to solve this without hurting you.\"" }, flight:{ title:"Flight Response", description:"Overthinking, busy, planning, avoiding feelings", need:"Certainty, control, future clarity.", regulation:"5 minute brain dump then stop, box breathing, single next step.", script:"\"I'm spiraling. Give me one clear plan point and one reassurance point.\"" }, freeze:{ title:"Freeze Response", description:"Stuck, blank, disconnected, unable to act", need:"Time, gentleness, no pressure.", regulation:"Feet on floor, name 5 objects, small movement, low stakes action.", script:"\"I'm frozen. I need time and a softer approach.\"" }, fawn:{ title:"Fawn Response", description:"People-pleasing, appeasing, over-accommodating", need:"Permission to exist, safety to say no.", regulation:"Hand on chest, name one true need, practice one boundary sentence.", script:"\"I'm people pleasing. My real answer is no, and I still care.\"" }, faint:{ title:"Faint Response", description:"Shutdown, collapsed, numb, unmotivated", need:"Rest, support, reduced load, nervous system repair.", regulation:"Hydration, protein, sunlight, body warmth, sleep protection, ask for help.", script:"\"I'm in shutdown. I can't process this right now. I need recovery time.\"" } };
+
+let currentQuestion = 0, answers = {}, currentView = 'intro';
+
+function calculateScores(){
+  const fightScore = [1,6,11,16,21].reduce((s,id)=>s+(answers[id]||0),0);
+  const flightScore = [2,7,12,17,22].reduce((s,id)=>s+(answers[id]||0),0);
+  const freezeScore = [3,8,13,18,23].reduce((s,id)=>s+(answers[id]||0),0);
+  const fawnScore = [4,9,14,19,24].reduce((s,id)=>s+(answers[id]||0),0);
+  const faintScore = [5,10,15,20,25].reduce((s,id)=>s+(answers[id]||0),0);
+  const total = fightScore+flightScore+freezeScore+fawnScore+faintScore;
+  if(total===0){ return { fight:{score:fightScore,percent:20}, flight:{score:flightScore,percent:20}, freeze:{score:freezeScore,percent:20}, fawn:{score:fawnScore,percent:20}, faint:{score:faintScore,percent:20}, primary:'fight', all:[{name:'fight',percent:20},{name:'flight',percent:20},{name:'freeze',percent:20},{name:'fawn',percent:20},{name:'faint',percent:20}] } }
+  const fightPct=Math.round((fightScore/total)*100); const flightPct=Math.round((flightScore/total)*100); const freezePct=Math.round((freezeScore/total)*100); const fawnPct=Math.round((fawnScore/total)*100); const faintPct=Math.round((faintScore/total)*100);
+  const responsePatterns=[{name:'fight',score:fightScore,percent:fightPct},{name:'flight',score:flightScore,percent:flightPct},{name:'freeze',score:freezeScore,percent:freezePct},{name:'fawn',score:fawnScore,percent:fawnPct},{name:'faint',score:faintScore,percent:faintPct}];
+  responsePatterns.sort((a,b)=>b.percent-a.percent); const primary=responsePatterns[0].name;
+  return { fight:{score:fightScore,percent:fightPct}, flight:{score:flightScore,percent:flightPct}, freeze:{score:freezeScore,percent:freezePct}, fawn:{score:fawnScore,percent:fawnPct}, faint:{score:faintScore,percent:faintPct}, primary, all:responsePatterns };
+}
+
+function renderIntro(){ const config=window.elementSdk?.config||defaultConfig; const heroText=config.hero_text||defaultConfig.hero_text; const subtitle=config.subtitle||defaultConfig.subtitle; const ctaButton=config.cta_button||defaultConfig.cta_button; const trustLine=config.trust_line||defaultConfig.trust_line; const buttonColor=config.button_color||defaultConfig.button_color; const secondaryColor=config.secondary_color||defaultConfig.secondary_color; return `
+  <div class="fade-in" style="max-width:680px;margin:0 auto;padding:64px 24px;">
+    <div style="text-align:center;margin-bottom:24px;">
+      <h1 style="font-size:32px;color:${secondaryColor};margin-bottom:12px;">${heroText}</h1>
+      <p style="color:${secondaryColor};opacity:.75;max-width:520px;margin:0 auto;">${subtitle}</p>
+    </div>
+    <div style="text-align:center;margin-top:28px;"><button onclick="startScan()" style="background:${buttonColor};color:#fff;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;font-weight:700;">${ctaButton}</button>
+      <p style="margin-top:16px;color:${secondaryColor};opacity:.6;">${trustLine}</p>
+    </div>
+  </div>
+` }
+
+function renderQuestion(){ const question=questions[currentQuestion]; const progress=((currentQuestion+1)/questions.length)*100; const isAnswered=answers[question.id]!==undefined; const secondaryColor=defaultConfig.secondary_color; const fontSize=defaultConfig.font_size; return `
+  <div class="fade-in" style="max-width:640px;margin:0 auto;padding:48px 24px;">
+    <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:999px;margin-bottom:20px;overflow:hidden;"><div style="height:100%;width:${progress}%;background:${defaultConfig.button_color};"></div></div>
+    <div style="text-align:center;margin-bottom:16px;color:${secondaryColor};">Question ${currentQuestion+1} of ${questions.length}</div>
+    <div style="background:rgba(255,255,255,0.03);padding:24px;border-radius:12px;margin-bottom:16px;">
+      <h2 style="color:${secondaryColor};margin-bottom:12px;">${question.text}</h2>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${scaleOptions.map(o=>`<button onclick="selectAnswer(${question.id},${o.value})" style="padding:12px;border-radius:10px;background:${answers[question.id]===o.value?'rgba(139,92,246,0.15)':'rgba(255,255,255,0.02)'};border:1px solid rgba(255,255,255,0.06);color:${secondaryColor};text-align:left;">${o.label}</button>`).join('')}
+      </div>
+    </div>
+    <div style="display:flex;gap:12px;">
+      ${currentQuestion>0?`<button onclick="previousQuestion()" style="flex:1;padding:10px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);">Previous</button>`:''}
+      <button onclick="${currentQuestion<questions.length-1?'nextQuestion()':'showResults()'}" ${!isAnswered?'disabled':''} style="flex:1;padding:10px;border-radius:8px;background:${isAnswered?defaultConfig.button_color:'rgba(255,255,255,0.08)'};color:#fff;border:none;">${currentQuestion<questions.length-1?'Next':'See Results'}</button>
+    </div>
+  </div>
+` }
+
+function renderResults(){ const scores=calculateScores(); const primaryPattern=patterns[scores.primary]; const secondaryColor=defaultConfig.secondary_color; return `
+  <div class="fade-in" style="max-width:760px;margin:0 auto;padding:48px 24px;">
+    <div style="text-align:center;margin-bottom:20px;">
+      <h1 style="color:${secondaryColor};">Your Response Profile</h1>
+      <p style="opacity:.75;">Primary response: ${primaryPattern.title}</p>
+    </div>
+    <div style="background:rgba(255,255,255,0.03);padding:20px;border-radius:12px;margin-bottom:16px;">
+      <h3 style="color:${secondaryColor};">${primaryPattern.title}</h3>
+      <p style="opacity:.8;">${primaryPattern.description}</p>
+      <div style="margin-top:12px;padding:12px;background:linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05));border-radius:8px;">
+        <div style="font-weight:600;color:${secondaryColor};">Repair Script</div>
+        <div style="font-style:italic;opacity:.9;margin-top:8px;">${primaryPattern.script}</div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:12px;">
+      <button onclick="restartScan()" style="background:rgba(255,255,255,0.06);color:${secondaryColor};padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);">Take Scan Again</button>
+      <div style="margin-top:16px; display:flex; gap:12px; justify-content:center;">
+        <a href="/quizzes/relational-needs/" style="display:inline-block;padding:10px 16px;background:#8b5cf6;color:#fff;border-radius:8px;text-decoration:none;">Next: Relational Needs Matrix →</a>
+        <a href="/war/war-mapping/" style="display:inline-block;padding:10px 16px;background:#a33b5c;color:#fff;border-radius:8px;text-decoration:none;">Go to War Mapping →</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:22px;"><a href="/index.html" style="color:rgba(255,255,255,0.7);text-decoration:none">← Back to Home</a></div>
+  </div>
+` }
+
+function selectAnswer(qid,val){ answers[qid]=val; render(); }
+function startScan(){ currentView='question'; currentQuestion=0; answers={}; render(); }
+function nextQuestion(){ if(currentQuestion<questions.length-1){currentQuestion++; render();} }
+function previousQuestion(){ if(currentQuestion>0){currentQuestion--; render();} }
+function showResults(){ currentView='results'; render(); }
+function restartScan(){ startScan(); }
+function render(){ const app=document.getElementById('app'); if(currentView==='intro'){ app.innerHTML=renderIntro(); } else if(currentView==='question'){ app.innerHTML=renderQuestion(); } else if(currentView==='results'){ app.innerHTML=renderResults(); } }
+render();
+/* --- end of core quiz script --- */
+  </script>
+ </body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Strategic Compartmentalization | War Path | Unscarred</title>
+  <meta name="description" content="How to function when your system is in chaos. Practical steps for containing the fire so you can keep living while you figure things out.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.8;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 32px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .content {
+      padding-bottom: 80px;
+    }
+
+    .content h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--accent);
+      margin: 48px 0 20px;
+    }
+
+    .content h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      color: var(--text-main);
+      margin: 32px 0 16px;
+    }
+
+    .content p {
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      font-size: 1.05rem;
+    }
+
+    .content p strong {
+      color: var(--text-main);
+    }
+
+    .content ul, .content ol {
+      margin: 0 0 24px 24px;
+      color: var(--text-soft);
+    }
+
+    .content li {
+      margin-bottom: 12px;
+    }
+
+    /* Highlight Boxes */
+    .highlight {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 32px 0;
+    }
+
+    .highlight p {
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .highlight p:last-child {
+      margin-bottom: 0;
+    }
+
+    .warning-box {
+      background: linear-gradient(165deg, rgba(231, 76, 60, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(231, 76, 60, 0.2);
+      border-radius: 16px;
+      padding: 24px;
+      margin: 32px 0;
+    }
+
+    .warning-box h4 {
+      color: var(--warning);
+      font-size: 1rem;
+      margin-bottom: 12px;
+    }
+
+    .warning-box p {
+      color: var(--text-soft);
+      margin-bottom: 0;
+    }
+
+    /* Step Cards */
+    .step-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 20px;
+    }
+
+    .step-card .step-number {
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      background: rgba(201, 118, 61, 0.2);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 50%;
+      text-align: center;
+      line-height: 34px;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .step-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .step-card p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .step-card ul {
+      margin: 12px 0 0 20px;
+    }
+
+    /* Practice Box */
+    .practice-box {
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 16px;
+      padding: 28px;
+      margin: 32px 0;
+    }
+
+    .practice-box h4 {
+      color: var(--secondary);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .practice-box p {
+      color: var(--text-soft);
+    }
+
+    .practice-box ol {
+      margin: 16px 0 0 20px;
+      color: var(--text-soft);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="survivor-types.html">Shields & Masks</a>
+        <a href="glossary.html">Glossary</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Strategic Compartmentalization</h1>
+      <p class="hero-sub">How to function when your system is in chaos. Containing the fire so you can keep living while you figure things out.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="content">
+
+      <div class="highlight">
+        <p><strong>This is not about suppressing or avoiding.</strong></p>
+        <p>Strategic compartmentalization is about putting things in containers ON PURPOSE so they do not flood everything. It is saying "I will deal with this, but not right now, and not while I am trying to work/parent/function."</p>
+      </div>
+
+      <h2>What Strategic Compartmentalization Actually Is</h2>
+
+      <p>When you are in war mode, everything bleeds into everything. The fight with your partner shows up at work. The childhood wound gets triggered by your kid. The grief sits on your chest while you try to make dinner.</p>
+
+      <p><strong>Strategic compartmentalization is building internal walls on purpose.</strong> Not to deny what is happening, but to contain it so you can function.</p>
+
+      <p>Think of it like this: If your house is on fire, you do not stand in the flames trying to process your feelings about the fire. You get out, you call for help, you contain the damage. Then, when the fire is out, you deal with what happened.</p>
+
+      <p>The problem is that trauma survivors often have two modes:</p>
+      <ul>
+        <li><strong>Flooded:</strong> Everything is happening at once and you cannot function</li>
+        <li><strong>Dissociated:</strong> You cut everything off and lose access to yourself</li>
+      </ul>
+
+      <p>Strategic compartmentalization is a third option. Intentional containment with a plan to return.</p>
+
+      <h2>When To Use This</h2>
+
+      <ul>
+        <li>You are triggered but you have to function (work, kids, obligations)</li>
+        <li>You are processing something huge and need to take breaks without losing progress</li>
+        <li>Your system keeps flooding and you cannot get anything done</li>
+        <li>You are in a relationship crisis but still have to live your life</li>
+        <li>You are holding multiple traumas at once and need to work on them one at a time</li>
+      </ul>
+
+      <div class="warning-box">
+        <h4>⚠️ This is not the same as avoidance</h4>
+        <p>Avoidance is running from something with no plan to return. Compartmentalization is putting something in a container WITH a plan to come back to it. The intention matters.</p>
+      </div>
+
+      <h2>How To Do It: The Container Method</h2>
+
+      <div class="step-card">
+        <div class="step-number">1</div>
+        <h4>Name What You Are Containing</h4>
+        <p>Get specific. Not just "I feel bad" but "I am containing the grief about my mother" or "I am containing the anxiety about whether they are going to leave."</p>
+        <p>Naming it gives your brain something to hold onto. Vague feelings are harder to contain than specific ones.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">2</div>
+        <h4>Create A Container (Visualization)</h4>
+        <p>Imagine putting the feeling/memory/thought into something. Common containers:</p>
+        <ul>
+          <li>A box with a lid</li>
+          <li>A safe with a lock</li>
+          <li>A room you can close the door on</li>
+          <li>A folder on a computer desktop</li>
+          <li>A jar you can seal</li>
+        </ul>
+        <p>Pick whatever makes sense to you. The key is that it has clear boundaries and you can close it.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">3</div>
+        <h4>Set A Return Time</h4>
+        <p><strong>This is the part most people skip and it is the most important.</strong></p>
+        <p>Tell your system when you will come back. "I am putting this in the container until 8pm when I am alone." Or "I will come back to this on Saturday when I have space."</p>
+        <p>Your nervous system needs to know this is temporary containment, not permanent denial. Without a return time, your system will keep poking at it.</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">4</div>
+        <h4>Anchor In The Present</h4>
+        <p>After you close the container, do something that brings you into the current moment:</p>
+        <ul>
+          <li>Name 5 things you can see</li>
+          <li>Feel your feet on the ground</li>
+          <li>Cold water on your wrists</li>
+          <li>Name where you are and what day it is</li>
+        </ul>
+        <p>This tells your nervous system "we are here now, not there."</p>
+      </div>
+
+      <div class="step-card">
+        <div class="step-number">5</div>
+        <h4>Actually Return</h4>
+        <p>When your return time comes, open the container. Even if it is just for 10 minutes. Even if you just sit with it and close it again.</p>
+        <p>This builds trust with your system. It learns that "later" actually means later, not never.</p>
+      </div>
+
+      <div class="practice-box">
+        <h4>🔄 Quick Practice Script</h4>
+        <p>When you notice flooding starting:</p>
+        <ol>
+          <li>"I see you. I know this is [name it]."</li>
+          <li>"I am putting you in the [container] for now."</li>
+          <li>"I will come back to you at [specific time]."</li>
+          <li>"Right now I am [present moment anchor]."</li>
+        </ol>
+      </div>
+
+      <h2>Advanced: Multiple Containers</h2>
+
+      <p>If you are dealing with multiple things (which most war path people are), you can have multiple containers. Some people visualize:</p>
+
+      <ul>
+        <li>A shelf with different boxes</li>
+        <li>Different rooms in a house</li>
+        <li>Different folders on a desktop</li>
+        <li>Different drawers in a filing cabinet</li>
+      </ul>
+
+      <p>Label each one. "This box is the relationship stuff. This box is the childhood stuff. This box is the work stress."</p>
+
+      <p><strong>Work on one at a time.</strong> Open one container, do the work, close it, then open the next if you have capacity. Trying to process everything at once is how you stay flooded.</p>
+
+      <h2>When Compartmentalization Is Not Working</h2>
+
+      <p>If the thing keeps escaping the container, that is information:</p>
+
+      <ul>
+        <li><strong>The container is too small:</strong> You might need more processing time than you are giving it</li>
+        <li><strong>You are not actually returning:</strong> Your system does not trust the container because you keep lying about coming back</li>
+        <li><strong>It is too activated:</strong> Some things need professional support to contain</li>
+        <li><strong>Your body is holding it:</strong> You might need somatic work, not just mental containment</li>
+      </ul>
+
+      <div class="highlight">
+        <p><strong>Strategic compartmentalization is a tool, not a lifestyle.</strong></p>
+        <p>The goal is not to live in permanent containment. The goal is to function while you do the deeper work. If you find yourself containing forever and never processing, that is avoidance wearing a strategy costume.</p>
+      </div>
+
+      <h2>Compartmentalization For Specific Situations</h2>
+
+      <h3>At Work</h3>
+      <p>"I am putting the relationship crisis in the container until 5pm. For the next 8 hours, I am the work version of me. I will feel this fully when I get home."</p>
+
+      <h3>With Kids</h3>
+      <p>"I am putting my grief in the container while I am with my kids. They need present me. I will open this when they go to bed."</p>
+
+      <h3>During A Trigger</h3>
+      <p>"I notice I am being pulled into [old wound]. I am putting that in the container. Right now I am in [current year], with [current person], and I am safe."</p>
+
+      <h3>Processing Trauma</h3>
+      <p>"I am working on the childhood stuff for 30 minutes. At the end of 30 minutes, I close the container and do something grounding. I do not have to solve it all today."</p>
+
+      <h2>Building The Skill</h2>
+
+      <p>Compartmentalization is a muscle. If you have never done it intentionally, start small:</p>
+
+      <ol>
+        <li>Pick something mildly activating (not your biggest trauma)</li>
+        <li>Practice containing it for 1 hour</li>
+        <li>Return to it and sit with it for 5 minutes</li>
+        <li>Notice what happened</li>
+      </ol>
+
+      <p>Build up from there. The more you practice with small things, the more your system will trust the process for bigger things.</p>
+
+      <div class="practice-box">
+        <h4>📝 Daily Practice</h4>
+        <p>Each morning, do a quick scan: What might try to flood me today? Put it in a container with a return time before you start your day.</p>
+        <p>Each evening, open what you contained and give it at least 5-10 minutes of attention, even if that attention is just "I see you, I know you are there, we will keep working on this."</p>
+      </div>
+
+      <a href="index.html" class="back-link">← Back to War Path Home</a>
+
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

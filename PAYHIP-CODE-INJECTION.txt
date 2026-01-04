@@ -1,0 +1,603 @@
+====================================================
+PAYHIP CODE INJECTION - HEADER, FOOTER & CHECKOUT
+====================================================
+
+Copy these into Payhip:
+Settings > Store Settings > Custom Code
+
+====================================================
+HEADER CODE INJECTION
+====================================================
+Paste this in: "Header Code" section
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://unscarred.site/favicon.png">
+
+<!-- Meta Tags -->
+<meta name="theme-color" content="#050507">
+<meta name="author" content="Scar Kade">
+
+<style>
+  /* Preload dark background to prevent flash */
+  html {
+    background: #050507 !important;
+  }
+  
+  /* Hide content until fully loaded */
+  body {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  body.loaded {
+    opacity: 1;
+  }
+</style>
+
+<script>
+  // Show body when loaded
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('loaded');
+  });
+</script>
+
+
+====================================================
+FOOTER CODE INJECTION
+====================================================
+Paste this in: "Footer Code" section
+
+<!-- Custom Footer Banner -->
+<div id="unscarred-footer" style="
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.95) 20%, #0a0a0f 100%);
+  padding: 60px 24px 40px;
+  text-align: center;
+  margin-top: 60px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+">
+  <!-- Logo -->
+  <a href="https://unscarred.site" style="
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #ece8e1;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 16px;
+  ">un<span style="color: #a33b5c;">scarred</span></a>
+  
+  <!-- Tagline -->
+  <p style="
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: #9a958c;
+    max-width: 400px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  ">Pattern support for the ones who feel too much and see too clearly.</p>
+  
+  <!-- Links -->
+  <div style="
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  ">
+    <a href="https://unscarred.site" style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #9a958c;
+      text-decoration: none;
+      transition: color 0.3s;
+    " onmouseover="this.style.color='#a33b5c'" onmouseout="this.style.color='#9a958c'">Website</a>
+    <a href="https://unscarred.site/quizzes/" style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #9a958c;
+      text-decoration: none;
+      transition: color 0.3s;
+    " onmouseover="this.style.color='#a33b5c'" onmouseout="this.style.color='#9a958c'">Quizzes</a>
+    <a href="https://unscarred.site/coaching.html" style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #9a958c;
+      text-decoration: none;
+      transition: color 0.3s;
+    " onmouseover="this.style.color='#a33b5c'" onmouseout="this.style.color='#9a958c'">Coaching</a>
+    <a href="https://unscarred.site/blog.html" style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #9a958c;
+      text-decoration: none;
+      transition: color 0.3s;
+    " onmouseover="this.style.color='#a33b5c'" onmouseout="this.style.color='#9a958c'">Blog</a>
+    <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.85rem;
+      color: #a33b5c;
+      text-decoration: none;
+      transition: color 0.3s;
+    " onmouseover="this.style.color='#c9506e'" onmouseout="this.style.color='#a33b5c'">Book a Call</a>
+  </div>
+  
+  <!-- Disclaimer -->
+  <p style="
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    color: #5c5955;
+    margin-bottom: 8px;
+  ">This is education, not therapy. Please seek professional help for clinical needs.</p>
+  
+  <!-- Copyright -->
+  <p style="
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    color: #5c5955;
+  ">© 2025 Unscarred · Scar Kade</p>
+</div>
+
+<!-- Analytics (optional - add your tracking code) -->
+<!--
+<script async src="https://www.googletagmanager.com/gtag/js?id=YOUR-GA-ID"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'YOUR-GA-ID');
+</script>
+-->
+
+<!-- Smooth scroll behavior -->
+<script>
+  document.documentElement.style.scrollBehavior = 'smooth';
+</script>
+
+
+====================================================
+CHECKOUT PAGE CSS
+====================================================
+Add this to your Custom CSS (after the main store CSS)
+
+/* ==========================================
+   CHECKOUT PAGE SPECIFIC STYLES
+   ========================================== */
+
+/* Checkout container */
+.checkout-page,
+.checkout-container,
+[class*="checkout"] {
+  background: #050507 !important;
+  min-height: 100vh !important;
+}
+
+/* Checkout header */
+.checkout-header {
+  background: linear-gradient(180deg, #0a0a0f 0%, #050507 100%) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  padding: 24px !important;
+}
+
+/* Order summary card */
+.order-summary,
+.checkout-summary,
+[class*="order-summary"],
+[class*="summary"] {
+  background: linear-gradient(165deg, rgba(20, 18, 25, 0.95), rgba(12, 11, 16, 0.98)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  padding: 32px !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Product in checkout */
+.checkout-item,
+.order-item,
+.cart-item {
+  background: rgba(20, 18, 25, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 16px !important;
+}
+
+.checkout-item:hover,
+.order-item:hover {
+  border-color: rgba(163, 59, 92, 0.2) !important;
+}
+
+/* Product image in checkout */
+.checkout-item img,
+.order-item img,
+.cart-item img {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: cover !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Product title in checkout */
+.checkout-item-title,
+.order-item-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  color: #ece8e1 !important;
+  margin-bottom: 4px !important;
+}
+
+/* Product price in checkout */
+.checkout-item-price,
+.order-item-price {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.3rem !important;
+  font-weight: 700 !important;
+  color: #a33b5c !important;
+}
+
+/* Checkout form section */
+.checkout-form,
+.payment-form,
+[class*="payment-form"] {
+  background: linear-gradient(165deg, rgba(20, 18, 25, 0.95), rgba(12, 11, 16, 0.98)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  padding: 32px !important;
+}
+
+/* Form section headers */
+.checkout-form h2,
+.checkout-form h3,
+.payment-form h2,
+.payment-form h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  font-style: italic !important;
+  color: #ece8e1 !important;
+  margin-bottom: 20px !important;
+  padding-bottom: 12px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+/* Form labels */
+.checkout-form label,
+.payment-form label {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  color: #9a958c !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+/* Form inputs */
+.checkout-form input,
+.checkout-form select,
+.payment-form input,
+.payment-form select {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 1rem !important;
+  background: rgba(10, 10, 15, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  color: #ece8e1 !important;
+  padding: 16px 18px !important;
+  width: 100% !important;
+  margin-bottom: 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.checkout-form input:focus,
+.checkout-form select:focus,
+.payment-form input:focus,
+.payment-form select:focus {
+  outline: none !important;
+  border-color: rgba(163, 59, 92, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(163, 59, 92, 0.1) !important;
+  background: rgba(20, 18, 25, 0.9) !important;
+}
+
+/* Credit card input styling */
+.card-input,
+[class*="card-input"],
+[class*="stripe"],
+.StripeElement {
+  background: rgba(10, 10, 15, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 12px !important;
+  padding: 16px 18px !important;
+  transition: all 0.3s ease !important;
+}
+
+.card-input:focus,
+[class*="card-input"]:focus,
+.StripeElement--focus {
+  border-color: rgba(163, 59, 92, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(163, 59, 92, 0.1) !important;
+}
+
+/* Totals section */
+.checkout-totals,
+.order-totals,
+[class*="totals"] {
+  background: rgba(10, 10, 15, 0.6) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  margin-top: 24px !important;
+}
+
+.checkout-subtotal,
+.order-subtotal {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 12px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #9a958c !important;
+  font-size: 0.95rem !important;
+}
+
+.checkout-total,
+.order-total,
+.grand-total {
+  display: flex !important;
+  justify-content: space-between !important;
+  padding: 16px 0 0 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  color: #ece8e1 !important;
+}
+
+.checkout-total .amount,
+.order-total .amount,
+.grand-total .amount {
+  color: #a33b5c !important;
+}
+
+/* Pay button */
+.checkout-submit,
+.pay-button,
+.complete-purchase,
+[class*="pay-button"],
+[class*="purchase-button"],
+button[type="submit"] {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.1em !important;
+  background: linear-gradient(135deg, #a33b5c 0%, #8a2a4a 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 18px 40px !important;
+  width: 100% !important;
+  margin-top: 24px !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4) !important;
+}
+
+.checkout-submit:hover,
+.pay-button:hover,
+.complete-purchase:hover,
+button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5) !important;
+}
+
+.checkout-submit:active,
+.pay-button:active {
+  transform: translateY(0) !important;
+}
+
+/* Security badges */
+.security-badges,
+.trust-badges,
+[class*="security"],
+[class*="trust"] {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 16px !important;
+  margin-top: 20px !important;
+  opacity: 0.6 !important;
+}
+
+/* Coupon / discount code */
+.coupon-input,
+.discount-input,
+[class*="coupon"],
+[class*="discount"] {
+  display: flex !important;
+  gap: 12px !important;
+  margin-bottom: 20px !important;
+}
+
+.coupon-input input,
+.discount-input input {
+  flex: 1 !important;
+  margin-bottom: 0 !important;
+}
+
+.coupon-input button,
+.discount-input button {
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #9a958c !important;
+  padding: 16px 24px !important;
+  white-space: nowrap !important;
+}
+
+.coupon-input button:hover,
+.discount-input button:hover {
+  border-color: rgba(163, 59, 92, 0.5) !important;
+  color: #a33b5c !important;
+}
+
+/* Applied discount */
+.discount-applied,
+.coupon-applied {
+  background: rgba(45, 143, 143, 0.1) !important;
+  border: 1px solid rgba(45, 143, 143, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 12px 16px !important;
+  color: #2d8f8f !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 16px !important;
+}
+
+/* Error messages */
+.checkout-error,
+.payment-error,
+.error-message {
+  background: rgba(163, 59, 92, 0.1) !important;
+  border: 1px solid rgba(163, 59, 92, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  color: #c9506e !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 16px !important;
+}
+
+/* Success message */
+.checkout-success,
+.payment-success,
+.success-message {
+  background: rgba(45, 143, 143, 0.1) !important;
+  border: 1px solid rgba(45, 143, 143, 0.3) !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  color: #2d8f8f !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 16px !important;
+}
+
+/* Loading state */
+.checkout-loading,
+.payment-loading {
+  opacity: 0.6 !important;
+  pointer-events: none !important;
+}
+
+/* Processing button */
+.checkout-submit.processing,
+.pay-button.processing {
+  background: linear-gradient(135deg, #6b3a4a 0%, #5a2a3a 100%) !important;
+  cursor: wait !important;
+}
+
+/* Thank you / confirmation page */
+.confirmation-page,
+.thank-you-page,
+[class*="confirmation"],
+[class*="thank-you"] {
+  background: #050507 !important;
+  text-align: center !important;
+  padding: 80px 24px !important;
+}
+
+.confirmation-icon,
+.success-icon {
+  font-size: 4rem !important;
+  margin-bottom: 24px !important;
+}
+
+.confirmation-title,
+.thank-you-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 600 !important;
+  font-style: italic !important;
+  color: #ece8e1 !important;
+  margin-bottom: 16px !important;
+}
+
+.confirmation-message {
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 1.1rem !important;
+  color: #9a958c !important;
+  max-width: 500px !important;
+  margin: 0 auto 32px !important;
+  line-height: 1.7 !important;
+}
+
+/* Download button on confirmation */
+.download-button,
+[class*="download"] {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  background: linear-gradient(135deg, #a33b5c 0%, #8a2a4a 100%) !important;
+  color: white !important;
+  border: none !important;
+  border-radius: 999px !important;
+  padding: 16px 32px !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4) !important;
+}
+
+.download-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5) !important;
+}
+
+
+====================================================
+OPTIONAL: CUSTOM CHECKOUT HEADER BANNER
+====================================================
+Add this to Header Code if you want a branded banner on checkout
+
+<div id="checkout-banner" style="
+  background: linear-gradient(135deg, rgba(163, 59, 92, 0.15) 0%, rgba(124, 92, 191, 0.1) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 12px 24px;
+  text-align: center;
+">
+  <p style="
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    color: #9a958c;
+    margin: 0;
+  ">🔒 Secure checkout · Instant download · Questions? <a href="mailto:hello@unscarred.site" style="color: #a33b5c; text-decoration: none;">hello@unscarred.site</a></p>
+</div>
+
+
+====================================================
+WHERE TO PASTE EACH SECTION IN PAYHIP
+====================================================
+
+1. HEADER CODE:
+   Settings > Store Settings > Custom Code > Header Code
+   
+2. FOOTER CODE:
+   Settings > Store Settings > Custom Code > Footer Code
+   
+3. CHECKOUT CSS:
+   Settings > Store Settings > Custom CSS
+   (Add AFTER the main store CSS)
+
+4. CHECKOUT BANNER (optional):
+   Settings > Store Settings > Custom Code > Header Code
+   (Add after the other header code)
+
+
+

@@ -1,0 +1,739 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unscarred | Heal Your Patterns, Find Your Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --secondary-glow: rgba(124, 92, 191, 0.3);
+      --accent: #c9763d;
+      --accent-soft: #e8a165;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(201, 118, 61, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--primary); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .nav-cta {
+      padding: 12px 24px;
+      background: var(--primary);
+      color: white !important;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .nav-cta:hover {
+      background: #b8446a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--primary-glow);
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 140px 0 100px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      padding: 8px 16px;
+      background: rgba(201, 118, 61, 0.1);
+      border-radius: 999px;
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 5rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      text-shadow: 0 4px 30px var(--primary-glow);
+    }
+
+    .hero h1 .highlight {
+      color: var(--primary);
+    }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: white;
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--primary-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: var(--text-main);
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 60px;
+    }
+
+    .section-header p {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+    }
+
+    /* Quiz Cards */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .quiz-grid { grid-template-columns: 1fr; }
+    }
+
+    .quiz-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: flex;
+      gap: 20px;
+    }
+
+    .quiz-card:hover {
+      border-color: rgba(163, 59, 92, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .quiz-card__icon {
+      width: 60px;
+      height: 60px;
+      background: rgba(163, 59, 92, 0.15);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .quiz-card__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .quiz-card__content p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .quiz-card__meta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Program Cards */
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .program-grid { grid-template-columns: 1fr; }
+    }
+
+    .program-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .program-card:hover {
+      border-color: rgba(124, 92, 191, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .program-card__image {
+      height: 160px;
+      position: relative;
+    }
+
+    .program-card__badge {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      padding: 6px 14px;
+      background: rgba(5, 5, 7, 0.8);
+      backdrop-filter: blur(8px);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .program-card__content {
+      padding: 24px;
+    }
+
+    .program-card__duration {
+      font-size: 0.75rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .program-card__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .program-card__content p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+    }
+
+    /* Testimonial */
+    .testimonial {
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(163, 59, 92, 0.05));
+      border-radius: 28px;
+      padding: 60px 48px;
+      border: 1px solid rgba(124, 92, 191, 0.15);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .testimonial__quote {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--text-main);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .testimonial__author {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 120px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 500px;
+      margin: 0 auto 40px;
+    }
+
+    /* Footer */
+    footer {
+      background: rgba(5, 5, 7, 0.95);
+      border-top: 1px solid var(--border-glass);
+      padding: 60px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    .footer-brand .logo {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    .footer-brand p {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: 280px;
+    }
+
+    .footer-column h4 {
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .footer-column a {
+      display: block;
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      text-decoration: none;
+      margin-bottom: 12px;
+      transition: color 0.3s ease;
+    }
+
+    .footer-column a:hover { color: var(--text-main); }
+
+    .footer-bottom {
+      padding-top: 32px;
+      border-top: 1px solid var(--border-glass);
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    .footer-bottom a {
+      color: var(--text-dim);
+      text-decoration: none;
+    }
+
+    .footer-bottom a:hover { color: var(--text-main); }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span></a>
+      <nav>
+        <a href="/quizzes/">Quizzes</a>
+        <a href="programs.html">Programs</a>
+        <a href="coaching.html">Coaching</a>
+        <a href="blog.html">Blog</a>
+        <a href="/war/" style="color: var(--accent);">&#x2694; War Path</a>
+        <a href="/quizzes/" class="nav-cta">Take a Quiz</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">&#x2726; Evidence-based healing</div>
+      <h1>Turn scars into <span class="highlight">mirrors</span>,<br>see what they reveal</h1>
+      <p class="hero-sub">Whether you want better relationships or you're fighting to survive - there's a path for you here.</p>
+      <div class="hero-buttons">
+        <a href="#choose-path" class="btn btn-primary">Find Your Path</a>
+        <a href="/quizzes/" class="btn btn-secondary">Take a Quiz</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Two Paths Section -->
+  <section id="choose-path" style="padding: 100px 0; background: linear-gradient(180deg, rgba(10, 10, 15, 0.3), transparent);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Choose Your Path</p>
+        <h2>Where are you right now?</h2>
+        <p>Two different starting points. Both lead to healing.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; max-width: 1000px; margin: 0 auto;">
+        
+        <!-- Centered Path -->
+        <div style="background: linear-gradient(165deg, rgba(125, 154, 140, 0.15), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(125, 154, 140, 0.2); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.4)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 20px;">&#8226;</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 12px; color: var(--text-main);">I want better relationships</h3>
+          <p style="color: var(--text-soft); margin-bottom: 24px; line-height: 1.6;">You're functional but stuck in patterns. Anxious chasing, avoidant distancing, or struggling to find secure connection. Ready to do the work.</p>
+          <ul style="text-align: left; list-style: none; margin-bottom: 28px; color: var(--text-dim); font-size: 0.9rem;">
+            <li style="padding: 6px 0;">&#x2713; Centered Man / Centered Woman Programs</li>
+            <li style="padding: 6px 0;">&#x2713; Attachment Style Quizzes</li>
+            <li style="padding: 6px 0;">&#x2713; Communication Scripts & Skills</li>
+            <li style="padding: 6px 0;">&#x2713; Relationship Repair Tools</li>
+          </ul>
+          <a href="programs.html" style="display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #7d9a8c, #5a7d6c); color: white; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Enter Regular Path &#8594;</a>
+        </div>
+
+        <!-- War Path -->
+        <div style="background: linear-gradient(165deg, rgba(163, 59, 92, 0.15), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(163, 59, 92, 0.2); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 20px 50px rgba(0,0,0,0.4)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+          <div style="font-size: 48px; margin-bottom: 20px;">&#x2694;</div>
+          <h3 style="font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 12px; color: var(--text-main);">I'm in survival mode</h3>
+          <p style="color: var(--text-soft); margin-bottom: 24px; line-height: 1.6;">Complex trauma, BPD traits, suspected narcissistic abuse, or patterns that don't make sense on paper. You need more than relationship advice.</p>
+          <ul style="text-align: left; list-style: none; margin-bottom: 28px; color: var(--text-dim); font-size: 0.9rem;">
+            <li style="padding: 6px 0;">Pattern Tracking & Evidence Building</li>
+            <li style="padding: 6px 0;"></li> War Mapping & Survival Archetypes</li>
+            <li style="padding: 6px 0;"> Manipulation Detection Tools</li>
+            <li style="padding: 6px 0;"> Strategic Compartmentalization</li>
+          </ul>
+          <a href="/war/war-mapping/" style="display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, var(--primary), #8a2a4a); color: white; border-radius: 999px; text-decoration: none; font-weight: 600; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em;">Enter War Path â†’</a>
+        </div>
+
+      </div>
+
+      <p style="text-align: center; margin-top: 40px; color: var(--text-dim); font-size: 0.9rem;">Not sure? <a href="/war/war-mapping/" style="color: var(--accent);">Take the War Mapping Quiz</a> to find out which path fits you.</p>
+    </div>
+  </section>
+
+  <!-- Quizzes Section -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Start With a Quiz</p>
+        <h2>Each quiz reveals a different layer</h2>
+        <p>Choose based on what you are struggling with right now.</p>
+      </div>
+
+      <div class="quiz-grid">
+        <a href="/war/war-mapping/" class="quiz-card">
+          <div class="quiz-card__icon">âš”ï¸</div>
+          <div class="quiz-card__content">
+            <h3>War Mapping Quiz</h3>
+            <p>Which war is your nervous system fighting? Abandonment, exposure, entrapment, or erasure.</p>
+            <span class="quiz-card__meta">17 questions · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/self-sabotage.html" class="quiz-card">
+          <div class="quiz-card__icon">&#128269;</div>
+          <div class="quiz-card__content">
+            <h3>Self-Sabotage Style Quiz</h3>
+            <p>When peace shows up, what does your system do? Test, create chaos, freeze, or vanish?</p>
+            <span class="quiz-card__meta">12 scenarios · 4 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/pattern-spectrum.html" class="quiz-card">
+          <div class="quiz-card__icon">&#x2716;</div>
+          <div class="quiz-card__content">
+            <h3>Pattern Spectrum Quiz</h3>
+            <p>Is it ego, trauma, or stress? Distinguish what you are actually dealing with.</p>
+            <span class="quiz-card__meta">18 items · 5 min</span>
+          </div>
+        </a>
+
+        <a href="/quiz/mirror.html" class="quiz-card">
+          <div class="quiz-card__icon">&#x1F50D;</div>
+          <div class="quiz-card__content">
+            <h3>Mirror Archetype Quiz</h3>
+            <p>Map your survival archetype. The defense strategy your nervous system uses.</p>
+            <span class="quiz-card__meta">21 questions Â· 5 min</span>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="/quizzes/" class="btn btn-secondary">See all quizzes &#8594;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Programs Section -->
+  <section style="background: rgba(10, 10, 15, 0.5);">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Programs</p>
+        <h2>Guided paths for deeper healing</h2>
+        <p>Week-by-week programs with videos, scripts, and micro-drills that fit into your life.</p>
+      </div>
+
+      <div class="program-grid">
+        <a href="program/anxious-healing.html" class="program-card">
+          <div class="program-card__image" style="background: linear-gradient(135deg, rgba(163, 59, 92, 0.3), rgba(232, 165, 171, 0.2));">
+            <span class="program-card__badge">Anxious</span>
+          </div>
+          <div class="program-card__content">
+            <span class="program-card__duration">4 weeks + 2 calls</span>
+            <h3>Anxious Healing Program</h3>
+            <p>Calm body. Clean asks. Steady connection you can feel.</p>
+          </div>
+        </a>
+
+        <a href="program/centered-man.html" class="program-card">
+          <div class="program-card__image" style="background: linear-gradient(135deg, rgba(92, 125, 138, 0.3), rgba(125, 156, 132, 0.2));">
+            <span class="program-card__badge">Men</span>
+          </div>
+          <div class="program-card__content">
+            <span class="program-card__duration">6 weeks + 2 calls</span>
+            <h3>Centered Man Blueprint</h3>
+            <p>Grounded presence. Honest pursuit. Boundaries that hold.</p>
+          </div>
+        </a>
+
+        <a href="program/centered-woman.html" class="program-card">
+          <div class="program-card__image" style="background: linear-gradient(135deg, rgba(196, 97, 108, 0.3), rgba(163, 59, 92, 0.2));">
+            <span class="program-card__badge">Women</span>
+          </div>
+          <div class="program-card__content">
+            <span class="program-card__duration">6 weeks + 2 calls</span>
+            <h3>Centered Woman Blueprint</h3>
+            <p>Rooted self-trust. Clear voice. Boundaries without walls.</p>
+          </div>
+        </a>
+      </div>
+
+      <div style="text-align: center; margin-top: 48px;">
+        <a href="programs.html" class="btn btn-secondary">View all programs</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial -->
+  <section>
+    <div class="container">
+      <div class="testimonial">
+        <p class="testimonial__quote">"I stopped trying to convince her to want me and started showing up as someone worth wanting. The difference in her response was immediate."</p>
+        <p class="testimonial__author">Centered Man Blueprint graduate</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Not sure where to start?</h2>
+      <p>Take the War Mapping Quiz to identify which core fear drives your patterns.</p>
+      <div class="hero-buttons">
+        <a href="/war/war-mapping/" class="btn btn-primary">Take the Quiz &#8594;</a>
+        <a href="/quizzes/" class="btn btn-secondary">Browse all quizzes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">un<span>scarred</span></a>
+          <p>I turn scars into mirrors, decode what they reveal, and show you how to calm the storm.</p>
+        </div>
+        <div class="footer-column">
+          <h4>Quizzes</h4>
+          <a href="/quiz/mirror.html">Mirror Quiz</a>
+          <a href="/quiz/self-sabotage.html">Self-Sabotage</a>
+          <a href="/quiz/pattern-spectrum.html">Pattern Spectrum</a>
+          <a href="/war/war-mapping/">War Mapping</a>
+        </div>
+        <div class="footer-column">
+          <h4>Programs</h4>
+          <a href="program/anxious-healing.html">Anxious Healing</a>
+          <a href="program/centered-man.html">Centered Man</a>
+          <a href="program/centered-woman.html">Centered Woman</a>
+          <a href="programs.html">View all</a>
+        </div>
+        <div class="footer-column">
+          <h4>Support</h4>
+          <a href="calls.html">Book a Call</a>
+          <a href="text-support.html">Text Support</a>
+          <a href="about.html">About</a>
+          <a href="https://shop.unscarred.site" target="_blank">Shop</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 Unscarred. All rights reserved.</p>
+        <div>
+          <a href="privacy.html">Privacy</a>
+          <span style="margin: 0 12px; opacity: 0.3;">·</span>
+          <a href="terms.html">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+
+

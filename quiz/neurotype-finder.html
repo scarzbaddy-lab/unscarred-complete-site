@@ -1,0 +1,1159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Is It Trauma, Neurodivergence, Or Both  | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --panel: #0d0d12;
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --nd-color: #9d7ee8;
+      --trauma-color: #e74b5a;
+      --both-color: #c9763d;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 16px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(157, 126, 232, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(163, 59, 92, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--primary); }
+
+    .back-link {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    /* Quiz Header */
+    .quiz-header {
+      text-align: center;
+      padding: 60px 0 40px;
+    }
+
+    .quiz-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--nd-color);
+      padding: 8px 16px;
+      background: rgba(157, 126, 232, 0.1);
+      border-radius: 999px;
+      border: 1px solid rgba(157, 126, 232, 0.2);
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .quiz-lead {
+      font-size: 1rem;
+      color: var(--text-soft);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      background: var(--panel);
+      border-radius: 999px;
+      height: 6px;
+      margin: 32px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--nd-color), var(--primary));
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .progress-text {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* Section Labels */
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--nd-color);
+      margin: 48px 0 24px;
+    }
+
+    .section-label::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--border-glass);
+    }
+
+    /* Question Card */
+    .question-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+
+    .question-num {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .question-text {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .option:hover {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .option.selected {
+      background: rgba(157, 126, 232, 0.1);
+      border-color: rgba(157, 126, 232, 0.3);
+    }
+
+    .option input {
+      display: none;
+    }
+
+    .option-radio {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--text-dim);
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .option.selected .option-radio {
+      border-color: var(--nd-color);
+      background: var(--nd-color);
+    }
+
+    .option.selected .option-radio::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 8px;
+      height: 8px;
+      background: var(--bg-void);
+      border-radius: 50%;
+    }
+
+    .option-text {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+    }
+
+    .option.selected .option-text {
+      color: var(--text-main);
+    }
+
+    /* Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--nd-color), var(--secondary));
+      color: white;
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 40px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px rgba(157, 126, 232, 0.3);
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(157, 126, 232, 0.4);
+    }
+
+    .submit-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Results */
+    .results {
+      display: none;
+      padding: 40px 0 80px;
+    }
+
+    .results.show {
+      display: block;
+    }
+
+    .result-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 24px;
+    }
+
+    .result-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 20px;
+    }
+
+    .result-badge.nd {
+      background: rgba(157, 126, 232, 0.15);
+      color: var(--nd-color);
+      border: 1px solid rgba(157, 126, 232, 0.3);
+    }
+
+    .result-badge.trauma {
+      background: rgba(231, 75, 90, 0.15);
+      color: var(--trauma-color);
+      border: 1px solid rgba(231, 75, 90, 0.3);
+    }
+
+    .result-badge.both {
+      background: rgba(201, 118, 61, 0.15);
+      color: var(--both-color);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .result-description {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    /* Score Bars */
+    .score-section {
+      margin: 32px 0;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .score-label {
+      width: 140px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-soft);
+    }
+
+    .score-track {
+      flex: 1;
+      height: 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .score-fill.nd { background: linear-gradient(90deg, var(--nd-color), #b794f6); }
+    .score-fill.trauma { background: linear-gradient(90deg, var(--trauma-color), #f07178); }
+    .score-fill.both { background: linear-gradient(90deg, var(--both-color), #e8a165); }
+
+    .score-value {
+      width: 50px;
+      text-align: right;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+    }
+
+    /* Breakdown List */
+    .breakdown-section {
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      padding: 24px;
+      margin: 24px 0;
+    }
+
+    .breakdown-section h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .breakdown-list {
+      list-style: none;
+    }
+
+    .breakdown-list li {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      padding: 10px 0;
+      padding-left: 24px;
+      position: relative;
+      line-height: 1.6;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .breakdown-list li:last-child {
+      border-bottom: none;
+    }
+
+    .breakdown-list li::before {
+      content: "?";
+      position: absolute;
+      left: 0;
+      color: var(--nd-color);
+      font-weight: 600;
+    }
+
+    /* CTA */
+    .result-cta {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .cta-btn {
+      flex: 1;
+      min-width: 200px;
+      padding: 16px 24px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .cta-btn.primary {
+      background: linear-gradient(135deg, var(--nd-color), var(--secondary));
+      color: white;
+      box-shadow: 0 8px 30px rgba(157, 126, 232, 0.3);
+    }
+
+    .cta-btn.primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .cta-btn.secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid var(--border-glass);
+    }
+
+    .cta-btn.secondary:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../homepage.html" class="logo">un<span>scarred</span></a>
+      <a href="/quizzes/" class="back-link">? All Quizzes</a>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <!-- Quiz Section -->
+    <div id="quiz-section">
+      <div class="quiz-header">
+        <div class="quiz-badge">ðŸ§  Neurodivergence</div>
+        <h1>Is It Trauma, Neurodivergence, Or Both </h1>
+        <p class="quiz-lead">You are not "too sensitive" for no reason. Your brain is wired a certain way and your story added a whole extra layer on top. This is your clarity map.</p>
+      </div>
+
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">Answer all questions to see your results</div>
+
+      <form id="quiz-form">
+
+        <!-- BLOCK 1: LIFELONG PATTERN CHECK -->
+        <div class="section-label">Block 1: Lifelong Pattern Check</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 1 of 18</div>
+          <div class="question-text">Were you like this as a child, before any major trauma or difficult relationships </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q1" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, I was always this way. Teachers and family noticed before anything bad happened.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">No, I was different before. This started after specific events or relationships.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q1" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I was already different, but the events made everything way more intense.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 2 of 18</div>
+          <div class="question-text">Did teachers or adults comment on you being shy, intense, sensitive, in your own world, or "too much" even when life at home seemed fine </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q2" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, constantly. I was always labeled as different, even in good environments.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">No, I blended in fine until things got hard at home or in relationships.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q2" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I was a bit different, but trauma made it visible to everyone.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 3 of 18</div>
+          <div class="question-text">Have you always struggled with sensory stuff like noise, tags, lights, textures, temperature, or sudden changes </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q3" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, lifelong. Even as a kid I was picky about clothes, sounds, foods, environments.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q3" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Not really. I only get overwhelmed now when I am stressed or triggered.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q3" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I was always a bit sensitive, but trauma turned it up to unbearable.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 4 of 18</div>
+          <div class="question-text">Does this pattern show up across childhood, friendships, school, jobs, and solo time, or mainly in close relationships </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q4" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Everywhere. It follows me regardless of who I am with or what I am doing.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q4" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Mainly in relationships. I am different when I am alone or with safe people.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q4" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">It is everywhere, but relationships make it ten times worse.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- BLOCK 2: SENSORY VS EMOTIONAL TRIGGER CHECK -->
+        <div class="section-label">Block 2: Sensory vs Emotional Triggers</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 5 of 18</div>
+          <div class="question-text">Do you shut down more from loud places, bright lights, busy rooms, or multiple people talking </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q5" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, sensory chaos shuts me down even when nothing emotional is happening.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q5" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Not really. I can handle noise and chaos if I feel emotionally safe.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q5" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both hit me. Sensory overload makes me vulnerable to emotional triggers too.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 6 of 18</div>
+          <div class="question-text">Or do you shut down more from conflict, rejection, being ignored, getting gaslit, or walking on eggshells </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q6" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Not as much. I can handle relational stuff if my environment is calm.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q6" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, relational threat is my main trigger. Conflict shuts me down fast.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q6" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both. Relational threat AND sensory chaos both wreck me.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 7 of 18</div>
+          <div class="question-text">When you are overwhelmed, does your body react mainly to injustice and being misunderstood, or mainly to too much input </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q7" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Too much input. I hit a wall even when no one is being mean.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Injustice and being misread. That is what sends me spiraling.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q7" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both feel the same in my body. It all becomes one big overwhelm.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- BLOCK 3: MASKING VS PERFORMING -->
+        <div class="section-label">Block 3: Masking vs Performing</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 8 of 18</div>
+          <div class="question-text">Do you have a "public version" of yourself you keep up just to seem normal, even when no one is upset with you </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q8" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes. I am always performing "normal" so people do not clock how different I feel inside.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Only when I sense danger. I perform to avoid conflict or abandonment.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q8" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I mask to seem normal AND I fawn to stay safe. Different masks for different threats.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 9 of 18</div>
+          <div class="question-text">Do you rehearse what you might say or replay entire conversations in detail after social interactions </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q9" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Yes, constantly. Before, during, and after. This is how I have always navigated social stuff.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Only after conflict or when I am anxious about a specific relationship.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q9" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I always did it a bit, but trauma made it obsessive and exhausting.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 10 of 18</div>
+          <div class="question-text">Does your exhaustion come from pretending you understand, pretending you are not overwhelmed, or pretending you are okay when you are not </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q10" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Pretending I understand and pretending I am not overwhelmed. I hide how much effort basic things take.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q10" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Pretending I am okay when I am not. Hiding my pain so people do not leave or get mad.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q10" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">All of it. I hide my confusion AND my pain AND my overwhelm constantly.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 11 of 18</div>
+          <div class="question-text">Do you twist yourself up so people do not leave or get mad, or do you act normal so people do not think you are weird </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q11" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">So people do not think I am weird. I mask to blend in, not to prevent abandonment.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q11" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">So people do not leave. I fawn to prevent conflict and abandonment.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q11" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both. I mask to blend in AND fawn to prevent abandonment. Double exhaustion.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- BLOCK 4: TIME TO RESET -->
+        <div class="section-label">Block 4: Recovery & Reset</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 12 of 18</div>
+          <div class="question-text">After you freeze or shut down, what actually brings you back online </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q12" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Time alone in silence, stimming, or a specific ritual (music, pacing, deep focus on a hobby).</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Fixing the conflict, getting reassurance, or knowing the threat is gone.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q12" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I need BOTH. Sensory decompression AND relational repair. One without the other does not work.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 13 of 18</div>
+          <div class="question-text">How long does it take you to recover from social situations or conflict </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q13" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Hours to days. Even good social time drains me. I need serious recharge time.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q13" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">It depends on whether the conflict is resolved. Unresolved = I cannot move on.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q13" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both matter. I need time AND resolution. Missing either keeps me stuck.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 14 of 18</div>
+          <div class="question-text">Can you recover alone, or do you need another person to help regulate you </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q14" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">I recover best alone. People make it harder even when they are trying to help.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q14" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">I need someone safe to co-regulate with. Alone, I spiral.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q14" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">I need alone time first, then connection. The order matters.</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- ADDITIONAL CLARITY -->
+        <div class="section-label">Final Clarity Questions</div>
+
+        <div class="question-card">
+          <div class="question-num">Question 15 of 18</div>
+          <div class="question-text">When people misread you, is it usually because they think you do not care, or because they think you care too much </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q15" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">They think I do not care. My face and tone do not show what I am feeling inside.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q15" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">They think I care too much. They call me dramatic, sensitive, or needy.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q15" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both at different times. Sometimes I seem cold, sometimes I seem too much.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 16 of 18</div>
+          <div class="question-text">Do you struggle more with understanding unwritten social rules, or with trusting people after being hurt </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q16" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Unwritten rules. I miss things everyone else seems to know instinctively.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q16" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">Trusting people. I know the rules, I just do not feel safe.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q16" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">Both. I do not get the rules AND I do not trust people. Double barrier.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 17 of 18</div>
+          <div class="question-text">When you imagine being fully healed, what changes </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q17" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">Nothing about my wiring changes. I just want support, not a cure. I want to stop masking.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q17" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">I could finally relax around people. The fear and hypervigilance would be gone.</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q17" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">The trauma parts could heal, but my brain would still work differently. Both are real.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question-card">
+          <div class="question-num">Question 18 of 18</div>
+          <div class="question-text">Which statement fits you best </div>
+          <div class="options">
+            <label class="option">
+              <input type="radio" name="q18" value="nd">
+              <span class="option-radio"></span>
+              <span class="option-text">"I have always been wired differently. Life has been harder because the world is not built for my brain."</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q18" value="trauma">
+              <span class="option-radio"></span>
+              <span class="option-text">"I was fine until things happened. Now my nervous system is stuck in survival mode."</span>
+            </label>
+            <label class="option">
+              <input type="radio" name="q18" value="both">
+              <span class="option-radio"></span>
+              <span class="option-text">"My brain was already different, and trauma added a whole extra layer on top. They are tangled together."</span>
+            </label>
+          </div>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn" disabled>See My Results</button>
+
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results" id="results-section">
+      <div id="result-content"></div>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Â© 2025 Unscarred. Not a diagnosis. A clarity map.</p>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('quiz-form');
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const submitBtn = document.getElementById('submit-btn');
+    const quizSection = document.getElementById('quiz-section');
+    const resultsSection = document.getElementById('results-section');
+    const resultContent = document.getElementById('result-content');
+
+    const totalQuestions = 18;
+    const questions = Array.from({length: totalQuestions}, (_, i) => `q${i + 1}`);
+
+    // Track progress
+    function updateProgress() {
+      let answered = 0;
+      questions.forEach(q => {
+        if (document.querySelector(`input[name="${q}"]:checked`)) answered++;
+      });
+      const pct = (answered / totalQuestions) * 100;
+      progressBar.style.width = pct + '%';
+      progressText.textContent = `${answered} of ${totalQuestions} answered`;
+      submitBtn.disabled = answered < totalQuestions;
+    }
+
+    // Add listeners
+    document.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener('change', function() {
+        // Update option styling
+        const options = this.closest('.options').querySelectorAll('.option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        this.closest('.option').classList.add('selected');
+        updateProgress();
+      });
+    });
+
+    // Results data
+    const results = {
+      nd: {
+        badge: 'nd',
+        badgeText: 'Likely Neurodivergent',
+        title: 'Your patterns point to neurodivergence',
+        description: `Your answers consistently point to lifelong, pervasive differences in how your brain processes the world. This is not something trauma created. It is how you came into this world. Teachers noticed it. You felt it even when life was stable. It shows up everywhere, not just in relationships.
+
+This does not mean trauma has not happened or does not matter. But the foundation is neurological. You are not broken. You are not "too sensitive for no reason." Your brain genuinely works differently, and most advice is built for a different kind of nervous system.`,
+        breakdown: [
+          'Lifelong sensory sensitivities that predate trauma',
+          'Social exhaustion even in safe environments',
+          'Masking to appear normal, not just to prevent abandonment',
+          'Recovery that requires alone time and specific rituals',
+          'Struggles with unwritten rules that others seem to know'
+        ],
+        nextSteps: [
+          'Stop trying to "heal" your wiring. Focus on accommodations and self-understanding.',
+          'Look into autism and ADHD resources, even if you do not have a formal diagnosis.',
+          'Your shutdown is not avoidance. It is overload. Treat it differently.',
+          'Find neurodivergent-informed support, not generic trauma therapy that ignores your wiring.'
+        ]
+      },
+      trauma: {
+        badge: 'trauma',
+        badgeText: 'Trauma Patterning',
+        title: 'Your patterns point to trauma responses',
+        description: `Your answers point to patterns that started after specific events or relationships. There was a before and an after. Your nervous system learned to protect you, and those protections are still running even when the threat is gone.
+
+This does not mean you are not sensitive or intense. But the intensity came from what happened, not from how you were wired from birth. The good news: trauma responses can shift. Your nervous system learned this, and it can learn something different.`,
+        breakdown: [
+          'Clear "before and after" - you were different before the trauma',
+          'Triggers are mainly relational: conflict, rejection, abandonment, being gaslit',
+          'Fawn response: performing to prevent people from leaving or getting mad',
+          'Recovery depends on relational repair and feeling safe',
+          'Hypervigilance around people, not around sensory environments'
+        ],
+        nextSteps: [
+          'Your nervous system learned these patterns for good reasons. Do not shame yourself.',
+          'Focus on trauma-informed healing: nervous system regulation, safe relationships, corrective experiences.',
+          'Your freeze is not a personality flaw. It is a protection. It can soften over time.',
+          'Co-regulation with safe people will help more than isolation.'
+        ]
+      },
+      both: {
+        badge: 'both',
+        badgeText: 'Neurodivergence + Trauma',
+        title: 'Your patterns are tangled together',
+        description: `Your answers show both lifelong neurological differences AND trauma that added layers on top. This is the hardest to untangle because when people try to help with one, they miss the other. Standard trauma therapy often ignores your sensory needs. Standard ND support often bypasses your relational wounds.
+
+You are not making this up. You are not "using neurodivergence as an excuse." You genuinely have both, and they interact in ways that make everything more complicated. The shut down is sometimes sensory overload, sometimes trauma freeze, sometimes both at once.`,
+        breakdown: [
+          'You were already different before trauma, but trauma intensified everything',
+          'Both sensory AND relational triggers shut you down',
+          'You mask to seem normal AND fawn to prevent abandonment - double exhaustion',
+          'Recovery requires BOTH alone time AND relational repair',
+          'People misread you as cold sometimes and too much other times'
+        ],
+        nextSteps: [
+          'You need integrated support that sees both your wiring AND your wounds.',
+          'Sensory accommodations first. You cannot heal trauma if you are constantly overloaded.',
+          'Separate what is neurotype (cannot change, need support) from what is trauma (can shift over time).',
+          'Do not let anyone tell you one is real and the other is an excuse. Both are valid.'
+        ]
+      }
+    };
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Count scores
+      const scores = { nd: 0, trauma: 0, both: 0 };
+      questions.forEach(q => {
+        const checked = document.querySelector(`input[name="${q}"]:checked`);
+        if (checked) scores[checked.value]++;
+      });
+
+      // Determine result
+      let resultType;
+      if (scores.both >= 7) {
+        resultType = 'both';
+      } else if (scores.nd > scores.trauma) {
+        resultType = 'nd';
+      } else if (scores.trauma > scores.nd) {
+        resultType = 'trauma';
+      } else {
+        resultType = 'both'; // tie goes to both
+      }
+
+      const result = results[resultType];
+
+      // Build result HTML
+      resultContent.innerHTML = `
+        <div class="result-card">
+          <span class="result-badge ${result.badge}">${result.badgeText}</span>
+          <h2 class="result-title">${result.title}</h2>
+          <p class="result-description">${result.description}</p>
+
+          <div class="score-section">
+            <div class="score-row">
+              <span class="score-label">Neurodivergent</span>
+              <div class="score-track">
+                <div class="score-fill nd" style="width: ${(scores.nd / totalQuestions) * 100}%"></div>
+              </div>
+              <span class="score-value">${scores.nd}/${totalQuestions}</span>
+            </div>
+            <div class="score-row">
+              <span class="score-label">Trauma</span>
+              <div class="score-track">
+                <div class="score-fill trauma" style="width: ${(scores.trauma / totalQuestions) * 100}%"></div>
+              </div>
+              <span class="score-value">${scores.trauma}/${totalQuestions}</span>
+            </div>
+            <div class="score-row">
+              <span class="score-label">Both Tangled</span>
+              <div class="score-track">
+                <div class="score-fill both" style="width: ${(scores.both / totalQuestions) * 100}%"></div>
+              </div>
+              <span class="score-value">${scores.both}/${totalQuestions}</span>
+            </div>
+          </div>
+
+          <div class="breakdown-section">
+            <h4>What This Looks Like For You:</h4>
+            <ul class="breakdown-list">
+              ${result.breakdown.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="breakdown-section">
+            <h4>What To Do With This:</h4>
+            <ul class="breakdown-list">
+              ${result.nextSteps.map(item => `<li>${item}</li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="result-cta">
+            <a href="shutdown-map.html" class="cta-btn primary">Take the Shutdown Map Quiz</a>
+            <a href="/quizzes/" class="cta-btn secondary">Back to All Quizzes</a>
+          </div>
+        </div>
+      `;
+
+      // Show results
+      quizSection.classList.add('hidden');
+      resultsSection.classList.add('show');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  </script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

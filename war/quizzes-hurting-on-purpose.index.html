@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Are They Hurting You On Purpose | Unscarred</title>
+  <meta name="description" content="A pattern-based scan to separate accident, immaturity, overwhelm, avoidance, and intentional harm." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#050507;
+      --bg2:#0a0a0f;
+      --card:rgba(18,18,24,0.92);
+      --card2:rgba(22,22,30,0.70);
+      --text:#f5f5f7;
+      --muted:#b8b8c4;
+      --border:rgba(255,255,255,0.10);
+      --accent:#a33b5c;
+      --accent2:rgba(163,59,92,0.35);
+      --radius:22px;
+      --shadow:0 18px 60px rgba(0,0,0,0.55);
+      --shadow2:0 10px 30px rgba(0,0,0,0.40);
+      --max:980px;
+    }
+    *{box-sizing:border-box;}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:"Outfit",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:
+        radial-gradient(900px 500px at 18% 8%, rgba(163,59,92,0.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 16%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(700px 500px at 30% 92%, rgba(163,59,92,0.10), transparent 55%),
+        linear-gradient(180deg,var(--bg),var(--bg2));
+      min-height:100vh;
+    }
+    a{color:inherit;text-decoration:none;}
+    .wrap{width:100%;margin:0 auto;padding:28px 18px 72px;}
+    .container{max-width:var(--max);margin:0 auto;}
+    .hero{
+      padding:28px 22px;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      background:linear-gradient(180deg, rgba(18,18,24,0.78), rgba(10,10,15,0.55));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width:420px;
+      height:420px;
+      background:radial-gradient(circle at 30% 30%, rgba(163,59,92,0.28), transparent 55%);
+      filter:blur(6px);
+      pointer-events:none;
+    }
+    .brand{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(255,255,255,0.03);
+      color:var(--muted);
+      font-size:13px;
+      letter-spacing:0.08em;
+      text-transform:uppercase;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:var(--accent);
+      box-shadow:0 0 0 6px rgba(163,59,92,0.12);
+    }
+    h1{
+      margin:16px 0 10px;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      letter-spacing:0.01em;
+      font-size:clamp(34px,5vw,54px);
+      line-height:1.02;
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:72ch;
+    }
+    .row{
+      display:grid;
+      grid-template-columns:1.2fr 0.8fr;
+      gap:16px;
+      margin-top:18px;
+    }
+    .panel{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      box-shadow:var(--shadow2);
+    }
+    .metaTitle{
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:0.10em;
+      color:var(--muted);
+      margin:0 0 10px;
+    }
+    .pillRow{display:flex;flex-wrap:wrap;gap:8px;}
+    .pill{
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.02);
+      color:var(--text);
+      font-size:13px;
+      line-height:1.2;
+    }
+    .pill b{color:var(--accent);font-weight:700;}
+    .ctaRow{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .btn{
+      appearance:none;
+      border:1px solid rgba(163,59,92,0.55);
+      background:linear-gradient(180deg, rgba(163,59,92,0.95), rgba(163,59,92,0.72));
+      color:#fff;
+      padding:12px 16px;
+      border-radius:14px;
+      font-weight:700;
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+      font-size:12px;
+      cursor:pointer;
+      box-shadow:0 14px 40px rgba(163,59,92,0.22);
+      transition:transform 0.08s ease, filter 0.2s ease;
+    }
+    .btn:active{transform:translateY(1px);}
+    .btn.secondary{
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      color:var(--text);
+      box-shadow:none;
+    }
+    .note{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.6;
+    }
+    .note b{color:var(--text);font-weight:600;}
+    .progressWrap{
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background:rgba(255,255,255,0.03);
+      display:flex;
+      align-items:center;
+      gap:12px;
+    }
+    .bar{
+      flex:1;
+      height:10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.05);
+      overflow:hidden;
+    }
+    .bar>span{
+      display:block;height:100%;width:0%;
+      background:linear-gradient(90deg, rgba(163,59,92,0.95), rgba(255,255,255,0.18));
+      border-radius:999px;
+      transition:width 0.25s ease;
+    }
+    .pct{
+      width:120px;
+      text-align:right;
+      font-size:13px;
+      color:var(--muted);
+      letter-spacing:0.04em;
+      text-transform:uppercase;
+    }
+
+    .quiz{
+      margin-top:18px;
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:linear-gradient(180deg, rgba(18,18,24,0.70), rgba(10,10,15,0.55));
+      box-shadow:var(--shadow2);
+    }
+    .q{
+      padding:14px 12px;
+      border-radius:16px;
+      border:1px solid rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.02);
+      margin-bottom:12px;
+    }
+    .qTop{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:baseline;
+    }
+    .qNum{
+      color:var(--muted);
+      font-size:12px;
+      letter-spacing:0.10em;
+      text-transform:uppercase;
+      min-width:90px;
+    }
+    .qText{flex:1;font-size:15px;line-height:1.5;}
+    .choices{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .choice{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:10px 10px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(255,255,255,0.02);
+      cursor:pointer;
+      user-select:none;
+      text-align:center;
+      font-size:13px;
+      color:var(--text);
+      transition:border-color 0.2s ease, background 0.2s ease, transform 0.08s ease;
+      min-height:44px;
+    }
+    .choice:hover{border-color:rgba(163,59,92,0.40);}
+    .choice:active{transform:translateY(1px);}
+    .choice input{display:none;}
+    .choice.selected{
+      border-color:rgba(163,59,92,0.75);
+      background:rgba(163,59,92,0.10);
+      box-shadow:0 14px 34px rgba(163,59,92,0.14);
+    }
+    .footerRow{
+      margin-top:14px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .error{
+      display:none;
+      margin:12px 0 0;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(163,59,92,0.45);
+      background:rgba(163,59,92,0.10);
+      color:var(--text);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    .results{
+      display:none;
+      margin-top:18px;
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,0.10);
+      background:linear-gradient(180deg, rgba(18,18,24,0.82), rgba(10,10,15,0.60));
+      box-shadow:var(--shadow);
+    }
+    .kicker{
+      font-size:13px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      margin:0 0 8px;
+    }
+    .resultTitle{
+      margin:0 0 8px;
+      font-family:"Cormorant Garamond",serif;
+      font-weight:700;
+      font-size:clamp(26px,3.4vw,38px);
+      line-height:1.06;
+    }
+    .tag{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(163,59,92,0.45);
+      background:rgba(163,59,92,0.10);
+      color:var(--text);
+      font-size:13px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+    .tag b{color:#fff;}
+    .tag span{color:rgba(245,245,247,0.85);}
+
+    .resultGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:14px;
+    }
+    .card{
+      border:1px solid rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.02);
+      border-radius:18px;
+      padding:14px;
+    }
+    .card h3{
+      margin:0 0 10px;
+      font-size:12px;
+      letter-spacing:0.12em;
+      text-transform:uppercase;
+      color:var(--muted);
+      font-weight:700;
+    }
+    .card p{margin:0;color:var(--text);font-size:14px;line-height:1.6;}
+
+    .scores{
+      margin-top:14px;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.02);
+    }
+    .scoreRow{
+      display:grid;
+      grid-template-columns:1fr 70px;
+      gap:10px;
+      align-items:center;
+      padding:8px 0;
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    .scoreRow:last-child{border-bottom:0;}
+    .scoreName{color:var(--text);font-size:13px;}
+    .scoreVal{text-align:right;color:var(--muted);font-size:13px;}
+
+    .shareBox{
+      margin-top:14px;
+      padding:14px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,0.09);
+      background:rgba(255,255,255,0.02);
+    }
+    .shareBox textarea{
+      width:100%;
+      min-height:92px;
+      resize:vertical;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.10);
+      background:rgba(0,0,0,0.25);
+      color:var(--text);
+      padding:12px;
+      font-family:inherit;
+      font-size:13px;
+      line-height:1.5;
+      outline:none;
+    }
+    .tiny{margin-top:10px;font-size:12px;color:var(--muted);line-height:1.6;}
+
+    @media (max-width: 840px){
+      .row{grid-template-columns:1fr;}
+      .choices{grid-template-columns:1fr 1fr;}
+      .resultGrid{grid-template-columns:1fr;}
+      .pct{width:110px;}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="container">
+
+      <section class="hero" id="top">
+        <div class="brand"><span class="dot"></span><span>Unscarred Mirror</span></div>
+        <h1>Are They Hurting You On Purpose</h1>
+        <p class="sub">
+          This is not a diagnosis. It is a pattern scan.
+          It separates accident, avoidance, overwhelm, selfishness, and intentional harm by looking at repair, accountability, and repeat behavior.
+        </p>
+
+        <div class="row">
+          <div class="panel">
+            <p class="metaTitle">What you get</p>
+            <div class="pillRow">
+              <div class="pill"><b>Primary</b> harm pattern</div>
+              <div class="pill"><b>Intent</b> signal level</div>
+              <div class="pill"><b>Repair</b> capacity</div>
+              <div class="pill"><b>Next</b> boundary</div>
+              <div class="pill"><b>Script</b> to test reality</div>
+            </div>
+
+            <div class="progressWrap" aria-label="Progress">
+              <div class="bar" aria-hidden="true"><span id="barFill"></span></div>
+              <div class="pct" id="pctText">0 of 20</div>
+            </div>
+
+            <div class="ctaRow">
+              <button class="btn" id="jumpBtn" type="button">Start the quiz</button>
+              <a class="btn secondary" href="/quizzes/" style="display:inline-flex;align-items:center;justify-content:center;">Back to quizzes</a>
+              <button class="btn secondary" id="resetBtnTop" type="button">Reset</button>
+            </div>
+
+            <p class="note">
+              <b>Answer based on:</b> what happens after you bring it up. The repair tells the truth.
+            </p>
+          </div>
+
+          <div class="panel">
+            <p class="metaTitle">Scale</p>
+            <div class="pillRow">
+              <div class="pill">Never = 0</div>
+              <div class="pill">Sometimes = 1</div>
+              <div class="pill">Often = 2</div>
+              <div class="pill">Almost always = 3</div>
+            </div>
+            <p class="note" style="margin-top:12px;">
+              If you are currently unsafe, skip quizzes and prioritize support and safety.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz" id="quiz">
+        <div id="questions"></div>
+
+        <div class="footerRow">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <button class="btn" id="scoreBtn" type="button">See my results</button>
+            <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+          </div>
+          <div class="note" style="margin:0;">
+            Not sure? answer based on the last 3 times you addressed the issue.
+          </div>
+        </div>
+
+        <div class="error" id="errorBox" role="alert"></div>
+      </section>
+
+      <section class="results" id="results" aria-live="polite">
+        <p class="kicker">Your results</p>
+        <h2 class="resultTitle" id="primaryTitle">Result</h2>
+        <div class="tag" id="topTag"></div>
+
+        <div class="resultGrid">
+          <div class="card">
+            <h3>What is happening</h3>
+            <p id="happenText"></p>
+          </div>
+          <div class="card">
+            <h3>What to watch</h3>
+            <p id="watchText"></p>
+          </div>
+          <div class="card">
+            <h3>Boundary</h3>
+            <p id="boundaryText"></p>
+          </div>
+          <div class="card">
+            <h3>Test script</h3>
+            <p id="scriptText"></p>
+          </div>
+        </div>
+
+        <div class="scores" id="scoreBreakdown"></div>
+
+        <div class="shareBox">
+          <h3 class="metaTitle" style="margin:0 0 10px;">Share prompt</h3>
+          <textarea id="shareText" readonly></textarea>
+          <div class="ctaRow" style="margin-top:10px;">
+            <button class="btn secondary" id="copyBtn" type="button">Copy</button>
+            <button class="btn" id="backBtn" type="button">Back to quiz</button>
+            <a class="btn secondary" href="/quizzes/nervous-system-response/" style="display:inline-flex;align-items:center;justify-content:center;">Nervous system scan</a>
+          </div>
+          <p class="tiny">
+            Note: This scan is about patterns. Your lived experience matters more than any score.
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const QUIZ = {
+      title: "Are They Hurting You On Purpose",
+      scaleLabels: ["Never", "Sometimes", "Often", "Almost always"],
+      questions: [
+        "When I bring up the issue, they try to understand my experience.",
+        "They apologize without adding excuses or flipping it back on me.",
+        "They change the behavior for more than a week.",
+        "They act confused about what they did, even after I explain it clearly.",
+        "They minimize the impact and tell me I am too sensitive.",
+        "They punish me for bringing it up through silence, rage, or withdrawal.",
+        "They use my vulnerabilities as ammo later.",
+        "They seem to enjoy my reaction, even subtly.",
+        "They can name what they did wrong in plain language.",
+        "They take accountability even if they disagree with my tone.",
+        "They repeat the same harm and act surprised every time.",
+        "They bring up my past or my flaws to avoid the current issue.",
+        "They make promises in the moment, then do nothing.",
+        "They become sweet only after I pull away or threaten to leave.",
+        "They respect boundaries even when they do not like them.",
+        "They twist my words and argue about what I meant instead of what I felt.",
+        "They show empathy when it costs them something, not only when it is convenient.",
+        "They blame stress, childhood, or triggers but still do not change.",
+        "I feel safer staying quiet than being honest.",
+        "After conflict, I feel smaller, foggier, or like I am losing myself."
+      ],
+      dims: {
+        repair: [1,2,3,9,10,15,17],
+        confusion: [4,18],
+        minimize: [5,16],
+        punish: [6,14,19],
+        cruelty: [7,8],
+        repeat: [11,13],
+        deflect: [12],
+        selfLoss: [20]
+      },
+      results: {
+        repairAble: {
+          title: "Careless Impact With Repair Capacity",
+          tag: "Mostly not intentional, but impact is real",
+          happen: "They may be immature, stressed, or unskilled, but they can repair when confronted. The real question is consistency over time.",
+          watch: "Look for follow through, not words. If repair only happens during fear of loss, it will become a cycle.",
+          boundary: "I need the behavior to change, not just the conversation. If it repeats, we take a break and reset the terms.",
+          script: "I am not asking for perfection. I am asking for repair and consistent change. What will you do differently this week, specifically?"
+        },
+        confusedAvoidant: {
+          title: "Avoidant Confusion And Emotional Evasion",
+          tag: "Not always malicious, but unsafe for closeness",
+          happen: "They avoid discomfort by acting confused, vague, or overwhelmed. The harm comes from chronic non repair, not always from intent.",
+          watch: "They debate reality, stall, or disappear when accountability is required. You end up carrying the emotional work alone.",
+          boundary: "If we cannot talk with clarity and follow through, I will not continue building intimacy.",
+          script: "I need a clear answer. Do you understand what hurt me, and are you willing to change the behavior, yes or no?"
+        },
+        selfishDefensive: {
+          title: "Self Protective Deflection",
+          tag: "Protecting ego over protecting you",
+          happen: "They prioritize being right, saving face, or avoiding shame. The harm is real because your needs are treated like threats.",
+          watch: "They flip it back on you, attack your tone, or make your pain the problem. You start editing yourself to keep peace.",
+          boundary: "I will not stay in conversations where my feelings are punished. We pause if you deflect or attack.",
+          script: "We can talk about tone later. Right now, stay on the issue. What part of what I said are you willing to own?"
+        },
+        powerHarm: {
+          title: "Power Pattern",
+          tag: "High likelihood of intentional harm",
+          happen: "The pattern looks like control. Punishment, minimization, using your soft spots, and repeating the harm despite clear communication.",
+          watch: "You feel unsafe to speak. The behavior escalates when you gain clarity, set boundaries, or ask for accountability.",
+          boundary: "I am not available for punishment, intimidation, or emotional manipulation. If it happens again, I exit the dynamic.",
+          script: "I will not stay in this if my pain is mocked, minimized, or punished. If you want access to me, accountability is required."
+        }
+      }
+    };
+
+    const STORAGE_KEY = "unscarred_hurting_on_purpose_v1";
+
+    const elQuestions = document.getElementById("questions");
+    const errorBox = document.getElementById("errorBox");
+    const barFill = document.getElementById("barFill");
+    const pctText = document.getElementById("pctText");
+
+    const resultsSection = document.getElementById("results");
+    const quizSection = document.getElementById("quiz");
+
+    const primaryTitle = document.getElementById("primaryTitle");
+    const topTag = document.getElementById("topTag");
+    const happenText = document.getElementById("happenText");
+    const watchText = document.getElementById("watchText");
+    const boundaryText = document.getElementById("boundaryText");
+    const scriptText = document.getElementById("scriptText");
+    const scoreBreakdown = document.getElementById("scoreBreakdown");
+    const shareText = document.getElementById("shareText");
+
+    const scoreBtn = document.getElementById("scoreBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const resetBtnTop = document.getElementById("resetBtnTop");
+    const backBtn = document.getElementById("backBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const jumpBtn = document.getElementById("jumpBtn");
+
+    const state = { answers: Array(QUIZ.questions.length).fill(null) };
+
+    function save(){
+      try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state.answers)); }catch(e){}
+    }
+    function load(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(!raw) return;
+        const arr = JSON.parse(raw);
+        if(Array.isArray(arr) && arr.length === state.answers.length) state.answers = arr;
+      }catch(e){}
+    }
+
+    function hideError(){ errorBox.style.display="none"; errorBox.textContent=""; }
+    function showError(msg){ errorBox.style.display="block"; errorBox.textContent=msg; }
+
+    function answeredCount(){ return state.answers.filter(v => v !== null).length; }
+    function updateProgress(){
+      const done = answeredCount();
+      const total = state.answers.length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      barFill.style.width = pct + "%";
+      pctText.textContent = done + " of " + total;
+    }
+
+    function resetAll(){
+      state.answers = Array(QUIZ.questions.length).fill(null);
+      try{ localStorage.removeItem(STORAGE_KEY); }catch(e){}
+      renderQuestions();
+      updateProgress();
+      hideError();
+      resultsSection.style.display="none";
+      quizSection.style.display="block";
+      window.scrollTo({ top: document.getElementById("top").offsetTop, behavior:"smooth" });
+    }
+
+    function renderQuestions(){
+      elQuestions.innerHTML = "";
+      QUIZ.questions.forEach((text, i) => {
+        const qWrap = document.createElement("div");
+        qWrap.className = "q";
+        qWrap.setAttribute("data-index", String(i));
+
+        const top = document.createElement("div");
+        top.className = "qTop";
+
+        const num = document.createElement("div");
+        num.className = "qNum";
+        num.textContent = "Question " + (i + 1);
+
+        const qt = document.createElement("div");
+        qt.className = "qText";
+        qt.textContent = text;
+
+        top.appendChild(num);
+        top.appendChild(qt);
+        qWrap.appendChild(top);
+
+        const choices = document.createElement("div");
+        choices.className = "choices";
+
+        QUIZ.scaleLabels.forEach((label, v) => {
+          const lab = document.createElement("label");
+          lab.className = "choice";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "q_" + i;
+          input.value = String(v);
+          input.checked = state.answers[i] === v;
+
+          const span = document.createElement("span");
+          span.textContent = label;
+
+          lab.appendChild(input);
+          lab.appendChild(span);
+          if (input.checked) lab.classList.add("selected");
+
+          lab.addEventListener("click", () => {
+            state.answers[i] = v;
+            save();
+            hideError();
+            choices.querySelectorAll(".choice").forEach(x => x.classList.remove("selected"));
+            lab.classList.add("selected");
+            updateProgress();
+          });
+
+          choices.appendChild(lab);
+        });
+
+        qWrap.appendChild(choices);
+        elQuestions.appendChild(qWrap);
+      });
+    }
+
+    function sumQ(list){
+      let s = 0;
+      list.forEach(qNum => {
+        const idx = qNum - 1;
+        const val = state.answers[idx];
+        s += (val === null ? 0 : val);
+      });
+      return s;
+    }
+
+    function ensureComplete(){
+      const missing = [];
+      state.answers.forEach((v,i)=>{ if(v===null) missing.push(i+1); });
+      if(!missing.length) return true;
+      const first = missing[0];
+      showError("Answer all questions first. You missed question " + first + ".");
+      const node = document.querySelector('.q[data-index="' + (first - 1) + '"]');
+      if(node) node.scrollIntoView({ behavior:"smooth", block:"center" });
+      return false;
+    }
+
+    function compute(){
+      // Repair is positively scored, so we convert to a "lack of repair" risk.
+      const repair = sumQ(QUIZ.dims.repair);        // max 21
+      const confusion = sumQ(QUIZ.dims.confusion);  // max 6
+      const minimize = sumQ(QUIZ.dims.minimize);    // max 6
+      const punish = sumQ(QUIZ.dims.punish);        // max 9
+      const cruelty = sumQ(QUIZ.dims.cruelty);      // max 6
+      const repeat = sumQ(QUIZ.dims.repeat);        // max 6
+      const deflect = sumQ(QUIZ.dims.deflect);      // max 3
+      const selfLoss = sumQ(QUIZ.dims.selfLoss);    // max 3
+
+      const lackRepair = Math.max(0, 21 - repair);
+      const intentSignal = punish + cruelty + minimize + repeat + deflect + selfLoss; // higher = worse
+      const totalRisk = lackRepair + intentSignal + confusion;
+
+      // Decision logic tuned for clarity:
+      // powerHarm: high punishment/cruelty plus low repair
+      // selfishDefensive: high deflect/minimize/repeat, moderate punishment
+      // confusedAvoidant: high confusion plus low repair, lower cruelty
+      // repairAble: higher repair and lower totalRisk
+      let key = "repairAble";
+
+      const lowRepair = lackRepair >= 12; // repair <= 9
+      const highPunishCruel = (punish + cruelty) >= 10;
+      const highDeflectMin = (deflect + minimize) >= 6;
+      const highRepeat = repeat >= 4;
+      const highConfusion = confusion >= 4;
+
+      if (highPunishCruel && lowRepair) key = "powerHarm";
+      else if ((highDeflectMin || highRepeat) && lowRepair) key = "selfishDefensive";
+      else if (highConfusion && lowRepair && cruelty <= 2) key = "confusedAvoidant";
+      else key = "repairAble";
+
+      return {
+        key,
+        scores: {
+          repair,
+          lackRepair,
+          confusion,
+          minimize,
+          punish,
+          cruelty,
+          repeat,
+          deflect,
+          selfLoss,
+          intentSignal,
+          totalRisk
+        }
+      };
+    }
+
+    function esc(str){
+      return String(str).replace(/[&<>"']/g, s => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+      }[s]));
+    }
+
+    function scoreTitle(txt){
+      const p = document.createElement("p");
+      p.className = "kicker";
+      p.style.margin = "0 0 8px";
+      p.textContent = txt;
+      return p;
+    }
+
+    function scoreRow(name,val){
+      const row = document.createElement("div");
+      row.className = "scoreRow";
+      const a = document.createElement("div");
+      a.className = "scoreName";
+      a.textContent = name;
+      const b = document.createElement("div");
+      b.className = "scoreVal";
+      b.textContent = String(val);
+      row.appendChild(a);
+      row.appendChild(b);
+      return row;
+    }
+
+    function renderResults(){
+      const data = compute();
+      const res = QUIZ.results[data.key];
+      const s = data.scores;
+
+      primaryTitle.textContent = res.title;
+
+      topTag.innerHTML = "";
+      topTag.innerHTML = "<b>Result:</b> <span>" + esc(res.tag) + "</span>";
+
+      happenText.textContent = res.happen;
+      watchText.textContent = res.watch;
+      boundaryText.textContent = res.boundary;
+      scriptText.textContent = res.script;
+
+      scoreBreakdown.innerHTML = "";
+      scoreBreakdown.appendChild(scoreTitle("Pattern signals"));
+      scoreBreakdown.appendChild(scoreRow("Repair capacity (higher is better)", s.repair));
+      scoreBreakdown.appendChild(scoreRow("Lack of repair (risk)", s.lackRepair));
+      scoreBreakdown.appendChild(scoreRow("Punishment after honesty", s.punish));
+      scoreBreakdown.appendChild(scoreRow("Cruelty or ammo use", s.cruelty));
+      scoreBreakdown.appendChild(scoreRow("Minimizing or twisting", s.minimize));
+      scoreBreakdown.appendChild(scoreRow("Deflection to your flaws", s.deflect));
+      scoreBreakdown.appendChild(scoreRow("Repeat cycle", s.repeat));
+      scoreBreakdown.appendChild(scoreRow("Confusion or evasion", s.confusion));
+      scoreBreakdown.appendChild(scoreRow("Self loss feeling", s.selfLoss));
+
+      const share = [
+        "My result: " + res.title,
+        "Tag: " + res.tag,
+        "Boundary: " + res.boundary,
+        "Test script: " + res.script,
+        "Note: I judge patterns by repair and repeat behavior."
+      ].join("\n");
+
+      shareText.value = share;
+
+      resultsSection.style.display = "block";
+      quizSection.style.display = "none";
+      window.scrollTo({ top: document.getElementById("top").offsetTop, behavior: "smooth" });
+    }
+
+    function copyShare(){
+      const text = shareText.value;
+      if(!text) return;
+      navigator.clipboard.writeText(text).then(()=>{
+        copyBtn.textContent = "Copied";
+        setTimeout(()=>copyBtn.textContent="Copy",900);
+      }).catch(()=>{
+        copyBtn.textContent = "Copy failed";
+        setTimeout(()=>copyBtn.textContent="Copy",900);
+      });
+    }
+
+    scoreBtn.addEventListener("click", () => {
+      hideError();
+      if(!ensureComplete()) return;
+      renderResults();
+    });
+
+    resetBtn.addEventListener("click", resetAll);
+    resetBtnTop.addEventListener("click", resetAll);
+
+    backBtn.addEventListener("click", () => {
+      resultsSection.style.display = "none";
+      quizSection.style.display = "block";
+      window.scrollTo({ top: document.getElementById("quiz").offsetTop - 8, behavior: "smooth" });
+    });
+
+    copyBtn.addEventListener("click", copyShare);
+
+    jumpBtn.addEventListener("click", () => {
+      window.scrollTo({ top: document.getElementById("quiz").offsetTop - 8, behavior: "smooth" });
+    });
+
+    load();
+    renderQuestions();
+    updateProgress();
+  </script>
+</body>
+</html>

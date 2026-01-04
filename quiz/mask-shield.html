@@ -1,0 +1,648 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Mask and Shield Quiz | Unscarred</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+<style>
+  :root{
+    --bg:#0a0a0a;
+    --panel:#121212;
+    --ink:#e9e4dc;
+    --muted:#b9b2a8;
+    --accent:#9cb6b3;
+    --teal:#2d4a4d;
+    --rose:#c45a67;
+    --gold:#bca57b;
+    --error:#d26464;
+    --ok:#4caf50;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:980px;
+    margin:0 auto;
+    padding:28px 18px 96px;
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    transition: color 0.2s ease;
+  }
+  .back-link:hover {
+    color: var(--ink);
+  }
+  .card{
+    background:var(--panel);
+    border:1px solid #1e1e1e;
+    border-radius:16px;
+    padding:24px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  }
+  h1,h2,h3{margin:0 0 12px}
+  h1{font-size:clamp(26px,3vw,36px); letter-spacing:.3px; color: var(--rose)}
+  h2{font-size:clamp(20px,2.2vw,26px); color:var(--accent)}
+  p.lead{color:var(--muted); font-size:18px; margin-top:8px}
+  .grid{
+    display:grid; gap:16px;
+    grid-template-columns: repeat(12, 1fr);
+  }
+  .col-12{grid-column:span 12}
+  .col-6{grid-column:span 12}
+  @media(min-width:860px){ .col-6{grid-column:span 6} }
+  .btn{
+    appearance:none; border:none; cursor:pointer;
+    padding:12px 18px; border-radius:12px;
+    background:linear-gradient(90deg, var(--teal), #213436);
+    color:#fff; font-weight:600; letter-spacing:.2px;
+    transition: transform .06s ease, box-shadow .15s ease;
+    box-shadow:0 8px 14px rgba(15,45,48,.3);
+  }
+  .btn.secondary{ background:#252525; color:var(--ink); box-shadow:none; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:active{ transform:translateY(1px) }
+  .stack{display:flex; gap:10px; flex-wrap:wrap}
+  .disclaimer{font-size:14px; color:var(--muted)}
+  .bar{height:10px; background:#222; border-radius:999px; overflow:hidden}
+  .bar > span{display:block; height:100%; background:linear-gradient(90deg,var(--accent), var(--teal)); width:0%}
+  .question{padding:16px 0; border-top:1px solid #1f1f1f}
+  .q-text{font-weight:600}
+  .likert{display:flex; gap:8px; margin-top:10px; flex-wrap:wrap}
+  .chip{
+    background:#1f1f1f; border:1px solid #2a2a2a; color:#dcd7ce;
+    padding:10px 12px; border-radius:10px; cursor:pointer; user-select:none;
+    min-width:120px; text-align:center; transition: background .15s ease, border-color .15s ease;
+  }
+  .chip:hover { background: #252525; border-color: #3a3a3a; }
+  .chip[data-selected="true"]{ background:#2d3436; border-color:#384548 }
+  .step-nav{display:flex; justify-content:space-between; margin-top:18px}
+  .hidden{display:none}
+  .result-tag{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#1c2425; color:#cfe5e2; font-size:13px}
+  .pill{display:inline-block; padding:6px 10px; border:1px solid #2a2a2a; border-radius:999px; color:#d6d1c7; font-size:12px}
+  .result-block{padding:16px; border:1px solid #1e1e1e; border-radius:12px; background:#0f1212; margin-top:14px}
+  ul.clean{padding-left:18px; margin:8px 0}
+  .muted{color:var(--muted)}
+  .callout{border-left:4px solid var(--teal); padding:12px 14px; background:#101515; border-radius:8px}
+  .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+  .copy{font-size:13px; color:#a7a39b}
+  .hr{height:1px; background:#1e1e1e; margin:18px 0}
+  .badge{background:#162222; color:#cfe5e2; padding:6px 10px; border-radius:8px; font-size:12px}
+  .meta-info { font-size: 14px; color: var(--muted); margin-top: 16px; }
+  .meta-info span { display: inline-block; margin-right: 16px; }
+  .cta-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #1e1e1e; }
+  .cta-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--ink); }
+  .cta-links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  .cta-link:hover {
+    background: rgba(45, 74, 77, 0.2);
+    border-color: var(--teal);
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+    
+    <div class="card" id="intro">
+      <h1>Unmasking Ego and Trauma</h1>
+      <p class="lead">Find your current mask and the shields under it. 36 questions across 10 survival patterns plus ego vs trauma tilt assessment.</p>
+      <div class="meta-info">
+        <span>ðŸ“‹ 36 questions</span>
+        <span>?ï¸ 8-12 minutes</span>
+        <span>ðŸŽ­ 10 mask types</span>
+      </div>
+      <div class="hr"></div>
+      <div class="grid">
+        <div class="col-12">
+          <div class="disclaimer">
+            This quiz explores patterns. It is for insight and coaching. It does not replace care from a licensed clinician. If you feel unsafe please reach out to local supports or emergency services.
+          </div>
+        </div>
+      </div>
+      <div class="hr"></div>
+      <div class="stack">
+        <button class="btn" id="start">Start the Mirror</button>
+        <button class="btn secondary" id="skipToSample">See a sample result</button>
+      </div>
+    </div>
+
+    <div class="card hidden" id="quiz">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+        <h2>Your answers</h2>
+        <div class="badge" id="progressLabel">Page 1</div>
+      </div>
+      <div class="bar" aria-hidden="true"><span id="progress"></span></div>
+      <div id="questions"></div>
+      <div class="step-nav">
+        <button class="btn secondary" id="prevBtn">Back</button>
+        <div class="stack">
+          <button class="btn secondary" id="saveBtn" title="Save and return later">Save draft</button>
+          <button class="btn" id="nextBtn">Next</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card hidden" id="result">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap:12px">
+        <h2>Your result</h2>
+        <div class="result-tag"><span>Unscarred Mirror</span></div>
+      </div>
+      <div id="resultContent"></div>
+      <div class="cta-row">
+        <button class="btn" id="printBtn">Print</button>
+        <button class="btn secondary" id="copyBtn">Copy text</button>
+        <button class="btn secondary" id="restartBtn">Restart</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+const MASKS = {
+  watchtower: { 
+    title:"The Watchtower", 
+    tag:"Paranoid pattern", 
+    hook:"When safety looks like suspicion",
+    summary:"Built after real betrayal. Scans for danger. Tests to feel safe. Your nervous system learned that trust gets punished, so now it watches everyone like a hawk.",
+    unmask:"Practice calibrated trust and proportional threat checks. Not everyone is out to hurt you, and your hypervigilance costs you peace.",
+    micro:["Two clarifying questions before conclusions","Reality check journal for top three triggers","Pause for one minute before sending the heat text"],
+    mirror:["What proof do I have","What would change my mind today"],
+    nextSteps: [
+      { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" },
+      { text: "Safety Signals Guide", url: "../learn/safety-signals.html", icon: "ðŸ“–" }
+    ]
+  },
+  ghost: { 
+    title:"The Ghost", 
+    tag:"Schizoid pattern", 
+    hook:"Alone felt safer than seen",
+    summary:"Distance protects autonomy. Numbing arrived when closeness burned. You learned that people bring pain, so you built a fortress of solitude.",
+    unmask:"Build paced contact that respects space and feeling. Connection doesn't have to mean consumption.",
+    micro:["Twenty minute connection ritual after dinner","Name one feeling and one need aloud each day","Schedule one shared activity per week"],
+    mirror:["Where does closeness start to burn","What pace feels safe right now"],
+    nextSteps: [
+      { text: "When You Shut Down Guide", url: "../learn/when-you-shut-down.html", icon: "ðŸ“–" },
+      { text: "Avoidant Healing Program", url: "../programs.html", icon: "ðŸŽ¯" }
+    ]
+  },
+  oracle: { 
+    title:"The Oracle", 
+    tag:"Schizotypal pattern", 
+    hook:"Weird was a shelter",
+    summary:"Eccentricity as armor. Social fear under pattern hunting. You found safety in being different because fitting in felt dangerous or impossible.",
+    unmask:"Keep creativity and add anchors to shared reality. Your uniqueness is a gift, but isolation is not.",
+    micro:["Write plans on a visible board","Name three concrete facts when anxious","Practice one small talk script this week"],
+    mirror:["What is fact right now","What tiny connection risk is possible today"],
+    nextSteps: [
+      { text: "Mirror Archetype Quiz", url: "mirror-archetype.html", icon: "ðŸ›¡ï¸" },
+      { text: "Breath Reset Tool", url: "../learn/breath-reset.html", icon: "ðŸŒ¬ï¸" }
+    ]
+  },
+  outlaw: { 
+    title:"The Outlaw", 
+    tag:"Antisocial pattern", 
+    hook:"Power that costs connection",
+    summary:"Control to survive. Thrill to drown shame. You learned that vulnerability gets exploited, so you became the one who exploits.",
+    unmask:"Choose prosocial power and consistent consequences. Real strength is repair, not destruction.",
+    micro:["Ninety second pause before impulses","Map one ripple effect before action","Repair within twenty four hours after harm"],
+    mirror:["Who pays when I win","What strength serves us both"],
+    nextSteps: [
+      { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??ï¸" },
+      { text: "Repair After Conflict Guide", url: "../learn/repair-after-conflict.html", icon: "ðŸ“–" }
+    ]
+  },
+  storm: { 
+    title:"The Storm", 
+    tag:"Borderline pattern", 
+    hook:"When love feels like cliff edges",
+    summary:"Fast fusion then protest. Fear of abandonment runs hot. Your system learned that love leaves, so you test it, cling to it, and sometimes destroy it before it can destroy you.",
+    unmask:"Hold two truths and surf the wave without exits you regret. Intensity is not intimacy.",
+    micro:["Cold face reset or paced breath when spiking","Make a check in plan before separation","Use a twenty four hour rule before cut off"],
+    mirror:["What else could this mean","What does calm action look like"],
+    nextSteps: [
+      { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "💗" },
+      { text: "Push Pull Guide", url: "../learn/push-pull.html", icon: "ðŸ“–" }
+    ]
+  },
+  spotlight: { 
+    title:"The Spotlight", 
+    tag:"Histrionic pattern", 
+    hook:"Applause is not attachment",
+    summary:"Performance kept love near. Quiet feels like threat. You learned that attention equals safety, so you became whatever would keep eyes on you.",
+    unmask:"Source esteem from values and simple presence. You are enough without the show.",
+    micro:["Silent hour daily","One value based act each week","Ask for comfort without a show"],
+    mirror:["What stays when eyes turn away","What value would I keep offline"],
+    nextSteps: [
+      { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "ðŸ”„" },
+      { text: "Clean Ask Guide", url: "../learn/clean-ask.html", icon: "ðŸ“–" }
+    ]
+  },
+  crown: { 
+    title:"The Crown", 
+    tag:"Narcissistic pattern", 
+    hook:"Image cannot carry shame",
+    summary:"Shame storms shaped a polished mask. Status over repair. You learned that being flawed means being abandoned, so you became perfect on the outside.",
+    unmask:"Build steady worth and learn clean repair. Real respect comes from accountability, not image.",
+    micro:["Daily humility rep, name one fault","Give one repair this week","Share one win that is not about status"],
+    mirror:["What am I defending right now","What would repair require"],
+    nextSteps: [
+      { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??ï¸" },
+      { text: "Centered Leadership Guide", url: "../learn/centered-leadership.html", icon: "ðŸ“–" }
+    ]
+  },
+  invisible: { 
+    title:"The Invisible", 
+    tag:"Avoidant pattern", 
+    hook:"Hiding feels safe until it hurts",
+    summary:"Criticism wired social fear. Perfection before contact. You learned that being seen means being judged, so you made yourself small.",
+    unmask:"Risk small visibility and digest feedback without collapse. Rejection is data, not death.",
+    micro:["One brave message today","Attend for thirty minutes then reassess","Body scan release drill before and after social time"],
+    mirror:["What tiny reach out can I do","What feedback is data not doom"],
+    nextSteps: [
+      { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" },
+      { text: "When You Shut Down Guide", url: "../learn/when-you-shut-down.html", icon: "ðŸ“–" }
+    ]
+  },
+  loyalist: { 
+    title:"The Loyalist", 
+    tag:"Dependent pattern", 
+    hook:"Love is not self erasure",
+    summary:"Fawning kept bonds. Choice felt dangerous. You learned that having needs drives people away, so you became whatever they needed instead.",
+    unmask:"Build internal authority and clean requests. Your needs matter. Your voice matters.",
+    micro:["Two independent choices daily","No rescue for twenty four hours unless agreed","Write a clear boundary for one recurring issue"],
+    mirror:["What do I want","What boundary protects that want"],
+    nextSteps: [
+      { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "💗" },
+      { text: "Centered For Women Guide", url: "../learn/centered-women.html", icon: "ðŸ“–" }
+    ]
+  },
+  perfectionist: { 
+    title:"The Perfectionist", 
+    tag:"Obsessive compulsive personality pattern", 
+    hook:"Control cannot cure fear",
+    summary:"Order as safety. Rules over relationship. You learned that chaos hurts, so you built systems to prevent it, even when those systems hurt others.",
+    unmask:"Choose flexibility where values matter more than control. Good enough is sometimes perfect.",
+    micro:["Deliberate small imperfection each day","Set shared rules with your partner","Pick good enough for one task"],
+    mirror:["What value matters more than order","What can be good enough today"],
+    nextSteps: [
+      { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "ðŸ”„" },
+      { text: "Centered Man Blueprint", url: "../program/centered-man.html", icon: "ðŸŽ¯" }
+    ]
+  }
+};
+
+const QUESTIONS = [
+  {t:"I read between the lines and test people to feel safe", m:"watchtower"},
+  {t:"Small changes in plans feel like signs that I am being lied to", m:"watchtower"},
+  {t:"I collect proof before I relax", m:"watchtower"},
+  {t:"Too much closeness feels like I am losing air", m:"ghost"},
+  {t:"I prefer ideas or tasks over emotional talk", m:"ghost"},
+  {t:"When someone wants more contact I pull away without words", m:"ghost"},
+  {t:"My mind spins stories and patterns when I am stressed", m:"oracle"},
+  {t:"People have mocked me for being different", m:"oracle"},
+  {t:"I like being unusual because ordinary felt unsafe", m:"oracle"},
+  {t:"I push limits because rules feel like cages", m:"outlaw"},
+  {t:"When shamed I want to prove I cannot be controlled", m:"outlaw"},
+  {t:"I like the rush of risky choices", m:"outlaw"},
+  {t:"When I fear distance I can flip from cling to cut off fast", m:"storm"},
+  {t:"Silence from someone I love makes my body panic", m:"storm"},
+  {t:"I test love to make sure it is real", m:"storm"},
+  {t:"I perform when I feel insecure", m:"spotlight"},
+  {t:"Being ordinary feels like I am fading away", m:"spotlight"},
+  {t:"I feel empty when the room looks away", m:"spotlight"},
+  {t:"Critique feels like an attack on my worth", m:"crown"},
+  {t:"I feel entitled to special rules", m:"crown"},
+  {t:"Admitting fault is hard for me", m:"crown"},
+  {t:"I avoid events to dodge the sting of judgment", m:"invisible"},
+  {t:"I prepare until perfect then never send it", m:"invisible"},
+  {t:"I tell myself I do not need people", m:"invisible"},
+  {t:"I give up choices to keep the peace", m:"loyalist"},
+  {t:"I panic when I have to act alone", m:"loyalist"},
+  {t:"I stay in bad situations because leaving feels unsafe", m:"loyalist"},
+  {t:"I feel responsible for keeping order everywhere", m:"perfectionist"},
+  {t:"Mistakes feel like moral failure", m:"perfectionist"},
+  {t:"I get angry when others do not follow the right way", m:"perfectionist"},
+  {t:"I would rather be right than repair", k:"ego"},
+  {t:"I hide my needs so no one can reject them", k:"trauma"},
+  {t:"I double down when I feel called out", k:"ego"},
+  {t:"I ask for help even when my voice shakes", k:"trauma"},
+  {t:"I chase status to outrun shame", k:"ego"},
+  {t:"I choose small truth over big performance", k:"trauma"}
+];
+
+const SCALE = [
+  {v:1, label:"Strongly disagree"},
+  {v:2, label:"Disagree"},
+  {v:3, label:"Neutral"},
+  {v:4, label:"Agree"},
+  {v:5, label:"Strongly agree"}
+];
+
+let page = 0;
+const pageSize = 6;
+const answers = {};
+
+const elIntro = document.getElementById("intro");
+const elQuiz = document.getElementById("quiz");
+const elResult = document.getElementById("result");
+const elQuestions = document.getElementById("questions");
+const elProgress = document.getElementById("progress");
+const elProgressLabel = document.getElementById("progressLabel");
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const saveBtn = document.getElementById("saveBtn");
+const startBtn = document.getElementById("start");
+const sampleBtn = document.getElementById("skipToSample");
+const printBtn = document.getElementById("printBtn");
+const copyBtn = document.getElementById("copyBtn");
+const restartBtn = document.getElementById("restartBtn");
+const resultContent = document.getElementById("resultContent");
+
+function renderPage(){
+  const totalPages = Math.ceil(QUESTIONS.length / pageSize);
+  const start = page * pageSize;
+  const slice = QUESTIONS.slice(start, start+pageSize);
+  elQuestions.innerHTML = "";
+  slice.forEach((q, idx) => {
+    const qIndex = start + idx;
+    const row = document.createElement("div");
+    row.className = "question";
+    const saved = answers[qIndex];
+    row.innerHTML = `
+      <div class="q-text">${qIndex+1}. ${q.t}</div>
+      <div class="likert" role="group" aria-label="Choose one option">
+        ${SCALE.map(s => {
+          const sel = saved === s.v   "true" : "false";
+          return `<div class="chip" data-q="${qIndex}" data-v="${s.v}" data-selected="${sel}">${s.label}</div>`;
+        }).join("")}
+      </div>
+    `;
+    elQuestions.appendChild(row);
+  });
+  elQuestions.querySelectorAll(".chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      const qi = parseInt(chip.dataset.q,10);
+      const val = parseInt(chip.dataset.v,10);
+      answers[qi] = val;
+      elQuestions.querySelectorAll(`.chip[data-q="${qi}"]`).forEach(c => c.dataset.selected = "false");
+      chip.dataset.selected = "true";
+      updateProgress();
+    });
+  });
+
+  prevBtn.disabled = page === 0;
+  nextBtn.textContent = page === totalPages-1   "See result" : "Next";
+  elProgressLabel.textContent = `Page ${page+1} of ${totalPages}`;
+  updateProgress();
+}
+
+function updateProgress(){
+  const count = Object.keys(answers).length;
+  const percent = Math.round((count / QUESTIONS.length) * 100);
+  elProgress.style.width = percent + "%";
+}
+
+startBtn.addEventListener("click", () => {
+  elIntro.classList.add("hidden");
+  elQuiz.classList.remove("hidden");
+  page = 0;
+  renderPage();
+});
+
+sampleBtn.addEventListener("click", () => {
+  QUESTIONS.forEach((q,i)=>{
+    if(q.m==="storm"||q.m==="spotlight"){ answers[i] = 4; }
+    else if(q.k==="trauma"){ answers[i] = 4; }
+    else { answers[i] = 3; }
+  });
+  showResult();
+});
+
+prevBtn.addEventListener("click", () => {
+  if(page>0){ page--; renderPage(); }
+});
+
+nextBtn.addEventListener("click", () => {
+  const totalPages = Math.ceil(QUESTIONS.length / pageSize);
+  if(page < totalPages-1){
+    page++; renderPage();
+  } else {
+    if(Object.keys(answers).length < QUESTIONS.length){
+      alert("Please answer all questions");
+      return;
+    }
+    showResult();
+  }
+});
+
+saveBtn.addEventListener("click", () => {
+  localStorage.setItem("unscarred_mask_quiz_draft", JSON.stringify(answers));
+  alert("Saved");
+});
+
+const draft = localStorage.getItem("unscarred_mask_quiz_draft");
+if(draft){
+  try{ Object.assign(answers, JSON.parse(draft)); }catch(e){}
+}
+
+function showResult(){
+  elQuiz.classList.add("hidden");
+  elIntro.classList.add("hidden");
+  const scores = {watchtower:0, ghost:0, oracle:0, outlaw:0, storm:0, spotlight:0, crown:0, invisible:0, loyalist:0, perfectionist:0};
+  let ego = 0, trauma = 0;
+  QUESTIONS.forEach((q, idx) => {
+    const val = answers[idx]   0;
+    if(q.m){ scores[q.m] += val; }
+    if(q.k === "ego"){ ego += val; }
+    if(q.k === "trauma"){ trauma += val; }
+  });
+  const list = Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const [p1, p2, p3] = list;
+  const primaryKey = p1[0];
+  const secondaryKey = p2[0];
+  const tertiaryKey = p3[0];
+  const primary = MASKS[primaryKey];
+  const secondary = MASKS[secondaryKey];
+  const tertiary = MASKS[tertiaryKey];
+  const p1Score = p1[1], p2Score = p2[1], p3Score = p3[1];
+  const close = (p1Score - p2Score) <= 3;
+  const thirdClose = (p2Score - p3Score) <= 2;
+
+  const egoPct = Math.round(ego / (3*5) * 100);
+  const traumaPct = Math.round(trauma / (3*5) * 100);
+  const tilt = egoPct - traumaPct;
+  let tiltText = "";
+  let tiltAdvice = "";
+  if(tilt > 12){ 
+    tiltText = "Your answers lean ego managed right now."; 
+    tiltAdvice = "Focus on curiosity over certainty. Practice repair before defense. Ask 'what am I protecting' before you react.";
+  }
+  else if(tilt < -12){ 
+    tiltText = "Your answers lean trauma honest right now."; 
+    tiltAdvice = "Protect the progress with steady skills. You're doing the hard work of feeling. Now add structure so the feelings don't flood you.";
+  }
+  else { 
+    tiltText = "Your answers are mixed."; 
+    tiltAdvice = "This is a good time to practice small reps in both directions. Notice when you armor up (ego) and when you collapse (trauma). Build flexibility.";
+  }
+
+  function blockFor(mask, isPrimary){
+    return `
+      <div class="result-block">
+        <div class="stack" style="justify-content:space-between; align-items:center">
+          <div>
+            <h3>${mask.title}</h3>
+            <div class="muted">${mask.tag}</div>
+          </div>
+          <span class="pill">${mask.hook}</span>
+        </div>
+        <p style="margin-top:8px">${mask.summary}</p>
+        <div class="callout"><strong>Unmasking goal:</strong> ${mask.unmask}</div>
+        <div class="grid" style="margin-top:8px">
+          <div class="col-6">
+            <strong>Micro practices</strong>
+            <ul class="clean">
+              ${mask.micro.map(m=>`<li>${m}</li>`).join("")}
+            </ul>
+          </div>
+          <div class="col-6">
+            <strong>Mirror questions</strong>
+            <ul class="clean">
+              ${mask.mirror.map(m=>`<li>${m}</li>`).join("")}
+            </ul>
+          </div>
+        </div>
+        ${isPrimary && mask.nextSteps   `
+        <div class="cta-section">
+          <h3>Recommended Next Steps</h3>
+          <div class="cta-links">
+            ${mask.nextSteps.map(step => `
+              <a href="${step.url}" class="cta-link">
+                <span>${step.icon}</span>
+                ${step.text}
+              </a>
+            `).join('')}
+          </div>
+        </div>
+        ` : ''}
+      </div>`;
+  }
+
+  // Build score breakdown
+  const maxScore = 15; // 3 questions × 5 max
+  function scoreBar(key, score) {
+    const pct = Math.round((score / maxScore) * 100);
+    const mask = MASKS[key];
+    return `
+      <div style="margin-bottom: 8px;">
+        <div class="stack" style="justify-content:space-between; font-size: 13px;">
+          <span>${mask.title}</span>
+          <span>${score}/${maxScore}</span>
+        </div>
+        <div class="bar"><span style="width:${pct}%"></span></div>
+      </div>
+    `;
+  }
+
+  const resultHTML = `
+    <p class="lead">Primary mask right now</p>
+    ${blockFor(primary, true)}
+    ${close   `<p class="lead" style="margin-top:16px">Secondary overlay (close behind)</p>${blockFor(secondary, false)}` : ""}
+    ${close && thirdClose   `<p class="lead" style="margin-top:16px">Tertiary influence</p>${blockFor(tertiary, false)}` : ""}
+    
+    <div class="hr"></div>
+    <h3>All Mask Scores</h3>
+    <p class="muted" style="margin-bottom: 12px;">How each pattern showed up in your answers</p>
+    <div class="grid">
+      <div class="col-6">
+        ${list.slice(0, 5).map(([k, s]) => scoreBar(k, s)).join('')}
+      </div>
+      <div class="col-6">
+        ${list.slice(5, 10).map(([k, s]) => scoreBar(k, s)).join('')}
+      </div>
+    </div>
+    
+    <div class="hr"></div>
+    <h3>Ego vs Trauma Tilt</h3>
+    <p class="muted">This compares two sets of items. Higher ego means more manager control (defending, proving, winning). Higher trauma means more honest need (feeling, asking, risking). Aim for balance with a slight tilt toward honest need and clean repair.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:8px">
+      <div>
+        <div class="stack" style="justify-content:space-between"><div>Ego</div><div>${egoPct}%</div></div>
+        <div class="bar"><span style="width:${egoPct}%; background:linear-gradient(90deg, #5b2c2f, var(--rose))"></span></div>
+      </div>
+      <div>
+        <div class="stack" style="justify-content:space-between"><div>Trauma honesty</div><div>${traumaPct}%</div></div>
+        <div class="bar"><span style="width:${traumaPct}%; background:linear-gradient(90deg, #1d3a3b, var(--teal))"></span></div>
+      </div>
+    </div>
+    <div class="callout" style="margin-top:10px">
+      <strong>${tiltText}</strong><br>
+      ${tiltAdvice}
+    </div>
+    <div class="hr"></div>
+    <p class="muted">This is a mirror not a prison. Use it to pick your next practice. Masks shift as you heal.</p>
+  `;
+
+  resultContent.innerHTML = resultHTML;
+  elResult.classList.remove("hidden");
+}
+
+document.getElementById("printBtn").addEventListener("click", () => window.print());
+document.getElementById("copyBtn").addEventListener("click", () => {
+  const text = resultContent.innerText;
+  navigator.clipboard.writeText(text).then(()=> alert("Copied"));
+});
+document.getElementById("restartBtn").addEventListener("click", () => {
+  localStorage.removeItem("unscarred_mask_quiz_draft");
+  for(const k of Object.keys(answers)) delete answers[k];
+  page = 0;
+  elResult.classList.add("hidden");
+  elIntro.classList.remove("hidden");
+});
+</script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

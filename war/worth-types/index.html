@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worth Types Assessment</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { box-sizing: border-box; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-in { animation: fadeIn 0.4s ease-out; }
+    .question-card { transition: all 0.2s ease; }
+    .scale-button { transition: all 0.2s ease; }
+    .scale-button:hover { transform: scale(1.05); }
+    .scale-button.selected { transform: scale(1.1); }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+</head>
+<body class="h-full">
+  <div id="app" class="w-full h-full overflow-auto"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#f8f4f0",
+      card_color: "#ffffff",
+      text_color: "#2c2c2c",
+      primary_color: "#6b4e71",
+      accent_color: "#d4a574",
+      title_text: "Worth Types Assessment",
+      subtitle_text: "Discover your worth patterns",
+      instructions_text: "Rate each statement based on how true it feels",
+      font_family: "system-ui",
+      font_size: 16
+    };
+
+    const questions = [
+      "I feel worthy when I like who I am even without praise.",
+      "Compliments change my mood more than they should.",
+      "I feel safe when I am doing everything right.",
+      "If I disappoint someone I feel like I become nothing.",
+      "I struggle to rest without guilt.",
+      "I fear being seen as needy.",
+      "I feel calm even when someone is unhappy with me.",
+      "I chase accomplishments to feel stable.",
+      "I post or share to feel real.",
+      "I can set a boundary without apologizing.",
+      "I feel valuable when I am wanted.",
+      "I feel valuable when I am useful.",
+      "I fear being ordinary.",
+      "I can feel proud without comparing myself.",
+      "I stay in things too long to prove I am loyal.",
+      "I feel anxious when I am not improving.",
+      "I can fail without spiraling into shame.",
+      "I need people to understand me to feel okay.",
+      "I trust my own judgment even if others disagree.",
+      "I feel like love must be earned.",
+      "I feel like I have to be impressive to be kept.",
+      "I feel like I have to be easy to be loved.",
+      "I feel like I have to be perfect to be safe.",
+      "I can be messy and still feel worthy."
+    ];
+
+    const scaleLabels = ["Never", "Sometimes", "Often", "Almost always"];
+
+    const scoringMap = {
+      internal: [1, 7, 10, 14, 17, 19, 24],
+      external: [2, 9, 11, 18],
+      conditional: [4, 15, 20, 22],
+      performance: [3, 5, 8, 12, 13, 16, 21, 23]
+    };
+
+    const results = {
+      internal: { title: "Internal Worth", core: "Your worth is rooted.", risk: "You can outgrow people fast.", upgrade: "Choose partners who respect your no." },
+      external: { title: "External Worth", core: "You feel real when mirrored.", risk: "You become easy to manipulate with attention.", upgrade: "Build self validation rituals before dating decisions.", script: "I like attention, but I choose consistency." },
+      conditional: { title: "Conditional Worth", core: "Your worth is tied to approval and harmony.", risk: "You accept crumbs to avoid rejection.", upgrade: "Practice being disliked and staying soft.", script: "I can be loved and still disappoint you." },
+      performance: { title: "Performance Worth", core: "Your worth is tied to output, beauty, intelligence, usefulness.", risk: "You burnout, then resent, then collapse.", upgrade: "Replace proving with receiving.", script: "I don't have to earn love. I only have to be honest." }
+    };
+
+    let currentAnswers = {};
+    let currentView = 'assessment';
+    let assessmentHistory = [];
+
+    const dataHandler = {
+      onDataChanged(data) {
+        assessmentHistory = data.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
+        render();
+      }
+    };
+
+    async function initializeApp() {
+      const initResult = await window.dataSdk.init(dataHandler);
+      if (!initResult.isOk) console.error("Failed to initialize data SDK");
+      if (window.elementSdk) {
+        window.elementSdk.init({ defaultConfig, onConfigChange, mapToCapabilities, mapToEditPanelValues });
+      }
+      render();
+    }
+
+    function onConfigChange(config) {
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      document.body.style.background = config.background_color || defaultConfig.background_color;
+      document.body.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      const app = document.getElementById('app');
+      if (!app) return;
+      const titleEl = app.querySelector('[data-title]');
+      if (titleEl) {
+        titleEl.textContent = config.title_text || defaultConfig.title_text;
+        titleEl.style.fontSize = `${baseSize * 2}px`;
+        titleEl.style.color = config.text_color || defaultConfig.text_color;
+        titleEl.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      }
+      const subtitleEl = app.querySelector('[data-subtitle]');
+      if (subtitleEl) {
+        subtitleEl.textContent = config.subtitle_text || defaultConfig.subtitle_text;
+        subtitleEl.style.fontSize = `${baseSize * 1.1}px`;
+        subtitleEl.style.color = config.text_color || defaultConfig.text_color;
+        subtitleEl.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      }
+      const instructionsEl = app.querySelector('[data-instructions]');
+      if (instructionsEl) {
+        instructionsEl.textContent = config.instructions_text || defaultConfig.instructions_text;
+        instructionsEl.style.fontSize = `${baseSize}px`;
+        instructionsEl.style.color = config.text_color || defaultConfig.text_color;
+        instructionsEl.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      }
+      app.querySelectorAll('[data-card]').forEach(card => { card.style.background = config.card_color || defaultConfig.card_color; });
+      app.querySelectorAll('[data-question-text]').forEach(q => {
+        q.style.fontSize = `${baseSize * 0.95}px`;
+        q.style.color = config.text_color || defaultConfig.text_color;
+        q.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+      app.querySelectorAll('[data-scale-label]').forEach(label => {
+        label.style.fontSize = `${baseSize * 0.8}px`;
+        label.style.color = config.text_color || defaultConfig.text_color;
+        label.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+      app.querySelectorAll('[data-scale-button]').forEach(btn => {
+        const isSelected = btn.classList.contains('selected');
+        btn.style.background = isSelected ? (config.primary_color || defaultConfig.primary_color) : (config.card_color || defaultConfig.card_color);
+        btn.style.color = isSelected ? '#ffffff' : (config.text_color || defaultConfig.text_color);
+        btn.style.borderColor = config.primary_color || defaultConfig.primary_color;
+      });
+      app.querySelectorAll('[data-button-primary]').forEach(btn => {
+        btn.style.background = config.primary_color || defaultConfig.primary_color;
+        btn.style.fontSize = `${baseSize}px`;
+        btn.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+      app.querySelectorAll('[data-button-secondary]').forEach(btn => {
+        btn.style.color = config.primary_color || defaultConfig.primary_color;
+        btn.style.borderColor = config.primary_color || defaultConfig.primary_color;
+        btn.style.fontSize = `${baseSize}px`;
+        btn.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+      app.querySelectorAll('[data-result-type]').forEach(el => {
+        el.style.color = config.primary_color || defaultConfig.primary_color;
+        el.style.fontSize = `${baseSize * 1.5}px`;
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+      app.querySelectorAll('[data-result-section]').forEach(el => {
+        el.style.fontSize = `${baseSize}px`;
+        el.style.color = config.text_color || defaultConfig.text_color;
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+      app.querySelectorAll('[data-history-date]').forEach(el => {
+        el.style.fontSize = `${baseSize * 0.85}px`;
+        el.style.color = config.text_color || defaultConfig.text_color;
+        el.style.fontFamily = `${customFont}, ${baseFontStack}`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          { get: () => config.background_color || defaultConfig.background_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ background_color: value }); } },
+          { get: () => config.card_color || defaultConfig.card_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ card_color: value }); } },
+          { get: () => config.text_color || defaultConfig.text_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ text_color: value }); } },
+          { get: () => config.primary_color || defaultConfig.primary_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ primary_color: value }); } },
+          { get: () => config.accent_color || defaultConfig.accent_color, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ accent_color: value }); } }
+        ],
+        borderables: [],
+        fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ font_family: value }); } },
+        fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (value) => { if (window.elementSdk) window.elementSdk.setConfig({ font_size: value }); } }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["title_text", config.title_text || defaultConfig.title_text],
+        ["subtitle_text", config.subtitle_text || defaultConfig.subtitle_text],
+        ["instructions_text", config.instructions_text || defaultConfig.instructions_text]
+      ]);
+    }
+
+    function setAnswer(questionNum, value) { currentAnswers[`q${questionNum}`] = value; render(); }
+
+    function calculateScores() {
+      const scores = { internal: 0, external: 0, conditional: 0, performance: 0 };
+      for (const [type, questionNums] of Object.entries(scoringMap)) {
+        for (const qNum of questionNums) {
+          const answer = currentAnswers[`q${qNum}`];
+          if (answer !== undefined) scores[type] += answer;
+        }
+      }
+      return scores;
+    }
+
+    async function submitAssessment() {
+      const allAnswered = questions.every((_, idx) => currentAnswers[`q${idx + 1}`] !== undefined);
+      if (!allAnswered) { showToast("Please answer all questions before submitting"); return; }
+      const scores = calculateScores();
+      const sortedTypes = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const primaryType = sortedTypes[0][0];
+      const secondaryType = sortedTypes[1][0];
+      const saveButton = document.querySelector('[data-submit-button]');
+      if (saveButton) { saveButton.disabled = true; saveButton.textContent = 'Saving...'; }
+      const assessment = {
+        assessment_id: Date.now().toString(),
+        completed_at: new Date().toISOString(),
+        ...currentAnswers,
+        primary_type: primaryType,
+        secondary_type: secondaryType,
+        internal_score: scores.internal,
+        external_score: scores.external,
+        conditional_score: scores.conditional,
+        performance_score: scores.performance
+      };
+      const result = await window.dataSdk.create(assessment);
+      if (saveButton) { saveButton.disabled = false; saveButton.textContent = 'View Results'; }
+      if (result.isOk) { currentView = 'results'; render(); } else { showToast("Failed to save assessment. Please try again."); }
+    }
+
+    function showToast(message) {
+      const existing = document.getElementById('toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.id = 'toast';
+      toast.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 fade-in';
+      toast.style.background = window.elementSdk?.config?.primary_color || defaultConfig.primary_color;
+      toast.style.color = '#ffffff';
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    function startNewAssessment() { currentAnswers = {}; currentView = 'assessment'; render(); window.scrollTo(0, 0); }
+    function viewHistory() { currentView = 'history'; render(); }
+    function viewResults() { currentView = 'results'; render(); }
+
+    function render() {
+      const app = document.getElementById('app');
+      const config = window.elementSdk?.config || defaultConfig;
+      if (currentView === 'assessment') app.innerHTML = renderAssessmentView(config);
+      else if (currentView === 'results') app.innerHTML = renderResultsView(config);
+      else if (currentView === 'history') app.innerHTML = renderHistoryView(config);
+      if (window.elementSdk) onConfigChange(config);
+    }
+
+    function renderAssessmentView(config) {
+      const progress = Object.keys(currentAnswers).length;
+      const progressPercent = (progress / questions.length) * 100;
+      return `
+        <div class="max-w-4xl mx-auto p-6">
+          <div class="text-center mb-8 fade-in">
+            <h1 data-title class="font-bold mb-2">${config.title_text || defaultConfig.title_text}</h1>
+            <p data-subtitle class="mb-4">${config.subtitle_text || defaultConfig.subtitle_text}</p>
+            <p data-instructions class="opacity-75">${config.instructions_text || defaultConfig.instructions_text}</p>
+          </div>
+          <div class="mb-6">
+            <div class="h-2 rounded-full overflow-hidden" style="background: rgba(0,0,0,0.1)">
+              <div class="h-full transition-all duration-300"
+                   style="width: ${progressPercent}%; background: ${config.primary_color || defaultConfig.primary_color}"></div>
+            </div>
+            <p class="text-center mt-2 text-sm opacity-75">${progress} of ${questions.length} completed</p>
+          </div>
+          <div class="space-y-4 mb-8">
+            ${questions.map((q, idx) => `
+              <div data-card class="question-card rounded-lg p-5 shadow-sm">
+                <p data-question-text class="font-medium mb-4">${idx + 1}. ${q}</p>
+                <div class="grid grid-cols-4 gap-2">
+                  ${scaleLabels.map((label, value) => {
+                    const isSelected = currentAnswers[\`q${idx + 1}\`] === value;
+                    return `
+                      <button
+                        data-scale-button
+                        class="scale-button ${isSelected ? 'selected' : ''} p-3 rounded-lg border-2 text-center font-medium"
+                        onclick="setAnswer(${idx + 1}, ${value})"
+                        aria-label="${label} for question ${idx + 1}">
+                        <div data-scale-label class="text-xs mb-1">${label}</div>
+                      </button>
+                    `;
+                  }).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="flex gap-3 justify-center">
+            <button
+              data-submit-button
+              data-button-primary
+              onclick="submitAssessment()"
+              class="px-8 py-3 rounded-lg font-semibold text-white shadow-md hover:shadow-lg transition-all">
+              View Results
+            </button>
+            ${assessmentHistory.length > 0 ? `
+              <button
+                data-button-secondary
+                onclick="viewHistory()"
+                class="px-8 py-3 rounded-lg font-semibold border-2 bg-white transition-all">
+                Past Results
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderResultsView(config) {
+      if (assessmentHistory.length === 0) {
+        return `
+          <div class="max-w-4xl mx-auto p-6 text-center">
+            <p class="mb-4">No assessment results yet.</p>
+            <button
+              data-button-primary
+              onclick="startNewAssessment()"
+              class="px-8 py-3 rounded-lg font-semibold text-white">
+              Take Assessment
+            </button>
+          </div>
+        `;
+      }
+      const latest = assessmentHistory[0];
+      const primary = results[latest.primary_type];
+      const secondary = results[latest.secondary_type];
+      return `
+        <div class="max-w-4xl mx-auto p-6">
+          <div class="text-center mb-8 fade-in">
+            <h1 data-title class="font-bold mb-2">Your Worth Types</h1>
+            <p data-subtitle class="opacity-75">Completed ${new Date(latest.completed_at).toLocaleDateString()}</p>
+          </div>
+          <div class="space-y-6 mb-8">
+            <div data-card class="rounded-lg p-6 shadow-md fade-in">
+              <h2 data-result-type class="font-bold mb-4">Primary: ${primary.title}</h2>
+              <div class="space-y-3">
+                <div data-result-section><strong>Core:</strong> ${primary.core}</div>
+                <div data-result-section><strong>Risk:</strong> ${primary.risk}</div>
+                <div data-result-section><strong>Upgrade:</strong> ${primary.upgrade}</div>
+                ${primary.script ? `<div data-result-section class="mt-4 p-4 rounded-lg italic" style="background: rgba(0,0,0,0.03)">"${primary.script}"</div>` : ''}
+              </div>
+            </div>
+            <div data-card class="rounded-lg p-6 shadow-md fade-in">
+              <h2 data-result-type class="font-bold mb-4">Secondary: ${secondary.title}</h2>
+              <div class="space-y-3">
+                <div data-result-section><strong>Core:</strong> ${secondary.core}</div>
+                <div data-result-section><strong>Risk:</strong> ${secondary.risk}</div>
+                <div data-result-section><strong>Upgrade:</strong> ${secondary.upgrade}</div>
+                ${secondary.script ? `<div data-result-section class="mt-4 p-4 rounded-lg italic" style="background: rgba(0,0,0,0.03)">"${secondary.script}"</div>` : ''}
+              </div>
+            </div>
+            <div data-card class="rounded-lg p-6 shadow-sm">
+              <h3 class="font-semibold mb-3" data-result-section>All Scores</h3>
+              <div class="grid grid-cols-2 gap-4">
+                ${Object.entries({ Internal: latest.internal_score, External: latest.external_score, Conditional: latest.conditional_score, Performance: latest.performance_score }).map(([type, score]) => `
+                  <div data-result-section>
+                    <div class="text-sm opacity-75">${type}</div>
+                    <div class="font-bold">${score}</div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-3 justify-center flex-wrap">
+            <button data-button-primary onclick="startNewAssessment()" class="px-8 py-3 rounded-lg font-semibold text-white">
+              Take Again
+            </button>
+            ${assessmentHistory.length > 1 ? `
+              <button data-button-secondary onclick="viewHistory()" class="px-8 py-3 rounded-lg font-semibold border-2 bg-white">
+                View History
+              </button>
+            ` : ''}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderHistoryView(config) {
+      return `
+        <div class="max-w-4xl mx-auto p-6">
+          <div class="text-center mb-8">
+            <h1 data-title class="font-bold mb-2">Assessment History</h1>
+            <p data-subtitle>${assessmentHistory.length} assessment${assessmentHistory.length !== 1 ? 's' : ''} completed</p>
+          </div>
+          <div class="space-y-4 mb-8">
+            ${assessmentHistory.map(assessment => `
+              <div data-card class="rounded-lg p-5 shadow-sm">
+                <div class="flex justify-between items-start mb-3">
+                  <div>
+                    <div data-result-section class="font-semibold">
+                      ${results[assessment.primary_type].title} / ${results[assessment.secondary_type].title}
+                    </div>
+                    <div data-history-date class="opacity-75">
+                      ${new Date(assessment.completed_at).toLocaleString()}
+                    </div>
+                  </div>
+                </div>
+                <div class="grid grid-cols-4 gap-3 text-sm">
+                  ${Object.entries({ Internal: assessment.internal_score, External: assessment.external_score, Conditional: assessment.conditional_score, Performance: assessment.performance_score }).map(([type, score]) => `
+                    <div data-result-section>
+                      <div class="opacity-75">${type}</div>
+                      <div class="font-semibold">${score}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+          <div class="flex gap-3 justify-center">
+            <button data-button-primary onclick="viewResults()" class="px-8 py-3 rounded-lg font-semibold text-white">
+              Latest Results
+            </button>
+            <button data-button-secondary onclick="startNewAssessment()" class="px-8 py-3 rounded-lg font-semibold border-2 bg-white">
+              New Assessment
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    initializeApp();
+  </script>
+</body>
+</html>

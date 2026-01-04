@@ -1,0 +1,331 @@
+====================================================
+UNSCARRED EMAIL ONBOARDING SEQUENCE
+====================================================
+For: Workbook & Product Purchases
+Platform: Set up in Payhip or your email provider (ConvertKit, Mailchimp, etc.)
+
+
+====================================================
+EMAIL 1: IMMEDIATE - Welcome & Download
+====================================================
+Subject: Your [Product Name] is ready 📓
+Send: Immediately after purchase
+
+---
+
+Hi [First Name],
+
+Your [Product Name] is ready and waiting for you.
+
+**DOWNLOAD YOUR WORKBOOK:**
+[Download Button/Link]
+
+**QUICK START (do this first):**
+1. Download the PDF to your device
+2. Open Module 1 / Page 1
+3. Read the introduction - it takes about 5 minutes
+4. Complete the first exercise before bed tonight
+
+This isn't just information to consume. It's work that changes you when you actually do it.
+
+Start small. Start tonight.
+
+You've got this.
+
+- [Your Name]
+Unscarred
+
+P.S. If you have any trouble accessing your download, reply to this email and I'll help you out.
+
+---
+
+
+====================================================
+EMAIL 2: DAY 1 - How to Use This
+====================================================
+Subject: How to get the most from your workbook
+Send: 24 hours after purchase
+
+---
+
+Hi [First Name],
+
+You downloaded [Product Name] yesterday. Here's how to make it actually work:
+
+**THE MISTAKE MOST PEOPLE MAKE:**
+They read it like a book. Skim the exercises. Tell themselves they'll "come back to it."
+
+They don't.
+
+**WHAT ACTUALLY WORKS:**
+- Set 15 minutes each day (same time works best)
+- Do ONE exercise completely before moving on
+- Write by hand when possible - it activates different brain pathways
+- Don't judge what comes up. Just write.
+
+**THIS WEEK'S GOAL:**
+Complete [specific section/module name] by [day].
+
+You don't have to be perfect. You just have to start.
+
+If you get stuck on anything, hit reply. I read every email.
+
+- [Your Name]
+
+---
+
+
+====================================================
+EMAIL 3: DAY 3 - Common Sticking Points
+====================================================
+Subject: Getting stuck? Read this.
+Send: 72 hours after purchase
+
+---
+
+Hi [First Name],
+
+By now you're either:
+
+A) Making progress (great - keep going)
+B) Haven't started yet (no judgment - let's fix that)
+C) Started but got stuck somewhere (most common)
+
+**IF YOU HAVEN'T STARTED:**
+Open the workbook right now. Do the first exercise. It takes 5 minutes. 
+That's it. Momentum beats motivation.
+
+**IF YOU'RE STUCK:**
+The most common place people freeze:
+
+"[Specific exercise name]" - This one asks you to [what it asks].
+
+Here's the thing: you don't need the perfect answer. Write something. 
+Anything. You can always revise later. The goal is to get your thoughts 
+out of your head and onto paper where you can actually work with them.
+
+**IF YOU'RE MAKING PROGRESS:**
+Beautiful. Keep going. You're doing the work most people avoid.
+
+Reply and tell me where you are. I love hearing progress stories.
+
+- [Your Name]
+
+---
+
+
+====================================================
+EMAIL 4: DAY 7 - Check-in + Offer
+====================================================
+Subject: Week 1 check-in (+ something for you)
+Send: 7 days after purchase
+
+---
+
+Hi [First Name],
+
+It's been one week since you got [Product Name].
+
+Quick check-in: How's it going?
+
+**BY NOW YOU MIGHT HAVE:**
+- Completed [X section/module]
+- Noticed some patterns you didn't see before
+- Had some uncomfortable realizations (that's growth)
+- Wanted to talk through what's coming up
+
+**IF YOU WANT SUPPORT:**
+I offer 1:1 calls specifically for working through what comes up in the workbooks.
+
+→ Book a 30-minute call: [Calendar Link]
+   $27 - we'll tackle one specific thing you're working through
+
+→ Or grab a full hour: [Calendar Link]  
+   $47 - deeper dive into your patterns
+
+**Use code WORKBOOK15 for 15% off your first call.**
+
+No pressure. The workbook works on its own. But sometimes talking it 
+through with someone who gets it makes the difference.
+
+Keep going. You're doing important work.
+
+- [Your Name]
+
+---
+
+
+====================================================
+EMAIL 5: DAY 14 - Progress Check + Next Steps
+====================================================
+Subject: Two weeks in - what's changed?
+Send: 14 days after purchase
+
+---
+
+Hi [First Name],
+
+Two weeks ago you started [Product Name].
+
+Take a moment right now and notice:
+
+**WHAT'S DIFFERENT?**
+- How do you talk to yourself now vs. before?
+- What patterns have you caught yourself in?
+- What feels even slightly clearer?
+
+Sometimes healing is dramatic. Usually it's subtle. Small shifts. 
+Moments where you pause instead of react. Times you recognize the 
+pattern before you're in the middle of it.
+
+That's real change. And it counts.
+
+**WHAT'S NEXT FOR YOU?**
+
+If you found [Product Name] helpful, here's what usually helps next:
+
+[Option 1: Related Product]
+→ [Product Name] - [one-line description] - $XX
+   [Link]
+
+[Option 2: Program Upsell]
+→ [Program Name] - [one-line description] - $XXX
+   [Link]
+
+[Option 3: Ongoing Support]
+→ Text Support - daily pattern interrupts - $127/month
+   [Link]
+
+Or just keep working through what you have. Depth beats breadth.
+
+Proud of you for doing this work.
+
+- [Your Name]
+
+---
+
+
+====================================================
+EMAIL 6: DAY 30 - Completion & Testimonial Request
+====================================================
+Subject: You've had this for a month now
+Send: 30 days after purchase
+
+---
+
+Hi [First Name],
+
+It's been a month since you got [Product Name].
+
+Whether you've completed it, you're still working through it, or 
+life got in the way - you made a choice to invest in yourself.
+
+That matters.
+
+**QUICK FAVOR:**
+If the workbook helped you, I'd love to hear about it.
+
+Just reply to this email with a sentence or two about:
+- What shifted for you
+- What exercise or section was most helpful
+- What you'd tell someone considering it
+
+I may share your words (first name only, or anonymous if you prefer) 
+to help others find their way here.
+
+**WANT TO GO DEEPER?**
+
+→ Book a call: [Calendar Link]
+→ Join Best Friend Mode (daily text support): [Link]
+→ Browse all programs: [Link]
+
+Thank you for trusting me with your healing journey.
+
+- [Your Name]
+
+---
+
+
+====================================================
+SETUP INSTRUCTIONS
+====================================================
+
+IN PAYHIP:
+1. Go to Account → Emails → Purchase Confirmation
+2. Customize the default purchase email (use Email 1 template)
+3. For follow-up emails, you'll need to export customer emails 
+   and use an email marketing platform
+
+IN CONVERTKIT/MAILCHIMP:
+1. Create an automation/sequence triggered by purchase
+2. Add each email at the specified delay
+3. Tag subscribers by product for segmentation
+4. Set up conditional upsells based on what they bought
+
+PERSONALIZATION TOKENS:
+- [First Name] = subscriber's first name
+- [Product Name] = name of what they purchased
+- [Calendar Link] = https://calendar.app.google/aySTQmpfSfueAD6V9
+- [Link] = relevant product URLs
+
+
+====================================================
+OPTIONAL EMAILS
+====================================================
+
+CART ABANDONMENT (if they start checkout but don't finish):
+Subject: You left something behind
+Send: 1 hour after abandonment
+
+---
+
+Hi,
+
+You were about to get [Product Name] but didn't finish checking out.
+
+If something came up, no worries. Your cart is still there:
+[Complete Purchase Button]
+
+If you had questions or concerns, just reply to this email. 
+Happy to help.
+
+- [Your Name]
+
+---
+
+
+WIN-BACK (for past customers who haven't bought in 90 days):
+Subject: It's been a while
+Send: 90 days after last purchase
+
+---
+
+Hi [First Name],
+
+You got [Previous Product] from me a few months ago.
+
+Checking in: How are you doing with it?
+
+If you're ready for the next step in your healing journey, 
+here's what might help:
+
+[Relevant upsell based on their purchase history]
+
+Or just reply and tell me where you are. I'm here.
+
+- [Your Name]
+
+---
+
+
+====================================================
+METRICS TO TRACK
+====================================================
+
+- Open rates (aim for 40%+ for transactional emails)
+- Click rates on download links
+- Reply rates (engagement indicator)
+- Upsell conversion from Day 7 and Day 14 emails
+- Testimonial collection rate from Day 30 email
+
+

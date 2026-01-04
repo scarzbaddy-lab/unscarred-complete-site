@@ -1,0 +1,246 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nervous System Regulation Quiz | Unscarred</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <style>
+        :root {
+            --bg: #050a08;
+            --card: #0a1210;
+            --primary: #11998e;
+            --primary-glow: rgba(17, 153, 142, 0.3);
+            --secondary: #38ef7d;
+            --text: #f5f0eb;
+            --text-soft: #a89f97;
+            --border: #1a2a25;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6; color: var(--text);
+            background: var(--bg); padding: 20px; min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(17, 153, 142, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .quiz-container {
+            max-width: 800px; margin: 0 auto; background: var(--card);
+            border-radius: 16px; padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid var(--border);
+            position: relative; z-index: 1;
+        }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--text-soft); text-decoration: none; font-size: 0.85rem;
+            margin-bottom: 24px; transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--text); }
+        h1 { color: var(--primary); margin-bottom: 10px; font-size: 2.5em; font-weight: 700; }
+        .subtitle { color: var(--text-soft); margin-bottom: 30px; font-size: 1.2em; font-weight: 300; }
+        .question { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px solid var(--border); }
+        .question:last-of-type { border-bottom: none; }
+        .question-text { font-size: 1.15em; margin-bottom: 15px; font-weight: 600; color: var(--text); }
+        .scale-container { display: flex; gap: 10px; margin-top: 10px; }
+        .scale-option {
+            flex: 1; padding: 15px 10px; border: 2px solid var(--border);
+            border-radius: 10px; cursor: pointer; text-align: center;
+            transition: all 0.3s ease; background: rgba(0,0,0,0.3);
+            font-size: 0.95em; font-weight: 500; color: var(--text-soft);
+        }
+        .scale-option:hover { border-color: var(--primary); background: rgba(17, 153, 142, 0.1); transform: translateY(-2px); color: var(--text); }
+        .scale-option.selected { border-color: var(--primary); background: linear-gradient(135deg, rgba(17, 153, 142, 0.15), rgba(56, 239, 125, 0.1)); font-weight: 700; color: var(--text); }
+        .scale-labels { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9em; color: var(--text-soft); font-weight: 500; }
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white; border: none; padding: 18px 40px;
+            font-size: 1.15em; font-weight: 600; border-radius: 12px;
+            cursor: pointer; transition: all 0.3s ease; margin-top: 20px;
+            width: 100%; box-shadow: 0 4px 15px var(--primary-glow);
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--primary-glow); }
+        .btn:disabled { background: #333; cursor: not-allowed; box-shadow: none; transform: none; }
+        .results { display: none; }
+        .results.show { display: block; }
+        .result-box { background: rgba(0,0,0,0.3); padding: 35px; border-radius: 16px; margin-bottom: 25px; border-left: 6px solid var(--primary); }
+        .score-display { font-size: 3em; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
+        .result-title { font-size: 2.2em; color: var(--primary); margin-bottom: 15px; font-weight: 700; }
+        .result-description { color: var(--text-soft); line-height: 1.9; margin-bottom: 25px; font-size: 1.05em; }
+        .pattern-section { background: rgba(0,0,0,0.2); padding: 25px; border-radius: 12px; margin-top: 20px; border: 1px solid var(--border); }
+        .pattern-section h3 { color: var(--primary); margin-bottom: 18px; font-size: 1.3em; font-weight: 600; }
+        .pattern-list { list-style: none; padding-left: 0; }
+        .pattern-list li { padding: 10px 0; padding-left: 30px; position: relative; font-size: 1.05em; color: var(--text-soft); }
+        .pattern-list li:before { content: "?"; position: absolute; left: 0; color: var(--primary); font-weight: bold; font-size: 1.3em; }
+        .hidden { display: none; }
+        .cta-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+        .cta-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
+        .cta-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cta-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 16px; background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border); border-radius: 10px;
+            color: var(--text-soft); text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease;
+        }
+        .cta-link:hover { background: rgba(17, 153, 142, 0.1); border-color: var(--primary); color: var(--text); }
+        @media (max-width: 600px) { .quiz-container { padding: 25px; } h1 { font-size: 2em; } .scale-container { flex-direction: column; } .scale-option { padding: 12px; } }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <div id="quiz-section">
+            <h1>How Dysregulated Are You </h1>
+            <p class="subtitle">Assess your nervous system regulation capacity</p>
+            <div id="questions"></div>
+            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+        </div>
+        <div id="results-section" class="results">
+            <div id="result-content"></div>
+            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            { text: "I can calm myself down when I'm upset", reverse: true },
+            { text: "I feel constantly on edge or braced for something bad", reverse: false },
+            { text: "Small things overwhelm me easily", reverse: false },
+            { text: "I have trouble sleeping or staying asleep", reverse: false },
+            { text: "I can identify what I'm feeling in the moment", reverse: true },
+            { text: "I feel numb or disconnected from my emotions", reverse: false },
+            { text: "I startle easily at sudden noises or movements", reverse: false },
+            { text: "I can take deep breaths and feel them actually help", reverse: true },
+            { text: "My heart races even when there's no real threat", reverse: false },
+            { text: "I feel safe in my body most of the time", reverse: true },
+            { text: "I get stuck in thought loops and can't shut my brain off", reverse: false },
+            { text: "I can be present without dissociating or checking out", reverse: true },
+            { text: "I feel exhausted even after resting", reverse: false },
+            { text: "I can handle conflict without shutting down or exploding", reverse: true },
+            { text: "I experience physical symptoms (headaches, stomach issues, tension) regularly", reverse: false },
+            { text: "I can recognize when I'm getting dysregulated before it takes over", reverse: true },
+            { text: "I feel like I'm constantly in survival mode", reverse: false },
+            { text: "I have tools that actually work to help me regulate", reverse: true },
+            { text: "I swing between feeling nothing and feeling everything", reverse: false },
+            { text: "I can stay grounded when triggered", reverse: true }
+        ];
+        const scaleOptions = ["Never", "Rarely", "Sometimes", "Often", "Always"];
+        let answers = {};
+        function renderQuestions() {
+            const container = document.getElementById('questions');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <div class="question-text">${index + 1}. ${q.text}</div>
+                    <div class="scale-labels"><span>Never</span><span>Always</span></div>
+                    <div class="scale-container" id="scale-${index}">
+                        ${scaleOptions.map((label, value) => `<div class="scale-option" onclick="selectOption(${index}, ${value}, ${q.reverse})">${label}</div>`).join('')}
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+        function selectOption(questionIndex, value, reverse) {
+            const scaleContainer = document.getElementById(`scale-${questionIndex}`);
+            const options = scaleContainer.getElementsByClassName('scale-option');
+            Array.from(options).forEach(opt => opt.classList.remove('selected'));
+            options[value].classList.add('selected');
+            answers[questionIndex] = reverse   (4 - value) : value;
+            if (Object.keys(answers).length === questions.length) {
+                document.getElementById('submit-btn').disabled = false;
+            }
+        }
+        function calculateResults() {
+            const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0);
+            const maxScore = questions.length * 4;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            displayResults(totalScore, percentage);
+        }
+        function displayResults(score, percentage) {
+            let level, color, title, description, signs, tools, ctas;
+            if (percentage <= 25) {
+                level = "Well-Regulated";
+                color = "#27ae60";
+                title = "Your Nervous System Is Stable";
+                description = "You have solid regulation capacity. You can recognize when you're getting dysregulated and have tools that actually work. You're not immune to stress, but you can return to baseline relatively quickly. You feel safe in your body most of the time and can stay present even when things are hard.";
+                signs = ["You can self-soothe effectively", "You recognize dysregulation early", "You have a window of tolerance that allows for emotional range", "You can stay present without dissociating", "You feel safe in your body most of the time"];
+                tools = ["Keep practicing the tools that work for you", "Notice what helps you stay regulated and do more of it", "Support others in learning regulation skills", "Maintain boundaries that protect your nervous system"];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "ðŸ”„" }];
+            } else if (percentage <= 50) {
+                level = "Moderate Dysregulation";
+                color = "#f39c12";
+                title = "Your Nervous System Is Struggling";
+                description = "You're managing, but it costs you. You can regulate sometimes, but other times you get overwhelmed easily. You might have tools that work occasionally, but they're not consistent. You're aware of your nervous system states but don't always have the capacity to shift them.";
+                signs = ["You regulate inconsistently", "Small stressors can tip you over", "You sometimes dissociate or shut down", "You swing between feeling too much and feeling nothing", "You're working on regulation but it's hard"];
+                tools = ["Build a regulation toolkit with multiple options", "Practice nervous system exercises daily, not just in crisis", "Learn to recognize early signs of dysregulation", "Work with a trauma-informed therapist or somatic practitioner", "Reduce unnecessary stressors where possible"];
+                ctas = [{ text: "Breath Reset Tool", url: "../learn/breath-reset.html", icon: "ðŸŒ¬ï¸" }, { text: "When You Shut Down Guide", url: "../learn/when-you-shut-down.html", icon: "ðŸ“–" }];
+            } else if (percentage <= 75) {
+                level = "Significant Dysregulation";
+                color = "#e67e22";
+                title = "Your Nervous System Is Chronically Activated";
+                description = "You're in survival mode more often than not. Your nervous system is stuck in threat response - hypervigilant, reactive, or shut down. Regulation feels nearly impossible, and the tools people suggest don't seem to work. You're exhausted from trying to function while your body is constantly screaming danger.";
+                signs = ["You're constantly on edge or numb", "Sleep is difficult or non-restorative", "You startle easily and feel unsafe", "Small things feel overwhelming", "You can't calm yourself down when upset", "Physical symptoms are constant"];
+                tools = ["Work with a trauma specialist who understands nervous system work", "Start with body-based practices (somatic therapy, yoga, breathwork)", "Focus on safety and stabilization before processing trauma", "Build micro-moments of regulation throughout the day", "Consider nervous system support (therapy, bodywork, medication)", "Reduce demands on yourself while you build capacity"];
+                ctas = [{ text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }, { text: "Safety Signals Guide", url: "../learn/safety-signals.html", icon: "ðŸ“–" }];
+            } else {
+                level = "Severe Dysregulation";
+                color = "#e74c3c";
+                title = "Your Nervous System Is Critically Dysregulated";
+                description = "You're living in a constant state of survival activation. Your nervous system is so overwhelmed that regulation feels impossible. You might feel numb, panicked, or alternate between the two. You're exhausted but can't rest. Your body doesn't feel safe, and you've likely been this way for so long you don't remember what regulated feels like.";
+                signs = ["You're in constant survival mode", "You can't calm down or you can't feel anything at all", "Sleep is severely disrupted", "You experience frequent physical symptoms", "Dissociation or panic are regular experiences", "You feel trapped in your own nervous system", "Basic functioning feels impossible"];
+                tools = ["Seek immediate support from a trauma specialist", "Consider intensive treatment (IOP, PHP, or residential if needed)", "Work with both therapy and medical support", "Start with the smallest possible regulation practices", "Focus on external stabilization (safety, sleep, basic needs)", "Give yourself permission to do less while you heal", "Build a support system that understands nervous system trauma"];
+                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "🆘" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "💗" }];
+            }
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="result-box" style="border-left-color: ${color}">
+                    <div class="score-display" style="color: ${color}">${percentage}%</div>
+                    <div style="color: ${color}; font-weight: 600; font-size: 1.1em; margin-bottom: 10px;">${level}</div>
+                    <h2 class="result-title" style="color: ${color}">${title}</h2>
+                    <p class="result-description">${description}</p>
+                    <div class="pattern-section"><h3>What This Looks Like:</h3><ul class="pattern-list">${signs.map(sign => `<li>${sign}</li>`).join('')}</ul></div>
+                    <div class="pattern-section"><h3>What Helps:</h3><ul class="pattern-list">${tools.map(tool => `<li>${tool}</li>`).join('')}</ul></div>
+                </div>
+                <div class="cta-section">
+                    <h3>Recommended Next Steps</h3>
+                    <div class="cta-links">${ctas.map(cta => `<a href="${cta.url}" class="cta-link"><span>${cta.icon}</span>${cta.text}</a>`).join('')}</div>
+                </div>
+            `;
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('show');
+        }
+        function resetQuiz() {
+            answers = {};
+            document.getElementById('questions').innerHTML = '';
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('results-section').classList.remove('show');
+            document.getElementById('submit-btn').disabled = true;
+            renderQuestions();
+        }
+        renderQuestions();
+    </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

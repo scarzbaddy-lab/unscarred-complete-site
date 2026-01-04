@@ -1,0 +1,458 @@
+<!-- 
+====================================================
+UNSCARRED PAYHIP HOMEPAGE MENU
+====================================================
+Copy everything below and paste into Payhip's 
+"Custom HTML" section on your storefront.
+====================================================
+-->
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap');
+  
+  .unscarred-menu {
+    font-family: 'Outfit', system-ui, sans-serif;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  
+  .unscarred-menu * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Header */
+  .menu-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .menu-logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .menu-logo span {
+    color: #a33b5c;
+  }
+  
+  .menu-tagline {
+    font-size: 14px;
+    color: #9a958c;
+    font-weight: 300;
+  }
+  
+  /* Tab Navigation */
+  .menu-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .menu-tab {
+    padding: 12px 24px;
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    color: #9a958c;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .menu-tab:hover {
+    border-color: rgba(163, 59, 92, 0.4);
+    color: #ece8e1;
+  }
+  
+  .menu-tab.active {
+    background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+    border-color: #a33b5c;
+    color: white;
+    box-shadow: 0 4px 20px rgba(163, 59, 92, 0.3);
+  }
+  
+  /* Content Panels */
+  .menu-panel {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  
+  .menu-panel.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* About Panel */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 40px;
+    align-items: start;
+  }
+  
+  @media (max-width: 700px) {
+    .about-content {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+  }
+  
+  .about-image {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 1;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(163, 59, 92, 0.3), rgba(124, 92, 191, 0.2));
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    margin: 0 auto;
+  }
+  
+  .about-text h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ece8e1;
+    margin-bottom: 16px;
+  }
+  
+  .about-text p {
+    font-size: 15px;
+    color: #9a958c;
+    line-height: 1.7;
+    margin-bottom: 16px;
+  }
+  
+  .about-text p strong {
+    color: #ece8e1;
+  }
+  
+  .credentials {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  
+  .credential-badge {
+    padding: 8px 16px;
+    background: rgba(124, 92, 191, 0.15);
+    border: 1px solid rgba(124, 92, 191, 0.2);
+    border-radius: 8px;
+    font-size: 12px;
+    color: #9a958c;
+  }
+  
+  /* Services Panel */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .service-item {
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+  }
+  
+  .service-item:hover {
+    border-color: rgba(163, 59, 92, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .service-icon {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  
+  .service-item h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .service-item p {
+    font-size: 14px;
+    color: #9a958c;
+    line-height: 1.6;
+  }
+  
+  /* Who Panel */
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  @media (max-width: 700px) {
+    .who-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  .who-card {
+    background: rgba(20, 18, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .who-card:hover {
+    border-color: rgba(201, 118, 61, 0.4);
+  }
+  
+  .who-card.highlight {
+    border-color: rgba(163, 59, 92, 0.3);
+    background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(20, 18, 25, 0.9));
+  }
+  
+  .who-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+  }
+  
+  .who-card h4 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .who-card p {
+    font-size: 13px;
+    color: #9a958c;
+    line-height: 1.5;
+  }
+  
+  /* CTA */
+  .menu-cta {
+    text-align: center;
+    margin-top: 40px;
+    padding: 32px;
+    background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(124, 92, 191, 0.05));
+    border: 1px solid rgba(163, 59, 92, 0.2);
+    border-radius: 20px;
+  }
+  
+  .menu-cta h3 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 24px;
+    font-weight: 600;
+    font-style: italic;
+    color: #ece8e1;
+    margin-bottom: 8px;
+  }
+  
+  .menu-cta p {
+    font-size: 14px;
+    color: #9a958c;
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+    color: white;
+    text-decoration: none;
+    border-radius: 999px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px rgba(163, 59, 92, 0.3);
+  }
+  
+  .cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(163, 59, 92, 0.4);
+  }
+  
+  /* Quick Links */
+  .quick-links {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+  
+  .quick-link {
+    font-size: 13px;
+    color: #9a958c;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .quick-link:hover {
+    color: #a33b5c;
+  }
+</style>
+
+<div class="unscarred-menu">
+  
+  <!-- Header -->
+  <div class="menu-header">
+    <div class="menu-logo">un<span>scarred</span></div>
+    <p class="menu-tagline">Turn scars into mirrors. See what they reveal.</p>
+  </div>
+  
+  <!-- Tab Navigation -->
+  <div class="menu-tabs">
+    <button class="menu-tab active" onclick="showPanel('about')">About Me</button>
+    <button class="menu-tab" onclick="showPanel('services')">What I Do</button>
+    <button class="menu-tab" onclick="showPanel('who')">Who I Help</button>
+  </div>
+  
+  <!-- About Panel -->
+  <div id="panel-about" class="menu-panel active">
+    <div class="about-content">
+      <div class="about-image">✦</div>
+      <div class="about-text">
+        <h2>Hi, I'm the person behind Unscarred</h2>
+        <p>
+          I decode the patterns that keep people stuck. The ones that don't make sense on paper but feel impossible to break in practice.
+        </p>
+        <p>
+          <strong>I specialize in the hard cases:</strong> complex trauma, BPD traits, anxious-avoidant dynamics, and the kind of self-sabotage that makes you feel like your own worst enemy.
+        </p>
+        <p>
+          My approach is evidence-based but human. I use nervous system science, attachment theory, and pattern recognition to help you understand <em>why</em> you do what you do, so you can finally do something different.
+        </p>
+        <p>
+          No toxic positivity. No shame. Just clarity and tools that actually work.
+        </p>
+        <div class="credentials">
+          <span class="credential-badge">Trauma-Informed</span>
+          <span class="credential-badge">Attachment Specialist</span>
+          <span class="credential-badge">Pattern Recognition</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Services Panel -->
+  <div id="panel-services" class="menu-panel">
+    <div class="services-grid">
+      <div class="service-item">
+        <div class="service-icon">📓</div>
+        <h3>Workbooks & Toolkits</h3>
+        <p>Self-paced resources with exercises, scripts, and frameworks you can use right now. Print them, fill them in, track your patterns.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">🎓</div>
+        <h3>Programs & Courses</h3>
+        <p>Week-by-week curriculum with video lessons, micro-drills, and included 1:1 calls. Real transformation, not just information.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">📞</div>
+        <h3>1:1 Phone Calls</h3>
+        <p>Direct support for your specific situation. Pattern identification, script feedback, and actionable next steps you can use immediately.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-icon">💬</div>
+        <h3>Text Support</h3>
+        <p>Real-time pattern interrupts when you need them. Before-you-text check-ins, daily support, and someone who gets it in your pocket.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Who I Help Panel -->
+  <div id="panel-who" class="menu-panel">
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-icon">💔</div>
+        <h4>Anxious Attachers</h4>
+        <p>Chasers, over-explainers, and those who spiral when they don't hear back.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🧊</div>
+        <h4>Avoidant Attachers</h4>
+        <p>Those who shut down, need space, or feel suffocated by intimacy.</p>
+      </div>
+      <div class="who-card highlight">
+        <div class="who-icon">🔥</div>
+        <h4>Fearful-Avoidants</h4>
+        <p>The push-pull. Want closeness and distance at the same time.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">⚔️</div>
+        <h4>Trauma Survivors</h4>
+        <p>Complex PTSD, toxic relationships, patterns that started in childhood.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">💜</div>
+        <h4>BPD Traits</h4>
+        <p>Intense emotions, fear of abandonment, splitting, identity confusion.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-icon">🎭</div>
+        <h4>Pattern Breakers</h4>
+        <p>Anyone stuck in cycles they can't explain but desperately want to end.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- CTA -->
+  <div class="menu-cta">
+    <h3>Not sure where to start?</h3>
+    <p>Browse the products below or take a quiz to find your path.</p>
+    <a href="https://unscarred.site/quizzes/" class="cta-button" target="_blank">Take a Quiz →</a>
+  </div>
+  
+  <!-- Quick Links -->
+  <div class="quick-links">
+    <a href="https://unscarred.site" class="quick-link" target="_blank">Main Website</a>
+    <a href="https://unscarred.site/programs.html" class="quick-link" target="_blank">All Programs</a>
+    <a href="https://unscarred.site/blog.html" class="quick-link" target="_blank">Blog</a>
+    <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" class="quick-link" target="_blank">Book a Call</a>
+  </div>
+  
+</div>
+
+<script>
+function showPanel(panelName) {
+  // Remove active from all tabs and panels
+  document.querySelectorAll('.menu-tab').forEach(tab => tab.classList.remove('active'));
+  document.querySelectorAll('.menu-panel').forEach(panel => panel.classList.remove('active'));
+  
+  // Add active to clicked tab
+  event.target.classList.add('active');
+  
+  // Show corresponding panel
+  document.getElementById('panel-' + panelName).classList.add('active');
+}
+</script>
+

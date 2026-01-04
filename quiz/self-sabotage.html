@@ -1,0 +1,602 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Sabotage Style Quiz | Unscarred</title>
+  <meta name="description" content="When peace shows up, what does your system do  Identify your sabotage pattern and learn to break the loop.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸ”„</text></svg>">
+  <style>
+    :root { --bg-void: #050507; --bg-deep: #0a0a0f; --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4); --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c; --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955; --border-glass: rgba(255,255,255,0.06); --radius-lg: 20px; --radius-xl: 28px; --font-display: 'Cormorant Garamond', Georgia, serif; --font-body: 'Outfit', system-ui, sans-serif; --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px; --space-12: 48px; --space-16: 64px; --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem; --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem; --shadow-md: 0 4px 20px rgba(0,0,0,0.3); --ease-out: cubic-bezier(0.22, 1, 0.36, 1); --duration-fast: 150ms; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); line-height: 1.6; min-height: 100vh; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.1) 0%, transparent 40%); pointer-events: none; z-index: 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .container--narrow { max-width: 640px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(5, 5, 7, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-glass); }
+    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--primary); }
+    .btn { display: inline-block; padding: 14px 28px; border-radius: 999px; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.3s ease; border: none; cursor: pointer; }
+    .btn--rose { background: linear-gradient(135deg, var(--primary), #8a2a4a); color: white; box-shadow: 0 8px 30px var(--primary-glow); }
+    .btn--rose:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--primary-glow); }
+    .btn--lg { padding: 18px 36px; font-size: 0.9rem; }
+    .btn--ghost { background: transparent; color: var(--text-soft); border: 1px solid var(--border-glass); padding: 10px 20px; }
+    .btn--ghost:hover { color: var(--text-main); border-color: rgba(255,255,255,0.2); }
+    .btn--sm { padding: 8px 16px; font-size: 0.75rem; }
+    .btn--secondary { background: transparent; color: var(--text-soft); border: 1px solid var(--border-glass); }
+    .btn--secondary:hover { border-color: rgba(255,255,255,0.2); color: var(--text-main); }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="header__inner">
+      <a href="../index.html" class="logo">un<span>scarred</span></a>
+      <a href="/quizzes/" class="btn btn--ghost btn--sm">? All Quizzes</a>
+    </div>
+  </header>
+
+  <main class="quiz-page">
+    <div class="container container--narrow">
+      <!-- Intro -->
+      <div class="quiz-intro" id="intro">
+        <div class="quiz-intro__badge">Self-Sabotage Style Quiz</div>
+        <h1>When peace shows up, what does your system do </h1>
+        <p class="quiz-intro__lead">You know the feeling. Things are going well, then you do something that ruins it. This quiz identifies your pattern so you can finally break it.</p>
+        
+        <div class="quiz-intro__dimensions">
+          <div class="dimension-pill"><span>ðŸŽ¯</span> Tester</div>
+          <div class="dimension-pill"><span>ðŸ’¥</span> Chaos Maker</div>
+          <div class="dimension-pill"><span>ðŸ§Š</span> Freezer</div>
+          <div class="dimension-pill"><span>ðŸ‘»</span> Vanisher</div>
+        </div>
+        
+        <button class="btn btn--rose btn--lg" id="start-quiz">Take the Quiz ?</button>
+        <p class="quiz-intro__note">12 scenarios Â· 4 minutes Â· No email required</p>
+      </div>
+
+      <!-- Quiz -->
+      <div class="quiz-container" id="quiz-container" style="display: none;">
+        <div class="quiz-progress">
+          <div class="quiz-progress__bar">
+            <div class="quiz-progress__fill" id="progress-fill"></div>
+          </div>
+          <span class="quiz-progress__text" id="progress-text">Question 1 of 12</span>
+        </div>
+        <div class="quiz-question" id="quiz-question"></div>
+      </div>
+
+      <!-- Results -->
+      <div class="quiz-results" id="quiz-results" style="display: none;"></div>
+    </div>
+  </main>
+
+  <script>
+    const questions = [
+      {
+        id: 1,
+        text: "Things are going well with someone new. You start to feel safe. What happens next ",
+        options: [
+          { value: "tester", label: "I test them to see if they'll stay when things get hard", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "I pick a fight or create intensity to feel alive", icon: "ðŸ’¥" },
+          { value: "freeze", label: "I overthink until I can't act and the moment passes", icon: "ðŸ§Š" },
+          { value: "vanish", label: "I pull back and go quiet without explaining why", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 2,
+        text: "Your partner does something thoughtful and loving. Your immediate inner response is...",
+        options: [
+          { value: "tester", label: "\"Let's see if they keep this up. This probably won't last.\"", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "\"This is nice but kind of boring. I need more spark.\"", icon: "ðŸ’¥" },
+          { value: "freeze", label: "\"What's the catch  What do they want \"", icon: "ðŸ§Š" },
+          { value: "vanish", label: "\"This feels like too much. I need space.\"", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 3,
+        text: "You haven't heard from them in a few hours. What do you do ",
+        options: [
+          { value: "tester", label: "Send something provocative to see how they respond", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Start a conflict or bring up something heavy", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Obsess about what it means but don't reach out", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Match their distance. Go silent too.", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 4,
+        text: "They want to make plans for next month. You feel...",
+        options: [
+          { value: "tester", label: "Skeptical. I'll believe it when it happens.", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Restless. Future planning feels like losing freedom.", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Overwhelmed. I can't think that far ahead.", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Trapped. I need to keep my options open.", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 5,
+        text: "You had a really good date. What happens in your mind after ",
+        options: [
+          { value: "tester", label: "I look for signs it wasn't as good as it seemed", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "I feel antsy and want to text something intense", icon: "ðŸ’¥" },
+          { value: "freeze", label: "I replay every moment and analyze what I said wrong", icon: "ðŸ§Š" },
+          { value: "vanish", label: "I feel exposed and want to retreat", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 6,
+        text: "They tell you they love you. Your honest first reaction is...",
+        options: [
+          { value: "tester", label: "\"Prove it. Show me you mean it.\"", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "\"Now what  This changes everything.\"", icon: "ðŸ’¥" },
+          { value: "freeze", label: "\"I don't know what to say. I need to think.\"", icon: "ðŸ§Š" },
+          { value: "vanish", label: "\"That's a lot. I feel like running.\"", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 7,
+        text: "Your relationship is stable and peaceful. No drama. You feel...",
+        options: [
+          { value: "tester", label: "Suspicious. Something must be wrong under the surface.", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Bored. I need something to happen.", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Anxious. Waiting for the other shoe to drop.", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Suffocated. I need more space.", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 8,
+        text: "They're being consistent and reliable. You...",
+        options: [
+          { value: "tester", label: "Find something to criticize or question", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Feel like the spark is dying and want to shake things up", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Start expecting the worst and preparing for it", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Start creating distance without really meaning to", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 9,
+        text: "You have a need but you're afraid to ask. You...",
+        options: [
+          { value: "tester", label: "Drop hints and see if they figure it out on their own", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Get frustrated and blow up about something else", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Talk myself out of it and say nothing", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Pretend I don't need it and withdraw", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 10,
+        text: "They did something small that bothered you. You...",
+        options: [
+          { value: "tester", label: "File it away as evidence and wait to see if it happens again", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Make it bigger than it is and start a fight", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Say nothing but ruminate on it for days", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Pull back emotionally without explaining", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 11,
+        text: "Things are going so well you're scared. What do you do ",
+        options: [
+          { value: "tester", label: "Look for cracks. Find the thing that proves it's not real.", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Do something impulsive that changes the dynamic.", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Get stuck in my head and stop being present.", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Create distance so the fall won't hurt as much.", icon: "ðŸ‘»" }
+        ]
+      },
+      {
+        id: 12,
+        text: "Looking at your relationship history, you most often wreck things by...",
+        options: [
+          { value: "tester", label: "Testing people until they fail or leave", icon: "ðŸŽ¯" },
+          { value: "chaos", label: "Creating drama when things get too calm", icon: "ðŸ’¥" },
+          { value: "freeze", label: "Overthinking until I can't move forward", icon: "ðŸ§Š" },
+          { value: "vanish", label: "Disappearing when intimacy gets real", icon: "ðŸ‘»" }
+        ]
+      }
+    ];
+
+    const results = {
+      tester: {
+        name: "The Tester",
+        tagline: "Trust, but verify... constantly.",
+        profile: "You survived by learning that people leave. So now you test them, push their buttons, create scenarios where they have to prove they won't abandon you. The problem: you're rigging the test so they fail.",
+        why: "Testing gave you information. If they were going to leave, at least you'd know sooner. But now the tests push away people who would have stayed.",
+        nervous: "Your system needs repeated small proofs of safety, not big tests. Practice receiving consistency without questioning it.",
+        doThis: ["Catch the test before you run it", "Name the fear underneath (\"I'm scared you'll leave\")", "Replace the test with a direct ask"],
+        avoid: ["Disguised tests (\"just seeing what you'd do\")", "Collecting evidence for an exit", "Punishing them for passing too easily"],
+        cta: { text: "Anxious Healing Program", url: "../program/anxious-healing.html" }
+      },
+      chaos: {
+        name: "The Chaos Maker",
+        tagline: "Peace feels like the calm before the storm.",
+        profile: "Stability makes your nervous system suspicious. When things are good, you feel the urge to shake them up, pick a fight, do something unpredictable. Intensity feels more real than peace.",
+        why: "You learned that calm meant danger was coming. Drama became how you stayed alert. But now you create the storms you're trying to prevent.",
+        nervous: "Your system confuses intensity with connection. Practice sitting with boredom. It's not a threat.",
+        doThis: ["Notice when you're manufacturing drama", "Sit with calm for 10 minutes before acting", "Ask: \"Is this real or am I bored \""],
+        avoid: ["Starting fights to feel alive", "Mistaking chaos for passion", "Sabotaging good things because they're \"boring\""],
+        cta: { text: "Daily Grounding Practice", url: "../tools.html" }
+      },
+      freeze: {
+        name: "The Freezer",
+        tagline: "I'll think about it until the opportunity passes.",
+        profile: "Your defense is analysis paralysis. When things feel risky, you retreat into your head, overthink every angle, and freeze until the moment passes. You don't run or fight. You buffer.",
+        why: "Thinking gave you a sense of control when action felt dangerous. But now you miss opportunities by staying in your head.",
+        nervous: "Freeze is a nervous system state, not a character flaw. Practice small actions before you feel ready.",
+        doThis: ["Set a timer on decisions (10 min max)", "Take one small action while scared", "Name the fear, then move anyway"],
+        avoid: ["Endless research before acting", "Using uncertainty as an excuse", "Perfectionism as procrastination"],
+        cta: { text: "Break The Fantasy Bond", url: "../program/break-the-bond.html" }
+      },
+      vanish: {
+        name: "The Vanisher",
+        tagline: "I leave before I can be left.",
+        profile: "When intimacy gets real, you disappear. Not dramatically, just... quietly. You pull back, go cold, stop being available. Closeness triggers your exit reflex.",
+        why: "Vanishing kept you safe from abandonment. If you leave first, you control the ending. But now you leave relationships that could have been safe.",
+        nervous: "Your system treats intimacy like entrapment. Practice staying visible without fleeing.",
+        doThis: ["Tell them you need space instead of just taking it", "Return after withdrawing, even briefly", "Notice when distance is fear, not preference"],
+        avoid: ["Ghosting when things get real", "Using space as punishment", "Disappearing instead of communicating"],
+        cta: { text: "FA Micro Drills", url: "../tools.html" }
+      }
+    };
+
+    let current = 0;
+    let answers = {};
+
+    const intro = document.getElementById('intro');
+    const container = document.getElementById('quiz-container');
+    const resultsEl = document.getElementById('quiz-results');
+    const questionEl = document.getElementById('quiz-question');
+    const progressFill = document.getElementById('progress-fill');
+    const progressText = document.getElementById('progress-text');
+
+    document.getElementById('start-quiz').addEventListener('click', () => {
+      intro.style.display = 'none';
+      container.style.display = 'block';
+      renderQuestion();
+    });
+
+    function renderQuestion() {
+      const q = questions[current];
+      const pct = ((current + 1) / questions.length) * 100;
+      progressFill.style.width = `${pct}%`;
+      progressText.textContent = `Question ${current + 1} of ${questions.length}`;
+
+      questionEl.innerHTML = `
+        <p class="quiz-question__text">${q.text}</p>
+        <div class="quiz-options quiz-options--vertical">
+          ${q.options.map(opt => `
+            <button class="quiz-option quiz-option--full" data-value="${opt.value}">
+              <span class="quiz-option__icon">${opt.icon}</span>
+              <span class="quiz-option__label">${opt.label}</span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+
+      questionEl.querySelectorAll('.quiz-option').forEach(btn => {
+        btn.addEventListener('click', () => selectAnswer(btn.dataset.value));
+      });
+    }
+
+    function selectAnswer(value) {
+      answers[questions[current].id] = value;
+      
+      questionEl.style.opacity = '0';
+      questionEl.style.transform = 'translateX(-20px)';
+
+      setTimeout(() => {
+        current++;
+        if (current < questions.length) {
+          renderQuestion();
+          questionEl.style.opacity = '1';
+          questionEl.style.transform = 'translateX(0)';
+        } else {
+          showResults();
+        }
+      }, 200);
+    }
+
+    function showResults() {
+      container.style.display = 'none';
+      resultsEl.style.display = 'block';
+
+      const scores = { tester: 0, chaos: 0, freeze: 0, vanish: 0 };
+      Object.values(answers).forEach(v => scores[v]++);
+      
+      const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+      const top = sorted[0][0];
+      const r = results[top];
+
+      // Check for combo
+      let comboNote = '';
+      if (sorted[0][1] === sorted[1][1] || sorted[0][1] - sorted[1][1] <= 1) {
+        comboNote = `<div class="result-card result-card--combo">
+          <h3>ðŸ“Š Combo Pattern</h3>
+          <p>You also scored high on <strong>${results[sorted[1][0]].name}</strong>. Many people switch between patterns depending on the situation. Your primary pattern is ${r.name}, but ${results[sorted[1][0]].name} shows up as a secondary defense.</p>
+        </div>`;
+      }
+
+      resultsEl.innerHTML = `
+        <div class="result-header">
+          <h1>${r.name}</h1>
+          <p class="result-clinical">${r.tagline}</p>
+        </div>
+
+        <div class="result-card result-card--snapshot">
+          <h3>Your Pattern</h3>
+          <p class="result-snapshot">${r.profile}</p>
+        </div>
+
+        <div class="result-card">
+          <h3>Why You Do This</h3>
+          <p>${r.why}</p>
+        </div>
+
+        <div class="result-card result-card--nervous">
+          <h3>ðŸ§  Nervous System Note</h3>
+          <p>${r.nervous}</p>
+        </div>
+
+        ${comboNote}
+
+        <div class="result-card result-card--do">
+          <h3>? Try This Week</h3>
+          <ul>${r.doThis.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+
+        <div class="result-card result-card--avoid">
+          <h3>ðŸš« What to Avoid</h3>
+          <ul>${r.avoid.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+
+        <div class="result-card result-card--scores">
+          <h3>Your Scores</h3>
+          <div class="score-bars">
+            ${Object.entries(scores).map(([k, v]) => `
+              <div class="score-row">
+                <span class="score-label">${results[k].name}</span>
+                <div class="score-track"><div class="score-fill" style="width: ${(v / 12) * 100}%"></div></div>
+                <span class="score-value">${v}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+
+        <div class="result-ctas">
+          <a href="${r.cta.url}" class="btn btn--rose btn--lg">${r.cta.text} ?</a>
+          <a href="../quiz/mirror.html" class="btn btn--secondary">Take the Full Mirror Quiz</a>
+        </div>
+
+        <div class="result-share">
+          <p>Your pattern is not your fault. Breaking it is your power.</p>
+          <a href="/quizzes/" class="btn btn--ghost btn--sm">? More Quizzes</a>
+        </div>
+      `;
+    }
+  </script>
+
+  <style>
+    .header--minimal {
+      background: var(--paper);
+      border-bottom: 1px solid rgba(13,13,13,0.06);
+    }
+
+    .quiz-page {
+      min-height: 100vh;
+      padding: calc(80px + var(--space-12)) 0 var(--space-16);
+      background: var(--cream);
+    }
+
+    .quiz-intro {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+      animation: fadeUp 0.6s var(--ease-out) both;
+    }
+
+    .quiz-intro__badge {
+      display: inline-block;
+      padding: var(--space-2) var(--space-4);
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--space-6);
+    }
+
+    .quiz-intro h1 {
+      font-size: var(--text-3xl);
+      margin-bottom: var(--space-4);
+    }
+
+    .quiz-intro__lead {
+      font-size: var(--text-lg);
+      color: var(--muted);
+      margin-bottom: var(--space-8);
+    }
+
+    .quiz-intro__dimensions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-8);
+    }
+
+    .dimension-pill {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      background: var(--paper);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      color: var(--ink);
+    }
+
+    .quiz-intro__note {
+      font-size: var(--text-sm);
+      color: var(--muted);
+      margin-top: var(--space-4);
+    }
+
+    .quiz-container {
+      max-width: 600px;
+      margin: 0 auto;
+      animation: fadeUp 0.6s var(--ease-out) both;
+    }
+
+    .quiz-progress { margin-bottom: var(--space-8); }
+
+    .quiz-progress__bar {
+      height: 4px;
+      background: rgba(13,13,13,0.1);
+      border-radius: var(--radius-full);
+      overflow: hidden;
+    }
+
+    .quiz-progress__fill {
+      height: 100%;
+      background: var(--rose);
+      border-radius: var(--radius-full);
+      transition: width 0.3s var(--ease-out);
+    }
+
+    .quiz-progress__text {
+      display: block;
+      font-size: var(--text-sm);
+      color: var(--muted);
+      margin-top: var(--space-2);
+      text-align: center;
+    }
+
+    .quiz-question {
+      background: var(--paper);
+      border-radius: var(--radius-xl);
+      padding: var(--space-10);
+      box-shadow: var(--shadow-md);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+
+    .quiz-question__text {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: var(--space-8);
+      line-height: 1.4;
+    }
+
+    .quiz-options--vertical {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+
+    .quiz-option--full {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      padding: var(--space-4) var(--space-5);
+      background: var(--cream);
+      border: 2px solid transparent;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      text-align: left;
+    }
+
+    .quiz-option--full:hover {
+      background: var(--paper);
+      border-color: var(--rose);
+      transform: translateX(4px);
+    }
+
+    .quiz-option__icon { font-size: var(--text-xl); flex-shrink: 0; }
+    .quiz-option__label { font-size: var(--text-base); font-weight: 500; color: var(--ink); }
+
+    .quiz-results {
+      max-width: 640px;
+      margin: 0 auto;
+      animation: fadeUp 0.6s var(--ease-out);
+    }
+
+    .result-header { text-align: center; margin-bottom: var(--space-10); }
+    .result-header h1 { font-size: var(--text-3xl); margin-bottom: var(--space-2); }
+    .result-clinical { font-size: var(--text-sm); color: var(--muted); font-style: italic; }
+
+    .result-card {
+      background: var(--paper);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      margin-bottom: var(--space-4);
+    }
+
+    .result-card h3 { font-size: var(--text-base); margin-bottom: var(--space-3); }
+    .result-card p { font-size: var(--text-sm); color: var(--muted); line-height: 1.7; }
+
+    .result-card--snapshot { border-left: 4px solid var(--rose); }
+    .result-snapshot { font-family: var(--font-display); font-size: var(--text-lg) !important; font-style: italic; color: var(--ink) !important; }
+
+    .result-card--nervous { background: linear-gradient(135deg, rgba(125,154,140,0.1), var(--paper)); }
+    .result-card--combo { background: linear-gradient(135deg, rgba(196,97,108,0.08), var(--paper)); border-left: 4px solid var(--amber); }
+
+    .result-card ul { list-style: none; padding: 0; }
+    .result-card li { position: relative; padding-left: var(--space-6); margin-bottom: var(--space-2); font-size: var(--text-sm); color: var(--muted); }
+    .result-card--do li::before { content: '?'; position: absolute; left: 0; color: var(--sage); font-weight: 600; }
+    .result-card--avoid li::before { content: '?'; position: absolute; left: 0; color: var(--rose); font-weight: 600; }
+
+    .score-bars { display: flex; flex-direction: column; gap: var(--space-3); }
+    .score-row { display: flex; align-items: center; gap: var(--space-3); }
+    .score-label { width: 100px; font-size: var(--text-sm); color: var(--muted); }
+    .score-track { flex: 1; height: 6px; background: var(--cream); border-radius: var(--radius-full); overflow: hidden; }
+    .score-fill { height: 100%; background: var(--rose); border-radius: var(--radius-full); transition: width 0.5s var(--ease-out); }
+    .score-value { width: 24px; font-size: var(--text-sm); font-weight: 600; color: var(--ink); text-align: right; }
+
+    .result-ctas { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-10) 0; }
+
+    .result-share {
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--paper);
+      border-radius: var(--radius-lg);
+    }
+
+    .result-share p {
+      font-family: var(--font-display);
+      font-style: italic;
+      margin-bottom: var(--space-4);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

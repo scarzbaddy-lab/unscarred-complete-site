@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Ground Zero Reset Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #050509;
+      --card: #111019;
+      --card-soft: #181628;
+      --accent: #b13b5f;
+      --text-main: #f5f5f7;
+      --text-soft: #c0c0cf;
+      --border-subtle: #26243a;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #231b35 0, #050509 55%);
+      color: var(--text-main);
+    }
+
+    .page {
+      max-width: 880px;
+      margin: 0 auto;
+      padding: 24px 16px 40px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      text-align: center;
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .note {
+      max-width: 740px;
+      margin: 0 auto 22px;
+      font-size: 0.87rem;
+      color: var(--text-soft);
+      background: rgba(10, 10, 20, 0.88);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 12px;
+      line-height: 1.4;
+    }
+
+    .card {
+      background: linear-gradient(145deg, var(--card), var(--card-soft));
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 14px 10px;
+      margin-bottom: 18px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .section-title {
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 2px;
+    }
+
+    .section-note {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+    }
+
+    .question {
+      margin: 12px 0 8px;
+      padding: 10px 10px 8px;
+      border-radius: var(--radius-md);
+      background: rgba(12, 12, 22, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .question-label {
+      font-size: 0.94rem;
+      margin-bottom: 4px;
+    }
+
+    .hint {
+      font-size: 0.8rem;
+      color: #9b9bb0;
+      margin-bottom: 4px;
+    }
+
+    .options {
+      margin-top: 2px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      margin: 3px 0;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      cursor: pointer;
+    }
+
+    .option input {
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .submit-wrap {
+      text-align: center;
+      margin: 24px 0 10px;
+    }
+
+    button {
+      border-radius: 999px;
+      border: none;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: radial-gradient(circle at top left, #e0608b, #b13b5f);
+      color: white;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    button:active {
+      transform: translateY(1px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.55);
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #ff9494;
+      text-align: center;
+    }
+
+    .results {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .result-header {
+      margin-bottom: 8px;
+    }
+
+    .result-title {
+      font-size: 1.3rem;
+      margin: 0 0 4px;
+    }
+
+    .result-tagline {
+      font-size: 0.92rem;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .pill {
+      font-size: 0.78rem;
+      border-radius: 999px;
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 10, 22, 0.9);
+      color: var(--text-soft);
+    }
+
+    .results-body h3 {
+      font-size: 0.98rem;
+      margin: 10px 0 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .results-body p {
+      font-size: 0.9rem;
+      margin: 2px 0 8px;
+      color: var(--text-soft);
+    }
+
+    .results-body ul {
+      padding-left: 16px;
+      margin: 4px 0 10px;
+    }
+
+    .results-body li {
+      font-size: 0.88rem;
+      margin-bottom: 4px;
+      color: var(--text-soft);
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 28px 0 40px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <h1>Ground Zero Reset Quiz</h1>
+    <div class="subtitle">
+      What kind of stuck are you in right now and what actually helps you move
+    </div>
+
+    <div class="note">
+      This quiz is for people in survival mode. It is not about diagnosing you.
+      It maps what kind of stuck or discombobulation you are in so you can reset at Ground Zero with tools that fit you.
+      Neurodivergent here means your brain processes the world differently than the average.
+      Trauma here means experiences that overloaded you or blocked you from learning basic life and regulation skills.
+      You can be more than one pattern at once. That is the point.
+    </div>
+
+    <form id="gz-form">
+      <div class="card">
+        <div class="section-title">Section A · Baseline vibe</div>
+        <div class="section-note">
+          Think about a regular week, not your best or worst day.
+        </div>
+
+        <div class="question" data-question="Q1">
+          <div class="question-label">
+            Q1. When you first wake up and think about the day, what is the closest feeling
+          </div>
+          <div class="hint">Pick every one that feels true.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q1" data-freeze="1" />
+              <span>I start mentally sorting through a million options and expectations and feel tension before I even stand up.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q1" data-static="1" />
+              <span>I feel heavy and slow. I can move, but there is no real spark behind it.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q1" data-chaos="1" />
+              <span>I get a hit of motivation and start planning big changes in my head.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q1" data-sweet="1" />
+              <span>I think about messages, relationships or situations that might pull my focus first.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q1" data-war="1" />
+              <span>I already feel on edge or tired like I have lived three days before breakfast.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question" data-question="Q2">
+          <div class="question-label">
+            Q2. Across a typical day, your energy pattern looks like
+          </div>
+          <div class="hint">Pick every one that hits. If it feels like all of them, pick all of them.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q2" data-static="1" />
+              <span>I move on autopilot and slide into comfort habits without really deciding.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q2" data-freeze="1" />
+              <span>I spend a lot of time thinking about what to do and not as much time doing it.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q2" data-chaos="1" />
+              <span>I have random bursts where I start a lot at once, then I fade out again.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q2" data-sweet="1" />
+              <span>My plans change based on whoever texts or needs me.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q2" data-war="1" />
+              <span>I go from checked out to overwhelmed in seconds and lose track of time sometimes.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Section B · Choices and goals</div>
+        <div class="section-note">
+          How you handle direction and change right now.
+        </div>
+
+        <div class="question" data-question="Q3">
+          <div class="question-label">
+            Q3. When you look at all the areas you could work on, which sentences land the hardest
+          </div>
+          <div class="hint">Pick every one that feels like you.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q3" data-freeze="1" />
+              <span>I see too many directions and get stuck trying to pick the right one.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q3" data-static="1" />
+              <span>I know roughly what needs work but the effort feels bigger than what I have in the tank.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q3" data-chaos="1" />
+              <span>I jump between a few big ideas and do not land on one long enough to see results.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q3" data-sweet="1" />
+              <span>I keep putting my life on pause because of other peoples needs or feelings.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q3" data-war="1" />
+              <span>Any big change feels like a threat. My body reacts before my mind can think it through.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question" data-question="Q4">
+          <div class="question-label">
+            Q4. When you actually try to start a new habit or project, what usually happens
+          </div>
+          <div class="hint">Again, pick all that apply.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q4" data-chaos="1" />
+              <span>I go hard at first, then crash and disappear from it for a while.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q4" data-static="1" />
+              <span>I do a little, then it blends into the background and I forget it exists.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q4" data-freeze="1" />
+              <span>I keep tweaking the plan and researching instead of actually doing it.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q4" data-sweet="1" />
+              <span>I hold the habit lightly until someone else needs me, then mine drops to the bottom of the list.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q4" data-war="1" />
+              <span>My system feels so overloaded that new things feel impossible unless life forces me.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Section C · Relationships and wiring</div>
+        <div class="section-note">
+          This is about your patterns, not blame for the past.
+        </div>
+
+        <div class="question" data-question="Q5">
+          <div class="question-label">
+            Q5. Which ones sound like your relationship pattern right now
+          </div>
+          <div class="hint">You can pick more than one here too.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q5" data-sweet="2" />
+              <span>I pick people who are sweet in moments but wrong in patterns. I keep explaining them to myself.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q5" data-chaos="1" />
+              <span>I attract intense situations that move fast, then spin out.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q5" data-static="1" />
+              <span>I stay in half comfortable, half dead setups because they feel safer than starting over.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q5" data-freeze="1" />
+              <span>I stay on the sidelines. I tell myself I will try again when I am more sorted.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q5" data-war="1" />
+              <span>My history is full of heavy trauma or control and my body still acts like those people are in the room.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question" data-question="Q6">
+          <div class="question-label">
+            Q6. When someone gently points out a pattern that might be keeping you stuck, your default inner response is
+          </div>
+          <div class="hint">Pick the ones that actually happen in your head, not the one you wish was true.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q6" data-war="1" />
+              <span>I feel like I am on trial and want to defend my whole story.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q6" data-freeze="1" />
+              <span>I start doubting my own view and lose track of what is real.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q6" data-static="1" />
+              <span>I agree out loud but quietly feel too tired to do anything with it.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q6" data-chaos="1" />
+              <span>I swing between wanting to change everything and wanting to ignore it.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q6" data-sweet="1" />
+              <span>I focus on how it was said and my feelings, more than the truth of the pattern.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="section-title">Section D · Nervous system and self management</div>
+        <div class="section-note">
+          How your body and habits react when life presses you.
+        </div>
+
+        <div class="question" data-question="Q7">
+          <div class="question-label">
+            Q7. Under stress, your nervous system usually leans toward
+          </div>
+          <div class="hint">Pick the ones that have really shown up for you.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q7" data-freeze="1" />
+              <span>Loops of thinking. I replay things and imagine scenarios more than I act.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q7" data-static="1" />
+              <span>Numb and slow. I slide into comfort habits and time gets weird.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q7" data-chaos="1" />
+              <span>Big reactions. I snap into action or emotion, then regret how big it was.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q7" data-sweet="1" />
+              <span>Fixing or supporting other people so I do not have to sit with my own feelings.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q7" data-war="2" />
+              <span>Shutdown or overload. I dissociate, rage or completely leave my body.</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="question" data-question="Q8">
+          <div class="question-label">
+            Q8. If you could get one specific kind of help right now, what feels most important
+          </div>
+          <div class="hint">You can still pick more than one if they all feel loud.</div>
+          <div class="options">
+            <label class="option">
+              <input type="checkbox" name="Q8" data-freeze="1" />
+              <span>Help choosing a direction and turning it into small, clear steps.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q8" data-static="1" />
+              <span>Help building the smallest possible routine that still counts as progress.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q8" data-chaos="1" />
+              <span>Help breaking the cycle of all or nothing so life can be steadier.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q8" data-sweet="1" />
+              <span>Help rewiring how I choose people so I stop centering the wrong ones.</span>
+            </label>
+            <label class="option">
+              <input type="checkbox" name="Q8" data-war="1" />
+              <span>Help calming my system so my body stops treating normal life like a war.</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="submit-wrap">
+        <button type="submit">See My Ground Zero Pattern</button>
+        <div id="error" class="error-message">
+          You skipped something. Scroll up and answer every question first.
+        </div>
+      </div>
+    </form>
+
+    <div id="results" class="card results">
+      <div class="result-header">
+        <h2 id="result-title" class="result-title"></h2>
+        <p id="result-tagline" class="result-tagline"></p>
+      </div>
+      <div class="pill-row" id="pill-row"></div>
+      <div class="results-body">
+        <h3>What this stuck pattern really is</h3>
+        <p id="result-what"></p>
+
+        <h3>Why you got wired this way</h3>
+        <p id="result-why"></p>
+
+        <h3>Most likely causes of your stagnation</h3>
+        <ul id="result-causes"></ul>
+
+        <h3>How long to rest before you move</h3>
+        <p id="result-rest"></p>
+
+        <h3>Do not list</h3>
+        <ul id="result-donts"></ul>
+
+        <h3>Your Ground Zero reset plan</h3>
+        <p id="result-reset"></p>
+
+        <h3>Simple schedule that fits this pattern</h3>
+        <p id="result-schedule"></p>
+
+        <h3>Accountability without self hate</h3>
+        <p id="result-accountability"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const resultData = {
+      freeze: {
+        title: "Choice Overload Fog",
+        tagline: "Your mind lives in the decision screen so your body never gets to play.",
+        pills: ["Overthinking", "Direction anxiety", "Too many options"],
+        what:
+          "This pattern is not about being lazy. Your brain got wired to treat choices like landmines. So when you think about changing your life, you see every path and every risk at the same time. The more you care, the more frozen you feel.",
+        why:
+          "You may have grown up around blame, perfectionism or people who punished the wrong choice instead of teaching you how to repair. You were never shown how to try something, adjust and try again without being shamed, so staying in your head felt safer than risking a move.",
+        causes: [
+          "Always feeling like you have to pick the perfect option on the first try.",
+          "Being blamed or mocked when you chose for yourself in the past.",
+          "Never seeing gentle trial and error modeled around you.",
+          "Building self doubt instead of self trust because of mixed messages growing up."
+        ],
+        rest:
+          "You do not need a year to think. You do need a couple of true off duty days where your only job is nervous system care. After that, treat indecision that lasts more than a few days on the same topic as a signal that you need to test something on a small scale, not think more.",
+        donts: [
+          "Do not open a new tab or ask a new person every time you feel unsure.",
+          "Do not wait for one magic feeling of certainty before you act.",
+          "Do not talk to yourself like a judge every time you are confused.",
+          "Do not treat every choice like a forever marriage. Most things can be adjusted."
+        ],
+        reset:
+          "For the next week your job is to downgrade decisions into experiments. Pick one life lane, like money, health or creative work. Choose a tiny step you can test for seven days. Tell yourself you are experimenting, not deciding your whole life, then let the results teach you what is next.",
+        schedule:
+          "Morning: choose one priority for the day and write it in ten simple words. Afternoon: give that priority at least fifteen undistracted minutes even if your brain complains. Evening: write one sentence about what you learned, not whether it was good or bad.",
+        accountability:
+          "Move from self attack to curiosity. At the end of each week ask three questions. What did I try. What did I learn. What would make this ten percent easier next week. Capture your answers in a notes app or on paper so you can see proof that you are moving even when it feels slow."
+      },
+      static: {
+        title: "Low Battery Drift",
+        tagline: "Life is on the same channel and your system is saving power.",
+        pills: ["Comfort loops", "Quiet burnout", "Background grief"],
+        what:
+          "This does not look dramatic from the outside. You get through days. You might look functional. Inside there is a quiet grief that you are not really living how you want. You slide through the same routines and the easiest comforts and it is hard to believe that anything different is possible with the energy you have.",
+        why:
+          "Often this pattern comes from long seasons of carrying too much. You might have been the strong one for everyone else or the person who kept things going when others dropped the ball. Your nervous system responded by keeping you in low power mode so you could survive, not thrive.",
+        causes: [
+          "Long term emotional or physical exhaustion that never really got a reset.",
+          "Family or culture that called wanting more selfish or unrealistic.",
+          "No models of slow, realistic change, only glow up stories or crash stories.",
+          "Using screens, food or other comforts as sedation rather than short refills."
+        ],
+        rest:
+          "Your body already lives close to shut down, so endless nothing days will not actually refill you. Aim for daily gentle rest and cap full stay in bed and do absolutely nothing days to one at a time. The day after, include at least one action that moves life forward by one tiny notch.",
+        donts: [
+          "Do not call constant scrolling or background shows rest. Your brain can feel the difference.",
+          "Do not wait for a wave of inspiration. For you, motivation comes after the first move.",
+          "Do not tell yourself it only counts if it is a big impressive change.",
+          "Do not compare your pace to people who are not coming out of survival mode."
+        ],
+        reset:
+          "Pick one habit that signals to your body that life can shift. Keep it almost insultingly small. Making your bed. Opening one envelope. Walking to the mailbox. The point is not the task. The point is training your system to expect tiny consistent movement again.",
+        schedule:
+          "Morning: one anchor habit before your phone. Water, stretch, or a short breath check. Afternoon: one small adulting task that helps Future You, like trash out, email answered, or one bill looked at. Evening: one small joy that is not a screen, so your brain has another option.",
+        accountability:
+          "Track streaks visually instead of attacking yourself. Put a mark on paper or in your notes each day you do your tiny habit. If you miss a day, notice what got in the way and adjust without name calling. You are rewiring from shutdown to gentle movement."
+      },
+      chaos: {
+        title: "Crisis Loop Mode",
+        tagline: "You know how to move in emergencies, not in steady seasons.",
+        pills: ["All or nothing", "Adrenaline focus", "Crash and restart"],
+        what:
+          "You are not stuck because you cannot move. You are stuck because your system only knows how to move in extremes. When you feel a rush you make big plans, big promises and big moves. When the rush ends your capacity drops and you fall back to zero. It feels like you always live in chapter one or chapter explosion.",
+        why:
+          "If you grew up around chaos, you probably learned that nothing really changed until there was drama. Attention, help and movement arrived in crisis, not in calm. Your body learned to associate urgency with change and boredom with nothing happening for you.",
+        causes: [
+          "Using adrenaline and panic as your main fuel for focus.",
+          "Designing plans that match your high days and ignore your low days.",
+          "Internal rules that say steady equals boring or fake.",
+          "Shame spirals when you cannot maintain an unrealistic pace."
+        ],
+        rest:
+          "You need planned soft days, not crash landings. When you have a high energy day, let yourself ride it, but follow it with at least one day where your only agenda is maintenance tasks and nervous system care. Try not to stack more than three very intense days in a row.",
+        donts: [
+          "Do not promise yourself ten new habits at once.",
+          "Do not call yourself names when your body cannot keep up with an extreme plan.",
+          "Do not chase every idea that excites you. Some can live on a later list.",
+          "Do not assume calm means nothing is happening. For healing, calm is where most progress happens."
+        ],
+        reset:
+          "For the next ten days, practice cutting your usual intensity in half. If you would normally try to rebuild your whole life this month, choose one lane. If you would normally deep clean your entire world when motivated, choose one room. Your nervous system needs to see proof that smaller moves still count.",
+        schedule:
+          "Morning: write one daily aim in simple language. Afternoon: one focused block of work with a clear end time, not endless pushing. Evening: a brief shutdown ritual to put a period at the end of your day so you are not tempted to restart a whole new chapter at midnight.",
+        accountability:
+          "Catch the moment you want to blow everything up or start five things. When you feel that urge, pause and ask what would a smaller version of this look like. Write it down. Celebrate boring consistency with the same drama you usually save for big moments."
+      },
+      sweet: {
+        title: "Sweetly Wrong Orbit",
+        tagline: "You keep rotating around people who are kind in moments but costly in patterns.",
+        pills: ["Attachment wiring", "Caretaker pull", "Excuse making"],
+        what:
+          "You are not blind. You see flaws. You have probably drafted the break up speech more than once. The stuck part is that your wiring equates sweetness and struggle with loyalty. If they are kind sometimes or have a sad past, it feels wrong to fully name how their behaviour is affecting you.",
+        why:
+          "Somewhere early on you learned to build your whole emotional world around people who were a mix of soft and harmful. Maybe a parent was loving and funny but also neglectful, selfish or unstable. Your nervous system decided that your job is to understand and protect them, not to require change.",
+        causes: [
+          "Equating deep understanding with needing to stay and tolerate their patterns.",
+          "Thinking standards are mean or ungrateful if someone has a good heart.",
+          "Fear that if you raise the bar you will have nobody left.",
+          "Little or no experience seeing people hold firm boundaries and still care."
+        ],
+        rest:
+          "Your reset here is observation, not immediate action. Give yourself thirty to ninety days where you are allowed to watch patterns without making more excuses. Rest means stepping back inside your own perspective and letting yourself believe what you see.",
+        donts: [
+          "Do not turn every red flag into a side quest where you are the healer.",
+          "Do not measure a relationship only by how sweet their best days are.",
+          "Do not let whining, guilt or victim stories talk you out of your own reality.",
+          "Do not use their potential as the main reason you stay."
+        ],
+        reset:
+          "Start by separating traits from impact. Pick one person or pattern. Make two short lists. Column one is what is genuinely good or soft about them. Column two is what their behaviour actually creates in your life and your body. Let both columns exist without arguing with either. Then choose one non negotiable standard you will hold for the next month and stick to it with data, not drama.",
+        schedule:
+          "Morning: check in with yourself for one minute before your phone. Ask what do I need today that is not about anyone else. Afternoon: do one action in money, health or growth that has nothing to do with your current relationship. Evening: notice any moment you minimized your own hurt to protect someone else, and write one sentence about it.",
+        accountability:
+          "Make a simple house rule for yourself. For example if I am regularly crying, confused or defending them to everyone more than once a week, I stop calling this cute complicated love and start calling it my pattern. Write that rule where you can see it. When you break it, do not shame yourself. Note it and ask what staying in this orbit is costing you month by month."
+      },
+      war: {
+        title: "War Brain Ground Zero",
+        tagline: "Your body still thinks the old war is active even when the room is quiet.",
+        pills: ["Trauma load", "Hypervigilance", "Fragmented self"],
+        what:
+          "This is bigger than everyday stress. Your system has been running at threat level for so long that it does not know how to fully stand down. You might have fog, memory gaps, sudden shutdowns, rage spikes, or feel like different versions of you take turns driving your life. Ground Zero for you is about safety first, not grind culture.",
+        why:
+          "There were experiences that overloaded you emotionally, physically or both. Maybe you had abuse, neglect, constant chaos, heavy responsibility as a kid, or your wiring was never understood and you were punished for how your brain and body work. You did not get to learn basic regulation and self trust in a calm environment, so your shields and parts took over.",
+        causes: [
+          "Chronic trauma or pressure with little support or repair.",
+          "Being punished or mocked when you had big feelings or needs.",
+          "Possible neurodivergent traits that were treated as bad behaviour instead of wiring.",
+          "Years of gaslighting, mislabeling or having your reality dismissed by others."
+        ],
+        rest:
+          "Real rest for you is not zoning out on your phone while your body still scans for threat. Aim for small daily pockets where you feel even five percent safer, like music, pressure, warmth, or being with someone who feels steady. If you are in a flare, you may need a full week or more of nervous system care before you ask yourself for any big changes. After that, do not let yourself sit in pure recovery longer than about three weeks before you reintroduce one gentle life task.",
+        donts: [
+          "Do not demand that you move at the same pace as people who did not live your history.",
+          "Do not jump into ten different healing methods at once and overload yourself again.",
+          "Do not let people convince you this is all in your head and you should just try harder.",
+          "Do not use constant crisis as a way to feel real. Your system deserves a different normal."
+        ],
+        reset:
+          "Ground Zero means two parallel tracks. One is nervous system safety work in tiny regular doses. The other is rebuilding one corner of your outer life at a time. Choose one low charge area like simple money tasks, one room in your home or one daily self care practice. Focus there instead of trying to fix your whole story in one season.",
+        schedule:
+          "Morning: orient to now. Name the date, where you are, three things you can see. Do three slow breaths or a sensory grounding of your choice. Afternoon: one simple anchoring task like washing a few dishes, checking one account or replying to one safe message. Evening: a soft shutdown practice that is repeatable so your body learns what safe ending feels like.",
+        accountability:
+          "Your accountability style has to be gentle or your system will treat it like another threat. Once a week ask yourself two questions. What helped my body feel even a tiny bit safer this week. What made things worse. Adjust based on that. If you have access to a therapist, coach or trusted friend who understands trauma, share those answers so you do not have to carry them alone."
+      }
+    };
+
+    document.getElementById("gz-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const errorEl = document.getElementById("error");
+      errorEl.style.display = "none";
+
+      const questions = form.querySelectorAll("[data-question]");
+      for (const q of questions) {
+        const name = q.getAttribute("data-question");
+        const inputs = q.querySelectorAll('input[name="' + name + '"]');
+        let anyChecked = false;
+        inputs.forEach((inp) => {
+          if (inp.checked) anyChecked = true;
+        });
+        if (!anyChecked) {
+          errorEl.style.display = "block";
+          q.scrollIntoView({ behavior: "smooth", block: "center" });
+          return;
+        }
+      }
+
+      let scores = {
+        freeze: 0,
+        static: 0,
+        chaos: 0,
+        sweet: 0,
+        war: 0
+      };
+
+      const checkedInputs = form.querySelectorAll("input:checked");
+
+      checkedInputs.forEach((input) => {
+        scores.freeze += parseInt(input.getAttribute("data-freeze") || "0", 10);
+        scores.static += parseInt(input.getAttribute("data-static") || "0", 10);
+        scores.chaos += parseInt(input.getAttribute("data-chaos") || "0", 10);
+        scores.sweet += parseInt(input.getAttribute("data-sweet") || "0", 10);
+        scores.war += parseInt(input.getAttribute("data-war") || "0", 10);
+      });
+
+      let bestKey = null;
+      let bestScore = -Infinity;
+      for (const key in scores) {
+        if (scores[key] > bestScore) {
+          bestScore = scores[key];
+          bestKey = key;
+        }
+      }
+
+      const data = resultData[bestKey];
+
+      document.getElementById("result-title").textContent = data.title;
+      document.getElementById("result-tagline").textContent = data.tagline;
+      document.getElementById("result-what").textContent = data.what;
+      document.getElementById("result-why").textContent = data.why;
+
+      const causesList = document.getElementById("result-causes");
+      causesList.innerHTML = "";
+      data.causes.forEach((c) => {
+        const li = document.createElement("li");
+        li.textContent = c;
+        causesList.appendChild(li);
+      });
+
+      document.getElementById("result-rest").textContent = data.rest;
+
+      const dontsList = document.getElementById("result-donts");
+      dontsList.innerHTML = "";
+      data.donts.forEach((d) => {
+        const li = document.createElement("li");
+        li.textContent = d;
+        dontsList.appendChild(li);
+      });
+
+      document.getElementById("result-reset").textContent = data.reset;
+      document.getElementById("result-schedule").textContent = data.schedule;
+      document.getElementById("result-accountability").textContent = data.accountability;
+
+      const pillRow = document.getElementById("pill-row");
+      pillRow.innerHTML = "";
+      data.pills.forEach((p) => {
+        const span = document.createElement("span");
+        span.className = "pill";
+        span.textContent = p;
+        pillRow.appendChild(span);
+      });
+
+      const resultsCard = document.getElementById("results");
+      resultsCard.style.display = "block";
+      resultsCard.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  </script>
+</body>
+</html>

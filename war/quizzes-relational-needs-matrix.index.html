@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Relational Needs Matrix | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-void:#050507;
+      --bg-deep:#0a0a0f;
+      --card:#14141b;
+      --line:#232334;
+      --text:#f4f2f6;
+      --muted:#bdb8c6;
+      --primary:#a33b5c;
+      --accent:#d6a35d;
+      --r:22px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 700px at 20% 10%, rgba(163,59,92,.18), transparent 60%), linear-gradient(180deg, var(--bg-void), var(--bg-deep)); color:var(--text); font-family:Outfit, system-ui, -apple-system, Segoe UI, sans-serif}
+    .quiz_wrap{max-width:980px;margin:0 auto;padding:40px 16px}
+    .quiz_head{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+    .quiz_brand{display:flex;gap:14px;align-items:flex-end}
+    .quiz_mark{letter-spacing:.18em;font-size:12px;color:var(--muted)}
+    .quiz_title{margin:0;font-family:"Cormorant Garamond", serif;font-size:44px;line-height:1}
+    .quiz_subtitle{margin:8px 0 0;color:var(--muted);max-width:62ch}
+    .quiz_progressbar{width:260px;height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--line)}
+    .quiz_progressfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .quiz_progresslabel{margin-top:8px;color:var(--muted);font-size:12px;text-align:right}
+    .quiz_card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .quiz_qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .quiz_qcount{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .quiz_tag{font-size:12px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--muted)}
+    .quiz_q{margin:6px 0 10px;font-size:22px;line-height:1.25}
+    .quiz_help{margin:0 0 14px;color:var(--muted);line-height:1.6}
+    .quiz_opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .quiz_opt{display:flex;gap:10px;align-items:center;padding:12px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);cursor:pointer}
+    .quiz_opt input{accent-color:var(--primary)}
+    .quiz_opt_label{font-weight:500}
+    .quiz_notice{margin-bottom:12px;padding:10px 12px;border-radius:14px;border:1px solid rgba(214,163,93,.4);background:rgba(214,163,93,.08);color:var(--text)}
+    .quiz_foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+    .quiz_nav{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid rgba(163,59,92,.55);background:rgba(163,59,92,.18);color:var(--text);text-decoration:none;cursor:pointer;font-weight:600}
+    .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03);font-weight:600}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .results_head{margin-bottom:10px}
+    .results_badge{display:inline-flex;padding:6px 10px;border-radius:999px;border:1px solid rgba(214,163,93,.35);background:rgba(214,163,93,.08);color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .results_title{margin:10px 0 6px;font-family:"Cormorant Garamond", serif;font-size:34px}
+    .results_sub{margin:0;color:var(--muted);line-height:1.6}
+    .results_top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+    .results_focus{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(255,255,255,.02)}
+    .results_focus_top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .results_focus_name{font-weight:700}
+    .results_focus_pct{color:var(--muted)}
+    .results_focus_blurb{margin:10px 0 0;color:var(--muted);line-height:1.6}
+    .results_tools{margin:10px 0 0;padding-left:18px;color:var(--muted)}
+    .results_groups{display:grid;gap:14px;margin-top:10px}
+    .results_group_title{margin:0 0 10px;font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .results_grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .results_item{border:1px solid var(--line);border-radius:18px;padding:12px;background:rgba(255,255,255,.02)}
+    .results_item_top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .results_item_micro{margin:8px 0 0;color:var(--muted);line-height:1.55;font-size:13px}
+    .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);overflow:hidden}
+    .bar.slim{height:10px}
+    .barfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .results_actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .results_footer{margin:14px 0 0;color:var(--muted);line-height:1.6}
+    @media (max-width:760px){
+      .quiz_title{font-size:38px}
+      .quiz_progressbar{width:210px}
+      .quiz_opts{grid-template-columns:1fr}
+      .results_top{grid-template-columns:1fr}
+      .results_grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+  <script src="/assets/js/quiz-engine.js"></script>
+  <script>
+    const dims = [
+      { id:"need_safety", label:"Need: Safety", micro:"You need emotional steadiness, non threat energy, and a nervous system safe place to land." },
+      { id:"need_reassurance", label:"Need: Reassurance", micro:"You need clarity, directness, and steady signals when things feel uncertain." },
+      { id:"need_respect", label:"Need: Respect", micro:"You need to be taken seriously, not treated like your feelings are a problem to manage." },
+      { id:"need_affection", label:"Need: Affection", micro:"You need warmth, softness, and visible care, not just logic or convenience." },
+      { id:"need_autonomy", label:"Need: Autonomy", micro:"You need space, choice, and room to breathe without punishment or interrogation." },
+      { id:"need_repair", label:"Need: Repair", micro:"You need accountability and repair after rupture, not silence, blame shifting, or pretending it never happened." },
+
+      { id:"ask_safety", label:"Ask: Control", micro:"When you feel unsafe, you might ask for control, rules, or proof instead of saying you need steadiness." },
+      { id:"ask_reassurance", label:"Ask: Confirmation", micro:"You might ask for constant checking, fast replies, or certainty instead of naming the fear underneath." },
+      { id:"ask_respect", label:"Ask: Dominance", micro:"You might ask through sharpness or power moves because being ignored feels humiliating." },
+      { id:"ask_affection", label:"Ask: Attention", micro:"You might ask for attention, intensity, or pursuit because asking for tenderness feels too vulnerable." },
+      { id:"ask_autonomy", label:"Ask: Distance", micro:"You might ask for distance, shutdown, or disappearance because you cannot risk being needy." },
+      { id:"ask_repair", label:"Ask: Punishment", micro:"You might ask through punishment, coldness, or withholding because you do not trust repair will be real." }
+    ];
+
+    const q = [
+      { text:"When I am emotionally flooded, what I actually need is someone to stay steady and calm.", tag:"Need", mapsTo:[{dim:"need_safety"}]},
+      { text:"When I feel unsafe, I try to control the situation so I can breathe again.", tag:"Ask", mapsTo:[{dim:"ask_safety"}]},
+
+      { text:"I need direct reassurance or clarity when things feel uncertain.", tag:"Need", mapsTo:[{dim:"need_reassurance"}]},
+      { text:"When I feel unsure, I push for proof, timelines, or guarantees.", tag:"Ask", mapsTo:[{dim:"ask_reassurance"}]},
+
+      { text:"I need my feelings to be taken seriously even if someone disagrees.", tag:"Need", mapsTo:[{dim:"need_respect"}]},
+      { text:"When I feel dismissed, I get sharp or forceful so I cannot be ignored.", tag:"Ask", mapsTo:[{dim:"ask_respect"}]},
+
+      { text:"I need consistent affection, not only attention when it is convenient.", tag:"Need", mapsTo:[{dim:"need_affection"}]},
+      { text:"When I want closeness, I ask for intensity or constant attention.", tag:"Ask", mapsTo:[{dim:"ask_affection"}]},
+
+      { text:"I need autonomy and breathing room without guilt or punishment.", tag:"Need", mapsTo:[{dim:"need_autonomy"}]},
+      { text:"When I feel pressured, I distance myself instead of asking for space clearly.", tag:"Ask", mapsTo:[{dim:"ask_autonomy"}]},
+
+      { text:"I need repair and accountability after conflict, not a reset with no conversation.", tag:"Need", mapsTo:[{dim:"need_repair"}]},
+      { text:"When I am hurt, I withhold warmth or punish because I do not trust repair.", tag:"Ask", mapsTo:[{dim:"ask_repair"}]},
+
+      { text:"My body relaxes when someone is emotionally predictable and consistent.", tag:"Need", mapsTo:[{dim:"need_safety"}]},
+      { text:"If someone is inconsistent, I spiral into monitoring, checking, or testing.", tag:"Ask", mapsTo:[{dim:"ask_reassurance"}]},
+
+      { text:"I need respect for my boundaries even when someone is upset.", tag:"Need", mapsTo:[{dim:"need_autonomy"}]},
+      { text:"If I feel cornered, I shut down or disappear instead of explaining my boundary.", tag:"Ask", mapsTo:[{dim:"ask_autonomy"}]},
+
+      { text:"I need reassurance that conflict does not equal abandonment.", tag:"Need", mapsTo:[{dim:"need_reassurance"}]},
+      { text:"When conflict happens, I look for who is wrong and push for a verdict.", tag:"Ask", mapsTo:[{dim:"ask_respect"}]},
+
+      { text:"I need affectionate repair after a hard moment, not just logic.", tag:"Need", mapsTo:[{dim:"need_affection"}]},
+      { text:"When I want tenderness, I act like I do not care so I cannot be rejected.", tag:"Ask", mapsTo:[{dim:"ask_affection"}]},
+
+      { text:"I need people to own the impact they had on me.", tag:"Need", mapsTo:[{dim:"need_repair"}]},
+      { text:"If someone will not own it, I go cold because warmth feels unsafe.", tag:"Ask", mapsTo:[{dim:"ask_repair"}]}
+    ];
+
+    UnscarredQuiz.initQuiz({
+      root: "#app",
+      slug: "relational-needs-matrix",
+      brandMark: "UNSCARRED",
+      title: "Relational Needs Matrix",
+      subtitle: "What you actually need vs what you keep asking for.",
+      resultsTitle: "Need vs Ask",
+      resultsSubtitle: "Your highest Need shows what soothes you. Your highest Ask shows how you reach for it when you are activated.",
+      cta: { href: "/quizzes/", label: "Back to quizzes" },
+      resultsFooter: "If your top Ask is louder than your top Need, you are probably trying to get safety without vulnerability. Name the Need first. The Ask gets cleaner.",
+      scale: [
+        { label: "Not me", value: 0 },
+        { label: "A little", value: 1 },
+        { label: "Often", value: 2 },
+        { label: "Very me", value: 3 }
+      ],
+      dimensions: dims,
+      questions: q,
+      resultGroups: [
+        { id:"needs", label:"What you actually need", match:(id)=>id.startsWith("need_") },
+        { id:"asks", label:"What you tend to ask for", match:(id)=>id.startsWith("ask_") }
+      ]
+    });
+  </script>
+</body>
+</html>

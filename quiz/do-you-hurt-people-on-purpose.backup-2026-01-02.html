@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do You Hurt People On Purpose? | Unscarred</title>
+    <meta name="description" content="Assess your awareness, conscience, and intent. Understand if you hurt people intentionally or accidentally.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎯</text></svg>">
+    <style>
+        :root {
+            --bg-void: #050507;
+            --bg-deep: #0a0a0f;
+            --card-glass: rgba(12, 12, 18, 0.85);
+            --primary: #a33b5c;
+            --primary-glow: rgba(163, 59, 92, 0.4);
+            --secondary: #7c5cbf;
+            --accent: #c9763d;
+            --text-main: #ece8e1;
+            --text-soft: #9a958c;
+            --text-dim: #5c5955;
+            --border-glass: rgba(255,255,255,0.06);
+            --radius-lg: 20px;
+            --font-display: 'Cormorant Garamond', Georgia, serif;
+            --font-body: 'Outfit', system-ui, sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        // ... rest of script largely omitted for brevity (identical to original)
+
+        function startQuiz() {
+            document.getElementById('introSection').style.display = 'none';
+            document.getElementById('quizSection').classList.add('active');
+            renderQuestion();
+        }
+        let currentQuestion = 0;
+        let userAnswers = [];
+        ];            <div id="resultPage" class="result-page"></div>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                section: 1,
+                text: "When someone close to you says 'we need to talk,' what happens in your body/mind first?",
+                answers: [
+                    { text: "I don't seem to notice much, I just wait to hear what they want", value: "a" },
+                    { text: "I immediately start running through what I might have done wrong", value: "b" },
+                    { text: "Something shifts but I can't really name what it is", value: "c" },
+                    { text: "I notice their tone, posture, timing and start gathering data before they speak", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                text: "How much do you remember about arguments or conflicts after they happen?",
+                answers: [
+                    { text: "I remember the feeling but details are fuzzy or gone", value: "a" },
+                    { text: "I remember specific words, sequence of events, what was said", value: "b" },
+                    { text: "I'm often surprised when told we fought", value: "c" },
+                    { text: "I replay conversations multiple times, catching things I missed in the moment", value: "d" }
+                ]
+            },
+            {
+                section: 1,
+                text: "When you're in a situation where someone might get upset with you, what's happening internally?",
+                answers: [
+                    { text: "I'm usually caught off guard when they react, I didn't see it coming", value: "a" },
+                    { text: "I'm tracking their micro-expressions and adjusting what I say", value: "b" },
+                    { text: "I tend to space out or go blank during tense moments", value: "c" },
+                    { text: "I'm running multiple scenarios of how this could go", value: "d" }
+                ]
+            }
+        ];

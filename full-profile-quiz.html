@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Full Profile | Unscarred</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #121212;
+      --line: #1f1f1f;
+      --text: #fff;
+      --muted: #bdbdbd;
+      --accent: #e74b5a;
+      --accent2: #7c5cbf;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    .wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .quiz-header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 20px;
+    }
+
+    .quiz-header h1 {
+      font-size: 32px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-header .lead {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    /* Progress */
+    .progress-wrap {
+      background: var(--panel);
+      border-radius: 999px;
+      height: 6px;
+      margin: 20px 0;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .progress-text {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* Cards */
+    .fp-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 16px 0;
+    }
+
+    .fp-card h2 {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+
+    .fp-card .note {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* Questions */
+    .fp-q {
+      margin: 16px 0 8px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    .fp-scale {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .fp-scale label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: #181818;
+      border: 1px solid #262626;
+      border-radius: 10px;
+      padding: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 14px;
+    }
+
+    .fp-scale label:hover {
+      border-color: #404040;
+      background: #1c1c1c;
+    }
+
+    .fp-scale input {
+      accent-color: var(--accent);
+    }
+
+    .fp-scale input:checked + span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    /* Button */
+    .fp-btn {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      border: 1px solid var(--accent);
+      background: var(--accent);
+      color: #0a0a0a;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .fp-btn:hover {
+      background: #f25d6b;
+      transform: translateY(-1px);
+    }
+
+    .fp-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .fp-btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: #303030;
+    }
+
+    .fp-btn.secondary:hover {
+      border-color: #505050;
+      background: #1a1a1a;
+    }
+
+    /* Results */
+    .fp-result {
+      display: none;
+    }
+
+    .tag {
+      display: inline-block;
+      background: var(--accent);
+      color: #0a0a0a;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 12px;
+    }
+
+    .score-bars {
+      margin: 20px 0;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 12px 0;
+    }
+
+    .score-label {
+      width: 120px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .score-track {
+      flex: 1;
+      height: 8px;
+      background: #1a1a1a;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+
+    .score-fill.abandonment { background: linear-gradient(90deg, #e74b5a, #f07178); }
+    .score-fill.exposure { background: linear-gradient(90deg, #7c5cbf, #9d7ee8); }
+    .score-fill.entrapment { background: linear-gradient(90deg, #c9763d, #e8a165); }
+    .score-fill.erasure { background: linear-gradient(90deg, #4b9be7, #78c4f0); }
+    .score-fill.processing { background: linear-gradient(90deg, #4caf50, #81c784); }
+
+    /* Processing badge */
+    .processor-badge {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 13px;
+      margin: 12px 0;
+    }
+    .processor-badge.linear { background: rgba(76, 175, 80, 0.15); color: #81c784; border: 1px solid rgba(76, 175, 80, 0.3); }
+    .processor-badge.mixed { background: rgba(255, 193, 7, 0.15); color: #ffd54f; border: 1px solid rgba(255, 193, 7, 0.3); }
+    .processor-badge.divergent { background: rgba(156, 39, 176, 0.15); color: #ce93d8; border: 1px solid rgba(156, 39, 176, 0.3); }
+
+    /* ND callout */
+    .nd-callout {
+      background: linear-gradient(135deg, rgba(156, 39, 176, 0.1), rgba(10, 10, 10, 0.95));
+      border: 1px solid rgba(156, 39, 176, 0.2);
+      border-radius: var(--radius);
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .nd-callout h4 {
+      color: #ce93d8;
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+    .nd-callout p {
+      color: var(--muted);
+      font-size: 14px;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .score-value {
+      width: 50px;
+      text-align: right;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .primary-result {
+      background: linear-gradient(135deg, rgba(231, 75, 90, 0.1), rgba(124, 92, 191, 0.05));
+      border: 1px solid rgba(231, 75, 90, 0.2);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin: 20px 0;
+      text-align: center;
+    }
+
+    .primary-result h3 {
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .primary-result p {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    .pill {
+      display: inline-block;
+      border: 1px solid #303030;
+      border-radius: 999px;
+      padding: 6px 12px;
+      margin: 4px;
+      font-size: 12px;
+    }
+
+    .path-list {
+      margin: 16px 0;
+      padding-left: 20px;
+    }
+
+    .path-list li {
+      margin: 8px 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* Capture section */
+    .capture-section {
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.1), rgba(10, 10, 10, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin: 24px 0;
+      text-align: center;
+    }
+
+    .capture-section .icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .capture-section h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .capture-section p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .capture-form {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .capture-input {
+      width: 100%;
+      padding: 14px 16px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid #303030;
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .capture-input::placeholder {
+      color: #666;
+    }
+
+    .capture-input:focus {
+      outline: none;
+      border-color: var(--accent2);
+    }
+
+    .capture-privacy {
+      font-size: 11px;
+      color: #666;
+      margin-top: 8px;
+    }
+
+    .capture-success {
+      padding: 20px;
+    }
+
+    .capture-success .check {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    /* Offer section */
+    .offer-section {
+      background: linear-gradient(135deg, rgba(231, 75, 90, 0.08), rgba(10, 10, 10, 0.95));
+      border: 1px solid rgba(231, 75, 90, 0.15);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin: 24px 0;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      background: rgba(231, 75, 90, 0.15);
+      color: var(--accent);
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-weight: 700;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 12px;
+    }
+
+    .offer-section h3 {
+      font-size: 22px;
+      margin-bottom: 8px;
+    }
+
+    .offer-section .desc {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+
+    .offer-features {
+      list-style: none;
+      margin: 16px 0;
+    }
+
+    .offer-features li {
+      padding: 6px 0;
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .offer-features li::before {
+      content: "✓";
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .offer-price {
+      margin: 20px 0 16px;
+    }
+
+    .offer-price .amount {
+      font-size: 36px;
+      font-weight: 700;
+    }
+
+    .offer-price .period {
+      font-size: 14px;
+      color: var(--muted);
+      margin-left: 8px;
+    }
+
+    .offer-guarantee {
+      font-size: 12px;
+      color: #666;
+      margin-top: 12px;
+      text-align: center;
+    }
+
+    /* Footer actions */
+    .footer-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .footer-actions button {
+      flex: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .fp-scale {
+        grid-template-columns: 1fr;
+      }
+      
+      .score-label {
+        width: 90px;
+        font-size: 13px;
+      }
+      
+      .footer-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="wrap">
+    <!-- Header -->
+    <div class="quiz-header">
+      <h1>Full Profile</h1>
+      <p class="lead">Five scores. Your nervous system's threat map + processing style.</p>
+    </div>
+
+    <!-- Quiz Form -->
+    <form id="fp-form">
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+      <div class="progress-text" id="progress-text">Answer all questions to see your results</div>
+
+      <!-- Abandonment Section -->
+      <div class="fp-card">
+        <h2>Abandonment Response</h2>
+        <div class="note">1 = Rarely | 2 = Sometimes | 3 = Often</div>
+
+        <div class="fp-q">When texts slow down, my chest tightens and thoughts race.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ab1" value="1"><span>1</span></label>
+          <label><input type="radio" name="ab1" value="2"><span>2</span></label>
+          <label><input type="radio" name="ab1" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I check old messages looking for signs they're pulling away.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ab2" value="1"><span>1</span></label>
+          <label><input type="radio" name="ab2" value="2"><span>2</span></label>
+          <label><input type="radio" name="ab2" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I test with silence or withdrawal to see if they chase.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ab3" value="1"><span>1</span></label>
+          <label><input type="radio" name="ab3" value="2"><span>2</span></label>
+          <label><input type="radio" name="ab3" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">After conflict I cannot relax until there is clear repair.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ab4" value="1"><span>1</span></label>
+          <label><input type="radio" name="ab4" value="2"><span>2</span></label>
+          <label><input type="radio" name="ab4" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Small signs of distance feel like the relationship is ending.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ab5" value="1"><span>1</span></label>
+          <label><input type="radio" name="ab5" value="2"><span>2</span></label>
+          <label><input type="radio" name="ab5" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <!-- Exposure Section -->
+      <div class="fp-card">
+        <h2>Exposure Response</h2>
+        <div class="note">1 = Rarely | 2 = Sometimes | 3 = Often</div>
+
+        <div class="fp-q">When criticized I get defensive before I have processed what was said.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ex1" value="1"><span>1</span></label>
+          <label><input type="radio" name="ex1" value="2"><span>2</span></label>
+          <label><input type="radio" name="ex1" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I would rather be right than be close.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ex2" value="1"><span>1</span></label>
+          <label><input type="radio" name="ex2" value="2"><span>2</span></label>
+          <label><input type="radio" name="ex2" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I build mental cases defending myself during conflict.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ex3" value="1"><span>1</span></label>
+          <label><input type="radio" name="ex3" value="2"><span>2</span></label>
+          <label><input type="radio" name="ex3" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Apologizing feels like losing even when I know I was wrong.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ex4" value="1"><span>1</span></label>
+          <label><input type="radio" name="ex4" value="2"><span>2</span></label>
+          <label><input type="radio" name="ex4" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Being seen as wrong feels like a threat to my safety.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="ex5" value="1"><span>1</span></label>
+          <label><input type="radio" name="ex5" value="2"><span>2</span></label>
+          <label><input type="radio" name="ex5" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <!-- Entrapment Section -->
+      <div class="fp-card">
+        <h2>Entrapment Response</h2>
+        <div class="note">1 = Rarely | 2 = Sometimes | 3 = Often</div>
+
+        <div class="fp-q">Normal relationship expectations feel suffocating.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="en1" value="1"><span>1</span></label>
+          <label><input type="radio" name="en1" value="2"><span>2</span></label>
+          <label><input type="radio" name="en1" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I pick fights or blow things up to get breathing room.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="en2" value="1"><span>1</span></label>
+          <label><input type="radio" name="en2" value="2"><span>2</span></label>
+          <label><input type="radio" name="en2" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I say yes when I mean no then resent them for it.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="en3" value="1"><span>1</span></label>
+          <label><input type="radio" name="en3" value="2"><span>2</span></label>
+          <label><input type="radio" name="en3" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I keep one foot out the door in relationships.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="en4" value="1"><span>1</span></label>
+          <label><input type="radio" name="en4" value="2"><span>2</span></label>
+          <label><input type="radio" name="en4" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Commitment feels like losing freedom.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="en5" value="1"><span>1</span></label>
+          <label><input type="radio" name="en5" value="2"><span>2</span></label>
+          <label><input type="radio" name="en5" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <!-- Erasure Section -->
+      <div class="fp-card">
+        <h2>Erasure Response</h2>
+        <div class="note">1 = Rarely | 2 = Sometimes | 3 = Often</div>
+
+        <div class="fp-q">I track where I rank in people's priorities.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="er1" value="1"><span>1</span></label>
+          <label><input type="radio" name="er1" value="2"><span>2</span></label>
+          <label><input type="radio" name="er1" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Being overlooked or forgotten brings up intense pain.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="er2" value="1"><span>1</span></label>
+          <label><input type="radio" name="er2" value="2"><span>2</span></label>
+          <label><input type="radio" name="er2" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I over-give to secure my position in relationships.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="er3" value="1"><span>1</span></label>
+          <label><input type="radio" name="er3" value="2"><span>2</span></label>
+          <label><input type="radio" name="er3" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I need visible proof that I matter.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="er4" value="1"><span>1</span></label>
+          <label><input type="radio" name="er4" value="2"><span>2</span></label>
+          <label><input type="radio" name="er4" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I wonder if people would notice if I disappeared.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="er5" value="1"><span>1</span></label>
+          <label><input type="radio" name="er5" value="2"><span>2</span></label>
+          <label><input type="radio" name="er5" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <!-- Processing Style Section -->
+      <div class="fp-card">
+        <h2>Processing Style</h2>
+        <div class="note">1 = Rarely | 2 = Sometimes | 3 = Often</div>
+
+        <div class="fp-q">I lose track of time and forget to eat when I am focused.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr1" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr1" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr1" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Switching tasks mid-flow feels physically painful.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr2" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr2" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr2" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Background noise blocks my thinking or emotions.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr3" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr3" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr3" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I rehearse talks before and replay them after.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr4" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr4" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr4" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Without clear structure I lose days to paralysis.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr5" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr5" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr5" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">Certain textures, sounds, or lights drain me.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr6" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr6" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr6" value="3"><span>3</span></label>
+        </div>
+
+        <div class="fp-q">I mask natural responses to fit in and crash later.</div>
+        <div class="fp-scale">
+          <label><input type="radio" name="pr7" value="1"><span>1</span></label>
+          <label><input type="radio" name="pr7" value="2"><span>2</span></label>
+          <label><input type="radio" name="pr7" value="3"><span>3</span></label>
+        </div>
+      </div>
+
+      <button type="submit" class="fp-btn" id="submit-btn">See My Full Profile</button>
+    </form>
+
+    <!-- Results Section -->
+    <div class="fp-result" id="fp-result">
+      <div class="fp-card">
+        <div class="tag">Your Profile</div>
+        
+        <div class="score-bars" id="score-bars">
+          <!-- Filled by JS -->
+        </div>
+
+        <div class="primary-result" id="primary-result">
+          <!-- Filled by JS -->
+        </div>
+
+        <div id="pills-container" style="margin: 16px 0;"></div>
+
+        <h3 style="margin: 20px 0 12px;">What This Means</h3>
+        <p id="meaning-text" style="color: var(--muted); line-height: 1.6;"></p>
+
+        <h3 style="margin: 20px 0 12px;">Your 30 Day Path</h3>
+        <ul class="path-list" id="path-list">
+          <!-- Filled by JS -->
+        </ul>
+
+        <button class="fp-btn secondary" id="copy-btn" type="button">Copy My Scores</button>
+      </div>
+
+      <!-- Email Capture -->
+      <div class="capture-section" id="capture-section">
+        <div class="icon">📁</div>
+        <h3>Get Your Aftercare File</h3>
+        <p>A deeper breakdown of your primary pattern, what triggers it, and a week of practices to start rewiring it.</p>
+        <form class="capture-form" id="capture-form">
+          <input type="email" class="capture-input" id="email-input" placeholder="Your email" required>
+          <button type="submit" class="fp-btn">Send My Aftercare File</button>
+        </form>
+        <div class="capture-privacy">No spam. Unsubscribe anytime.</div>
+      </div>
+
+      <!-- Challenge Offer -->
+      <div class="offer-section" id="offer-section">
+        <div class="offer-badge">Ready to Change This?</div>
+        <h3 id="offer-title">5 Days to Stop the Spiral</h3>
+        <p class="desc" id="offer-desc">Daily pattern interrupts for your specific war type. Learn to feel it without becoming it.</p>
+        
+        <ul class="offer-features">
+          <li>5 daily emails with practices for your pattern</li>
+          <li>Audio guides for when you are activated</li>
+          <li>Scripts for the hard conversations</li>
+          <li>Quick reference card for your phone</li>
+        </ul>
+
+        <div class="offer-price">
+          <span class="amount">$17</span>
+          <span class="period">one-time</span>
+        </div>
+
+        <button class="fp-btn" id="buy-btn" type="button">Start the Challenge</button>
+        <div class="offer-guarantee">100% money back if it does not land</div>
+      </div>
+
+      <!-- Bottom Actions -->
+      <div class="footer-actions">
+        <button class="fp-btn secondary" id="retake-btn" type="button">Retake Quiz</button>
+        <button class="fp-btn secondary" id="share-btn" type="button">Share Results</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function() {
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+    
+    const form = $('#fp-form');
+    const result = $('#fp-result');
+    const progressBar = $('#progress-bar');
+    const progressText = $('#progress-text');
+    
+    // Question names
+    const questions = [
+      'ab1','ab2','ab3','ab4','ab5',
+      'ex1','ex2','ex3','ex4','ex5',
+      'en1','en2','en3','en4','en5',
+      'er1','er2','er3','er4','er5',
+      'pr1','pr2','pr3','pr4','pr5','pr6','pr7'
+    ];
+    
+    const totalQuestions = questions.length;
+    
+    // Track progress
+    function updateProgress() {
+      let answered = 0;
+      questions.forEach(q => {
+        if ($(`input[name="${q}"]:checked`)) answered++;
+      });
+      const pct = (answered / totalQuestions) * 100;
+      progressBar.style.width = pct + '%';
+      progressText.textContent = `${answered} of ${totalQuestions} answered`;
+    }
+    
+    // Add listeners for progress
+    $$('input[type="radio"]').forEach(input => {
+      input.addEventListener('change', updateProgress);
+    });
+    
+    // Check if all answered
+    function allAnswered() {
+      for (const q of questions) {
+        if (!$(`input[name="${q}"]:checked`)) return false;
+      }
+      return true;
+    }
+    
+    // Sum scores
+    function sumPrefix(prefix, count = 5) {
+      let total = 0;
+      for (let i = 1; i <= count; i++) {
+        const checked = $(`input[name="${prefix}${i}"]:checked`);
+        if (checked) total += parseInt(checked.value, 10);
+      }
+      return total;
+    }
+    
+    // Processing tier
+    function getProcessorType(score) {
+      if (score <= 10) return 'linear';
+      if (score <= 15) return 'mixed';
+      return 'divergent';
+    }
+    
+    const processorData = {
+      linear: {
+        name: 'Linear Processor',
+        badge: 'Neurotypical Baseline',
+        desc: 'Your nervous system handles input, focus, and social flow without extra accommodation. Standard trauma healing approaches will work for you.',
+        pathMod: null
+      },
+      mixed: {
+        name: 'Mixed Processor',
+        badge: 'Some ND Traits',
+        desc: 'You have neurodivergent features that surface when overwhelmed. Add accommodations, plan recovery after social load, use timers for task switching.',
+        pathMod: 'mixed'
+      },
+      divergent: {
+        name: 'Divergent Processor',
+        badge: 'Likely Neurodivergent',
+        desc: 'Standard advice will miss your needs. Your empathy includes sensory data. Your boundaries need executive function support. Attachment work needs RSD awareness.',
+        pathMod: 'divergent'
+      }
+    };
+    
+    // War descriptions
+    const warData = {
+      abandonment: {
+        name: 'Abandonment',
+        title: 'Abandonment War',
+        color: 'abandonment',
+        low: 'Your nervous system stays relatively calm around distance and uncertainty.',
+        mid: 'Distance triggers some activation. You notice the alarm but can usually manage it.',
+        high: 'Your system is on high alert for loss. Small signs of distance feel like emergencies.',
+        challenge: '5 Days to Stop the Spiral',
+        challengeDesc: 'Daily pattern interrupts when your abandonment alarm fires. Learn to feel the panic without becoming it.'
+      },
+      exposure: {
+        name: 'Exposure',
+        title: 'Exposure War',
+        color: 'exposure',
+        low: 'You can receive feedback without your defenses taking over.',
+        mid: 'Criticism stings but you can usually process it without flooding or armoring.',
+        high: 'Being seen as wrong feels dangerous. Your system defends before you can think.',
+        challenge: '5 Days to Hear Without Drowning',
+        challengeDesc: 'Build tolerance for criticism without flooding or armoring. Learn to be wrong without being destroyed.'
+      },
+      entrapment: {
+        name: 'Entrapment',
+        title: 'Entrapment War',
+        color: 'entrapment',
+        low: 'Closeness and commitment feel safe. You can set boundaries without fleeing.',
+        mid: 'Some situations trigger the need to escape but you can usually self-regulate.',
+        high: 'Your system treats intimacy as a cage. You need space to breathe but the way you get it often costs you.',
+        challenge: '5 Days to Breathe',
+        challengeDesc: 'Create space without destroying connection. Learn that intimacy does not have to mean imprisonment.'
+      },
+      erasure: {
+        name: 'Erasure',
+        title: 'Erasure War',
+        color: 'erasure',
+        low: 'You feel secure in your place without constant proof.',
+        mid: 'Sometimes you track where you rank but it does not dominate your thinking.',
+        high: 'Your system is always scanning for signs you are being forgotten or replaced. Visibility feels like survival.',
+        challenge: '5 Days to Be Seen',
+        challengeDesc: 'Ask for visibility without the emergency. Learn to matter without having to prove it constantly.'
+      }
+    };
+    
+    // Get tier
+    function getTier(score) {
+      if (score <= 7) return 'low';
+      if (score <= 11) return 'mid';
+      return 'high';
+    }
+    
+    // Handle submit
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (!allAnswered()) {
+        alert('Please answer all questions.');
+        return;
+      }
+      
+      // Calculate scores
+      const warScores = {
+        abandonment: sumPrefix('ab'),
+        exposure: sumPrefix('ex'),
+        entrapment: sumPrefix('en'),
+        erasure: sumPrefix('er')
+      };
+      const processingScore = sumPrefix('pr', 7);
+      const processorType = getProcessorType(processingScore);
+      const processor = processorData[processorType];
+      
+      // Find primary war
+      const sorted = Object.entries(warScores).sort((a, b) => b[1] - a[1]);
+      const primary = sorted[0][0];
+      const primaryScore = sorted[0][1];
+      const secondary = sorted[1][0];
+      
+      // Check for ground zero (all close)
+      const max = Math.max(...Object.values(warScores));
+      const min = Math.min(...Object.values(warScores));
+      const isGroundZero = (max - min) <= 3 && max >= 10;
+      
+      // Is ND?
+      const isND = processorType !== 'linear';
+      
+      // Build score bars
+      let barsHTML = '';
+      Object.entries(warScores).forEach(([war, score]) => {
+        const pct = (score / 15) * 100;
+        const data = warData[war];
+        barsHTML += `
+          <div class="score-row">
+            <span class="score-label">${data.name}</span>
+            <div class="score-track">
+              <div class="score-fill ${data.color}" style="width: ${pct}%"></div>
+            </div>
+            <span class="score-value">${score}/15</span>
+          </div>
+        `;
+      });
+      // Add processing bar
+      const procPct = (processingScore / 21) * 100;
+      barsHTML += `
+        <div class="score-row" style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--line);">
+          <span class="score-label">Processing</span>
+          <div class="score-track">
+            <div class="score-fill processing" style="width: ${procPct}%"></div>
+          </div>
+          <span class="score-value">${processingScore}/21</span>
+        </div>
+      `;
+      $('#score-bars').innerHTML = barsHTML;
+      
+      // Add processor badge after score bars
+      const badgeClass = processorType;
+      const processorBadgeHTML = `<div class="processor-badge ${badgeClass}">${processor.badge}</div>`;
+      $('#score-bars').insertAdjacentHTML('afterend', processorBadgeHTML);
+      
+      // Primary result
+      const primaryData = warData[primary];
+      const tier = getTier(primaryScore);
+      let resultHTML;
+      
+      if (isGroundZero) {
+        resultHTML = `
+          <h3>Ground Zero</h3>
+          <p>You are not fighting one war. Your system fires multiple alarms and switches between them. This is not a flaw. It means you need convergence tools, not single-pattern fixes.</p>
+        `;
+      } else {
+        resultHTML = `
+          <h3>${primaryData.title}</h3>
+          <p>${primaryData[tier]}</p>
+        `;
+      }
+      $('#primary-result').innerHTML = resultHTML;
+      
+      // Pills
+      const pillsContainer = $('#pills-container');
+      pillsContainer.innerHTML = '';
+      sorted.forEach(([war, score]) => {
+        const t = getTier(score);
+        const label = t === 'high' ? 'High' : t === 'mid' ? 'Moderate' : 'Low';
+        const pill = document.createElement('span');
+        pill.className = 'pill';
+        pill.textContent = `${warData[war].name}: ${label}`;
+        pillsContainer.appendChild(pill);
+      });
+      
+      // Meaning
+      let meaning = '';
+      if (isGroundZero) {
+        meaning = 'Your nervous system runs multiple threat patterns. When one alarm fires, others follow. Traditional single-focus approaches often fail because they address one pattern while ignoring the others. You need triage tools first, then targeted work on the root pattern.';
+      } else {
+        const p = primaryData;
+        const s = warData[secondary];
+        meaning = `Your primary war is ${p.title}. ${p[tier]} `;
+        if (warScores[secondary] >= 10) {
+          meaning += `Your secondary pattern (${s.title}) also runs hot, which can complicate things when both alarms fire together.`;
+        }
+      }
+      $('#meaning-text').textContent = meaning;
+      
+      // Add ND callout if not linear
+      if (isND) {
+        const ndCalloutHTML = `
+          <div class="nd-callout">
+            <h4>${processor.name}</h4>
+            <p>${processor.desc}</p>
+          </div>
+        `;
+        $('#meaning-text').insertAdjacentHTML('afterend', ndCalloutHTML);
+      }
+      
+      // Path - now with ND modifications
+      const pathList = $('#path-list');
+      pathList.innerHTML = '';
+      const paths = [];
+      
+      // ND baseline accommodations first
+      if (processorType === 'divergent') {
+        paths.push('FIRST: Do a sensory audit - map your flood points before starting emotional work');
+        paths.push('Build structure before feelings work - timers, body doubling, written agreements');
+        paths.push('Use scripts for repair conversations - do not rely on in-the-moment words');
+      } else if (processorType === 'mixed') {
+        paths.push('Plan recovery time after social or emotional load');
+        paths.push('Use timers for task switching during difficult conversations');
+        paths.push('Write down agreements to bypass working memory gaps');
+      }
+      
+      if (isGroundZero) {
+        paths.push('Start with nervous system stabilization before targeting specific patterns');
+        paths.push('Identify which alarm is loudest in any given moment');
+        paths.push('Build the observer muscle - watch the system without becoming it');
+      }
+      
+      if (warScores.abandonment >= 10) {
+        if (processorType === 'divergent') {
+          paths.push('ABANDONMENT + ND: Separate RSD from real abandonment signals');
+          paths.push('Use a checklist before acting - Is this rejection sensitivity or pattern?');
+          paths.push('Schedule check-ins instead of relying on reading cues');
+        } else {
+          paths.push('20 minute pause before acting on abandonment alarm');
+          paths.push('Name the alarm out loud: This is my abandonment pattern');
+        }
+        paths.push('Collect evidence of times people did not leave');
+      }
+      
+      if (warScores.exposure >= 10) {
+        if (processorType === 'divergent') {
+          paths.push('EXPOSURE + ND: Ask for written feedback when possible');
+          paths.push('Request processing time - I need to think about this before responding');
+          paths.push('Recognize that defensiveness may be overwhelm, not ego');
+        } else {
+          paths.push('Practice saying: That is hard to hear, let me think about it');
+          paths.push('Find one low stakes moment to be wrong this week');
+        }
+        paths.push('Separate criticism of behavior from verdict on worth');
+      }
+      
+      if (warScores.entrapment >= 10) {
+        if (processorType === 'divergent') {
+          paths.push('ENTRAPMENT + ND: Build exit rituals into relationships from the start');
+          paths.push('Schedule alone time - do not wait until you need to escape');
+          paths.push('Use clear, literal communication about space needs');
+        } else {
+          paths.push('Practice one small no before you need to explode');
+          paths.push('Ask for space before taking it destructively');
+        }
+        paths.push('Stay ten percent longer than your system wants');
+      }
+      
+      if (warScores.erasure >= 10) {
+        if (processorType === 'divergent') {
+          paths.push('ERASURE + ND: Make visibility requests explicit and literal');
+          paths.push('Track patterns with data not feelings - when did they actually reach out?');
+          paths.push('Build evidence files for days when RSD says you are forgotten');
+        } else {
+          paths.push('Say I felt invisible when that happened plainly');
+          paths.push('Let something slide and see who stays');
+        }
+        paths.push('Practice being wanted not just needed');
+      }
+      
+      // Final ND reminder
+      if (processorType === 'divergent') {
+        paths.push('Seek ND-informed therapy - standard approaches will miss your needs');
+        paths.push('Add sensory audits to any healing plan');
+      }
+      
+      paths.forEach(p => {
+        const li = document.createElement('li');
+        li.textContent = p;
+        if (p.includes('+ ND:') || p.startsWith('FIRST:')) {
+          li.style.color = '#ce93d8';
+          li.style.fontWeight = '500';
+        }
+        pathList.appendChild(li);
+      });
+      
+      // Update offer
+      const offerData = isGroundZero 
+        ? { challenge: '5 Days of Nervous System First Aid', desc: 'Triage for when all the alarms fire at once. Learn to identify which war you are actually fighting.' }
+        : primaryData;
+      
+      $('#offer-title').textContent = offerData.challenge;
+      $('#offer-desc').textContent = offerData.challengeDesc || offerData.desc;
+      
+      // Store for funnel
+      window.profileResult = {
+        warScores,
+        processingScore,
+        processorType,
+        primary: isGroundZero ? 'ground-zero' : primary,
+        isGroundZero,
+        isND,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Show results
+      form.style.display = 'none';
+      result.style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Copy scores
+    $('#copy-btn').addEventListener('click', function() {
+      const r = window.profileResult;
+      const scores = r.warScores;
+      const procLabel = processorData[r.processorType].badge;
+      const text = `My Full Profile Scores:
+Abandonment: ${scores.abandonment}/15
+Exposure: ${scores.exposure}/15
+Entrapment: ${scores.entrapment}/15
+Erasure: ${scores.erasure}/15
+Processing: ${r.processingScore}/21 (${procLabel})
+Primary War: ${r.primary}${r.isND ? '\nNote: ND-modified path recommended' : ''}`;
+      
+      navigator.clipboard.writeText(text).then(() => {
+        this.textContent = 'Copied!';
+        setTimeout(() => this.textContent = 'Copy My Scores', 1500);
+      });
+    });
+    
+    // Email capture
+    $('#capture-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = $('#email-input').value;
+      const section = $('#capture-section');
+      
+      // Store
+      localStorage.setItem('unscarred_email', email);
+      localStorage.setItem('unscarred_result', window.profileResult.primary);
+      
+      console.log('Email capture:', {
+        email,
+        result: window.profileResult
+      });
+      
+      // Success state
+      section.innerHTML = `
+        <div class="capture-success">
+          <div class="check">✓</div>
+          <h3>Check your inbox</h3>
+          <p style="color: var(--muted);">Your Aftercare File is on the way to ${email}</p>
+        </div>
+      `;
+    });
+    
+    // Buy button
+    $('#buy-btn').addEventListener('click', function() {
+      const result = window.profileResult;
+      const email = localStorage.getItem('unscarred_email') || '';
+      
+      console.log('Purchase intent:', {
+        result,
+        email
+      });
+      
+      // TODO: Replace with actual payment link
+      // const paymentLinks = {
+      //   'abandonment': 'https://unscarred.online/checkout/?add-to-cart=XXX',
+      //   'exposure': 'https://unscarred.online/checkout/?add-to-cart=XXX',
+      //   'entrapment': 'https://unscarred.online/checkout/?add-to-cart=XXX',
+      //   'erasure': 'https://unscarred.online/checkout/?add-to-cart=XXX',
+      //   'ground-zero': 'https://unscarred.online/checkout/?add-to-cart=XXX'
+      // };
+      // window.location.href = paymentLinks[result.primary];
+      
+      alert('Payment link goes here. Replace with your EDD product URL.');
+    });
+    
+    // Retake
+    $('#retake-btn').addEventListener('click', function() {
+      form.reset();
+      form.style.display = 'block';
+      result.style.display = 'none';
+      progressBar.style.width = '0%';
+      progressText.textContent = 'Answer all questions to see your results';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+    
+    // Share
+    $('#share-btn').addEventListener('click', function() {
+      const r = window.profileResult;
+      const procLabel = processorData[r.processorType].name;
+      const text = `I just took the Unscarred Full Profile quiz.\nPrimary war: ${r.primary}\nProcessing: ${procLabel}`;
+      if (navigator.share) {
+        navigator.share({ text, url: window.location.href });
+      } else {
+        navigator.clipboard.writeText(text).then(() => {
+          this.textContent = 'Copied!';
+          setTimeout(() => this.textContent = 'Share Results', 1500);
+        });
+      }
+    });
+    
+  })();
+  </script>
+
+</body>
+</html>
+

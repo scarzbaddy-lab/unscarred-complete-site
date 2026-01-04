@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Conflict Chemistry | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg-void:#050507;--bg-deep:#0a0a0f;--line:#232334;--text:#f4f2f6;--muted:#bdb8c6;--primary:#a33b5c;--accent:#d6a35d;--r:22px}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 700px at 20% 10%, rgba(163,59,92,.18), transparent 60%), linear-gradient(180deg, var(--bg-void), var(--bg-deep)); color:var(--text); font-family:Outfit, system-ui, -apple-system, Segoe UI, sans-serif}
+    .quiz_wrap{max-width:980px;margin:0 auto;padding:40px 16px}
+    .quiz_head{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+    .quiz_brand{display:flex;gap:14px;align-items:flex-end}
+    .quiz_mark{letter-spacing:.18em;font-size:12px;color:var(--muted)}
+    .quiz_title{margin:0;font-family:"Cormorant Garamond", serif;font-size:44px;line-height:1}
+    .quiz_subtitle{margin:8px 0 0;color:var(--muted);max-width:62ch}
+    .quiz_progressbar{width:260px;height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--line)}
+    .quiz_progressfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .quiz_progresslabel{margin-top:8px;color:var(--muted);font-size:12px;text-align:right}
+    .quiz_card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .quiz_qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .quiz_qcount{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .quiz_q{margin:6px 0 10px;font-size:22px;line-height:1.25}
+    .quiz_opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .quiz_opt{display:flex;gap:10px;align-items:center;padding:12px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);cursor:pointer}
+    .quiz_opt input{accent-color:var(--primary)}
+    .quiz_opt_label{font-weight:500}
+    .quiz_notice{margin-bottom:12px;padding:10px 12px;border-radius:14px;border:1px solid rgba(214,163,93,.4);background:rgba(214,163,93,.08);color:var(--text)}
+    .quiz_foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+    .quiz_nav{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid rgba(163,59,92,.55);background:rgba(163,59,92,.18);color:var(--text);text-decoration:none;cursor:pointer;font-weight:600}
+    .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03);font-weight:600}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .results_title{margin:10px 0 6px;font-family:"Cormorant Garamond", serif;font-size:34px}
+    .results_sub{margin:0;color:var(--muted);line-height:1.6}
+    .results_top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+    .results_focus{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(255,255,255,.02)}
+    .results_focus_top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);overflow:hidden}
+    .barfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .results_actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .results_footer{margin:14px 0 0;color:var(--muted);line-height:1.6}
+    @media (max-width:760px){
+      .quiz_title{font-size:38px}
+      .quiz_opts{grid-template-columns:1fr}
+      .results_top{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="/assets/js/quiz-engine.js"></script>
+  <script>
+    const dimensions = [
+      { id:"pursuer", label:"Pursuer", micro:"You move toward the problem fast. Silence feels like abandonment.", blurb:"Your nervous system wants resolution now.", tools:["Ask for a time window", "Use one sentence requests", "Regulate before messaging"] },
+      { id:"withdrawer", label:"Withdrawer", micro:"You move away to self protect. Pressure feels like danger.", blurb:"Space is how you survive.", tools:["Name your return time", "Do not stonewall", "Say: I need 30 minutes then I will talk"] },
+      { id:"escalator", label:"Escalator", micro:"You raise volume, intensity, or accusations to be heard.", blurb:"You fear your pain will be dismissed.", tools:["Lower tone, raise clarity", "Stick to one issue", "No character attacks"] },
+      { id:"appeaser", label:"Appeaser", micro:"You smooth things over and swallow needs to stop conflict.", blurb:"Peace becomes the goal, not truth.", tools:["Name one real need", "Stop apologizing for existing", "Ask directly once"] },
+      { id:"prosecutor", label:"Prosecutor", micro:"You build a case. You hunt for inconsistencies and intent.", blurb:"You are trying to protect reality.", tools:["State impact, not motive", "Ask one question then pause", "Drop the courtroom tone"] },
+      { id:"shutdown", label:"Shutdown", micro:"Your system goes blank. You cannot think or speak clearly.", blurb:"This is overload, not indifference.", tools:["Somatic reset first", "Speak later, not now", "Use short phrases: I am overloaded"] }
+    ];
+
+    const questions = [
+      { text:"When conflict starts, I want to talk immediately.", mapsTo:[{dim:"pursuer"}] },
+      { text:"When I feel pressured, I need space and go quiet.", mapsTo:[{dim:"withdrawer"}] },
+      { text:"If I am not being heard, my tone gets sharper or louder.", mapsTo:[{dim:"escalator"}] },
+      { text:"I apologize fast even when I am not sure I did wrong.", mapsTo:[{dim:"appeaser"}] },
+
+      { text:"I chase clarity when someone is distant or vague.", mapsTo:[{dim:"pursuer"}] },
+      { text:"I avoid conversations that feel emotionally intense.", mapsTo:[{dim:"withdrawer"}] },
+      { text:"I bring up multiple examples to prove my point.", mapsTo:[{dim:"prosecutor"}] },
+      { text:"In conflict, my mind goes blank and I struggle to speak.", mapsTo:[{dim:"shutdown"}] },
+
+      { text:"I interpret slow replies as rejection during conflict.", mapsTo:[{dim:"pursuer"}] },
+      { text:"I feel trapped when someone wants to process everything.", mapsTo:[{dim:"withdrawer"}] },
+      { text:"I use extreme language when I am hurt (always, never, nobody).", mapsTo:[{dim:"escalator"}] },
+      { text:"I agree just to end the tension.", mapsTo:[{dim:"appeaser"}] },
+
+      { text:"I fear unresolved conflict more than harsh words.", mapsTo:[{dim:"pursuer"}] },
+      { text:"I recover best alone, then I can talk later.", mapsTo:[{dim:"withdrawer"}] },
+      { text:"I analyze contradictions and ask for exact timelines.", mapsTo:[{dim:"prosecutor"}] },
+      { text:"I physically feel heavy or numb during conflict.", mapsTo:[{dim:"shutdown"}] },
+
+      { text:"When I feel disconnected, I double text or keep talking.", mapsTo:[{dim:"pursuer"}] },
+      { text:"I need time to sort my thoughts before talking.", mapsTo:[{dim:"withdrawer"}] },
+      { text:"I escalate because I believe calm talking will be ignored.", mapsTo:[{dim:"escalator"}] },
+      { text:"I sugarcoat issues so I do not upset people.", mapsTo:[{dim:"appeaser"}] },
+
+      { text:"I replay arguments in my head to find the truth.", mapsTo:[{dim:"prosecutor"}] },
+      { text:"I shut down when the conversation has too many moving parts.", mapsTo:[{dim:"shutdown"}] },
+      { text:"I feel panic if I do not know where we stand.", mapsTo:[{dim:"pursuer"}] },
+      { text:"I avoid because conflict makes me feel unsafe inside.", mapsTo:[{dim:"withdrawer"}] }
+    ];
+
+    UnscarredQuiz.initQuiz({
+      root:"#app",
+      slug:"conflict-chemistry",
+      brandMark:"UNSCARRED",
+      title:"Conflict Chemistry",
+      subtitle:"How you fight, what triggers you, and your default cycle.",
+      cta:{ href:"/quizzes/", label:"Back to quizzes" },
+      dimensions,
+      questions,
+      resultsFooter:"Your top style is how your system protects the bond. The fix is not changing who you are. It is learning a repair language your body can tolerate."
+    });
+  </script>
+</body>
+</html>

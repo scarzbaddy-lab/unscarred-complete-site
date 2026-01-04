@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Manipulation Handbook: Tracking Patterns, Not Promises</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1418;
+            --bg-plum: #2d1f2a;
+            --bg-page: #f5f0eb;
+            --bg-alt: #ebe5df;
+            --text-dark: #1a1418;
+            --text-body: #3d3538;
+            --text-muted: #6e6468;
+            --accent: #8b2942;
+            --accent-light: #a83d56;
+            --safe: #4a7c59;
+            --caution: #c4873b;
+            --danger: #922b3e;
+            --border: #d8d0c8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-dark); line-height: 1.7; }
+        .page { max-width: 800px; margin: 0 auto; padding: 2.5rem 2rem; }
+        @media print { .page { padding: 0.5in; page-break-after: always; } }
+
+        /* Cover */
+        .cover { background: linear-gradient(180deg, var(--bg-plum) 0%, var(--bg-dark) 100%); color: var(--bg-page); text-align: center; padding: 4rem 2rem; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+        .cover h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 0.5rem; }
+        .cover .sub { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent-light); margin-bottom: 2rem; }
+        .cover .tagline { font-size: 1rem; color: rgba(245,240,235,0.7); max-width: 500px; margin: 0 auto; }
+
+        /* Typography */
+        h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--text-dark); margin: 2rem 0 1rem; border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
+        h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--accent); margin: 1.5rem 0 0.75rem; }
+        h4 { font-size: 1rem; font-weight: 600; margin: 1rem 0 0.5rem; }
+        p { margin-bottom: 1rem; }
+        .lead { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--text-muted); border-left: 3px solid var(--accent); padding-left: 1rem; margin: 1.5rem 0; }
+        .emphasis { font-weight: 600; color: var(--text-dark); }
+        strong { font-weight: 600; }
+
+        /* Boxes */
+        .box { background: var(--bg-alt); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; }
+        .box.dark { background: var(--bg-plum); color: var(--bg-page); border: none; }
+        .box.dark p { color: rgba(245,240,235,0.85); }
+        .box.dark strong { color: var(--accent-light); }
+        .box.safe { border-left: 4px solid var(--safe); }
+        .box.caution { border-left: 4px solid var(--caution); }
+        .box.danger { border-left: 4px solid var(--danger); }
+
+        /* Score explanations */
+        .score-explain { margin: 0.5rem 0; padding: 0.5rem 0 0.5rem 1rem; border-left: 3px solid var(--border); }
+        .score-explain .num { font-weight: 700; color: var(--accent); }
+
+        /* Category cards */
+        .category-card { background: var(--bg-alt); border-radius: 12px; padding: 1.5rem; margin: 1rem 0; border-left: 5px solid var(--border); }
+        .category-card.cat-a { border-left-color: var(--safe); }
+        .category-card.cat-b { border-left-color: #5a8a9a; }
+        .category-card.cat-c { border-left-color: var(--caution); }
+        .category-card.cat-d { border-left-color: var(--danger); }
+        .category-card h3 { margin-top: 0; }
+        .category-card .scores { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .category-card .energy { font-family: 'Playfair Display', serif; font-size: 1.05rem; margin-bottom: 1rem; color: var(--text-muted); }
+        .category-card blockquote { background: white; padding: 1rem; border-radius: 8px; font-family: 'DM Sans', sans-serif; margin: 1rem 0; }
+
+        /* Scenario cards */
+        .scenario { background: white; border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0; }
+        .scenario-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent); margin-bottom: 0.5rem; }
+        .scenario .situation { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; }
+        .response-box { background: var(--bg-alt); padding: 1rem; border-radius: 8px; margin: 0.75rem 0; }
+        .response-box.a { border-left: 3px solid var(--safe); }
+        .response-box.b { border-left: 3px solid var(--caution); }
+        .response-box h5 { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .response-box blockquote { font-family: 'DM Sans', sans-serif; font-size: 0.95rem; }
+        .response-box .scores { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.5rem; }
+
+        /* Write areas */
+        .write-label { font-weight: 500; font-size: 0.9rem; margin-bottom: 0.25rem; }
+        .write-area { border: 1px dashed var(--border); border-radius: 8px; min-height: 80px; padding: 0.75rem; margin-bottom: 1rem; background: white; }
+        .write-area.small { min-height: 50px; }
+
+        /* Score grid */
+        .score-grid { margin: 1rem 0; }
+        .score-row { display: flex; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid var(--border); }
+        .score-row:last-child { border-bottom: none; }
+        .score-row .label { flex: 1; font-weight: 500; }
+        .score-row .circles { display: flex; gap: 0.5rem; }
+        .score-row .circle { width: 32px; height: 32px; border: 2px solid var(--border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 0.9rem; }
+
+        /* 30-day tracker */
+        .tracker-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
+        .tracker-table th { background: var(--bg-alt); padding: 0.5rem; text-align: left; font-weight: 600; border: 1px solid var(--border); }
+        .tracker-table td { padding: 0.5rem; border: 1px solid var(--border); height: 2rem; }
+        .tracker-table .day { width: 40px; text-align: center; font-weight: 600; color: var(--text-muted); }
+
+        /* Interpretation boxes */
+        .interp { margin: 1rem 0; padding: 1rem; border-radius: 8px; }
+        .interp.safe { background: rgba(74, 124, 89, 0.1); border: 1px solid rgba(74, 124, 89, 0.3); }
+        .interp.warning { background: rgba(196, 135, 59, 0.1); border: 1px solid rgba(196, 135, 59, 0.3); }
+        .interp.danger { background: rgba(146, 43, 62, 0.1); border: 1px solid rgba(146, 43, 62, 0.3); }
+
+        /* Final reminder */
+        .final { background: var(--bg-plum); color: var(--bg-page); padding: 2rem; border-radius: 12px; text-align: center; margin: 2rem 0; }
+        .final p { color: rgba(245,240,235,0.85); margin-bottom: 0.75rem; }
+        .final strong { color: var(--accent-light); }
+
+        @media (max-width: 600px) {
+            .page { padding: 1.5rem 1rem; }
+            h2 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+    <h1>The Manipulation Handbook</h1>
+    <p class="sub">Tracking Patterns, Not Promises</p>
+    <p class="tagline">People lie. Nervous systems don't. You can't gaslight a pattern.</p>
+</div>
+
+<!-- INTRO -->
+<div class="page">
+    <h2>People Lie. Nervous Systems Don't.</h2>
+    
+    <p class="lead">You can't gaslight a pattern.</p>
+    
+    <p>A decent person might snap once, get defensive, have a bad day. But their default has concern, curiosity, some ownership, and movement toward repair.</p>
+    
+    <p>An unsafe person will talk like a good guy and still respond with zero concern, zero curiosity, zero ownership, and zero repair. Over and over.</p>
+    
+    <p>This handbook is how you catch that gap.</p>
+    
+    <p>Not by vibes. Not by hoping. Not by giving them another chance to explain.</p>
+    
+    <p><strong>By patterns.</strong></p>
+    
+    <div class="box">
+        <p><strong>You're going to learn four things to track in any reaction:</strong></p>
+        <p>• <strong>Concern</strong> (do they care that you're hurt)<br>
+        • <strong>Curiosity</strong> (do they want to understand)<br>
+        • <strong>Ownership</strong> (do they look at their part)<br>
+        • <strong>Repair</strong> (do they move toward fixing it)</p>
+        <p>You'll score each from 0 to 3.</p>
+        <p>Then you'll see which category their response falls into-and you'll track it over time.</p>
+    </div>
+    
+    <div class="box dark">
+        <p>Because one Category D reaction might be a bad moment.</p>
+        <p><strong>Ten of them is a baseline.</strong></p>
+        <p>And baselines don't lie.</p>
+    </div>
+</div>
+
+<!-- THE NORMAL RESPONSE FORMULA -->
+<div class="page">
+    <h2>The Normal Response Formula</h2>
+    
+    <p>When something goes wrong-when you're hurt, scared, confused, or upset-a healthy person's response will show up across four dimensions.</p>
+    
+    <p>Think of these as four sliders, each ranging from 0 to 3.</p>
+    
+    <h3>1. CONCERN</h3>
+    <p>Do they show any care for how scared, confused, or hurt you are?</p>
+    
+    <div class="score-explain">
+        <p><span class="num">0 = None</span><br>
+        They show no awareness or care that you're in distress. Your pain doesn't register, or they're actively dismissive of it.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">1 = Weak</span><br>
+        There's a flicker of acknowledgment ("I guess you're upset"), but it's minimal and quickly moves past your experience.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">2 = Present</span><br>
+        They clearly see you're hurting and acknowledge it, even if they're also frustrated or confused themselves.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">3 = Strong</span><br>
+        Their first response centers your distress. "You sound really scared" or "I can see this really hurt you" comes before their defense.</p>
+    </div>
+    
+    <h3>2. CURIOSITY</h3>
+    <p>Do they try to understand what happened and how you experienced it?</p>
+    
+    <div class="score-explain">
+        <p><span class="num">0 = None</span><br>
+        No questions about your perspective. No interest in how you got to feeling this way. They already "know" what happened (their version).</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">1 = Weak</span><br>
+        Maybe one token question ("Why are you upset?"), but they're not actually listening to the answer. It's performative.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">2 = Present</span><br>
+        Real questions that show they're trying to understand your reality. "What made you think that?" or "Walk me through what you heard."</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">3 = Strong</span><br>
+        They're genuinely investigating your experience, even if it's different from their intention. They ask follow-up questions. They want to understand the gap.</p>
+    </div>
+</div>
+
+<div class="page">
+    <h3>3. OWNERSHIP</h3>
+    <p>Do they look at their part in creating the confusion, hurt, or fear?</p>
+    
+    <div class="score-explain">
+        <p><span class="num">0 = None</span><br>
+        Zero acknowledgment that they contributed. Often includes blame-flipping: "You're the one who overreacted" or "This is all in your head."</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">1 = Weak</span><br>
+        Might admit to a tiny piece ("I guess my tone wasn't great"), but it's buried under justifications for why they were right to do it.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">2 = Present</span><br>
+        Clear acknowledgment of their part. "I can see how what I said sounded like goodbye" or "I didn't think about how that would land."</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">3 = Strong</span><br>
+        Takes full responsibility for their contribution without minimizing or deflecting. "I messed up" or "I see exactly how I created this confusion."</p>
+    </div>
+    
+    <h3>4. REPAIR INTENTION</h3>
+    <p>Do they move toward fixing it, or just toward shutting you up?</p>
+    
+    <div class="score-explain">
+        <p><span class="num">0 = None</span><br>
+        No movement toward resolution. Often punishment instead-silent treatment, more anger, threats, or dismissal. The goal is to make you stop talking, not to fix anything.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">1 = Weak</span><br>
+        A vague "Sorry" or "Let's just move on" that doesn't address the actual problem. Wants conflict to end but doesn't want to change anything.</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">2 = Present</span><br>
+        Actual attempt to address the issue. "What can I do to help you feel safer?" or "How do we make sure this doesn't happen again?"</p>
+    </div>
+    <div class="score-explain">
+        <p><span class="num">3 = Strong</span><br>
+        Proactive repair. They offer specific solutions, ask what you need, and follow through. They're focused on rebuilding trust, not just ending the discomfort.</p>
+    </div>
+    
+    <div class="box">
+        <h4>How To Use The Formula</h4>
+        <p>After any significant interaction where you felt hurt, confused, scared, or dismissed, score their response on all four sliders.</p>
+        <p>Write down what they actually said and did-facts only, no interpretation yet.</p>
+        <p>Then assign each slider a number from 0 to 3 based on what you observed.</p>
+        <p>Those four numbers will tell you which category their response falls into.</p>
+    </div>
+</div>
+
+<!-- THE FOUR CATEGORIES -->
+<div class="page">
+    <h2>The Four Categories</h2>
+    
+    <p>Once you've scored their response on the four sliders (Concern, Curiosity, Ownership, Repair), you can see which pattern category it falls into.</p>
+    
+    <p>These categories aren't about one bad moment. They're about what shows up consistently when someone's nervous system takes over.</p>
+    
+    <div class="category-card cat-a">
+        <h3>Category A: Typical / Regulated Response</h3>
+        <p class="scores"><strong>Score Range:</strong> Concern: 2 or 3 • Curiosity: 2 or 3 • Ownership: 1 to 3 • Repair: 2 or 3</p>
+        <p class="energy">"I see you're upset. I want to understand and fix what I can."</p>
+        <p><strong>What it looks like:</strong> They might be surprised, frustrated, or even a little defensive at first-but their default response includes care for your distress. They ask real questions. They look at their part, even if it wasn't intentional. They move toward repair, not punishment.</p>
+        <blockquote>
+            <p>You: "When you said 'goodbye' and hung up, I thought you were ending things. I completely spiraled."</p>
+            <p>Them: "Oh god, I can see why that scared you. I meant 'goodnight'-I was half asleep and didn't realize how final that sounded. I'm sorry I didn't pick up after. What do you need right now to feel okay again?"</p>
+        </blockquote>
+        <p><strong>What this means:</strong> This person might not be perfect, but they're emotionally safe. Their nervous system doesn't weaponize your pain. You can work with this.</p>
+    </div>
+    
+    <div class="category-card cat-b">
+        <h3>Category B: Clumsy But Correctable</h3>
+        <p class="scores"><strong>Score Range:</strong> Concern: 1 • Curiosity: 1 • Ownership: 1 • Repair: 1</p>
+        <p class="energy">"Whoa, that felt like a lot. I didn't mean it that way. I'm annoyed, but I'll talk."</p>
+        <p><strong>What it looks like:</strong> They're reactive at first. Maybe defensive, maybe overwhelmed. But if you stay calm and explain, they adjust. They're not trying to hurt you-they're just emotionally unpolished. Their initial response is self-focused, but they can course-correct when they realize the impact.</p>
+        <blockquote>
+            <p>You: "When you said 'goodbye' and hung up, I thought you were ending things."</p>
+            <p>Them: "That's a huge jump. I was just tired. But okay, I get it freaked you out. I should've been clearer."</p>
+        </blockquote>
+        <p><strong>What this means:</strong> This person isn't wearing a mask. They're just rough around the edges. If they consistently move from 1s to 2s after you explain, they're learning. If they stay stuck at 1s and blame you for being "too much," they're sliding toward Category C.</p>
+    </div>
+</div>
+
+<div class="page">
+    <div class="category-card cat-c">
+        <h3>Category C: Immature and Self-Centered</h3>
+        <p class="scores"><strong>Score Range:</strong> Concern: 0 or 1 • Curiosity: 0 or 1 • Ownership: 0 • Repair: 0 or 1</p>
+        <p class="energy">"You're too much. This is all about how you made me feel."</p>
+        <p><strong>What it looks like:</strong> They center their own discomfort. Your pain is inconvenient to them. They might not be calculating manipulation, but they consistently prioritize their comfort over your reality. They don't want to understand-they want you to stop being upset.</p>
+        <blockquote>
+            <p>You: "When you said 'goodbye' and hung up, I thought you were ending things."</p>
+            <p>Them: "Why do you always make everything so dramatic? I'm exhausted. Can we not do this right now? You're stressing me out."</p>
+        </blockquote>
+        <p><strong>What this means:</strong> This person might not be deliberately cruel, but they're emotionally unavailable in ways that harm you. If this is their consistent pattern, the relationship will always require you to shrink your needs to fit their bandwidth.</p>
+    </div>
+    
+    <div class="category-card cat-d">
+        <h3>Category D: Manipulative or Cruel</h3>
+        <p class="scores"><strong>Score Range:</strong> Concern: 0 • Curiosity: 0 • Ownership: 0 (often plus blame-flipping) • Repair: 0 (often includes punishment)</p>
+        <p class="energy">"You're crazy. Grow up. You embarrassed me. None of this is my fault."</p>
+        <p><strong>What it looks like:</strong> Zero care for your distress. Zero interest in your reality. They rewrite the facts, flip the blame onto you, and often punish you for having the reaction. This is where gaslighting lives. This is where the "nice guy" mask doesn't match the reaction data.</p>
+        <blockquote>
+            <p>You: "When you said 'goodbye' and hung up, I thought you were ending things."</p>
+            <p>Them: "I said 'goodnight,' not 'goodbye.' You're making things up. And that email you sent was insane. Do you have any idea how embarrassing that is? You need to get your shit together or I'm done."</p>
+        </blockquote>
+        <p><strong>What this means:</strong> This is not a bad day. This is a pattern. If their responses consistently land in Category D-especially when you're most vulnerable-you're not dealing with poor emotional regulation. You're dealing with someone whose nervous system punishes you for having needs.</p>
+    </div>
+</div>
+
+<!-- TRACKING TEMPLATE -->
+<div class="page">
+    <h2>How To Track Patterns</h2>
+    
+    <p>Every time something significant happens, fill out one tracking page.</p>
+    <p>Use the scenario cards in this handbook, or create your own based on what keeps happening in your relationship.</p>
+    
+    <h3>Tracking Page Template</h3>
+    
+    <p class="write-label"><strong>Date:</strong></p>
+    <div class="write-area small"></div>
+    
+    <p class="write-label"><strong>Situation Type:</strong> (circle one)</p>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">Expressed hurt / Asked for reassurance / Set a boundary / Caught inconsistency / Was visibly upset / Asked for clarity / Other: ___________</p>
+    
+    <h4>Step 1: Facts</h4>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">What was said and done. No feelings, no interpretation.</p>
+    
+    <p class="write-label">What I said/did:</p>
+    <div class="write-area"></div>
+    
+    <p class="write-label">What they said/did:</p>
+    <div class="write-area"></div>
+    
+    <h4>Step 2: What A Typical Person Would Do</h4>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">Reference the scenario card examples for Category A and B responses</p>
+    
+    <p class="write-label">Category A (Typical/Regulated) would sound like:</p>
+    <div class="write-area"></div>
+    
+    <p class="write-label">Category B (Clumsy but Correctable) would sound like:</p>
+    <div class="write-area"></div>
+</div>
+
+<div class="page">
+    <h4>Step 3: What They Actually Did</h4>
+    <p style="font-size: 0.9rem; color: var(--text-muted);">Write their exact words and actions.</p>
+    
+    <p class="write-label">Their actual response:</p>
+    <div class="write-area" style="min-height: 100px;"></div>
+    
+    <h4>Step 4: Score Their Response</h4>
+    
+    <div class="score-grid">
+        <div class="score-row">
+            <span class="label"><strong>Concern</strong> - Did they show care for my distress?</span>
+            <div class="circles">
+                <span class="circle">0</span>
+                <span class="circle">1</span>
+                <span class="circle">2</span>
+                <span class="circle">3</span>
+            </div>
+        </div>
+        <div class="score-row">
+            <span class="label"><strong>Curiosity</strong> - Did they try to understand my experience?</span>
+            <div class="circles">
+                <span class="circle">0</span>
+                <span class="circle">1</span>
+                <span class="circle">2</span>
+                <span class="circle">3</span>
+            </div>
+        </div>
+        <div class="score-row">
+            <span class="label"><strong>Ownership</strong> - Did they acknowledge their part?</span>
+            <div class="circles">
+                <span class="circle">0</span>
+                <span class="circle">1</span>
+                <span class="circle">2</span>
+                <span class="circle">3</span>
+            </div>
+        </div>
+        <div class="score-row">
+            <span class="label"><strong>Repair</strong> - Did they move toward fixing it?</span>
+            <div class="circles">
+                <span class="circle">0</span>
+                <span class="circle">1</span>
+                <span class="circle">2</span>
+                <span class="circle">3</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box">
+        <p><strong>Total pattern:</strong></p>
+        <p>Mostly 2-3s = <strong>Category A</strong> / Mostly 1s = <strong>Category B</strong> / Mostly 0s with some 1s = <strong>Category C</strong> / Pattern of 0s + blame = <strong>Category D</strong></p>
+    </div>
+    
+    <p class="write-label"><strong>This response falls into: Category ____</strong></p>
+    
+    <p class="write-label">Notes:</p>
+    <div class="write-area"></div>
+</div>
+
+<!-- SCENARIO CARDS -->
+<div class="page">
+    <h2>Scenario Cards</h2>
+    
+    <p>Use these pre-loaded scenarios to practice tracking, or to identify patterns in real-time.</p>
+    <p>Each card includes: Common situation template • Category A response (what healthy looks like) • Category B response (clumsy but fixable) • Blank scoring section for your actual experience</p>
+    
+    <div class="scenario">
+        <p class="scenario-title">Scenario 1: You Expressed Feeling Hurt By Something They Said</p>
+        <p class="situation"><strong>Common Situation:</strong> They made a comment (joke, observation, criticism) that landed badly. You told them it hurt.</p>
+        
+        <div class="response-box a">
+            <h5>Category A Response (Typical/Regulated)</h5>
+            <blockquote>"Oh, I'm sorry-I didn't realize that would hurt. Can you tell me how you heard it? I want to understand what landed wrong so I don't do it again."</blockquote>
+            <p class="scores">Concern: 3 / Curiosity: 3 / Ownership: 2 / Repair: 3</p>
+        </div>
+        
+        <div class="response-box b">
+            <h5>Category B Response (Clumsy but Correctable)</h5>
+            <blockquote>"I was joking! But okay, I see you're upset. I didn't mean it like that. What do you need from me here?"</blockquote>
+            <p class="scores">Concern: 1 / Curiosity: 1 / Ownership: 1 / Repair: 1</p>
+        </div>
+        
+        <p class="write-label" style="margin-top: 1rem;"><strong>What they actually did:</strong></p>
+        <div class="write-area"></div>
+        
+        <p class="write-label"><strong>Your Scores:</strong></p>
+        <div class="score-grid">
+            <div class="score-row"><span class="label">Concern</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+        </div>
+        <p><strong>Category: ____</strong></p>
+    </div>
+</div>
+
+<div class="page">
+    <div class="scenario">
+        <p class="scenario-title">Scenario 2: You Needed Reassurance After A Triggering Event</p>
+        <p class="situation"><strong>Common Situation:</strong> Something happened (they were distant, didn't text back, seemed off) and your nervous system went into threat mode. You asked for reassurance.</p>
+        
+        <div class="response-box a">
+            <h5>Category A Response</h5>
+            <blockquote>"Hey, I hear you. I know your nervous system goes there fast. I'm not going anywhere. I was just stuck in meetings and forgot to check my phone. What do you need right now to feel secure again?"</blockquote>
+            <p class="scores">Concern: 3 / Curiosity: 2 / Ownership: 2 / Repair: 3</p>
+        </div>
+        
+        <div class="response-box b">
+            <h5>Category B Response</h5>
+            <blockquote>"I wasn't being distant-I was just busy. But I get it freaked you out. I'm here."</blockquote>
+            <p class="scores">Concern: 1 / Curiosity: 1 / Ownership: 1 / Repair: 2</p>
+        </div>
+        
+        <p class="write-label" style="margin-top: 1rem;"><strong>What they actually did:</strong></p>
+        <div class="write-area"></div>
+        
+        <p class="write-label"><strong>Your Scores:</strong></p>
+        <div class="score-grid">
+            <div class="score-row"><span class="label">Concern</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+        </div>
+        <p><strong>Category: ____</strong></p>
+    </div>
+    
+    <div class="scenario">
+        <p class="scenario-title">Scenario 3: You Caught Them In An Inconsistency</p>
+        <p class="situation"><strong>Common Situation:</strong> They said one thing, then did another. Or their story changed. You pointed it out.</p>
+        
+        <div class="response-box a">
+            <h5>Category A Response</h5>
+            <blockquote>"You're right, that doesn't line up. Let me think about what happened... okay, I think I said X originally because I was worried about Y, but that wasn't honest. Here's what actually happened."</blockquote>
+            <p class="scores">Concern: 2 / Curiosity: 2 / Ownership: 3 / Repair: 2</p>
+        </div>
+        
+        <div class="response-box b">
+            <h5>Category B Response</h5>
+            <blockquote>"I don't remember saying that, but if I did, I probably just misspoke. I'm not trying to lie to you."</blockquote>
+            <p class="scores">Concern: 1 / Curiosity: 1 / Ownership: 1 / Repair: 1</p>
+        </div>
+        
+        <p class="write-label" style="margin-top: 1rem;"><strong>What they actually did:</strong></p>
+        <div class="write-area"></div>
+        
+        <p class="write-label"><strong>Your Scores:</strong></p>
+        <div class="score-grid">
+            <div class="score-row"><span class="label">Concern</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+        </div>
+        <p><strong>Category: ____</strong></p>
+    </div>
+</div>
+
+<div class="page">
+    <div class="scenario">
+        <p class="scenario-title">Scenario 4: You Set A Boundary</p>
+        <p class="situation"><strong>Common Situation:</strong> You said no, asked for space, or named a limit. You communicated a need clearly.</p>
+        
+        <div class="response-box a">
+            <h5>Category A Response</h5>
+            <blockquote>"Okay, I hear you. I might not love it, but I respect that's what you need. Can we talk about what this looks like in practice so I don't accidentally overstep?"</blockquote>
+            <p class="scores">Concern: 2 / Curiosity: 3 / Ownership: 2 / Repair: 3</p>
+        </div>
+        
+        <div class="response-box b">
+            <h5>Category B Response</h5>
+            <blockquote>"That feels kind of harsh, but fine. I'll back off."</blockquote>
+            <p class="scores">Concern: 1 / Curiosity: 0 / Ownership: 1 / Repair: 1</p>
+        </div>
+        
+        <p class="write-label" style="margin-top: 1rem;"><strong>What they actually did:</strong></p>
+        <div class="write-area"></div>
+        
+        <p class="write-label"><strong>Your Scores:</strong></p>
+        <div class="score-grid">
+            <div class="score-row"><span class="label">Concern</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+        </div>
+        <p><strong>Category: ____</strong></p>
+    </div>
+    
+    <div class="scenario">
+        <p class="scenario-title">Scenario 5: You Were Visibly Upset Or Dysregulated</p>
+        <p class="situation"><strong>Common Situation:</strong> You were crying, panicking, shut down, or otherwise in an activated nervous system state. They witnessed it.</p>
+        
+        <div class="response-box a">
+            <h5>Category A Response</h5>
+            <blockquote>"Hey, I've got you. What do you need right now? Do you want me to just sit with you, or do you want to talk through what's happening?"</blockquote>
+            <p class="scores">Concern: 3 / Curiosity: 2 / Ownership: N/A / Repair: 3</p>
+        </div>
+        
+        <div class="response-box b">
+            <h5>Category B Response</h5>
+            <blockquote>"You okay? This seems like a lot. Do you want some space?"</blockquote>
+            <p class="scores">Concern: 1 / Curiosity: 1 / Ownership: N/A / Repair: 1</p>
+        </div>
+        
+        <p class="write-label" style="margin-top: 1rem;"><strong>What they actually did:</strong></p>
+        <div class="write-area"></div>
+        
+        <p class="write-label"><strong>Your Scores:</strong></p>
+        <div class="score-grid">
+            <div class="score-row"><span class="label">Concern</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span><span class="circle" style="font-size: 0.7rem;">N/A</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+        </div>
+        <p><strong>Category: ____</strong></p>
+    </div>
+</div>
+
+<div class="page">
+    <div class="scenario">
+        <p class="scenario-title">Scenario 6: You Asked For Clarity On Mixed Messages</p>
+        <p class="situation"><strong>Common Situation:</strong> Their words said one thing, but their behavior said another. You asked them to clarify what they actually mean.</p>
+        
+        <div class="response-box a">
+            <h5>Category A Response</h5>
+            <blockquote>"That's fair-I can see how I'm sending mixed signals. Let me be direct: here's where I'm actually at, and here's what I'm still figuring out."</blockquote>
+            <p class="scores">Concern: 2 / Curiosity: 2 / Ownership: 3 / Repair: 3</p>
+        </div>
+        
+        <div class="response-box b">
+            <h5>Category B Response</h5>
+            <blockquote>"I don't think I'm being confusing, but okay-what specifically are you asking about?"</blockquote>
+            <p class="scores">Concern: 1 / Curiosity: 1 / Ownership: 0 / Repair: 1</p>
+        </div>
+        
+        <p class="write-label" style="margin-top: 1rem;"><strong>What they actually did:</strong></p>
+        <div class="write-area"></div>
+        
+        <p class="write-label"><strong>Your Scores:</strong></p>
+        <div class="score-grid">
+            <div class="score-row"><span class="label">Concern</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="circles"><span class="circle">0</span><span class="circle">1</span><span class="circle">2</span><span class="circle">3</span></div></div>
+        </div>
+        <p><strong>Category: ____</strong></p>
+    </div>
+</div>
+
+<!-- 30-DAY PATTERN TRACKER -->
+<div class="page">
+    <h2>Your 30-Day Pattern Tracker</h2>
+    <p>Use this table to track patterns across multiple incidents.</p>
+    
+    <table class="tracker-table">
+        <thead>
+            <tr>
+                <th class="day">Day</th>
+                <th>Date</th>
+                <th>Situation Type</th>
+                <th>C</th>
+                <th>Cu</th>
+                <th>O</th>
+                <th>R</th>
+                <th>Cat</th>
+                <th>Key Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="day">1</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">2</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">3</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">4</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">5</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">6</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">7</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">8</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">9</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">10</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">11</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">12</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">13</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">14</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">15</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="page">
+    <table class="tracker-table">
+        <thead>
+            <tr>
+                <th class="day">Day</th>
+                <th>Date</th>
+                <th>Situation Type</th>
+                <th>C</th>
+                <th>Cu</th>
+                <th>O</th>
+                <th>R</th>
+                <th>Cat</th>
+                <th>Key Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td class="day">16</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">17</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">18</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">19</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">20</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">21</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">22</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">23</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">24</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">25</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">26</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">27</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">28</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">29</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+            <tr><td class="day">30</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+        </tbody>
+    </table>
+    
+    <h3 style="margin-top: 2rem;">30-Day Summary</h3>
+    <div class="box">
+        <p><strong>Total Category A's: ____</strong></p>
+        <p><strong>Total Category B's: ____</strong></p>
+        <p><strong>Total Category C's: ____</strong></p>
+        <p><strong>Total Category D's: ____</strong></p>
+        <p style="margin-top: 1rem;"><strong>Dominant Pattern: ____</strong></p>
+    </div>
+</div>
+
+<!-- READING YOUR PATTERN DATA -->
+<div class="page">
+    <h2>Reading Your Pattern Data</h2>
+    
+    <p>After you've tracked 5-10 incidents, look at your pattern tracker table.</p>
+    <p>What you're looking for isn't perfection. It's consistency.</p>
+    
+    <div class="interp safe">
+        <h4>If You See Mostly A's and B's</h4>
+        <p><strong>What it means:</strong> You're likely dealing with someone who's emotionally safe, even if they're not always smooth. They might get defensive or reactive at first, but their baseline includes care, curiosity, and movement toward repair.</p>
+        <p><strong>What to do:</strong> Keep communicating. Keep naming what you need. This person can learn and adjust with you.</p>
+    </div>
+    
+    <div class="interp warning">
+        <h4>If You See Mostly C's</h4>
+        <p><strong>What it means:</strong> This person is emotionally immature or self-centered in ways that consistently harm you. They might not be trying to manipulate you, but the impact is the same-your needs get disappeared so theirs can stay comfortable.</p>
+        <p><strong>What to do:</strong> Decide if you have the capacity to keep managing someone else's emotional limitations. This pattern doesn't usually change without significant external pressure (therapy, consequences, their own wake-up call). You can't fix this by explaining better.</p>
+    </div>
+    
+    <div class="interp danger">
+        <h4>If You See Mostly D's</h4>
+        <p><strong>What it means:</strong> This is not a communication problem. This is not about your delivery. This person's nervous system punishes you for having needs, especially when you're most vulnerable. The "nice guy" mask doesn't match the reaction data.</p>
+        <p><strong>What to do:</strong> Trust the pattern, not the apology that might come after. Category D responses-especially when they're consistent-are a sign of relational danger. Document, plan, and protect yourself.</p>
+    </div>
+    
+    <div class="interp warning">
+        <h4>If You See Oscillating Patterns (A, D, A, D, C, A, D)</h4>
+        <p><strong>What it means:</strong> This is intermittent reinforcement. They can be lovely (Category A) just often enough to keep you hooked, but when your nervous system is most activated-when you're scared, hurt, or need reassurance-they drop into C or D.</p>
+        <p><strong>What to do:</strong> Track when the D's show up. If Category D responses consistently appear when you're most vulnerable or when you're naming a boundary, that's strategic. It's not random. Their nervous system is training yours to stop asking for things.</p>
+    </div>
+</div>
+
+<!-- WHAT TO DO WITH YOUR DATA -->
+<div class="page">
+    <h2>What To Do With Your Data</h2>
+    
+    <p>Once you have 10+ entries, step back and look at the pattern.</p>
+    
+    <p>Ask yourself:</p>
+    
+    <div class="box">
+        <p><strong>1. What's the dominant category?</strong><br>
+        If it's mostly A's and B's, you're likely safe. If it's mostly C's and D's, you're not.</p>
+        
+        <p><strong>2. When do the D's show up?</strong><br>
+        Do Category D responses cluster around specific situations-like when you set boundaries, ask for reassurance, or name their behavior? That's not random.</p>
+        
+        <p><strong>3. Do they adjust after you explain?</strong><br>
+        If B responses move toward A after conversation, they're learning. If C and D responses stay stuck or get worse after you explain, they're not interested in changing.</p>
+        
+        <p><strong>4. Does the pattern match their words?</strong><br>
+        If they say "I care about you" or "I want this to work," but the data shows consistent 0's in Concern and Repair, trust the data. Words are performance. Patterns are truth.</p>
+    </div>
+    
+    <div class="box dark">
+        <p><strong>The Data Doesn't Lie</strong></p>
+        <p>One Category D reaction might be a bad moment.</p>
+        <p>Five of them is a pattern.</p>
+        <p>Ten of them is a baseline.</p>
+        <p>And baselines don't change because you love someone better or explain yourself more clearly.</p>
+        <p>They change when the person decides their pattern isn't acceptable anymore.</p>
+        <p><strong>If your data keeps showing C's and D's, you're not the problem.</strong></p>
+        <p><strong>The pattern is.</strong></p>
+    </div>
+</div>
+
+<!-- FINAL REMINDER -->
+<div class="page">
+    <h2>Final Reminder</h2>
+    
+    <p>This handbook isn't about catching someone in a mistake.</p>
+    
+    <p>It's about catching the gap between who they say they are and who they become when your nervous system needs something from theirs.</p>
+    
+    <div class="final">
+        <p>One Category D reaction might be a bad day.</p>
+        <p>A pattern of them is a baseline.</p>
+        <p>And you don't need to wait for it to get worse to trust what you're seeing.</p>
+        <p style="margin-top: 1.5rem; font-size: 1.2rem;"><strong>The data doesn't lie.</strong></p>
+    </div>
+    
+    <p style="text-align: center; margin-top: 3rem; color: var(--text-muted);">- End of Handbook -</p>
+</div>
+
+</body>
+</html>

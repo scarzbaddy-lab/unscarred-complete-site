@@ -1,0 +1,1608 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Unscarred Mirror Quiz | Unscarred</title>
+  <meta name="description" content="Map your survival strategy, attachment wounds, neurotype, partner patterns, and self-sabotage style. 32 questions. The full picture, not a label.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2 family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+  <style>
+    :root {
+      --bg-deep: #0c0b0f;
+      --bg-card: rgba(18, 16, 22, 0.95);
+      --bg-option: rgba(24, 22, 30, 0.9);
+      --rose: #c4616c;
+      --rose-glow: rgba(196, 97, 108, 0.3);
+      --sage: #7d9a8c;
+      --sage-glow: rgba(125, 154, 140, 0.25);
+      --amber: #c9956c;
+      --amber-glow: rgba(201, 149, 108, 0.25);
+      --text-main: #ede9e3;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-subtle: rgba(255,255,255,0.06);
+      --border-hover: rgba(196, 97, 108, 0.3);
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-deep);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 70% 50% at 30% 0%, rgba(196, 97, 108, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 40% at 80% 70%, rgba(125, 154, 140, 0.06) 0%, transparent 40%),
+        radial-gradient(ellipse 60% 50% at 10% 90%, rgba(201, 149, 108, 0.05) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .quiz-shell {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 24px 16px;
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Header */
+    .quiz-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      margin-bottom: 24px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { font-weight: 400; opacity: 0.7; }
+
+    .back-link {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    /* Intro Screen */
+    .quiz-intro {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeUp 0.6s var(--ease-out);
+      padding: 40px 0;
+    }
+
+    .intro-badge {
+      display: inline-block;
+      padding: 8px 16px;
+      background: var(--rose);
+      color: var(--text-main);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 24px;
+    }
+
+    .intro-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 500;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      max-width: 600px;
+    }
+
+    .intro-lead {
+      font-size: 1rem;
+      color: var(--text-soft);
+      max-width: 480px;
+      margin-bottom: 32px;
+      font-weight: 300;
+    }
+
+    .intro-dimensions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+    }
+
+    .dim-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      background: var(--bg-option);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .dim-pill span { font-size: 1rem; }
+
+    .btn-start {
+      padding: 16px 40px;
+      background: linear-gradient(135deg, var(--rose), #a34d56);
+      border: none;
+      border-radius: 999px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.3s var(--ease-out);
+      box-shadow: 0 4px 24px var(--rose-glow);
+    }
+
+    .btn-start:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px var(--rose-glow);
+    }
+
+    .intro-note {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+      flex: 1;
+      display: none;
+      flex-direction: column;
+      animation: fadeUp 0.5s var(--ease-out);
+    }
+
+    .quiz-container.active { display: flex; }
+
+    /* Progress */
+    .progress-section {
+      margin-bottom: 24px;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--rose), var(--sage), var(--amber));
+      border-radius: 999px;
+      transition: width 0.4s var(--ease-out);
+      box-shadow: 0 0 12px var(--rose-glow);
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .dimension-label {
+      color: var(--amber);
+      font-weight: 500;
+    }
+
+    /* Question Card */
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+      animation: slideIn 0.4s var(--ease-out);
+      margin-bottom: 24px;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    .question-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--amber);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .question-label::before {
+      content: "";
+      width: 16px;
+      height: 1px;
+      background: var(--amber);
+    }
+
+    .question-text {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 400;
+      line-height: 1.45;
+      color: var(--text-main);
+      margin-bottom: 24px;
+    }
+
+    .question-subtext {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      font-style: italic;
+      margin-top: -16px;
+      margin-bottom: 24px;
+    }
+
+    /* Options */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg-option);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+      position: relative;
+    }
+
+    .option-btn::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: linear-gradient(180deg, var(--rose), var(--amber));
+      border-radius: 3px 0 0 3px;
+      opacity: 0;
+      transform: scaleY(0);
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .option-btn:hover {
+      background: rgba(30, 28, 38, 0.95);
+      border-color: var(--border-hover);
+      transform: translateX(4px);
+    }
+
+    .option-btn:hover::before {
+      opacity: 0.5;
+      transform: scaleY(1);
+    }
+
+    .option-btn.selected {
+      background: rgba(196, 97, 108, 0.1);
+      border-color: var(--rose);
+    }
+
+    .option-btn.selected::before {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .option-letter {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-dim);
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255,255,255,0.04);
+      border-radius: 6px;
+      flex-shrink: 0;
+      transition: all 0.25s;
+    }
+
+    .option-btn:hover .option-letter,
+    .option-btn.selected .option-letter {
+      color: var(--rose);
+      background: rgba(196, 97, 108, 0.15);
+    }
+
+    .option-text { flex: 1; line-height: 1.5; }
+
+    /* Navigation */
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nav-btn {
+      padding: 12px 20px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.25s var(--ease-out);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-btn--ghost {
+      background: transparent;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+    }
+
+    .nav-btn--ghost:hover:not(:disabled) {
+      border-color: rgba(255,255,255,0.15);
+      color: var(--text-main);
+    }
+
+    .nav-btn--primary {
+      background: linear-gradient(135deg, var(--rose), #a34d56);
+      border: none;
+      color: var(--text-main);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      box-shadow: 0 4px 16px var(--rose-glow);
+    }
+
+    .nav-btn--primary:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 24px var(--rose-glow);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .quiz-footer-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 16px;
+    }
+
+    /* Results */
+    .results-container {
+      display: none;
+      animation: fadeUp 0.6s var(--ease-out);
+    }
+
+    .results-container.active { display: block; }
+
+    .result-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .result-header h1 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 500;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .result-clinical {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      font-style: italic;
+    }
+
+    .result-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .result-card h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .result-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .result-card--snapshot {
+      border-left: 4px solid var(--rose);
+    }
+
+    .result-card--snapshot p {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .result-card--nervous {
+      background: linear-gradient(135deg, rgba(125, 154, 140, 0.1), rgba(18, 16, 22, 0.95));
+      border-color: rgba(125, 154, 140, 0.2);
+    }
+
+    .result-card ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .result-card li {
+      position: relative;
+      padding-left: 24px;
+      margin-bottom: 8px;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+    }
+
+    .result-card--do li::before {
+      content: '?';
+      position: absolute;
+      left: 0;
+      color: var(--sage);
+      font-weight: 600;
+    }
+
+    .result-card--avoid li::before {
+      content: '?';
+      position: absolute;
+      left: 0;
+      color: var(--rose);
+      font-weight: 600;
+    }
+
+    /* Score Bars */
+    .score-section {
+      margin-top: 24px;
+    }
+
+    .score-section h3 {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--amber);
+      margin-bottom: 16px;
+    }
+
+    .score-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .score-group h4 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+      font-size: 0.75rem;
+    }
+
+    .score-label {
+      width: 90px;
+      color: var(--text-soft);
+    }
+
+    .score-track {
+      flex: 1;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--sage), var(--amber));
+      border-radius: 999px;
+      transition: width 0.6s var(--ease-out);
+    }
+
+    .score-value {
+      width: 20px;
+      text-align: right;
+      color: var(--text-dim);
+      font-weight: 600;
+    }
+
+    /* Dimensions breakdown */
+    .dimensions-card {
+      background: var(--bg-option);
+    }
+
+    .dim-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .dim-tag {
+      padding: 6px 12px;
+      background: var(--bg-card);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    /* CTAs */
+    .result-ctas {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 32px 0;
+    }
+
+    .cta-btn {
+      display: block;
+      padding: 16px 24px;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      text-align: center;
+      font-weight: 600;
+      transition: all 0.25s var(--ease-out);
+    }
+
+    .cta-btn--primary {
+      background: linear-gradient(135deg, var(--rose), #a34d56);
+      color: var(--text-main);
+      box-shadow: 0 4px 20px var(--rose-glow);
+    }
+
+    .cta-btn--primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px var(--rose-glow);
+    }
+
+    .cta-btn--secondary {
+      background: var(--bg-option);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-soft);
+    }
+
+    .cta-btn--secondary:hover {
+      border-color: var(--border-hover);
+      color: var(--text-main);
+    }
+
+    .result-footer {
+      text-align: center;
+      padding: 24px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+    }
+
+    .result-footer p {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      margin-bottom: 16px;
+      color: var(--text-soft);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .score-grid { grid-template-columns: 1fr; }
+      .intro-title { font-size: 1.75rem; }
+      .question-text { font-size: 1.15rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-shell">
+    <header class="quiz-header">
+      <a href="../index.html" class="logo">un<span>scarred</span></a>
+      <a href="../index.html" class="back-link">? Back to home</a>
+    </header>
+
+    <!-- Intro -->
+    <div class="quiz-intro" id="intro">
+      <span class="intro-badge">The Unscarred Mirror Quiz</span>
+      <h1 class="intro-title">See the pattern. Name the wound. Find your path.</h1>
+      <p class="intro-lead">This is not a personality test. We map five dimensions of how your nervous system fights for safety in love.</p>
+      
+      <div class="intro-dimensions">
+        <div class="dim-pill"><span>??ï¸</span> War your system fights</div>
+        <div class="dim-pill"><span>ðŸŽ­</span> Mask you wear</div>
+        <div class="dim-pill"><span>🔗</span> Attachment pattern</div>
+        <div class="dim-pill"><span>ðŸ’ž</span> Partner draw</div>
+        <div class="dim-pill"><span>ðŸ§ </span> Neurotype lens</div>
+      </div>
+      
+      <button class="btn-start" id="startBtn">Begin the Quiz ?</button>
+      <p class="intro-note">32 questions Â· 8-10 minutes Â· No email required</p>
+    </div>
+
+    <!-- Quiz -->
+    <div class="quiz-container" id="quizContainer">
+      <div class="progress-section">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="progressText">Question 1 of 32</span>
+          <span class="dimension-label" id="dimensionLabel"></span>
+        </div>
+      </div>
+
+      <div class="question-card" id="questionCard">
+        <!-- Injected by JS -->
+      </div>
+
+      <div class="nav-row">
+        <button class="nav-btn nav-btn--ghost" id="backBtn">? Back</button>
+        <button class="nav-btn nav-btn--primary" id="nextBtn" disabled>Next ?</button>
+      </div>
+
+      <p class="quiz-footer-note">Answer with what you actually do, not what you wish you would do.</p>
+    </div>
+
+    <!-- Results -->
+    <div class="results-container" id="resultsContainer">
+      <!-- Injected by JS -->
+    </div>
+  </div>
+
+  <script>
+    // ???????????????????????????????????????????????????????????????
+    // THE UNSCARRED MIRROR QUIZ - COMPREHENSIVE TRIAGE
+    // Dimensions: War, Mask, Attachment, Partner Draw, Neurotype
+    // ???????????????????????????????????????????????????????????????
+
+    const questions = [
+      // ??? STAGE CHECK (not scored) ???
+      {
+        id: "stage",
+        dim: "meta",
+        label: "Stage check",
+        text: "Right now, which feels closest to where you are ",
+        subtext: "This flavors your result but does not change your score.",
+        options: [
+          { letter: "A", text: "I'm in the middle of it right now", meta: "in_it" },
+          { letter: "B", text: "We're technically done but still emotionally tangled", meta: "tangled" },
+          { letter: "C", text: "It's over and I'm trying to rebuild", meta: "rebuilding" },
+          { letter: "D", text: "I'm not sure anything was toxic, but my system won't calm down", meta: "unsure" }
+        ]
+      },
+
+      // ??? WAR + MASK QUESTIONS (16 questions) ???
+      {
+        id: "w1",
+        dim: "war",
+        label: "Last fight",
+        text: "You and someone you're attached to have a huge argument. They walk away or stop replying. In that immediate moment, what's your body's default move ",
+        options: [
+          { letter: "A", text: "My chest drops. I'm sure I've ruined everything and start spiraling through every way I could lose them.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "I go cold and annoyed. In my head I start listing all the ways they're overreacting.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "I immediately start crafting the perfect message to calm them down, even if it means apologizing for things that aren't mine.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "My brain goes into replay mode. I scroll back through messages and try to work out what exactly flipped the switch.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w2",
+        dim: "war",
+        label: "When they cancel",
+        text: "They cancel plans last minute with a vague reason. What's your immediate reaction ",
+        options: [
+          { letter: "A", text: "I want to cry. I feel hurt and wonder why they don't want me.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "I feel disrespected and angry. Who do they think they are ", mask: "armored", war: "exposure" },
+          { letter: "C", text: "I panic and start figuring out how to fix this so they don't pull further away.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "I go cold and start analyzing whether this is part of a bigger pattern.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w3",
+        dim: "war",
+        label: "Criticism hit",
+        text: "Someone you care about tells you, calmly, that something you did hurt them. Which reaction dominates ",
+        options: [
+          { letter: "A", text: "Shame flood. I'm instantly terrified I'm a bad person and they'll leave me.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Ego wound. Part of me wants to defend myself or silently downgrade them.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Fix-it panic. I rush to over-explain, over-apologize, and promise to do better.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Analytical dissection. I go numb and start checking whether their story even adds up.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "w4",
+        dim: "war",
+        label: "Sensing distance",
+        text: "You feel them pulling away but they haven't said anything directly. Which defense kicks in strongest ",
+        options: [
+          { letter: "A", text: "Testing behavior. I poke, pick fights, or become more intense to see if they still care.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Protective withdrawal. I pull back first. I refuse to look weak or needy.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Extra accommodation. I become sweeter and more helpful so they have no reason to leave.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "Strategic observation. I quietly start planning my exit while watching their behavior.", mask: "analyzer", war: "entrapment" }
+        ]
+      },
+      {
+        id: "w5",
+        dim: "war",
+        label: "Being deeply seen",
+        text: "Someone looks at you and says, \"I see how much you're carrying. You don't have to be this strong.\" Which response is strongest ",
+        options: [
+          { letter: "A", text: "Terror and craving at once. I want to cry and run at the same time.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Suspicion. I wonder what they want and why they're trying to get past my armor.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Grateful melting. I want to become whatever they need so I never lose that gaze.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "Awkward analysis. I analyze their wording and motives instead of feeling it.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "w6",
+        dim: "war",
+        label: "Sensory overload",
+        text: "During a heated conversation, the environment gets loud or chaotic. Which survival mode takes over ",
+        options: [
+          { letter: "A", text: "Amplification. I get louder and more intense. My body feels like it'll explode.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Cold shutdown. My face goes flat while my mind looks for the fastest way to regain control.", mask: "armored", war: "entrapment" },
+          { letter: "C", text: "Invisible crisis. I stay externally calm but feel dizzy and disconnected while managing everyone else.", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "System overload. My brain fuzzes. I can't track the conversation and later reconstruct it from fragments.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w7",
+        dim: "war",
+        label: "After breakup",
+        text: "Think about your last breakup or major rupture. What dominated your first few weeks ",
+        options: [
+          { letter: "A", text: "Emotional withdrawal. I obsessed, begged, or raged even if I didn't show it.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Image management. I looked fine, focused on winning, made sure they knew I wasn't pressed.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Relationship autopsy. I rewrote the story, imagined how I could have been better.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "Forensic analysis. I replayed everything, made timelines, tried to find the exact failure point.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w8",
+        dim: "war",
+        label: "Feeling trapped",
+        text: "You realize the relationship is costing you your peace, but leaving feels impossible. Which reaction is loudest ",
+        options: [
+          { letter: "A", text: "Emotional whiplash. My system screams for connection and freedom at the same time.", mask: "flooded", war: "entrapment" },
+          { letter: "B", text: "Lockdown. I tell myself to stop being dramatic and focus on what I'm getting out of it.", mask: "armored", war: "entrapment" },
+          { letter: "C", text: "Savior fantasy. If I can just heal them or love them right, we'll both be free.", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "Escape architecture. I start making hidden plans, collecting information, engineering a clean exit.", mask: "analyzer", war: "entrapment" }
+        ]
+      },
+      {
+        id: "w9",
+        dim: "war",
+        label: "Fear of exposure",
+        text: "Someone gets close enough to see your worst traits. Which fear dominates ",
+        options: [
+          { letter: "A", text: "Abandonment terror. I'm terrified they'll see how broken I am and leave.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Defensive rage. I feel angry at the idea of being judged and prepare a case about why they're no better.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Performance escalation. I become the best version of myself around them and hide anything messy.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Clinical confession. I pre-emptively admit things in a detached way, then watch how they respond.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "w10",
+        dim: "war",
+        label: "Emotional permanence",
+        text: "When someone leaves the room or goes offline for a while, how real do they feel to you emotionally ",
+        options: [
+          { letter: "A", text: "Gone. My body reacts like I've been abandoned even if my mind knows they'll be back.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Conditional. They feel real unless they cross a line. Then they switch from important to irrelevant.", mask: "armored", war: "erasure" },
+          { letter: "C", text: "Invisible tether. I stay in conversation with them in my head, rehearsing what I'll say.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "File storage. I know they exist, but the felt sense of them becomes data I can open or close.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w11",
+        dim: "war",
+        label: "When you're too much",
+        text: "Somebody tells you that your reactions or needs feel like \"a lot.\" Which response hits hardest ",
+        options: [
+          { letter: "A", text: "Shame spiral. I collapse inside and feel ashamed, then get more reactive because it feels like proof I'm unlovable.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Offended dismissal. I decide they're too sensitive or weak for me.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Immediate adjustment. I tone myself down, apologize, and become whatever version wouldn't be \"too much.\"", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Reality audit. I step back and question whether my behavior was unreasonable or if they're deflecting.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "w12",
+        dim: "war",
+        label: "Executive function",
+        text: "What happens to your basic life tasks when your relationship is unstable ",
+        options: [
+          { letter: "A", text: "Total derailment. Sleep, food, hygiene, work. My system orbits the relationship.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Compensatory rigidity. I become stricter with myself and double down on routines.", mask: "armored", war: "entrapment" },
+          { letter: "C", text: "Split-screen collapse. I over-function for others while quietly falling apart alone.", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "Time distortion. I lose hours to scrolling, research, or replaying conversations.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w13",
+        dim: "war",
+        label: "Black and white",
+        text: "Under stress in relationships, how does your splitting show up strongest ",
+        options: [
+          { letter: "A", text: "Person flipping. People go from soulmate to enemy depending on how safe I feel.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Value sorting. I split people into useful or useless, loyal or dead to me.", mask: "armored", war: "erasure" },
+          { letter: "C", text: "Self-blame toggle. I flip between \"I'm the problem\" and \"if I just improve enough they'll stay.\"", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Competing narratives. I'm either obviously rational or obviously crazy and keep switching sides.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "w14",
+        dim: "war",
+        label: "Hidden rule",
+        text: "Which feels closest to the rule your body believes about love, even if your mind disagrees ",
+        options: [
+          { letter: "A", text: "Love always leaves once it really sees me.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Love is a power exchange and I can't be the weaker one.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Love is something I earn by being good, useful, or perfect.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Love is unpredictable data. I can't relax without understanding the pattern.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w15",
+        dim: "war",
+        label: "After a blow-up",
+        text: "After a blow-up, what's your strongest pull ",
+        options: [
+          { letter: "A", text: "Intense reconnection. Emotional confession, desperate apology, or dramatic exit then return.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Reset button. Act like nothing happened and expect everyone to move on.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Full responsibility. Take blame whether balanced or not, just to calm the waters.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Explanation essays. Write long messages that map the conflict from every angle.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "w16",
+        dim: "war",
+        label: "Control belief",
+        text: "When things feel out of your control emotionally, which belief is loudest ",
+        options: [
+          { letter: "A", text: "\"If I could just get reassurance right now, I'd calm down.\"", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "\"If I don't take control, they'll end up controlling or humiliating me.\"", mask: "armored", war: "exposure" },
+          { letter: "C", text: "\"If I can keep everyone else regulated, I'll finally feel safe.\"", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "\"If I can understand every variable, I can stop this from happening again.\"", mask: "analyzer", war: "erasure" }
+        ]
+      },
+
+      // ??? ATTACHMENT QUESTIONS (7 questions) ???
+      {
+        id: "a1",
+        dim: "attachment",
+        label: "Closeness response",
+        text: "When someone gets emotionally close, your nervous system...",
+        options: [
+          { letter: "A", text: "Gets anxious and clingy. I need more contact to feel safe.", attach: "anxious" },
+          { letter: "B", text: "Wants space quickly. Closeness feels suffocating.", attach: "avoidant" },
+          { letter: "C", text: "Craves closeness then panics. I oscillate between wanting them and pushing away.", attach: "fearful" },
+          { letter: "D", text: "Stays calm and curious. I can hold closeness without spinning.", attach: "secure" }
+        ]
+      },
+      {
+        id: "a2",
+        dim: "attachment",
+        label: "Text response time",
+        text: "They take hours to respond to your text. What happens in your body ",
+        options: [
+          { letter: "A", text: "My chest tightens. I check my phone constantly and read into every word of their last message.", attach: "anxious" },
+          { letter: "B", text: "I feel relieved. I didn't want to text back immediately anyway.", attach: "avoidant" },
+          { letter: "C", text: "First I panic, then I convince myself I don't care. Then I panic again.", attach: "fearful" },
+          { letter: "D", text: "I notice it, might feel a twinge, but I move on with my day.", attach: "secure" }
+        ]
+      },
+      {
+        id: "a3",
+        dim: "attachment",
+        label: "After intimacy",
+        text: "After a moment of real emotional intimacy, the next morning you typically feel...",
+        options: [
+          { letter: "A", text: "Desperate to recreate it. I want more closeness immediately.", attach: "anxious" },
+          { letter: "B", text: "Uncomfortable and wanting distance. I need to re-establish my independence.", attach: "avoidant" },
+          { letter: "C", text: "Vulnerable and exposed. Part of me regrets opening up.", attach: "fearful" },
+          { letter: "D", text: "Warm and connected. I can hold the closeness without needing more or less.", attach: "secure" }
+        ]
+      },
+      {
+        id: "a4",
+        dim: "attachment",
+        label: "Commitment talk",
+        text: "When a relationship starts getting serious, you...",
+        options: [
+          { letter: "A", text: "Push for clarity and commitment. Ambiguity makes me spiral.", attach: "anxious" },
+          { letter: "B", text: "Slow things down. I start noticing flaws and feeling trapped.", attach: "avoidant" },
+          { letter: "C", text: "Feel both excited and terrified. I sabotage or test them.", attach: "fearful" },
+          { letter: "D", text: "Let it unfold naturally. I can sit with uncertainty.", attach: "secure" }
+        ]
+      },
+      {
+        id: "a5",
+        dim: "attachment",
+        label: "Conflict approach",
+        text: "When you need to bring up something that bothers you, you typically...",
+        options: [
+          { letter: "A", text: "Escalate emotionally. I need them to feel how upset I am.", attach: "anxious" },
+          { letter: "B", text: "Minimize or avoid it. I'd rather let it go than deal with the drama.", attach: "avoidant" },
+          { letter: "C", text: "Swing between confronting and backing down. I can't find a middle ground.", attach: "fearful" },
+          { letter: "D", text: "Bring it up directly but calmly. I can hold my position without attacking.", attach: "secure" }
+        ]
+      },
+      {
+        id: "a6",
+        dim: "attachment",
+        label: "Partner's bad day",
+        text: "Your partner is having a hard day and is distant. You...",
+        options: [
+          { letter: "A", text: "Make it about me. I wonder what I did wrong and try to fix it.", attach: "anxious" },
+          { letter: "B", text: "Feel relieved by the space. I use the distance to recharge.", attach: "avoidant" },
+          { letter: "C", text: "Flip between hovering and pulling away. I don't know what they need.", attach: "fearful" },
+          { letter: "D", text: "Offer support without taking it personally. I can give space without spiraling.", attach: "secure" }
+        ]
+      },
+      {
+        id: "a7",
+        dim: "attachment",
+        label: "Alone time",
+        text: "How do you feel about spending time alone ",
+        options: [
+          { letter: "A", text: "Uncomfortable. I'd rather be with someone, even if the relationship isn't great.", attach: "anxious" },
+          { letter: "B", text: "Necessary. I need significant alone time to feel like myself.", attach: "avoidant" },
+          { letter: "C", text: "Conflicted. I crave it but then feel lonely. I want company but it exhausts me.", attach: "fearful" },
+          { letter: "D", text: "Balanced. I enjoy my own company and time with others equally.", attach: "secure" }
+        ]
+      },
+
+      // ??? PARTNER DRAW QUESTIONS (4 questions) ???
+      {
+        id: "p1",
+        dim: "partner",
+        label: "Attraction pattern",
+        text: "Looking at your history, you're most drawn to partners who...",
+        options: [
+          { letter: "A", text: "Feel like a mirror of my intensity. We understand each other's chaos.", partner: "mirror" },
+          { letter: "B", text: "Are calm, steady, and unfazed. They're my rock.", partner: "anchor" },
+          { letter: "C", text: "Push my growth and call me out kindly. They make me better.", partner: "challenger" },
+          { letter: "D", text: "Are protective and take charge. They make me feel safe.", partner: "protector" }
+        ]
+      },
+      {
+        id: "p2",
+        dim: "partner",
+        label: "What you need",
+        text: "What does your nervous system actually need from a partner (not what you want) ",
+        options: [
+          { letter: "A", text: "Someone who can match my emotional depth and won't leave when it gets intense.", partner: "mirror" },
+          { letter: "B", text: "Someone who stays calm when I spiral and doesn't add to the chaos.", partner: "anchor" },
+          { letter: "C", text: "Someone who sees my patterns and helps me break them with honesty.", partner: "challenger" },
+          { letter: "D", text: "Someone who takes the lead so I can finally rest.", partner: "protector" }
+        ]
+      },
+      {
+        id: "p3",
+        dim: "partner",
+        label: "Red flag blind spot",
+        text: "Which type of person do you tend to excuse red flags for ",
+        options: [
+          { letter: "A", text: "The passionate, intense one who \"gets\" me in ways others don't.", partner: "mirror" },
+          { letter: "B", text: "The unavailable one who seems like they'd be stable if they just opened up.", partner: "anchor" },
+          { letter: "C", text: "The one who's hard on me but frames it as helping me grow.", partner: "challenger" },
+          { letter: "D", text: "The dominant one who makes decisions so I don't have to.", partner: "protector" }
+        ]
+      },
+      {
+        id: "p4",
+        dim: "partner",
+        label: "Relationship fantasy",
+        text: "In your deepest fantasy of a healthy relationship, your partner...",
+        options: [
+          { letter: "A", text: "Feels everything I feel. We're two halves of one whole.", partner: "mirror" },
+          { letter: "B", text: "Is my calm in every storm. They never add drama.", partner: "anchor" },
+          { letter: "C", text: "Helps me become the best version of myself, even when it's uncomfortable.", partner: "challenger" },
+          { letter: "D", text: "Handles the hard stuff so I can relax and feel taken care of.", partner: "protector" }
+        ]
+      },
+
+      // ??? NEUROTYPE QUESTIONS (4 questions) ???
+      {
+        id: "n1",
+        dim: "neuro",
+        label: "Brain speed",
+        text: "How would you describe your brain's default speed ",
+        options: [
+          { letter: "A", text: "Fast, scattered, multiple tabs open. I jump between thoughts constantly.", neuro: "adhd" },
+          { letter: "B", text: "Deep and focused but rigid. Interruptions feel physically jarring.", neuro: "autistic" },
+          { letter: "C", text: "Foggy about emotions. I often don't know how I feel until much later.", neuro: "alexithymia" },
+          { letter: "D", text: "Moderate and flexible. I can shift gears without too much friction.", neuro: "neurotypical" }
+        ]
+      },
+      {
+        id: "n2",
+        dim: "neuro",
+        label: "Social battery",
+        text: "After a social gathering, you typically feel...",
+        options: [
+          { letter: "A", text: "Wired but depleted. I talked too much and now I'm crashing.", neuro: "adhd" },
+          { letter: "B", text: "Exhausted from masking. I need complete solitude to recover.", neuro: "autistic" },
+          { letter: "C", text: "Numb or blank. I'm not sure if I had a good time or not.", neuro: "alexithymia" },
+          { letter: "D", text: "Pleasantly tired. I enjoyed it and recovery is quick.", neuro: "neurotypical" }
+        ]
+      },
+      {
+        id: "n3",
+        dim: "neuro",
+        label: "Emotional processing",
+        text: "When something emotionally significant happens, you...",
+        options: [
+          { letter: "A", text: "Feel it intensely but struggle to regulate. My reaction might seem disproportionate.", neuro: "adhd" },
+          { letter: "B", text: "Might not feel it in the moment. It hits me later, sometimes days later.", neuro: "autistic" },
+          { letter: "C", text: "Know something happened but can't name the feeling. My body reacts but my mind is blank.", neuro: "alexithymia" },
+          { letter: "D", text: "Feel and process it in real time. I can name my emotions as they happen.", neuro: "neurotypical" }
+        ]
+      },
+      {
+        id: "n4",
+        dim: "neuro",
+        label: "Sensory environment",
+        text: "In relationships, sensory environment (noise, lighting, textures)...",
+        options: [
+          { letter: "A", text: "Affects my mood dramatically. Chaos outside creates chaos inside.", neuro: "adhd" },
+          { letter: "B", text: "Can make or break my ability to connect. Wrong environment, I'm gone.", neuro: "autistic" },
+          { letter: "C", text: "I don't notice much until I'm suddenly overwhelmed or shut down.", neuro: "alexithymia" },
+          { letter: "D", text: "Matters but doesn't control my ability to be present.", neuro: "neurotypical" }
+        ]
+      }
+    ];
+
+    // ???????????????????????????????????????????????????????????????
+    // CLUSTER DEFINITIONS
+    // ???????????????????????????????????????????????????????????????
+
+    const clusters = {
+      "abandonment-flooded": {
+        name: "Abandonment War + Flooded Mirror",
+        clinical: "Anxious attachment with emotional flooding pattern",
+        profile: "Your system is on high alert for loss. When anything feels like distance, you flood.",
+        meaning: "Panic, rage, tears, tests. You flood to make sure they don't just slip away. Underneath is a body convinced that being left will break you. You learned early that love requires vigilance.",
+        nervous: "Short safety signals repeated often. Keep talks short during activation. Your system needs proof of presence, not promises.",
+        doThis: ["Name the fear before acting on it", "Three breaths before responding to perceived rejection", "One tiny repair attempt daily instead of flooding"],
+        avoid: ["Long conversations while activated", "Trying to think your way out of body states", "Seeking reassurance that requires their mood to be right"],
+        primaryCTA: { text: "Anxious Healing Program", url: "../program/anxious-healing.html" },
+        secondaryCTA: { text: "Book a Session", url: "../booking.html" }
+      },
+      "abandonment-armored": {
+        name: "Abandonment War + Armored Mirror",
+        clinical: "Dismissive overlay on abandonment wound",
+        profile: "You're terrified of being left, but you'd rather burn the connection than let anyone see that.",
+        meaning: "When you feel someone pulling away, you go cold, detached, \"I don't care\" - trying to leave emotionally before they can leave you. Your armor is built over a heart that cares way more than you admit.",
+        nervous: "Your coldness is protection, not truth. Slow exposure to vulnerability without performance.",
+        doThis: ["Notice when you're performing indifference", "One honest statement about caring per week", "Let someone see you want them without explaining it away"],
+        avoid: ["Convincing yourself you don't need anyone", "Cutting people off to feel powerful", "Using logic to override longing"],
+        primaryCTA: { text: "Break The Fantasy Bond", url: "../program/break-the-bond.html" },
+        secondaryCTA: { text: "Reflection Practice", url: "../tools.html" }
+      },
+      "abandonment-phantom": {
+        name: "Abandonment War + Phantom Performer",
+        clinical: "Fawn response with abandonment activation",
+        profile: "You survive by becoming whoever will make them stay.",
+        meaning: "You minimize your needs, overgive, and perform \"easy\" while your body screams about being dropped. You stay chosen by disappearing inside the role. You learned that your real self wasn't enough.",
+        nervous: "Practice existing without earning your place. One need stated without apology.",
+        doThis: ["One boundary without explaining", "Notice when you're performing to prevent abandonment", "Say what you actually want once per day"],
+        avoid: ["Overgiving to secure attachment", "Apologizing for having needs", "Shapeshifting to match their preferences"],
+        primaryCTA: { text: "Anxious Healing Program", url: "../program/anxious-healing.html" },
+        secondaryCTA: { text: "Daily Grounding", url: "../tools.html" }
+      },
+      "abandonment-analyzer": {
+        name: "Abandonment War + Hyper Analyzer",
+        clinical: "Intellectualized abandonment anxiety",
+        profile: "Abandonment wrecked you before, so now your brain obsesses over catching it early.",
+        meaning: "You read every delay, tone shift, or pattern change like data. You replay everything and live in prediction mode. You don't just fear being left - you try to outthink it.",
+        nervous: "Analysis is your freeze response. Practice feeling without solving.",
+        doThis: ["Set a timer on analysis (10 min max)", "Name the feeling underneath the analysis", "One conversation where you don't prepare your response in advance"],
+        avoid: ["Research spirals after rejection cues", "Building cases in your head", "Treating relationships like puzzles to solve"],
+        primaryCTA: { text: "Break The Fantasy Bond", url: "../program/break-the-bond.html" },
+        secondaryCTA: { text: "Reflection Practice", url: "../tools.html" }
+      },
+      "exposure-flooded": {
+        name: "Exposure War + Flooded Mirror",
+        clinical: "Shame flooding with fear of being seen as bad",
+        profile: "Being seen as wrong hits you like a truck. You flood to defend your right to exist.",
+        meaning: "When you feel exposed or misunderstood, you flood with shame, anger, and desperate need to clear your name. You're not just fighting about the situation - you're fighting against humiliation.",
+        nervous: "Separate the current moment from old shame. Your reaction size tells you about the past, not just now.",
+        doThis: ["Pause before defending", "Notice body shame before speaking", "One repair without over-explaining"],
+        avoid: ["Defending in the moment of activation", "Long explanations while flooded", "Seeking validation while dysregulated"],
+        primaryCTA: { text: "Book a Session", url: "../booking.html" },
+        secondaryCTA: { text: "Daily Grounding", url: "../tools.html" }
+      },
+      "exposure-armored": {
+        name: "Exposure War + Armored Mirror",
+        clinical: "Narcissistic defense structure around shame wound",
+        profile: "Your system is terrified of being exposed as flawed, so you protect with pride and distance.",
+        meaning: "The second you feel accused or criticized, you snap into defense, go cold, or flip the blame back. It's not that you never feel remorse - it's that looking wrong feels like losing safety entirely.",
+        nervous: "Seeing your defenses clearly is how they soften. You can hold imperfection without collapsing.",
+        doThis: ["One moment of imperfection shared", "Ask for help with something small", "Notice when control is a mask for fear"],
+        avoid: ["Flipping blame reflexively", "Image management over honesty", "Needing to win to feel okay"],
+        primaryCTA: { text: "Reflection Practice", url: "../tools.html" },
+        secondaryCTA: { text: "Break The Fantasy Bond", url: "../program/break-the-bond.html" }
+      },
+      "exposure-phantom": {
+        name: "Exposure War + Phantom Performer",
+        clinical: "Perfectionist fawn response with shame sensitivity",
+        profile: "You survive by being the composed, self-aware, \"better than the chaos\" one.",
+        meaning: "When you feel at risk of being seen as messy or wrong, you slide into performer mode - wise, calm, agreeable - and hide your raw reaction. People see the put-together version, not the part scared of judgment.",
+        nervous: "Practice imperfection on purpose. Let cracks show and notice you survive.",
+        doThis: ["Share one unpolished thought daily", "Let someone see you struggle without fixing it", "Notice when you're performing self-awareness"],
+        avoid: ["Curating your image to avoid criticism", "Being \"evolved\" as a defense", "Hiding mess behind growth language"],
+        primaryCTA: { text: "Centered Blueprint", url: "../programs.html" },
+        secondaryCTA: { text: "Reflection Practice", url: "../tools.html" }
+      },
+      "exposure-analyzer": {
+        name: "Exposure War + Hyper Analyzer",
+        clinical: "Intellectual defense against shame",
+        profile: "Being misread or misrepresented lights your system up. You defend with details.",
+        meaning: "When you feel exposed, you replay every moment, build timelines, and argue facts so nobody can lock you in the wrong story. Accuracy is your shield against feeling like the villain.",
+        nervous: "You can be understood without proving everything. Let some misunderstandings exist.",
+        doThis: ["One conversation without correcting facts", "Notice when you're building a defense case", "Let a small misunderstanding go uncorrected"],
+        avoid: ["Explanation essays", "Treating relationships like court cases", "Needing to be right to be okay"],
+        primaryCTA: { text: "Reflection Practice", url: "../tools.html" },
+        secondaryCTA: { text: "Book a Session", url: "../booking.html" }
+      },
+      "entrapment-flooded": {
+        name: "Entrapment War + Flooded Mirror",
+        clinical: "Claustrophobic anxiety with emotional escalation",
+        profile: "Your body is on guard for control. When something feels like a cage, you burst.",
+        meaning: "You pick fights or blow things up so you can breathe again. Your outbursts are less about not caring and more about needing to escape feeling trapped. You learned that closeness comes with chains.",
+        nervous: "Name the trapped feeling before acting on it. You can create space without destroying.",
+        doThis: ["Ask for space directly instead of creating conflict", "Notice when fights are really about feeling trapped", "One boundary stated without explosion"],
+        avoid: ["Sabotaging to escape", "Blowing up instead of asking for space", "Confusing control with care"],
+        primaryCTA: { text: "Book a Session", url: "../booking.html" },
+        secondaryCTA: { text: "Daily Grounding", url: "../tools.html" }
+      },
+      "entrapment-armored": {
+        name: "Entrapment War + Armored Mirror",
+        clinical: "Avoidant attachment with entrapment sensitivity",
+        profile: "You want connection, but your system protects freedom first.",
+        meaning: "When partners want more access, time, or commitment, you harden, shut down, and act like you don't need anybody. The wall is there so no one can own you again, even if part of you wants to be close.",
+        nervous: "Closeness and freedom can coexist. Practice small commitments without catastrophizing.",
+        doThis: ["One small commitment kept", "Notice when withdrawal is fear, not preference", "Let someone in without making them earn it"],
+        avoid: ["Using independence as a wall", "Confusing intimacy with entrapment", "Running before they can ask for more"],
+        primaryCTA: { text: "FA Micro Drills", url: "../tools.html" },
+        secondaryCTA: { text: "Centered Blueprint", url: "../programs.html" }
+      },
+      "entrapment-phantom": {
+        name: "Entrapment War + Phantom Performer",
+        clinical: "Fawn-freeze with suffocation anxiety",
+        profile: "You're scared of being controlled, so ironically you say yes to everything.",
+        meaning: "You perform easy, low-maintenance, accommodating - then quietly suffocate. You avoid conflict in the moment and end up feeling caged by your own compliance. Your \"yes\" became a trap.",
+        nervous: "Practice \"no\" in low-stakes situations. Your preferences matter.",
+        doThis: ["One small no without apologizing", "Notice when you're complying to avoid conflict", "State a preference you usually hide"],
+        avoid: ["Saying yes to keep peace", "Disappearing inside someone else's life", "Compliance that breeds resentment"],
+        primaryCTA: { text: "Centered Blueprint", url: "../programs.html" },
+        secondaryCTA: { text: "FA Micro Drills", url: "../tools.html" }
+      },
+      "entrapment-analyzer": {
+        name: "Entrapment War + Hyper Analyzer",
+        clinical: "Avoidant intellectualization with commitment anxiety",
+        profile: "Your mind runs risk assessments nonstop, especially when someone wants more from you.",
+        meaning: "Instead of feeling your fear of being trapped, you argue logistics, timelines, and practicality. You stall until the pressure passes. You're not indecisive for fun - you're trying to stay free.",
+        nervous: "Notice when analysis is avoidance. The fear is valid. Let it speak directly.",
+        doThis: ["Make one small decision without full analysis", "Name the fear behind the logistics", "Commit to something small without escape clauses"],
+        avoid: ["Analysis paralysis on relationships", "Using practicality to avoid vulnerability", "Infinite information gathering"],
+        primaryCTA: { text: "FA Micro Drills", url: "../tools.html" },
+        secondaryCTA: { text: "Reflection Practice", url: "../tools.html" }
+      },
+      "erasure-flooded": {
+        name: "Erasure War + Flooded Mirror",
+        clinical: "Visibility wound with emotional flooding",
+        profile: "Your core terror is being forgotten, replaced, or treated as background.",
+        meaning: "When you feel sidelined or left out, your pain comes out loud - big reactions that scream \"I matter too.\" People see jealousy or drama. They don't see the years of feeling invisible underneath.",
+        nervous: "Your need for visibility is valid. Practice asking for it directly, not through reactions.",
+        doThis: ["State your need to be seen before you flood", "Notice when jealousy is really erasure fear", "One direct ask for attention per day"],
+        avoid: ["Dramatic bids for visibility", "Testing to see if they notice you", "Competing for attention through intensity"],
+        primaryCTA: { text: "Anxious Healing Program", url: "../program/anxious-healing.html" },
+        secondaryCTA: { text: "Book a Session", url: "../booking.html" }
+      },
+      "erasure-armored": {
+        name: "Erasure War + Armored Mirror",
+        clinical: "Dismissive defense over visibility wound",
+        profile: "Being treated as optional cuts deep, so you act like you don't need anyone to pick you.",
+        meaning: "When you feel erased, you shut down, go cool, and quietly downgrade people without ever naming the hurt. You protect your pride by pretending it didn't matter, even when it did.",
+        nervous: "The hurt is there. Armor doesn't delete it. Practice naming the wound.",
+        doThis: ["Notice when \"I don't care\" is protection", "One honest statement about feeling overlooked", "Let someone know they matter to you"],
+        avoid: ["Pretending erasure doesn't hurt", "Punishing people through coldness", "Using indifference as a wall"],
+        primaryCTA: { text: "Reflection Practice", url: "../tools.html" },
+        secondaryCTA: { text: "Centered Blueprint", url: "../programs.html" }
+      },
+      "erasure-phantom": {
+        name: "Erasure War + Phantom Performer",
+        clinical: "Over-functioning against invisibility",
+        profile: "You survive by becoming too valuable to lose.",
+        meaning: "When your erasure fear kicks in, you overfunction, overgive, and become the one who's always there - so they never have a reason to replace you. You do everything to secure your place, while wondering if anyone would choose you without it all.",
+        nervous: "Practice existing without earning your spot. You're allowed to be chosen for who you are.",
+        doThis: ["One day of not over-functioning", "Notice when usefulness is fear of erasure", "Let someone value you without you proving worth"],
+        avoid: ["Earning your place through labor", "Being indispensable as a survival strategy", "Overgiving to prevent being forgotten"],
+        primaryCTA: { text: "Centered Blueprint", url: "../programs.html" },
+        secondaryCTA: { text: "Daily Grounding", url: "../tools.html" }
+      },
+      "erasure-analyzer": {
+        name: "Erasure War + Hyper Analyzer",
+        clinical: "Relational monitoring with erasure sensitivity",
+        profile: "You're always tracking where you stand in people's lives.",
+        meaning: "A small change in effort, invitations, or energy sends you into comparison and mental scorekeeping. You're not just sensitive - you're watching for the moment you get quietly phased out.",
+        nervous: "You can belong without constant measurement. Practice trusting your place.",
+        doThis: ["Notice scorekeeping and set it down", "One relationship without tracking reciprocity", "Trust their presence without monitoring"],
+        avoid: ["Comparing yourself to others in their life", "Measuring affection mathematically", "Building cases for why you're being replaced"],
+        primaryCTA: { text: "Reflection Practice", url: "../tools.html" },
+        secondaryCTA: { text: "Break The Fantasy Bond", url: "../program/break-the-bond.html" }
+      },
+      "ground-zero": {
+        name: "Ground Zero - All Fronts War",
+        clinical: "Complex presentation with mixed activation states",
+        profile: "You're not fighting one war. You're living inside all of them.",
+        meaning: "Abandonment, exposure, entrapment, erasure - your system fires every alarm at once and switches masks faster than most people switch outfits. You don't fit one box because you're running an entire nervous system city nobody taught you how to run.",
+        nervous: "You need triage, not labels. Find which alarm is loudest today and start there.",
+        doThis: ["Name what feels loudest today", "One focused practice, not all at once", "Compassion for the complexity"],
+        avoid: ["Trying to solve everything at once", "Label hunting for the perfect fit", "Overwhelming yourself with healing modalities"],
+        primaryCTA: { text: "Book a Session", url: "../booking.html" },
+        secondaryCTA: { text: "Daily Grounding", url: "../tools.html" }
+      }
+    };
+
+    // ???????????????????????????????????????????????????????????????
+    // QUIZ ENGINE
+    // ???????????????????????????????????????????????????????????????
+
+    let current = 0;
+    let answers = {};
+    let stageMeta = null;
+
+    const intro = document.getElementById('intro');
+    const quizContainer = document.getElementById('quizContainer');
+    const resultsContainer = document.getElementById('resultsContainer');
+    const questionCard = document.getElementById('questionCard');
+    const progressFill = document.getElementById('progressFill');
+    const progressText = document.getElementById('progressText');
+    const dimensionLabel = document.getElementById('dimensionLabel');
+    const backBtn = document.getElementById('backBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    const dimLabels = {
+      meta: "Getting Started",
+      war: "Survival Mode",
+      attachment: "Attachment",
+      partner: "Partner Draw",
+      neuro: "Neurotype"
+    };
+
+    document.getElementById('startBtn').addEventListener('click', () => {
+      intro.style.display = 'none';
+      quizContainer.classList.add('active');
+      renderQuestion();
+    });
+
+    backBtn.addEventListener('click', () => {
+      if (current > 0) {
+        current--;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener('click', () => {
+      const q = questions[current];
+      if (!answers[q.id]) return;
+      
+      if (current < questions.length - 1) {
+        current++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    function renderQuestion() {
+      const q = questions[current];
+      const selected = answers[q.id];
+      const pct = ((current + 1) / questions.length) * 100;
+
+      progressFill.style.width = `${pct}%`;
+      progressText.textContent = `Question ${current + 1} of ${questions.length}`;
+      dimensionLabel.textContent = dimLabels[q.dim] || "";
+
+      questionCard.innerHTML = `
+        <div class="question-label">${q.label}</div>
+        <div class="question-text">${q.text}</div>
+        ${q.subtext   `<div class="question-subtext">${q.subtext}</div>` : ''}
+        <div class="options-list">
+          ${q.options.map(opt => `
+            <button class="option-btn ${selected === opt.letter   'selected' : ''}" data-letter="${opt.letter}">
+              <span class="option-letter">${opt.letter}</span>
+              <span class="option-text">${opt.text}</span>
+            </button>
+          `).join('')}
+        </div>
+      `;
+
+      questionCard.querySelectorAll('.option-btn').forEach(btn => {
+        btn.addEventListener('click', () => selectAnswer(btn.dataset.letter));
+      });
+
+      backBtn.disabled = current === 0;
+      nextBtn.disabled = !selected;
+      nextBtn.textContent = current === questions.length - 1   'See Results' : 'Next ?';
+    }
+
+    function selectAnswer(letter) {
+      const q = questions[current];
+      answers[q.id] = letter;
+
+      // Handle stage meta
+      if (q.id === 'stage') {
+        const opt = q.options.find(o => o.letter === letter);
+        if (opt && opt.meta) stageMeta = opt.meta;
+      }
+
+      questionCard.querySelectorAll('.option-btn').forEach(btn => {
+        btn.classList.toggle('selected', btn.dataset.letter === letter);
+      });
+
+      nextBtn.disabled = false;
+    }
+
+    function calculateResults() {
+      const warScores = { abandonment: 0, exposure: 0, entrapment: 0, erasure: 0 };
+      const maskScores = { flooded: 0, armored: 0, phantom: 0, analyzer: 0 };
+      const attachScores = { anxious: 0, avoidant: 0, fearful: 0, secure: 0 };
+      const partnerScores = { mirror: 0, anchor: 0, challenger: 0, protector: 0 };
+      const neuroScores = { adhd: 0, autistic: 0, alexithymia: 0, neurotypical: 0 };
+
+      questions.forEach(q => {
+        if (q.id === 'stage') return;
+        const letter = answers[q.id];
+        if (!letter) return;
+        const opt = q.options.find(o => o.letter === letter);
+        if (!opt) return;
+
+        if (opt.war) warScores[opt.war]++;
+        if (opt.mask) maskScores[opt.mask]++;
+        if (opt.attach) attachScores[opt.attach]++;
+        if (opt.partner) partnerScores[opt.partner]++;
+        if (opt.neuro) neuroScores[opt.neuro]++;
+      });
+
+      // Find dominants
+      const topWar = Object.entries(warScores).sort((a, b) => b[1] - a[1])[0];
+      const topMask = Object.entries(maskScores).sort((a, b) => b[1] - a[1])[0];
+      const topAttach = Object.entries(attachScores).sort((a, b) => b[1] - a[1])[0];
+      const topPartner = Object.entries(partnerScores).sort((a, b) => b[1] - a[1])[0];
+      const topNeuro = Object.entries(neuroScores).sort((a, b) => b[1] - a[1])[0];
+
+      // Check for ground zero
+      const warValues = Object.values(warScores);
+      const maxWar = Math.max(...warValues);
+      const minWar = Math.min(...warValues);
+      const isGroundZero = (maxWar - minWar) <= 2 && maxWar >= 3;
+
+      let clusterKey = isGroundZero   'ground-zero' : `${topWar[0]}-${topMask[0]}`;
+
+      return {
+        clusterKey,
+        warScores,
+        maskScores,
+        attachScores,
+        partnerScores,
+        neuroScores,
+        topWar,
+        topMask,
+        topAttach,
+        topPartner,
+        topNeuro,
+        isGroundZero
+      };
+    }
+
+    function labelWar(k) {
+      const labels = { abandonment: "Abandonment", exposure: "Exposure", entrapment: "Entrapment", erasure: "Erasure" };
+      return labels[k] || k;
+    }
+    function labelMask(k) {
+      const labels = { flooded: "Flooded", armored: "Armored", phantom: "Phantom", analyzer: "Analyzer" };
+      return labels[k] || k;
+    }
+    function labelAttach(k) {
+      const labels = { anxious: "Anxious", avoidant: "Avoidant", fearful: "Fearful", secure: "Secure" };
+      return labels[k] || k;
+    }
+    function labelPartner(k) {
+      const labels = { mirror: "Mirror", anchor: "Anchor", challenger: "Challenger", protector: "Protector" };
+      return labels[k] || k;
+    }
+    function labelNeuro(k) {
+      const labels = { adhd: "ADHD traits", autistic: "Autistic traits", alexithymia: "Alexithymia", neurotypical: "Neurotypical" };
+      return labels[k] || k;
+    }
+
+    function showResults() {
+      quizContainer.classList.remove('active');
+      resultsContainer.classList.add('active');
+
+      const r = calculateResults();
+      const cluster = clusters[r.clusterKey] || clusters['ground-zero'];
+
+      const maxWar = Math.max(...Object.values(r.warScores), 1);
+      const maxMask = Math.max(...Object.values(r.maskScores), 1);
+
+      resultsContainer.innerHTML = `
+        <div class="result-header">
+          <h1>${cluster.name}</h1>
+          <p class="result-clinical">${cluster.clinical}</p>
+        </div>
+
+        <div class="result-card result-card--snapshot">
+          <h3>Your Pattern</h3>
+          <p>${cluster.profile}</p>
+        </div>
+
+        <div class="result-card">
+          <h3>What This Means</h3>
+          <p>${cluster.meaning}</p>
+        </div>
+
+        <div class="result-card result-card--nervous">
+          <h3>ðŸ§  Nervous System Note</h3>
+          <p>${cluster.nervous}</p>
+        </div>
+
+        <div class="result-card result-card--do">
+          <h3>? Try This Week</h3>
+          <ul>${cluster.doThis.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+
+        <div class="result-card result-card--avoid">
+          <h3>ðŸš« What to Avoid</h3>
+          <ul>${cluster.avoid.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+
+        <div class="result-card score-section">
+          <h3>Your Scores</h3>
+          <div class="score-grid">
+            <div class="score-group">
+              <h4>War Scores</h4>
+              ${Object.entries(r.warScores).map(([k,v]) => `
+                <div class="score-row">
+                  <span class="score-label">${labelWar(k)}</span>
+                  <div class="score-track"><div class="score-fill" style="width:${(v/maxWar)*100}%"></div></div>
+                  <span class="score-value">${v}</span>
+                </div>
+              `).join('')}
+            </div>
+            <div class="score-group">
+              <h4>Mask Scores</h4>
+              ${Object.entries(r.maskScores).map(([k,v]) => `
+                <div class="score-row">
+                  <span class="score-label">${labelMask(k)}</span>
+                  <div class="score-track"><div class="score-fill" style="width:${(v/maxMask)*100}%"></div></div>
+                  <span class="score-value">${v}</span>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card dimensions-card">
+          <h3>Your Full Profile</h3>
+          <div class="dim-grid">
+            <span class="dim-tag">??ï¸ ${labelWar(r.topWar[0])} War</span>
+            <span class="dim-tag">ðŸŽ­ ${labelMask(r.topMask[0])} Mask</span>
+            <span class="dim-tag">🔗 ${labelAttach(r.topAttach[0])} Attachment</span>
+            <span class="dim-tag">ðŸ’ž ${labelPartner(r.topPartner[0])} Partner Draw</span>
+            <span class="dim-tag">ðŸ§  ${labelNeuro(r.topNeuro[0])}</span>
+          </div>
+        </div>
+
+        <div class="result-ctas">
+          <a href="${cluster.primaryCTA.url}" class="cta-btn cta-btn--primary">${cluster.primaryCTA.text} ?</a>
+          <a href="${cluster.secondaryCTA.url}" class="cta-btn cta-btn--secondary">${cluster.secondaryCTA.text}</a>
+        </div>
+
+        <div class="result-footer">
+          <p>Your pattern is not your fault. Healing it is your power.</p>
+          <a href="../index.html" class="back-link">? Back to Home</a>
+        </div>
+      `;
+    }
+  </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+

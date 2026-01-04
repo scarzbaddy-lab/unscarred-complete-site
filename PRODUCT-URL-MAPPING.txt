@@ -1,0 +1,184 @@
+====================================================
+UNSCARRED PRODUCT URL MAPPING
+====================================================
+Last Updated: January 4, 2026
+Shop URL: https://shop.unscarred.site
+
+This document maps each product to its Payhip URL.
+Update URLs here after creating products in Payhip.
+
+
+====================================================
+PROGRAMS (Full Courses)
+====================================================
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+Anxious Healing Program         $147     /l/anxious-healing           [ ] Create in Payhip
+Centered Man Blueprint          $197     /l/centered-man              [ ] Create in Payhip
+Centered Woman Blueprint        $197     /l/centered-woman            [ ] Create in Payhip
+Avoidant Healing Program        $197     /l/avoidant-healing          [ ] Create in Payhip
+Fearful-Avoidant Track          $247     /l/fearful-avoidant          [ ] Create in Payhip
+Break The Trauma Bond           $47      /l/break-trauma-bond         [ ] Create in Payhip
+
+FREE COURSES:
+BPD Pattern Tracking            Free     learn/bpd-pattern-tracking.html   [x] On Website
+Manipulation Pattern Detection  Free     learn/manipulation-patterns.html  [x] On Website
+
+
+====================================================
+WORKBOOKS & TOOLKITS
+====================================================
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+Regulation Workbook             $37      /l/regulation-workbook       [ ] Create in Payhip
+Conflict Scripts Pack           $29      /l/conflict-scripts          [ ] Create in Payhip
+FA Micro-Drills                 $37      /l/fa-drills                 [ ] Create in Payhip
+Date Better Toolkit             $33      /l/date-better               [ ] Create in Payhip
+Crisis Toolkit                  Free     /l/crisis-toolkit            [ ] Create in Payhip
+
+SURVIVOR TYPE WORKBOOKS ($15 each or $47 bundle):
+Fixer Workbook                  $15      /l/fixer-workbook            [ ] Create in Payhip
+Analyzer Workbook               $15      /l/analyzer-workbook         [ ] Create in Payhip
+Chameleon Workbook              $15      /l/chameleon-workbook        [ ] Create in Payhip
+Performer Workbook              $15      /l/performer-workbook        [ ] Create in Payhip
+Vanisher Workbook               $15      /l/vanisher-workbook         [ ] Create in Payhip
+Warrior Workbook                $15      /l/warrior-workbook          [ ] Create in Payhip
+Survivor Type Bundle (all 6)    $47      /l/survivor-bundle           [ ] Create in Payhip
+
+HEALING WORKBOOKS:
+BPD Healing Workbook            $37      /l/bpd-healing               [ ] Create in Payhip
+Coming Home Workbook            $37      /l/coming-home               [ ] Create in Payhip
+
+
+====================================================
+SPECIALTY COACHING SESSIONS
+====================================================
+
+NPD-INFORMED COACHING:
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+NPD Coach Single Session        $67      /l/npd-coach-single          [ ] Create in Payhip
+NPD Coach 4-Session Bundle      $227     /l/npd-coach-bundle          [ ] Create in Payhip
+
+BPD-INFORMED COACHING:
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+BPD Coach Single Session        $67      /l/bpd-coach-single          [ ] Create in Payhip
+BPD Coach 4-Session Bundle      $227     /l/bpd-coach-bundle          [ ] Create in Payhip
+
+ADHD-INFORMED COACHING:
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+ADHD Body Doubling (30 min)     $17      /l/adhd-body-doubling        [ ] Create in Payhip
+ADHD Coach Single Session       $57      /l/adhd-coach-single         [ ] Create in Payhip
+ADHD Monthly Accountability     $147     /l/adhd-monthly              [ ] Create in Payhip
+
+
+====================================================
+TRANSLATION SESSIONS
+====================================================
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+Couples Translation (90 min)    $97      /l/couples-translation       [ ] Create in Payhip
+Parent-Child Translation        $87      /l/parent-child-translation  [ ] Create in Payhip
+Sibling Translation             $87      /l/sibling-translation       [ ] Create in Payhip
+Any Relationship Translation    $87      /l/relationship-translation  [ ] Create in Payhip
+
+
+====================================================
+PATTERN TRACKING SESSIONS
+====================================================
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+Single Pattern Tracking         $47      /l/pattern-tracking-single   [ ] Create in Payhip
+Pattern Tracking Bundle (4)     $157     /l/pattern-tracking-bundle   [ ] Create in Payhip
+Weekly Pattern Review (month)   $127     /l/pattern-tracking-weekly   [ ] Create in Payhip
+
+
+====================================================
+TEXT SUPPORT SERVICES
+====================================================
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+Screenshot Review               $33      /l/screenshot-review         [ ] Create in Payhip
+Crisis Week (7 days)            $27      /l/crisis-week               [ ] Create in Payhip
+Pattern Interrupt (14 days)     $47      /l/pattern-interrupt         [ ] Create in Payhip
+Best Friend Mode (30 days)      $127     /l/best-friend-mode          [ ] Create in Payhip
+VIP Intensive (monthly)         $197     /l/vip-intensive             [ ] Create in Payhip
+
+
+====================================================
+PHONE CALLS (Google Calendar Booking)
+====================================================
+
+SERVICE                         PRICE    BOOKING URL
+------------------------------------------------------------------------------------------
+30-Minute Check-In              $27      https://calendar.app.google/aySTQmpfSfueAD6V9
+Single Call (60 min)            $47      https://calendar.app.google/aySTQmpfSfueAD6V9
+2-Call Starter                  $87      https://calendar.app.google/aySTQmpfSfueAD6V9
+4-Call Bundle                   $147     https://calendar.app.google/aySTQmpfSfueAD6V9
+
+
+====================================================
+BUNDLES
+====================================================
+
+PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
+------------------------------------------------------------------------------------------
+Complete Workbook Bundle        $97      /l/complete-bundle           [ ] Create in Payhip
+All Programs Bundle             $497     /l/all-programs              [ ] Create in Payhip
+
+
+====================================================
+HOW TO CREATE PRODUCTS IN PAYHIP
+====================================================
+
+1. Go to https://payhip.com/auth/login
+2. Click "Add Product"
+3. Choose "Digital Download" for workbooks
+4. Choose "Course" for programs (if using course feature)
+5. Set the URL slug to match the /l/xxx above
+6. Upload the PDF/DOCX file
+7. Set the price
+8. Copy the final product URL
+9. Mark as [x] in this document
+10. Update website links if the URL differs
+
+
+====================================================
+WEBSITE FILES THAT LINK TO PRODUCTS
+====================================================
+
+These files need URL updates when you create products:
+
+- programs.html (main product catalog)
+- services.html (services & pricing page)  
+- index.html (homepage product cards)
+- servicesNEW.html (backup/test version)
+- coaching.html (NEW - coaching services page)
+- coach-npd.html (NPD coaching landing page)
+- coach-bpd.html (BPD coaching landing page)
+- coach-adhd.html (ADHD coaching landing page)
+
+After creating products in Payhip, search for "shop.unscarred.site" 
+in these files and update any generic links to specific product URLs.
+
+
+====================================================
+NOTES
+====================================================
+
+- All programs include phone calls (listed in features)
+- Workbooks priced at $37 include 1x 30-min call
+- Workbooks priced at $25-29 are standalone
+- Free products (Crisis Toolkit) are lead magnets
+- Consider adding "Sample Pages" as free product for preview
+- Translation sessions are 90 minutes (couples) or 60-90 (others)
+- Pattern tracking can be 1:1 or async text-based
+
+

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pattern Library: Maps & Fragmented Self | War Path | Unscarred</title>
+  <meta name="description" content="The 6 internal maps your trauma drew, and the symptoms of a fragmented self. How your brain decided the world works.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 32px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 60px 0 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .pattern-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .pattern-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 20px;
+    }
+
+    .pattern-card h4 {
+      font-size: 0.85rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 24px 0 12px;
+    }
+
+    .pattern-card p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .pattern-card ul {
+      margin: 0 0 16px 20px;
+      color: var(--text-soft);
+    }
+
+    .pattern-card li { margin-bottom: 8px; }
+
+    .pattern-card .regulated {
+      background: rgba(125, 154, 140, 0.1);
+      border-left: 3px solid var(--success);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .pattern-card .regulated p {
+      color: var(--success);
+      margin: 0;
+    }
+
+    .pattern-card .trauma {
+      background: rgba(231, 76, 60, 0.1);
+      border-left: 3px solid var(--warning);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .pattern-card .trauma p {
+      color: var(--warning);
+      margin: 0;
+    }
+
+    /* Symptom Grid */
+    .symptom-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .symptom-box {
+      background: rgba(20, 18, 25, 0.6);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .symptom-box h4 {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+
+    .symptom-box ul {
+      margin: 0 0 0 16px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .symptom-box li {
+      margin-bottom: 8px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="survivor-types.html">Shields & Masks</a>
+        <a href="/blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Maps & Fragmented Self</h1>
+      <p class="hero-sub">How your brain decided the world works - and what happens when your parts do not trust each other.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- MAPS SECTION -->
+    <div class="section-header">
+      <h2>The 6 Internal Maps</h2>
+      <p>Maps are the internal rules your child brain drew to survive. They are not facts. They are trauma's version of a GPS.</p>
+    </div>
+
+    <div class="pattern-card">
+      <h3>1. Safety Map</h3>
+      <div class="regulated">
+        <p><strong>Regulated:</strong> Bad things happen, but I can find support. I can notice red flags and respond.</p>
+      </div>
+      <div class="trauma">
+        <p><strong>Trauma version:</strong> "The world is a war zone. Relaxing is dangerous."</p>
+      </div>
+      <h4>How this plays out</h4>
+      <ul>
+        <li>You stay on alert even in safe rooms</li>
+        <li>Calm feels like the quiet before an explosion</li>
+        <li>You cannot tell the difference between real danger and remembered danger</li>
+      </ul>
+    </div>
+
+    <div class="pattern-card">
+      <h3>2. Love Map</h3>
+      <div class="regulated">
+        <p><strong>Regulated:</strong> Love does not vanish when I have needs. Conflict does not mean abandonment.</p>
+      </div>
+      <div class="trauma">
+        <p><strong>Trauma version:</strong> "Love equals walking on eggshells."</p>
+      </div>
+      <h4>How this plays out</h4>
+      <ul>
+        <li>You chase, test, or sabotage</li>
+        <li>You confuse intensity with safety because that is what home felt like</li>
+        <li>You panic at normal distance or silence</li>
+      </ul>
+    </div>
+
+    <div class="pattern-card">
+      <h3>3. Worth Map</h3>
+      <div class="regulated">
+        <p><strong>Regulated:</strong> I have worth even when I fail. Mistakes are feedback, not proof that I am trash.</p>
+      </div>
+      <div class="trauma">
+        <p><strong>Trauma version:</strong> "I am only worthy when I am useful, quiet, perfect, or entertaining."</p>
+      </div>
+      <h4>How this plays out</h4>
+      <ul>
+        <li>You either overperform or give up</li>
+        <li>You attach your worth to how good you are at your shield</li>
+        <li>Any criticism feels like proof of your fundamental brokenness</li>
+      </ul>
+    </div>
+
+    <div class="pattern-card">
+      <h3>4. Conflict Map</h3>
+      <div class="regulated">
+        <p><strong>Regulated:</strong> We can disagree and still be on the same side. Repair is possible.</p>
+      </div>
+      <div class="trauma">
+        <p><strong>Trauma version:</strong> "Conflict means danger."</p>
+      </div>
+      <h4>How this plays out</h4>
+      <ul>
+        <li>You either go full war or full ghost</li>
+        <li>You do not know how to stay in the room and stay in your body at the same time</li>
+        <li>Small disagreements feel like life-or-death battles</li>
+      </ul>
+    </div>
+
+    <div class="pattern-card">
+      <h3>5. Authority Map</h3>
+      <div class="regulated">
+        <p><strong>Regulated:</strong> Some authority is safe, some is not, and I can tell the difference. I can push back or say no without exploding inside.</p>
+      </div>
+      <div class="trauma">
+        <p><strong>Trauma version:</strong> "All authority is either god or enemy."</p>
+      </div>
+      <h4>How this plays out</h4>
+      <ul>
+        <li>You submit, rebel, or switch between both</li>
+        <li>You end up in power struggles that repeat your childhood</li>
+        <li>Bosses, doctors, or partners with authority trigger old responses</li>
+      </ul>
+    </div>
+
+    <div class="pattern-card">
+      <h3>6. Reality Map</h3>
+      <div class="regulated">
+        <p><strong>Regulated:</strong> My feelings are real, my perspective matters, and I can still be wrong on details. I can update my view with new information.</p>
+      </div>
+      <div class="trauma">
+        <p><strong>Trauma version:</strong> "Either I am crazy or everyone else is."</p>
+      </div>
+      <h4>How this plays out</h4>
+      <ul>
+        <li>You gaslight yourself or cling to your version like life support</li>
+        <li>Any challenge to your story feels like an attack on your existence</li>
+        <li>You cannot hold "I feel this" and "They feel that" at the same time</li>
+      </ul>
+    </div>
+
+    <!-- FRAGMENTED SELF SECTION -->
+    <div class="section-header">
+      <h2>Symptoms of a Fragmented Self</h2>
+      <p>How it looks when your parts do not trust each other.</p>
+    </div>
+
+    <div class="symptom-grid">
+
+      <div class="symptom-box">
+        <h4>🧠 Inside Your Head</h4>
+        <ul>
+          <li>Different versions of you show up in different rooms</li>
+          <li>You hear yourself think "we" by accident</li>
+          <li>You argue with yourself in your own thoughts</li>
+          <li>You tell a story one day, and a completely different emotional truth leaks out another day</li>
+        </ul>
+      </div>
+
+      <div class="symptom-box">
+        <h4>💔 Emotions</h4>
+        <ul>
+          <li>You jump from numb to flooded with no middle</li>
+          <li>You cannot tell if you are angry, sad, scared, or all three</li>
+          <li>You overreact and then genuinely do not understand why you went that far</li>
+          <li>Your emotions grab the steering wheel without asking</li>
+        </ul>
+      </div>
+
+      <div class="symptom-box">
+        <h4>⏱️ Memory and Time</h4>
+        <ul>
+          <li>You lose chunks of conversations or whole days</li>
+          <li>People say "you said this" and it feels like they are describing someone else</li>
+          <li>You forget promises you made during a different emotional state</li>
+          <li>Your life feels like scenes, not a continuous story</li>
+        </ul>
+      </div>
+
+      <div class="symptom-box">
+        <h4>🫀 Body</h4>
+        <ul>
+          <li>You feel disconnected from your body until it is in full panic or shutdown</li>
+          <li>You notice posture, voice, or facial expression changes you did not intend</li>
+          <li>You feel like you are watching yourself from outside in certain moments</li>
+          <li>Your body holds reactions that do not match what is happening right now</li>
+        </ul>
+      </div>
+
+      <div class="symptom-box">
+        <h4>👥 Relationships</h4>
+        <ul>
+          <li>You become a different person with different people</li>
+          <li>You cannot explain why you stayed or why you left, it just "flipped"</li>
+          <li>You cycle through idealizing and hating the same person</li>
+          <li>You feel like no one has met the real you, but you also do not know who that is</li>
+        </ul>
+      </div>
+
+      <div class="symptom-box">
+        <h4>🪞 Sense of Self</h4>
+        <ul>
+          <li>Your "I am" sentence changes depending on who is triggering you</li>
+          <li>You feel fake even when you are being honest</li>
+          <li>You cling to labels because at least they feel like some kind of identity</li>
+          <li>You fear that if you drop the mask, there will be nothing under it</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="pattern-card">
+      <h3>What All This Means</h3>
+      <p>All of this is what happens when shields and masks are driving, and the core self never got a chance to grow in peace.</p>
+      <p>You are not broken. You are fragmented. There is a difference.</p>
+      <p><strong>Broken</strong> means ruined, damaged goods, unfixable.</p>
+      <p><strong>Fragmented</strong> means split into pieces that have not learned to work together yet. The pieces are all you. They just do not trust each other, because they formed in chaos.</p>
+      <p>The work is not "fixing" yourself. It is teaching your parts that they are on the same team now, even if they were not allowed to be back then.</p>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path Home</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

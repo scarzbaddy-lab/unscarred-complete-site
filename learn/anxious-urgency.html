@@ -1,0 +1,295 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anxious Urgency Without Losing Momentum | Unscarred</title>
+  <meta name="description" content="Your body is screaming 'do something now' but if you obey it fully, you overreach. Learn to find the middle lane.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>âš¡</text></svg>">
+  <style>
+    :root {
+      --bg-void: #050507; --bg-deep: #0a0a0f;
+      --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c;
+      --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px; --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+      --space-12: 48px; --space-16: 64px;
+      --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem;
+      --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-4xl: 2.5rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); line-height: 1.6; min-height: 100vh; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.1) 0%, transparent 40%); pointer-events: none; z-index: 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .container--narrow { max-width: 800px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(5, 5, 7, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-glass); }
+    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--primary); }
+    .nav { display: flex; gap: 32px; }
+    .nav a { font-size: 14px; color: var(--text-soft); text-decoration: none; transition: color 0.2s; }
+    .nav a:hover, .nav a.active { color: var(--text-main); }
+    .nav-toggle { display: none; }
+    @media (max-width: 768px) { .nav { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg-void); padding: 20px; flex-direction: column; gap: 16px; border-bottom: 1px solid var(--border-glass); } .nav.open { display: flex; } .nav-toggle { display: flex; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; padding: 8px; } .nav-toggle span { width: 24px; height: 2px; background: var(--text-main); } }
+    footer { text-align: center; padding: 60px 0; color: var(--text-dim); font-size: 0.85rem; border-top: 1px solid var(--border-glass); }
+    footer a { color: var(--text-soft); text-decoration: none; }
+    .btn { display: inline-block; padding: 14px 28px; border-radius: 999px; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.3s ease; }
+    .btn--rose { background: linear-gradient(135deg, var(--primary), #8a2a4a); color: white; box-shadow: 0 8px 30px var(--primary-glow); }
+    .btn--rose:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--primary-glow); }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="header__inner">
+      <a href="../index.html" class="logo">un<span>scarred</span></a>
+      <nav class="nav" id="nav">
+        <a href="/quizzes/">Quizzes</a>
+        <a href="../programs.html">Programs</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../services.html">Services</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <article class="article-page">
+    <div class="container container--narrow">
+      <div class="article-header">
+        <a href="../programs.html" class="article-back">â† Back to Programs</a>
+        <span class="article-category">Anxious</span>
+        <h1>Anxious Urgency Without Losing Momentum</h1>
+        <p class="article-lead">Your body is screaming "Do something now" and if you obey it fully, you overreach, overtext, or overexplain. If you fight it, you freeze and do nothing. You need a middle lane.</p>
+        <div class="article-meta">
+          <span>8 min read</span>
+          <span>Â·</span>
+          <span>Framework + scripts</span>
+        </div>
+      </div>
+
+      <div class="article-content">
+        
+        <div class="framework-box">
+          <h3>The Framework</h3>
+          <div class="framework-steps">
+            <span class="framework-step">Pause</span>
+            <span class="framework-arrow">â†’</span>
+            <span class="framework-step">Channel</span>
+            <span class="framework-arrow">â†’</span>
+            <span class="framework-step">Choose</span>
+          </div>
+        </div>
+
+        <section class="guide-phase">
+          <div class="phase-header">
+            <span class="phase-number">1</span>
+            <h2>Name the Urgency, Not Just the Story</h2>
+          </div>
+
+          <div class="question-box">
+            <h4>Ask yourself:</h4>
+            <p>"What is my nervous system trying to prevent?"</p>
+            <p>"What am I afraid will happen if I do nothing for 24 hours?"</p>
+          </div>
+
+          <div class="practice-box">
+            <h4>Write one sentence:</h4>
+            <p>"I feel urgent because I am scared they will forget me or pull away if I do not respond or fix it now."</p>
+          </div>
+        </section>
+
+        <section class="guide-phase">
+          <div class="phase-header">
+            <span class="phase-number">2</span>
+            <h2>Give the Urgency a Job, Not the Steering Wheel</h2>
+          </div>
+
+          <div class="compare-box">
+            <div class="compare-item compare-item--bad">
+              <strong>Instead of:</strong>
+              <ul>
+                <li>Spamming</li>
+                <li>Love bombing</li>
+                <li>Trauma dumping</li>
+                <li>Fixing</li>
+              </ul>
+            </div>
+            <div class="compare-item compare-item--good">
+              <strong>You:</strong>
+              <p>Use the urgency to plan one grounded move</p>
+            </div>
+          </div>
+
+          <div class="example-box">
+            <h4>Examples:</h4>
+            <ul>
+              <li>Draft the message in notes first, do not send yet</li>
+              <li>Brain dump how you feel, then pull out one or two clean sentences</li>
+              <li>Channel the urge into prep like: "If I wait one hour, I will send a calm message like this..."</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="guide-phase">
+          <div class="phase-header">
+            <span class="phase-number">3</span>
+            <h2>Set a Micro Delay, Not a Full Shutdown</h2>
+          </div>
+
+          <p>This is how you keep momentum without acting from panic.</p>
+
+          <div class="rules-box">
+            <h4>Rules:</h4>
+            <ul>
+              <li>Delay action by a small, specific amount</li>
+              <li>20 minutes</li>
+              <li>1 hour</li>
+              <li>Until after a walk or shower</li>
+            </ul>
+          </div>
+
+          <div class="script-box">
+            <h4>Tell yourself:</h4>
+            <p>"I am not ignoring this. I am upgrading my response."</p>
+          </div>
+        </section>
+
+        <section class="guide-phase">
+          <div class="phase-header">
+            <span class="phase-number">4</span>
+            <h2>Choose One Aligned Action Only</h2>
+          </div>
+
+          <div class="filter-box">
+            <h4>Use this filter:</h4>
+            <ul>
+              <li>Does this action create more clarity or more chaos?</li>
+              <li>Will I respect myself after I do this?</li>
+            </ul>
+          </div>
+
+          <div class="script-box">
+            <h4>Examples:</h4>
+            <p>"Hey, I enjoyed our time. Let me know when you want to link again."</p>
+            <p>"Earlier I was reacting from anxiety. When you did X I felt Y. Can we talk about it later?"</p>
+          </div>
+
+          <div class="highlight-box">
+            <p><strong>One move. Then stop.</strong></p>
+          </div>
+        </section>
+
+        <section class="guide-phase">
+          <div class="phase-header">
+            <span class="phase-number">5</span>
+            <h2>Let Silence Work for You Too</h2>
+          </div>
+
+          <p>Your nervous system thinks silence means danger. Redefine it:</p>
+
+          <div class="reframe-box">
+            <p>"Silence is data."</p>
+            <p>"If I do not chase, I get to see what they do on their own."</p>
+          </div>
+
+          <div class="practice-box">
+            <h4>You stay in motion by:</h4>
+            <ul>
+              <li>Focusing on your life, tasks, friends</li>
+              <li>Creating content, journaling, regulating</li>
+              <li><strong>Not</strong> by chasing a response</li>
+            </ul>
+          </div>
+        </section>
+
+        <div class="article-cta">
+          <h3>What does your system do when peace shows up?</h3>
+          <p>The Self-Sabotage Quiz identifies whether you're a Tester, Chaos Maker, Freezer, or Vanisher - so you can finally break the loop.</p>
+          <a href="../quiz/self-sabotage.html" class="btn btn--rose">Take the Self-Sabotage Quiz â†’</a>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <footer>
+    <div class="container">
+      <p>Â© 2025 Unscarred. <a href="../blog.html">Blog</a> Â· <a href="../services.html">Services</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => header.classList.toggle('scrolled', window.scrollY > 50));
+    document.getElementById('nav-toggle').addEventListener('click', () => document.getElementById('nav').classList.toggle('open'));
+  </script>
+
+  <style>
+    .article-page { padding: calc(80px + var(--space-12)) 0 var(--space-16); }
+    .article-header { margin-bottom: var(--space-12); }
+    .article-back { display: inline-block; font-size: var(--text-sm); color: var(--text-soft); margin-bottom: var(--space-4); text-decoration: none; }
+    .article-back:hover { color: var(--text-main); }
+    .article-category { display: inline-block; padding: var(--space-1) var(--space-3); background: var(--primary); color: white; border-radius: 999px; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-4); }
+    .article-header h1 { font-family: var(--font-display); font-size: var(--text-4xl); margin-bottom: var(--space-4); font-weight: 600; }
+    .article-lead { font-size: var(--text-xl); color: var(--text-soft); margin-bottom: var(--space-4); }
+    .article-meta { display: flex; gap: var(--space-2); font-size: var(--text-sm); color: var(--text-dim); }
+    .article-content { background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95)); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); padding: var(--space-10); }
+    
+    .framework-box { text-align: center; padding: var(--space-8); background: linear-gradient(135deg, var(--primary), #8a2a4a); color: white; border-radius: var(--radius-lg); margin-bottom: var(--space-10); }
+    .framework-box h3 { color: white; margin-bottom: var(--space-4); font-family: var(--font-display); }
+    .framework-steps { display: flex; justify-content: center; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+    .framework-step { padding: var(--space-3) var(--space-5); background: rgba(255,255,255,0.2); border-radius: 999px; font-weight: 600; }
+    .framework-arrow { font-size: var(--text-xl); opacity: 0.5; }
+    
+    .guide-phase { margin-bottom: var(--space-10); padding-bottom: var(--space-8); border-bottom: 1px solid var(--border-glass); }
+    .guide-phase:last-of-type { border-bottom: none; }
+    .phase-header { display: flex; align-items: center; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .phase-number { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; background: var(--secondary); color: white; border-radius: 50%; font-family: var(--font-display); font-size: var(--text-lg); font-weight: 600; flex-shrink: 0; }
+    .phase-header h2 { font-family: var(--font-display); font-size: var(--text-2xl); margin: 0; font-weight: 600; }
+    
+    .article-content p { margin-bottom: var(--space-4); line-height: 1.7; color: var(--text-soft); }
+    .article-content ul { margin-bottom: var(--space-4); padding-left: var(--space-6); color: var(--text-soft); }
+    .article-content li { margin-bottom: var(--space-2); line-height: 1.6; }
+    
+    .question-box, .practice-box, .rules-box, .script-box, .example-box, .filter-box, .reframe-box, .highlight-box { padding: var(--space-5); border-radius: var(--radius-lg); margin: var(--space-4) 0; }
+    .question-box { background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--text-soft); }
+    .practice-box { background: rgba(125, 154, 140, 0.1); border-left: 4px solid var(--sage); }
+    .rules-box { background: rgba(201, 118, 61, 0.1); border-left: 4px solid var(--accent); }
+    .script-box { background: linear-gradient(135deg, rgba(163, 59, 92, 0.15), rgba(163, 59, 92, 0.05)); border-left: 4px solid var(--primary); }
+    .example-box { background: rgba(255,255,255,0.03); border-left: 4px solid var(--sage); }
+    .filter-box { background: rgba(255, 255, 255, 0.03); border-left: 4px solid var(--text-soft); }
+    .reframe-box { background: linear-gradient(135deg, var(--secondary), #5a3d9e); color: white; padding: var(--space-6); text-align: center; }
+    .highlight-box { background: linear-gradient(135deg, var(--primary), #8a2a4a); color: white; text-align: center; padding: var(--space-4); }
+    .highlight-box p { margin: 0; font-size: var(--text-lg); color: white; }
+    
+    .question-box h4, .practice-box h4, .rules-box h4, .script-box h4, .example-box h4, .filter-box h4 { font-size: var(--text-sm); font-weight: 600; margin-bottom: var(--space-3); text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-main); }
+    
+    .question-box p, .script-box p { font-family: var(--font-display); font-size: var(--text-lg); font-style: italic; margin-bottom: var(--space-2); color: var(--text-main); }
+    .reframe-box p { font-family: var(--font-display); font-size: var(--text-lg); font-style: italic; margin-bottom: var(--space-2); color: white; }
+    .question-box p:last-child, .script-box p:last-child, .reframe-box p:last-child { margin-bottom: 0; }
+    
+    .compare-box { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: var(--space-4) 0; }
+    .compare-item { padding: var(--space-4); border-radius: var(--radius-lg); }
+    .compare-item--good { background: rgba(125, 154, 140, 0.1); border-left: 4px solid var(--sage); }
+    .compare-item--bad { background: rgba(163, 59, 92, 0.1); border-left: 4px solid var(--primary); }
+    .compare-item strong { color: var(--text-main); }
+    .compare-item p { font-family: var(--font-display); font-size: var(--text-lg); font-style: italic; margin: var(--space-2) 0 0; color: var(--text-main); }
+    .compare-item ul { padding-left: var(--space-4); margin: var(--space-2) 0 0; }
+    
+    .article-cta { text-align: center; padding: var(--space-10); background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(163, 59, 92, 0.2); border-radius: var(--radius-lg); margin-top: var(--space-8); }
+    .article-cta h3 { font-family: var(--font-display); margin-bottom: var(--space-2); color: var(--text-main); }
+    .article-cta p { color: var(--text-soft); margin-bottom: var(--space-6); }
+    
+    @media (max-width: 768px) { .compare-box { grid-template-columns: 1fr; } .article-content { padding: var(--space-6); } .framework-steps { flex-direction: column; } .framework-arrow { transform: rotate(90deg); } }
+  </style>
+</body>
+</html>
+

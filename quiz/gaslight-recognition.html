@@ -1,0 +1,648 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaslighting Recognition Quiz | Unscarred</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <style>
+        :root {
+            --bg-void: #0a0708;
+            --bg-deep: #12090c;
+            --card-glass: rgba(18, 12, 14, 0.92);
+            --primary: #c44569;
+            --primary-glow: rgba(196, 69, 105, 0.4);
+            --secondary: #f8b500;
+            --secondary-glow: rgba(248, 181, 0, 0.3);
+            --accent: #ff6b6b;
+            --accent-soft: #ff8e8e;
+            --text-main: #f5f0eb;
+            --text-soft: #a89f97;
+            --text-dim: #6b635c;
+            --border-glass: rgba(255,255,255,0.06);
+            --border-glow: rgba(196, 69, 105, 0.25);
+            --radius-lg: 20px;
+            --radius-sm: 12px;
+            --transition-smooth: 280ms cubic-bezier(0.4, 0, 0.2, 1);
+            --font-display: 'Georgia', serif;
+            --font-body: system-ui, -apple-system, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-void);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(196, 69, 105, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(248, 181, 0, 0.06) 0%, transparent 40%);
+            pointer-events: none;
+        }
+
+        .quiz-container {
+            max-width: 800px;
+            width: 100%;
+            background: var(--card-glass);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-glass);
+            padding: 40px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+            backdrop-filter: blur(20px);
+            position: relative;
+            z-index: 1;
+        }
+
+        .quiz-container::before {
+            content: "";
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary-glow), var(--secondary-glow), transparent);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            transition: color var(--transition-smooth);
+        }
+
+        .back-link:hover {
+            color: var(--text-main);
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        .subtitle {
+            color: var(--text-soft);
+            margin-bottom: 32px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .progress-wrap {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border-radius: 999px;
+            height: 6px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 999px;
+            transition: width 400ms ease;
+        }
+
+        .progress-text {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 24px;
+        }
+
+        .question {
+            margin-bottom: 28px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            animation: fadeIn 300ms ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question:last-of-type {
+            border-bottom: none;
+        }
+
+        .question-number {
+            font-size: 0.7rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 8px;
+        }
+
+        .question-text {
+            font-size: 1.05rem;
+            margin-bottom: 16px;
+            font-weight: 500;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        .yes-no-container {
+            display: flex;
+            gap: 12px;
+        }
+
+        .yes-no-option {
+            flex: 1;
+            padding: 14px 20px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            text-align: center;
+            transition: all var(--transition-smooth);
+            background: rgba(0,0,0,0.3);
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-soft);
+        }
+
+        .yes-no-option:hover {
+            border-color: var(--primary);
+            background: rgba(196, 69, 105, 0.1);
+            color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        .yes-no-option.selected {
+            border-color: var(--primary);
+            background: linear-gradient(135deg, rgba(196, 69, 105, 0.2), rgba(248, 181, 0, 0.1));
+            color: var(--text-main);
+            font-weight: 600;
+            box-shadow: 0 0 20px rgba(196, 69, 105, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, var(--primary), #a33b5c);
+            color: var(--text-main);
+            border: none;
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all var(--transition-smooth);
+            margin-top: 24px;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            box-shadow: 0 8px 32px rgba(196, 69, 105, 0.3);
+        }
+
+        .btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(196, 69, 105, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.show {
+            display: block;
+            animation: fadeIn 500ms ease;
+        }
+
+        .result-box {
+            background: rgba(0,0,0,0.3);
+            padding: 32px;
+            border-radius: var(--radius-lg);
+            margin-bottom: 24px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .score-display {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .severity-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 16px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            display: inline-block;
+        }
+
+        .severity-none { background: rgba(39, 174, 96, 0.2); color: #27ae60; }
+        .severity-early { background: rgba(243, 156, 18, 0.2); color: #f39c12; }
+        .severity-active { background: rgba(230, 126, 34, 0.2); color: #e67e22; }
+        .severity-severe { background: rgba(231, 76, 60, 0.2); color: #e74c3c; }
+
+        .result-title {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-style: italic;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .result-description {
+            color: var(--text-soft);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-size: 1rem;
+        }
+
+        .warning-box {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 20px 24px;
+            border-radius: var(--radius-sm);
+            margin-top: 24px;
+        }
+
+        .warning-box h3 {
+            color: #ff6b6b;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .warning-box p {
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        .pattern-section {
+            background: rgba(0,0,0,0.2);
+            padding: 24px;
+            border-radius: var(--radius-sm);
+            margin-top: 20px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .pattern-section h3 {
+            color: var(--secondary);
+            margin-bottom: 16px;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .pattern-list {
+            list-style: none;
+        }
+
+        .pattern-list li {
+            padding: 10px 0;
+            padding-left: 24px;
+            position: relative;
+            font-size: 0.95rem;
+            color: var(--text-soft);
+            line-height: 1.5;
+        }
+
+        .pattern-list li:before {
+            content: "?";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .cta-section {
+            margin-top: 32px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .cta-section h3 {
+            font-size: 1rem;
+            color: var(--text-main);
+            margin-bottom: 16px;
+        }
+
+        .cta-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-sm);
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all var(--transition-smooth);
+        }
+
+        .cta-link:hover {
+            background: rgba(196, 69, 105, 0.1);
+            border-color: var(--primary);
+            color: var(--text-main);
+        }
+
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 24px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            .yes-no-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        
+        <div id="quiz-section">
+            <h1>Are You Being Gaslit </h1>
+            <p class="subtitle">20 questions to recognize reality distortion tactics. This is not about disagreements. This is about someone systematically making you question your own perception.</p>
+            
+            <div class="progress-wrap">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="progress-text" id="progress-text">Question 1 of 20</div>
+            
+            <div id="questions"></div>
+            
+            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+        </div>
+        
+        <div id="results-section" class="results">
+            <div id="result-content"></div>
+            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            "Do they deny saying things you clearly remember them saying ",
+            "Do they tell you you're 'too sensitive' or 'overreacting' when you express hurt ",
+            "Do you find yourself constantly questioning your own memory ",
+            "Do they tell you that events you remember didn't happen that way ",
+            "Do you apologize even when you're not sure what you did wrong ",
+            "Do they accuse you of things they're actually doing ",
+            "Do you feel like you're going crazy or losing your grip on reality ",
+            "Do they dismiss your feelings as irrational or invalid ",
+            "Do you second-guess yourself constantly in this relationship ",
+            "Do they tell you that other people think you're crazy or dramatic ",
+            "Do you feel like you can't trust your own perception anymore ",
+            "Do they rewrite history to make you look like the problem ",
+            "Do you find yourself defending your sanity to them ",
+            "Do they tell you you're remembering things wrong, but you know you're not ",
+            "Do you feel confused about what's real after conversations with them ",
+            "Do they use your past mistakes to invalidate your current concerns ",
+            "Do you struggle to make decisions because you don't trust yourself anymore ",
+            "Do they make you feel like everything is your fault ",
+            "Do you record conversations or save messages to prove you're not crazy ",
+            "Do you feel like you're constantly walking on eggshells about what's 'real' "
+        ];
+
+        let answers = {};
+
+        function updateProgress() {
+            const answered = Object.keys(answers).length;
+            const total = questions.length;
+            const pct = (answered / total) * 100;
+            document.getElementById('progress-bar').style.width = pct + '%';
+            document.getElementById('progress-text').textContent = `${answered} of ${total} answered`;
+        }
+
+        function renderQuestions() {
+            const container = document.getElementById('questions');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <div class="question-number">Question ${index + 1}</div>
+                    <div class="question-text">${q}</div>
+                    <div class="yes-no-container" id="options-${index}">
+                        <div class="yes-no-option" onclick="selectOption(${index}, 1)">Yes</div>
+                        <div class="yes-no-option" onclick="selectOption(${index}, 0)">No</div>
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+
+        function selectOption(questionIndex, value) {
+            const container = document.getElementById(`options-${questionIndex}`);
+            const options = container.getElementsByClassName('yes-no-option');
+            
+            Array.from(options).forEach(opt => opt.classList.remove('selected'));
+            options[value === 1   0 : 1].classList.add('selected');
+            
+            answers[questionIndex] = value;
+            updateProgress();
+            
+            if (Object.keys(answers).length === questions.length) {
+                document.getElementById('submit-btn').disabled = false;
+            }
+        }
+
+        function calculateResults() {
+            const totalYes = Object.values(answers).reduce((sum, val) => sum + val, 0);
+            displayResults(totalYes);
+        }
+
+        function displayResults(score) {
+            let level, severityClass, title, description, tactics, nextSteps;
+            
+            if (score === 0) {
+                level = "No Gaslighting Detected";
+                severityClass = "severity-none";
+                title = "Your Reality Is Being Respected";
+                description = "Based on your answers, you're not experiencing gaslighting in this relationship. You might have disagreements or conflicts, but the specific pattern of reality distortion, where someone systematically makes you question your own perception, isn't present. Trust your instincts and keep paying attention to how you feel.";
+                tactics = [
+                    "Your reality is being respected",
+                    "Your feelings are validated, not dismissed",
+                    "You trust your own memory and perception",
+                    "Disagreements don't make you question your sanity",
+                    "You feel clear-headed after conversations"
+                ];
+                nextSteps = [
+                    { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" },
+                    { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "ðŸ”„" }
+                ];
+            } else if (score <= 7) {
+                level = "Early Warning Signs";
+                severityClass = "severity-early";
+                title = "You're Seeing Gaslighting Behaviors";
+                description = "Some reality distortion is happening. They might not be doing it constantly, but the pattern is there. You're starting to doubt yourself, question your memory, or feel confused after interactions. This is your gut telling you something is wrong. Trust it. Gaslighting starts small and escalates.";
+                tactics = [
+                    "Occasional denial of things they said",
+                    "Dismissing your feelings as overreactions",
+                    "Making you question your memory sometimes",
+                    "You're starting to second-guess yourself",
+                    "You feel confused after some conversations"
+                ];
+                nextSteps = [
+                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??ï¸" },
+                    { text: "Learn: Safety Signals", url: "../learn/safety-signals.html", icon: "ðŸ“–" }
+                ];
+            } else if (score <= 14) {
+                level = "Active Gaslighting";
+                severityClass = "severity-active";
+                title = "You Are Being Gaslit";
+                description = "You're experiencing active gaslighting. Someone is systematically distorting your reality, making you question your memory, your feelings, your sanity. This isn't disagreement. This is manipulation designed to destabilize you. You're not crazy. You're being made to feel crazy. That's the point.";
+                tactics = [
+                    "Consistent denial of things you know happened",
+                    "Rewriting history to make you the problem",
+                    "Making you question your memory regularly",
+                    "You constantly second-guess yourself",
+                    "You feel like you're losing your grip on reality",
+                    "You apologize for things you didn't do"
+                ];
+                nextSteps = [
+                    { text: "Break The Bond Program", url: "../program/break-the-bond.html", icon: "ðŸ”“" },
+                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "??ï¸" },
+                    { text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }
+                ];
+            } else {
+                level = "Severe Gaslighting";
+                severityClass = "severity-severe";
+                title = "You Are Being Severely Gaslit";
+                description = "You're experiencing severe, systematic gaslighting. Your sense of reality has been so destabilized that you don't know what to trust anymore. You might be recording conversations to prove you're not crazy. You might feel like you're losing your mind. You're not. Someone is deliberately eroding your grip on reality to maintain control over you.";
+                tactics = [
+                    "You can't trust your own memory anymore",
+                    "You feel like you're going crazy",
+                    "You record conversations or save evidence to prove reality",
+                    "Your entire sense of self has been destabilized",
+                    "You constantly defend your sanity",
+                    "You feel trapped in confusion",
+                    "You don't know what's real anymore",
+                    "You blame yourself for everything"
+                ];
+                nextSteps = [
+                    { text: "Break The Bond Program", url: "../program/break-the-bond.html", icon: "ðŸ”“" },
+                    { text: "Book Emergency Session", url: "../booking.html", icon: "ðŸ†˜" },
+                    { text: "Safety Planning Guide", url: "../learn/safety-signals.html", icon: "ðŸ›¡ï¸" }
+                ];
+            }
+            
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="result-box">
+                    <div class="score-display">${score} / ${questions.length}</div>
+                    <span class="severity-label ${severityClass}">${level}</span>
+                    <h2 class="result-title">${title}</h2>
+                    <p class="result-description">${description}</p>
+                    
+                    <div class="pattern-section">
+                        <h3>What This Looks Like</h3>
+                        <ul class="pattern-list">
+                            ${tactics.map(tactic => `<li>${tactic}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    ${score > 5   `
+                    <div class="warning-box">
+                        <h3>You're Not Crazy</h3>
+                        <p>Gaslighting is designed to make you question your reality so you stop trusting yourself and start depending on the gaslighter's version of truth. Your instincts are right. Your memory is reliable. Your feelings are valid. Document what's happening. Talk to people outside the relationship. Trust yourself.</p>
+                    </div>
+                    ` : ''}
+                </div>
+                
+                <div class="cta-section">
+                    <h3>Recommended Next Steps</h3>
+                    <div class="cta-links">
+                        ${nextSteps.map(step => `
+                            <a href="${step.url}" class="cta-link">
+                                <span>${step.icon}</span>
+                                ${step.text}
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('show');
+        }
+
+        function resetQuiz() {
+            answers = {};
+            document.getElementById('questions').innerHTML = '';
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('results-section').classList.remove('show');
+            document.getElementById('submit-btn').disabled = true;
+            document.getElementById('progress-bar').style.width = '0%';
+            document.getElementById('progress-text').textContent = 'Question 1 of 20';
+            renderQuestions();
+        }
+
+        renderQuestions();
+    </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

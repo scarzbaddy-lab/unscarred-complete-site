@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is It Me Or Is It Manipulation?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #1a1418;
+            --bg-plum: #2d1f2a;
+            --bg-card: #f5f0eb;
+            --bg-card-alt: #ebe5df;
+            --text-dark: #1a1418;
+            --text-body: #3d3538;
+            --text-muted: #6e6468;
+            --accent-wine: #8b2942;
+            --accent-wine-light: #a83d56;
+            --accent-safe: #4a7c59;
+            --accent-caution: #c4873b;
+            --border-light: #d8d0c8;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg-card);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        
+        /* Print-friendly pages */
+        .page {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 3rem 2.5rem;
+            background: var(--bg-card);
+            min-height: 100vh;
+        }
+        .page + .page {
+            border-top: 2px dashed var(--border-light);
+        }
+
+        /* Cover Page */
+        .cover {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 90vh;
+            background: linear-gradient(180deg, var(--bg-plum) 0%, var(--bg-dark) 100%);
+            color: var(--bg-card);
+            margin: -3rem -2.5rem 0;
+            padding: 3rem 2.5rem;
+        }
+        .cover .eyebrow {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent-wine-light);
+            margin-bottom: 1rem;
+        }
+        .cover h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.2;
+        }
+        .cover .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: rgba(245, 240, 235, 0.7);
+            margin-bottom: 3rem;
+        }
+        .cover .source {
+            font-size: 0.8rem;
+            color: rgba(245, 240, 235, 0.5);
+            margin-top: auto;
+        }
+
+        /* Typography */
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--accent-wine);
+            margin: 2rem 0 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        p { margin-bottom: 1rem; color: var(--text-body); }
+        .lead {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            border-left: 3px solid var(--accent-wine);
+            padding-left: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        /* Bullet List */
+        .dimension-list {
+            list-style: none;
+            margin: 1.5rem 0;
+            padding: 0;
+        }
+        .dimension-list li {
+            padding: 0.75rem 0 0.75rem 2.5rem;
+            position: relative;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .dimension-list li:last-child { border-bottom: none; }
+        .dimension-list li::before {
+            position: absolute;
+            left: 0;
+            top: 0.75rem;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+        .dimension-list li.concern::before { content: '♥'; background: rgba(139, 41, 66, 0.15); }
+        .dimension-list li.curiosity::before { content: '👁'; background: rgba(196, 135, 59, 0.15); }
+        .dimension-list li.ownership::before { content: '🧩'; background: rgba(139, 41, 66, 0.15); }
+        .dimension-list li.repair::before { content: '🩹'; background: rgba(74, 124, 89, 0.15); }
+        .dimension-list li strong { color: var(--text-dark); }
+
+        /* Callout Box */
+        .callout {
+            background: var(--bg-plum);
+            color: var(--bg-card);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        .callout p { color: rgba(245, 240, 235, 0.85); margin-bottom: 0.5rem; }
+        .callout p:last-child { margin-bottom: 0; }
+        .callout strong { color: var(--accent-wine-light); }
+
+        /* Example Section */
+        .example-box {
+            background: var(--bg-card-alt);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            border: 1px solid var(--border-light);
+        }
+        .example-box.safe { border-left: 4px solid var(--accent-safe); }
+        .example-box.warning { border-left: 4px solid var(--accent-wine); }
+        .example-box h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .example-box.safe h4 { color: var(--accent-safe); }
+        .example-box.warning h4 { color: var(--accent-wine); }
+        .example-box blockquote {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--text-body);
+        }
+        .example-box .scores {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 0.75rem;
+        }
+
+        /* Score Grid */
+        .score-row {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+        .score-row:last-child { border-bottom: none; }
+        .score-row .label {
+            flex: 1;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        .score-row .numbers {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .score-row .num {
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Category List */
+        .category-row {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+        }
+        .category-row .letter {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .category-row.a .letter { background: rgba(74, 124, 89, 0.2); color: var(--accent-safe); }
+        .category-row.b .letter { background: rgba(139, 41, 66, 0.15); color: var(--accent-wine); }
+        .category-row.c .letter { background: rgba(196, 135, 59, 0.2); color: var(--accent-caution); }
+        .category-row.d .letter { background: rgba(146, 43, 62, 0.2); color: #922b3e; }
+        .category-row .text { font-size: 0.9rem; }
+
+        /* Writable lines */
+        .write-area {
+            border: 1px dashed var(--border-light);
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 80px;
+            margin: 0.5rem 0;
+            background: white;
+        }
+        .write-area.small { min-height: 40px; }
+
+        /* CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--accent-wine) 0%, var(--bg-plum) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .cta h3 {
+            color: white;
+            text-transform: none;
+            letter-spacing: normal;
+            font-size: 1.2rem;
+            margin: 0 0 0.75rem;
+        }
+        .cta p {
+            color: rgba(255,255,255,0.85);
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        /* Print styles */
+        @media print {
+            .page {
+                page-break-after: always;
+                min-height: auto;
+                padding: 0.5in;
+            }
+            .cover {
+                margin: -0.5in;
+                padding: 0.5in;
+                min-height: 9in;
+            }
+            .page + .page { border-top: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER + CHEAT SHEET -->
+    <div class="page">
+        <div class="cover">
+            <div class="eyebrow">A Three-Page Snapshot</div>
+            <h1>Is It Me Or Is It Manipulation?</h1>
+            <p class="subtitle">From the Manipulation Prevention Handbook</p>
+            <p class="source">People lie. Nervous systems don't.</p>
+        </div>
+    </div>
+
+    <!-- PAGE 2: QUICK CHEAT SHEET -->
+    <div class="page">
+        <h2>How Normal People Respond When You Are Hurt</h2>
+        
+        <p class="lead">A normal response is not perfect. But it is not zero concern, zero curiosity, zero ownership and zero repair.</p>
+        
+        <p>If someone really cares about you, even when you overreact, their default will have at least some of these:</p>
+        
+        <ul class="dimension-list">
+            <li class="concern"><strong>Concern:</strong> They care that you are scared or hurt</li>
+            <li class="curiosity"><strong>Curiosity:</strong> They want to understand what happened, not just shut you up</li>
+            <li class="ownership"><strong>Ownership:</strong> They can admit when they confused you or crossed a line</li>
+            <li class="repair"><strong>Repair:</strong> They move toward fixing it, not punishing you</li>
+        </ul>
+
+        <div class="callout">
+            <p><strong>The more zeros they have over time, the less that "nice person" mask matters.</strong></p>
+            <p>One bad reaction might be a bad day. Five is a pattern. Ten is a baseline.</p>
+        </div>
+
+        <h3>The Four Categories</h3>
+        <div class="category-row a"><span class="letter">A</span><span class="text">Typical and emotionally safe</span></div>
+        <div class="category-row b"><span class="letter">B</span><span class="text">Clumsy but correctable</span></div>
+        <div class="category-row c"><span class="letter">C</span><span class="text">Immature and self-centered</span></div>
+        <div class="category-row d"><span class="letter">D</span><span class="text">Manipulative or cruel</span></div>
+    </div>
+
+    <!-- PAGE 3: SAMPLE SCENARIO -->
+    <div class="page">
+        <h2>Sample Scenario Card: Goodbye vs Goodnight</h2>
+        
+        <h3>♦ Facts</h3>
+        <p style="font-size: 0.9rem;">He said "goodbye" and hung up. I tried to call and text but couldn't get through. I sent an emotional email. Later he called and said he meant "goodnight." He yelled at me and told me to grow up.</p>
+
+        <h3>♦ What a Typical Person Would Do</h3>
+        <div class="example-box safe">
+            <h4>✓ Emotionally Safe Response</h4>
+            <blockquote>"That email was a lot. You must have felt really scared after I said goodbye. I see how that sounded final. I actually meant goodnight. Next time I will say that clearly. I care about you."</blockquote>
+            <div class="scores">Concern: 3 | Curiosity: 2 | Ownership: 2 | Repair: 3</div>
+        </div>
+
+        <h3>♦ What Actually Happened</h3>
+        <div class="example-box warning">
+            <h4>His Real Reaction</h4>
+            <blockquote>He said he meant goodnight. He yelled at me. He told me to grow up. He acted like I was crazy for reacting.</blockquote>
+            <div class="scores">Concern: 0 | Curiosity: 0 | Ownership: 0 | Repair: 0</div>
+        </div>
+
+        <h3>♦ Category: D</h3>
+        <p style="font-size: 0.9rem;"><strong>Mask:</strong> "I am just a normal man who said the wrong word."</p>
+        <p style="font-size: 0.9rem;"><strong>Reality:</strong> When I was scared and confused, he had zero concern, zero curiosity, zero ownership and zero desire to repair. He chose to shame and dominate instead.</p>
+
+        <div class="cta" style="margin-top: 1.5rem;">
+            <p style="font-size: 0.85rem;">In the full handbook you get a complete library of Scenario Lab cards that walk you through mixed signals, silent treatment, jokes that cut deep, blocking, and more-plus a pattern tracker to see your data clearly.</p>
+        </div>
+    </div>
+
+    <!-- PAGE 4: MINI BLANK TEMPLATE -->
+    <div class="page">
+        <h2>Mini Scenario Lab</h2>
+        <p>Use this template for any situation you're questioning.</p>
+
+        <h3>♦ Facts</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Write what they said and did. No feelings.</p>
+        <div class="write-area"></div>
+
+        <h3>♦ What a Normal Person Would Do</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Write how you think a typical caring person could respond.</p>
+        <div class="write-area"></div>
+
+        <h3>♦ What Actually Happened</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">Write what they really did and said.</p>
+        <div class="write-area"></div>
+
+        <h3>♦ Score It</h3>
+        <div style="margin: 1rem 0;">
+            <div class="score-row"><span class="label">Concern</span><div class="numbers"><span class="num">0</span><span class="num">1</span><span class="num">2</span><span class="num">3</span></div></div>
+            <div class="score-row"><span class="label">Curiosity</span><div class="numbers"><span class="num">0</span><span class="num">1</span><span class="num">2</span><span class="num">3</span></div></div>
+            <div class="score-row"><span class="label">Ownership</span><div class="numbers"><span class="num">0</span><span class="num">1</span><span class="num">2</span><span class="num">3</span></div></div>
+            <div class="score-row"><span class="label">Repair</span><div class="numbers"><span class="num">0</span><span class="num">1</span><span class="num">2</span><span class="num">3</span></div></div>
+        </div>
+
+        <h3>♦ Category</h3>
+        <div style="display: flex; gap: 1.5rem; margin: 0.5rem 0;">
+            <div class="category-row a"><span class="letter">A</span></div>
+            <div class="category-row b"><span class="letter">B</span></div>
+            <div class="category-row c"><span class="letter">C</span></div>
+            <div class="category-row d"><span class="letter">D</span></div>
+        </div>
+
+        <div class="cta">
+            <h3>Ready to Stop Doubting Yourself?</h3>
+            <p>If this mini card showed you something you have been gaslighting yourself about, the full <strong>Manipulation Prevention Handbook</strong> will give you many more scenarios, bigger templates, and a pattern tracker so you can stop doubting what your nervous system already knows.</p>
+        </div>
+    </div>
+
+</body>
+</html>
+

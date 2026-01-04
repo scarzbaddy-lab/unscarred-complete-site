@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Partner Draw Diagnostic | Unscarred</title>
+  <meta name="description" content="Who you're wired to attract and why. A pattern based diagnostic with results, scripts, and next steps." />
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050507;
+      --bg2: #0a0a0f;
+      --card: rgba(18,18,24,0.92);
+      --card2: rgba(22,22,30,0.72);
+      --text: #f5f5f7;
+      --muted: #b8b8c4;
+      --border: rgba(255,255,255,0.10);
+      --accent: #a33b5c;
+      --accent2: rgba(163,59,92,0.35);
+      --radius: 22px;
+      --shadow: 0 18px 60px rgba(0,0,0,0.55);
+      --shadow2: 0 10px 30px rgba(0,0,0,0.4);
+      --max: 980px;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Outfit", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(900px 500px at 18% 8%, rgba(163,59,92,0.18), transparent 55%),
+        radial-gradient(900px 500px at 85% 16%, rgba(255,255,255,0.06), transparent 55%),
+        radial-gradient(700px 500px at 30% 92%, rgba(163,59,92,0.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+      min-height: 100vh;
+    }
+
+    .wrap { width: 100%; margin: 0 auto; padding: 28px 18px 72px; }
+    .container { max-width: var(--max); margin: 0 auto; }
+
+    .hero {
+      padding: 28px 22px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(18,18,24,0.78), rgba(10,10,15,0.55));
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -120px -120px auto auto;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle at 30% 30%, rgba(163,59,92,0.28), transparent 55%);
+      filter: blur(6px);
+      pointer-events: none;
+    }
+
+    .brand {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.03);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 0 6px rgba(163,59,92,0.12);
+    }
+
+    h1 {
+      margin: 16px 0 10px;
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.02;
+    }
+    .sub { margin: 0; color: var(--muted); font-size: 16px; line-height: 1.6; max-width: 66ch; }
+
+    /* Added trust controls */
+    .trustRow { display:flex; gap:12px; align-items:center; margin-top:12px; flex-wrap:wrap; }
+    .saveLabel { display:inline-flex; gap:8px; align-items:center; font-size:13px; color:var(--muted); }
+    .saveLabel input[type="checkbox"] { width:16px; height:16px; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="container">
+
+      <section class="hero" id="top">
+        <div class="brand"><span class="dot"></span><span>Unscarred Mirror</span></div>
+        <h1>Partner Draw Diagnostic</h1>
+        <p class="sub">Who you are wired to attract, what you broadcast when you like someone, and the loop you keep walking into. This is pattern language, not a diagnosis.</p>
+
+        <div class="row">
+          <div class="panel">
+            <p class="metaTitle">What you get</p>
+            <div class="pillRow">
+              <div class="pill"><b>Primary</b> draw type</div>
+              <div class="pill"><b>Secondary</b> draw type</div>
+              <div class="pill"><b>Attraction</b> role</div>
+              <div class="pill"><b>Blind spot</b> cue</div>
+              <div class="pill"><b>Upgrade</b> script</div>
+            </div>
+
+            <div class="progressWrap" aria-label="Progress">
+              <div class="bar" aria-hidden="true"><span id="barFill"></span></div>
+              <div class="pct" id="pctText">0 of 24</div>
+            </div>
+
+            <div class="trustRow">
+              <label class="saveLabel"><input type="checkbox" id="saveToggle" checked> Save my answers locally (recommended)</label>
+              <button class="btn secondary" id="clearSaveBtn" type="button">Clear saved answers</button>
+            </div>
+
+            <div class="ctaRow">
+              <button class="btn" id="jumpBtn" type="button">Start the quiz</button>
+              <button class="btn secondary" id="resetBtnTop" type="button">Reset</button>
+            </div>
+
+            <p class="note"><b>Heads up:</b> answer based on your real patterns, not who you want to be on a good day.</p>
+          </div>
+
+          <div class="panel">
+            <p class="metaTitle">Scale</p>
+            <div class="pillRow">
+              <div class="pill">Never = 0</div>
+              <div class="pill">Sometimes = 1</div>
+              <div class="pill">Often = 2</div>
+              <div class="pill">Almost always = 3</div>
+            </div>
+            <p class="note" style="margin-top:12px;">You can be attracted to more than one type. This will show your top two.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quiz" id="quiz">
+        <div id="questions"></div>
+
+        <div class="footerRow">
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <button class="btn" id="scoreBtn" type="button">See my results</button>
+            <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+          </div>
+          <div class="note" style="margin:0;">Not sure? pick the answer that matches your last two relationships.</div>
+        </div>
+
+        <div class="error" id="errorBox" role="alert"></div>
+      </section>
+
+      <section class="results" id="results" aria-live="polite">
+        <p class="kicker">Your results</p>
+        <h2 class="resultTitle" id="primaryTitle">Primary Draw</h2>
+
+        <div class="tag" id="topTag"></div>
+
+        <div class="resultGrid">
+          <div class="card"><h3>What is happening</h3><p id="happenText"></p></div>
+          <div class="card"><h3>Why it forms</h3><p id="whyText"></p></div>
+          <div class="card"><h3>Early cue</h3><p id="cueText"></p></div>
+          <div class="card"><h3>Upgrade line</h3><p id="upgradeText"></p></div>
+        </div>
+
+        <div class="scores" id="scoreBreakdown"></div>
+
+        <div class="shareBox">
+          <h3 class="metaTitle" style="margin:0 0 10px;">Share prompt</h3>
+          <textarea id="shareText" readonly></textarea>
+          <div class="ctaRow" style="margin-top:10px;">
+            <button class="btn secondary" id="copyBtn" type="button">Copy</button>
+            <button class="btn" id="backBtn" type="button">Back to quiz</button>
+          </div>
+          <p class="tiny">Optional caption: “I attract this when I am unhealed. I choose something else when I am grown.”</p>
+        </div>
+
+        <div style="margin-top:18px; text-align:center;">
+          <a class="btn" style="background: linear-gradient(180deg, rgba(139,92,246,0.95), rgba(139,92,246,0.72)); color:#fff;" href="/quizzes/relational-needs/">Next: Relational Needs Matrix →</a>
+          <a class="btn" style="background:#a33b5c; color:#fff; margin-left:12px;" href="/quizzes/nervous-system-response/">Nervous System Scan →</a>
+        </div>
+
+        <p class="note" style="margin-top:14px;">If you want, add a CTA under this result that links to your Relational Needs Matrix or your Nervous System State quiz.</p>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    const QUIZ = {
+      title: "Partner Draw Diagnostic",
+      scaleLabels: ["Never", "Sometimes", "Often", "Almost always"],
+      questions: [
+        "I feel more interested when someone is slightly out of reach.",
+        "Calm consistency can feel boring at first.",
+        "I mistake intensity for compatibility.",
+        "I become my best self when I feel chosen.",
+        "I become anxious when replies slow down.",
+        "I want to earn the spot instead of simply being picked.",
+        "I am attracted to people with a complicated story.",
+        "I feel responsible for other people’s emotions.",
+        "I notice red flags early but explain them away.",
+        "I feel chemistry with people who challenge me.",
+        "I respect a partner more when they have status, power, or strong dominance.",
+        "I feel pulled toward partners who need guidance or growth.",
+        "I stay longer when I feel misunderstood.",
+        "I chase closure more than connection.",
+        "I test people to see if they care.",
+        "I feel safest when I am needed.",
+        "I feel activated around inconsistency, then I attach harder.",
+        "I downplay my needs so I do not feel rejected.",
+        "I attract people who love the idea of me more than the real me.",
+        "I am drawn to people who lead hard and decide fast.",
+        "I attract partners who want access to me but not accountability.",
+        "I feel pulled toward drama even when I want peace.",
+        "My healthiest relationships started slowly.",
+        "When someone is emotionally mature, I feel relief more than obsession."
+      ],
+      drawTypes: [
+        "The Unavailable Magnet",
+        "The Charmer Project",
+        "The Authority Loop",
+        "The Fixer Trap",
+        "The Chaos Spark",
+        "The Equal Match Candidate"
+      ],
+      mapping: {
+        unavailable: [1,2,5,14,17,21],
+        charmer: [3,7,9,12,19,22],
+        authority: [10,11,20,13,15],
+        fixer: [8,12,16,18,6],
+        chaos: [2,3,10,14,22],
+        equal: [23,24,4]
+      },
+      drawWriteups: {
+        unavailable: {
+          title: "The Unavailable Magnet",
+          happen: "You are wired for pursuit. Distance feels like a challenge. Consistency can feel like a risk at first.",
+          why: "Somewhere in your wiring, love required effort, guessing, or earning. Your body learned that uncertainty means connection is happening.",
+          cue: "You feel a rush when they pull away, go vague, or become hard to reach.",
+          upgrade: "I like you, and I only build with steady.",
+          boundary: "If you cannot communicate clearly, I am not continuing.",
+          blindspot: "You confuse scarcity with value."
+        },
+        charmer: {
+          title: "The Charmer Project",
+          happen: "You attract sparkle with instability. Chemistry runs ahead of character, then you start carrying the emotional load.",
+          why: "You learned to read people fast and adapt. That skill turns into over explaining their behavior to yourself.",
+          cue: "You are explaining the red flags instead of enjoying the person.",
+          upgrade: "Charm is not proof. Show me consistency.",
+          boundary: "I do not date potential. I date patterns.",
+          blindspot: "You mistake excitement for safety."
+        },
+        authority: {
+          title: "The Authority Loop",
+          happen: "You attach to strong personalities, then shrink or fight for position. Power becomes the relationship theme.",
+          why: "Power felt like safety, or approval felt like survival. So dominance can feel like stability until it costs you yourself.",
+          cue: "You start monitoring tone, control, status, or who is “leading.”",
+          upgrade: "Lead your life, not me.",
+          boundary: "Dominance without tenderness is not my partner.",
+          blindspot: "You tolerate control because it looks like certainty."
+        },
+        fixer: {
+          title: "The Fixer Trap",
+          happen: "You pull wounded people who feel safe in your care, then resent your needs. You become the emotional provider.",
+          why: "Being needed became your proof of worth. Rescue starts feeling like love, then becomes your job.",
+          cue: "You feel chosen because they are struggling, not because they are steady.",
+          upgrade: "I connect, I do not rescue.",
+          boundary: "I need mutual effort, not a job.",
+          blindspot: "You confuse being needed with being valued."
+        },
+        chaos: {
+          title: "The Chaos Spark",
+          happen: "Your nervous system reads adrenaline as chemistry. Drama feels magnetic even when your mind wants peace.",
+          why: "Unpredictability trained your body to call activation home. Calm can feel suspicious until you rewire.",
+          cue: "Peace feels like boredom and intensity feels like love.",
+          upgrade: "My body wants chaos. My life wants peace.",
+          boundary: "If your life is on fire, I am not moving in.",
+          blindspot: "You call activation “fate” instead of a pattern."
+        },
+        equal: {
+          title: "The Equal Match Candidate",
+          happen: "You can tolerate reciprocity. You are learning to choose steadiness over obsession.",
+          why: "Your system is shifting. You want mutual effort, clear communication, and calm attachment.",
+          cue: "You feel relief more than obsession, and you still feel interested.",
+          upgrade: "Slow is not lack. Slow is stability.",
+          boundary: "If it is inconsistent, I do not romanticize it.",
+          blindspot: "You might mistake slow for not enough if you are under stress."
+        }
+      },
+      roles: [
+        {
+          key: "audition",
+          title: "The Auditioning Lover",
+          items: [4,6,17],
+          logic: "High when you feel chosen and try to earn the spot.",
+          cue: "You perform, prove, and over invest fast."
+        },
+        {
+          key: "translator",
+          title: "The Translator",
+          items: [8,12,16],
+          logic: "High when you carry emotions and try to be the guide.",
+          cue: "You over explain, over empathize, over hold."
+        },
+        {
+          key: "coolmask",
+          title: "The Cool Girl Mask",
+          items: [18],
+          special: { lowItem: 5 },
+          logic: "High when you downplay needs and act unbothered.",
+          cue: "You look calm outside while tightening inside."
+        },
+        {
+          key: "investigator",
+          title: "The Investigator",
+          items: [9,14,15],
+          logic: "High when you chase closure and run tests for certainty.",
+          cue: "You interrogate patterns to avoid feeling powerless."
+        },
+        {
+          key: "lightning",
+          title: "The Lightning Chaser",
+          items: [2,3,22],
+          logic: "High when intensity equals attraction.",
+          cue: "You want the spark, even when it burns."
+        }
+      ]
+    };
+
+    const elQuestions = document.getElementById("questions");
+    const errorBox = document.getElementById("errorBox");
+    const barFill = document.getElementById("barFill");
+    const pctText = document.getElementById("pctText");
+
+    const resultsSection = document.getElementById("results");
+    const quizSection = document.getElementById("quiz");
+
+    const primaryTitle = document.getElementById("primaryTitle");
+    const topTag = document.getElementById("topTag");
+    const happenText = document.getElementById("happenText");
+    const whyText = document.getElementById("whyText");
+    const cueText = document.getElementById("cueText");
+    const upgradeText = document.getElementById("upgradeText");
+    const scoreBreakdown = document.getElementById("scoreBreakdown");
+    const shareText = document.getElementById("shareText");
+
+    const scoreBtn = document.getElementById("scoreBtn");
+    const resetBtn = document.getElementById("resetBtn");
+    const resetBtnTop = document.getElementById("resetBtnTop");
+    const backBtn = document.getElementById("backBtn");
+    const copyBtn = document.getElementById("copyBtn");
+    const jumpBtn = document.getElementById("jumpBtn");
+
+    const saveToggle = document.getElementById("saveToggle");
+    const clearSaveBtn = document.getElementById("clearSaveBtn");
+    const STORAGE_SAVE_KEY = "unscarred_partner_draw_save_enabled_v1";
+    let saveEnabled = true;
+
+    const STORAGE_KEY = "unscarred_partner_draw_v1";
+
+    const state = {
+      answers: Array(QUIZ.questions.length).fill(null)
+    };
+
+    function clamp(n, min, max) { return Math.max(min, Math.min(max, n)); }
+
+    function save() {
+      if (!saveEnabled) return;
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state.answers));
+      } catch (e) {}
+    }
+
+    function load() {
+      try {
+        const savePref = localStorage.getItem(STORAGE_SAVE_KEY);
+        if (savePref === "0") {
+          saveEnabled = false;
+          if (saveToggle) saveToggle.checked = false;
+        } else {
+          saveEnabled = true;
+        }
+
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return;
+        const arr = JSON.parse(raw);
+        if (Array.isArray(arr) && arr.length === state.answers.length) state.answers = arr;
+      } catch (e) {}
+    }
+
+    // Toggle and persist save preference
+    if (saveToggle) {
+      saveToggle.addEventListener("change", () => {
+        saveEnabled = saveToggle.checked;
+        try {
+          localStorage.setItem(STORAGE_SAVE_KEY, saveEnabled ? "1" : "0");
+        } catch (e) {}
+      });
+    }
+
+    function clearSaved() {
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(STORAGE_SAVE_KEY);
+      } catch (e) {}
+      state.answers = Array(QUIZ.questions.length).fill(null);
+      renderQuestions();
+      updateProgress();
+      showError("Saved answers cleared.");
+      setTimeout(hideError, 1600);
+      if (saveToggle) { saveToggle.checked = false; saveEnabled = false; }
+    }
+
+    if (clearSaveBtn) clearSaveBtn.addEventListener("click", clearSaved);
+
+    function resetAll() {
+      state.answers = Array(QUIZ.questions.length).fill(null);
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      renderQuestions();
+      updateProgress();
+      hideError();
+      resultsSection.style.display = "none";
+      quizSection.style.display = "block";
+      window.scrollTo({ top: document.getElementById("top").offsetTop, behavior: "smooth" });
+    }
+
+    function hideError() {
+      errorBox.style.display = "none";
+      errorBox.textContent = "";
+    }
+
+    function showError(msg) {
+      errorBox.style.display = "block";
+      errorBox.textContent = msg;
+    }
+
+    function answeredCount() {
+      return state.answers.filter(v => v !== null).length;
+    }
+
+    function updateProgress() {
+      const done = answeredCount();
+      const total = state.answers.length;
+      const pct = total ? Math.round((done / total) * 100) : 0;
+      barFill.style.width = pct + "%";
+      pctText.textContent = done + " of " + total;
+    }
+
+    function renderQuestions() {
+      elQuestions.innerHTML = "";
+
+      QUIZ.questions.forEach((text, i) => {
+        const qWrap = document.createElement("div");
+        qWrap.className = "q";
+        qWrap.setAttribute("data-index", String(i));
+
+        const top = document.createElement("div");
+        top.className = "qTop";
+
+        const num = document.createElement("div");
+        num.className = "qNum";
+        num.textContent = "Question " + (i + 1);
+
+        const qt = document.createElement("div");
+        qt.className = "qText";
+        qt.textContent = text;
+
+        top.appendChild(num);
+        top.appendChild(qt);
+        qWrap.appendChild(top);
+
+        const choices = document.createElement("div");
+        choices.className = "choices";
+
+        QUIZ.scaleLabels.forEach((label, v) => {
+          const lab = document.createElement("label");
+          lab.className = "choice";
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "q_" + i;
+          input.value = String(v);
+          input.checked = state.answers[i] === v;
+
+          const span = document.createElement("span");
+          span.textContent = label;
+
+          lab.appendChild(input);
+          lab.appendChild(span);
+
+          if (input.checked) lab.classList.add("selected");
+
+          lab.addEventListener("click", () => {
+            state.answers[i] = v;
+            save();
+            hideError();
+            const all = choices.querySelectorAll(".choice");
+            all.forEach(x => x.classList.remove("selected"));
+            lab.classList.add("selected");
+            updateProgress();
+          });
+
+          choices.appendChild(lab);
+        });
+
+        qWrap.appendChild(choices);
+        elQuestions.appendChild(qWrap);
+      });
+    }
+
+    function sumItems(items) {
+      let s = 0;
+      items.forEach(idx1 => {
+        const idx = idx1 - 1;
+        const val = state.answers[idx];
+        s += (val === null ? 0 : val);
+      });
+      return s;
+    }
+
+    function computeDrawScores() {
+      const m = QUIZ.mapping;
+      const scores = {
+        unavailable: sumItems(m.unavailable),
+        charmer: sumItems(m.charmer),
+        authority: sumItems(m.authority),
+        fixer: sumItems(m.fixer),
+        chaos: sumItems(m.chaos),
+        equal: sumItems(m.equal)
+      };
+
+      const equalPenaltyItems = [1,3,14,17].map(n => n - 1);
+      let penalty = 0;
+      equalPenaltyItems.forEach(i => {
+        const v = state.answers[i];
+        if (v !== null) penalty += v;
+      });
+      scores.equal = Math.max(0, scores.equal - Math.round(penalty * 0.5));
+
+      return scores;
+    }
+
+    function pickTopTwo(scores) {
+      const arr = Object.entries(scores).map(([k,v]) => ({ key: k, val: v }));
+      arr.sort((a,b) => b.val - a.val);
+
+      const top = arr[0];
+      let second = arr[1];
+
+      if (second && second.val === top.val) {
+        const order = ["equal","unavailable","charmer","authority","fixer","chaos"];
+        arr.sort((a,b) => {
+          if (b.val !== a.val) return b.val - a.val;
+          return order.indexOf(a.key) - order.indexOf(b.key);
+        });
+        return { top: arr[0], second: arr[1] };
+      }
+
+      return { top, second };
+    }
+
+    function computeRole() {
+      const roleScores = QUIZ.roles.map(r => {
+        let s = sumItems(r.items);
+        if (r.special && r.special.lowItem) {
+          const lowIdx = r.special.lowItem - 1;
+          const lowVal = state.answers[lowIdx];
+          if (lowVal !== null) s += (3 - lowVal);
+        }
+        return { key: r.key, title: r.title, score: s, logic: r.logic, cue: r.cue };
+      });
+
+      roleScores.sort((a,b) => b.score - a.score);
+
+      const top = roleScores[0];
+      const second = roleScores[1];
+
+      if (second && second.score === top.score) {
+        const order = ["investigator","audition","translator","lightning","coolmask"];
+        roleScores.sort((a,b) => {
+          if (b.score !== a.score) return b.score - a.score;
+          return order.indexOf(a.key) - order.indexOf(b.key);
+        });
+      }
+      return roleScores[0];
+    }
+
+    function computeBlindSpot(primaryKey, roleKey) {
+      const map = {
+        unavailable: "Scarcity starts feeling like value, so you tolerate fog longer than you should.",
+        charmer: "You protect the fantasy by explaining patterns that should be disqualifying.",
+        authority: "You trade your voice for certainty, then resent the loss of self.",
+        fixer: "You confuse loyalty with labor and call it love.",
+        chaos: "You call activation chemistry and ignore what your body is begging for: peace.",
+        equal: "When stressed, you might misread steady as not enough and go looking for spark."
+      };
+
+      const roleExtra = {
+        audition: "You over invest early to secure the bond.",
+        translator: "You carry emotions that are not yours to carry.",
+        coolmask: "You hide needs until they leak out sideways.",
+        investigator: "You chase closure to avoid sitting in uncertainty.",
+        lightning: "You crave spark even when it costs stability."
+      };
+
+      return map[primaryKey] + " " + roleExtra[roleKey];
+    }
+
+    function ensureComplete() {
+      const missing = [];
+      state.answers.forEach((v, i) => { if (v === null) missing.push(i + 1); });
+      if (!missing.length) return true;
+
+      const firstMiss = missing[0];
+      showError("Answer all questions first. You missed question " + firstMiss + ".");
+      const node = document.querySelector('.q[data-index="' + (firstMiss - 1) + '"]');
+      if (node) node.scrollIntoView({ behavior: "smooth", block: "center" });
+      return false;
+    }
+
+    function renderResults() {
+      const scores = computeDrawScores();
+      const topTwo = pickTopTwo(scores);
+
+      const primary = topTwo.top.key;
+      const secondary = topTwo.second ? topTwo.second.key : null;
+
+      const role = computeRole();
+      const write = QUIZ.drawWriteups[primary];
+
+      const primaryName = write.title;
+      const secondaryName = secondary ? QUIZ.drawWriteups[secondary].title : "None";
+
+      primaryTitle.textContent = primaryName;
+
+      topTag.innerHTML = "";
+      topTag.appendChild(makeTagLine("Primary", primaryName));
+      topTag.appendChild(makeTagLine("Secondary", secondaryName));
+      topTag.appendChild(makeTagLine("Role", role.title));
+
+      happenText.textContent = write.happen;
+      whyText.textContent = write.why;
+      cueText.textContent = write.cue;
+
+      const blind = computeBlindSpot(primary, role.key);
+      const upgradeBlock = write.upgrade + " " + "Boundary: " + write.boundary + " " + "Blind spot: " + blind;
+      upgradeText.textContent = upgradeBlock;
+
+      const breakdown = computeRoleScoreBreakdown();
+      scoreBreakdown.innerHTML = "";
+      breakdown.forEach(line => {
+        const div = document.createElement("div");
+        div.className = "line";
+        div.innerHTML = line;
+        scoreBreakdown.appendChild(div);
+      });
+
+      resultsSection.style.display = "block";
+      quizSection.style.display = "none";
+      window.scrollTo({ top: resultsSection.offsetTop, behavior: "smooth" });
+    }
+
+    function computeRoleScoreBreakdown() {
+      const role = computeRole();
+      const map = {
+        audition: "The Auditioning Lover",
+        translator: "The Translator",
+        coolmask: "The Cool Girl Mask",
+        investigator: "The Investigator",
+        lightning: "The Lightning Chaser"
+      };
+
+      const scores = QUIZ.roles.map(r => {
+        let s = sumItems(r.items);
+        if (r.special && r.special.lowItem) {
+          const lowIdx = r.special.lowItem - 1;
+          const lowVal = state.answers[lowIdx];
+          if (lowVal !== null) s += (3 - lowVal);
+        }
+        return { key: r.key, title: r.title, score: s };
+      });
+
+      scores.sort((a,b) => b.score - a.score);
+
+      const top = scores[0];
+      const lines = [];
+
+      if (top.score > 0) {
+        lines.push("Your role in attraction: <b>" + top.title + "</b> (" + top.score + ")");
+        const extra = computeRoleExtra(top.key);
+        if (extra) lines.push(extra);
+      } else {
+        lines.push("No strong role identified. You may be in a healthy state of flux.");
+      }
+
+      return lines;
+    }
+
+    function computeRoleExtra(key) {
+      const extras = {
+        audition: "You tend to over invest in order to secure the bond early.",
+        translator: "You may find yourself carrying emotional burdens that aren't yours.",
+        coolmask: "You often hide your true needs, which can lead to unexpected outbursts.",
+        investigator: "You might chase after closure to avoid the discomfort of uncertainty.",
+        lightning: "You have a strong desire for the initial spark, which can sometimes cloud your judgment."
+      };
+
+      return extras[key] || "";
+    }
+
+    load();
+    renderQuestions();
+    updateProgress();
+  </script>
+</body>
+</html>

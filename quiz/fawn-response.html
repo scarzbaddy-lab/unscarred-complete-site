@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fawn Response Assessment | Unscarred</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <style>
+        :root {
+            --bg: #0a0808;
+            --card: #12100f;
+            --primary: #c9a87c;
+            --primary-glow: rgba(201, 168, 124, 0.3);
+            --secondary: #8b7355;
+            --text: #f5f0eb;
+            --text-soft: #a89f97;
+            --border: #2a2420;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6; color: var(--text); background: var(--bg);
+            padding: 20px; min-height: 100vh;
+        }
+        body::before {
+            content: "";
+            position: fixed; inset: 0;
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 168, 124, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .quiz-container {
+            max-width: 800px; margin: 0 auto; background: var(--card);
+            border-radius: 16px; padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid var(--border);
+            position: relative; z-index: 1;
+        }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            color: var(--text-soft); text-decoration: none; font-size: 0.85rem;
+            margin-bottom: 24px; transition: color 0.2s ease;
+        }
+        .back-link:hover { color: var(--text); }
+        h1 { color: var(--primary); margin-bottom: 10px; font-size: 2.2em; }
+        .subtitle { color: var(--text-soft); margin-bottom: 30px; font-size: 1.1em; }
+        .question { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px solid var(--border); }
+        .question:last-of-type { border-bottom: none; }
+        .question-text { font-size: 1.1em; margin-bottom: 15px; font-weight: 500; color: var(--text); }
+        .scale-container { display: flex; gap: 10px; margin-top: 10px; }
+        .scale-option {
+            flex: 1; padding: 15px 10px; border: 2px solid var(--border);
+            border-radius: 10px; cursor: pointer; text-align: center;
+            transition: all 0.3s ease; background: rgba(0,0,0,0.3);
+            font-size: 0.9em; color: var(--text-soft);
+        }
+        .scale-option:hover { border-color: var(--primary); background: rgba(201, 168, 124, 0.1); color: var(--text); }
+        .scale-option.selected { border-color: var(--primary); background: rgba(201, 168, 124, 0.15); font-weight: 600; color: var(--text); }
+        .scale-labels { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 0.9em; color: var(--text-soft); }
+        .btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #1a1a1a; border: none; padding: 15px 40px;
+            font-size: 1.1em; border-radius: 10px; cursor: pointer;
+            transition: all 0.3s ease; margin-top: 20px; width: 100%; font-weight: 600;
+        }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--primary-glow); }
+        .btn:disabled { background: #333; color: #666; cursor: not-allowed; transform: none; }
+        .results { display: none; }
+        .results.show { display: block; }
+        .result-box { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 12px; margin-bottom: 25px; border-left: 5px solid var(--primary); }
+        .score-display { font-size: 3em; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
+        .result-title { font-size: 1.8em; color: var(--text); margin-bottom: 15px; }
+        .result-description { color: var(--text-soft); line-height: 1.8; margin-bottom: 20px; }
+        .pattern-section { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid var(--border); }
+        .pattern-section h3 { color: var(--primary); margin-bottom: 15px; }
+        .pattern-list { list-style: none; padding-left: 0; }
+        .pattern-list li { padding: 8px 0; padding-left: 25px; position: relative; color: var(--text-soft); }
+        .pattern-list li:before { content: "?"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
+        .hidden { display: none; }
+        .cta-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
+        .cta-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
+        .cta-links { display: flex; flex-wrap: wrap; gap: 10px; }
+        .cta-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 16px; background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border); border-radius: 10px;
+            color: var(--text-soft); text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease;
+        }
+        .cta-link:hover { background: rgba(201, 168, 124, 0.1); border-color: var(--primary); color: var(--text); }
+        @media (max-width: 600px) { .quiz-container { padding: 25px; } h1 { font-size: 1.8em; } .scale-container { flex-direction: column; } .scale-option { padding: 12px; } }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        <div id="quiz-section">
+            <h1>Fawn Response Assessment</h1>
+            <p class="subtitle">How deep does your people-pleasing go </p>
+            <div id="questions"></div>
+            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+        </div>
+        <div id="results-section" class="results">
+            <div id="result-content"></div>
+            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+    <script>
+        const questions = [
+            "I apologize even when I've done nothing wrong",
+            "I say yes when I want to say no",
+            "I put others' needs ahead of my own, even when I'm exhausted",
+            "I feel responsible for other people's emotions",
+            "I struggle to identify what I actually want",
+            "I adapt my personality depending on who I'm with",
+            "I avoid conflict at all costs",
+            "I feel anxious when I can't make someone happy",
+            "I dismiss my own feelings to keep the peace",
+            "I overextend myself to prove I'm valuable",
+            "I anticipate others' needs before they ask",
+            "I feel guilty when I prioritize myself",
+            "I struggle to receive without giving something back",
+            "I perform positivity even when I'm struggling",
+            "I feel like my worth depends on being helpful",
+            "I can't relax unless everyone around me is okay",
+            "I change my opinions to match others",
+            "I feel like a burden when I have needs",
+            "I scan people's faces for signs of disapproval",
+            "I lose myself in relationships"
+        ];
+        const scaleOptions = ["Never", "Rarely", "Sometimes", "Often", "Always"];
+        let answers = {};
+        function renderQuestions() {
+            const container = document.getElementById('questions');
+            questions.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'question';
+                questionDiv.innerHTML = `
+                    <div class="question-text">${index + 1}. ${q}</div>
+                    <div class="scale-labels"><span>Never</span><span>Always</span></div>
+                    <div class="scale-container" id="scale-${index}">
+                        ${scaleOptions.map((label, value) => `<div class="scale-option" onclick="selectOption(${index}, ${value})">${label}</div>`).join('')}
+                    </div>
+                `;
+                container.appendChild(questionDiv);
+            });
+        }
+        function selectOption(questionIndex, value) {
+            const scaleContainer = document.getElementById(`scale-${questionIndex}`);
+            const options = scaleContainer.getElementsByClassName('scale-option');
+            Array.from(options).forEach(opt => opt.classList.remove('selected'));
+            options[value].classList.add('selected');
+            answers[questionIndex] = value;
+            if (Object.keys(answers).length === questions.length) {
+                document.getElementById('submit-btn').disabled = false;
+            }
+        }
+        function calculateResults() {
+            const totalScore = Object.values(answers).reduce((sum, val) => sum + val, 0);
+            const maxScore = questions.length * 4;
+            const percentage = Math.round((totalScore / maxScore) * 100);
+            displayResults(totalScore, percentage);
+        }
+        function displayResults(score, percentage) {
+            let level, color, title, description, patterns, ctas;
+            if (percentage <= 25) {
+                level = "Healthy Boundaries";
+                color = "#27ae60";
+                title = "You're Not Trapped In Fawning";
+                description = "You maintain healthy boundaries and can prioritize yourself without excessive guilt. You're able to say no, identify your needs, and show up authentically without constantly monitoring others' reactions. This doesn't mean you're selfish - it means you've learned that your worth isn't contingent on being useful.";
+                patterns = ["You can say no without guilt spirals", "You prioritize yourself when needed", "You don't feel responsible for others' emotions", "You can be authentic without performing", "Your self-worth isn't tied to usefulness"];
+                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "??ï¸" }, { text: "Self-Sabotage Quiz", url: "/quiz/self-sabotage.html", icon: "ðŸ”„" }];
+            } else if (percentage <= 50) {
+                level = "Moderate Fawning";
+                color = "#f39c12";
+                title = "You're Starting To Notice The Pattern";
+                description = "You fawn sometimes, but you're beginning to catch it. You might people-please in certain situations or with specific people, but you're not completely consumed by it. You're aware of the cost and working to build boundaries, even if it's inconsistent.";
+                patterns = ["You notice when you're abandoning yourself", "You sometimes prioritize others over yourself", "You're working on saying no but it's hard", "You feel guilty about self-care but do it anyway", "You're learning to separate care from caretaking"];
+                ctas = [{ text: "Clean Ask Guide", url: "../learn/clean-ask.html", icon: "ðŸ“–" }, { text: "Centered For Women Guide", url: "../learn/centered-women.html", icon: "ðŸ“–" }];
+            } else if (percentage <= 75) {
+                level = "Significant Fawning";
+                color = "#e67e22";
+                title = "Fawning Is Your Default Survival Mode";
+                description = "You've learned that keeping others happy keeps you safe. You anticipate needs, manage emotions, and abandon yourself to avoid conflict or rejection. You're so practiced at this that you might not even know what you actually want anymore. This isn't weakness - it's a survival adaptation that worked once but now costs you your sense of self.";
+                patterns = ["You consistently put others first", "You struggle to know your own needs", "You feel responsible for managing emotions", "You avoid conflict through self-abandonment", "You perform versions of yourself to stay safe", "Your worth feels tied to being useful"];
+                ctas = [{ text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }, { text: "Anxious Healing Program", url: "../program/anxious-healing.html", icon: "💗" }];
+            } else {
+                level = "Severe Fawning";
+                color = "#e74c3c";
+                title = "You've Disappeared Into Fawning";
+                description = "Fawning isn't something you do - it's who you've become. You've lost touch with your authentic self because survival required you to become whatever was needed. You exist in a constant state of hypervigilance, scanning for disapproval and adjusting yourself accordingly. You're exhausted from performing, but you don't know how to stop. This level of self-abandonment isn't about being 'too nice' - it's a trauma response that's kept you trapped.";
+                patterns = ["You don't know who you are outside of pleasing others", "You can't tolerate others being upset with you", "You feel like a burden when you have needs", "You're exhausted from constant self-monitoring", "You've lost your sense of self entirely", "You can't imagine prioritizing yourself", "Your nervous system is stuck in appease mode"];
+                ctas = [{ text: "Book a Session", url: "../booking.html", icon: "ðŸ“…" }, { text: "Coercive Control Quiz", url: "coercive-control.html", icon: "ðŸš©" }];
+            }
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="result-box" style="border-left-color: ${color}">
+                    <div class="score-display" style="color: ${color}">${percentage}%</div>
+                    <div style="color: ${color}; font-weight: 600; font-size: 1.1em; margin-bottom: 10px;">${level}</div>
+                    <h2 class="result-title">${title}</h2>
+                    <p class="result-description">${description}</p>
+                    <div class="pattern-section">
+                        <h3>What This Looks Like:</h3>
+                        <ul class="pattern-list">${patterns.map(pattern => `<li>${pattern}</li>`).join('')}</ul>
+                    </div>
+                </div>
+                <div class="cta-section">
+                    <h3>Recommended Next Steps</h3>
+                    <div class="cta-links">${ctas.map(cta => `<a href="${cta.url}" class="cta-link"><span>${cta.icon}</span>${cta.text}</a>`).join('')}</div>
+                </div>
+            `;
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('show');
+        }
+        function resetQuiz() {
+            answers = {};
+            document.getElementById('questions').innerHTML = '';
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('results-section').classList.remove('show');
+            document.getElementById('submit-btn').disabled = true;
+            renderQuestions();
+        }
+        renderQuestions();
+    </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+
+

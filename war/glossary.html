@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Path Glossary | Terms You Need To Know | Unscarred</title>
+  <meta name="description" content="Plain language definitions for neurodivergence, limerence, dissociation, and other terms you keep seeing but nobody explains properly.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 32px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Term Cards */
+    .term-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .term-card h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .term-card .clinical {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+
+    .term-card .plain {
+      background: rgba(201, 118, 61, 0.1);
+      border-left: 3px solid var(--accent);
+      padding: 16px 20px;
+      margin-bottom: 20px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .term-card .plain p {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .term-card h3 {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 20px 0 12px;
+    }
+
+    .term-card p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .term-card ul {
+      margin: 0 0 16px 20px;
+      color: var(--text-soft);
+    }
+
+    .term-card li {
+      margin-bottom: 8px;
+    }
+
+    .term-card .note {
+      background: rgba(124, 92, 191, 0.1);
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 16px;
+      font-size: 0.95rem;
+      color: var(--secondary);
+    }
+
+    /* Category Headers */
+    .category-header {
+      text-align: center;
+      margin: 60px 0 30px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .category-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="survivor-types.html">Shields & Masks</a>
+        <a href="/blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Glossary: Terms You Need To Know</h1>
+      <p class="hero-sub">Plain language definitions for words that get thrown around but rarely explained properly.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- NERVOUS SYSTEM & TRAUMA -->
+    <div class="category-header">
+      <h2>🧠 Nervous System & Trauma</h2>
+    </div>
+
+    <div class="term-card">
+      <h2>Dissociation</h2>
+      <p class="clinical">Clinical: A disconnection between thoughts, identity, consciousness, and memory.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Your brain's emergency exit. When things get too intense, your system checks out to protect you. You might feel floaty, numb, like you are watching yourself from outside, or like time skipped.</p>
+      </div>
+      <h3>What it looks like</h3>
+      <ul>
+        <li>Zoning out mid-conversation and missing chunks</li>
+        <li>Feeling like you are behind glass or watching a movie of your life</li>
+        <li>Not remembering how you got somewhere</li>
+        <li>Feeling like your hands or body are not yours</li>
+        <li>Going "offline" during conflict</li>
+      </ul>
+      <h3>Why it happens</h3>
+      <p>Your nervous system learned that when things get overwhelming, leaving is safer than staying present. It is not weakness. It is a survival response that worked at some point.</p>
+      <div class="note">
+        <strong>Important:</strong> Dissociation exists on a spectrum. Daydreaming is mild dissociation. Losing hours or having no memory of events is severe. Both are real.
+      </div>
+    </div>
+
+    <div class="term-card">
+      <h2>Hypervigilance</h2>
+      <p class="clinical">Clinical: A state of increased alertness and scanning for threats.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Your threat scanner is stuck on high. You notice every shift in tone, every micro-expression, every sound. Your body acts like danger is always close, even when you are safe.</p>
+      </div>
+      <h3>What it looks like</h3>
+      <ul>
+        <li>Exhaustion from "reading" every room you enter</li>
+        <li>Jumping at sounds or being easily startled</li>
+        <li>Difficulty relaxing even in safe places</li>
+        <li>Tracking where exits are in every building</li>
+        <li>Noticing things others miss, then feeling crazy for noticing</li>
+      </ul>
+    </div>
+
+    <div class="term-card">
+      <h2>Dysregulation</h2>
+      <p class="clinical">Clinical: Difficulty managing emotional responses and returning to baseline.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Your emotional thermostat is broken. You swing from too hot to too cold with no middle ground. Small things feel huge. You cannot calm yourself down, or you shut down completely.</p>
+      </div>
+      <h3>What it looks like</h3>
+      <ul>
+        <li>Going from fine to flooded in seconds</li>
+        <li>Reactions that do not match the situation</li>
+        <li>Not being able to "just calm down" no matter how hard you try</li>
+        <li>Shutting down or exploding with no warning</li>
+      </ul>
+    </div>
+
+    <div class="term-card">
+      <h2>Trauma Response (Fight/Flight/Freeze/Fawn)</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> The four things your nervous system does when it senses danger. Not choices. Automatic survival programs.</p>
+      </div>
+      <h3>The four responses</h3>
+      <ul>
+        <li><strong>Fight:</strong> Confront the threat. Looks like anger, aggression, arguing, controlling.</li>
+        <li><strong>Flight:</strong> Escape the threat. Looks like leaving, avoiding, staying busy, overthinking.</li>
+        <li><strong>Freeze:</strong> Become invisible to the threat. Looks like shutting down, going numb, dissociating, paralysis.</li>
+        <li><strong>Fawn:</strong> Appease the threat. Looks like people-pleasing, over-apologizing, losing yourself to keep others calm.</li>
+      </ul>
+      <div class="note">
+        Most people have a primary response and a backup. You might fight first, then freeze when fighting does not work.
+      </div>
+    </div>
+
+    <!-- ATTACHMENT & RELATIONSHIPS -->
+    <div class="category-header">
+      <h2>💔 Attachment & Relationships</h2>
+    </div>
+
+    <div class="term-card">
+      <h2>Limerence</h2>
+      <p class="clinical">Clinical: An involuntary state of intense romantic infatuation with obsessive thoughts about the object of affection.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Obsessive love on steroids. Your brain gets hijacked by one person. You cannot stop thinking about them, analyzing them, craving their attention. It feels like love but it is actually your nervous system in crisis.</p>
+      </div>
+      <h3>What it looks like</h3>
+      <ul>
+        <li>Constant intrusive thoughts about one person</li>
+        <li>Analyzing every text, word, glance for meaning</li>
+        <li>Mood completely dependent on their attention</li>
+        <li>Inability to see their flaws clearly</li>
+        <li>Physical symptoms: chest pain, nausea, inability to eat or sleep</li>
+        <li>Knowing it is not healthy but being unable to stop</li>
+      </ul>
+      <h3>Why it happens</h3>
+      <p>Limerence is often attachment trauma dressed as romance. Your brain found someone who activates old wounds, and now it is trying to "win" the love it never got. The intensity is not passion. It is dysregulation.</p>
+    </div>
+
+    <div class="term-card">
+      <h2>Trauma Bond</h2>
+      <p class="clinical">Clinical: An attachment formed through cycles of abuse and intermittent reinforcement.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> The reason you cannot leave even though you know you should. Your nervous system got addicted to the cycle of pain and relief. The bad times make the good times feel like salvation.</p>
+      </div>
+      <h3>How it forms</h3>
+      <ul>
+        <li>Cycles of cruelty followed by kindness</li>
+        <li>Intermittent reinforcement (random rewards)</li>
+        <li>Isolation from other support</li>
+        <li>Your sense of self becoming tied to them</li>
+      </ul>
+      <div class="note">
+        Trauma bonds are not about being stupid or weak. They are a documented neurological response. Breaking them requires understanding the addiction, not just willpower.
+      </div>
+    </div>
+
+    <div class="term-card">
+      <h2>Anxious Attachment</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> You crave closeness but do not trust it will stay. You reach, cling, test, and spiral when you do not get reassurance. Love feels like a constant emergency.</p>
+      </div>
+      <h3>Common patterns</h3>
+      <ul>
+        <li>Needing constant reassurance</li>
+        <li>Reading abandonment into small things</li>
+        <li>Difficulty self-soothing when partner is unavailable</li>
+        <li>Protest behaviors (picking fights to get attention)</li>
+      </ul>
+    </div>
+
+    <div class="term-card">
+      <h2>Avoidant Attachment</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Closeness feels dangerous, so you keep distance. You value independence, shut down when things get emotional, and leave before you can be left. Alone feels safer than vulnerable.</p>
+      </div>
+      <h3>Common patterns</h3>
+      <ul>
+        <li>Pulling away when things get serious</li>
+        <li>Difficulty expressing needs or emotions</li>
+        <li>Feeling "smothered" by normal relationship needs</li>
+        <li>Idealizing relationships that are unavailable</li>
+      </ul>
+    </div>
+
+    <div class="term-card">
+      <h2>Fearful Avoidant (Disorganized)</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> You want love AND you are terrified of it. You push and pull. You crave closeness then panic when you get it. Your system learned that the people who were supposed to protect you were also the threat.</p>
+      </div>
+      <h3>Common patterns</h3>
+      <ul>
+        <li>Hot and cold behavior</li>
+        <li>Sabotaging relationships when they get good</li>
+        <li>Cycling between anxious and avoidant states</li>
+        <li>Feeling like you are "too much" and "not enough" at the same time</li>
+      </ul>
+    </div>
+
+    <!-- NEURODIVERGENCE -->
+    <div class="category-header">
+      <h2>🧩 Neurodivergence</h2>
+    </div>
+
+    <div class="term-card">
+      <h2>Neurodivergent / Neurodivergence</h2>
+      <p class="clinical">Clinical: Having a brain that functions differently from the statistical norm.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Your brain is wired differently. This includes autism, ADHD, dyslexia, and other variations. It is not broken. It is different operating system running in a world designed for another one.</p>
+      </div>
+      <h3>What falls under neurodivergence</h3>
+      <ul>
+        <li>Autism / Autism Spectrum</li>
+        <li>ADHD (Attention Deficit Hyperactivity Disorder)</li>
+        <li>Dyslexia, Dyscalculia, Dyspraxia</li>
+        <li>Tourette Syndrome</li>
+        <li>Some include: OCD, PTSD, Bipolar</li>
+      </ul>
+      <div class="note">
+        <strong>Neurotypical</strong> means having a brain that functions in ways considered "standard." Neither is better. They are different.
+      </div>
+    </div>
+
+    <div class="term-card">
+      <h2>Masking</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Hiding your natural responses to appear "normal." Suppressing stims, forcing eye contact, scripting conversations, performing neurotypical behavior. It is exhausting and it costs you.</p>
+      </div>
+      <h3>What it looks like</h3>
+      <ul>
+        <li>Copying other people's expressions and tone</li>
+        <li>Suppressing movements that feel natural (stimming)</li>
+        <li>Forcing yourself through sensory overwhelm without showing it</li>
+        <li>Collapsing in private after social situations</li>
+        <li>Not knowing who you actually are under the mask</li>
+      </ul>
+    </div>
+
+    <div class="term-card">
+      <h2>Autistic Burnout</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> What happens when you mask too long, push through too much, and your system finally collapses. It is not laziness. It is your brain and body shutting down from chronic overload.</p>
+      </div>
+      <h3>Signs</h3>
+      <ul>
+        <li>Losing skills you used to have</li>
+        <li>Increased sensory sensitivity</li>
+        <li>Inability to mask anymore</li>
+        <li>Exhaustion that sleep does not fix</li>
+        <li>Increased meltdowns or shutdowns</li>
+      </ul>
+    </div>
+
+    <!-- PERSONALITY & IDENTITY -->
+    <div class="category-header">
+      <h2>🎭 Personality & Identity</h2>
+    </div>
+
+    <div class="term-card">
+      <h2>BPD (Borderline Personality Disorder)</h2>
+      <p class="clinical">Clinical: A personality disorder characterized by emotional instability, impulsivity, and unstable relationships.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Your emotional skin is thinner than most people's. You feel everything at full volume. Your sense of self shifts. You love hard and fear abandonment harder. The label makes you sound scary, but you are usually the one most scared.</p>
+      </div>
+      <h3>What it actually looks like inside</h3>
+      <ul>
+        <li>Emotions that flood fast and take forever to settle</li>
+        <li>Shifting sense of who you are</li>
+        <li>Fear of abandonment that drives behavior you regret</li>
+        <li>Relationships that cycle between idealization and devaluation</li>
+        <li>Feeling empty or like you do not exist</li>
+      </ul>
+      <div class="note">
+        BPD is increasingly understood as a trauma response, not a fixed personality flaw. Many people with BPD traits are survivors of early relational trauma.
+      </div>
+    </div>
+
+    <div class="term-card">
+      <h2>NPD (Narcissistic Personality Disorder)</h2>
+      <p class="clinical">Clinical: A personality disorder characterized by grandiosity, need for admiration, and lack of empathy.</p>
+      <div class="plain">
+        <p><strong>Plain language:</strong> A protective structure built around deep shame. The grandiosity is a shield. Underneath is usually a terrified child who learned that vulnerability equals destruction. The internet uses "narcissist" for anyone who hurts them. Real NPD is a specific pattern, not just being selfish.</p>
+      </div>
+      <div class="note">
+        Not everyone who hurts you is a narcissist. Not everyone with narcissistic traits is dangerous. The label matters less than understanding the pattern.
+      </div>
+    </div>
+
+    <div class="term-card">
+      <h2>Splitting</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> Black and white thinking about people. Someone is either all good or all bad, with no middle ground. When they disappoint you, they flip from angel to enemy instantly. It is not manipulation. It is a brain that never learned to hold complexity.</p>
+      </div>
+    </div>
+
+    <div class="term-card">
+      <h2>Ego Fragmentation / Fragmented Self</h2>
+      <div class="plain">
+        <p><strong>Plain language:</strong> When your sense of self is not one solid thing but multiple pieces that do not always talk to each other. Different versions of you show up in different situations, sometimes with different memories, values, or ways of being.</p>
+      </div>
+      <h3>Related terms</h3>
+      <ul>
+        <li><strong>Parts work:</strong> Therapy that addresses different "parts" of you as separate entities with their own needs</li>
+        <li><strong>DID:</strong> Dissociative Identity Disorder, when fragmentation is severe and parts have distinct identities</li>
+        <li><strong>Structural dissociation:</strong> The theory that trauma creates divisions in the self</li>
+      </ul>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path Home</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

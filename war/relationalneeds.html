@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Relational Needs Matrix</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-in {
+      animation: fadeIn 0.4s ease-out;
+    }
+    
+    .progress-bar {
+      transition: width 0.3s ease-out;
+    }
+    
+    .answer-option {
+      transition: all 0.2s ease;
+    }
+    
+    .answer-option:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body class="h-full">
+  <div id="app" class="h-full w-full"></div>
+  <script>
+    const defaultConfig = {
+      background_color: "#0f172a",
+      surface_color: "#1e293b",
+      text_color: "#f1f5f9",
+      primary_action_color: "#8b5cf6",
+      secondary_action_color: "#6366f1",
+      font_family: "Inter",
+      font_size: 16,
+      hero_text: "What you ask for is not always what you need.",
+      hero_subtext: "This quiz shows the need underneath your words, the pattern that happens when it goes unmet, and the exact sentence that lands without begging, chasing, or exploding.",
+      cta_button_text: "Take the Relational Needs Matrix",
+      trust_line: "Not therapy. Not a label. A translation."
+    };
+
+    const questions = [
+      "I calm down fast when someone speaks gently and stays present.",
+      "I feel safest when plans and promises stay consistent.",
+      "I get activated when I feel misunderstood more than when I feel disagreed with.",
+      "I need space to process before I can talk well.",
+      "I shut down when I feel talked down to or corrected.",
+      "I feel loved when I am actively chosen, not just tolerated.",
+      "Physical affection changes my whole nervous system.",
+      "I feel closest when we laugh and play together.",
+      "I over explain when I feel someone pulling away.",
+      "I get controlling when I feel uncertain.",
+      "I test people when I do not feel emotionally seen.",
+      "I disappear when I think my needs are \"too much.\"",
+      "When hurt, I focus on the tone more than the content.",
+      "When hurt, I focus on reliability more than romance.",
+      "When hurt, I focus on whether they truly get me.",
+      "When hurt, I focus on whether I still have freedom.",
+      "When hurt, I focus on whether they respect me.",
+      "When hurt, I focus on whether I matter to them.",
+      "When hurt, I focus on whether desire is still alive.",
+      "When hurt, I focus on whether joy is still allowed.",
+      "I feel safest when problems are handled quickly and clearly.",
+      "I feel loved when my feelings change the way we move.",
+      "I feel honored when my boundaries are not debated.",
+      "I feel bonded when we have a \"us\" rhythm, not just random contact."
+    ];
+
+    const answerOptions = ["Never", "Sometimes", "Often", "Almost always"];
+    
+    const needMapping = {
+      Safety: [0, 12, 20],
+      Consistency: [1, 13, 23],
+      Attunement: [2, 14, 21],
+      Autonomy: [3, 15, 22],
+      Respect: [4, 16, 22],
+      Reassurance: [5, 17, 21],
+      Desire: [6, 18, 23],
+      Play: [7, 19, 23]
+    };
+
+    const askStyleMapping = {
+      Direct: { high: [20, 22, 23], low: [8, 9, 10, 11] },
+      Indirect: { high: [11, 15, 19], medium: [8] },
+      Protest: { high: [8, 9, 10, 12, 13, 14, 15, 16, 17] },
+      Collapse: { high: [11, 3, 15], low: [20, 22] }
+    };
+
+    const resultContent = {
+      Safety: {
+        need: "Calm presence, emotional steadiness, no intimidation",
+        instead: "\"Stop being like that\" \"Why are you acting weird\" \"Answer me right now.\"",
+        loop: "Alarm goes off, you scan, you escalate, you regret the tone, you doubt yourself.",
+        ask: "\"I'm getting activated. I need a steady voice and a clear plan for how we handle this.\"",
+        response: "They slow down, they stay, they don't punish your feelings.",
+        repair: "\"I don't need to win. I need to feel safe with you while we figure it out.\"",
+        boundary: "\"If this turns into yelling, insults, threats, or stonewalling, I'm ending the conversation and revisiting later.\""
+      },
+      Consistency: {
+        need: "Predictability, follow through, fewer hot and cold cycles",
+        instead: "Monitoring, interrogating, checking, keeping score",
+        loop: "Uncertainty triggers control, control triggers distance, distance triggers panic.",
+        ask: "\"I need us to mean what we say and follow through. Can we build a rhythm I can trust?\"",
+        response: "They do what they said they would do, without you having to remind them.",
+        repair: "\"I'm not trying to control you. I'm trying to trust you.\"",
+        boundary: "\"If plans keep changing without warning or promises keep breaking, I'll stop making myself available.\""
+      },
+      Attunement: {
+        need: "Being seen, felt, understood beneath the words",
+        instead: "Over explaining, seeking validation, repeating yourself",
+        loop: "You share, they miss it, you try harder, they glaze over, you give up.",
+        ask: "\"I need you to reflect back what you're hearing, not just agree or fix.\"",
+        response: "They pause, they name what they see in you, they ask clarifying questions.",
+        repair: "\"I don't need you to agree. I need to feel like you actually heard me.\"",
+        boundary: "\"If I keep feeling invisible or misunderstood, I'll stop sharing what matters.\""
+      },
+      Autonomy: {
+        need: "Space to think, choose, and move without pressure",
+        instead: "Shutting down, going silent, creating distance",
+        loop: "Pressure builds, you withdraw, they pursue, you resent, you explode or leave.",
+        ask: "\"I need time to process this alone before we talk. Can we revisit in [timeframe]?\"",
+        response: "They give you space without punishing you for needing it.",
+        repair: "\"I'm not pulling away from you. I'm protecting my ability to stay connected.\"",
+        boundary: "\"If my need for space gets treated as rejection or punishment, I'll create permanent distance.\""
+      },
+      Respect: {
+        need: "Being spoken to as an equal, not managed or corrected",
+        instead: "Defensiveness, counter attacks, cold shutdown",
+        loop: "They condescend, you defend, they dismiss, you disconnect.",
+        ask: "\"I need us to talk like equals. Can you say that without talking down to me?\"",
+        response: "They adjust their tone, they apologize if they were harsh, they listen.",
+        repair: "\"I shut down when I feel disrespected. Can we start over with mutual respect?\"",
+        boundary: "\"If you keep talking to me like I'm beneath you, I'm done having this conversation.\""
+      },
+      Reassurance: {
+        need: "Being actively chosen, prioritized, desired",
+        instead: "Testing, seeking proof, asking \"do you even want me?\"",
+        loop: "You doubt, you test, they pull back, you panic, you chase or freeze.",
+        ask: "\"I need to hear that I still matter to you. Can you tell me directly?\"",
+        response: "They reassure you without making you feel needy for asking.",
+        repair: "\"I'm not being dramatic. I genuinely can't tell if you still want this.\"",
+        boundary: "\"If I have to keep guessing whether you want me here, I'll stop staying.\""
+      },
+      Desire: {
+        need: "Physical affection, attraction, being wanted",
+        instead: "Initiating constantly, monitoring their interest, feeling rejected",
+        loop: "You reach, they don't respond, you withdraw, distance grows, resentment builds.",
+        ask: "\"I need more physical closeness. Can we talk about what feels good for both of us?\"",
+        response: "They engage, they initiate, they make you feel desired.",
+        repair: "\"I'm not asking for perfection. I'm asking to feel wanted.\"",
+        boundary: "\"If physical closeness keeps feeling one-sided or obligatory, I'll stop initiating.\""
+      },
+      Play: {
+        need: "Lightness, joy, shared laughter",
+        instead: "Forcing fun, feeling like the relationship is all work",
+        loop: "Everything feels heavy, you try to lighten it, they don't join, you feel alone.",
+        ask: "\"I need us to have fun together again. Can we plan something that feels light?\"",
+        response: "They meet you in play, they laugh with you, they make time for joy.",
+        repair: "\"I miss enjoying you. Can we find our way back to that?\"",
+        boundary: "\"If this relationship stops having any lightness, I'll stop wanting to be in it.\""
+      }
+    };
+
+    let currentView = 'landing';
+    let currentQuestion = 0;
+    let answers = Array(24).fill(null);
+    let results = null;
+
+    function calculateResults() {
+      const needScores = {};
+      Object.keys(needMapping).forEach(need => {
+        needScores[need] = needMapping[need].reduce((sum, qIndex) => {
+          return sum + (answers[qIndex] || 0);
+        }, 0);
+      });
+
+      const sortedNeeds = Object.entries(needScores).sort((a, b) => b[1] - a[1]);
+      const primaryNeed = sortedNeeds[0][0];
+      const secondaryNeed = sortedNeeds[1][0];
+
+      const askStyleScores = {};
+      Object.keys(askStyleMapping).forEach(style => {
+        let score = 0;
+        const mapping = askStyleMapping[style];
+        
+        if (mapping.high) {
+          score += mapping.high.reduce((sum, qIndex) => sum + (answers[qIndex] || 0), 0);
+        }
+        if (mapping.low) {
+          const lowScore = mapping.low.reduce((sum, qIndex) => sum + (answers[qIndex] || 0), 0);
+          score -= lowScore;
+        }
+        if (mapping.medium) {
+          const medScore = mapping.medium.reduce((sum, qIndex) => sum + (answers[qIndex] || 0), 0);
+          score += medScore * 0.5;
+        }
+        
+        askStyleScores[style] = score;
+      });
+
+      const askStyle = Object.entries(askStyleScores).sort((a, b) => b[1] - a[1])[0][0];
+
+      return { primaryNeed, secondaryNeed, askStyle };
+    }
+
+    async function saveResults(results) {
+      const result = await window.dataSdk.create({
+        id: Date.now().toString(),
+        answers: JSON.stringify(answers),
+        primary_need: results.primaryNeed,
+        secondary_need: results.secondaryNeed,
+        ask_style: results.askStyle,
+        completed_at: new Date().toISOString()
+      });
+
+      if (!result.isOk) {
+        console.error('Failed to save results');
+      }
+    }
+
+    function renderLanding() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      const fullFontFamily = `${fontFamily}, ${baseFontStack}`;
+
+      return `
+        <div class="min-h-full flex items-center justify-center p-6 fade-in" style="background: ${config.background_color}; font-family: ${fullFontFamily};">
+          <div class="max-w-2xl w-full text-center">
+            <h1 class="mb-6 font-bold leading-tight" style="color: ${config.text_color}; font-size: ${baseSize * 2.5}px;">
+              ${config.hero_text}
+            </h1>
+            <p class="mb-8 leading-relaxed" style="color: ${config.text_color}; opacity: 0.85; font-size: ${baseSize * 1.15}px;">
+              ${config.hero_subtext}
+            </p>
+            <button id="start-btn" class="px-8 py-4 rounded-lg font-semibold transition-all duration-200 hover:opacity-90 hover:scale-105" style="background: ${config.primary_action_color}; color: ${config.text_color}; font-size: ${baseSize * 1.1}px;">
+              ${config.cta_button_text}
+            </button>
+            <p class="mt-6" style="color: ${config.text_color}; opacity: 0.6; font-size: ${baseSize * 0.9}px;">
+              ${config.trust_line}
+            </p>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderQuiz() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      const fullFontFamily = `${fontFamily}, ${baseFontStack}`;
+      const progress = ((currentQuestion + 1) / questions.length) * 100;
+
+      return `
+        <div class="min-h-full flex flex-col p-6 fade-in" style="background: ${config.background_color}; font-family: ${fullFontFamily};">
+          <div class="w-full max-w-3xl mx-auto flex-1 flex flex-col">
+            <div class="mb-8">
+              <div class="flex justify-between mb-2" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.85}px;">
+                <span>Question ${currentQuestion + 1} of ${questions.length}</span>
+                <span>${Math.round(progress)}%</span>
+              </div>
+              <div class="w-full h-2 rounded-full overflow-hidden" style="background: ${config.surface_color};">
+                <div class="progress-bar h-full rounded-full" style="background: ${config.primary_action_color}; width: ${progress}%;"></div>
+              </div>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center">
+              <h2 class="mb-12 text-center font-semibold leading-relaxed" style="color: ${config.text_color}; font-size: ${baseSize * 1.5}px;">
+                ${questions[currentQuestion]}
+              </h2>
+
+              <div class="space-y-3">
+                ${answerOptions.map((option, index) => `
+                  <button class="answer-option w-full p-4 rounded-lg text-left font-medium border-2 transition-all" 
+                          data-value="${index}"
+                          style="background: ${answers[currentQuestion] === index ? config.primary_action_color : config.surface_color}; 
+                                 color: ${config.text_color}; 
+                                 border-color: ${answers[currentQuestion] === index ? config.primary_action_color : 'transparent'};
+                                 font-size: ${baseSize}px;">
+                    ${option}
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <div class="flex justify-between mt-8">
+              <button id="back-btn" class="px-6 py-3 rounded-lg font-medium transition-all" 
+                      style="background: ${config.surface_color}; color: ${config.text_color}; font-size: ${baseSize * 0.95}px;"
+                      ${currentQuestion === 0 ? 'disabled style="opacity: 0.3;"' : ''}>
+                Back
+              </button>
+              <button id="next-btn" class="px-6 py-3 rounded-lg font-medium transition-all" 
+                      style="background: ${config.primary_action_color}; color: ${config.text_color}; font-size: ${baseSize * 0.95}px;"
+                      ${answers[currentQuestion] === null ? 'disabled style="opacity: 0.3;"' : ''}>
+                ${currentQuestion === questions.length - 1 ? 'See Results' : 'Next'}
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderResults() {
+      const config = window.elementSdk?.config || defaultConfig;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseFontStack = 'system-ui, -apple-system, sans-serif';
+      const fullFontFamily = `${fontFamily}, ${baseFontStack}`;
+      const content = resultContent[results.primaryNeed];
+
+      return `
+        <div class="min-h-full overflow-auto p-6 fade-in" style="background: ${config.background_color}; font-family: ${fullFontFamily};">
+          <div class="max-w-3xl mx-auto">
+            <div class="mb-8 p-6 rounded-xl" style="background: ${config.surface_color};">
+              <div class="mb-4" style="color: ${config.text_color}; opacity: 0.7; font-size: ${baseSize * 0.9}px; font-weight: 600;">
+                YOUR PRIMARY RELATIONAL NEED
+              </div>
+              <h1 class="mb-2 font-bold" style="color: ${config.primary_action_color}; font-size: ${baseSize * 2}px;">
+                ${results.primaryNeed}
+              </h1>
+              <div class="flex gap-3" style="font-size: ${baseSize * 0.85}px;">
+                <span style="color: ${config.text_color}; opacity: 0.6;">Secondary: ${results.secondaryNeed}</span>
+                <span style="color: ${config.text_color}; opacity: 0.6;">•</span>
+                <span style="color: ${config.text_color}; opacity: 0.6;">Ask Style: ${results.askStyle}</span>
+              </div>
+            </div>
+
+            <div class="space-y-6">
+              <div class="p-6 rounded-xl" style="background: ${config.surface_color};">
+                <h3 class="mb-3 font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">
+                  What you actually need
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.85; font-size: ${baseSize}px; line-height: 1.6;">
+                  ${content.need}
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl" style="background: ${config.surface_color};">
+                <h3 class="mb-3 font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">
+                  What you tend to ask for instead
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.85; font-size: ${baseSize}px; line-height: 1.6;">
+                  ${content.instead}
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl" style="background: ${config.surface_color};">
+                <h3 class="mb-3 font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">
+                  Your unmet need behavior loop
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.85; font-size: ${baseSize}px; line-height: 1.6;">
+                  ${content.loop}
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl" style="background: linear-gradient(135deg, ${config.primary_action_color}15, ${config.secondary_action_color}15);">
+                <h3 class="mb-3 font-semibold" style="color: ${config.primary_action_color}; font-size: ${baseSize * 1.2}px;">
+                  The clean ask that lands
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.95; font-size: ${baseSize * 1.05}px; line-height: 1.6; font-style: italic;">
+                  ${content.ask}
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl" style="background: ${config.surface_color};">
+                <h3 class="mb-3 font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">
+                  What a good partner response looks like
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.85; font-size: ${baseSize}px; line-height: 1.6;">
+                  ${content.response}
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl" style="background: ${config.surface_color};">
+                <h3 class="mb-3 font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">
+                  Repair script for conflict
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.95; font-size: ${baseSize}px; line-height: 1.6; font-style: italic;">
+                  ${content.repair}
+                </p>
+              </div>
+
+              <div class="p-6 rounded-xl" style="background: ${config.surface_color};">
+                <h3 class="mb-3 font-semibold" style="color: ${config.text_color}; font-size: ${baseSize * 1.2}px;">
+                  Your boundary if it stays unmet
+                </h3>
+                <p style="color: ${config.text_color}; opacity: 0.95; font-size: ${baseSize}px; line-height: 1.6; font-style: italic;">
+                  ${content.boundary}
+                </p>
+              </div>
+            </div>
+
+            <div class="mt-8 text-center">
+              <button id="retake-btn" class="px-8 py-4 rounded-lg font-semibold transition-all hover:opacity-90" 
+                      style="background: ${config.secondary_action_color}; color: ${config.text_color}; font-size: ${baseSize * 1.05}px;">
+                Take Quiz Again
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    async function onConfigChange(config) {
+      render();
+    }
+
+    function render() {
+      const app = document.getElementById('app');
+      
+      if (currentView === 'landing') {
+        app.innerHTML = renderLanding();
+        document.getElementById('start-btn').addEventListener('click', () => {
+          currentView = 'quiz';
+          render();
+        });
+      } else if (currentView === 'quiz') {
+        app.innerHTML = renderQuiz();
+        
+        document.querySelectorAll('.answer-option').forEach(btn => {
+          btn.addEventListener('click', () => {
+            answers[currentQuestion] = parseInt(btn.dataset.value);
+            render();
+          });
+        });
+
+        const backBtn = document.getElementById('back-btn');
+        if (backBtn && currentQuestion > 0) {
+          backBtn.addEventListener('click', () => {
+            currentQuestion--;
+            render();
+          });
+        }
+
+        const nextBtn = document.getElementById('next-btn');
+        if (nextBtn && answers[currentQuestion] !== null) {
+          nextBtn.addEventListener('click', async () => {
+            if (currentQuestion === questions.length - 1) {
+              results = calculateResults();
+              await saveResults(results);
+              currentView = 'results';
+              render();
+            } else {
+              currentQuestion++;
+              render();
+            }
+          });
+        }
+      } else if (currentView === 'results') {
+        app.innerHTML = renderResults();
+        document.getElementById('retake-btn').addEventListener('click', () => {
+          currentView = 'landing';
+          currentQuestion = 0;
+          answers = Array(24).fill(null);
+          results = null;
+          render();
+        });
+      }
+    }
+
+    const dataHandler = {
+      onDataChanged(data) {
+        // Data is stored but not displayed in UI
+      }
+    };
+
+    async function init() {
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error('Failed to initialize data SDK');
+        }
+      }
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () => config.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  config.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                }
+              },
+              {
+                get: () => config.surface_color || defaultConfig.surface_color,
+                set: (value) => {
+                  config.surface_color = value;
+                  window.elementSdk.setConfig({ surface_color: value });
+                }
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  config.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                }
+              },
+              {
+                get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                set: (value) => {
+                  config.primary_action_color = value;
+                  window.elementSdk.setConfig({ primary_action_color: value });
+                }
+              },
+              {
+                get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                set: (value) => {
+                  config.secondary_action_color = value;
+                  window.elementSdk.setConfig({ secondary_action_color: value });
+                }
+              }
+            ],
+            borderables: [],
+            fontEditable: {
+              get: () => config.font_family || defaultConfig.font_family,
+              set: (value) => {
+                config.font_family = value;
+                window.elementSdk.setConfig({ font_family: value });
+              }
+            },
+            fontSizeable: {
+              get: () => config.font_size || defaultConfig.font_size,
+              set: (value) => {
+                config.font_size = value;
+                window.elementSdk.setConfig({ font_size: value });
+              }
+            }
+          }),
+          mapToEditPanelValues: (config) => new Map([
+            ["hero_text", config.hero_text || defaultConfig.hero_text],
+            ["hero_subtext", config.hero_subtext || defaultConfig.hero_subtext],
+            ["cta_button_text", config.cta_button_text || defaultConfig.cta_button_text],
+            ["trust_line", config.trust_line || defaultConfig.trust_line]
+          ])
+        });
+      }
+
+      render();
+    }
+
+    init();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9adc9a1695782975',t:'MTc2NTcwMzc4MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>

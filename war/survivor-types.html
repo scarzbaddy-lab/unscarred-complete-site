@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Survivor Types: Shields & Masks | War Path | Unscarred</title>
+  <meta name="description" content="The 8 shields your nervous system built and the 8 masks that grew over them. Judge, Wolf, Ghost, Doll, Hero, Jester, Oracle, Machine.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 32px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 60px 0 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Cards */
+    .type-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .type-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .type-card h3 span { font-size: 1.8rem; }
+
+    .type-card .core-rule {
+      background: rgba(201, 118, 61, 0.1);
+      border-left: 3px solid var(--accent);
+      padding: 12px 16px;
+      margin: 16px 0;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .type-card .core-rule p {
+      font-style: italic;
+      color: var(--accent);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    .type-card h4 {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin: 24px 0 12px;
+    }
+
+    .type-card p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+      line-height: 1.7;
+    }
+
+    .type-card ul {
+      margin: 0 0 16px 20px;
+      color: var(--text-soft);
+    }
+
+    .type-card li { margin-bottom: 8px; }
+
+    .type-card .growth {
+      background: rgba(125, 154, 140, 0.1);
+      border: 1px solid rgba(125, 154, 140, 0.2);
+      border-radius: 12px;
+      padding: 16px;
+      margin-top: 20px;
+    }
+
+    .type-card .growth h4 {
+      color: var(--success);
+      margin-top: 0;
+    }
+
+    .type-card .growth p {
+      margin-bottom: 0;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="patterns.html">Patterns</a>
+        <a href="/blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Shields & Masks</h1>
+      <p class="hero-sub">What your nervous system built before it even knew words - and what grew over it.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- SHIELDS SECTION -->
+    <div class="section-header">
+      <h2>The 8 Shields</h2>
+      <p>Shields are what the body built to keep you alive before age seven. The mask came later. The shield is the raw instinct under the mask.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🤲</span> The Compliant Shield</h3>
+      <div class="core-rule"><p>"If I keep you calm, I stay alive."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Caregiver mood swings</li>
+        <li>Punished for saying no</li>
+        <li>Love only given when you are "good"</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You read every room like weather radar</li>
+        <li>You adjust your personality for whoever is in front of you</li>
+        <li>You avoid conflict until you snap or disappear</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You never learn what you actually want. You only know what makes everyone else less mad.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🎛️</span> The Control Shield</h3>
+      <div class="core-rule"><p>"If I control everything, I do not get blindsided."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Unpredictable homes</li>
+        <li>Adults who broke every promise</li>
+        <li>Sudden explosions or abandonment</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You plan ten moves ahead</li>
+        <li>You check, recheck, overthink</li>
+        <li>You control people with rules, reminders, guilt, or "standards"</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You call it responsibility, but it is terror in a blazer. No one is allowed to be human, including you.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>👻</span> The Disappear Shield</h3>
+      <div class="core-rule"><p>"If they cannot find me, they cannot hurt me."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Neglect</li>
+        <li>Being punished for having needs</li>
+        <li>Being the quiet kid in chaos</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You shut down or go numb</li>
+        <li>You avoid calls, texts, conversations that matter</li>
+        <li>You hide in your head, your phone, your room, your fantasies</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You avoid pain and also avoid every good thing that requires being fully seen.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🎭</span> The Performance Shield</h3>
+      <div class="core-rule"><p>"If I impress you, you will not see my pain."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Praise only for achievement or talent</li>
+        <li>Family who bragged about you but never soothed you</li>
+        <li>Being the "smart one" or "responsible one" instead of the kid</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You overachieve while emotionally starving</li>
+        <li>You crack jokes or over explain instead of being honest</li>
+        <li>You see life as a stage, not a place to be real</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You become a character that feeds everyone and starves the real you.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🔥</span> The Flame Shield</h3>
+      <div class="core-rule"><p>"If I scare you first, you cannot destroy me."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Physical or emotional violence</li>
+        <li>Being cornered and blamed for everything</li>
+        <li>Learning that calm talking never protected you</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You go from fine to eruption in seconds</li>
+        <li>You say things you cannot unsay</li>
+        <li>You feel safer in a fight than in a vulnerable conversation</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>Your body thinks rage is protection. It burns everything, including the connections you actually wanted.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🧠</span> The Logic Shield</h3>
+      <div class="core-rule"><p>"If I stay in my head, feelings cannot kill me."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Growing up with adults who mocked or punished emotion</li>
+        <li>Being the "little adult" in the house</li>
+        <li>Being neurodivergent in a family who did not understand you</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You explain instead of feel</li>
+        <li>You debate instead of repair</li>
+        <li>You treat emotions like glitches instead of information</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You win arguments and lose intimacy.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🩹</span> The Caretaker Shield</h3>
+      <div class="core-rule"><p>"If I keep you alive, maybe someone will keep me alive."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Parentified childhood</li>
+        <li>Sick, addicted, or unstable caregivers</li>
+        <li>Being responsible for siblings' safety or emotions</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You attract broken birds and walking fires</li>
+        <li>You over function in every relationship</li>
+        <li>You feel guilty if you are not actively rescuing someone</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You never get to collapse. The system only knows how to hold others, not you.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🐺</span> The Lone Wolf Shield</h3>
+      <div class="core-rule"><p>"If I need no one, no one can betray me."</p></div>
+      <h4>How it forms</h4>
+      <ul>
+        <li>Repeated betrayal or humiliation</li>
+        <li>Being mocked when you asked for help</li>
+        <li>Abandonment during your biggest pain</li>
+      </ul>
+      <h4>How it shows</h4>
+      <ul>
+        <li>You say "I am fine" while drowning</li>
+        <li>You keep people at arm's length, then call them fake</li>
+        <li>You feel safest when no one has anything on you</li>
+      </ul>
+      <h4>The cost</h4>
+      <p>You protect yourself from betrayal and also from real belonging.</p>
+    </div>
+
+    <!-- MASKS SECTION -->
+    <div class="section-header">
+      <h2>The 8 Masks</h2>
+      <p>Masks are the characters that grow over the shield. This is how people see you. The shield is what you are actually protecting.</p>
+    </div>
+
+    <div class="type-card">
+      <h3><span>⚖️</span> The Judge</h3>
+      <p><strong>Shield underneath:</strong> Control shield plus worth map that says "If I am right, I am safe."</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You scan everything for wrongness</li>
+        <li>You correct, critique, and call out</li>
+        <li>You live in a courtroom in your head, with you as both prosecutor and defendant</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Harsh, critical, superior. Hard to please. Intimidating or cold.</p>
+      <h4>What is really happening</h4>
+      <p>You are terrified of being the one on trial. You use standards as armor so nobody can see the scared, confused part under it.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Learning how to question without attacking, and how to let people be human without reading it as a threat.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🐺</span> The Wolf</h3>
+      <p><strong>Shield underneath:</strong> Flame shield plus lone wolf shield.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You move alone and on alert</li>
+        <li>You bite first verbally or energetically</li>
+        <li>You treat closeness like a trap</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Aggressive. Unreachable. "They do not need anyone."</p>
+      <h4>What is really happening</h4>
+      <p>You learned early that packs turn on their weakest member. You chose to be the one no one dares turn on, even if it means being lonely.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Letting selected people close without giving them the power to destroy you, and learning boundaries that are not just walls.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>👤</span> The Ghost</h3>
+      <p><strong>Shield underneath:</strong> Disappear shield.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You fade out when things get intense</li>
+        <li>You stop replying, cancel, vanish</li>
+        <li>You mentally float away during conflict</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Flaky. Indifferent. Uncaring.</p>
+      <h4>What is really happening</h4>
+      <p>Your nervous system considers absence safer than any confrontation. You never learned how to stay and stay regulated.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Micro stays. Staying in one conversation five minutes longer than your shield wants, while you learn regulation tools.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🪆</span> The Doll</h3>
+      <p><strong>Shield underneath:</strong> Compliant shield plus performance shield.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You are pretty, pleasant, agreeable</li>
+        <li>You do not show anger, only hurt or silence</li>
+        <li>You let others pose you in whatever role they need</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Sweet. Easygoing. Non threatening.</p>
+      <h4>What is really happening</h4>
+      <p>You learned your body and charm were your safest currency. You hide how much rage, disgust, and grief sit under the smile.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Letting "messy" expressions come through and learning that being loved does not have to mean being decoration.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🦸</span> The Hero</h3>
+      <p><strong>Shield underneath:</strong> Caretaker shield plus performance shield.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You rescue everyone</li>
+        <li>You give advice, resources, time, money</li>
+        <li>You handle crisis like a professional</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Strong. Wise. Dependable.</p>
+      <h4>What is really happening</h4>
+      <p>You are terrified of being the one who needs help. You act out the role you wished someone played for you.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Letting others see you fail and need help, and not quitting on yourself when you are not useful.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🃏</span> The Jester</h3>
+      <p><strong>Shield underneath:</strong> Performance shield plus logic shield.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You turn everything into a joke or a bit</li>
+        <li>You turn pain into content before you feel it</li>
+        <li>You play the clown to keep things from getting serious</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Funny. Entertaining. Unbothered.</p>
+      <h4>What is really happening</h4>
+      <p>You learned that if you make people laugh they do not look too closely. Your own pain only gets airtime if it is packaged as comedy.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Letting some things stay unedited and unperformed and learning you can be loved when you are not "on."</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>🔮</span> The Oracle</h3>
+      <p><strong>Shield underneath:</strong> Logic shield plus hyper empathy.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You read everyone's patterns better than your own</li>
+        <li>You talk like a therapist while living in chaos</li>
+        <li>You are the one people come to for insight</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Deep. Intuitive. Old soul.</p>
+      <h4>What is really happening</h4>
+      <p>You survived by studying everyone so you could predict danger. You never had anyone study you with that same care.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Turning your pattern seeing back on yourself without shaming, and letting your insight actually change your behavior, not just your posts.</p>
+      </div>
+    </div>
+
+    <div class="type-card">
+      <h3><span>⚙️</span> The Machine</h3>
+      <p><strong>Shield underneath:</strong> Control shield plus disappear shield.</p>
+      <h4>How it looks</h4>
+      <ul>
+        <li>You move like a checklist</li>
+        <li>You shut off emotion to get things done</li>
+        <li>You treat your body like a tool, not a home</li>
+      </ul>
+      <h4>What people see</h4>
+      <p>Efficient. Cold. "Strong."</p>
+      <h4>What is really happening</h4>
+      <p>Feeling was never safe, so you turned yourself into a function. Rest and softness feel more terrifying than burnout.</p>
+      <div class="growth">
+        <h4>Growth edge</h4>
+        <p>Letting small doses of feeling in without abandoning structure, and letting your humanity matter as much as your output.</p>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path Home</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

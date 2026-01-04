@@ -1,0 +1,379 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Path | Ground Zero | Unscarred</title>
+  <meta name="description" content="When standard trauma work fails. Shields, masks, fragmented selves, and the war inside your own mind.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(231, 76, 60, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 32px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(201, 118, 61, 0.15);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 24px;
+      line-height: 1.1;
+    }
+
+    .hero h1 em { color: var(--accent); font-style: italic; }
+
+    .hero-sub {
+      font-size: 1.2rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto 16px;
+      line-height: 1.7;
+    }
+
+    .ground-zero-intro {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .ground-zero-intro h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 24px;
+    }
+
+    .ground-zero-intro p {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.8;
+    }
+
+    .ground-zero-intro p strong {
+      color: var(--text-main);
+    }
+
+    .section-cards {
+      display: grid;
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+
+    .section-card {
+      display: block;
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .section-card:hover {
+      border-color: rgba(201, 118, 61, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(201, 118, 61, 0.15);
+    }
+
+    .section-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .section-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .section-card p {
+      font-size: 1rem;
+      color: var(--text-soft);
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .section-card__btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background: rgba(201, 118, 61, 0.15);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 999px;
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+    }
+
+    .section-card:hover .section-card__btn {
+      background: var(--accent);
+      color: var(--bg-void);
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 700px) {
+      .featured-grid { grid-template-columns: 1fr; }
+    }
+
+    .regular-path-link {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(163, 59, 92, 0.2);
+      border-radius: var(--radius-lg);
+      margin-bottom: 60px;
+    }
+
+    .regular-path-link p {
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .regular-path-link a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .regular-path-link a:hover {
+      color: var(--text-main);
+    }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="/quizzes/">Quizzes</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../services.html">Services</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">War Path</div>
+      <h1>Welcome to <em>Ground Zero</em></h1>
+      <p class="hero-sub">When standard trauma work fails. When you feel like the problem. When your nervous system is fighting wars that ended years ago.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="ground-zero-intro">
+      <h2>What is Ground Zero?</h2>
+      <p>Ground Zero is where everything got built. Before age seven, your nervous system decided how to survive. It built <strong>shields</strong> to protect you. Then <strong>masks</strong> grew over the shields. Then the world gave you <strong>labels</strong> for what you became.</p>
+      <p>This is not regular relationship advice. This is not "just communicate better." <strong>This is for people whose whole system organized around early chaos</strong>, and now you are trying to live a normal life while your body thinks it is still in that house.</p>
+      <p>If you feel like you are too much, too broken, too complicated for normal healing content, <strong>you are in the right place.</strong></p>
+    </div>
+
+    <div class="section-cards">
+
+    <a href="/war/war-mapping/" class="section-card">
+  <div class="section-card__icon">🗺️</div>
+  <h3>Map Your War</h3>
+  <p>Find out which war you are fighting inside your own mind and body. Identify your shields, your maps, and the internal rules that run the show.</p>
+  <span class="section-card__btn">Take War Mapping Quizzes</span>
+</a>
+
+
+      <div class="featured-grid">
+        <a href="survivor-types.html" class="section-card">
+          <div class="section-card__icon">ðŸŽ­</div>
+          <h3>Your Survivor Role</h3>
+          <p>Judge, Wolf, Ghost, Doll, Hero, Jester, Oracle, Machine. See which mask you built to survive, and what shield it is protecting.</p>
+          <span class="section-card__btn">Find Your Type</span>
+        </a>
+
+        <a href="patterns.html" class="section-card">
+          <div class="section-card__icon">ðŸ”</div>
+          <h3>What Is Actually Happening</h3>
+          <p>Deep breakdowns of BPD, narcissistic shields, autism confusion, fragmented selves, and the patterns that look like personality disorders.</p>
+          <span class="section-card__btn">Explore Patterns</span>
+        </a>
+      </div>
+
+      <a href="tools.html" class="section-card">
+        <div class="section-card__icon">âš¡</div>
+        <h3>Stabilize Your System</h3>
+        <p>Grounding scripts, pattern trackers, and small steps that calm war mode. Not healing. Stabilizing. Because you cannot heal while your system is still in crisis.</p>
+        <span class="section-card__btn">Get Tools</span>
+      </a>
+
+      <div class="featured-grid">
+        <a href="glossary.html" class="section-card">
+          <div class="section-card__icon">ðŸ“–</div>
+          <h3>Glossary of Terms</h3>
+          <p>Plain language definitions for dissociation, limerence, neurodivergence, trauma bonds, and other terms nobody explains properly.</p>
+          <span class="section-card__btn">Learn the Language</span>
+        </a>
+
+        <a href="strategic-compartmentalization.html" class="section-card">
+          <div class="section-card__icon">ðŸ“¦</div>
+          <h3>Strategic Compartmentalization</h3>
+          <p>How to function when your system is in chaos. Contain the fire so you can keep living while you figure things out.</p>
+          <span class="section-card__btn">Learn the Method</span>
+        </a>
+      </div>
+
+      <a href="../services.html" class="section-card">
+        <div class="section-card__icon">ðŸ›Ÿ</div>
+        <h3>Get Help That Speaks Your Language</h3>
+        <p>Sessions, text support, and workbooks made for people who feel like the problem. No judgment. No "just think positive." Real pattern work.</p>
+        <span class="section-card__btn">See War Programs</span>
+      </a>
+
+    </div>
+
+    <div class="regular-path-link">
+      <p>Not in war mode? Looking for relationship and attachment content?</p>
+      <a href="../index.html">Go to Centered Path</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>Â© 2025 Unscarred. <a href="../privacy.html">Privacy</a> Â· <a href="../terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
+

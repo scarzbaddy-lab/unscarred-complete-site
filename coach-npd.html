@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NPD Pattern Coach | Unscarred</title>
+  <meta name="description" content="NPD-informed coaching for ego regulation, accountability without shame, and building supply-free self-worth. You're not a monster—you're wired for protection.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(163, 59, 92, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--primary); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 24px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 80px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--primary);
+      padding: 8px 16px;
+      background: rgba(163, 59, 92, 0.15);
+      border-radius: 999px;
+      border: 1px solid rgba(163, 59, 92, 0.3);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto 40px;
+    }
+
+    /* Section */
+    section {
+      padding: 60px 0;
+    }
+
+    h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    /* Content blocks */
+    .content-block {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+
+    .content-block p {
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.7;
+    }
+
+    .content-block p:last-child {
+      margin-bottom: 0;
+    }
+
+    .content-block strong {
+      color: var(--text-main);
+    }
+
+    .highlight-block {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.15), rgba(12, 11, 16, 0.95));
+      border-color: rgba(163, 59, 92, 0.3);
+    }
+
+    /* Lists */
+    .feature-list {
+      list-style: none;
+      margin: 24px 0;
+    }
+
+    .feature-list li {
+      padding: 12px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: var(--text-soft);
+    }
+
+    .feature-list li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    /* Pricing cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin: 40px 0;
+    }
+
+    @media (max-width: 700px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    .pricing-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .pricing-card.featured {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.15), rgba(12, 11, 16, 0.95));
+      border-color: rgba(163, 59, 92, 0.3);
+    }
+
+    .pricing-card h3 {
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+
+    .pricing-card .price small {
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--text-soft);
+    }
+
+    .pricing-card p {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card ul {
+      list-style: none;
+      text-align: left;
+      margin-bottom: 24px;
+    }
+
+    .pricing-card li {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      padding: 8px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .pricing-card li::before {
+      content: "✓";
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      text-align: center;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: white;
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--primary-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: var(--text-main);
+    }
+
+    .btn-full { width: 100%; }
+
+    /* Quote */
+    .quote-block {
+      border-left: 3px solid var(--primary);
+      padding-left: 24px;
+      margin: 32px 0;
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--text-soft);
+    }
+
+    /* CTA Section */
+    .cta-section {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--text-soft);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* FAQ */
+    .faq-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .faq-a {
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span></a>
+      <nav>
+        <a href="/quizzes/">Quizzes</a>
+        <a href="programs.html">Programs</a>
+        <a href="coaching.html">Coaching</a>
+        <a href="services.html">Services</a>
+        <a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🔥 NPD-Informed Coaching</div>
+      <h1>You're not a monster.<br>You're wired for protection.</h1>
+      <p class="hero-sub">NPD pattern coaching for people who are ready to build real self-worth without the shame spiral or the supply chase.</p>
+    </div>
+  </section>
+
+  <!-- Who This Is For -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>This is for you if...</h2>
+        <ul class="feature-list">
+          <li>You've been called narcissistic and you're trying to figure out what's real</li>
+          <li>You know you've hurt people but "just stop" isn't working</li>
+          <li>You cycle between feeling superior and feeling like garbage</li>
+          <li>You need validation constantly but hate that you need it</li>
+          <li>Your relationships keep exploding and you don't fully understand why</li>
+          <li>You want accountability that doesn't feel like an attack</li>
+        </ul>
+      </div>
+
+      <div class="quote-block">
+        "Most advice for narcissistic patterns is either 'you're a monster, do better' or 'you're fine, everyone else is the problem.' Neither helps. You need someone who sees the wound and the weapon."
+      </div>
+    </div>
+  </section>
+
+  <!-- What We Work On -->
+  <section>
+    <div class="container">
+      <div class="content-block highlight-block">
+        <h2>What we work on together</h2>
+        <ul class="feature-list">
+          <li><strong>Ego regulation without shame</strong> — Learning to tolerate criticism without collapsing or attacking</li>
+          <li><strong>Supply-free self-worth</strong> — Building an identity that doesn't depend on constant validation</li>
+          <li><strong>Accountability without attack</strong> — Owning impact without spiraling into self-hatred</li>
+          <li><strong>Relationship repair scripts</strong> — What to actually say when you've hurt someone</li>
+          <li><strong>Grandiosity-to-groundedness</strong> — Finding the middle between "I'm special" and "I'm worthless"</li>
+          <li><strong>Partner impact awareness</strong> — Understanding what it's actually like to be in relationship with you</li>
+          <li><strong>Trigger mapping</strong> — Knowing your collapse/attack points before you hit them</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>How it works</h2>
+        <p><strong>This isn't therapy.</strong> I'm not diagnosing you or trying to "fix" you. This is pattern coaching—helping you see your automatic responses and build different ones.</p>
+        <p>Sessions are direct. I'll reflect back what I see without sugarcoating, but also without judgment. The goal is clarity and tools, not shame.</p>
+        <p>You'll leave each session with:</p>
+        <ul class="feature-list">
+          <li>Clear understanding of what pattern got activated</li>
+          <li>Scripts for the specific situation you're dealing with</li>
+          <li>Homework that actually moves the needle</li>
+          <li>A plan for when you get triggered again (because you will)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section>
+    <div class="container">
+      <h2 style="text-align: center; margin-bottom: 32px;">Pricing</h2>
+      
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <h3>Single Session</h3>
+          <div class="price">$67 <small>/ 60 min</small></div>
+          <p>One focused session on a specific pattern or situation.</p>
+          <ul>
+            <li>60 minute call</li>
+            <li>Pattern identification</li>
+            <li>Scripts & tools</li>
+            <li>Follow-up notes</li>
+          </ul>
+          <a href="https://shop.unscarred.site/l/npd-coach-single" class="btn btn-secondary btn-full" target="_blank">Book Single Session</a>
+        </div>
+
+        <div class="pricing-card featured">
+          <h3>4-Session Bundle</h3>
+          <div class="price">$227 <small>/ 4 sessions</small></div>
+          <p>Deeper work over time. Use within 3 months.</p>
+          <ul>
+            <li>4 x 60 minute calls</li>
+            <li>Pattern tracking between sessions</li>
+            <li>Text check-ins included</li>
+            <li>Priority scheduling</li>
+            <li>Save $41</li>
+          </ul>
+          <a href="https://shop.unscarred.site/l/npd-coach-bundle" class="btn btn-primary btn-full" target="_blank">Get the Bundle</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <div class="container">
+      <div class="content-block">
+        <h2>Common questions</h2>
+        
+        <div class="faq-item">
+          <div class="faq-q">Do I need a diagnosis to work with you?</div>
+          <div class="faq-a">No. Many people have narcissistic patterns without meeting clinical criteria for NPD. If you recognize yourself in the patterns described above, this can help regardless of diagnosis.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Will you tell me I'm a narcissist?</div>
+          <div class="faq-a">I'm not here to diagnose you. I'm here to help you see your patterns clearly and build different responses. Whether you use the NPD label is up to you.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">Is this going to be you attacking me for an hour?</div>
+          <div class="faq-a">No. Direct doesn't mean aggressive. I'll reflect what I see honestly, but the goal is clarity and tools, not shame. If you're expecting someone to beat you up, you'll be surprised.</div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-q">What if my partner is the one who thinks I'm narcissistic?</div>
+          <div class="faq-a">We can work with that. Sometimes it's accurate, sometimes it's projection, often it's a mix. We'll look at the actual patterns, not the labels.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to see the pattern clearly?</h2>
+      <p>No shame spiral. No attack. Just honest pattern work with someone who gets it.</p>
+      <div class="cta-buttons">
+        <a href="https://shop.unscarred.site/l/npd-coach-single" class="btn btn-primary" target="_blank">Book a Session</a>
+        <a href="coaching.html" class="btn btn-secondary">See All Coaching Options</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></p>
+      <p style="margin-top: 12px; font-size: 0.8rem;">This is coaching, not therapy. Please seek professional help for clinical needs.</p>
+    </div>
+  </footer>
+
+</body>
+</html>

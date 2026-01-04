@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quizzes | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--primary); }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+      margin-left: 32px;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      padding: 8px 16px;
+      background: rgba(201, 118, 61, 0.1);
+      border-radius: 999px;
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--text-soft);
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* Featured Quiz */
+    .featured-quiz {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.15), rgba(12, 11, 16, 0.95));
+      border: 2px solid rgba(163, 59, 92, 0.3);
+      border-radius: 24px;
+      padding: 48px;
+      margin: 48px 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .featured-quiz:hover {
+      border-color: rgba(163, 59, 92, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+    }
+
+    @media (max-width: 800px) {
+      .featured-quiz { grid-template-columns: 1fr; padding: 32px; }
+    }
+
+    .featured-quiz__badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+
+    .featured-quiz h2 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .featured-quiz p {
+      font-size: 1rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .featured-quiz__meta {
+      display: flex;
+      gap: 20px;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+
+    .featured-quiz__visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 120px;
+    }
+
+    .featured-btn {
+      display: inline-block;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: white;
+      text-decoration: none;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 24px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px var(--primary-glow);
+    }
+
+    .featured-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--primary-glow);
+    }
+
+    /* Category Labels */
+    .category-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin: 60px 0 24px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    /* Quiz Grid */
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .quiz-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .quiz-grid { grid-template-columns: 1fr; }
+    }
+
+    .quiz-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      display: block;
+    }
+
+    .quiz-card:hover {
+      border-color: rgba(163, 59, 92, 0.3);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
+
+    .quiz-card__icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+
+    .quiz-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .quiz-card p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .quiz-card__meta {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      display: inline-block;
+      margin-top: 2px;
+    }
+
+    /* CTA */
+    .cta-section {
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 24px;
+      padding: 60px;
+      text-align: center;
+      margin: 80px 0 60px;
+    }
+
+    .cta-section h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .cta-section p {
+      color: var(--text-soft);
+      max-width: 500px;
+      margin: 0 auto 32px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="/" class="logo">un<span>scarred</span></a>
+      <nav>
+        <a href="/quizzes/">Quizzes</a>
+        <a href="/war/">War Room</a>
+        <a href="/about/">About</a>
+        <a href="/programs.html">Programs</a>
+        <a href="/services.html">Services</a>
+        <a href="/blog.html">Blog</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">17 Quizzes</div>
+      <h1>Understand yourself deeply</h1>
+      <p class="hero-sub">Each quiz reveals a different layer of how you relate, protect, and survive. Not personality tests. Nervous system maps.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- Featured: Mirror Quiz -->
+    <a href="/quiz/mirror.html" class="featured-quiz">
+      <div class="featured-quiz__content">
+        <span class="featured-quiz__badge">Most Popular</span>
+        <h2>The Unscarred Mirror Quiz</h2>
+        <p>Five dimensions mapped: your war, your mask, your attachment, your partner draw, and your neurotype. The full picture in one assessment.</p>
+        <div class="featured-quiz__meta">
+          <span>32 questions</span>
+          <span>16 unique patterns</span>
+          <span>8 to 10 min</span>
+        </div>
+        <span class="featured-btn">Take the Mirror Quiz</span>
+      </div>
+      <div class="featured-quiz__visual" aria-hidden="true">🪞</div>
+    </a>
+
+    <!-- NERVOUS SYSTEM -->
+    <p class="category-label">Nervous System</p>
+
+    <div class="quiz-grid">
+      <a href="/quiz/dysregulation.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🧠</div>
+        <h3>How Dysregulated Are You?</h3>
+        <p>Assess your nervous system regulation capacity. Are you stuck in survival mode?</p>
+        <span class="quiz-card__meta">20 questions</span>
+      </a>
+
+      <a href="/quiz/ground-zero.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">⚡</div>
+        <h3>Ground Zero Assessment</h3>
+        <p>For people who are too many things at once. Anxious avoidant, trauma neuro, or high masking?</p>
+        <span class="quiz-card__meta">10 questions</span>
+      </a>
+
+      <a href="/quiz/protection-style.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🛡️</div>
+        <h3>Protection Style Mapping</h3>
+        <p>How does your system protect you? Map your awareness, conscience, and intent patterns.</p>
+        <span class="quiz-card__meta">22 questions</span>
+      </a>
+
+      <a href="/quiz/shutdown-map.html" class="quiz-card" style="border-color: rgba(201, 118, 61, 0.3); background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));">
+        <div class="quiz-card__icon" aria-hidden="true">❄️</div>
+        <h3>Shutdown Mapping Quiz</h3>
+        <p>Is this freeze, autistic shutdown, or fawn mode? Distinguish between different types of going offline.</p>
+        <span class="quiz-card__meta" style="color: var(--primary);">New · 15 questions</span>
+      </a>
+
+      <a href="/quiz/neurotype-finder.html" class="quiz-card" style="border-color: rgba(157, 126, 232, 0.3); background: linear-gradient(165deg, rgba(157, 126, 232, 0.08), rgba(12, 11, 16, 0.95));">
+        <div class="quiz-card__icon" aria-hidden="true">🧬</div>
+        <h3>Trauma Or Neurodivergence?</h3>
+        <p>Is it trauma, neurodivergence, or both? Stop misattributing symptoms and get clarity on your wiring.</p>
+        <span class="quiz-card__meta" style="color: var(--secondary);">New · 18 questions</span>
+      </a>
+    </div>
+
+    <!-- MASKS & PATTERNS -->
+    <p class="category-label">Masks & Patterns</p>
+
+    <div class="quiz-grid">
+      <a href="/quiz/mask-shield.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🎭</div>
+        <h3>Mask & Shield Quiz</h3>
+        <p>36 questions across 10 survival patterns. Watchtower, Ghost, Oracle, Outlaw, Storm, and more.</p>
+        <span class="quiz-card__meta">36 questions</span>
+      </a>
+
+      <a href="/quiz/mirror-archetype.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🪞</div>
+        <h3>Mirror Archetype Quiz</h3>
+        <p>Your survival archetype. Analyzer, Fixer, Performer, Warrior, Vanisher, Chameleon?</p>
+        <span class="quiz-card__meta">21 questions</span>
+      </a>
+
+      <a href="/quiz/pattern-spectrum.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">⚖️</div>
+        <h3>Pattern Spectrum Quiz</h3>
+        <p>Distinguish ego led patterns from trauma led patterns. Get clarity on what is driving you.</p>
+        <span class="quiz-card__meta">18 questions</span>
+      </a>
+    </div>
+
+    <!-- SELF-SABOTAGE -->
+    <p class="category-label">Self-Sabotage & Behavior</p>
+
+    <div class="quiz-grid">
+      <a href="/quiz/self-sabotage.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🔄</div>
+        <h3>Self-Sabotage Patterns</h3>
+        <p>When peace shows up, what does your system do? Chaser, Pleaser, Controller, or Avoider?</p>
+        <span class="quiz-card__meta">12 scenarios</span>
+      </a>
+
+      <a href="/quiz/fawn-response.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🦌</div>
+        <h3>Fawn Response Assessment</h3>
+        <p>How deep does your people pleasing go? Find out if fawning is your survival mode.</p>
+        <span class="quiz-card__meta">20 questions</span>
+      </a>
+    </div>
+
+    <!-- RED FLAGS -->
+    <p class="category-label">Safety & Red Flags</p>
+
+    <div class="quiz-grid">
+      <a href="/quiz/gaslight-recognition.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">💡</div>
+        <h3>Gaslighting Recognition</h3>
+        <p>20 yes no questions to recognize reality distortion tactics. You are not crazy.</p>
+        <span class="quiz-card__meta">20 questions</span>
+      </a>
+
+      <a href="/quiz/love-bombing.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">💞</div>
+        <h3>Love Bombing vs Genuine</h3>
+        <p>Is this real or manipulation? Learn to spot the difference before it is too late.</p>
+        <span class="quiz-card__meta">10 questions</span>
+      </a>
+
+      <a href="/quiz/coercive-control.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🔒</div>
+        <h3>Coercive Control Recognition</h3>
+        <p>Identifying the patterns that do not look like abuse. Is your freedom being restricted?</p>
+        <span class="quiz-card__meta">20 questions</span>
+      </a>
+
+      <a href="/quiz/is-my-partner-a-narc.html" class="quiz-card" style="border-color: rgba(231, 76, 60, 0.3); background: linear-gradient(165deg, rgba(231, 76, 60, 0.08), rgba(12, 11, 16, 0.95));">
+        <div class="quiz-card__icon" aria-hidden="true">🧿</div>
+        <h3>Is My Partner a Narc?</h3>
+        <p>The quiz everyone is taking. The answer might surprise you.</p>
+        <span class="quiz-card__meta" style="color: var(--primary);">Popular · 10 questions</span>
+      </a>
+
+      <a href="/quiz/do-you-hurt-people-on-purpose.html" class="quiz-card" style="border-color: rgba(201, 118, 61, 0.3); background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));">
+        <div class="quiz-card__icon" aria-hidden="true">🎯</div>
+        <h3>Do You Hurt People On Purpose?</h3>
+        <p>Assess their awareness, conscience, and intent. Are they blind to it, or choosing to harm?</p>
+        <span class="quiz-card__meta" style="color: var(--accent);">New · 22 questions</span>
+      </a>
+    </div>
+
+    <!-- SELF REFLECTION -->
+    <p class="category-label">Self-Reflection</p>
+
+    <div class="quiz-grid">
+      <a href="/quiz/am-i-abusive.html" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🪞</div>
+        <h3>Am I Abusive?</h3>
+        <p>A self reflection tool for examining your own behavior patterns. This takes courage to ask.</p>
+        <span class="quiz-card__meta">20 questions</span>
+      </a>
+    </div>
+
+    <!-- WAR ROOM -->
+    <p class="category-label">War Room</p>
+
+    <div class="quiz-grid">
+      <a href="/war/war-mapping/" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">⚔️</div>
+        <h3>War Mapping</h3>
+        <p>Map what is happening in the dynamic and what kind of control you are dealing with.</p>
+        <span class="quiz-card__meta">War side</span>
+      </a>
+
+      <a href="/war/are-they-hurting-me/" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🧨</div>
+        <h3>Are They Hurting Me?</h3>
+        <p>A structured harm scan that separates confusion from control and flags what is unsafe.</p>
+        <span class="quiz-card__meta">War side</span>
+      </a>
+
+      <a href="/war/threat-vs-status/" class="quiz-card">
+        <div class="quiz-card__icon" aria-hidden="true">🧷</div>
+        <h3>Threat vs Status Control</h3>
+        <p>See whether the behavior is fear driven control or entitlement driven control. Repair depends on motive.</p>
+        <span class="quiz-card__meta">War side</span>
+      </a>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Not sure where to start?</h2>
+      <p>If you are new, start with the Mirror Quiz. It maps the full picture so you know where to focus.</p>
+      <a href="/quiz/mirror.html" class="featured-btn">Take the Mirror Quiz</a>
+    </div>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
+
+

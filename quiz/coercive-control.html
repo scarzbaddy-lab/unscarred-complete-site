@@ -1,0 +1,460 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coercive Control Recognition Quiz | Unscarred</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>ðŸªž</text></svg>">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --card: #121212;
+            --primary: #e74c3c;
+            --primary-dark: #c0392b;
+            --text: #e9e4dc;
+            --text-soft: #a0a0a0;
+            --border: #1e1e1e;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: var(--bg);
+            padding: 40px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid var(--border);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-soft);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            transition: color 0.2s ease;
+        }
+        
+        .back-link:hover { color: var(--text); }
+        
+        h1 { color: var(--primary); margin-bottom: 10px; font-size: 2.2em; }
+        
+        .subtitle { color: var(--text-soft); margin-bottom: 30px; font-size: 1.1em; }
+        
+        .question {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .question:last-of-type { border-bottom: none; }
+        
+        .question-text {
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: 500;
+            color: var(--text);
+        }
+        
+        .yes-no-options {
+            display: flex;
+            gap: 16px;
+        }
+        
+        .yes-no-option {
+            flex: 1;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 1.1em;
+            font-weight: 500;
+            color: var(--text-soft);
+        }
+        
+        .yes-no-option:hover {
+            border-color: var(--primary);
+            background: rgba(231, 76, 60, 0.1);
+            color: var(--text);
+        }
+        
+        .yes-no-option.selected {
+            border-color: var(--primary);
+            background: rgba(231, 76, 60, 0.2);
+            color: var(--text);
+            font-weight: 600;
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+            width: 100%;
+            font-weight: 600;
+        }
+        
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        .results {
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .result-box {
+            margin-top: 30px;
+            padding: 24px;
+            border-radius: 16px;
+            border-left: 4px solid var(--primary);
+            background: rgba(255,255,255,0.01);
+        }
+        
+        .result-title {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+        }
+        
+        .result-description {
+            color: var(--text-soft);
+            margin-bottom: 16px;
+            font-size: 1.03em;
+        }
+        
+        .score-display {
+            font-size: 2.4em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .pattern-section {
+            margin-top: 20px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border);
+        }
+        
+        .pattern-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .pattern-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .pattern-list li {
+            margin-bottom: 6px;
+            color: var(--text-soft);
+            font-size: 0.98em;
+        }
+        
+        .warning-box {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(231, 76, 60, 0.08);
+            border: 1px solid rgba(231, 76, 60, 0.3);
+        }
+        
+        .warning-box h3 {
+            margin-bottom: 8px;
+            font-size: 1.05em;
+        }
+        
+        .cta-links {
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+        }
+        
+        .cta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.95em;
+            transition: all 0.2s ease;
+        }
+        
+        .cta-link:hover {
+            border-color: var(--primary);
+            color: var(--text);
+            background: rgba(231, 76, 60, 0.08);
+        }
+        
+        .cta-icon {
+            font-size: 1.2em;
+        }
+        
+        @media (max-width: 600px) {
+            .quiz-container {
+                padding: 24px 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <a href="/quizzes/" class="back-link">? Back to Quizzes</a>
+        
+        <div id="quiz-section">
+            <h1>Coercive Control Recognition</h1>
+            <p class="subtitle">This is for people who feel crazy for even wondering if it is abuse</p>
+            
+            <div id="questions"></div>
+            
+            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+        </div>
+        
+        <div id="results-section" class="results">
+            <div id="result-content"></div>
+            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            "Do they monitor your phone, email or social media activity",
+            "Do they make you account for your time or whereabouts all the time",
+            "Have they isolated you from friends or family",
+            "Do they control the finances or limit your access to money",
+            "Do they criticize or belittle you and call it concern or a joke",
+            "Have they ever threatened to harm themselves if you leave",
+            "Do you feel like you walk on eggshells around them",
+            "Do they blame you for their emotions or behavior",
+            "Have they damaged your belongings or hurt pets as punishment",
+            "Do they dismiss your feelings or tell you that you overreact",
+            "Have they pressured you into sexual activity you did not want",
+            "Do they track your movements or show up unexpectedly to check on you",
+            "Do they make rules about what you can wear or how you present yourself",
+            "Have they threatened to take your children or report you to authorities",
+            "Do they use your insecurities against you",
+            "Have they interfered with your work or education",
+            "Do they withhold affection or give you the silent treatment as punishment",
+            "Do you feel like you need their permission for basic decisions",
+            "Do they twist things that happened so you doubt your memory",
+            "Do you feel more afraid of upsetting them than of losing them"
+        ];
+
+        let answers = {};
+
+        function renderQuestions() {
+            const questionsContainer = document.getElementById('questions');
+            questionsContainer.innerHTML = '';
+
+            questions.forEach((question, index) => {
+                const questionElement = document.createElement('div');
+                questionElement.className = 'question';
+                questionElement.innerHTML = `
+                    <div class="question-text">${index + 1}. ${question}</div>
+                    <div class="yes-no-options">
+                        <div class="yes-no-option" data-index="${index}" data-value="1">Yes</div>
+                        <div class="yes-no-option" data-index="${index}" data-value="0">No</div>
+                    </div>
+                `;
+                questionsContainer.appendChild(questionElement);
+            });
+
+            document.querySelectorAll('.yes-no-option').forEach(option => {
+                option.addEventListener('click', () => {
+                    const index = option.getAttribute('data-index');
+                    const value = parseInt(option.getAttribute('data-value'));
+                    
+                    answers[index] = value;
+
+                    document.querySelectorAll(`.yes-no-option[data-index="${index}"]`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    option.classList.add('selected');
+
+                    const totalAnswered = Object.keys(answers).length;
+                    document.getElementById('submit-btn').disabled = totalAnswered < questions.length;
+                });
+            });
+        }
+
+        function calculateResults() {
+            const totalYes = Object.values(answers).reduce((sum, val) => sum + val, 0);
+            displayResults(totalYes);
+        }
+
+        function displayResults(score) {
+            let level, color, title, description, patterns, ctas;
+
+            if (score === 0) {
+                level = "No control pattern in these answers";
+                color = "#27ae60";
+                title = "No clear coercive pattern from what you shared";
+                description = "From what you answered here, your situation does not show a pattern of control that repeats and escalates. That does not erase anything that has hurt you in the past. It just means these specific questions did not light up a pattern.";
+                patterns = [
+                    "You are able to make choices without heavy pressure",
+                    "You stay connected to people and support outside the relationship",
+                    "You do not feel watched, tracked or managed all the time",
+                    "Disagreements can still be sharp but do not revolve around fear",
+                    "Your body does not stay on alert around this person every day"
+                ];
+                ctas = [
+                    { text: "Take the gaslight quiz", url: "gaslight-recognition.html", icon: "ðŸ’¡" },
+                    { text: "Look at nervous system work", url: "dysregulation.html", icon: "ðŸ§ " }
+                ];
+            } else if (score <= 5) {
+                level = "Your body is picking up early control patterns";
+                color = "#f39c12";
+                title = "The control is quiet but it is there";
+                description = "Some of these answers show pressure, monitoring or punishment that is easy to explain away as concern or care. This is the whisper stage where your body notices things long before your mind wants to believe them.";
+                patterns = [
+                    "You feel a little smaller around this person than you do alone",
+                    "You second guess yourself more since this relationship started",
+                    "Their concern sometimes feels heavy or invasive",
+                    "You explain their behavior to other people more than you want to",
+                    "Part of you wonders if you are just too sensitive"
+                ];
+                ctas = [
+                    { text: "Read about gaslighting patterns", url: "gaslight-recognition.html", icon: "ðŸ“–" },
+                    { text: "Save this page for later", url: "#top", icon: "ðŸ“Ž" }
+                ];
+            } else if (score <= 12) {
+                level = "Active coercive control pattern";
+                color = "#e67e22";
+                title = "This is more than a rough relationship";
+                description = "Your answers line up with an active pattern of control. This is not just someone with a temper or a hard past. It looks like a system where your freedom, voice and support are slowly being cut down while you work harder and harder to keep the peace.";
+                patterns = [
+                    "You change your behavior to avoid reactions or punishment",
+                    "You feel watched, checked on or doubted more than trusted",
+                    "You have less access to money, support or privacy than before",
+                    "You carry most of the blame for conflict in the relationship",
+                    "You feel tired, confused and on edge most of the time"
+                ];
+                ctas = [
+                    { text: "Look at nervous system signs", url: "dysregulation.html", icon: "ðŸ§©" },
+                    { text: "See trauma bond patterns", url: "/war/war-mapping/", icon: "ðŸ•¸ï¸" }
+                ];
+            } else {
+                level = "Severe coercive control";
+                color = "#c0392b";
+                title = "This is control not love";
+                description = "Your answers match a severe coercive pattern. This is the kind of control that slowly erases a person. The goal is not just to win arguments. It is to own your time, your choices, your voice and your body. No level of being calmer or nicer can fix this alone.";
+                patterns = [
+                    "You feel like you live on eggshells all day",
+                    "You hide or minimize what is happening when you talk to others",
+                    "You have very little freedom around money, time or your own body",
+                    "You feel afraid of what they will do if you push back or leave",
+                    "You do not fully recognize yourself anymore"
+                ];
+                ctas = [
+                    { text: "Talk through a safety plan", url: "../booking.html", icon: "ðŸ›¡ï¸" },
+                    { text: "Open the gaslight quiz next", url: "gaslight-recognition.html", icon: "ðŸ’¡" }
+                ];
+            }
+
+            const resultContent = document.getElementById('result-content');
+            resultContent.innerHTML = `
+                <div class="result-box" style="border-left-color: ${color}">
+                    <div class="score-display" style="color: ${color}">${score} / ${questions.length}</div>
+                    <div style="color: ${color}; font-weight: 600; font-size: 1.1em; margin-bottom: 10px;">${level}</div>
+                    <h2 class="result-title">${title}</h2>
+                    <p class="result-description">${description}</p>
+                    
+                    <div class="pattern-section">
+                        <h3>What this is showing you</h3>
+                        <ul class="pattern-list">
+                            ${patterns.map(pattern => `<li>${pattern}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    ${score > 0   `
+                    <div class="warning-box">
+                        <h3>You are not crazy for noticing this</h3>
+                        <p>Your mind will try to talk you out of what your body already knows. You do not have to decide anything today. You can just let yourself admit that this pattern is real. That is the first step to getting your reality back.</p>
+                    </div>
+                    ` : ""}
+
+                    <div class="cta-links">
+                        ${ctas.map(cta => `
+                            <a class="cta-link" href="${cta.url}">
+                                <span class="cta-icon">${cta.icon}</span>
+                                <span>${cta.text}</span>
+                            </a>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('quiz-section').classList.add('hidden');
+            document.getElementById('results-section').classList.add('show');
+        }
+
+        function resetQuiz() {
+            answers = {};
+            document.getElementById('questions').innerHTML = '';
+            document.getElementById('quiz-section').classList.remove('hidden');
+            document.getElementById('results-section').classList.remove('show');
+            document.getElementById('submit-btn').disabled = true;
+            renderQuestions();
+        }
+
+        renderQuestions();
+    </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+

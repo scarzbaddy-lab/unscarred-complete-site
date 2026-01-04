@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Self Worth Diagnostic | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg-void:#050507;--bg-deep:#0a0a0f;--line:#232334;--text:#f4f2f6;--muted:#bdb8c6;--primary:#a33b5c;--accent:#d6a35d;--r:22px}
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 700px at 20% 10%, rgba(163,59,92,.18), transparent 60%), linear-gradient(180deg, var(--bg-void), var(--bg-deep)); color:var(--text); font-family:Outfit, system-ui, -apple-system, Segoe UI, sans-serif}
+    .quiz_wrap{max-width:980px;margin:0 auto;padding:40px 16px}
+    .quiz_head{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px}
+    .quiz_brand{display:flex;gap:14px;align-items:flex-end}
+    .quiz_mark{letter-spacing:.18em;font-size:12px;color:var(--muted)}
+    .quiz_title{margin:0;font-family:"Cormorant Garamond", serif;font-size:44px;line-height:1}
+    .quiz_subtitle{margin:8px 0 0;color:var(--muted);max-width:62ch}
+    .quiz_progressbar{width:260px;height:10px;border-radius:999px;background:rgba(255,255,255,.06);overflow:hidden;border:1px solid var(--line)}
+    .quiz_progressfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .quiz_progresslabel{margin-top:8px;color:var(--muted);font-size:12px;text-align:right}
+    .quiz_card{background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .quiz_qtop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+    .quiz_qcount{color:var(--muted);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+    .quiz_q{margin:6px 0 10px;font-size:22px;line-height:1.25}
+    .quiz_opts{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .quiz_opt{display:flex;gap:10px;align-items:center;padding:12px 12px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.02);cursor:pointer}
+    .quiz_opt input{accent-color:var(--primary)}
+    .quiz_opt_label{font-weight:500}
+    .quiz_notice{margin-bottom:12px;padding:10px 12px;border-radius:14px;border:1px solid rgba(214,163,93,.4);background:rgba(214,163,93,.08);color:var(--text)}
+    .quiz_foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+    .quiz_nav{display:flex;gap:10px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:999px;border:1px solid rgba(163,59,92,.55);background:rgba(163,59,92,.18);color:var(--text);text-decoration:none;cursor:pointer;font-weight:600}
+    .btn.ghost{border-color:var(--line);background:rgba(255,255,255,.03);font-weight:600}
+    .btn:disabled{opacity:.5;cursor:not-allowed}
+    .results_title{margin:10px 0 6px;font-family:"Cormorant Garamond", serif;font-size:34px}
+    .results_sub{margin:0;color:var(--muted);line-height:1.6}
+    .results_top{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+    .results_focus{border:1px solid var(--line);border-radius:18px;padding:14px;background:rgba(255,255,255,.02)}
+    .results_focus_top{display:flex;justify-content:space-between;gap:10px;margin-bottom:8px}
+    .bar{height:12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);overflow:hidden}
+    .barfill{height:100%;background:linear-gradient(90deg, rgba(163,59,92,.75), rgba(214,163,93,.65))}
+    .results_actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .results_footer{margin:14px 0 0;color:var(--muted);line-height:1.6}
+    @media (max-width:760px){
+      .quiz_title{font-size:38px}
+      .quiz_opts{grid-template-columns:1fr}
+      .results_top{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="/assets/js/quiz-engine.js"></script>
+  <script>
+    const dimensions = [
+      { id:"internal", label:"Internal Worth", micro:"Worth is stable. You can disappoint people and still respect yourself.", blurb:"This is anchored self value.", tools:["Do hard things without self attack", "Keep promises to yourself", "Choose integrity over approval"] },
+      { id:"external", label:"External Worth", micro:"Worth rises and falls based on attention, praise, or being chosen.", blurb:"Your worth is crowdsourced.", tools:["Limit validation seeking", "Name your value without proof", "Track approval addiction"] },
+      { id:"conditional", label:"Conditional Worth", micro:"Worth is allowed only if you behave correctly, stay easy, or do not need much.", blurb:"You earn safety by shrinking.", tools:["Practice clean needs", "Stop over apologizing", "Let boundaries be neutral"] },
+      { id:"performance", label:"Performance Worth", micro:"Worth is tied to output, achievement, money, beauty, or being impressive.", blurb:"You are loved for what you produce.", tools:["Rest without guilt reps", "Separate identity from outcomes", "Do one thing badly on purpose"] }
+    ];
+
+    const questions = [
+      // internal 6
+      { text:"Even when I mess up, I can still respect myself.", mapsTo:[{dim:"internal"}] },
+      { text:"I can hear feedback without collapsing or getting defensive.", mapsTo:[{dim:"internal"}] },
+      { text:"My worth does not depend on who is currently pleased with me.", mapsTo:[{dim:"internal"}] },
+      { text:"I can set boundaries without feeling like a bad person.", mapsTo:[{dim:"internal"}] },
+      { text:"I do not have to prove I deserve care.", mapsTo:[{dim:"internal"}] },
+      { text:"I can be alone without feeling worthless.", mapsTo:[{dim:"internal"}] },
+
+      // external 6
+      { text:"I feel better about myself when I get attention or praise.", mapsTo:[{dim:"external"}] },
+      { text:"If someone pulls back, my self worth drops fast.", mapsTo:[{dim:"external"}] },
+      { text:"I notice how I rank compared to others.", mapsTo:[{dim:"external"}] },
+      { text:"I want to be chosen in a way that feels like proof.", mapsTo:[{dim:"external"}] },
+      { text:"I struggle when I am not being noticed.", mapsTo:[{dim:"external"}] },
+      { text:"Rejection feels like a statement about my value.", mapsTo:[{dim:"external"}] },
+
+      // conditional 6
+      { text:"I feel I must stay easy to love.", mapsTo:[{dim:"conditional"}] },
+      { text:"I hide needs because I fear being too much.", mapsTo:[{dim:"conditional"}] },
+      { text:"I feel guilty when I ask for support.", mapsTo:[{dim:"conditional"}] },
+      { text:"I apologize for my feelings.", mapsTo:[{dim:"conditional"}] },
+      { text:"I tolerate disrespect to avoid being alone.", mapsTo:[{dim:"conditional"}] },
+      { text:"I change myself to keep peace.", mapsTo:[{dim:"conditional"}] },
+
+      // performance 6
+      { text:"I feel valuable when I am productive.", mapsTo:[{dim:"performance"}] },
+      { text:"Rest makes me anxious or guilty.", mapsTo:[{dim:"performance"}] },
+      { text:"I fear being average or forgettable.", mapsTo:[{dim:"performance"}] },
+      { text:"I tie my worth to my looks, money, or achievements.", mapsTo:[{dim:"performance"}] },
+      { text:"I overwork to avoid feeling unworthy.", mapsTo:[{dim:"performance"}] },
+      { text:"If I fail, I feel like I am the failure.", mapsTo:[{dim:"performance"}] }
+    ];
+
+    UnscarredQuiz.initQuiz({
+      root:"#app",
+      slug:"self-worth-diagnostic",
+      brandMark:"UNSCARRED",
+      title:"Self Worth Diagnostic",
+      subtitle:"Internal, external, conditional, performance mapping.",
+      cta:{ href:"/quizzes/", label:"Back to quizzes" },
+      dimensions,
+      questions,
+      resultsFooter:"Build internal worth by acting like someone who matters even when you do not feel it yet. Behavior first. Feelings follow."
+    });
+  </script>
+</body>
+</html>

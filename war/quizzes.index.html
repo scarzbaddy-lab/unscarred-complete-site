@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quizzes | Unscarred</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-void:#050507;
+      --bg-deep:#0a0a0f;
+      --card:#14141b;
+      --card2:#101018;
+      --line:#232334;
+      --text:#f4f2f6;
+      --muted:#bdb8c6;
+      --primary:#a33b5c;
+      --accent:#d6a35d;
+      --r:20px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:radial-gradient(1200px 700px at 20% 10%, rgba(163,59,92,.18), transparent 60%), linear-gradient(180deg, var(--bg-void), var(--bg-deep)); color:var(--text); font-family:Outfit, system-ui, -apple-system, Segoe UI, sans-serif}
+    .wrap{max-width:1100px;margin:0 auto;padding:44px 18px}
+    .top{display:flex;gap:18px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;margin-bottom:22px}
+    h1{font-family:"Cormorant Garamond", serif; font-size:44px; margin:0}
+    p{margin:10px 0 0;color:var(--muted); max-width:62ch}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:18px}
+    .card{grid-column:span 6;background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01)); border:1px solid var(--line); border-radius:var(--r); padding:18px; box-shadow:0 18px 45px rgba(0,0,0,.35)}
+    .card h2{margin:0 0 8px;font-size:18px}
+    .card p{margin:0 0 14px;font-size:14px;line-height:1.5}
+    .row{display:flex;gap:10px;flex-wrap:wrap}
+    a.btn{display:inline-flex;align-items:center;justify-content:center; padding:10px 14px; border-radius:999px; border:1px solid var(--line); color:var(--text); text-decoration:none; background:rgba(255,255,255,.03)}
+    a.btn.primary{border-color:rgba(163,59,92,.55); background:rgba(163,59,92,.18)}
+    @media (max-width:840px){.card{grid-column:span 12} h1{font-size:38px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <h1>Quizzes</h1>
+        <p>Pick one. Take it fast. Get a clean pattern readout you can actually use.</p>
+      </div>
+      <div style="color:#bdb8c6;letter-spacing:.16em;font-size:12px">UNSCARRED</div>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Relational Needs Matrix</h2>
+        <p>What you actually need vs what you keep asking for.</p>
+        <div class="row">
+          <a class="btn primary" href="/quizzes/relational-needs-matrix/">Take quiz</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Ego Structure Scan</h2>
+        <p>Grandiose, collapsed, compensatory, oscillating patterns.</p>
+        <div class="row">
+          <a class="btn primary" href="/quizzes/ego-structure-scan/">Take quiz</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Partner Draw Diagnostic</h2>
+        <p>Who you are wired to attract and why it keeps happening.</p>
+        <div class="row">
+          <a class="btn primary" href="/quizzes/partner-draw-diagnostic/">Take quiz</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Conflict Chemistry</h2>
+        <p>How you fight, what triggers you, and your default cycle.</p>
+        <div class="row">
+          <a class="btn primary" href="/quizzes/conflict-chemistry/">Take quiz</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Self Worth Diagnostic</h2>
+        <p>Internal, external, conditional, performance mapping.</p>
+        <div class="row">
+          <a class="btn primary" href="/quizzes/self-worth-diagnostic/">Take quiz</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Nervous System State</h2>
+        <p>Fight, flight, freeze, fawn, faint percentages.</p>
+        <div class="row">
+          <a class="btn primary" href="/quizzes/nervous-system-state/">Take quiz</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

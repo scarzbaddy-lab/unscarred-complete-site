@@ -1,0 +1,1250 @@
+﻿
+      align-items: center;
+    }
+
+    .nav-btn {
+      border-radius: 999px;
+      padding: 10px 18px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(15, 15, 20, 0.6);
+      color: var(--text-soft);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all var(--transition-smooth);
+      backdrop-filter: blur(8px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .nav-btn span.icon {
+      font-size: 0.95rem;
+      transition: transform var(--transition-smooth);
+    }
+
+    .nav-btn:hover:not(:disabled) span.icon {
+      transform: translateX(2px);
+    }
+
+    .nav-btn.primary {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      border-color: rgba(255,255,255,0.1);
+      color: var(--text-main);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 
+        0 4px 20px rgba(163, 59, 92, 0.3),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .nav-btn.primary::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-smooth);
+    }
+
+    .nav-btn.primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, #b8446a, var(--primary));
+      transform: translateY(-2px);
+      box-shadow: 
+        0 8px 32px rgba(163, 59, 92, 0.4),
+        0 0 0 1px rgba(255,255,255,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+
+    .nav-btn.primary:hover::before {
+      opacity: 1;
+    }
+
+    .nav-btn.primary:active:not(:disabled) {
+      transform: translateY(0);
+      box-shadow: 0 4px 16px rgba(163, 59, 92, 0.3);
+    }
+
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+      filter: grayscale(0.5);
+    }
+
+    .nav-btn:hover:not(:disabled):not(.primary) {
+      background: rgba(25, 25, 32, 0.8);
+      border-color: rgba(255,255,255,0.12);
+      color: var(--text-main);
+      transform: translateY(-1px);
+    }
+
+    .quiz-footer-meta {
+      font-size: 0.75rem;
+      font-weight: 300;
+      font-style: italic;
+      color: var(--text-dim);
+      margin-top: 12px;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .result-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 600;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--text-main);
+      text-shadow: 0 2px 20px var(--primary-glow);
+      line-height: 1.3;
+    }
+
+    .result-subtitle {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-top: 4px;
+    }
+
+    .result-blurb {
+      margin-top: 16px;
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.75;
+      color: var(--text-soft);
+      padding: 16px;
+      background: rgba(0,0,0,0.25);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--primary);
+      position: relative;
+    }
+
+    .result-blurb::before {
+      content: '"';
+      font-family: var(--font-display);
+      font-size: 3rem;
+      position: absolute;
+      top: 8px;
+      left: 12px;
+      color: var(--primary);
+      opacity: 0.3;
+      line-height: 1;
+    }
+
+    .result-actions {
+      margin-top: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .cta-btn {
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all var(--transition-smooth);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-btn.primary {
+      background: linear-gradient(135deg, var(--primary), #8a2a4a);
+      color: var(--text-main);
+      box-shadow: 
+        0 6px 24px rgba(163, 59, 92, 0.35),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    }
+
+    .cta-btn.primary:hover {
+      background: linear-gradient(135deg, #b8446a, var(--primary));
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 
+        0 10px 36px rgba(163, 59, 92, 0.45),
+        inset 0 1px 0 rgba(255,255,255,0.15);
+    }
+
+    .cta-btn.secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+    }
+
+    .cta-btn.secondary:hover {
+      color: var(--text-main);
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .result-metadata {
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-dim);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: space-between;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .score-bars {
+      margin-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 16px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 24px;
+    }
+
+    .score-group-title {
+      font-size: 0.68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-group-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(201, 118, 61, 0.3), transparent);
+    }
+
+    .score-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-soft);
+      padding: 4px 0;
+    }
+
+    /* Question contribution breakdown styles */
+    .contribution-breakdown {
+      margin-top: 24px;
+      padding: 20px 0 0 0;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contribution-war-block {
+      border-radius: var(--radius-sm);
+      padding: 16px 18px;
+      background: linear-gradient(135deg, rgba(20, 18, 25, 0.8), rgba(12, 11, 16, 0.9));
+      border: 1px solid rgba(255,255,255,0.04);
+      box-shadow: 
+        0 4px 20px rgba(0,0,0,0.25),
+        inset 0 1px 0 rgba(255,255,255,0.02);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contribution-war-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent-soft);
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .contribution-question-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .contribution-question-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text-soft);
+      background: rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 10px 12px;
+      border-left: 2px solid var(--secondary);
+      transition: all var(--transition-smooth);
+    }
+
+    .contribution-question-item:hover {
+      background: rgba(0,0,0,0.3);
+      border-left-color: var(--accent);
+    }
+
+    .contribution-question-rank {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--secondary);
+      flex-shrink: 0;
+      font-size: 0.9rem;
+      min-width: 20px;
+      opacity: 0.7;
+    }
+
+    .contribution-answer {
+      color: var(--text-dim);
+      font-weight: 300;
+      font-style: italic;
+      margin-left: auto;
+      padding-left: 12px;
+      font-size: 0.78rem;
+      max-width: 50%;
+      text-align: right;
+    }
+
+    .score-label {
+      width: 100px;
+      flex-shrink: 0;
+      font-weight: 400;
+    }
+
+    .score-track {
+      flex: 1;
+      height: 4px;
+      border-radius: 999px;
+      background: rgba(0,0,0,0.4);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--secondary), var(--accent));
+      width: 0%;
+      transition: width 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 8px var(--secondary-glow);
+    }
+
+    .score-value {
+      width: 24px;
+      text-align: right;
+      font-weight: 600;
+      color: var(--text-dim);
+      font-size: 0.7rem;
+    }
+
+    .mini-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 500;
+      transition: color var(--transition-smooth);
+    }
+
+    .mini-link:hover {
+      color: var(--accent-soft);
+      text-decoration: underline;
+    }
+
+    .analysis-block {
+      margin-top: 20px;
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.08), rgba(163, 59, 92, 0.06));
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(124, 92, 191, 0.15);
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.7;
+    }
+
+    .analysis-block h3 {
+      margin: 0 0 10px 0;
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      font-weight: 600;
+      font-style: italic;
+      color: var(--secondary);
+    }
+
+    .analysis-block p {
+      margin: 0;
+      font-weight: 300;
+    }
+
+    @media (min-width: 640px) {
+      .quiz-card {
+        padding: 32px 28px 28px;
+      }
+      .question-text {
+        font-size: 1.25rem;
+      }
+      .question-wrap {
+        padding: 28px 24px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .quiz-title {
+        font-size: 2rem;
+      }
+      .quiz-card {
+        padding: 36px 32px 30px;
+      }
+      .answers-wrap {
+        gap: 14px;
+      }
+      .answer-btn {
+        padding: 16px 20px;
+        font-size: 0.92rem;
+      }
+      .result-title {
+        font-size: 1.75rem;
+      }
+      .result-blurb {
+        font-size: 1rem;
+        padding: 20px 24px;
+      }
+      .score-bars {
+        gap: 20px 32px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .quiz-shell {
+        padding: 40px 24px;
+      }
+      .quiz-card {
+        padding: 40px 40px 36px;
+      }
+    }
+
+    /* Staggered answer animation */
+    .answers-wrap .answer-btn {
+      animation: answer-slide-in 400ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+    .answers-wrap .answer-btn:nth-child(1) { animation-delay: 50ms; }
+    .answers-wrap .answer-btn:nth-child(2) { animation-delay: 100ms; }
+    .answers-wrap .answer-btn:nth-child(3) { animation-delay: 150ms; }
+    .answers-wrap .answer-btn:nth-child(4) { animation-delay: 200ms; }
+
+    @keyframes answer-slide-in {
+      from {
+        opacity: 0;
+        transform: translateX(-16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    /* Result reveal animation */
+    .result-title {
+      animation: result-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) backwards;
+    }
+    .result-subtitle {
+      animation: result-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) 100ms backwards;
+    }
+    .result-blurb {
+      animation: result-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms backwards;
+    }
+    .score-bars {
+      animation: result-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) 300ms backwards;
+    }
+    .contribution-breakdown {
+      animation: result-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) 400ms backwards;
+    }
+    .result-actions {
+      animation: result-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) 500ms backwards;
+    }
+
+    @keyframes result-reveal {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Subtle pulse on progress bar glow */
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 20px var(--primary-glow); }
+      50% { box-shadow: 0 0 30px var(--primary-glow), 0 0 40px rgba(163, 59, 92, 0.2); }
+    }
+
+    .progress-bar {
+      animation: glow-pulse 3s ease-in-out infinite;
+    }
+
+    /* Selection state transitions */
+    ::selection {
+      background: var(--primary);
+      color: var(--text-main);
+    }
+
+    /* Focus states for accessibility */
+    .answer-btn:focus-visible,
+    .nav-btn:focus-visible,
+    .cta-btn:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Simple Header -->
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 16px 24px; background: rgba(5,5,7,0.9); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <a href="../index.html" style="font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--text-main); text-decoration: none; letter-spacing: 0.02em;">un<span style="font-weight: 400; opacity: 0.7;">scarred</span></a>
+    <a href="/quizzes/" style="font-size: 0.85rem; color: var(--text-soft); text-decoration: none; display: flex; align-items: center; gap: 6px;">? All Quizzes</a>
+  </header>
+
+  <div class="quiz-shell" style="padding-top: 80px;">
+    <div class="quiz-card">
+      <header class="quiz-header">
+        <div class="quiz-title">Which War Is Your Nervous System Fighting In Love </div>
+        <div class="quiz-subtitle">
+          17 questions. No sugar coating. This is a nervous system threat assessment, not a cute attachment quiz.
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="progressText">Question 1 of 18</span>
+          <span id="stageText"></span>
+        </div>
+      </header>
+
+      <main id="quizBody"></main>
+
+      <footer class="quiz-footer">
+        <div class="footer-nav">
+          <div class="nav-left">
+            <button class="nav-btn" id="backBtn">
+              <span class="icon">?</span>
+              Back
+            </button>
+          </div>
+          <div class="nav-right">
+            <button class="nav-btn" id="restartBtn" style="display:none;">
+              Restart
+            </button>
+            <button class="nav-btn primary" id="nextBtn">
+              Next
+              <span class="icon">?</span>
+            </button>
+          </div>
+        </div>
+        <div class="quiz-footer-meta">
+          Answer with what you actually do in the moment, not what you wish you would do.
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        id: "Q0",
+        label: "Stage check",
+        text: "Right now, which one feels closest ",
+        subtext: "This does not change your score. It helps flavor your result.",
+        options: [
+          { letter: "A", text: "I'm in the middle of it", metaStage: "in_it" },
+          { letter: "B", text: "We're technically done but still emotionally tangled", metaStage: "tangled" },
+          { letter: "C", text: "It's over and I'm trying to rebuild", metaStage: "rebuilding" },
+          { letter: "D", text: "I'm not sure anything was toxic, but my system won't calm down", metaStage: "unsure" }
+        ]
+      },
+      {
+        id: "Q1",
+        label: "Last fight",
+        text: "You and someone you're attached to have a huge argument. They walk away or stop replying. In that immediate moment, what's your body's default move ",
+        options: [
+          { letter: "A", text: "My chest drops. I'm sure I've ruined everything and I start spiraling through every way I could lose them.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "I go cold and annoyed. In my head I start listing all the ways they're overreacting and how I'm above this.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "I immediately start crafting the perfect message to calm them down, even if it means apologizing for things that aren't mine.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "My brain goes into replay mode. I scroll back through messages, analyze every line, and try to work out what exactly flipped the switch.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q2",
+        label: "When they cancel",
+        text: "They cancel plans last minute with a vague reason. What's your immediate reaction ",
+        options: [
+          { letter: "A", text: "I want to cry. I feel hurt and wonder why they don't love me.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "I feel disrespected and angry. Who do they think they are ", mask: "armored", war: "exposure" },
+          { letter: "C", text: "I panic and start figuring out how to fix this so they don't pull further away.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "I go cold and start analyzing whether this is part of a bigger pattern.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q3",
+        label: "Criticism hit",
+        text: "Someone you care about tells you, calmly, that something you did hurt them. Which reaction dominates ",
+        options: [
+          { letter: "A", text: "Shame flood. I'm instantly terrified I'm a bad person and they'll abandon me.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Ego wound. Part of me wants to defend myself, correct them, or silently downgrade them.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Fix-it panic. I rush to over-explain, over-apologize, and promise to do better instantly.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Analytical dissection. I go numb and start checking whether their story even adds up.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "Q4",
+        label: "When you sense distance",
+        text: "You feel them pulling away but they haven't said anything directly. Which defense kicks in strongest ",
+        options: [
+          { letter: "A", text: "Testing behavior. I might poke, pick fights, or become more intense to see if they still care.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Protective withdrawal. I pull back first. I refuse to be the one who looks weak or needy, even if I'm hurting.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Extra accommodation. I become sweeter and more helpful so they have no reason to leave.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "Strategic observation. I quietly start planning my exit while watching their behavior like a scientist.", mask: "analyzer", war: "entrapment" }
+        ]
+      },
+      {
+        id: "Q5",
+        label: "Being deeply seen",
+        text: "Someone looks at you and says, \"I see how much you're carrying. You don't have to be this strong.\" Which response is strongest ",
+        options: [
+          { letter: "A", text: "Terror and craving at once. I want to cry and run at the same time. Intimacy feels like both safety and danger.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Suspicion. I wonder what they want and why they're trying to get past my armor.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Grateful melting. I immediately want to become even more what they need so I never lose that gaze.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "Awkward analysis. I analyze their wording, tone, and motives instead of dropping into the feeling.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "Q6",
+        label: "Sensory and conflict",
+        text: "During a heated conversation, the environment gets loud, chaotic, or overstimulating. Which survival mode takes over ",
+        options: [
+          { letter: "A", text: "Amplification. I get louder and more intense. My body feels like it'll explode if I don't express everything right now.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Cold shutdown. My face goes flat while my mind looks for the fastest way to regain control.", mask: "armored", war: "entrapment" },
+          { letter: "C", text: "Invisible crisis. I stay externally calm but feel dizzy and disconnected inside while trying to keep everyone else okay.", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "System overload. My brain fuzzes. I can't track the conversation and later reconstruct it like evidence from fragments.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q7",
+        label: "After a breakup",
+        text: "Think about your last breakup or major rupture. What dominated your first few weeks ",
+        options: [
+          { letter: "A", text: "Emotional withdrawal. I obsessed, begged, raged, or clung in my head even if I didn't always show it.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Image management. I looked fine, focused on winning, and made sure they knew I wasn't pressed.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Relationship autopsy as performance. I rewrote the story, imagined how I could have been better, and fantasized about fixing it.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "Forensic analysis. I replayed the entire relationship, made timelines, and tried to find the exact failure point.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q8",
+        label: "When you feel trapped",
+        text: "You realize the relationship is costing you your peace, but leaving feels impossible. Which reaction is loudest ",
+        options: [
+          { letter: "A", text: "Emotional whiplash. My system screams for connection and freedom at the same time and I feel like I'm losing my mind.", mask: "flooded", war: "entrapment" },
+          { letter: "B", text: "Lockdown. I clamp down, tell myself to stop being dramatic, and focus on what I'm getting out of it.", mask: "armored", war: "entrapment" },
+          { letter: "C", text: "Savior fantasy. I think \"If I can just heal them or love them right, we'll both be free.\"", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "Escape architecture. I start making hidden plans, collecting information, and trying to engineer a clean exit.", mask: "analyzer", war: "entrapment" }
+        ]
+      },
+      {
+        id: "Q9",
+        label: "Fear of exposure",
+        text: "Someone gets close enough to see your worst traits and survival patterns. Which fear dominates ",
+        options: [
+          { letter: "A", text: "Abandonment terror. I'm terrified they'll see how broken I am and leave, so I either cling harder or blow things up.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Defensive rage. I feel angry at the idea of being judged and mentally prepare a case about why they're no better than me.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Performance escalation. I become the best version of myself around them and hide anything messy at all costs.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Clinical confession. I pre-emptively admit things in a detached way, then watch how they respond like a test sample.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "Q10",
+        label: "Emotional permanence",
+        text: "When someone leaves the room or goes offline for a while, how real do they feel to you emotionally ",
+        options: [
+          { letter: "A", text: "Gone. My body reacts like I've already been abandoned even if my mind knows they'll be back.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Conditional. They feel the same unless they cross a line. Then they switch from important to irrelevant in my head.", mask: "armored", war: "erasure" },
+          { letter: "C", text: "Invisible tether. I stay in conversation with them in my head, rehearsing what I'll say and how to keep the connection.", mask: "phantom", war: "abandonment" },
+          { letter: "D", text: "File storage. I know they exist, but the felt sense of them becomes more like data I can open or close mentally.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q11",
+        label: "When you're \"too much\"",
+        text: "Somebody tells you that your reactions or needs feel like \"a lot.\" Which response hits hardest ",
+        options: [
+          { letter: "A", text: "Shame spiral. I collapse inside and feel ashamed, then get more reactive because it feels like proof I'm unlovable.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Offended dismissal. I decide they're too sensitive or weak for me.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Immediate adjustment. I tone myself down, apologize, and try to become whatever version wouldn't be \"too much.\"", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Reality audit. I step back and start questioning whether my behavior was actually unreasonable or if they're deflecting.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "Q12",
+        label: "Executive function in love",
+        text: "What happens to your basic life tasks when your relationship is unstable ",
+        options: [
+          { letter: "A", text: "Total derailment. Sleep, food, hygiene, work. My system orbits the relationship.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Compensatory rigidity. I become stricter with myself and double down on routines and productivity to stay ahead.", mask: "armored", war: "entrapment" },
+          { letter: "C", text: "Split-screen collapse. I over-function for others while quietly falling apart alone.", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "Time distortion. I lose hours to scrolling, research, or replaying conversations and miss basic things.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q13",
+        label: "Black and white thinking",
+        text: "Under stress in relationships, how does your splitting show up strongest ",
+        options: [
+          { letter: "A", text: "Person flipping. People go from soulmate to enemy in my head depending on how safe I feel that day.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Value sorting. I split people into useful or useless, loyal or dead to me, and move them accordingly.", mask: "armored", war: "erasure" },
+          { letter: "C", text: "Self-blame toggle. I flip between \"I'm the problem\" and \"if I just improve enough they'll stay,\" never landing in the middle.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Competing narratives. I'm either obviously the rational one or obviously the crazy one and keep switching sides.", mask: "analyzer", war: "exposure" }
+        ]
+      },
+      {
+        id: "Q14",
+        label: "Your hidden rule about love",
+        text: "Which feels closest to the rule your body believes about love, even if your mind disagrees ",
+        options: [
+          { letter: "A", text: "Love always leaves once it really sees me.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Love is a power exchange and I can't be the weaker one.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Love is something I earn by being good, useful, or perfect.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Love is unpredictable data. I can't relax without understanding the pattern.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q15",
+        label: "Conflict repair",
+        text: "After a blow-up, what's your strongest pull ",
+        options: [
+          { letter: "A", text: "Intense reconnection attempt. Emotional confession, desperate apology, or dramatic exit then return.", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "Reset button. Acting like nothing happened and expecting everyone to move on.", mask: "armored", war: "exposure" },
+          { letter: "C", text: "Full responsibility. Taking blame whether it was balanced or not, just to calm the waters.", mask: "phantom", war: "exposure" },
+          { letter: "D", text: "Explanation essays. Writing long messages that map the conflict from every angle.", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q16",
+        label: "Your relationship with control",
+        text: "When things feel out of your control emotionally, which belief is loudest ",
+        options: [
+          { letter: "A", text: "\"If I could just get reassurance right now, I'd calm down.\"", mask: "flooded", war: "abandonment" },
+          { letter: "B", text: "\"If I don't take control, they'll end up controlling or humiliating me.\"", mask: "armored", war: "exposure" },
+          { letter: "C", text: "\"If I can keep everyone else regulated, I'll finally feel safe.\"", mask: "phantom", war: "entrapment" },
+          { letter: "D", text: "\"If I can understand every variable, I can stop this from happening again.\"", mask: "analyzer", war: "erasure" }
+        ]
+      },
+      {
+        id: "Q17",
+        label: "Meta reaction",
+        text: "Reading these questions, what happened in your body ",
+        options: [
+          { letter: "A", text: "I felt seen and attacked. Some questions made me want to cry or throw my phone.", mask: "flooded" },
+          { letter: "B", text: "I felt slightly annoyed by the emotional language but curious about the framework.", mask: "armored" },
+          { letter: "C", text: "I wanted to answer \"correctly\" and kept second-guessing what you wanted me to say.", mask: "phantom" },
+          { letter: "D", text: "I mentally catalogued which questions overlapped and started mapping my own scoring system.", mask: "analyzer" }
+        ]
+      }
+    ];
+
+    const resultBlurbs = {
+      "abandonment-flooded": {
+        title: "Abandonment War + Flooded Mirror",
+        blurb: "Your system is on high alert for loss and rejection, so when anything feels like distance, you explode. Panic, rage, tears, tests, you flood to make sure they do not just slip away and pretend you never mattered. Underneath the reaction is a body that is convinced being left will break you."
+      },
+      "abandonment-armored": {
+        title: "Abandonment War + Armored Mirror",
+        blurb: "You are terrified of being abandoned, but you would rather burn the connection than let anyone see that. When you feel someone pulling away you go cold, detached, and \"idc,\" and try to leave emotionally before they can leave you. Your armor is built over a heart that cares way more than you admit."
+      },
+      "abandonment-phantom": {
+        title: "Abandonment War + Phantom Performer",
+        blurb: "Your deepest fear is being left, so you turn yourself into the safest, easiest, most lovable version of you to keep people from walking away. You minimize your needs, overgive, and perform \"chill\" while your body is screaming about being dropped. You stay chosen by disappearing inside the role."
+      },
+      "abandonment-analyzer": {
+        title: "Abandonment War + Hyper Analyzer",
+        blurb: "Abandonment wrecked you before, so now your brain is obsessed with catching it early. You read every delay, tone shift, or pattern change like data, replay everything, and live in prediction mode. You do not just feel afraid of being left, you try to outthink it."
+      },
+      "exposure-flooded": {
+        title: "Exposure War + Flooded Mirror",
+        blurb: "Being seen as wrong or \"the bad one\" hits you like a truck. When you feel exposed or misunderstood, you flood with shame, anger, and a desperate need to clear your name. You are not just fighting about the situation, you are fighting for your right to not be humiliated or thrown away."
+      },
+      "exposure-armored": {
+        title: "Exposure War + Armored Mirror",
+        blurb: "Your system is terrified of being exposed as flawed, so you protect yourself with pride and distance. The second you feel accused or criticized, you snap into defense, go cold, or flip the blame back. It is not that you never feel remorse, it is that looking wrong feels like losing safety."
+      },
+      "exposure-phantom": {
+        title: "Exposure War + Phantom Performer",
+        blurb: "You survive by being the composed, self aware, \"better than the chaos\" one. When you feel at risk of being seen as messy or wrong, you slide into performer mode, become wise, calm, and agreeable, and hide your raw reaction. People see the put together version, not the part that is scared of being judged."
+      },
+      "exposure-analyzer": {
+        title: "Exposure War + Hyper Analyzer",
+        blurb: "Being misread or misrepresented lights your system up, so you defend yourself with details. When you feel exposed, you replay every moment, build timelines, and argue facts so nobody can lock you in the wrong story. Accuracy is your shield against feeling like the villain."
+      },
+      "entrapment-flooded": {
+        title: "Entrapment War + Flooded Mirror",
+        blurb: "Your body is on guard for control and being swallowed up by someone else's needs. When something feels like a cage, you burst, pick fights, or blow things up so you can breathe again. Your outbursts are less about not caring and more about needing to escape feeling trapped."
+      },
+      "entrapment-armored": {
+        title: "Entrapment War + Armored Mirror",
+        blurb: "You want connection, but your system is wired to protect your freedom first. When partners want more access, time, or commitment, you harden, shut down, and act like you do not need anybody. The wall is there so no one can own you again, even if a part of you still wants to be close."
+      },
+      "entrapment-phantom": {
+        title: "Entrapment War + Phantom Performer",
+        blurb: "You are scared of being controlled, so ironically you say yes to everything and disappear inside other people's lives. You perform the easy, low maintenance, accommodating version of you, then quietly suffocate. You avoid conflict in the moment and end up feeling caged by your own compliance."
+      },
+      "entrapment-analyzer": {
+        title: "Entrapment War + Hyper Analyzer",
+        blurb: "Your mind runs risk assessments nonstop, especially when someone wants more from you. Instead of feeling your fear of being trapped, you argue logistics, timelines, and practicality, and stall until the pressure passes. You are not indecisive for fun, you are trying to stay free."
+      },
+      "erasure-flooded": {
+        title: "Erasure War + Flooded Mirror",
+        blurb: "Your core terror is being forgotten, replaced, or treated as background. When you feel sidelined or left out, your pain comes out loud, with big reactions that scream \"I matter too.\" People see jealousy or drama, they do not see the years of feeling invisible that live under it."
+      },
+      "erasure-armored": {
+        title: "Erasure War + Armored Mirror",
+        blurb: "Being treated as optional cuts deep, so you act like you do not need anyone to pick you. When you feel erased, you shut down, go cool, and quietly downgrade people without ever naming the hurt. You protect your pride by pretending it did not matter, even when it did."
+      },
+      "erasure-phantom": {
+        title: "Erasure War + Phantom Performer",
+        blurb: "You survive by staying \"too valuable to lose.\" When your erasure fear kicks in, you overfunction, overgive, and become the one who is always there so they never have a reason to replace you. You do everything to secure your place, while wondering if anyone would choose you without all you do."
+      },
+      "erasure-analyzer": {
+        title: "Erasure War + Hyper Analyzer",
+        blurb: "You are always tracking where you stand in people's lives. A small change in effort, invitations, or energy sends you into comparison and mental scorekeeping. You are not just sensitive, you are watching for the moment you get quietly phased out."
+      },
+      "ground-zero": {
+        title: "Ground Zero Â· All Fronts War",
+        blurb: "You are not fighting one war, you are living inside all of them. Abandonment, exposure, entrapment, erasure, your system can fire every alarm at once and switch masks faster than most people switch outfits. You do not fit one box, you are running an entire nervous system city that nobody ever taught you how to run."
+      }
+    };
+
+    const resultLinks = {
+      "abandonment-flooded": "/results/abandonment-flooded",
+      "abandonment-armored": "/results/abandonment-armored",
+      "abandonment-phantom": "/results/abandonment-phantom",
+      "abandonment-analyzer": "/results/abandonment-analyzer",
+      "exposure-flooded": "/results/exposure-flooded",
+      "exposure-armored": "/results/exposure-armored",
+      "exposure-phantom": "/results/exposure-phantom",
+      "exposure-analyzer": "/results/exposure-analyzer",
+      "entrapment-flooded": "/results/entrapment-flooded",
+      "entrapment-armored": "/results/entrapment-armored",
+      "entrapment-phantom": "/results/entrapment-phantom",
+      "entrapment-analyzer": "/results/entrapment-analyzer",
+      "erasure-flooded": "/results/erasure-flooded",
+      "erasure-armored": "/results/erasure-armored",
+      "erasure-phantom": "/results/erasure-phantom",
+      "erasure-analyzer": "/results/erasure-analyzer",
+      "ground-zero": "/results/ground-zero"
+    };
+
+    let currentIndex = 0;
+    const answers = {};
+    let stageMeta = null;
+
+    const quizBody = document.getElementById("quizBody");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const stageText = document.getElementById("stageText");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const restartBtn = document.getElementById("restartBtn");
+
+    function labelWar(key) {
+      switch (key) {
+        case "abandonment": return "Abandonment War";
+        case "exposure": return "Exposure War";
+        case "entrapment": return "Entrapment War";
+        case "erasure": return "Erasure War";
+        default: return key;
+      }
+    }
+
+    function labelMask(key) {
+      switch (key) {
+        case "flooded": return "Flooded Mirror";
+        case "armored": return "Armored Mirror";
+        case "phantom": return "Phantom Performer";
+        case "analyzer": return "Hyper Analyzer";
+        default: return key;
+      }
+    }
+
+    function updateProgress() {
+      const total = questions.length;
+      const pct = ((currentIndex + 1) / total) * 100;
+      progressBar.style.width = pct + "%";
+      progressText.textContent = `Question ${currentIndex + 1} of ${total}`;
+      
+      if (stageMeta) {
+        const stageLabels = {
+          in_it: "In the middle of it",
+          tangled: "Emotionally tangled",
+          rebuilding: "Rebuilding",
+          unsure: "Uncertain"
+        };
+        stageText.textContent = stageLabels[stageMeta] || "";
+      }
+    }
+
+    function renderQuestion() {
+      const q = questions[currentIndex];
+      const selectedAnswer = answers[q.id];
+
+      let optionsHTML = q.options.map(opt => {
+        const selectedClass = selectedAnswer === opt.letter   "selected" : "";
+        return `
+          <button class="answer-btn ${selectedClass}" data-letter="${opt.letter}">
+            <span class="letter">${opt.letter}.</span>
+            <span class="text">${opt.text}</span>
+          </button>
+        `;
+      }).join("");
+
+      quizBody.innerHTML = `
+        <div class="question-wrap">
+          <div class="question-label">${q.label}</div>
+          <div class="question-text">${q.text}</div>
+          ${q.subtext   `<div class="question-subtext">${q.subtext}</div>` : ""}
+          <div class="answers-wrap">
+            ${optionsHTML}
+          </div>
+        </div>
+      `;
+
+      // Attach click handlers to answer buttons
+      quizBody.querySelectorAll(".answer-btn").forEach(btn => {
+        btn.addEventListener("click", () => selectAnswer(btn.dataset.letter));
+      });
+
+      updateProgress();
+      updateNavButtons();
+    }
+
+    function selectAnswer(letter) {
+      const q = questions[currentIndex];
+      answers[q.id] = letter;
+
+      // Handle stage meta for Q0
+      if (q.id === "Q0") {
+        const opt = q.options.find(o => o.letter === letter);
+        if (opt && opt.metaStage) {
+          stageMeta = opt.metaStage;
+        }
+      }
+
+      // Update selected state visually
+      quizBody.querySelectorAll(".answer-btn").forEach(btn => {
+        btn.classList.toggle("selected", btn.dataset.letter === letter);
+      });
+
+      updateNavButtons();
+    }
+
+    function updateNavButtons() {
+      backBtn.disabled = currentIndex === 0;
+      
+      const q = questions[currentIndex];
+      const hasAnswer = answers[q.id] !== undefined;
+      
+      if (currentIndex === questions.length - 1) {
+        nextBtn.innerHTML = `Finish <span class="icon">?</span>`;
+      } else {
+        nextBtn.innerHTML = `Next <span class="icon">?</span>`;
+      }
+      
+      nextBtn.disabled = !hasAnswer;
+    }
+
+    function calculateResults() {
+      const warScores = { abandonment: 0, exposure: 0, entrapment: 0, erasure: 0 };
+      const maskScores = { flooded: 0, armored: 0, phantom: 0, analyzer: 0 };
+      const contributions = [];
+
+      questions.forEach(q => {
+        if (q.id === "Q0") return; // Skip stage question
+        
+        const letter = answers[q.id];
+        if (!letter) return;
+        
+        const opt = q.options.find(o => o.letter === letter);
+        if (!opt) return;
+
+        if (opt.mask) {
+          maskScores[opt.mask]++;
+          contributions.push({
+            questionId: q.id,
+            label: q.label,
+            answer: opt.text,
+            mask: opt.mask,
+            war: opt.war || null
+          });
+        }
+        if (opt.war) {
+          warScores[opt.war]++;
+        }
+      });
+
+      // Find dominant war and mask
+      const warEntries = Object.entries(warScores).sort((a, b) => b[1] - a[1]);
+      const maskEntries = Object.entries(maskScores).sort((a, b) => b[1] - a[1]);
+
+      const topWar = warEntries[0];
+      const secondWar = warEntries[1];
+      const topMask = maskEntries[0];
+
+      // Check for ground zero (all fronts war)
+      const warValues = Object.values(warScores);
+      const maxWar = Math.max(...warValues);
+      const minWar = Math.min(...warValues);
+      const isGroundZero = (maxWar - minWar) <= 2 && maxWar >= 3;
+
+      let resultKey;
+      if (isGroundZero) {
+        resultKey = "ground-zero";
+      } else {
+        resultKey = `${topWar[0]}-${topMask[0]}`;
+      }
+
+      return {
+        resultKey,
+        warScores,
+        maskScores,
+        topWar,
+        secondWar,
+        topMask,
+        contributions,
+        isGroundZero
+      };
+    }
+
+    function showResults() {
+      const results = calculateResults();
+      const { resultKey, warScores, maskScores, topWar, secondWar, topMask, contributions, isGroundZero } = results;
+      
+      const result = resultBlurbs[resultKey] || resultBlurbs["ground-zero"];
+      const link = resultLinks[resultKey] || "#";
+
+      // Build war score bars
+      const maxWarScore = Math.max(...Object.values(warScores), 1);
+      const warBarsHTML = Object.entries(warScores).map(([key, val]) => `
+        <div class="score-row">
+          <span class="score-label">${labelWar(key)}</span>
+          <div class="score-track">
+            <div class="score-fill" style="width: ${(val / maxWarScore) * 100}%"></div>
+          </div>
+          <span class="score-value">${val}</span>
+        </div>
+      `).join("");
+
+      // Build mask score bars
+      const maxMaskScore = Math.max(...Object.values(maskScores), 1);
+      const maskBarsHTML = Object.entries(maskScores).map(([key, val]) => `
+        <div class="score-row">
+          <span class="score-label">${labelMask(key)}</span>
+          <div class="score-track">
+            <div class="score-fill" style="width: ${(val / maxMaskScore) * 100}%"></div>
+          </div>
+          <span class="score-value">${val}</span>
+        </div>
+      `).join("");
+
+      // Build contribution breakdown grouped by war
+      const contributionsByWar = {};
+      contributions.forEach(c => {
+        const warKey = c.war || "general";
+        if (!contributionsByWar[warKey]) contributionsByWar[warKey] = [];
+        contributionsByWar[warKey].push(c);
+      });
+
+      let contributionHTML = "";
+      Object.entries(contributionsByWar).forEach(([warKey, items]) => {
+        const warTitle = warKey === "general"   "General Patterns" : labelWar(warKey);
+        const itemsHTML = items.map((c, i) => `
+          <li class="contribution-question-item">
+            <span class="contribution-question-rank">${i + 1}.</span>
+            <span>${c.label}</span>
+            <span class="contribution-answer">${c.answer.substring(0, 60)}${c.answer.length > 60   "..." : ""}</span>
+          </li>
+        `).join("");
+        
+        contributionHTML += `
+          <div class="contribution-war-block">
+            <div class="contribution-war-title">?? ${warTitle}</div>
+            <ul class="contribution-question-list">${itemsHTML}</ul>
+          </div>
+        `;
+      });
+
+      // Secondary war insight
+      let secondaryInsight = "";
+      if (!isGroundZero && secondWar && secondWar[1] > 0 && (topWar[1] - secondWar[1]) <= 3) {
+        secondaryInsight = `
+          <div class="analysis-block">
+            <h3>Secondary Pattern</h3>
+            <p>Your ${labelWar(secondWar[0])} scored ${secondWar[1]} points, close behind your primary war. 
+            When you're activated, it might feel like "${labelWar(secondWar[0]).toLowerCase()}" 
+            is just as possible as your primary war.</p>
+          </div>
+        `;
+      }
+
+      quizBody.innerHTML = `
+        <div class="question-wrap">
+          <div class="result-title">${result.title}</div>
+          <div class="result-subtitle">Your nervous system's primary battlefield</div>
+          <div class="result-blurb">${result.blurb}</div>
+          
+          <div class="score-bars">
+            <div>
+              <div class="score-group-title">War Scores</div>
+              ${warBarsHTML}
+            </div>
+            <div>
+              <div class="score-group-title">Mask Scores</div>
+              ${maskBarsHTML}
+            </div>
+          </div>
+
+          ${secondaryInsight}
+
+          <div class="contribution-breakdown">
+            <div class="score-group-title">How You Got Here</div>
+            ${contributionHTML}
+          </div>
+
+          <div class="result-actions">
+            <a href="mirror.html" class="cta-btn primary">
+              Take Full Mirror Quiz ?
+            </a>
+            <button class="cta-btn secondary" onclick="restartQuiz()">
+              ? Take Again
+            </button>
+            <button class="cta-btn secondary" onclick="copyResults()">
+              Copy Results
+            </button>
+          </div>
+
+          <div class="result-metadata">
+            <span>Primary: ${labelWar(topWar[0])} + ${labelMask(topMask[0])}</span>
+            <span>${new Date().toLocaleDateString()}</span>
+          </div>
+        </div>
+      `;
+
+      // Update UI state
+      progressBar.style.width = "100%";
+      progressText.textContent = "Complete";
+      stageText.textContent = "";
+      nextBtn.style.display = "none";
+      backBtn.style.display = "none";
+      restartBtn.style.display = "inline-flex";
+    }
+
+    function restartQuiz() {
+      currentIndex = 0;
+      Object.keys(answers).forEach(k => delete answers[k]);
+      stageMeta = null;
+      
+      nextBtn.style.display = "inline-flex";
+      backBtn.style.display = "inline-flex";
+      restartBtn.style.display = "none";
+      
+      renderQuestion();
+    }
+
+    function copyResults() {
+      const results = calculateResults();
+      const result = resultBlurbs[results.resultKey] || resultBlurbs["ground-zero"];
+      
+      const text = `${result.title}\n\n${result.blurb}\n\nWar Scores:\n` +
+        Object.entries(results.warScores).map(([k, v]) => `  ${labelWar(k)}: ${v}`).join("\n") +
+        `\n\nMask Scores:\n` +
+        Object.entries(results.maskScores).map(([k, v]) => `  ${labelMask(k)}: ${v}`).join("\n");
+      
+      navigator.clipboard.writeText(text).then(() => {
+        alert("Results copied to clipboard!");
+      }).catch(() => {
+        alert("Could not copy results. Please try again.");
+      });
+    }
+
+    // Event listeners
+    backBtn.addEventListener("click", () => {
+      if (currentIndex > 0) {
+        currentIndex--;
+        renderQuestion();
+      }
+    });
+
+    nextBtn.addEventListener("click", () => {
+      const q = questions[currentIndex];
+      if (!answers[q.id]) return;
+      
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        renderQuestion();
+      } else {
+        showResults();
+      }
+    });
+
+    restartBtn.addEventListener("click", restartQuiz);
+
+    // Initialize
+    renderQuestion();
+  </script>
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred\.site\/)/);
+  var root = match   match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
+  var prefix = depth > 0   new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+</body>
+</html>
+
+

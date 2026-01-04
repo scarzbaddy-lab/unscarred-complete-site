@@ -1,0 +1,547 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relationship Pattern Mapping Sessions | Unscarred</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --card-glass: rgba(12, 12, 18, 0.9);
+      --primary: #a33b5c;
+      --primary-soft: rgba(163, 59, 92, 0.16);
+      --accent: #c9763d;
+      --text-main: #f5f2f7;
+      --text-soft: #a7a2b8;
+      --border-subtle: rgba(255, 255, 255, 0.09);
+      --radius-xl: 22px;
+      --shadow-soft: 0 24px 60px rgba(0, 0, 0, 0.7);
+      --font-display: "Cormorant Garamond", system-ui, serif;
+      --font-body: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: var(--font-body);
+      background: radial-gradient(circle at top, #1c1623 0, #050507 45%);
+      color: var(--text-main);
+      min-height: 100vh;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5, 5, 7, 0.95), rgba(5, 5, 7, 0.75), transparent);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .header-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 16px 20px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #f5f2f7;
+      position: relative;
+      padding-left: 6px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .logo::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 52%;
+      width: 3px;
+      height: 22px;
+      border-radius: 999px;
+      background: linear-gradient(to bottom, var(--primary), var(--accent));
+      transform: translateY(-50%);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-soft);
+    }
+
+    nav a {
+      padding-bottom: 4px;
+      border-bottom: 1px solid transparent;
+    }
+
+    nav a:hover {
+      border-bottom-color: rgba(255, 255, 255, 0.35);
+      color: #ffffff;
+    }
+
+    main {
+      flex: 1;
+      padding: 32px 16px 48px;
+    }
+
+    .layout {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    @media (max-width: 880px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Left column: intro and session types */
+
+    .intro-card {
+      background: radial-gradient(circle at top left, rgba(163, 59, 92, 0.22), transparent 55%), var(--card-glass);
+      border-radius: 26px;
+      padding: 26px 24px 22px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(201, 118, 61, 0.16), transparent 55%);
+      pointer-events: none;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(8, 7, 10, 0.84);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--text-soft);
+      margin-bottom: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: radial-gradient(circle, #ffe0c1, #c9763d);
+      box-shadow: 0 0 0 4px rgba(201, 118, 61, 0.14);
+    }
+
+    .intro-card h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.1rem, 3vw, 2.6rem);
+      line-height: 1.16;
+      margin: 0 0 10px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .intro-card h1 span {
+      color: var(--primary);
+      letter-spacing: 0.18em;
+      font-size: 0.63em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .intro-sub {
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: var(--text-soft);
+      max-width: 34rem;
+      margin-bottom: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-sub strong {
+      color: #fdf9ff;
+      font-weight: 500;
+    }
+
+    .intro-quote {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      border-left: 2px solid rgba(255, 255, 255, 0.09);
+      padding-left: 12px;
+      margin-bottom: 18px;
+    }
+
+    .intro-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      font-size: 0.82rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .intro-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .dot-soft {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(245, 242, 247, 0.7);
+      opacity: 0.7;
+    }
+
+    .intro-note {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin-top: 4px;
+      opacity: 0.9;
+    }
+
+    .sessions-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .session-card {
+      background: rgba(10, 9, 13, 0.96);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 16px 16px 14px;
+      display: grid;
+      grid-template-columns: 1.4fr auto;
+      gap: 12px;
+      align-items: center;
+      transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .session-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, var(--primary-soft), transparent 70%);
+      opacity: 0;
+      transition: opacity 140ms ease;
+      pointer-events: none;
+    }
+
+    .session-card:hover {
+      border-color: rgba(163, 59, 92, 0.45);
+      box-shadow: 0 16px 40px rgba(3, 3, 6, 0.9);
+      transform: translateY(-3px);
+    }
+
+    .session-card:hover::before {
+      opacity: 1;
+    }
+
+    .session-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      margin: 0 0 4px;
+    }
+
+    .session-tagline {
+      font-size: 0.86rem;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .session-meta-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 0.78rem;
+      color: rgba(245, 242, 247, 0.7);
+    }
+
+    .session-meta-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(6, 5, 8, 0.9);
+    }
+
+    .session-price-block {
+      text-align: right;
+      font-size: 0.84rem;
+    }
+
+    .price-main {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .price-note {
+      font-size: 0.78rem;
+      color: var(--text-soft);
+    }
+
+    .session-cta {
+      margin-top: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.78rem;
+      color: rgba(245, 242, 247, 0.88);
+    }
+
+    .session-cta span {
+      font-size: 0.7rem;
+      opacity: 0.7;
+    }
+
+    /* Right column: calendar */
+
+    .calendar-card {
+      background: radial-gradient(circle at top right, rgba(163, 59, 92, 0.22), transparent 60%), var(--card-glass);
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 20px 18px 18px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .calendar-header {
+      margin-bottom: 12px;
+    }
+
+    .calendar-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      margin: 0 0 4px;
+    }
+
+    .calendar-header p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .calendar-info {
+      font-size: 0.78rem;
+      color: rgba(245, 242, 247, 0.7);
+      margin-bottom: 10px;
+    }
+
+    .calendar-embed {
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+      background: #050507;
+    }
+
+    .calendar-embed iframe {
+      display: block;
+      width: 100%;
+      height: 600px;
+      border: 0;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 16px 20px 22px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-align: center;
+      background: radial-gradient(circle at bottom, #141019, #050507 55%);
+    }
+
+    footer a {
+      color: rgba(245, 242, 247, 0.78);
+    }
+
+    footer a:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-wrap">
+
+    <header>
+      <div class="header-inner">
+        <a href="index.html" class="logo">un<span>scarred</span></a>
+        <nav>
+          <a href="/quizzes/">Quizzes</a>
+          <a href="programs.html">Programs</a>
+          <a href="coaching.html">Coaching</a>
+          <a href="services.html">Services</a>
+          <a href="about.html">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <div class="layout">
+        <!-- Left column -->
+        <section class="intro-card">
+          <div class="pill">
+            <span class="pill-dot"></span>
+            Relationship Pattern Mapping
+          </div>
+
+          <h1>
+            <span>Relationship Clarity Lab</span>
+            Book a session and see the pattern, not just the excuse
+          </h1>
+
+          <p class="intro-sub">
+            In these sessions we take your situation out of your head and put it on paper.  
+            We map reactions, run them through the concern and ownership test, and separate normal conflict from long term manipulation.  
+            You leave with language, perspective, and a plan that feels emotionally grown and doable.
+          </p>
+
+          <p class="intro-quote">
+            This is not therapy. This is a clarity lab for people who are tired of confusion, mixed signals, and being told they are the problem when the pattern says otherwise.
+          </p>
+
+          <div class="intro-meta">
+            <span><span class="dot-soft"></span> Relationship pattern mapping</span>
+            <span><span class="dot-soft"></span> Nervous system informed, no sugar coating</span>
+            <span><span class="dot-soft"></span> Online session, audio or video</span>
+          </div>
+
+          <p class="intro-note">
+            Choose a session type below. You will confirm the details inside the booking form after you pick a time.
+          </p>
+
+          <div class="sessions-grid">
+            <article class="session-card">
+              <div>
+                <h3>Check in</h3>
+                <p class="session-tagline">
+                  Quick check-in for a specific situation or script review.
+                </p>
+                <div class="session-meta-line">
+                  <span class="session-meta-pill">30 minutes</span>
+                  <span class="session-meta-pill">Check in</span>
+                  <span class="session-meta-pill">Specific topic</span>
+                </div>
+              </div>
+              <div class="session-price-block">
+                <div class="price-main">$27</div>
+                <div class="price-note">Pay at confirmation</div>
+                <div class="session-cta">
+                  Book this
+                  <span>choose time on the right</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="session-card">
+              <div>
+                <h3>Single focus call</h3>
+                <p class="session-tagline">
+                  Session for one ongoing pattern, trauma loaded cycle, or complicated on and off connection.
+                </p>
+                <div class="session-meta-line">
+                  <span class="session-meta-pill">60 minutes</span>
+                  <span class="session-meta-pill">One scenarios</span>
+                  <span class="session-meta-pill">Next steps plan</span>
+                </div>
+              </div>
+              <div class="session-price-block">
+                <div class="price-main">$47</div>
+                <div class="price-note">Pay at confirmation</div>
+                <div class="session-cta">
+                  Book this
+                  <span>choose time on the right</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Right column -->
+        <section class="calendar-card" id="calendar">
+          <div class="calendar-header">
+            <h2>Choose your time</h2>
+            <p>Select the day and time that works best for you. You will see your time zone inside the calendar.</p>
+          </div>
+          <p class="calendar-info">
+            After you book, you will receive an automatic email with your confirmation and session details.
+          </p>
+
+          <div class="calendar-embed">
+            <!-- Google Calendar Appointment Scheduling begin -->
+            <iframe
+              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ1zgTjLaj3qYAFLPRsZG3CjJDho4hYBkiIfHjnYC_bRRR0SCsdOtU6R6oYc7tUV62Tvl9MCE9lZ?gv=true">
+            </iframe>
+            <!-- Google Calendar Appointment Scheduling end -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Unscarred. <a href="privacy.html">Privacy</a> Â· <a href="terms.html">Terms</a></p>
+    </footer>
+  </div>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,382 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anxious Healing Program | Unscarred</title>
+  <meta name="description" content="4-week program to calm your nervous system, stop the chase, and build steady connection. For anxious-preoccupied patterns.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507; --bg-deep: #0a0a0f;
+      --primary: #a33b5c; --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf; --accent: #c9763d; --sage: #7d9a8c;
+      --text-main: #ece8e1; --text-soft: #9a958c; --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px; --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+      --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px;
+      --space-5: 20px; --space-6: 24px; --space-8: 32px; --space-10: 40px;
+      --space-12: 48px; --space-16: 64px; --space-20: 80px;
+      --text-xs: 0.75rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.125rem;
+      --text-xl: 1.25rem; --text-2xl: 1.5rem; --text-3xl: 2rem; --text-4xl: 2.5rem;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); line-height: 1.6; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%), radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.1) 0%, transparent 40%); pointer-events: none; z-index: 0; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .container--narrow { max-width: 700px; }
+    header { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 20px 0; background: rgba(5, 5, 7, 0.9); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border-glass); }
+    .header__inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--primary); }
+    .nav { display: flex; gap: 32px; }
+    .nav a { font-size: 14px; color: var(--text-soft); text-decoration: none; }
+    .nav a:hover { color: var(--text-main); }
+    footer { text-align: center; padding: 60px 0; color: var(--text-dim); font-size: 0.85rem; border-top: 1px solid var(--border-glass); }
+    footer a { color: var(--text-soft); text-decoration: none; }
+    .btn { display: inline-block; padding: 16px 32px; border-radius: 999px; text-decoration: none; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.3s ease; }
+    .btn--rose { background: linear-gradient(135deg, var(--primary), #8a2a4a); color: white; box-shadow: 0 8px 30px var(--primary-glow); }
+    .btn--rose:hover { transform: translateY(-2px); box-shadow: 0 12px 40px var(--primary-glow); }
+    .btn--lg { padding: 18px 40px; font-size: 1rem; }
+    .btn--block { width: 100%; display: block; text-align: center; }
+    
+    .program-hero { padding: 160px 0 80px; text-align: center; background: linear-gradient(135deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95)); }
+    .program-hero__badge { display: inline-block; padding: 8px 20px; background: rgba(163, 59, 92, 0.2); border-radius: 999px; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); margin-bottom: 24px; border: 1px solid rgba(163, 59, 92, 0.3); }
+    .program-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 600; margin-bottom: 16px; }
+    .program-hero__subtitle { font-family: var(--font-display); font-size: var(--text-2xl); font-style: italic; color: var(--text-soft); margin-bottom: 32px; }
+    .program-hero__outcome { max-width: 600px; margin: 0 auto 40px; padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); text-align: left; }
+    .program-hero__outcome strong { display: block; font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 8px; }
+    .program-hero__guarantee { font-size: var(--text-sm); color: var(--text-dim); margin-top: 16px; }
+    
+    .program-section { padding: var(--space-20) 0; }
+    .program-section--alt { background: rgba(255,255,255,0.02); }
+    
+    h2 { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 600; margin-bottom: var(--space-8); }
+    .text-center { text-align: center; }
+    .mb-12 { margin-bottom: var(--space-12); }
+    
+    .checklist { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+    .checklist__item { display: flex; gap: 16px; align-items: flex-start; }
+    .checklist__icon { flex-shrink: 0; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; background: var(--sage); color: white; border-radius: 50%; font-size: var(--text-sm); font-weight: 600; }
+    .checklist__item p { margin: 0; padding-top: 2px; color: var(--text-soft); }
+    
+    .program-insight { padding: 32px; background: rgba(163, 59, 92, 0.08); border-left: 4px solid var(--primary); border-radius: var(--radius-lg); margin-top: 32px; }
+    .program-insight h3 { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: 16px; }
+    .program-insight p { margin-bottom: 16px; color: var(--text-soft); }
+    .program-insight p:last-child { margin-bottom: 0; }
+    
+    .includes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .includes-card { padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); text-align: center; }
+    .includes-card__icon { font-size: var(--text-3xl); margin-bottom: 12px; }
+    .includes-card h4 { font-size: var(--text-lg); margin-bottom: 8px; }
+    .includes-card p { font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
+    
+    .curriculum { display: flex; flex-direction: column; gap: 32px; }
+    .curriculum__week { background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); overflow: hidden; }
+    .curriculum__week-header { padding: 24px; background: rgba(163, 59, 92, 0.08); }
+    .curriculum__week-number { display: inline-block; padding: 4px 12px; background: var(--primary); color: white; border-radius: 999px; font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+    .curriculum__week-header h3 { font-family: var(--font-display); font-size: var(--text-xl); margin-bottom: 8px; }
+    .curriculum__week-outcome { font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
+    .curriculum__lessons { padding: 24px; display: flex; flex-direction: column; gap: 12px; }
+    .curriculum__lesson, .curriculum__practice { font-size: var(--text-sm); color: var(--text-soft); }
+    .curriculum__practice { margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--border-glass); color: var(--text-dim); }
+    
+    .testimonials { display: flex; flex-direction: column; gap: 24px; }
+    .testimonial-card { padding: 24px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); }
+    .testimonial-card__quote { font-size: var(--text-lg); line-height: 1.6; margin-bottom: 16px; font-style: italic; }
+    .testimonial-card__author { font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
+    
+    .faq { display: flex; flex-direction: column; gap: 24px; }
+    .faq__item h4 { font-size: var(--text-lg); margin-bottom: 8px; }
+    .faq__item p { font-size: var(--text-sm); color: var(--text-dim); margin: 0; }
+    
+    .program-cta { padding: var(--space-20) 0; background: linear-gradient(135deg, rgba(163, 59, 92, 0.15), rgba(12, 11, 16, 0.98)); }
+    .program-cta__card { padding: 48px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-xl); text-align: center; }
+    .program-cta__card h2 { margin-bottom: 32px; }
+    .program-cta__details { display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px; padding: 24px; background: rgba(163, 59, 92, 0.1); border-radius: var(--radius-lg); }
+    .program-cta__price { display: flex; flex-direction: column; }
+    .program-cta__price-label { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 4px; }
+    .program-cta__price-amount { font-family: var(--font-display); font-size: var(--text-3xl); font-weight: 700; color: var(--text-main); }
+    .program-cta__includes { list-style: none; padding: 0; margin: 0; text-align: left; }
+    .program-cta__includes li { font-size: var(--text-sm); color: var(--text-soft); padding: 4px 0; }
+    .program-cta__includes li::before { content: 'âœ“ '; color: var(--sage); font-weight: 600; }
+    .program-cta__guarantee { font-size: var(--text-sm); color: var(--sage); margin-top: 16px; }
+    .program-cta__note { font-size: var(--text-sm); color: var(--text-dim); margin-top: 8px; }
+    .program-cta__alternative { margin-top: 32px; text-align: center; }
+    .program-cta__alternative p { color: var(--text-soft); margin: 0; }
+    .program-cta__alternative a { color: var(--primary); }
+    
+    @media (max-width: 768px) {
+      .includes-grid { grid-template-columns: 1fr; }
+      .program-cta__details { flex-direction: column; gap: 16px; text-align: center; }
+      .program-cta__includes { text-align: center; }
+      .nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header__inner">
+      <a href="../index.html" class="logo">un<span>scarred</span></a>
+      <nav class="nav">
+        <a href="/quizzes/">Quizzes</a>
+        <a href="../programs.html">Programs</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../services.html">Services</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="program-hero">
+    <div class="container container--narrow">
+      <div class="program-hero__badge">4-Week Program</div>
+      <h1>Anxious Healing Program</h1>
+      <p class="program-hero__subtitle">Calm body. Clean asks. Steady connection you can feel.</p>
+      <div class="program-hero__outcome">
+        <strong>The transformation:</strong>
+        Stop spiraling when they pull back. Stay calm when they need space. Ask for what you need without building a case for why you deserve it.
+      </div>
+      <a href="#enroll" class="btn btn--rose btn--lg">Enroll Now - $147</a>
+      <p class="program-hero__guarantee">30-day money-back guarantee</p>
+    </div>
+  </section>
+
+  <!-- Problem/Solution -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <h2>This program is for you if:</h2>
+      <div class="checklist">
+        <div class="checklist__item">
+          <span class="checklist__icon">âœ“</span>
+          <p>You spiral when they don't text back within an hour</p>
+        </div>
+        <div class="checklist__item">
+          <span class="checklist__icon">âœ“</span>
+          <p>You over-explain every ask and build a case for why you deserve reassurance</p>
+        </div>
+        <div class="checklist__item">
+          <span class="checklist__icon">âœ“</span>
+          <p>You analyze every interaction, replaying conversations to figure out what went wrong</p>
+        </div>
+        <div class="checklist__item">
+          <span class="checklist__icon">âœ“</span>
+          <p>You chase when they pull back, even though you know it pushes them further away</p>
+        </div>
+        <div class="checklist__item">
+          <span class="checklist__icon">âœ“</span>
+          <p>Your body feels like it's on fire when connection feels uncertain</p>
+        </div>
+        <div class="checklist__item">
+          <span class="checklist__icon">âœ“</span>
+          <p>You've been told you're "too much" or "too needy" and you're starting to believe it</p>
+        </div>
+      </div>
+
+      <div class="program-insight">
+        <h3>Here's what's actually happening:</h3>
+        <p>Your nervous system learned that urgency saves connection. When you were young, being quiet meant being forgotten. Expressing needs meant getting dismissed. So your body learned to amplify - to chase, to explain, to prove you're worth keeping.</p>
+        <p><strong>Your pattern is not a character flaw. It's a survival strategy that's working overtime.</strong></p>
+        <p>The work isn't to become less. It's to give your body evidence that safety is possible without urgency. That connection can exist without constant proof. That you can ask once and trust the answer.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What You Get -->
+  <section class="program-section program-section--alt">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">What you get</h2>
+      <div class="includes-grid">
+        <div class="includes-card">
+          <div class="includes-card__icon">ðŸŽ¥</div>
+          <h4>12 video lessons</h4>
+          <p>15-20 minutes each. Watch on your own time.</p>
+        </div>
+        <div class="includes-card">
+          <div class="includes-card__icon">ðŸ“</div>
+          <h4>Script library</h4>
+          <p>20+ copy-paste scripts for asking, repairing, boundaries.</p>
+        </div>
+        <div class="includes-card">
+          <div class="includes-card__icon">â±ï¸</div>
+          <h4>Micro drills</h4>
+          <p>3-5 minute exercises to regulate in real time.</p>
+        </div>
+        <div class="includes-card">
+          <div class="includes-card__icon">ðŸ“‹</div>
+          <h4>Workbook</h4>
+          <p>Printable PDF with reflection prompts and tracking.</p>
+        </div>
+        <div class="includes-card">
+          <div class="includes-card__icon">ðŸ› ï¸</div>
+          <h4>Repair toolkit</h4>
+          <p>Step-by-step framework for coming back after conflict.</p>
+        </div>
+        <div class="includes-card">
+          <div class="includes-card__icon">â™¾ï¸</div>
+          <h4>Lifetime access</h4>
+          <p>Revisit anytime. Come back when you need a reset.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Curriculum -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">The 4-week curriculum</h2>
+      
+      <div class="curriculum">
+        <div class="curriculum__week">
+          <div class="curriculum__week-header">
+            <div class="curriculum__week-number">Week 1</div>
+            <h3>Understand the Pattern</h3>
+            <p class="curriculum__week-outcome">Learn why urgency feels like safety and how your nervous system got wired for anxiety.</p>
+          </div>
+          <div class="curriculum__lessons">
+            <div class="curriculum__lesson"><strong>Lesson 1:</strong> Why You Chase (The Nervous System Blueprint)</div>
+            <div class="curriculum__lesson"><strong>Lesson 2:</strong> The Protest Response (What Urgency Actually Is)</div>
+            <div class="curriculum__lesson"><strong>Lesson 3:</strong> Your Anxiety Signature (Recognizing Your Specific Pattern)</div>
+            <div class="curriculum__practice"><strong>Practice:</strong> 3-Minute Breath Reset + Pattern Tracking Sheet</div>
+          </div>
+        </div>
+
+        <div class="curriculum__week">
+          <div class="curriculum__week-header">
+            <div class="curriculum__week-number">Week 2</div>
+            <h3>Regulate the Body</h3>
+            <p class="curriculum__week-outcome">Build a toolkit of micro-practices that actually calm the nervous system when urgency spikes.</p>
+          </div>
+          <div class="curriculum__lessons">
+            <div class="curriculum__lesson"><strong>Lesson 4:</strong> The Before-You-Text Protocol</div>
+            <div class="curriculum__lesson"><strong>Lesson 5:</strong> Somatic Regulation Drills (5 practices, 3 minutes each)</div>
+            <div class="curriculum__lesson"><strong>Lesson 6:</strong> The Pause Practice (Creating Space Between Feeling and Response)</div>
+            <div class="curriculum__practice"><strong>Practice:</strong> Daily 5-minute regulation drill + Urge surfing exercise</div>
+          </div>
+        </div>
+
+        <div class="curriculum__week">
+          <div class="curriculum__week-header">
+            <div class="curriculum__week-number">Week 3</div>
+            <h3>Communicate Clearly</h3>
+            <p class="curriculum__week-outcome">Learn to ask for what you need without over-explaining or building a case for your worth.</p>
+          </div>
+          <div class="curriculum__lessons">
+            <div class="curriculum__lesson"><strong>Lesson 7:</strong> The Clean Ask (Stop Over-Explaining)</div>
+            <div class="curriculum__lesson"><strong>Lesson 8:</strong> Boundaries Without Walls (How to Protect Without Punishing)</div>
+            <div class="curriculum__lesson"><strong>Lesson 9:</strong> The Reassurance Ask (When and How to Use It)</div>
+            <div class="curriculum__practice"><strong>Practice:</strong> Script library + Role-play prompts + Real-world application</div>
+          </div>
+        </div>
+
+        <div class="curriculum__week">
+          <div class="curriculum__week-header">
+            <div class="curriculum__week-number">Week 4</div>
+            <h3>Repair and Sustain</h3>
+            <p class="curriculum__week-outcome">Build the skills to recover from conflict and maintain regulation long-term.</p>
+          </div>
+          <div class="curriculum__lessons">
+            <div class="curriculum__lesson"><strong>Lesson 10:</strong> The Repair Map (Coming Back After You Spiral)</div>
+            <div class="curriculum__lesson"><strong>Lesson 11:</strong> Co-Regulation Strategies (When Your Partner Is Avoidant)</div>
+            <div class="curriculum__lesson"><strong>Lesson 12:</strong> Building Sustainable Rhythms (Daily Practices That Stick)</div>
+            <div class="curriculum__practice"><strong>Practice:</strong> 30-day regulation plan + Relationship check-in template</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="program-section program-section--alt">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">What people say</h2>
+      
+      <div class="testimonials">
+        <div class="testimonial-card">
+          <p class="testimonial-card__quote">"I stopped texting him five times when he didn't respond. Now I send one message and trust that he'll reply when he can. The anxiety is still there sometimes, but it doesn't run the show anymore."</p>
+          <p class="testimonial-card__author">- Sarah, week 3 graduate</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-card__quote">"The clean ask changed everything. I used to write paragraphs explaining why I needed reassurance. Now I just say 'I need to know we're okay. Can we check in tonight?' and he actually responds better."</p>
+          <p class="testimonial-card__author">- Maya, completed program 6 months ago</p>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-card__quote">"I didn't realize how much energy I was spending analyzing every conversation until I stopped. The regulation drills gave me something to do with my hands when the spiral started. Game changer."</p>
+          <p class="testimonial-card__author">- Jordan, using tools daily for 8 weeks</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="program-section">
+    <div class="container container--narrow">
+      <h2 class="text-center mb-12">Common questions</h2>
+      
+      <div class="faq">
+        <div class="faq__item">
+          <h4>How much time does this take per week?</h4>
+          <p>Plan for 1-1.5 hours per week. Three 15-20 minute video lessons, plus daily 3-5 minute regulation drills.</p>
+        </div>
+        <div class="faq__item">
+          <h4>Do I need to be in a relationship to do this program?</h4>
+          <p>No. The tools work whether you're single, dating, or in a relationship. If you're single, you'll learn these patterns before the next relationship.</p>
+        </div>
+        <div class="faq__item">
+          <h4>What if my partner is avoidant? Will this still work?</h4>
+          <p>Yes. Week 4 includes specific co-regulation strategies for anxious-avoidant dynamics.</p>
+        </div>
+        <div class="faq__item">
+          <h4>Is this therapy?</h4>
+          <p>No. This is psychoeducation and skills training based on attachment theory and nervous system regulation. If you're in crisis, please reach out to a professional.</p>
+        </div>
+        <div class="faq__item">
+          <h4>Do you offer refunds?</h4>
+          <p>Yes. 30-day money-back guarantee. If the program isn't right for you, email for a full refund.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="program-cta" id="enroll">
+    <div class="container container--narrow">
+      <div class="program-cta__card">
+        <h2>Ready to calm the spiral?</h2>
+        <div class="program-cta__details">
+          <div class="program-cta__price">
+            <span class="program-cta__price-label">Complete Program</span>
+            <span class="program-cta__price-amount">$147</span>
+          </div>
+          <ul class="program-cta__includes">
+            <li>12 video lessons (15-20 min each)</li>
+            <li>20+ scripts and drills</li>
+            <li>Printable workbook</li>
+            <li>Repair toolkit</li>
+            <li>Lifetime access</li>
+          </ul>
+        </div>
+        <a href="https://shop.unscarred.site" class="btn btn--rose btn--lg btn--block" target="_blank">Enroll Now</a>
+        <p class="program-cta__guarantee">âœ“ 30-day money-back guarantee</p>
+        <p class="program-cta__note">Instant access. Start today.</p>
+      </div>
+
+      <div class="program-cta__alternative">
+        <p>Not sure if this is right for you? <a href="../quiz/mirror.html">Take the quiz</a> to see your pattern, or <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" target="_blank">book a session</a> to talk it through.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Â© 2025 Unscarred. <a href="../blog.html">Blog</a> Â· <a href="../services.html">Services</a></p>
+    </div>
+  </footer>
+</body>
+</html>
+
+

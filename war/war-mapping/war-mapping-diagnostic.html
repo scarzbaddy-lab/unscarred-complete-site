@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ego Structure Scan</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    .fade-in { animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .progress-bar { transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
+    .radio-option { transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .radio-option:hover { background: rgba(0, 0, 0, 0.03) !important; }
+    .radio-option input:checked + label { font-weight: 600; }
+    .pattern-card { backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+    .pattern-card:hover { transform: translateY(-2px); }
+    .btn-primary { transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); }
+    .btn-primary:active { transform: translateY(0); }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+</head>
+<body class="h-full w-full overflow-auto" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Inter', sans-serif;">
+  <div id="app" class="w-full" style="min-height: 100%;"></div>
+  <script>
+const defaultConfig = {
+  hero_text: "Nervous System Response Scan",
+  subtitle: "Discover how your body responds to stress, threat, and overwhelm.",
+  cta_button: "Take the Response Scan",
+  trust_line: "Pattern insight only. Not a diagnosis.",
+  primary_color: "#0f0f0f",
+  secondary_color: "#ffffff",
+  text_color: "#0f0f0f",
+  accent_color: "#8b5cf6",
+  button_color: "#8b5cf6",
+  font_family: "system-ui",
+  font_size: 16
+};
+
+const questions = [
+  { id: 1, text: "I get blunt and confrontational when stressed.", category: "fight" },
+  { id: 6, text: "I argue fast and hard when I feel threatened.", category: "fight" },
+  { id: 11, text: "I feel heat in my body and a need to take control.", category: "fight" },
+  { id: 16, text: "I become protective, angry, or dominant.", category: "fight" },
+  { id: 21, text: "I push for resolution and hate feeling powerless.", category: "fight" },
+  { id: 2, text: "I overthink and plan my way out of discomfort.", category: "flight" },
+  { id: 7, text: "I stay busy to avoid feelings.", category: "flight" },
+  { id: 12, text: "I fixate on what might go wrong.", category: "flight" },
+  { id: 17, text: "I need movement, cleaning, tasks, scrolling.", category: "flight" },
+  { id: 22, text: "I cannot relax until everything is handled.", category: "flight" },
+  { id: 3, text: "My mind goes blank under pressure.", category: "freeze" },
+  { id: 8, text: "I feel stuck and cannot act even when I want to.", category: "freeze" },
+  { id: 13, text: "I disconnect from my body.", category: "freeze" },
+  { id: 18, text: "I procrastinate because starting feels impossible.", category: "freeze" },
+  { id: 23, text: "I feel numb during conflict.", category: "freeze" },
+  { id: 4, text: "I become extra agreeable when tension rises.", category: "fawn" },
+  { id: 9, text: "I apologize quickly to make it stop.", category: "fawn" },
+  { id: 14, text: "I manage other people's feelings before my own.", category: "fawn" },
+  { id: 19, text: "I say yes while feeling no.", category: "fawn" },
+  { id: 24, text: "I change myself to keep connection.", category: "fawn" },
+  { id: 5, text: "I feel heavy, sleepy, or collapsed when stressed.", category: "faint" },
+  { id: 10, text: "I want to disappear for days.", category: "faint" },
+  { id: 15, text: "I lose motivation and feel helpless.", category: "faint" },
+  { id: 20, text: "I stop caring because caring hurts.", category: "faint" },
+  { id: 25, text: "I feel like my system shuts off.", category: "faint" }
+];
+
+const scaleOptions = [
+  { value: 0, label: "Never" },
+  { value: 1, label: "Sometimes" },
+  { value: 2, label: "Often" },
+  { value: 3, label: "Almost always" }
+];
+
+const patterns = {
+  fight: {
+    title: "Fight Response",
+    description: "Mobilized, confrontational, controlling under stress",
+    need: "Safety, respect, power restored without harm.",
+    regulation: "Jaw unclench, long exhale, cold water on wrists, slow voice rule.",
+    script: "\"I'm in fight mode. I want to solve this without hurting you.\""
+  },
+  flight: {
+    title: "Flight Response",
+    description: "Overthinking, busy, planning, avoiding feelings",
+    need: "Certainty, control, future clarity.",
+    regulation: "5 minute brain dump then stop, box breathing, single next step.",
+    script: "\"I'm spiraling. Give me one clear plan point and one reassurance point.\""
+  },
+  freeze: {
+    title: "Freeze Response",
+    description: "Stuck, blank, disconnected, unable to act",
+    need: "Time, gentleness, no pressure.",
+    regulation: "Feet on floor, name 5 objects, small movement, low stakes action.",
+    script: "\"I'm frozen. I need time and a softer approach.\""
+  },
+  fawn: {
+    title: "Fawn Response",
+    description: "People-pleasing, appeasing, over-accommodating",
+    need: "Permission to exist, safety to say no.",
+    regulation: "Hand on chest, name one true need, practice one boundary sentence.",
+    script: "\"I'm people pleasing. My real answer is no, and I still care.\""
+  },
+  faint: {
+    title: "Faint Response",
+    description: "Shutdown, collapsed, numb, unmotivated",
+    need: "Rest, support, reduced load, nervous system repair.",
+    regulation: "Hydration, protein, sunlight, body warmth, sleep protection, ask for help.",
+    script: "\"I'm in shutdown. I can't process this right now. I need recovery time.\""
+  }
+};
+
+let currentQuestion = 0;
+let answers = {};
+let currentView = 'intro';
+
+function calculateScores() {
+  const fightScore = [1, 6, 11, 16, 21].reduce((sum, id) => sum + (answers[id] || 0), 0);
+  const flightScore = [2, 7, 12, 17, 22].reduce((sum, id) => sum + (answers[id] || 0), 0);
+  const freezeScore = [3, 8, 13, 18, 23].reduce((sum, id) => sum + (answers[id] || 0), 0);
+  const fawnScore = [4, 9, 14, 19, 24].reduce((sum, id) => sum + (answers[id] || 0), 0);
+  const faintScore = [5, 10, 15, 20, 25].reduce((sum, id) => sum + (answers[id] || 0), 0);
+  const total = fightScore + flightScore + freezeScore + fawnScore + faintScore;
+  let fightPct, flightPct, freezePct, fawnPct, faintPct;
+  if (total === 0) {
+    fightPct = flightPct = freezePct = fawnPct = faintPct = 20;
+  } else {
+    fightPct = Math.round((fightScore / total) * 100);
+    flightPct = Math.round((flightScore / total) * 100);
+    freezePct = Math.round((freezeScore / total) * 100);
+    fawnPct = Math.round((fawnScore / total) * 100);
+    faintPct = Math.round((faintScore / total) * 100);
+  }
+  const responsePatterns = [
+    { name: 'fight', score: fightScore, percent: fightPct },
+    { name: 'flight', score: flightScore, percent: flightPct },
+    { name: 'freeze', score: freezeScore, percent: freezePct },
+    { name: 'fawn', score: fawnScore, percent: fawnPct },
+    { name: 'faint', score: faintScore, percent: faintPct }
+  ];
+  responsePatterns.sort((a, b) => b.percent - a.percent);
+  const primary = responsePatterns[0].name;
+  return { fight: { score: fightScore, percent: fightPct }, flight: { score: flightScore, percent: flightPct }, freeze: { score: freezeScore, percent: freezePct }, fawn: { score: fawnScore, percent: fawnPct }, faint: { score: faintScore, percent: faintPct }, primary, all: responsePatterns };
+}
+
+function renderIntro() {
+  const config = window.elementSdk?.config || defaultConfig;
+  const heroText = config.hero_text || defaultConfig.hero_text;
+  const subtitle = config.subtitle || defaultConfig.subtitle;
+  const ctaButton = config.cta_button || defaultConfig.cta_button;
+  const trustLine = config.trust_line || defaultConfig.trust_line;
+  const primaryColor = config.primary_color || defaultConfig.primary_color;
+  const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+  const textColor = config.text_color || defaultConfig.text_color;
+  const buttonColor = config.button_color || defaultConfig.button_color;
+  const fontFamily = config.font_family || defaultConfig.font_family;
+  const fontSize = config.font_size || defaultConfig.font_size;
+  return `
+    <div class="fade-in" style="max-width: 680px; margin: 0 auto; padding: ${fontSize * 4}px ${fontSize * 1.5}px; font-family: ${fontFamily}, sans-serif;">
+      <div style="text-align: center; margin-bottom: ${fontSize * 3}px;">
+        <h1 style="font-size: ${fontSize * 4}px; font-weight: 700; color: ${secondaryColor}; margin-bottom: ${fontSize * 1.5}px; line-height: 1.1; letter-spacing: -0.02em;">
+          ${heroText}
+        </h1>
+        <p style="font-size: ${fontSize * 1.125}px; color: ${secondaryColor}; margin-bottom: 0; opacity: 0.75; line-height: 1.6; max-width: 520px; margin-left: auto; margin-right: auto;">
+          ${subtitle}
+        </p>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border-radius: ${fontSize * 1.25}px; padding: ${fontSize * 2.5}px; margin-bottom: ${fontSize * 2.5}px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: ${fontSize * 1}px; margin-bottom: ${fontSize * 2}px;">
+          <div class="pattern-card" style="padding: ${fontSize * 1.125}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.375}px; font-size: ${fontSize * 0.875}px;">Fight</div>
+            <div style="font-size: ${fontSize * 0.75}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Confrontational, controlling</div>
+          </div>
+          <div class="pattern-card" style="padding: ${fontSize * 1.125}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.375}px; font-size: ${fontSize * 0.875}px;">Flight</div>
+            <div style="font-size: ${fontSize * 0.75}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Overthinking, busy, avoiding</div>
+          </div>
+          <div class="pattern-card" style="padding: ${fontSize * 1.125}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.375}px; font-size: ${fontSize * 0.875}px;">Freeze</div>
+            <div style="font-size: ${fontSize * 0.75}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Stuck, blank, disconnected</div>
+          </div>
+          <div class="pattern-card" style="padding: ${fontSize * 1.125}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06);">
+            <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.375}px; font-size: ${fontSize * 0.875}px;">Fawn</div>
+            <div style="font-size: ${fontSize * 0.75}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">People-pleasing, appeasing</div>
+          </div>
+          <div class="pattern-card" style="padding: ${fontSize * 1.125}px; background: rgba(255, 255, 255, 0.04); border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(255, 255, 255, 0.06); grid-column: 1 / -1;">
+            <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.375}px; font-size: ${fontSize * 0.875}px;">Faint</div>
+            <div style="font-size: ${fontSize * 0.75}px; color: ${secondaryColor}; opacity: 0.6; line-height: 1.4;">Shutdown, collapsed, numb</div>
+          </div>
+        </div>
+        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%); padding: ${fontSize * 1.25}px; border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(139, 92, 246, 0.2); margin-bottom: ${fontSize * 1.5}px;">
+          <p style="margin: 0; font-weight: 500; color: ${secondaryColor}; font-size: ${fontSize * 0.9375}px; line-height: 1.5;">
+            <span style="font-size: ${fontSize * 1.125}px; margin-right: ${fontSize * 0.5}px;">⚡</span>
+            Your nervous system has patterns. They're automatic, not personality flaws.
+          </p>
+        </div>
+        <p style="font-size: ${fontSize * 0.875}px; color: ${secondaryColor}; opacity: 0.7; line-height: 1.6; margin: 0;">
+          This scan identifies how your body responds under stress, then gives you fast regulation tools and repair scripts.
+        </p>
+      </div>
+      <div style="text-align: center;">
+        <button onclick="startScan()" class="btn-primary"
+          style="background: ${buttonColor}; color: ${secondaryColor}; font-size: ${fontSize * 1}px; font-weight: 600; padding: ${fontSize * 1}px ${fontSize * 2.5}px; border-radius: ${fontSize * 0.625}px; border: none; cursor: pointer; box-shadow: 0 4px 14px rgba(139, 92, 246, 0.4); font-family: ${fontFamily}, sans-serif;">
+          ${ctaButton}
+        </button>
+        <p style="margin-top: ${fontSize * 1.25}px; font-size: ${fontSize * 0.8125}px; color: ${secondaryColor}; opacity: 0.5;">
+          ${trustLine}
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+function renderQuestion() {
+  const config = window.elementSdk?.config || defaultConfig;
+  const question = questions[currentQuestion];
+  const progress = ((currentQuestion + 1) / questions.length) * 100;
+  const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+  const textColor = config.text_color || defaultConfig.text_color;
+  const accentColor = config.accent_color || defaultConfig.accent_color;
+  const buttonColor = config.button_color || defaultConfig.button_color;
+  const fontFamily = config.font_family || defaultConfig.font_family;
+  const fontSize = config.font_size || defaultConfig.font_size;
+  const isAnswered = answers[question.id] !== undefined;
+  return `
+    <div class="fade-in" style="max-width: 640px; margin: 0 auto; padding: ${fontSize * 3}px ${fontSize * 1.5}px; font-family: ${fontFamily}, sans-serif;">
+      <div style="background: rgba(255, 255, 255, 0.1); height: ${fontSize * 0.25}px; border-radius: ${fontSize * 0.5}px; margin-bottom: ${fontSize * 2}px; overflow: hidden;">
+        <div class="progress-bar" style="background: ${buttonColor}; height: 100%; width: ${progress}%; border-radius: ${fontSize * 0.5}px;"></div>
+      </div>
+      <div style="text-align: center; margin-bottom: ${fontSize * 2.5}px;">
+        <span style="color: ${secondaryColor}; font-size: ${fontSize * 0.8125}px; font-weight: 500; opacity: 0.6;">Question ${currentQuestion + 1} of ${questions.length}</span>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border-radius: ${fontSize * 1.25}px; padding: ${fontSize * 2.5}px; margin-bottom: ${fontSize * 2}px;">
+        <h2 style="font-size: ${fontSize * 1.375}px; color: ${secondaryColor}; margin-bottom: ${fontSize * 2.5}px; line-height: 1.5; font-weight: 500;">
+          ${question.text}
+        </h2>
+        <div style="display: flex; flex-direction: column; gap: ${fontSize * 0.625}px;">
+          ${scaleOptions.map(option => `
+            <div class="radio-option" style="display: flex; align-items: center; padding: ${fontSize * 0.875}px ${fontSize * 1}px; border-radius: ${fontSize * 0.625}px; cursor: pointer; background: ${answers[question.id] === option.value ? 'rgba(139, 92, 246, 0.15)' : 'rgba(255, 255, 255, 0.02)'}; border: 1px solid ${answers[question.id] === option.value ? 'rgba(139, 92, 246, 0.4)' : 'rgba(255, 255, 255, 0.06)'};"
+                 onclick="selectAnswer(${question.id}, ${option.value})">
+              <input type="radio" name="q${question.id}" id="q${question.id}_${option.value}" value="${option.value}"
+                ${answers[question.id] === option.value ? 'checked' : ''} style="width: ${fontSize * 1.125}px; height: ${fontSize * 1.125}px; margin-right: ${fontSize * 0.875}px; cursor: pointer; accent-color: ${accentColor};">
+              <label for="q${question.id}_${option.value}" style="cursor: pointer; font-size: ${fontSize * 0.875}px; color: ${secondaryColor}; flex: 1;">
+                ${option.label}
+              </label>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+      <div style="display: flex; gap: ${fontSize * 0.75}px;">
+        ${currentQuestion > 0 ? `
+          <button onclick="previousQuestion()"
+            style="flex: 1; background: rgba(255, 255, 255, 0.06); color: ${secondaryColor}; font-size: ${fontSize * 0.9375}px; font-weight: 500; padding: ${fontSize * 0.875}px; border-radius: ${fontSize * 0.625}px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; font-family: ${fontFamily}, sans-serif; transition: all 0.2s;"
+            onmouseover="this.style.background='rgba(255, 255, 255, 0.08)'" onmouseout="this.style.background='rgba(255, 255, 255, 0.06)'">
+            Previous
+          </button>
+        ` : ''}
+        <button onclick="${currentQuestion < questions.length - 1 ? 'nextQuestion()' : 'showResults()'}" ${!isAnswered ? 'disabled' : ''}
+          class="btn-primary"
+          style="flex: 1; background: ${isAnswered ? buttonColor : 'rgba(255, 255, 255, 0.1)'}; color: ${secondaryColor}; font-size: ${fontSize * 0.9375}px; font-weight: 600; padding: ${fontSize * 0.875}px; border-radius: ${fontSize * 0.625}px; border: none; cursor: ${isAnswered ? 'pointer' : 'not-allowed'}; font-family: ${fontFamily}, sans-serif; opacity: ${isAnswered ? '1' : '0.4'};">
+          ${currentQuestion < questions.length - 1 ? 'Next' : 'See Results'}
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderResults() {
+  const config = window.elementSdk?.config || defaultConfig;
+  const scores = calculateScores();
+  const primaryPattern = patterns[scores.primary];
+  const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+  const textColor = config.text_color || defaultConfig.text_color;
+  const accentColor = config.accent_color || defaultConfig.accent_color;
+  const buttonColor = config.button_color || defaultConfig.button_color;
+  const fontFamily = config.font_family || defaultConfig.font_family;
+  const fontSize = config.font_size || defaultConfig.font_size;
+  return `
+    <div class="fade-in" style="max-width: 760px; margin: 0 auto; padding: ${fontSize * 3}px ${fontSize * 1.5}px; font-family: ${fontFamily}, sans-serif;">
+      <div style="text-align: center; margin-bottom: ${fontSize * 3}px;">
+        <h1 style="font-size: ${fontSize * 2.5}px; font-weight: 700; color: ${secondaryColor}; margin-bottom: ${fontSize * 1}px; letter-spacing: -0.02em;">
+          Your Response Profile
+        </h1>
+        <p style="font-size: ${fontSize * 1.125}px; color: ${secondaryColor}; opacity: 0.7;">
+          Primary response: ${primaryPattern.title}
+        </p>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border-radius: ${fontSize * 1.25}px; padding: ${fontSize * 2.5}px; margin-bottom: ${fontSize * 2}px;">
+        <h3 style="font-size: ${fontSize * 1.125}px; font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 1.5}px;">Your Response Distribution</h3>
+        <div style="display: grid; gap: ${fontSize * 1.125}px;">
+          ${scores.all.map(r => renderScoreBar(r.name.charAt(0).toUpperCase() + r.name.slice(1), r.percent + '%', '100%', accentColor, secondaryColor, fontSize, r.percent)).join('')}
+        </div>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08); backdrop-filter: blur(10px); border-radius: ${fontSize * 1.25}px; padding: ${fontSize * 2.5}px;">
+        <h2 style="font-size: ${fontSize * 1.75}px; font-weight: 700; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.75}px; letter-spacing: -0.01em;">
+          ${primaryPattern.title}
+        </h2>
+        <p style="font-size: ${fontSize * 0.9375}px; color: ${secondaryColor}; opacity: 0.65; margin-bottom: ${fontSize * 2.5}px; line-height: 1.5;">
+          ${primaryPattern.description}
+        </p>
+        ${renderInsightSection('What You Need', primaryPattern.need, secondaryColor, accentColor, fontSize)}
+        ${renderInsightSection('Fast Regulation', primaryPattern.regulation, secondaryColor, accentColor, fontSize)}
+        <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 100%); padding: ${fontSize * 1.5}px; border-radius: ${fontSize * 0.75}px; border: 1px solid rgba(139, 92, 246, 0.3); margin-top: ${fontSize * 1.5}px;">
+          <div style="font-weight: 600; color: ${secondaryColor}; margin-bottom: ${fontSize * 0.75}px; font-size: ${fontSize * 0.9375}px;">Repair Script</div>
+          <p style="font-size: ${fontSize * 0.875}px; color: ${secondaryColor}; margin: 0; font-style: italic; line-height: 1.6; opacity: 0.9;">
+            ${primaryPattern.script}
+          </p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: ${fontSize * 2.5}px;">
+        <button onclick="restartScan()" class="btn-primary"
+          style="background: rgba(255, 255, 255, 0.06); color: ${secondaryColor}; font-size: ${fontSize * 0.9375}px; font-weight: 500; padding: ${fontSize * 0.875}px ${fontSize * 2}px; border-radius: ${fontSize * 0.625}px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; font-family: ${fontFamily}, sans-serif;">
+          Take Scan Again
+        </button>
+      </div>
+    </div>
+  `;
+}
+
+function renderScoreBar(label, score, maxScore, accentColor, textColor, fontSize, percentage) {
+  const pct = percentage !== undefined ? percentage : (parseFloat(score) / parseFloat(maxScore)) * 100;
+  return `
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: ${fontSize * 0.625}px;">
+        <span style="font-weight: 500; color: ${textColor}; font-size: ${fontSize * 0.875}px; opacity: 0.9;">${label}</span>
+        <span style="font-weight: 600; color: ${accentColor}; font-size: ${fontSize * 0.875}px;">${score}</span>
+      </div>
+      <div style="background: rgba(255, 255, 255, 0.06); height: ${fontSize * 0.5}px; border-radius: ${fontSize * 0.5}px; overflow: hidden;">
+        <div style="background: ${accentColor}; height: 100%; width: ${pct}%; border-radius: ${fontSize * 0.5}px; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);"></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderInsightSection(title, content, textColor, accentColor, fontSize) {
+  return `
+    <div style="margin-bottom: ${fontSize * 1.5}px;">
+      <div style="font-weight: 600; color: ${accentColor}; margin-bottom: ${fontSize * 0.625}px; font-size: ${fontSize * 0.8125}px; text-transform: uppercase; letter-spacing: 0.08em;">
+        ${title}
+      </div>
+      <p style="font-size: ${fontSize * 0.9375}px; color: ${textColor}; margin: 0; line-height: 1.65; opacity: 0.85;">
+        ${content}
+      </p>
+    </div>
+  `;
+}
+
+function selectAnswer(questionId, value) { answers[questionId] = value; render(); }
+function startScan() { currentView = 'question'; currentQuestion = 0; answers = {}; render(); }
+function nextQuestion() { if (currentQuestion < questions.length - 1) { currentQuestion++; render(); } }
+function previousQuestion() { if (currentQuestion > 0) { currentQuestion--; render(); } }
+function showResults() { currentView = 'results'; render(); }
+function restartScan() { startScan(); }
+
+function render() {
+  const app = document.getElementById('app');
+  if (currentView === 'intro') app.innerHTML = renderIntro();
+  else if (currentView === 'question') app.innerHTML = renderQuestion();
+  else if (currentView === 'results') app.innerHTML = renderResults();
+}
+
+async function onConfigChange(config) { render(); }
+
+if (window.elementSdk) {
+  window.elementSdk.init({
+    defaultConfig,
+    onConfigChange,
+    mapToCapabilities: (config) => ({
+      recolorables: [
+        { get: () => config.primary_color || defaultConfig.primary_color, set: (value) => { config.primary_color = value; window.elementSdk.setConfig({ primary_color: value }); } },
+        { get: () => config.secondary_color || defaultConfig.secondary_color, set: (value) => { config.secondary_color = value; window.elementSdk.setConfig({ secondary_color: value }); } },
+        { get: () => config.text_color || defaultConfig.text_color, set: (value) => { config.text_color = value; window.elementSdk.setConfig({ text_color: value }); } },
+        { get: () => config.accent_color || defaultConfig.accent_color, set: (value) => { config.accent_color = value; window.elementSdk.setConfig({ accent_color: value }); } },
+        { get: () => config.button_color || defaultConfig.button_color, set: (value) => { config.button_color = value; window.elementSdk.setConfig({ button_color: value }); } }
+      ],
+      borderables: [],
+      fontEditable: { get: () => config.font_family || defaultConfig.font_family, set: (value) => { config.font_family = value; window.elementSdk.setConfig({ font_family: value }); } },
+      fontSizeable: { get: () => config.font_size || defaultConfig.font_size, set: (value) => { config.font_size = value; window.elementSdk.setConfig({ font_size: value }); } }
+    }),
+    mapToEditPanelValues: (config) => new Map([
+      ["hero_text", config.hero_text || defaultConfig.hero_text],
+      ["subtitle", config.subtitle || defaultConfig.subtitle],
+      ["cta_button", config.cta_button || defaultConfig.cta_button],
+      ["trust_line", config.trust_line || defaultConfig.trust_line]
+    ])
+  });
+}
+
+render();
+  </script>
+</body>
+</html>
