@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Testimonial</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      transform: scale(0.25);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Soft purple/sage gradient for testimonial warmth */
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 50% at 50% 30%, rgba(124, 92, 191, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 80% 90%, rgba(125, 154, 140, 0.12) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    /* Quote marks decoration */
+    .quote-deco {
+      position: absolute;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 600px;
+      color: rgba(124, 92, 191, 0.08);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .quote-open { top: 200px; left: -40px; }
+    .quote-close { bottom: 400px; right: -40px; transform: rotate(180deg); }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 80px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .testimonial-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 20px;
+    }
+
+    .stars {
+      font-size: 48px;
+      letter-spacing: 8px;
+      margin-bottom: 60px;
+      color: #c9763d;
+    }
+
+    blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.35;
+      margin-bottom: 60px;
+      color: #ece8e1;
+    }
+
+    blockquote em {
+      color: #7d9a8c;
+      font-style: italic;
+    }
+
+    .attribution {
+      font-size: 36px;
+      color: #5c5955;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+    }
+
+    .divider {
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, #7c5cbf, transparent);
+      margin: 80px 0;
+    }
+
+    .bottom-quote {
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.12), rgba(20, 18, 25, 0.8));
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 28px;
+      padding: 48px 56px;
+      margin-bottom: 20px;
+    }
+
+    .bottom-quote p {
+      font-size: 40px;
+      font-style: italic;
+      color: #9a958c;
+      line-height: 1.5;
+    }
+
+    .cta-area {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 52px 80px;
+      background: linear-gradient(135deg, #7d9a8c, #5a7d6c);
+      color: white;
+      font-size: 36px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(125, 154, 140, 0.4);
+    }
+
+    .cta-sub {
+      margin-top: 36px;
+      font-size: 30px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="quote-deco quote-open">"</div>
+  <div class="quote-deco quote-close">"</div>
+
+  <div class="content">
+    <div class="logo">un<span>scarred</span></div>
+
+    <div class="testimonial-section">
+      <div class="stars">★★★★★</div>
+      <blockquote>
+        "I didn't even know what I needed. You broke it down so clearly it hit me like a shock. Since that call I've been <em>building the foundation</em> and my life feels like it's starting."
+      </blockquote>
+      <div class="attribution">— Pattern Clarity Call Client</div>
+
+      <div class="divider"></div>
+
+      <div class="bottom-quote">
+        <p>"You told me the truth so clean it shocked me."</p>
+      </div>
+      <div class="bottom-quote">
+        <p>"Lowkey you read me in 10 minutes."</p>
+      </div>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">Book a Clarity Call →</a>
+      <p class="cta-sub">30 minutes. No shame. Just clarity.</p>
+    </div>
+  </div>
+</body>
+</html>
+

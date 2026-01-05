@@ -398,9 +398,9 @@
     <div class="header-inner">
       <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
       <nav>
-        <a href="index.html">Ground Zero</a>
-        <a href="quizzes.html">Quizzes</a>
-        <a href="glossary.html">Glossary</a>
+        <a href="index.html">War Home</a>
+        <a href="container-builder.html">Container Builder</a>
+        <a href="war-map.html">War Map</a>
         <a href="/quiz/">Relational Path</a>
       </nav>
     </div>
@@ -684,6 +684,24 @@
       <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
     </div>
   </footer>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
 
 </body>
 </html>

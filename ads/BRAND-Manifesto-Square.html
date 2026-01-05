@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Brand</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1080px;
+      transform-origin: top left;
+      transform: scale(0.296);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 100% at 50% 50%, rgba(163, 59, 92, 0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Subtle circular patterns */
+    .circle-deco {
+      position: absolute;
+      border: 1px solid rgba(163, 59, 92, 0.15);
+      border-radius: 50%;
+    }
+
+    .circle-1 { width: 800px; height: 800px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+    .circle-2 { width: 600px; height: 600px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.7; }
+    .circle-3 { width: 400px; height: 400px; top: 50%; left: 50%; transform: translate(-50%, -50%); opacity: 0.5; }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 80px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 120px;
+      font-weight: 700;
+      letter-spacing: -4px;
+      margin-bottom: 48px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.25;
+      margin-bottom: 48px;
+      max-width: 900px;
+    }
+
+    h1 em { color: #a33b5c; }
+
+    .tagline {
+      font-size: 36px;
+      color: #9a958c;
+      margin-bottom: 64px;
+      max-width: 700px;
+      line-height: 1.5;
+    }
+
+    .features-row {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 64px;
+    }
+
+    .feature {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(163, 59, 92, 0.15);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+
+    .feature span {
+      font-size: 24px;
+      color: #9a958c;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 600;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 44px 80px;
+      background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+      color: white;
+      font-size: 32px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 16px 50px rgba(163, 59, 92, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="circle-deco circle-1"></div>
+  <div class="circle-deco circle-2"></div>
+  <div class="circle-deco circle-3"></div>
+
+  <div class="content">
+    <div class="logo">un<span>scarred</span></div>
+
+    <h1>Turn scars into <em>mirrors,</em><br>see what they reveal</h1>
+
+    <p class="tagline">Pattern support for the ones who feel too much and see too clearly.</p>
+
+    <div class="features-row">
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <span>Quizzes</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🎓</div>
+        <span>Programs</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <span>Coaching</span>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📓</div>
+        <span>Tools</span>
+      </div>
+    </div>
+
+    <a href="#" class="cta-btn">Explore Unscarred →</a>
+  </div>
+</body>
+</html>
+

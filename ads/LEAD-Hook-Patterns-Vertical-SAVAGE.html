@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1080">
+  <title>Unscarred Ad - Patterns SAVAGE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1080px;
+      height: 1920px;
+      transform-origin: top left;
+      transform: scale(0.25);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 100% 60% at 50% 20%, rgba(163, 59, 92, 0.25) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 80% 90%, rgba(201, 118, 61, 0.15) 0%, transparent 40%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      padding: 100px 80px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: -2px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .variant-tag {
+      position: absolute;
+      top: 40px;
+      right: 40px;
+      padding: 12px 24px;
+      background: rgba(201, 118, 61, 0.4);
+      border-radius: 8px;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #c9763d;
+    }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+    }
+
+    .hook-text {
+      font-size: 44px;
+      color: #c9763d;
+      margin-bottom: 48px;
+      line-height: 1.6;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 100px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.15;
+      margin-bottom: 56px;
+    }
+
+    h1 em { color: #a33b5c; }
+
+    .subtext {
+      font-size: 40px;
+      color: #9a958c;
+      line-height: 1.6;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+
+    .subtext strong { color: #ece8e1; }
+
+    .cta-area {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 56px 100px;
+      background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+      color: white;
+      font-size: 38px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 20px 60px rgba(163, 59, 92, 0.5);
+    }
+
+    .cta-sub {
+      margin-top: 40px;
+      font-size: 32px;
+      color: #5c5955;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="variant-tag">SAVAGE</div>
+
+  <div class="content">
+    <div class="logo">un<span>scarred</span></div>
+
+    <div class="hero-section">
+      <p class="hook-text">Stop calling yourself "too sensitive."<br>Stop saying you're "too much."</p>
+
+      <h1>Your hypervigilance<br><em>kept you alive.</em></h1>
+
+      <p class="subtext">That thing you hate about yourself? It's not a flaw. <strong>It's a survival strategy that worked.</strong> Now it's time to upgrade it—not hate it.</p>
+    </div>
+
+    <div class="cta-area">
+      <a href="#" class="cta-btn">Face Your Patterns →</a>
+      <p class="cta-sub">Free quizzes · Real talk · No BS</p>
+    </div>
+  </div>
+</body>
+</html>
+
+

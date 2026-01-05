@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Container Builder | Strategic Compartmentalization | Unscarred</title>
+  <meta name="description" content="Build a containment plan for what's overwhelming you. Choose the front, set the time box, pick your objective, get a close-out ritual.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --bg-briefing: rgba(12, 11, 16, 0.95);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --accent-glow: rgba(201, 118, 61, 0.35);
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --border-war: rgba(201, 118, 61, 0.25);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-war);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+    .logo-tag {
+      font-size: 0.55em;
+      color: var(--accent);
+      margin-left: 8px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: rgba(201, 118, 61, 0.12);
+      border: 1px solid rgba(201, 118, 61, 0.25);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 550px;
+      margin: 0 auto;
+    }
+
+    /* BUILDER */
+    .builder {
+      margin: 60px 0;
+    }
+
+    .builder-step {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), var(--bg-briefing));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 24px;
+    }
+
+    .builder-step__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .builder-step__num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      background: rgba(201, 118, 61, 0.15);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 12px;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .builder-step__header h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .builder-step p {
+      color: var(--text-soft);
+      margin-bottom: 20px;
+    }
+
+    /* Option Buttons */
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .options-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .option-btn {
+      padding: 16px 12px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-soft);
+    }
+
+    .option-btn:hover {
+      border-color: rgba(201, 118, 61, 0.4);
+      background: rgba(201, 118, 61, 0.05);
+    }
+
+    .option-btn.selected {
+      border-color: var(--accent);
+      background: rgba(201, 118, 61, 0.12);
+      color: var(--text-main);
+    }
+
+    .option-btn__icon {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 8px;
+    }
+
+    /* Time Options */
+    .time-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 500px) {
+      .time-options { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* Custom Input */
+    .custom-input {
+      margin-top: 16px;
+    }
+
+    .custom-input label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .custom-input input,
+    .custom-input textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text-main);
+      resize: vertical;
+    }
+
+    .custom-input input:focus,
+    .custom-input textarea:focus {
+      outline: none;
+      border-color: rgba(201, 118, 61, 0.4);
+    }
+
+    .custom-input textarea {
+      min-height: 100px;
+    }
+
+    /* Generate Button */
+    .generate-btn {
+      display: block;
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--accent), #a85d2d);
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px var(--accent-glow);
+      margin-top: 40px;
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--accent-glow);
+    }
+
+    .generate-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* RESULT */
+    .result {
+      display: none;
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), var(--bg-briefing));
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin: 60px 0;
+    }
+
+    .result.visible { display: block; }
+
+    .result__header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .result__header h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .result__header p {
+      color: var(--text-soft);
+    }
+
+    .result-section {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .result-section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .result-section h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .result-section p {
+      color: var(--text-main);
+      font-size: 1.1rem;
+    }
+
+    .result-script {
+      padding: 20px 24px;
+      background: rgba(124, 92, 191, 0.1);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .ritual-list {
+      list-style: none;
+      margin: 0;
+    }
+
+    .ritual-list li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+      color: var(--text-soft);
+    }
+
+    .ritual-list li::before {
+      content: "→";
+      color: var(--accent);
+    }
+
+    .result-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .result-actions button {
+      flex: 1;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn {
+      background: rgba(124, 92, 191, 0.15);
+      border: 1px solid rgba(124, 92, 191, 0.3);
+      color: var(--secondary);
+    }
+
+    .copy-btn:hover {
+      background: rgba(124, 92, 191, 0.25);
+    }
+
+    .reset-btn {
+      background: transparent;
+      border: 1px solid var(--border-glass);
+      color: var(--text-soft);
+    }
+
+    .reset-btn:hover {
+      border-color: rgba(255,255,255,0.2);
+      color: var(--text-main);
+    }
+
+    /* BACK LINK */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span><span class="logo-tag">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="quizzes.html">Quizzes</a>
+        <a href="tools.html">Tools</a>
+        <a href="/quiz/">Relational Path</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">📦 Interactive Tool</div>
+      <h1>Container <em>Builder</em></h1>
+      <p class="hero-sub">Build a containment plan for what's overwhelming you. Not avoidance—intentional control.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="builder" id="builder">
+
+      <!-- STEP 1: Name the Front -->
+      <div class="builder-step">
+        <div class="builder-step__header">
+          <div class="builder-step__num">1</div>
+          <h3>Name the Front</h3>
+        </div>
+        <p>What is trying to flood you right now? Pick the category.</p>
+        <div class="options-grid" id="fronts">
+          <button class="option-btn" data-value="relationship">
+            <span class="option-btn__icon">💔</span>
+            Relationship
+          </button>
+          <button class="option-btn" data-value="money">
+            <span class="option-btn__icon">💰</span>
+            Money
+          </button>
+          <button class="option-btn" data-value="family">
+            <span class="option-btn__icon">👨‍👩‍👧</span>
+            Family
+          </button>
+          <button class="option-btn" data-value="work">
+            <span class="option-btn__icon">💼</span>
+            Work
+          </button>
+          <button class="option-btn" data-value="body">
+            <span class="option-btn__icon">🫀</span>
+            Body/Health
+          </button>
+          <button class="option-btn" data-value="shame">
+            <span class="option-btn__icon">😔</span>
+            Shame
+          </button>
+          <button class="option-btn" data-value="anger">
+            <span class="option-btn__icon">🔥</span>
+            Anger
+          </button>
+          <button class="option-btn" data-value="grief">
+            <span class="option-btn__icon">🖤</span>
+            Grief
+          </button>
+          <button class="option-btn" data-value="identity">
+            <span class="option-btn__icon">🪞</span>
+            Identity
+          </button>
+        </div>
+        <div class="custom-input">
+          <label>Or describe it in your own words:</label>
+          <input type="text" id="custom-front" placeholder="What's flooding you...">
+        </div>
+      </div>
+
+      <!-- STEP 2: Time Box -->
+      <div class="builder-step">
+        <div class="builder-step__header">
+          <div class="builder-step__num">2</div>
+          <h3>Set the Time Box</h3>
+        </div>
+        <p>How long will you allow this to take your attention? Be specific. Not 6 hours.</p>
+        <div class="time-options" id="times">
+          <button class="option-btn" data-value="10">10 min</button>
+          <button class="option-btn" data-value="20">20 min</button>
+          <button class="option-btn" data-value="30">30 min</button>
+          <button class="option-btn" data-value="60">1 hour</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: Objective -->
+      <div class="builder-step">
+        <div class="builder-step__header">
+          <div class="builder-step__num">3</div>
+          <h3>Choose the Objective</h3>
+        </div>
+        <p>What are you trying to get from this container session? Pick one.</p>
+        <div class="options-grid" id="objectives">
+          <button class="option-btn" data-value="clarity">
+            <span class="option-btn__icon">💡</span>
+            Clarity
+          </button>
+          <button class="option-btn" data-value="relief">
+            <span class="option-btn__icon">😮‍💨</span>
+            Relief
+          </button>
+          <button class="option-btn" data-value="decision">
+            <span class="option-btn__icon">⚖️</span>
+            Decision
+          </button>
+          <button class="option-btn" data-value="boundary">
+            <span class="option-btn__icon">🚧</span>
+            Boundary
+          </button>
+          <button class="option-btn" data-value="understanding">
+            <span class="option-btn__icon">🧠</span>
+            Understanding
+          </button>
+          <button class="option-btn" data-value="release">
+            <span class="option-btn__icon">🌊</span>
+            Release
+          </button>
+        </div>
+      </div>
+
+      <!-- STEP 4: What you want to contain -->
+      <div class="builder-step">
+        <div class="builder-step__header">
+          <div class="builder-step__num">4</div>
+          <h3>What Specifically?</h3>
+        </div>
+        <p>In one or two sentences, what is the thing you are putting in the container?</p>
+        <div class="custom-input">
+          <textarea id="specific-thing" placeholder="Example: The fight we had last night. The fear that they're going to leave. The shame spiral about what I said."></textarea>
+        </div>
+      </div>
+
+      <button class="generate-btn" id="generate-btn">Generate My Container Plan</button>
+
+    </div>
+
+    <!-- RESULT -->
+    <div class="result" id="result">
+      <div class="result__header">
+        <h2>Your Container Plan</h2>
+        <p>Use this protocol. Come back to it when you need it.</p>
+      </div>
+
+      <div class="result-section">
+        <h3>The Front</h3>
+        <p id="result-front"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>What You're Containing</h3>
+        <p id="result-specific"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>Time Box</h3>
+        <p id="result-time"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>Your Objective</h3>
+        <p id="result-objective"></p>
+      </div>
+
+      <div class="result-section">
+        <h3>Opening Script</h3>
+        <div class="result-script" id="result-opening"></div>
+      </div>
+
+      <div class="result-section">
+        <h3>Close-Out Ritual</h3>
+        <ul class="ritual-list" id="result-ritual"></ul>
+      </div>
+
+      <div class="result-section">
+        <h3>Closing Script</h3>
+        <div class="result-script" id="result-closing"></div>
+      </div>
+
+      <div class="result-actions">
+        <button class="copy-btn" id="copy-btn">📋 Copy Plan</button>
+        <button class="reset-btn" id="reset-btn">↺ Start Over</button>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+<script>
+  // State
+  let selectedFront = null;
+  let selectedTime = null;
+  let selectedObjective = null;
+
+  // Rituals based on objective
+  const rituals = {
+    clarity: [
+      "Write down the one thing you now understand",
+      "Take 3 deep breaths",
+      "Drink a full glass of water",
+      "Stand up and stretch for 30 seconds"
+    ],
+    relief: [
+      "Shake your body out for 15 seconds",
+      "Splash cold water on your face",
+      "Say out loud: 'I put this down for now'",
+      "Do 5 slow breaths, exhale longer than inhale"
+    ],
+    decision: [
+      "Write the decision on paper",
+      "Set a timer for when you will revisit if needed",
+      "Say out loud: 'I made a decision. I can change it later if needed.'",
+      "Move your body for 2 minutes"
+    ],
+    boundary: [
+      "Write the boundary in one sentence",
+      "Practice saying it out loud once",
+      "Take 3 breaths",
+      "Do something grounding: feet on floor, hands on surfaces"
+    ],
+    understanding: [
+      "Write down the key insight in 2 sentences max",
+      "Notice how your body feels now vs. before",
+      "Take 5 slow breaths",
+      "Give yourself credit for doing the work"
+    ],
+    release: [
+      "Let yourself feel whatever is there for 60 seconds",
+      "Then shake it off physically",
+      "Drink water",
+      "Do something that uses your hands for 5 minutes"
+    ]
+  };
+
+  // Front labels
+  const frontLabels = {
+    relationship: "Relationship",
+    money: "Money / Finances",
+    family: "Family",
+    work: "Work",
+    body: "Body / Health",
+    shame: "Shame",
+    anger: "Anger",
+    grief: "Grief",
+    identity: "Identity / Self"
+  };
+
+  // Objective labels
+  const objectiveLabels = {
+    clarity: "Clarity — understanding what's happening",
+    relief: "Relief — letting some pressure out",
+    decision: "Decision — choosing a next step",
+    boundary: "Boundary — defining a limit",
+    understanding: "Understanding — seeing the pattern",
+    release: "Release — letting it move through"
+  };
+
+  // Handle option selection
+  function setupOptions(containerId, callback) {
+    const container = document.getElementById(containerId);
+    const buttons = container.querySelectorAll('.option-btn');
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        callback(btn.dataset.value);
+      });
+    });
+  }
+
+  setupOptions('fronts', (value) => { selectedFront = value; });
+  setupOptions('times', (value) => { selectedTime = value; });
+  setupOptions('objectives', (value) => { selectedObjective = value; });
+
+  // Generate plan
+  document.getElementById('generate-btn').addEventListener('click', () => {
+    const customFront = document.getElementById('custom-front').value.trim();
+    const specificThing = document.getElementById('specific-thing').value.trim();
+
+    // Validate
+    if (!selectedFront && !customFront) {
+      alert('Please select or describe what front you are containing.');
+      return;
+    }
+    if (!selectedTime) {
+      alert('Please select a time box.');
+      return;
+    }
+    if (!selectedObjective) {
+      alert('Please select an objective.');
+      return;
+    }
+
+    // Build result
+    const frontDisplay = customFront || frontLabels[selectedFront];
+    const specificDisplay = specificThing || "The feelings and thoughts related to " + frontDisplay.toLowerCase();
+    const timeDisplay = selectedTime + " minutes";
+    const objectiveDisplay = objectiveLabels[selectedObjective];
+
+    // Opening script
+    const openingScript = `"I am opening a container for ${frontDisplay.toLowerCase()}. I am giving this ${selectedTime} minutes of my attention. My objective is ${selectedObjective}. When the time is up, I close the container."`;
+
+    // Closing script
+    const closingScript = `"I am closing the container now. I addressed ${frontDisplay.toLowerCase()} for ${selectedTime} minutes. I got what I could. This is contained until I choose to open it again."`;
+
+    // Populate result
+    document.getElementById('result-front').textContent = frontDisplay;
+    document.getElementById('result-specific').textContent = specificDisplay;
+    document.getElementById('result-time').textContent = timeDisplay;
+    document.getElementById('result-objective').textContent = objectiveDisplay;
+    document.getElementById('result-opening').textContent = openingScript;
+    document.getElementById('result-closing').textContent = closingScript;
+
+    // Ritual list
+    const ritualList = document.getElementById('result-ritual');
+    ritualList.innerHTML = '';
+    rituals[selectedObjective].forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      ritualList.appendChild(li);
+    });
+
+    // Show result
+    document.getElementById('result').classList.add('visible');
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Copy plan
+  document.getElementById('copy-btn').addEventListener('click', () => {
+    const front = document.getElementById('result-front').textContent;
+    const specific = document.getElementById('result-specific').textContent;
+    const time = document.getElementById('result-time').textContent;
+    const objective = document.getElementById('result-objective').textContent;
+    const opening = document.getElementById('result-opening').textContent;
+    const closing = document.getElementById('result-closing').textContent;
+    
+    const ritualItems = document.querySelectorAll('#result-ritual li');
+    let ritualText = '';
+    ritualItems.forEach(li => {
+      ritualText += '→ ' + li.textContent + '\n';
+    });
+
+    const fullText = `CONTAINER PLAN
+================
+
+FRONT: ${front}
+
+CONTAINING: ${specific}
+
+TIME BOX: ${time}
+
+OBJECTIVE: ${objective}
+
+OPENING SCRIPT:
+${opening}
+
+CLOSE-OUT RITUAL:
+${ritualText}
+CLOSING SCRIPT:
+${closing}
+
+---
+Generated at unscarred.com/war/container-builder.html`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => {
+        btn.textContent = '📋 Copy Plan';
+      }, 2000);
+    });
+  });
+
+  // Reset
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    selectedFront = null;
+    selectedTime = null;
+    selectedObjective = null;
+    
+    document.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+    document.getElementById('custom-front').value = '';
+    document.getElementById('specific-thing').value = '';
+    document.getElementById('result').classList.remove('visible');
+    
+    document.getElementById('builder').scrollIntoView({ behavior: 'smooth' });
+  });
+</script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+

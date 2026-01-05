@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Unscarred Ad Library | Campaign Dashboard</title>
+  <title>Unscarred Ad Campaign Gallery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -11,7 +11,6 @@
     :root {
       --bg-void: #050507;
       --bg-deep: #0a0a0f;
-      --bg-card: #12121a;
       --primary: #a33b5c;
       --secondary: #7c5cbf;
       --accent: #c9763d;
@@ -29,126 +28,91 @@
     
     body {
       font-family: var(--font-body);
-      background: var(--bg-void);
+      background: #121215;
       color: var(--text-main);
       line-height: 1.6;
       padding: 40px 24px;
     }
 
-    .dashboard-header {
-      max-width: 1400px;
-      margin: 0 auto 48px;
-      padding-bottom: 32px;
-      border-bottom: 1px solid var(--border-glass);
+    .gallery-header {
+      text-align: center;
+      margin-bottom: 40px;
     }
 
-    .dashboard-header h1 {
+    .gallery-header h1 {
       font-family: var(--font-display);
       font-size: 2.5rem;
       font-style: italic;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
     }
 
-    .dashboard-header h1 span { color: var(--primary); }
+    .gallery-header h1 span { color: var(--primary); }
 
-    .dashboard-header p {
+    .gallery-header p {
       color: var(--text-soft);
-      font-size: 1.1rem;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
-    /* Decision Rules Panel */
-    .decision-panel {
-      max-width: 1400px;
-      margin: 0 auto 48px;
-      background: linear-gradient(135deg, rgba(163, 59, 92, 0.08), rgba(124, 92, 191, 0.05));
+    /* Decision Rules Quick Reference */
+    .decision-rules {
+      max-width: 900px;
+      margin: 0 auto 60px;
+      padding: 32px;
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.08), rgba(12, 11, 16, 0.95));
       border: 1px solid rgba(163, 59, 92, 0.2);
       border-radius: 20px;
-      padding: 32px;
     }
 
-    .decision-panel h2 {
+    .decision-rules h2 {
       font-family: var(--font-display);
       font-size: 1.3rem;
       font-style: italic;
       color: var(--primary);
       margin-bottom: 20px;
+      text-align: center;
     }
 
-    .decision-grid {
+    .rules-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 16px;
     }
 
-    @media (max-width: 900px) {
-      .decision-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .decision-card {
+    .rule {
+      padding: 16px 20px;
       background: rgba(20, 18, 25, 0.8);
-      border: 1px solid var(--border-glass);
       border-radius: 12px;
-      padding: 20px;
-    }
-
-    .decision-card .condition {
-      font-size: 0.85rem;
-      color: var(--text-dim);
-      margin-bottom: 8px;
-    }
-
-    .decision-card .action {
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .decision-card .action span {
-      color: var(--primary);
-    }
-
-    /* Filter Bar */
-    .filter-bar {
-      max-width: 1400px;
-      margin: 0 auto 32px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      padding: 10px 20px;
-      background: transparent;
       border: 1px solid var(--border-glass);
-      border-radius: 999px;
-      color: var(--text-soft);
-      font-size: 0.85rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
     }
 
-    .filter-btn:hover, .filter-btn.active {
-      border-color: var(--primary);
+    .rule-if {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .rule-then {
+      font-size: 1rem;
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .rule-then span {
       color: var(--primary);
-      background: rgba(163, 59, 92, 0.1);
     }
 
-    .filter-btn[data-goal="LEAD"] { --filter-color: var(--teal); }
-    .filter-btn[data-goal="SALE"] { --filter-color: var(--primary); }
-    .filter-btn[data-goal="TRUST"] { --filter-color: var(--secondary); }
-    .filter-btn[data-goal="BRAND"] { --filter-color: var(--sage); }
-
-    /* Ad Grid */
     .ad-section {
       max-width: 1400px;
-      margin: 0 auto 60px;
+      margin: 0 auto 80px;
     }
 
     .section-header {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 16px;
       margin-bottom: 24px;
     }
 
@@ -159,791 +123,462 @@
       color: var(--accent);
     }
 
-    .section-header .count {
-      font-size: 0.85rem;
+    .section-tag {
+      padding: 6px 14px;
+      background: rgba(163, 59, 92, 0.15);
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--primary);
+    }
+
+    .section-tag.lead { background: rgba(45, 143, 143, 0.15); color: var(--teal); }
+    .section-tag.sale { background: rgba(163, 59, 92, 0.15); color: var(--primary); }
+    .section-tag.trust { background: rgba(124, 92, 191, 0.15); color: var(--secondary); }
+    .section-tag.brand { background: rgba(201, 118, 61, 0.15); color: var(--accent); }
+
+    .ad-section > p {
       color: var(--text-dim);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
     }
 
     .ad-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 24px;
-    }
-
-    .ad-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: all 0.3s;
-    }
-
-    .ad-card:hover {
-      border-color: rgba(163, 59, 92, 0.3);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-
-    .ad-preview {
-      background: var(--bg-void);
       display: flex;
-      justify-content: center;
-      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: flex-start;
+    }
+
+    .ad-wrapper {
+      background: rgba(20, 18, 25, 0.6);
+      border-radius: 16px;
       padding: 16px;
-      min-height: 200px;
+      border: 1px solid var(--border-glass);
     }
 
-    .ad-preview iframe {
-      border: none;
-      border-radius: 8px;
-      pointer-events: none;
-    }
-
-    .ad-info {
-      padding: 20px;
-    }
-
-    .ad-code {
-      font-family: monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      background: rgba(201, 118, 61, 0.1);
-      padding: 6px 12px;
-      border-radius: 6px;
-      display: inline-block;
+    .ad-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-bottom: 12px;
     }
 
-    .ad-title {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
+    .ad-label {
+      font-size: 0.7rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-soft);
     }
 
     .ad-tags {
       display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
+      gap: 6px;
     }
 
-    .tag {
-      font-size: 0.7rem;
+    .ad-tag {
+      padding: 4px 8px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+      font-size: 0.6rem;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-
-    .tag-audience {
-      background: rgba(124, 92, 191, 0.2);
-      color: var(--secondary);
-    }
-
-    .tag-purpose {
-      background: rgba(163, 59, 92, 0.2);
-      color: var(--primary);
-    }
-
-    .tag-tone {
-      background: rgba(201, 118, 61, 0.15);
-      color: var(--accent);
-    }
-
-    .ad-actions {
-      display: flex;
-      gap: 8px;
-    }
-
-    .ad-btn {
-      flex: 1;
-      padding: 10px 16px;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      text-align: center;
-    }
-
-    .ad-btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .ad-btn-primary:hover {
-      background: #b8446a;
-    }
-
-    .ad-btn-secondary {
-      background: rgba(255,255,255,0.06);
-      color: var(--text-soft);
-    }
-
-    .ad-btn-secondary:hover {
-      background: rgba(255,255,255,0.1);
-      color: var(--text-main);
-    }
-
-    /* Variation indicator */
-    .variations {
-      display: flex;
-      gap: 6px;
-      margin-top: 12px;
-    }
-
-    .var-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--text-dim);
-    }
-
-    .var-dot.soft { background: var(--sage); }
-    .var-dot.sharp { background: var(--accent); }
-    .var-dot.savage { background: var(--primary); }
-
-    .var-label {
-      font-size: 0.7rem;
       color: var(--text-dim);
-      margin-left: 4px;
     }
 
-    /* Legend */
-    .legend {
-      max-width: 1400px;
-      margin: 60px auto 0;
+    .ad-tag.ax { color: #e88a9a; }
+    .ad-tag.av { color: #7db8d8; }
+    .ad-tag.war { color: #a33b5c; }
+    .ad-tag.nd { color: #9a8fdf; }
+    .ad-tag.all { color: var(--sage); }
+    .ad-tag.men { color: #7d9a8c; }
+    .ad-tag.wmn { color: #b88fc7; }
+
+    /* Variants section */
+    .variants-section {
+      margin-top: 60px;
       padding: 32px;
-      background: rgba(20, 18, 25, 0.6);
-      border: 1px solid var(--border-glass);
-      border-radius: 16px;
+      background: linear-gradient(165deg, rgba(124, 92, 191, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.2);
+      border-radius: 20px;
     }
 
-    .legend h3 {
+    .variants-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .variants-header h3 {
       font-family: var(--font-display);
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       font-style: italic;
-      margin-bottom: 20px;
-      color: var(--sage);
-    }
-
-    .legend-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    @media (max-width: 768px) {
-      .legend-grid { grid-template-columns: 1fr; }
-    }
-
-    .legend-section h4 {
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-dim);
-      margin-bottom: 12px;
-    }
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      color: var(--text-soft);
+      color: var(--secondary);
       margin-bottom: 8px;
     }
 
-    .legend-item code {
-      font-family: monospace;
-      background: rgba(255,255,255,0.05);
-      padding: 2px 8px;
-      border-radius: 4px;
-      color: var(--accent);
+    .variants-header p {
+      color: var(--text-dim);
+      font-size: 0.9rem;
     }
+
+    .variant-group {
+      margin-bottom: 32px;
+    }
+
+    .variant-group h4 {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .variant-pills {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .variant-pill {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .variant-pill.soft { background: rgba(125, 154, 140, 0.2); color: var(--sage); }
+    .variant-pill.sharp { background: rgba(163, 59, 92, 0.2); color: var(--primary); }
+    .variant-pill.savage { background: rgba(201, 118, 61, 0.2); color: var(--accent); }
 
     footer {
       text-align: center;
-      padding: 60px 0 40px;
+      padding: 40px 0;
       color: var(--text-dim);
       font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+      margin-top: 60px;
     }
+
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
 
-  <div class="dashboard-header">
-    <h1>un<span>scarred</span> Ad Library</h1>
-    <p>Organized by Goal + Angle + Size. Tagged by Audience + Purpose. Ready to deploy.</p>
+  <div class="gallery-header">
+    <h1>un<span>scarred</span> Campaign Gallery</h1>
+    <p>Organized by GOAL + ANGLE + SIZE. Each ad is tagged by audience and purpose. See <a href="AD-CAMPAIGN-SYSTEM.txt">AD-CAMPAIGN-SYSTEM.txt</a> for full documentation.</p>
   </div>
 
   <!-- Decision Rules -->
-  <div class="decision-panel">
-    <h2>📊 Decision Rules — What to Post Next</h2>
-    <div class="decision-grid">
-      <div class="decision-card">
-        <div class="condition">If views drop →</div>
-        <div class="action">Post <span>HOOK</span></div>
+  <div class="decision-rules">
+    <h2>⚡ Quick Decision Rules</h2>
+    <div class="rules-grid">
+      <div class="rule">
+        <div class="rule-if">If views drop</div>
+        <div class="rule-then">Post <span>HOOK</span></div>
       </div>
-      <div class="decision-card">
-        <div class="condition">If clicks drop →</div>
-        <div class="action">Post <span>QUIZ</span></div>
+      <div class="rule">
+        <div class="rule-if">If clicks drop</div>
+        <div class="rule-then">Post <span>QUIZ</span></div>
       </div>
-      <div class="decision-card">
-        <div class="condition">If trust feels low →</div>
-        <div class="action">Post <span>TESTIMONIAL</span></div>
+      <div class="rule">
+        <div class="rule-if">If trust feels low</div>
+        <div class="rule-then">Post <span>TESTIMONIAL</span></div>
       </div>
-      <div class="decision-card">
-        <div class="condition">If you need money now →</div>
-        <div class="action">Post <span>COACHING CTA</span></div>
+      <div class="rule">
+        <div class="rule-if">If you need money now</div>
+        <div class="rule-then">Post <span>OFFER</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Filter Bar -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All Ads</button>
-    <button class="filter-btn" data-goal="LEAD">🎯 LEAD</button>
-    <button class="filter-btn" data-goal="SALE">💰 SALE</button>
-    <button class="filter-btn" data-goal="TRUST">🤝 TRUST</button>
-    <button class="filter-btn" data-goal="BRAND">✨ BRAND</button>
-    <span style="color: var(--text-dim); padding: 10px;">|</span>
-    <button class="filter-btn" data-size="Vertical">📱 Vertical</button>
-    <button class="filter-btn" data-size="Square">⬛ Square</button>
-    <button class="filter-btn" data-size="Banner">📐 Banner</button>
-  </div>
-
-  <!-- LEAD ADS -->
-  <section class="ad-section" data-goal="LEAD">
+  <!-- LEAD ADS - Hooks -->
+  <section class="ad-section">
     <div class="section-header">
-      <h2>🎯 LEAD — Capture Attention, Get Clicks</h2>
-      <span class="count">12 ads</span>
+      <h2>LEAD — Hook Ads</h2>
+      <span class="section-tag lead">Scroll Stoppers</span>
     </div>
+    <p>Use when views are dropping. Emotional triggers to stop the scroll.</p>
     <div class="ad-grid">
-
-      <!-- LEAD-Hook-Pattern-Vertical -->
-      <div class="ad-card" data-code="LEAD-Hook-Pattern-Vertical" data-audience="Mixed" data-purpose="Hook">
-        <div class="ad-preview">
-          <iframe src="LEAD-Hook-Pattern-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Hook-Patterns-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">HOOK</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Hook-Pattern-Vertical</div>
-          <div class="ad-title">"What's Really Running You?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Hook</span>
-            <span class="tag tag-tone">Sharp</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Hook-Pattern-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-          <div class="variations">
-            <div class="var-dot soft"></div>
-            <div class="var-dot sharp" style="opacity: 1;"></div>
-            <div class="var-dot savage"></div>
-            <span class="var-label">3 versions</span>
-          </div>
-        </div>
+        <a href="LEAD-Hook-Patterns-Vertical.html" target="_blank"><iframe src="LEAD-Hook-Patterns-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-Shutdown-Vertical -->
-      <div class="ad-card" data-code="LEAD-Quiz-Shutdown-Vertical">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-Shutdown-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Hook-Shutdown-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag av">AV</span><span class="ad-tag">HOOK</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-Shutdown-Vertical</div>
-          <div class="ad-title">"Why Do You Shut Down?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Avoidant</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-Shutdown-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Hook-Shutdown-Vertical.html" target="_blank"><iframe src="LEAD-Hook-Shutdown-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-Fawn-Vertical -->
-      <div class="ad-card" data-code="LEAD-Quiz-Fawn-Vertical">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-Fawn-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Hook-Fawn-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag ax">AX</span><span class="ad-tag">HOOK</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-Fawn-Vertical</div>
-          <div class="ad-title">"Do You Disappear to Keep Peace?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-Fawn-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Hook-Fawn-Vertical.html" target="_blank"><iframe src="LEAD-Hook-Fawn-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-Mirror-Vertical -->
-      <div class="ad-card" data-code="LEAD-Quiz-Mirror-Vertical">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-Mirror-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Hook-Truth-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">HOOK</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-Mirror-Vertical</div>
-          <div class="ad-title">"What Survival Mask Do You Wear?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Trauma Bond</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-Mirror-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Hook-Truth-Vertical.html" target="_blank"><iframe src="LEAD-Hook-Truth-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Hook-Truth-Vertical -->
-      <div class="ad-card" data-code="LEAD-Hook-Truth-Vertical">
-        <div class="ad-preview">
-          <iframe src="LEAD-Hook-Truth-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Hook-Mirror-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag war">WAR</span><span class="ad-tag">HOOK</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Hook-Truth-Vertical</div>
-          <div class="ad-title">"Not a Flaw, It's Survival Mode"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Neurodivergent</span>
-            <span class="tag tag-purpose">Hook</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Hook-Truth-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Hook-Mirror-Vertical.html" target="_blank"><iframe src="LEAD-Hook-Mirror-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Hook-Emotional-Vertical -->
-      <div class="ad-card" data-code="LEAD-Hook-Emotional-Vertical">
-        <div class="ad-preview">
-          <iframe src="LEAD-Hook-Emotional-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Hook-Emotional-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag war">TB</span><span class="ad-tag">HOOK</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Hook-Emotional-Vertical</div>
-          <div class="ad-title">"What If Your Flaws Were Protection?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Hook</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Hook-Emotional-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Hook-Emotional-Vertical.html" target="_blank"><iframe src="LEAD-Hook-Emotional-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
+    </div>
+  </section>
 
-      <!-- LEAD-Quiz-NervousSystem-Square -->
-      <div class="ad-card" data-code="LEAD-Quiz-NervousSystem-Square">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-NervousSystem-Square.html" style="width: 160px; height: 160px;"></iframe>
+  <!-- LEAD ADS - Quiz -->
+  <section class="ad-section">
+    <div class="section-header">
+      <h2>LEAD — Quiz Ads</h2>
+      <span class="section-tag lead">Lead Capture</span>
+    </div>
+    <p>Use when clicks are dropping. Clear value, specific outcomes promised.</p>
+    <div class="ad-grid">
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Quiz-Warpath-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag war">WAR</span><span class="ad-tag">QUIZ</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-NervousSystem-Square</div>
-          <div class="ad-title">"How Does Your Body Respond?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-NervousSystem-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Quiz-Warpath-Vertical.html" target="_blank"><iframe src="LEAD-Quiz-Warpath-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-Sabotage-Square -->
-      <div class="ad-card" data-code="LEAD-Quiz-Sabotage-Square">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-Sabotage-Square.html" style="width: 160px; height: 160px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Quiz-Patterns-Square</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">QUIZ</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-Sabotage-Square</div>
-          <div class="ad-title">"When Peace Shows Up..."</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Avoidant</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-Sabotage-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Quiz-Patterns-Square.html" target="_blank"><iframe src="LEAD-Quiz-Patterns-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-PartnerDraw-Square -->
-      <div class="ad-card" data-code="LEAD-Quiz-PartnerDraw-Square">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-PartnerDraw-Square.html" style="width: 160px; height: 160px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Quiz-NervousSystem-Square</span>
+          <div class="ad-tags"><span class="ad-tag nd">ND</span><span class="ad-tag">QUIZ</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-PartnerDraw-Square</div>
-          <div class="ad-title">"Why Same Type Every Time?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-PartnerDraw-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Quiz-NervousSystem-Square.html" target="_blank"><iframe src="LEAD-Quiz-NervousSystem-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-WarPath-Vertical -->
-      <div class="ad-card" data-code="LEAD-Quiz-WarPath-Vertical">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-WarPath-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Quiz-Sabotage-Square</span>
+          <div class="ad-tags"><span class="ad-tag ax">AX</span><span class="ad-tag">QUIZ</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-WarPath-Vertical</div>
-          <div class="ad-title">"Surviving or Living?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Trauma Bond</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-WarPath-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Quiz-Sabotage-Square.html" target="_blank"><iframe src="LEAD-Quiz-Sabotage-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Quiz-WarPath-Banner -->
-      <div class="ad-card" data-code="LEAD-Quiz-WarPath-Banner">
-        <div class="ad-preview">
-          <iframe src="LEAD-Quiz-WarPath-Banner.html" style="width: 200px; height: 105px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Quiz-PartnerDraw-Square</span>
+          <div class="ad-tags"><span class="ad-tag ax">MX</span><span class="ad-tag">QUIZ</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Quiz-WarPath-Banner</div>
-          <div class="ad-title">"Which War Is Your NS Fighting?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Trauma Bond</span>
-            <span class="tag tag-purpose">Quiz</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Quiz-WarPath-Banner.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Quiz-PartnerDraw-Square.html" target="_blank"><iframe src="LEAD-Quiz-PartnerDraw-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- LEAD-Free-Resources-Banner -->
-      <div class="ad-card" data-code="LEAD-Free-Resources-Banner">
-        <div class="ad-preview">
-          <iframe src="LEAD-Free-Resources-Banner.html" style="width: 200px; height: 105px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">LEAD-Quiz-Free-Banner</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">QUIZ</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">LEAD-Free-Resources-Banner</div>
-          <div class="ad-title">"Start Your Pattern Journey"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Hook</span>
-          </div>
-          <div class="ad-actions">
-            <a href="LEAD-Free-Resources-Banner.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="LEAD-Quiz-Free-Banner.html" target="_blank"><iframe src="LEAD-Quiz-Free-Banner.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
     </div>
   </section>
 
   <!-- SALE ADS -->
-  <section class="ad-section" data-goal="SALE">
+  <section class="ad-section">
     <div class="section-header">
-      <h2>💰 SALE — Programs, Coaching, Offers</h2>
-      <span class="count">7 ads</span>
+      <h2>SALE — Offer Ads</h2>
+      <span class="section-tag sale">Revenue</span>
     </div>
+    <p>Use when you need sales. Direct program and coaching CTAs.</p>
     <div class="ad-grid">
-
-      <!-- SALE-Program-CenteredMan-Vertical -->
-      <div class="ad-card" data-code="SALE-Program-CenteredMan-Vertical">
-        <div class="ad-preview">
-          <iframe src="SALE-Program-CenteredMan-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-CenteredMan-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag men">MEN</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-Program-CenteredMan-Vertical</div>
-          <div class="ad-title">"Stop Chasing. Start Leading."</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-Program-CenteredMan-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-CenteredMan-Vertical.html" target="_blank"><iframe src="SALE-Offer-CenteredMan-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- SALE-Program-CenteredWoman-Vertical -->
-      <div class="ad-card" data-code="SALE-Program-CenteredWoman-Vertical">
-        <div class="ad-preview">
-          <iframe src="SALE-Program-CenteredWoman-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-CenteredWoman-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag wmn">WMN</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-Program-CenteredWoman-Vertical</div>
-          <div class="ad-title">"Stop Shrinking. Start Choosing."</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-Program-CenteredWoman-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-CenteredWoman-Vertical.html" target="_blank"><iframe src="SALE-Offer-CenteredWoman-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- SALE-Program-Anxious-Square -->
-      <div class="ad-card" data-code="SALE-Program-Anxious-Square">
-        <div class="ad-preview">
-          <iframe src="SALE-Program-Anxious-Square.html" style="width: 160px; height: 160px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-Anxious-Square</span>
+          <div class="ad-tags"><span class="ad-tag ax">AX</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-Program-Anxious-Square</div>
-          <div class="ad-title">"Tired of Chasing Connection?"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-Program-Anxious-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-Anxious-Square.html" target="_blank"><iframe src="SALE-Offer-Anxious-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- SALE-Programs-All-Square -->
-      <div class="ad-card" data-code="SALE-Programs-All-Square">
-        <div class="ad-preview">
-          <iframe src="SALE-Programs-All-Square.html" style="width: 160px; height: 160px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-Programs-Square</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-Programs-All-Square</div>
-          <div class="ad-title">"Heal the Pattern, Not the Pain"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-Programs-All-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-Programs-Square.html" target="_blank"><iframe src="SALE-Offer-Programs-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- SALE-Call-PatternClarity-Banner -->
-      <div class="ad-card" data-code="SALE-Call-PatternClarity-Banner">
-        <div class="ad-preview">
-          <iframe src="SALE-Call-PatternClarity-Banner.html" style="width: 200px; height: 105px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-TextSupport-Square</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-Call-PatternClarity-Banner</div>
-          <div class="ad-title">"One Call Can Change Everything"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-Call-PatternClarity-Banner.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-TextSupport-Square.html" target="_blank"><iframe src="SALE-Offer-TextSupport-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- SALE-Programs-All-Banner -->
-      <div class="ad-card" data-code="SALE-Programs-All-Banner">
-        <div class="ad-preview">
-          <iframe src="SALE-Programs-All-Banner.html" style="width: 200px; height: 105px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-Coaching-Banner</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-Programs-All-Banner</div>
-          <div class="ad-title">"Guided Healing That Works"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-Programs-All-Banner.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-Coaching-Banner.html" target="_blank"><iframe src="SALE-Offer-Coaching-Banner.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- SALE-TextSupport-Square -->
-      <div class="ad-card" data-code="SALE-TextSupport-Square">
-        <div class="ad-preview">
-          <iframe src="SALE-TextSupport-Square.html" style="width: 160px; height: 160px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-Programs-Banner</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">OFFER</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">SALE-TextSupport-Square</div>
-          <div class="ad-title">"Support When You Need It"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Anxious</span>
-            <span class="tag tag-purpose">Offer</span>
-          </div>
-          <div class="ad-actions">
-            <a href="SALE-TextSupport-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="SALE-Offer-Programs-Banner.html" target="_blank"><iframe src="SALE-Offer-Programs-Banner.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">SALE-Offer-Warpath-Banner</span>
+          <div class="ad-tags"><span class="ad-tag war">WAR</span><span class="ad-tag">OFFER</span></div>
+        </div>
+        <a href="SALE-Offer-Warpath-Banner.html" target="_blank"><iframe src="SALE-Offer-Warpath-Banner.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+      </div>
     </div>
   </section>
 
   <!-- TRUST ADS -->
-  <section class="ad-section" data-goal="TRUST">
+  <section class="ad-section">
     <div class="section-header">
-      <h2>🤝 TRUST — Testimonials, Proof, Credibility</h2>
-      <span class="count">2 ads</span>
+      <h2>TRUST — Testimonial Ads</h2>
+      <span class="section-tag trust">Social Proof</span>
     </div>
+    <p>Use when trust feels low. Real results, relatable quotes.</p>
     <div class="ad-grid">
-
-      <!-- TRUST-Testimonial-Shift-Vertical -->
-      <div class="ad-card" data-code="TRUST-Testimonial-Shift-Vertical">
-        <div class="ad-preview">
-          <iframe src="TRUST-Testimonial-Shift-Vertical.html" style="width: 135px; height: 240px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">TRUST-Testimonial-Shift-Vertical</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">PROOF</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">TRUST-Testimonial-Shift-Vertical</div>
-          <div class="ad-title">"You Broke It Down So Clearly..."</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Proof</span>
-          </div>
-          <div class="ad-actions">
-            <a href="TRUST-Testimonial-Shift-Vertical.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-          <div class="variations">
-            <div class="var-dot soft"></div>
-            <div class="var-dot sharp"></div>
-            <div class="var-dot savage"></div>
-            <span class="var-label">3 versions</span>
-          </div>
-        </div>
+        <a href="TRUST-Testimonial-Shift-Vertical.html" target="_blank"><iframe src="TRUST-Testimonial-Shift-Vertical.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- TRUST-Quote-Signature-Square -->
-      <div class="ad-card" data-code="TRUST-Quote-Signature-Square">
-        <div class="ad-preview">
-          <iframe src="TRUST-Quote-Signature-Square.html" style="width: 160px; height: 160px;"></iframe>
-        </div>
-        <div class="ad-info">
-          <div class="ad-code">TRUST-Quote-Signature-Square</div>
-          <div class="ad-title">"Your Patterns Are Not Your Fault"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Brand</span>
-          </div>
-          <div class="ad-actions">
-            <a href="TRUST-Quote-Signature-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
   <!-- BRAND ADS -->
-  <section class="ad-section" data-goal="BRAND">
+  <section class="ad-section">
     <div class="section-header">
-      <h2>✨ BRAND — Awareness, Manifesto, Identity</h2>
-      <span class="count">2 ads</span>
+      <h2>BRAND — Awareness Ads</h2>
+      <span class="section-tag brand">Identity</span>
     </div>
+    <p>Use when engagement is flat. Manifesto, philosophy, values.</p>
     <div class="ad-grid">
-
-      <!-- BRAND-Manifesto-Square -->
-      <div class="ad-card" data-code="BRAND-Manifesto-Square">
-        <div class="ad-preview">
-          <iframe src="BRAND-Manifesto-Square.html" style="width: 160px; height: 160px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">BRAND-Manifesto-Square</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">BRAND</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">BRAND-Manifesto-Square</div>
-          <div class="ad-title">"Turn Scars Into Mirrors"</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Brand</span>
-          </div>
-          <div class="ad-actions">
-            <a href="BRAND-Manifesto-Square.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="BRAND-Manifesto-Square.html" target="_blank"><iframe src="BRAND-Manifesto-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
-      <!-- BRAND-CTA-Leaderboard -->
-      <div class="ad-card" data-code="BRAND-CTA-Leaderboard">
-        <div class="ad-preview">
-          <iframe src="BRAND-CTA-Leaderboard.html" style="width: 200px; height: 30px;"></iframe>
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">BRAND-Quote-Square</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">BRAND</span></div>
         </div>
-        <div class="ad-info">
-          <div class="ad-code">BRAND-CTA-Leaderboard</div>
-          <div class="ad-title">Slim Banner CTA</div>
-          <div class="ad-tags">
-            <span class="tag tag-audience">Mixed Signals</span>
-            <span class="tag tag-purpose">Brand</span>
-          </div>
-          <div class="ad-actions">
-            <a href="BRAND-CTA-Leaderboard.html" target="_blank" class="ad-btn ad-btn-primary">View Full</a>
-            <button class="ad-btn ad-btn-secondary">Copy</button>
-          </div>
-        </div>
+        <a href="BRAND-Quote-Square.html" target="_blank"><iframe src="BRAND-Quote-Square.html" style="width: 320px; height: 320px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
       </div>
-
+      <div class="ad-wrapper">
+        <div class="ad-meta">
+          <span class="ad-label">BRAND-CTA-Leader</span>
+          <div class="ad-tags"><span class="ad-tag all">ALL</span><span class="ad-tag">BRAND</span></div>
+        </div>
+        <a href="BRAND-CTA-Leader.html" target="_blank"><iframe src="BRAND-CTA-Leader.html" style="width: 400px; height: 60px; border: none; pointer-events: none; border-radius: 6px;"></iframe></a>
+      </div>
     </div>
   </section>
 
-  <!-- Legend -->
-  <div class="legend">
-    <h3>📖 Naming System Reference</h3>
-    <div class="legend-grid">
-      <div class="legend-section">
-        <h4>Goal Codes</h4>
-        <div class="legend-item"><code>LEAD</code> Get attention, capture email/click</div>
-        <div class="legend-item"><code>SALE</code> Push offer, program, coaching</div>
-        <div class="legend-item"><code>TRUST</code> Build credibility, testimonials</div>
-        <div class="legend-item"><code>BRAND</code> Awareness, manifesto, identity</div>
+  <!-- VARIANTS SECTION -->
+  <div class="variants-section">
+    <div class="variants-header">
+      <h3>🎯 Copy Variants (Soft / Sharp / Savage)</h3>
+      <p>3 versions of every winner so you never feel stuck</p>
+    </div>
+
+    <div class="variant-group">
+      <h4>LEAD-Hook-Patterns-Vertical</h4>
+      <div class="variant-pills">
+        <span class="variant-pill soft">SOFT</span>
+        <span class="variant-pill sharp">SHARP</span>
+        <span class="variant-pill savage">SAVAGE</span>
       </div>
-      <div class="legend-section">
-        <h4>Audience Tags</h4>
-        <div class="legend-item">Anxious</div>
-        <div class="legend-item">Avoidant</div>
-        <div class="legend-item">Mixed Signals</div>
-        <div class="legend-item">Neurodivergent</div>
-        <div class="legend-item">Trauma Bond</div>
+      <div class="ad-grid">
+        <div class="ad-wrapper">
+          <div class="ad-meta"><span class="ad-label">SOFT — Gentle, compassionate</span></div>
+          <a href="LEAD-Hook-Patterns-Vertical-SOFT.html" target="_blank"><iframe src="LEAD-Hook-Patterns-Vertical-SOFT.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+        </div>
+        <div class="ad-wrapper">
+          <div class="ad-meta"><span class="ad-label">SHARP — Direct, clear</span></div>
+          <a href="LEAD-Hook-Patterns-Vertical-SHARP.html" target="_blank"><iframe src="LEAD-Hook-Patterns-Vertical-SHARP.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+        </div>
+        <div class="ad-wrapper">
+          <div class="ad-meta"><span class="ad-label">SAVAGE — Wake-up call</span></div>
+          <a href="LEAD-Hook-Patterns-Vertical-SAVAGE.html" target="_blank"><iframe src="LEAD-Hook-Patterns-Vertical-SAVAGE.html" style="width: 270px; height: 480px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+        </div>
       </div>
-      <div class="legend-section">
-        <h4>Purpose Tags</h4>
-        <div class="legend-item"><code>Hook</code> Stop scroll, create curiosity</div>
-        <div class="legend-item"><code>Quiz</code> Drive quiz traffic</div>
-        <div class="legend-item"><code>Proof</code> Show results, testimonials</div>
-        <div class="legend-item"><code>Offer</code> Sell program/service</div>
-        <div class="legend-item"><code>Brand</code> Build recognition</div>
+    </div>
+
+    <div class="variant-group">
+      <h4>SALE-Offer-Coaching-Banner</h4>
+      <div class="variant-pills">
+        <span class="variant-pill soft">SOFT</span>
+        <span class="variant-pill sharp">SHARP</span>
+        <span class="variant-pill savage">SAVAGE</span>
+      </div>
+      <div class="ad-grid">
+        <div class="ad-wrapper">
+          <div class="ad-meta"><span class="ad-label">SOFT — Gentle, compassionate</span></div>
+          <a href="SALE-Offer-Coaching-Banner-SOFT.html" target="_blank"><iframe src="SALE-Offer-Coaching-Banner-SOFT.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+        </div>
+        <div class="ad-wrapper">
+          <div class="ad-meta"><span class="ad-label">SHARP — Direct, clear</span></div>
+          <a href="SALE-Offer-Coaching-Banner-SHARP.html" target="_blank"><iframe src="SALE-Offer-Coaching-Banner-SHARP.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+        </div>
+        <div class="ad-wrapper">
+          <div class="ad-meta"><span class="ad-label">SAVAGE — Wake-up call</span></div>
+          <a href="SALE-Offer-Coaching-Banner-SAVAGE.html" target="_blank"><iframe src="SALE-Offer-Coaching-Banner-SAVAGE.html" style="width: 400px; height: 209px; border: none; pointer-events: none; border-radius: 8px;"></iframe></a>
+        </div>
       </div>
     </div>
   </div>
 
   <footer>
     <p>© 2025 Unscarred. Your patterns are not your fault. Learning them is your power.</p>
+    <p style="margin-top: 12px;"><a href="AD-CAMPAIGN-SYSTEM.txt">View full campaign system documentation →</a></p>
   </footer>
 
 </body>

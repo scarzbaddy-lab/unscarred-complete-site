@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Unscarred Ad - Banner Coaching</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 1200px;
+      height: 628px;
+      transform-origin: top left;
+      transform: scale(0.333);
+      font-family: 'Outfit', sans-serif;
+      background: #050507;
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 60% 100% at 0% 50%, rgba(163, 59, 92, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 50% 80% at 100% 50%, rgba(124, 92, 191, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 80px;
+      gap: 60px;
+    }
+
+    .left-section {
+      flex: 1;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    h1 em { color: #a33b5c; }
+
+    .subtext {
+      font-size: 28px;
+      color: #9a958c;
+      line-height: 1.5;
+      max-width: 500px;
+    }
+
+    .right-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 24px;
+    }
+
+    .testimonial-bubble {
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.15), rgba(20, 18, 25, 0.9));
+      border: 1px solid rgba(124, 92, 191, 0.25);
+      border-radius: 24px 24px 24px 4px;
+      padding: 28px 36px;
+      max-width: 400px;
+    }
+
+    .testimonial-bubble p {
+      font-size: 24px;
+      font-style: italic;
+      color: #ece8e1;
+      line-height: 1.4;
+    }
+
+    .testimonial-bubble.alt {
+      border-radius: 24px 24px 4px 24px;
+      background: linear-gradient(135deg, rgba(163, 59, 92, 0.12), rgba(20, 18, 25, 0.9));
+      border-color: rgba(163, 59, 92, 0.2);
+    }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 32px 56px;
+      background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 12px 40px rgba(163, 59, 92, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="left-section">
+      <div class="logo">un<span>scarred</span></div>
+      <h1>One call can<br><em>change everything</em></h1>
+      <p class="subtext">30-minute Pattern Clarity Calls. Get the truth you need to stop spinning and start building.</p>
+    </div>
+
+    <div class="right-section">
+      <div class="testimonial-bubble">
+        <p>"That clarity call got me moving again. I was stuck for months."</p>
+      </div>
+      <div class="testimonial-bubble alt">
+        <p>"You told me the truth so clean it shocked me."</p>
+      </div>
+      <a href="#" class="cta-btn">Book a Call →</a>
+    </div>
+  </div>
+</body>
+</html>
+

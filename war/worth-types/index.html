@@ -1,575 +1,276 @@
-<!doctype html>
-<html lang="en" class="h-full">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Worth Types Assessment</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Self-Worth Diagnostic | Unscarred</title>
+  <meta name="description" content="What is your internal worth structure? Performance-based, approval-based, or somewhere else. Map how you measure yourself.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Nunito:wght@400;500;600;700&display=swap');
-    
     :root {
-      --bg-color: #f8f4f0;
-      --card-color: #ffffff;
-      --text-color: #2c2c2c;
-      --primary-color: #6b4e71;
-      --accent-color: #d4a574;
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
     }
-    
-    body {
-      box-sizing: border-box;
-      background: var(--bg-color);
-      font-family: 'Nunito', system-ui, sans-serif;
-      color: var(--text-color);
-    }
-    
-    h1, h2, h3, .result-type {
-      font-family: 'Cormorant Garamond', serif;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    @keyframes slideUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .fade-in {
-      animation: fadeIn 0.4s ease-out;
-    }
-    
-    .slide-up {
-      animation: slideUp 0.5s ease-out;
-    }
-    
-    .question-card {
-      transition: all 0.2s ease;
-      background: var(--card-color);
-    }
-    
-    .question-card:hover {
-      box-shadow: 0 4px 20px rgba(107, 78, 113, 0.1);
-    }
-    
-    .scale-button {
-      transition: all 0.2s ease;
-      background: var(--card-color);
-      border-color: #e5e5e5;
-    }
-    
-    .scale-button:hover {
-      transform: scale(1.03);
-      border-color: var(--primary-color);
-    }
-    
-    .scale-button.selected {
-      transform: scale(1.05);
-      background: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-    }
-    
-    .btn-primary {
-      background: var(--primary-color);
-      transition: all 0.2s ease;
-    }
-    
-    .btn-primary:hover {
-      filter: brightness(1.1);
-      transform: translateY(-1px);
-    }
-    
-    .btn-secondary {
-      border-color: var(--primary-color);
-      color: var(--primary-color);
-      transition: all 0.2s ease;
-    }
-    
-    .btn-secondary:hover {
-      background: var(--primary-color);
-      color: white;
-    }
-    
-    .progress-bar {
-      background: rgba(107, 78, 113, 0.15);
-    }
-    
-    .progress-fill {
-      background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-      transition: width 0.3s ease;
-    }
-    
-    .result-card {
-      background: var(--card-color);
-      border-left: 4px solid var(--primary-color);
-    }
-    
-    .score-badge {
-      background: linear-gradient(135deg, var(--primary-color), #8b6e91);
-    }
-    
-    .script-box {
-      background: linear-gradient(135deg, rgba(107, 78, 113, 0.08), rgba(212, 165, 116, 0.08));
-      border-left: 3px solid var(--accent-color);
-    }
-    
-    .toast {
-      background: var(--primary-color);
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .question-text { font-family: var(--font-display); font-size: 1.25rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option-btn { display: block; width: 100%; padding: 16px 20px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 0.95rem; text-align: left; cursor: pointer; transition: all 0.2s ease; }
+    .option-btn:hover { border-color: rgba(201, 118, 61, 0.4); background: rgba(201, 118, 61, 0.05); color: var(--text-main); }
+    .option-btn.selected { border-color: var(--accent); background: rgba(201, 118, 61, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #a85d2d); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(201, 118, 61, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(125, 154, 140, 0.1); border-left: 3px solid #7d9a8c; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(201, 118, 61, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
   </style>
 </head>
-<body class="h-full">
-  <div id="app" class="w-full h-full overflow-auto"></div>
-  
+<body>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Self-Worth <em>Diagnostic</em></h1>
+        <p>What is your internal worth structure? Map how you measure yourself.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>Your sense of worth was not chosen. It was built from how you were treated, what was praised, and what was punished. This quiz identifies the structure that determines how you measure your own value.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="question-text" id="question-text"></div>
+        <div class="options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/shame-core.html" class="next-link">Shame Core Scan</a>
+          <a href="/quiz/mirror-archetype.html" class="next-link">Mirror Archetype</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
+        </div>
+      </div>
+    </div>
+    <footer><p>Unscarred. You were always enough.</p></footer>
+  </div>
   <script>
     const questions = [
-      "I feel worthy when I like who I am even without praise.",
-      "Compliments change my mood more than they should.",
-      "I feel safe when I am doing everything right.",
-      "If I disappoint someone I feel like I become nothing.",
-      "I struggle to rest without guilt.",
-      "I fear being seen as needy.",
-      "I feel calm even when someone is unhappy with me.",
-      "I chase accomplishments to feel stable.",
-      "I post or share to feel real.",
-      "I can set a boundary without apologizing.",
-      "I feel valuable when I am wanted.",
-      "I feel valuable when I am useful.",
-      "I fear being ordinary.",
-      "I can feel proud without comparing myself.",
-      "I stay in things too long to prove I am loyal.",
-      "I feel anxious when I am not improving.",
-      "I can fail without spiraling into shame.",
-      "I need people to understand me to feel okay.",
-      "I trust my own judgment even if others disagree.",
-      "I feel like love must be earned.",
-      "I feel like I have to be impressive to be kept.",
-      "I feel like I have to be easy to be loved.",
-      "I feel like I have to be perfect to be safe.",
-      "I can be messy and still feel worthy."
-    ];
-
-    const scaleLabels = ["Never", "Sometimes", "Often", "Almost Always"];
-
-    const scoringMap = {
-      internal: [1, 7, 10, 14, 17, 19, 24],
-      external: [2, 9, 11, 18],
-      conditional: [4, 15, 20, 22],
-      performance: [3, 5, 8, 12, 13, 16, 21, 23]
-    };
+  { text: "I feel most valuable when I:", options: [
+    { text: "Accomplish something impressive", type: "performance" },
+    { text: "Someone approves of me or my choices", type: "approval" },
+    { text: "I am taking care of someone", type: "usefulness" },
+    { text: "I feel morally superior or right", type: "moral" },
+    { text: "I am being attractive or desired", type: "appearance" }
+  ]},
+  { text: "When I fail at something, I feel:", options: [
+    { text: "Like I am worthless and a fraud", type: "performance" },
+    { text: "Panicked about what people think of me", type: "approval" },
+    { text: "Like I let everyone down", type: "usefulness" },
+    { text: "Like I compromised my integrity", type: "moral" },
+    { text: "Invisible or undesirable", type: "appearance" }
+  ]},
+  { text: "I learned growing up that I was valuable because:", options: [
+    { text: "I achieved things and succeeded", type: "performance" },
+    { text: "I was agreeable and made people happy", type: "approval" },
+    { text: "I was helpful and took care of others", type: "usefulness" },
+    { text: "I was good and did the right thing", type: "moral" },
+    { text: "I was attractive or presentable", type: "appearance" }
+  ]},
+  { text: "My inner critic most often tells me:", options: [
+    { text: "You are not good enough or successful enough", type: "performance" },
+    { text: "Nobody actually likes you", type: "approval" },
+    { text: "You are not doing enough for people", type: "usefulness" },
+    { text: "You are a bad person", type: "moral" },
+    { text: "You are ugly or undesirable", type: "appearance" }
+  ]},
+  { text: "I feel most insecure when:", options: [
+    { text: "I am not productive or achieving", type: "performance" },
+    { text: "I sense someone disapproves of me", type: "approval" },
+    { text: "I cannot help or fix something", type: "usefulness" },
+    { text: "I have done something questionable", type: "moral" },
+    { text: "I do not look my best", type: "appearance" }
+  ]},
+  { text: "I compare myself to others based on:", options: [
+    { text: "Their accomplishments and success", type: "performance" },
+    { text: "How liked or popular they are", type: "approval" },
+    { text: "How much they do for others", type: "usefulness" },
+    { text: "How good or ethical they are", type: "moral" },
+    { text: "How attractive or put-together they are", type: "appearance" }
+  ]}
+];
 
     const results = {
-      internal: {
-        title: "Internal Worth",
-        emoji: "🌿",
-        core: "Your worth is rooted. You have a stable sense of self that doesn't depend heavily on external validation.",
-        risk: "You can outgrow people fast. Your groundedness may feel threatening to those with fragile worth.",
-        upgrade: "Choose partners who respect your no. Surround yourself with people who celebrate your boundaries.",
-        script: "My worth is mine. I don't need to prove it."
-      },
-      external: {
-        title: "External Worth",
-        emoji: "🪞",
-        core: "You feel real when mirrored. Your sense of value often depends on being seen, wanted, or validated by others.",
-        risk: "You become easy to manipulate with attention. Love-bombing hits different when you're starving for reflection.",
-        upgrade: "Build self-validation rituals before making dating decisions. Learn to mirror yourself first.",
-        script: "I like attention, but I choose consistency."
-      },
-      conditional: {
-        title: "Conditional Worth",
-        emoji: "🎭",
-        core: "Your worth is tied to approval and harmony. You feel valuable when everyone is happy with you.",
-        risk: "You accept crumbs to avoid rejection. You'd rather be small than be left.",
-        upgrade: "Practice being disliked and staying soft. Your worth isn't a vote.",
-        script: "I can be loved and still disappoint you."
-      },
-      performance: {
-        title: "Performance Worth",
-        emoji: "🏆",
-        core: "Your worth is tied to output—beauty, intelligence, usefulness, achievement. You prove to exist.",
-        risk: "You burnout, then resent, then collapse. The cycle repeats until you learn rest isn't earned.",
-        upgrade: "Replace proving with receiving. Let yourself be helped without earning it first.",
-        script: "I don't have to earn love. I only have to be honest."
-      }
-    };
+  performance: {
+    name: "Performance-Based Worth",
+    emoji: "🏆",
+    desc: "Your worth is tied to what you accomplish. You feel valuable when you succeed and worthless when you fail. Rest feels lazy. Productivity feels like proof of value.",
+    origin: "This often develops when love was conditional on achievement, when you were praised for doing rather than being, or when a parent lived through your success.",
+    trap: "You cannot rest because rest means you are not earning your right to exist. You are exhausted but cannot stop.",
+    truth: "You are not your accomplishments. Your worth existed before you ever achieved anything and will exist when you can no longer produce.",
+    script: "I am worthy of love even when I am not producing. My existence is enough."
+  },
+  approval: {
+    name: "Approval-Based Worth",
+    emoji: "👍",
+    desc: "Your worth is tied to what others think of you. You feel valuable when approved of and worthless when rejected or criticized. You scan for signs of acceptance constantly.",
+    origin: "This often develops when love was conditional on being agreeable, when a parent's mood determined whether you were safe, or when rejection was the primary threat.",
+    trap: "You cannot say no because rejection feels like death. You perform for people who will never truly see you.",
+    truth: "Not everyone will approve of you, and that is okay. Your worth is not determined by consensus.",
+    script: "Their opinion of me is not my worth. I can disappoint people and still be valuable."
+  },
+  usefulness: {
+    name: "Usefulness-Based Worth",
+    emoji: "🛠️",
+    desc: "Your worth is tied to what you do for others. You feel valuable when helping and worthless when you have nothing to offer. You cannot receive without guilt.",
+    origin: "This often develops when you were parentified, when your needs were a burden, or when you only got attention by being helpful.",
+    trap: "You give until you are empty and then feel worthless because you have nothing left to give. You cannot receive care.",
+    truth: "You are not a tool. You have inherent worth that exists independent of your usefulness to others.",
+    script: "I am allowed to receive. My value is not in what I do for others."
+  },
+  moral: {
+    name: "Moral-Based Worth",
+    emoji: "⚖️",
+    desc: "Your worth is tied to being good or right. You feel valuable when morally superior and worthless when you make mistakes. Shame is your constant companion.",
+    origin: "This often develops in religious environments, with critical parents, or when being good was the only path to love.",
+    trap: "You cannot make mistakes without spiraling. You judge yourself and others harshly. You are never good enough.",
+    truth: "You are human, not a saint. Mistakes do not erase your worth. Goodness is not a condition of love.",
+    script: "I can make mistakes and still be a good person. My worth is not contingent on perfection."
+  },
+  appearance: {
+    name: "Appearance-Based Worth",
+    emoji: "✨",
+    desc: "Your worth is tied to how you look. You feel valuable when attractive and worthless when you do not meet beauty standards. Your relationship with your body is complicated.",
+    origin: "This often develops when appearance was praised more than anything else, when beauty standards were enforced, or when attractiveness was currency.",
+    trap: "You cannot age, gain weight, or look imperfect without losing your sense of self. Your body is an enemy to be controlled.",
+    truth: "You are not a body. You have a body. Your worth is not determined by what you look like.",
+    script: "I am more than what I look like. My body is my home, not my worth."
+  }
+};
 
-    let currentAnswers = {};
-    let currentView = 'assessment';
-    let assessmentHistory = [];
-    let selectedHistoryIndex = null;
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
-    // Load history from localStorage
-    function loadHistory() {
-      try {
-        const saved = localStorage.getItem('worthTypesHistory');
-        if (saved) {
-          assessmentHistory = JSON.parse(saved);
-          assessmentHistory.sort((a, b) => new Date(b.completed_at) - new Date(a.completed_at));
-        }
-      } catch (e) {
-        console.error('Failed to load history:', e);
-        assessmentHistory = [];
-      }
-    }
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
 
-    // Save history to localStorage
-    function saveHistory() {
-      try {
-        localStorage.setItem('worthTypesHistory', JSON.stringify(assessmentHistory));
-      } catch (e) {
-        console.error('Failed to save history:', e);
-      }
-    }
+function showQuestion() {
+  const q = questions[currentQuestion];
+  questionText.textContent = q.text;
+  optionsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = opt.text;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
+  });
+  progressBar.style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === questions.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
 
-    function setAnswer(questionNum, value) {
-      currentAnswers[`q${questionNum}`] = value;
-      render();
-    }
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < questions.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
 
-    function calculateScores(answers = currentAnswers) {
-      const scores = { internal: 0, external: 0, conditional: 0, performance: 0 };
-      for (const [type, questionNums] of Object.entries(scoringMap)) {
-        for (const qNum of questionNums) {
-          const answer = answers[`q${qNum}`];
-          if (answer !== undefined) scores[type] += answer;
-        }
-      }
-      return scores;
-    }
-
-    function submitAssessment() {
-      const allAnswered = questions.every((_, idx) => currentAnswers[`q${idx + 1}`] !== undefined);
-      if (!allAnswered) {
-        showToast("Please answer all questions before submitting");
-        return;
-      }
-
-      const scores = calculateScores();
-      const sortedTypes = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-      const primaryType = sortedTypes[0][0];
-      const secondaryType = sortedTypes[1][0];
-
-      const assessment = {
-        assessment_id: Date.now().toString(),
-        completed_at: new Date().toISOString(),
-        ...currentAnswers,
-        primary_type: primaryType,
-        secondary_type: secondaryType,
-        internal_score: scores.internal,
-        external_score: scores.external,
-        conditional_score: scores.conditional,
-        performance_score: scores.performance
-      };
-
-      assessmentHistory.unshift(assessment);
-      saveHistory();
-      selectedHistoryIndex = 0;
-      currentView = 'results';
-      render();
-      window.scrollTo(0, 0);
-    }
-
-    function showToast(message) {
-      const existing = document.getElementById('toast');
-      if (existing) existing.remove();
-      
-      const toast = document.createElement('div');
-      toast.id = 'toast';
-      toast.className = 'toast fixed top-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-lg shadow-lg z-50 fade-in text-white font-medium';
-      toast.textContent = message;
-      document.body.appendChild(toast);
-      setTimeout(() => toast.remove(), 3000);
-    }
-
-    function startNewAssessment() {
-      currentAnswers = {};
-      currentView = 'assessment';
-      selectedHistoryIndex = null;
-      render();
-      window.scrollTo(0, 0);
-    }
-
-    function viewHistory() {
-      currentView = 'history';
-      render();
-    }
-
-    function viewResults(index = 0) {
-      selectedHistoryIndex = index;
-      currentView = 'results';
-      render();
-    }
-
-    function deleteAssessment(index) {
-      if (confirm('Delete this assessment?')) {
-        assessmentHistory.splice(index, 1);
-        saveHistory();
-        if (assessmentHistory.length === 0) {
-          currentView = 'assessment';
-        } else if (selectedHistoryIndex >= assessmentHistory.length) {
-          selectedHistoryIndex = assessmentHistory.length - 1;
-        }
-        render();
-      }
-    }
-
-    function render() {
-      const app = document.getElementById('app');
-      if (currentView === 'assessment') {
-        app.innerHTML = renderAssessmentView();
-      } else if (currentView === 'results') {
-        app.innerHTML = renderResultsView();
-      } else if (currentView === 'history') {
-        app.innerHTML = renderHistoryView();
-      }
-    }
-
-    function renderAssessmentView() {
-      const progress = Object.keys(currentAnswers).length;
-      const progressPercent = (progress / questions.length) * 100;
-      
-      return `
-        <div class="max-w-3xl mx-auto p-6 pb-20">
-          <div class="text-center mb-10 fade-in">
-            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">Worth Types</h1>
-            <p class="text-lg text-gray-600 mb-2">Discover your worth patterns</p>
-            <p class="text-sm text-gray-500">Rate each statement based on how true it feels for you</p>
-          </div>
-          
-          <div class="mb-8 fade-in">
-            <div class="progress-bar h-2 rounded-full overflow-hidden">
-              <div class="progress-fill h-full" style="width: ${progressPercent}%"></div>
-            </div>
-            <p class="text-center mt-2 text-sm text-gray-500">${progress} of ${questions.length} completed</p>
-          </div>
-          
-          <div class="space-y-4 mb-10">
-            ${questions.map((q, idx) => `
-              <div class="question-card rounded-xl p-5 shadow-sm slide-up" style="animation-delay: ${idx * 0.02}s">
-                <p class="font-medium mb-4 text-gray-700">${idx + 1}. ${q}</p>
-                <div class="grid grid-cols-4 gap-2">
-                  ${scaleLabels.map((label, value) => {
-                    const isSelected = currentAnswers[`q${idx + 1}`] === value;
-                    return `
-                      <button
-                        class="scale-button ${isSelected ? 'selected' : ''} p-3 rounded-lg border-2 text-center font-medium"
-                        onclick="setAnswer(${idx + 1}, ${value})">
-                        <div class="text-xs">${label}</div>
-                      </button>
-                    `;
-                  }).join('')}
-                </div>
-              </div>
-            `).join('')}
-          </div>
-          
-          <div class="flex gap-3 justify-center flex-wrap">
-            <button
-              onclick="submitAssessment()"
-              class="btn-primary px-8 py-3 rounded-lg font-semibold text-white shadow-md">
-              View My Results
-            </button>
-            ${assessmentHistory.length > 0 ? `
-              <button
-                onclick="viewHistory()"
-                class="btn-secondary px-8 py-3 rounded-lg font-semibold border-2 bg-white">
-                Past Results (${assessmentHistory.length})
-              </button>
-            ` : ''}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderResultsView() {
-      if (assessmentHistory.length === 0) {
-        return `
-          <div class="max-w-3xl mx-auto p-6 text-center">
-            <p class="mb-4 text-gray-600">No assessment results yet.</p>
-            <button
-              onclick="startNewAssessment()"
-              class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
-              Take Assessment
-            </button>
-          </div>
-        `;
-      }
-
-      const index = selectedHistoryIndex ?? 0;
-      const assessment = assessmentHistory[index];
-      const primary = results[assessment.primary_type];
-      const secondary = results[assessment.secondary_type];
-      const maxScore = Math.max(assessment.internal_score, assessment.external_score, assessment.conditional_score, assessment.performance_score);
-
-      return `
-        <div class="max-w-3xl mx-auto p-6 pb-20">
-          <div class="text-center mb-10 fade-in">
-            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">Your Worth Types</h1>
-            <p class="text-gray-500">Completed ${new Date(assessment.completed_at).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-          </div>
-          
-          <!-- Primary Type -->
-          <div class="result-card rounded-xl p-6 shadow-md mb-6 slide-up">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="text-3xl">${primary.emoji}</span>
-              <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Primary Type</p>
-                <h2 class="result-type text-2xl md:text-3xl font-bold" style="color: var(--primary-color)">${primary.title}</h2>
-              </div>
-            </div>
-            <div class="space-y-4 text-gray-700">
-              <div>
-                <p class="font-semibold text-gray-800 mb-1">Core Pattern</p>
-                <p>${primary.core}</p>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800 mb-1">Risk</p>
-                <p>${primary.risk}</p>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800 mb-1">Upgrade Path</p>
-                <p>${primary.upgrade}</p>
-              </div>
-              <div class="script-box p-4 rounded-lg mt-4">
-                <p class="italic text-lg">"${primary.script}"</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Secondary Type -->
-          <div class="result-card rounded-xl p-6 shadow-md mb-6 slide-up" style="animation-delay: 0.1s">
-            <div class="flex items-center gap-3 mb-4">
-              <span class="text-3xl">${secondary.emoji}</span>
-              <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wide">Secondary Type</p>
-                <h2 class="result-type text-2xl md:text-3xl font-bold" style="color: var(--primary-color)">${secondary.title}</h2>
-              </div>
-            </div>
-            <div class="space-y-4 text-gray-700">
-              <div>
-                <p class="font-semibold text-gray-800 mb-1">Core Pattern</p>
-                <p>${secondary.core}</p>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800 mb-1">Risk</p>
-                <p>${secondary.risk}</p>
-              </div>
-              <div>
-                <p class="font-semibold text-gray-800 mb-1">Upgrade Path</p>
-                <p>${secondary.upgrade}</p>
-              </div>
-              <div class="script-box p-4 rounded-lg mt-4">
-                <p class="italic text-lg">"${secondary.script}"</p>
-              </div>
-            </div>
-          </div>
-          
-          <!-- Score Breakdown -->
-          <div class="bg-white rounded-xl p-6 shadow-sm slide-up" style="animation-delay: 0.2s">
-            <h3 class="font-semibold mb-4 text-gray-800">Score Breakdown</h3>
-            <div class="space-y-3">
-              ${[
-                { type: 'Internal', score: assessment.internal_score, emoji: '🌿' },
-                { type: 'External', score: assessment.external_score, emoji: '🪞' },
-                { type: 'Conditional', score: assessment.conditional_score, emoji: '🎭' },
-                { type: 'Performance', score: assessment.performance_score, emoji: '🏆' }
-              ].map(({ type, score, emoji }) => `
-                <div class="flex items-center gap-3">
-                  <span class="text-xl">${emoji}</span>
-                  <span class="w-28 font-medium text-gray-700">${type}</span>
-                  <div class="flex-1 h-3 rounded-full bg-gray-100 overflow-hidden">
-                    <div class="h-full rounded-full transition-all duration-500" 
-                         style="width: ${(score / maxScore) * 100}%; background: ${score === maxScore ? 'var(--primary-color)' : 'var(--accent-color)'}"></div>
-                  </div>
-                  <span class="w-8 text-right font-bold" style="color: ${score === maxScore ? 'var(--primary-color)' : 'var(--text-color)'}">${score}</span>
-                </div>
-              `).join('')}
-            </div>
-          </div>
-          
-          <div class="flex gap-3 justify-center flex-wrap mt-10">
-            <button onclick="startNewAssessment()" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
-              Take Again
-            </button>
-            ${assessmentHistory.length > 1 ? `
-              <button onclick="viewHistory()" class="btn-secondary px-8 py-3 rounded-lg font-semibold border-2 bg-white">
-                View History
-              </button>
-            ` : ''}
-          </div>
-        </div>
-      `;
-    }
-
-    function renderHistoryView() {
-      return `
-        <div class="max-w-3xl mx-auto p-6 pb-20">
-          <div class="text-center mb-10 fade-in">
-            <h1 class="text-4xl md:text-5xl font-bold mb-3 text-gray-800">Assessment History</h1>
-            <p class="text-gray-500">${assessmentHistory.length} assessment${assessmentHistory.length !== 1 ? 's' : ''} completed</p>
-          </div>
-          
-          <div class="space-y-4 mb-10">
-            ${assessmentHistory.map((assessment, idx) => `
-              <div class="bg-white rounded-xl p-5 shadow-sm slide-up cursor-pointer hover:shadow-md transition-shadow" 
-                   style="animation-delay: ${idx * 0.05}s"
-                   onclick="viewResults(${idx})">
-                <div class="flex justify-between items-start mb-3">
-                  <div class="flex items-center gap-3">
-                    <span class="text-2xl">${results[assessment.primary_type].emoji}</span>
-                    <div>
-                      <div class="font-semibold text-gray-800">
-                        ${results[assessment.primary_type].title} / ${results[assessment.secondary_type].title}
-                      </div>
-                      <div class="text-sm text-gray-500">
-                        ${new Date(assessment.completed_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
-                      </div>
-                    </div>
-                  </div>
-                  <button 
-                    onclick="event.stopPropagation(); deleteAssessment(${idx})"
-                    class="text-gray-400 hover:text-red-500 transition-colors p-1"
-                    title="Delete">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
-                    </svg>
-                  </button>
-                </div>
-                <div class="grid grid-cols-4 gap-3 text-sm">
-                  ${[
-                    { type: 'Internal', score: assessment.internal_score },
-                    { type: 'External', score: assessment.external_score },
-                    { type: 'Conditional', score: assessment.conditional_score },
-                    { type: 'Performance', score: assessment.performance_score }
-                  ].map(({ type, score }) => `
-                    <div class="text-center">
-                      <div class="text-gray-500 text-xs">${type}</div>
-                      <div class="font-bold" style="color: var(--primary-color)">${score}</div>
-                    </div>
-                  `).join('')}
-                </div>
-              </div>
-            `).join('')}
-          </div>
-          
-          <div class="flex gap-3 justify-center">
-            <button onclick="viewResults(0)" class="btn-primary px-8 py-3 rounded-lg font-semibold text-white">
-              Latest Results
-            </button>
-            <button onclick="startNewAssessment()" class="btn-secondary px-8 py-3 rounded-lg font-semibold border-2 bg-white">
-              New Assessment
-            </button>
-          </div>
-        </div>
-      `;
-    }
-
-    // Initialize
-    loadHistory();
-    render();
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  const counts = {};
+  Object.keys(results).forEach(k => counts[k] = 0);
+  answers.forEach((ans, i) => { counts[questions[i].options[ans].type]++; });
+  let primary = 'performance', max = 0;
+  for (const [type, count] of Object.entries(counts)) { if (count > max) { max = count; primary = type; } }
+  const r = results[primary];
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">${r.emoji} Your Worth Structure</div>
+    <div class="result-title">${r.name}</div>
+    <p class="result-desc">${r.desc}</p>
+    <div class="result-section"><h3>Where This Came From</h3><p>${r.origin}</p></div>
+    <div class="result-section"><h3>The Trap</h3><p>${r.trap}</p></div>
+    <div class="result-section"><h3>The Truth</h3><p>${r.truth}</p></div>
+    <div class="result-section"><h3>A New Script</h3><div class="script-box">${r.script}</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
   </script>
 </body>
 </html>

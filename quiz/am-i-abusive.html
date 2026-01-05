@@ -1,230 +1,236 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Am I Abusive  Self-Assessment | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --card: #121212;
-            --primary: #3498db;
-            --primary-dark: #2980b9;
-            --text: #e9e4dc;
-            --text-soft: #a0a0a0;
-            --border: #1e1e1e;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6; color: var(--text); background: var(--bg);
-            padding: 20px; min-height: 100vh;
-        }
-        .quiz-container {
-            max-width: 800px; margin: 0 auto; background: var(--card);
-            border-radius: 16px; padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid var(--border);
-        }
-        .back-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--text-soft); text-decoration: none; font-size: 0.85rem;
-            margin-bottom: 24px; transition: color 0.2s ease;
-        }
-        .back-link:hover { color: var(--text); }
-        h1 { color: var(--primary); margin-bottom: 10px; font-size: 2.2em; }
-        .subtitle { color: var(--text-soft); margin-bottom: 30px; font-size: 1.1em; }
-        .question { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px solid var(--border); }
-        .question:last-of-type { border-bottom: none; }
-        .question-text { font-size: 1.1em; margin-bottom: 15px; font-weight: 500; color: var(--text); }
-        .yes-no-container { display: flex; gap: 15px; }
-        .yes-no-option {
-            flex: 1; padding: 15px 20px; border: 2px solid var(--border);
-            border-radius: 10px; cursor: pointer; text-align: center;
-            transition: all 0.3s ease; background: rgba(0,0,0,0.3);
-            font-size: 1.1em; font-weight: 500; color: var(--text-soft);
-        }
-        .yes-no-option:hover { border-color: var(--primary); background: rgba(52, 152, 219, 0.1); color: var(--text); }
-        .yes-no-option.selected { border-color: var(--primary); background: rgba(52, 152, 219, 0.2); color: var(--text); font-weight: 600; }
-        .btn {
-            background: var(--primary); color: white; border: none;
-            padding: 15px 40px; font-size: 1.1em; border-radius: 10px;
-            cursor: pointer; transition: all 0.3s ease; margin-top: 20px; width: 100%; font-weight: 600;
-        }
-        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .btn:disabled { background: #333; cursor: not-allowed; transform: none; }
-        .results { display: none; }
-        .results.show { display: block; }
-        .result-box { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 12px; margin-bottom: 25px; border-left: 5px solid var(--primary); }
-        .score-display { font-size: 3em; color: var(--primary); font-weight: bold; margin-bottom: 10px; }
-        .result-title { font-size: 1.8em; color: var(--text); margin-bottom: 15px; }
-        .result-description { color: var(--text-soft); line-height: 1.8; margin-bottom: 20px; }
-        .pattern-section { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid var(--border); }
-        .pattern-section h3 { color: var(--primary); margin-bottom: 15px; }
-        .pattern-list { list-style: none; padding-left: 0; }
-        .pattern-list li { padding: 8px 0; padding-left: 25px; position: relative; color: var(--text-soft); }
-        .pattern-list li:before { content: "->"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
-        .hidden { display: none; }
-        .cta-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
-        .cta-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
-        .cta-links { display: flex; flex-wrap: wrap; gap: 10px; }
-        .cta-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 16px; background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border); border-radius: 10px;
-            color: var(--text-soft); text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease;
-        }
-        .cta-link:hover { background: rgba(52, 152, 219, 0.1); border-color: var(--primary); color: var(--text); }
-        @media (max-width: 600px) { .quiz-container { padding: 25px; } h1 { font-size: 1.8em; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Am I Abusive? | Unscarred</title>
+  <meta name="description" content="Hard questions for people willing to look at themselves honestly. Pattern scan, not judgment.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #a33b5c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .intense-badge { display: inline-block; background: rgba(163, 59, 92, 0.3); color: var(--primary); font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; margin-left: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--secondary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .statement-text { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .yn-options { display: flex; gap: 16px; justify-content: center; }
+    .yn-btn { padding: 16px 32px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+    .yn-btn:hover { border-color: rgba(163, 59, 92, 0.4); background: rgba(163, 59, 92, 0.05); color: var(--text-main); }
+    .yn-btn.selected { border-color: var(--accent); background: rgba(163, 59, 92, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #7a2a43); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(163, 59, 92, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(163, 59, 92, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; text-align: center; }
+    .result-title { font-family: var(--font-display); font-size: 1.7rem; font-style: italic; margin-bottom: 16px; text-align: center; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; text-align: center; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(125, 154, 140, 0.1); border-left: 3px solid #7d9a8c; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(163, 59, 92, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
+  </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
-        <div id="quiz-section">
-            <h1>Am I Abusive </h1>
-            <p class="subtitle">A self-reflection tool for examining your behavior patterns. This takes courage to ask.</p>
-            <div id="questions"></div>
-            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Am I <em>Abusive?</em><span class="intense-badge">Intense</span></h1>
+        <p>Hard questions for people willing to look at themselves honestly.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>This quiz is for people brave enough to ask the hard question. It is not about labels or shame. It is about honest pattern recognition.</p>
+        <p>Being abusive is about patterns, not identity. Patterns can change if you are willing to see them.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="statement-text" id="question-text"></div>
+        <div class="yn-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
         </div>
-        <div id="results-section" class="results">
-            <div id="result-content"></div>
-            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/shame-core.html" class="next-link">Shame Core Scan</a>
+          <a href="/boundaries.html" class="next-link">Boundaries & Safety</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
         </div>
+      </div>
     </div>
-    <script>
-        const questions = [
-            "Do you monitor your partner's phone, emails, or social media ",
-            "Do you make your partner account for their time or whereabouts ",
-            "Have you isolated your partner from friends or family ",
-            "Do you control the finances or limit your partner's access to money ",
-            "Do you criticize or belittle your partner regularly ",
-            "Have you threatened to harm yourself if your partner leaves ",
-            "Do you blame your partner for your emotions or behavior ",
-            "Have you damaged property or hurt pets when angry ",
-            "Do you dismiss your partner's feelings or tell them they're overreacting ",
-            "Have you pressured your partner into sexual activity they didn't want ",
-            "Do you track your partner's movements or show up unexpectedly to check on them ",
-            "Do you make rules about what your partner can wear or how they present themselves ",
-            "Have you threatened to take children away or report your partner to authorities ",
-            "Do you use your partner's insecurities against them during arguments ",
-            "Have you interfered with your partner's work or education ",
-            "Do you withhold affection or give the silent treatment as punishment ",
-            "Does your partner need your permission for basic decisions ",
-            "Have you told your partner no one else would want them ",
-            "Do you act differently in public than you do in private ",
-            "Do you find yourself justifying behaviors that make your partner uncomfortable "
-        ];
-        let answers = {};
-        function renderQuestions() {
-            const container = document.getElementById('questions');
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <div class="question-text">${index + 1}. ${q}</div>
-                    <div class="yes-no-container" id="options-${index}">
-                        <div class="yes-no-option" onclick="selectOption(${index}, 1)">Yes</div>
-                        <div class="yes-no-option" onclick="selectOption(${index}, 0)">No</div>
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-        }
-        function selectOption(questionIndex, value) {
-            const container = document.getElementById(`options-${questionIndex}`);
-            const options = container.getElementsByClassName('yes-no-option');
-            Array.from(options).forEach(opt => opt.classList.remove('selected'));
-            options[value === 1 ? 0 : 1].classList.add('selected');
-            answers[questionIndex] = value;
-            if (Object.keys(answers).length === questions.length) {
-                document.getElementById('submit-btn').disabled = false;
-            }
-        }
-        function calculateResults() {
-            const totalYes = Object.values(answers).reduce((sum, val) => sum + val, 0);
-            displayResults(totalYes);
-        }
-        function displayResults(score) {
-            let level, color, title, description, nextSteps, ctas;
-            if (score === 0) {
-                level = "No Abusive Behaviors Identified";
-                color = "#27ae60";
-                title = "You're Not Exhibiting Abusive Patterns";
-                description = "Based on your answers, you're not engaging in controlling or abusive behaviors. This doesn't mean your relationship is perfect or that you never make mistakes, but the specific patterns of abuse, control, isolation, intimidation, and degradation aren't present in how you show up. The fact that you're here asking this question shows you care about how your behavior impacts others.";
-                nextSteps = ["Continue reflecting on your behavior in relationships", "Stay open to feedback from your partner", "Work on healthy communication and conflict resolution", "Maintain respect for your partner's autonomy", "Keep checking in with yourself about power dynamics"];
-                ctas = [{ text: "Repair After Conflict Guide", url: "../learn/repair-after-conflict.html", icon: "📖" }, { text: "Centered Leadership Guide", url: "../learn/centered-leadership.html", icon: "📖" }];
-            } else if (score <= 5) {
-                level = "Concerning Patterns Present";
-                color = "#f39c12";
-                title = "You're Showing Some Controlling Behaviors";
-                description = "You're engaging in some behaviors that are concerning. They might feel justified in the moment, or you might rationalize them as care or protection, but they're controlling. This is your wake-up call. You're not irredeemable, but you need to take this seriously before it escalates.";
-                nextSteps = ["Stop the behaviors you identified immediately", "Talk to your partner about what you've realized", "Seek individual therapy focused on relationship patterns", "Take full accountability without expecting praise", "Give your partner space to process and respond", "Learn about healthy boundaries and autonomy"];
-                ctas = [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }];
-            } else if (score <= 12) {
-                level = "Abusive Behavior Pattern";
-                color = "#e67e22";
-                title = "You Are Being Abusive";
-                description = "This is hard to hear, but you need to hear it: you're engaging in abusive behavior. This isn't about being a bad person, it's about the choices you're making that harm your partner. These patterns don't get better on their own. They escalate. You can change this, but only if you stop making excuses and start taking real accountability.";
-                nextSteps = ["Acknowledge the full impact of your behavior", "Stop blaming your partner or circumstances", "Seek specialized help (batterer intervention program or therapist experienced with abusive behavior)", "Give your partner autonomy to make their own choices, including leaving", "Do not expect immediate forgiveness or reconciliation", "Commit to long-term behavior change, not quick fixes"];
-                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "🆘" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }];
-            } else {
-                level = "Severe Abusive Pattern";
-                color = "#e74c3c";
-                title = "You Are Engaging In Severe Abuse";
-                description = "You are deeply entrenched in abusive behavior. Your partner is living under systematic control, and the damage you're causing is profound. This level of abuse doesn't happen by accident. You need to understand: this is your responsibility to change. Not your partner's job to fix you.";
-                nextSteps = ["Remove yourself from the relationship to prevent further harm", "Enter a batterer intervention program immediately", "Work with a therapist who specializes in abusive behavior", "Take full accountability for the harm you've caused", "Do not attempt to reconcile until you've done significant work", "Understand your partner may never want contact again, and that's their right"];
-                ctas = [{ text: "Book Emergency Session", url: "../booking.html", icon: "🆘" }];
-            }
-            const resultContent = document.getElementById('result-content');
-            resultContent.innerHTML = `
-                <div class="result-box" style="border-left-color: ${color}">
-                    <div class="score-display" style="color: ${color}">${score} / ${questions.length}</div>
-                    <div style="color: ${color}; font-weight: 600; font-size: 1.1em; margin-bottom: 10px;">${level}</div>
-                    <h2 class="result-title">${title}</h2>
-                    <p class="result-description">${description}</p>
-                    <div class="pattern-section">
-                        <h3>What You Need To Do:</h3>
-                        <ul class="pattern-list">${nextSteps.map(step => `<li>${step}</li>`).join('')}</ul>
-                    </div>
-                </div>
-                <div class="cta-section">
-                    <h3>Recommended Next Steps</h3>
-                    <div class="cta-links">${ctas.map(cta => `<a href="${cta.url}" class="cta-link"><span>${cta.icon}</span>${cta.text}</a>`).join('')}</div>
-                </div>
-            `;
-            document.getElementById('quiz-section').classList.add('hidden');
-            document.getElementById('results-section').classList.add('show');
-        }
-        function resetQuiz() {
-            answers = {};
-            document.getElementById('questions').innerHTML = '';
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('results-section').classList.remove('show');
-            document.getElementById('submit-btn').disabled = true;
-            renderQuestions();
-        }
-        renderQuestions();
-    </script>
-<script id="unscarredRootRewriter">
-(function(){
-  if(window.location.protocol !== "file:") return;
-  var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
-  var root = match ? match[1] : null;
-  if(!root) return;
-  var afterRoot = path.slice(root.length);
-  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
-  document.querySelectorAll('a[href^="/"]').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href || href.startsWith('//')) return;
-    a.setAttribute('href', prefix + href.replace(/^\//,''));
+    <footer><p>Unscarred. Seeing it is the first step to changing it.</p></footer>
+  </div>
+<script>
+const statements = [
+  { text: "I have hit, pushed, grabbed, or physically intimidated a partner", cat: "physical" },
+  { text: "I use my size, voice, or presence to scare people into compliance", cat: "physical" },
+  { text: "I have broken things or punched walls during arguments", cat: "physical" },
+  { text: "I monitor my partner's phone, location, or social media", cat: "control" },
+  { text: "I get upset when my partner spends time with friends or family", cat: "control" },
+  { text: "I control money, transportation, or resources to keep my partner dependent", cat: "control" },
+  { text: "I tell my partner they are crazy, too sensitive, or imagining things", cat: "psychological" },
+  { text: "I deny things that happened or rewrite events to confuse my partner", cat: "psychological" },
+  { text: "I criticize, insult, or demean my partner regularly", cat: "psychological" },
+  { text: "I threaten to leave, harm myself, or expose secrets to control my partner", cat: "coercion" },
+  { text: "I pressure my partner for sex when they do not want it", cat: "coercion" },
+  { text: "I blame my partner for my behavior (you made me do it)", cat: "accountability" },
+  { text: "I apologize but keep doing the same things", cat: "accountability" },
+  { text: "I minimize my actions (it was not that bad, you are overreacting)", cat: "accountability" },
+  { text: "I get extremely angry when my partner sets boundaries", cat: "control" },
+  { text: "People who knew me before this relationship would be surprised by how I act now", cat: "awareness" }
+];
+
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
+
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion].text;
+  optionsDiv.innerHTML = '';
+  ['Yes', 'Sometimes', 'No'].forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'yn-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
   });
-})();
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See Results' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  
+  const catScores = { physical: 0, control: 0, psychological: 0, coercion: 0, accountability: 0, awareness: 0 };
+  let total = 0;
+  answers.forEach((ans, i) => {
+    const score = ans === 0 ? 2 : ans === 1 ? 1 : 0;
+    catScores[statements[i].cat] += score;
+    total += score;
+  });
+  
+  let result;
+  if (total <= 4) {
+    result = {
+      title: "Low Abuse Pattern Indicators",
+      desc: "Your responses do not indicate significant abusive patterns. This does not mean your relationship is perfect, but these specific behaviors are not present.",
+      meaning: "If you are here because someone accused you, and your honest answers show low indicators, consider that the accusation may be coming from their own patterns or there may be specific incidents worth examining separately.",
+      next: "Continue developing self-awareness and healthy relationship skills. Consider examining any incidents that worried you enough to take this quiz."
+    };
+  } else if (total <= 12) {
+    result = {
+      title: "Some Concerning Patterns Present",
+      desc: "Your responses indicate some behaviors that can be harmful in relationships. These may be reactive, learned, or situational, but they warrant honest examination.",
+      meaning: "Having some concerning patterns does not make you a monster. It makes you human with work to do. The question is whether you will do it.",
+      next: "Focus on the specific patterns that showed up. Seek support from a therapist who can help you understand triggers and develop healthier responses. Accountability without shame."
+    };
+  } else if (total <= 20) {
+    result = {
+      title: "Significant Abuse Patterns Present",
+      desc: "Your responses indicate significant patterns of abusive behavior across multiple categories. This is serious and requires honest attention.",
+      meaning: "Abusive patterns usually come from somewhere, often our own wounds. Understanding this does not excuse the harm. It opens the door to change.",
+      next: "Professional intervention is strongly recommended. This is not about punishment. It is about stopping a pattern that hurts you and the people around you. Batterer intervention programs can help."
+    };
+  } else {
+    result = {
+      title: "Severe Abuse Patterns Present",
+      desc: "Your responses indicate pervasive patterns of abusive behavior. This level of pattern indicates serious harm to your partner(s).",
+      meaning: "If you answered honestly and reached this result, you are causing significant harm. That is not who you have to be, but it is who you are being right now.",
+      next: "Immediate professional help is essential. Batterer intervention, therapy, and accountability structures. Your partner may need to leave for their safety. That is separate from your work on yourself."
+    };
+  }
+  
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">⚖️ Abuse Pattern Assessment</div>
+    <div class="result-title">${result.title}</div>
+    <p class="result-desc">${result.desc}</p>
+    <div class="result-section"><h3>What This Means</h3><p>${result.meaning}</p></div>
+    <div class="result-section"><h3>Your Next Step</h3><p>${result.next}</p></div>
+    <div class="result-section"><h3>Regardless Of Result</h3><div class="script-box">Taking this quiz honestly is meaningful. Patterns can change. Change requires seeing clearly, taking responsibility, and doing sustained work. You are capable of being different if you choose to be.</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
 </script>
 </body>
 </html>
-
-
-

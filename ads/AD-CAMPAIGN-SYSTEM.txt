@@ -1,0 +1,174 @@
+====================================================
+UNSCARRED AD CAMPAIGN SYSTEM
+====================================================
+Last Updated: January 4, 2026
+
+====================================================
+NAMING CONVENTION
+====================================================
+
+Format: GOAL-ANGLE-SIZE.html
+
+GOALS:
+  LEAD    = Get email/quiz signup
+  SALE    = Direct offer/program sale
+  TRUST   = Build credibility (testimonials, proof)
+  BRAND   = Awareness, values, manifesto
+
+ANGLES:
+  Hook        = Pattern hook, emotional trigger
+  Quiz        = Specific quiz promo
+  Offer       = Program/coaching CTA
+  Testimonial = Social proof
+  Manifesto   = Brand philosophy
+  Truth       = Reframe/education
+  Symptom     = Pain point callout
+
+SIZES:
+  Vertical  = 1080x1920 (Stories, TikTok, Reels)
+  Square    = 1080x1080 (Feed posts)
+  Banner    = 1200x628 (Facebook, Twitter, LinkedIn)
+  Leader    = 728x90 (Leaderboard/header)
+
+
+====================================================
+TAG SYSTEM
+====================================================
+
+TAG 1: AUDIENCE
+------------------------------------------
+  AX    = Anxious attachment
+  AV    = Avoidant attachment  
+  MX    = Mixed signals / confused
+  ND    = Neurodivergent (ADHD, autism)
+  TB    = Trauma bond / abuse survivors
+  WAR   = Survival mode / complex trauma
+  MEN   = Men specifically
+  WMN   = Women specifically
+  ALL   = Universal
+
+TAG 2: PURPOSE
+------------------------------------------
+  HOOK  = Stop scroll, create curiosity
+  QUIZ  = Drive quiz completion
+  PROOF = Build trust with testimonials
+  OFFER = Sell program/coaching
+  BRAND = Establish identity/values
+
+
+====================================================
+DECISION RULES
+====================================================
+
+IF views drop → Post HOOK
+   (Scroll-stopping content, emotional triggers)
+
+IF clicks drop → Post QUIZ  
+   (Clear value, specific outcome promised)
+
+IF trust feels low → Post TESTIMONIAL
+   (Real results, relatable quotes)
+
+IF you need money now → Post OFFER
+   (Coaching CTA, program promo)
+
+IF engagement is flat → Post BRAND
+   (Manifesto, philosophy, values)
+
+
+====================================================
+ROTATION FORMULA
+====================================================
+
+Weekly Content Mix (7 posts):
+  2x HOOK (engagement)
+  2x QUIZ (leads)
+  1x TESTIMONIAL (trust)
+  1x OFFER (sales)
+  1x BRAND (identity)
+
+Adjust based on metrics and goals.
+
+
+====================================================
+AD INVENTORY
+====================================================
+
+LEAD ADS (Quiz/Email Capture)
+------------------------------------------
+LEAD-Hook-Patterns-Vertical.html        [ALL, HOOK]
+LEAD-Hook-Shutdown-Vertical.html        [AV, HOOK]
+LEAD-Hook-Fawn-Vertical.html            [AX, HOOK]
+LEAD-Hook-Truth-Vertical.html           [ALL, HOOK]
+LEAD-Hook-Mirror-Vertical.html          [WAR, HOOK]
+LEAD-Hook-Emotional-Vertical.html       [TB, HOOK]
+LEAD-Quiz-Patterns-Square.html          [ALL, QUIZ]
+LEAD-Quiz-NervousSystem-Square.html     [ND, QUIZ]
+LEAD-Quiz-Sabotage-Square.html          [AX, QUIZ]
+LEAD-Quiz-PartnerDraw-Square.html       [MX, QUIZ]
+LEAD-Quiz-Warpath-Vertical.html         [WAR, QUIZ]
+LEAD-Quiz-Free-Banner.html              [ALL, QUIZ]
+
+SALE ADS (Program/Coaching)
+------------------------------------------
+SALE-Offer-Coaching-Banner.html         [ALL, OFFER]
+SALE-Offer-Programs-Square.html         [ALL, OFFER]
+SALE-Offer-Programs-Banner.html         [ALL, OFFER]
+SALE-Offer-CenteredMan-Vertical.html    [MEN, OFFER]
+SALE-Offer-CenteredWoman-Vertical.html  [WMN, OFFER]
+SALE-Offer-Anxious-Square.html          [AX, OFFER]
+SALE-Offer-TextSupport-Square.html      [ALL, OFFER]
+SALE-Offer-Warpath-Banner.html          [WAR, OFFER]
+
+TRUST ADS (Testimonials/Proof)
+------------------------------------------
+TRUST-Testimonial-Shift-Vertical.html   [ALL, PROOF]
+
+BRAND ADS (Awareness/Philosophy)
+------------------------------------------
+BRAND-Manifesto-Square.html             [ALL, BRAND]
+BRAND-Quote-Square.html                 [ALL, BRAND]
+BRAND-CTA-Leader.html                   [ALL, BRAND]
+
+
+====================================================
+VARIANT SYSTEM (Soft / Sharp / Savage)
+====================================================
+
+For every winning ad, create 3 copy versions:
+
+SOFT = Gentle, compassionate, understanding
+  "You're not broken. You're running survival patterns."
+
+SHARP = Direct, clear, no-BS
+  "It's not a character flaw. It's a nervous system in survival mode."
+
+SAVAGE = Confrontational, wake-up call
+  "Stop calling yourself 'too sensitive.' Your hypervigilance kept you alive."
+
+File naming for variants:
+  LEAD-Hook-Patterns-Vertical-SOFT.html
+  LEAD-Hook-Patterns-Vertical-SHARP.html
+  LEAD-Hook-Patterns-Vertical-SAVAGE.html
+
+
+====================================================
+QUICK REFERENCE CHEAT SHEET
+====================================================
+
+Need engagement?     → LEAD-Hook-*
+Need leads?          → LEAD-Quiz-*
+Need trust?          → TRUST-Testimonial-*
+Need sales?          → SALE-Offer-*
+Need identity?       → BRAND-*
+
+Targeting anxious?   → Filter by [AX]
+Targeting avoidant?  → Filter by [AV]
+Targeting trauma?    → Filter by [WAR] or [TB]
+Targeting men?       → Filter by [MEN]
+Targeting women?     → Filter by [WMN]
+
+
+====================================================
+
+

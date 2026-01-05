@@ -1,0 +1,52 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="resetGlow" cx="50%" cy="45%" r="65%">
+      <stop offset="0%" stop-color="#2d8f8f" stop-opacity="0.4"/>
+      <stop offset="50%" stop-color="#7c5cbf" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a33b5c"/>
+      <stop offset="33%" stop-color="#7c5cbf"/>
+      <stop offset="66%" stop-color="#2d8f8f"/>
+      <stop offset="100%" stop-color="#7d9a8c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#resetGlow)"/>
+  
+  <!-- Nervous System Wave Visual -->
+  <g transform="translate(800, 320)">
+    <!-- Jagged stressed wave transitioning to calm -->
+    <path d="M-250,0 L-200,-50 L-160,40 L-120,-60 L-80,30 L-40,-40 L0,20 L40,-15 L80,8 L120,-5 L160,3 L200,-2 L250,0" 
+          fill="none" stroke="url(#waveGrad)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Calm line at the end -->
+    <line x1="200" y1="0" x2="280" y2="0" stroke="#7d9a8c" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Glow at the calm endpoint -->
+    <circle cx="280" cy="0" r="40" fill="#7d9a8c" fill-opacity="0.15"/>
+    <circle cx="280" cy="0" r="20" fill="#7d9a8c" fill-opacity="0.2"/>
+    <circle cx="280" cy="0" r="8" fill="#7d9a8c"/>
+    
+    <!-- Reset arrows (circular) -->
+    <g transform="translate(0, 100)">
+      <path d="M-40,-20 A40,40 0 1,1 40,-20" fill="none" stroke="#2d8f8f" stroke-width="3" stroke-opacity="0.6"/>
+      <polygon points="40,-20 50,-10 30,-10" fill="#2d8f8f" fill-opacity="0.6"/>
+    </g>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#2d8f8f" text-anchor="middle">$12</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="88" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Nervous System Reset</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">5-MINUTE RESETS</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(45,143,143,0.3)" stroke-width="1"/>
+</svg>
+

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Start Here | War Path | Unscarred</title>
+  <meta name="description" content="Not sure where to begin? Start here. Choose your entry point based on what you are dealing with right now.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(163, 59, 92, 0.1) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; align-items: center; gap: 28px; }
+
+    nav a {
+      font-size: 14px;
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: rgba(201, 118, 61, 0.15);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Intro Box */
+    .intro-box {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .intro-box p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .intro-box p:last-child { margin-bottom: 0; }
+    .intro-box p strong { color: var(--text-main); }
+
+    /* Section Header */
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    /* Path Cards */
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 60px;
+    }
+
+    @media (max-width: 700px) {
+      .path-grid { grid-template-columns: 1fr; }
+    }
+
+    .path-card {
+      display: block;
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .path-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .path-card:hover {
+      border-color: rgba(201, 118, 61, 0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(201, 118, 61, 0.15);
+    }
+
+    .path-card:hover::before { opacity: 1; }
+
+    .path-card__icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .path-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .path-card p {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .path-card__cta {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Priority Path */
+    .priority-path {
+      grid-column: span 2;
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.12), rgba(12, 11, 16, 0.95));
+      border-color: rgba(201, 118, 61, 0.3);
+    }
+
+    @media (max-width: 700px) {
+      .priority-path { grid-column: span 1; }
+    }
+
+    .priority-badge {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(201, 118, 61, 0.2);
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    /* State Cards */
+    .state-section {
+      margin: 60px 0;
+    }
+
+    .state-section h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .state-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 800px) {
+      .state-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .state-grid { grid-template-columns: 1fr; }
+    }
+
+    .state-card {
+      display: block;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: 16px;
+      padding: 24px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .state-card:hover {
+      border-color: rgba(201, 118, 61, 0.3);
+      background: rgba(201, 118, 61, 0.05);
+    }
+
+    .state-card__icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .state-card h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .state-card p {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      text-align: center;
+      padding: 40px;
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(125, 154, 140, 0.25);
+      border-radius: var(--radius-lg);
+      margin: 60px 0;
+    }
+
+    .bottom-cta p {
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .bottom-cta a {
+      color: var(--success);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .bottom-cta a:hover { color: var(--text-main); }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="container-builder.html">Container Builder</a>
+        <a href="war-map.html">War Map</a>
+        <a href="/quiz/">Relational Path</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">⚔️ War Path</div>
+      <h1>Where do you <em>start?</em></h1>
+      <p class="hero-sub">You are here because regular advice failed you. Let's find your entry point.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="intro-box">
+      <p><strong>There is no wrong door here.</strong></p>
+      <p>Pick the one that matches where you are right now. You can always come back and take a different path later.</p>
+    </div>
+
+    <div class="section-label">Choose Your Entry Point</div>
+
+    <div class="path-grid">
+
+      <!-- Priority Path -->
+      <a href="war-mapping/index.html" class="path-card priority-path">
+        <span class="priority-badge">Recommended First</span>
+        <div class="path-card__icon">⚔️</div>
+        <h3>I want to know what war I'm fighting</h3>
+        <p>Take the War Mapping Diagnostic to find out which internal war your nervous system is running. Abandonment, exposure, entrapment, or erasure—each one has different patterns and different solutions.</p>
+        <span class="path-card__cta">Take War Mapping Quiz →</span>
+      </a>
+
+      <a href="tools.html" class="path-card">
+        <div class="path-card__icon">🔥</div>
+        <h3>I'm in crisis right now</h3>
+        <p>You need tools to stabilize before you need understanding. Grounding scripts, nervous system resets, and things you can do in the next 5 minutes.</p>
+        <span class="path-card__cta">Get Stabilization Tools →</span>
+      </a>
+
+      <a href="survivor-types.html" class="path-card">
+        <div class="path-card__icon">🛡️</div>
+        <h3>I want to understand my patterns</h3>
+        <p>Learn about shields and masks—the survival strategies your nervous system built. See which ones you are running and what they are protecting.</p>
+        <span class="path-card__cta">Explore Shields & Masks →</span>
+      </a>
+
+      <a href="patterns.html" class="path-card">
+        <div class="path-card__icon">🗺️</div>
+        <h3>I want to understand my internal maps</h3>
+        <p>The 6 maps your trauma drew: Safety, Love, Worth, Conflict, Authority, Reality. See how your early environment shaped your internal GPS.</p>
+        <span class="path-card__cta">See The Maps →</span>
+      </a>
+
+      <a href="why-normal-fails.html" class="path-card">
+        <div class="path-card__icon">❓</div>
+        <h3>I want to know why nothing has worked</h3>
+        <p>If self-help books, therapy homework, and "just communicate" have all failed you—here's why. Your system is running different software.</p>
+        <span class="path-card__cta">Read Why Normal Fails →</span>
+      </a>
+
+      <a href="glossary.html" class="path-card">
+        <div class="path-card__icon">📖</div>
+        <h3>I want to learn the language</h3>
+        <p>Dissociation, limerence, trauma bonds, splitting—terms that get thrown around but rarely explained. Plain language definitions for war path concepts.</p>
+        <span class="path-card__cta">Read The Glossary →</span>
+      </a>
+
+      <a href="quizzes.html" class="path-card">
+        <div class="path-card__icon">📋</div>
+        <h3>I want to take more quizzes</h3>
+        <p>Map your shields, check for coercive control, scan your ego structure, assess dissociation patterns. All the War Path diagnostics in one place.</p>
+        <span class="path-card__cta">See All Quizzes →</span>
+      </a>
+
+      <a href="strategic-compartmentalization.html" class="path-card">
+        <div class="path-card__icon">📦</div>
+        <h3>I need to function while I figure this out</h3>
+        <p>Strategic compartmentalization: how to contain the fire so you can keep living while you do the deeper work. Not avoidance. Intentional containment.</p>
+        <span class="path-card__cta">Learn The Method →</span>
+      </a>
+
+    </div>
+
+    <!-- State-Based Options -->
+    <div class="state-section">
+      <h2>Or pick based on how you feel right now</h2>
+      
+      <div class="state-grid">
+        <a href="tools.html" class="state-card">
+          <div class="state-card__icon">😰</div>
+          <h4>Panicking</h4>
+          <p>Go to Tools</p>
+        </a>
+        <a href="tools.html#grounding" class="state-card">
+          <div class="state-card__icon">😶‍🌫️</div>
+          <h4>Dissociating</h4>
+          <p>Go to Grounding</p>
+        </a>
+        <a href="quizzes.html" class="state-card">
+          <div class="state-card__icon">🤔</div>
+          <h4>Confused</h4>
+          <p>Take a Quiz</p>
+        </a>
+        <a href="survivor-types.html" class="state-card">
+          <div class="state-card__icon">😔</div>
+          <h4>Ashamed</h4>
+          <p>See Shields & Masks</p>
+        </a>
+        <a href="patterns.html" class="state-card">
+          <div class="state-card__icon">🔁</div>
+          <h4>Stuck in a Loop</h4>
+          <p>Read About Maps</p>
+        </a>
+        <a href="/calls.html" class="state-card">
+          <div class="state-card__icon">🆘</div>
+          <h4>Need Someone</h4>
+          <p>Book a Call</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="bottom-cta">
+      <p>Not in war mode? Looking for relationship patterns and attachment content?</p>
+      <a href="/quiz/">Go to the Relational Path →</a>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path Home</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+

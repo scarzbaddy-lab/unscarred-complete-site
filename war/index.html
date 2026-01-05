@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>War Path | Ground Zero | Unscarred</title>
-  <meta name="description" content="When standard trauma work fails. Shields, masks, fragmented selves, and the war inside your own mind.">
+  <title>All Fronts War | Strategic Compartmentalization | Unscarred</title>
+  <meta name="description" content="When love, stress, trauma, and identity collide, you don't need more insight. You need a battle plan. Strategic compartmentalization for people in war mode.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -12,21 +12,28 @@
     :root {
       --bg-void: #050507;
       --bg-deep: #0a0a0f;
+      --bg-briefing: rgba(12, 11, 16, 0.95);
       --primary: #a33b5c;
       --primary-glow: rgba(163, 59, 92, 0.4);
       --secondary: #7c5cbf;
       --accent: #c9763d;
+      --accent-glow: rgba(201, 118, 61, 0.35);
       --warning: #e74c3c;
+      --warning-glow: rgba(231, 76, 60, 0.25);
+      --success: #7d9a8c;
       --text-main: #ece8e1;
       --text-soft: #9a958c;
       --text-dim: #5c5955;
       --border-glass: rgba(255,255,255,0.06);
+      --border-war: rgba(201, 118, 61, 0.25);
       --radius-lg: 20px;
+      --radius-sm: 12px;
       --font-display: 'Cormorant Garamond', Georgia, serif;
       --font-body: 'Outfit', system-ui, sans-serif;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     
     body {
       font-family: var(--font-body);
@@ -40,14 +47,14 @@
       position: fixed;
       inset: 0;
       background: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(231, 76, 60, 0.08) 0%, transparent 40%);
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(231, 76, 60, 0.06) 0%, transparent 40%);
       pointer-events: none;
       z-index: 0;
     }
 
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 0 24px;
       position: relative;
@@ -63,7 +70,7 @@
       padding: 20px 0;
       background: rgba(5, 5, 7, 0.95);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201, 118, 61, 0.2);
+      border-bottom: 1px solid var(--border-war);
     }
 
     .header-inner {
@@ -84,18 +91,37 @@
     }
 
     .logo span { color: var(--accent); }
+    .logo-tag {
+      font-size: 0.55em;
+      color: var(--accent);
+      margin-left: 8px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
 
     nav a {
       font-size: 14px;
+      font-weight: 500;
       color: var(--text-soft);
       text-decoration: none;
-      margin-left: 32px;
+      transition: color 0.3s ease;
     }
 
     nav a:hover { color: var(--text-main); }
 
+    .nav-relational {
+      color: var(--success) !important;
+    }
+
+    /* HERO */
     .hero {
-      padding: 160px 0 80px;
+      padding: 160px 0 100px;
       text-align: center;
     }
 
@@ -103,174 +129,754 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 20px;
-      background: rgba(201, 118, 61, 0.15);
-      border: 1px solid rgba(201, 118, 61, 0.3);
+      padding: 10px 24px;
+      background: rgba(201, 118, 61, 0.12);
+      border: 1px solid rgba(201, 118, 61, 0.25);
       border-radius: 999px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: var(--accent);
       text-transform: uppercase;
-      letter-spacing: 0.15em;
-      margin-bottom: 24px;
+      letter-spacing: 0.2em;
+      margin-bottom: 28px;
     }
 
     .hero h1 {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      font-weight: 600;
+      font-size: clamp(2.8rem, 7vw, 4.5rem);
+      font-weight: 700;
       font-style: italic;
       margin-bottom: 24px;
-      line-height: 1.1;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
     }
 
     .hero h1 em { color: var(--accent); font-style: italic; }
 
     .hero-sub {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       color: var(--text-soft);
-      max-width: 600px;
-      margin: 0 auto 16px;
+      max-width: 650px;
+      margin: 0 auto 40px;
       line-height: 1.7;
     }
 
-    .ground-zero-intro {
-      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), rgba(12, 11, 16, 0.95));
-      border: 1px solid rgba(201, 118, 61, 0.2);
-      border-radius: var(--radius-lg);
-      padding: 48px;
-      margin-bottom: 60px;
-      text-align: center;
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .ground-zero-intro h2 {
-      font-family: var(--font-display);
-      font-size: 2rem;
-      font-style: italic;
-      color: var(--accent);
-      margin-bottom: 24px;
-    }
-
-    .ground-zero-intro p {
-      font-size: 1.1rem;
-      color: var(--text-soft);
-      max-width: 700px;
-      margin: 0 auto 20px;
-      line-height: 1.8;
-    }
-
-    .ground-zero-intro p strong {
-      color: var(--text-main);
-    }
-
-    .section-cards {
-      display: grid;
-      gap: 24px;
-      margin-bottom: 80px;
-    }
-
-    .section-card {
-      display: block;
-      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
-      border: 1px solid var(--border-glass);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-
-    .section-card:hover {
-      border-color: rgba(201, 118, 61, 0.4);
-      transform: translateY(-4px);
-      box-shadow: 0 20px 50px rgba(201, 118, 61, 0.15);
-    }
-
-    .section-card__image {
-      height: 200px;
-      background-size: contain;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-color: var(--bg-void);
-      border-bottom: 1px solid var(--border-glass);
-    }
-
-    .section-card__content {
-      padding: 28px 32px 32px;
-    }
-
-    .section-card h3 {
-      font-family: var(--font-display);
-      font-size: 1.6rem;
-      font-weight: 600;
-      font-style: italic;
-      color: var(--text-main);
-      margin-bottom: 12px;
-    }
-
-    .section-card p {
-      font-size: 1rem;
-      color: var(--text-soft);
-      margin-bottom: 20px;
-      line-height: 1.7;
-    }
-
-    .section-card__btn {
+    .btn {
       display: inline-block;
-      padding: 12px 28px;
-      background: rgba(201, 118, 61, 0.15);
-      border: 1px solid rgba(201, 118, 61, 0.3);
+      padding: 16px 32px;
       border-radius: 999px;
-      color: var(--accent);
+      text-decoration: none;
       font-size: 0.85rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       transition: all 0.3s ease;
     }
 
-    .section-card:hover .section-card__btn {
-      background: var(--accent);
-      color: var(--bg-void);
+    .btn-war {
+      background: linear-gradient(135deg, var(--accent), #a85d2d);
+      color: white;
+      box-shadow: 0 8px 30px var(--accent-glow);
     }
 
-    .featured-grid {
+    .btn-war:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--accent-glow);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: var(--text-main);
+    }
+
+    /* CORE FRAME */
+    .core-frame {
+      text-align: center;
+      padding: 60px 0;
+      border-top: 1px solid var(--border-glass);
+      border-bottom: 1px solid var(--border-glass);
+      margin-bottom: 80px;
+    }
+
+    .core-frame blockquote {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      font-style: italic;
+      color: var(--text-main);
+      max-width: 700px;
+      margin: 0 auto 24px;
+      line-height: 1.5;
+    }
+
+    .core-frame p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .core-frame p strong { color: var(--accent); }
+
+    /* SECTION HEADERS */
+    .section-header {
+      margin-bottom: 40px;
+    }
+
+    .section-header .briefing-tag {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-header .briefing-tag::before {
+      content: "//";
+      opacity: 0.5;
+    }
+
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: var(--text-soft);
+      font-size: 1.05rem;
+      max-width: 650px;
+    }
+
+    /* BRIEFING CARDS */
+    .briefing-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), var(--bg-briefing));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .briefing-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 24px;
+      right: 24px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201, 118, 61, 0.3), transparent);
+    }
+
+    .briefing-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .briefing-card p {
+      color: var(--text-soft);
+      margin-bottom: 16px;
+      line-height: 1.75;
+    }
+
+    .briefing-card p:last-child { margin-bottom: 0; }
+
+    .briefing-card ul {
+      margin: 0 0 20px 20px;
+      color: var(--text-soft);
+    }
+
+    .briefing-card li { margin-bottom: 10px; }
+
+    /* STRATEGIC COMPARTMENTALIZATION */
+    .sc-section {
+      margin: 100px 0;
+    }
+
+    .sc-what-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
-    }
-
-    .featured-grid .section-card__image {
-      height: 180px;
+      margin-bottom: 48px;
     }
 
     @media (max-width: 700px) {
-      .featured-grid { grid-template-columns: 1fr; }
+      .sc-what-grid { grid-template-columns: 1fr; }
     }
 
-    .regular-path-link {
-      text-align: center;
-      padding: 40px;
-      background: linear-gradient(165deg, rgba(163, 59, 92, 0.08), rgba(12, 11, 16, 0.95));
-      border: 1px solid rgba(163, 59, 92, 0.2);
+    .sc-what-box {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
       border-radius: var(--radius-lg);
-      margin-bottom: 60px;
+      padding: 28px;
     }
 
-    .regular-path-link p {
+    .sc-what-box h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+
+    .sc-what-box.is { border-color: rgba(201, 118, 61, 0.3); }
+    .sc-what-box.is h4 { color: var(--accent); }
+
+    .sc-what-box.not { border-color: rgba(231, 76, 60, 0.2); }
+    .sc-what-box.not h4 { color: var(--warning); }
+
+    .sc-what-box p, .sc-what-box ul {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .sc-what-box ul { margin: 0 0 0 18px; }
+    .sc-what-box li { margin-bottom: 8px; }
+
+    .sc-rule {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), var(--bg-briefing));
+      border: 1px solid rgba(201, 118, 61, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .sc-rule p {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    /* CONTAINER METHOD */
+    .container-method {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.95), var(--bg-briefing));
+      border: 1px solid var(--border-war);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin-bottom: 48px;
+    }
+
+    .container-method h3 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+
+    .method-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .method-steps { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 500px) {
+      .method-steps { grid-template-columns: 1fr; }
+    }
+
+    .method-step {
+      text-align: center;
+      padding: 24px 16px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+    }
+
+    .method-step__num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      background: rgba(201, 118, 61, 0.15);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 50%;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .method-step h4 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .method-step p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.55;
+    }
+
+    /* LOSS OF SELF */
+    .loss-section {
+      margin: 100px 0;
+    }
+
+    .loss-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 600px) {
+      .loss-grid { grid-template-columns: 1fr; }
+    }
+
+    .loss-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+    }
+
+    .loss-item__icon {
+      color: var(--warning);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .loss-item p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .loss-translation {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), var(--bg-briefing));
+      border: 1px solid rgba(163, 59, 92, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      text-align: center;
+    }
+
+    .loss-translation p {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    .loss-translation p em { color: var(--primary); }
+
+    /* ENEMY TACTICS */
+    .tactics-section {
+      margin: 100px 0;
+    }
+
+    .tactics-grid {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .tactic-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 24px;
+      padding: 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      align-items: center;
+    }
+
+    @media (max-width: 600px) {
+      .tactic-card {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+    }
+
+    .tactic-card__label {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(231, 76, 60, 0.12);
+      border: 1px solid rgba(231, 76, 60, 0.25);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--warning);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .tactic-card p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .counter-box {
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.1), var(--bg-briefing));
+      border: 1px solid rgba(125, 154, 140, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+    }
+
+    .counter-box h4 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--success);
+      margin-bottom: 12px;
+    }
+
+    .counter-box p {
+      color: var(--text-main);
+      font-size: 1.05rem;
+      margin: 0;
+    }
+
+    /* RULES OF ENGAGEMENT */
+    .rules-section {
+      margin: 100px 0;
+    }
+
+    .rules-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .rule-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), var(--bg-briefing));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px 32px;
+      display: grid;
+      grid-template-columns: 60px 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    @media (max-width: 500px) {
+      .rule-card {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+    }
+
+    .rule-card__num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      background: rgba(201, 118, 61, 0.12);
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: 14px;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .rule-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .rule-card p {
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .rule-card .script {
+      margin-top: 12px;
+      padding: 12px 16px;
+      background: rgba(124, 92, 191, 0.1);
+      border-left: 2px solid var(--secondary);
+      border-radius: 0 8px 8px 0;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    /* WAR MAP */
+    .warmap-section {
+      margin: 100px 0;
+    }
+
+    .warmap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 700px) {
+      .warmap-grid { grid-template-columns: 1fr; }
+    }
+
+    .warmap-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), var(--bg-briefing));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .warmap-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    .warmap-card.fronts::before { background: var(--warning); }
+    .warmap-card.supplies::before { background: var(--success); }
+    .warmap-card.signals::before { background: var(--secondary); }
+    .warmap-card.orders::before { background: var(--accent); }
+
+    .warmap-card__icon {
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .warmap-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-style: italic;
+      margin-bottom: 8px;
+    }
+
+    .warmap-card.fronts h4 { color: var(--warning); }
+    .warmap-card.supplies h4 { color: var(--success); }
+    .warmap-card.signals h4 { color: var(--secondary); }
+    .warmap-card.orders h4 { color: var(--accent); }
+
+    .warmap-card p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .warmap-note {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      text-align: center;
+    }
+
+    .warmap-note p {
+      font-style: italic;
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .warmap-note strong { color: var(--accent); }
+
+    /* TACTICAL SCRIPTS */
+    .scripts-section {
+      margin: 100px 0;
+    }
+
+    .scripts-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .script-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+
+    .script-card__when {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+    }
+
+    .script-card__line {
+      padding: 16px 20px;
+      background: rgba(124, 92, 191, 0.1);
+      border-left: 3px solid var(--secondary);
+      border-radius: 0 8px 8px 0;
+      font-size: 1.05rem;
+      font-style: italic;
+      color: var(--text-main);
+      margin: 0;
+    }
+
+    /* REINTEGRATION */
+    .reintegration-section {
+      margin: 100px 0;
+    }
+
+    .return-protocol {
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.08), var(--bg-briefing));
+      border: 1px solid rgba(125, 154, 140, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+
+    .return-protocol h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--success);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .protocol-items {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 700px) {
+      .protocol-items { grid-template-columns: 1fr; }
+    }
+
+    .protocol-item {
+      text-align: center;
+      padding: 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(125, 154, 140, 0.15);
+      border-radius: var(--radius-sm);
+    }
+
+    .protocol-item__freq {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--success);
+      margin-bottom: 8px;
+    }
+
+    .protocol-item p {
+      color: var(--text-soft);
+      margin: 0;
+    }
+
+    .exercises-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 700px) {
+      .exercises-grid { grid-template-columns: 1fr; }
+    }
+
+    .exercise-card {
+      padding: 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      font-style: italic;
+      color: var(--text-soft);
+      text-align: center;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.12), var(--bg-briefing));
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 60px 48px;
+      text-align: center;
+      margin: 80px 0;
+    }
+
+    .final-cta h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2rem);
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .final-cta p {
+      color: var(--text-soft);
+      margin-bottom: 32px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .final-cta .btn-group {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* RELATIONAL CTA */
+    .relational-cta {
+      background: linear-gradient(165deg, rgba(125, 154, 140, 0.08), var(--bg-briefing));
+      border: 1px solid rgba(125, 154, 140, 0.2);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      text-align: center;
+      margin: 60px 0;
+    }
+
+    .relational-cta p {
       color: var(--text-soft);
       margin-bottom: 16px;
     }
 
-    .regular-path-link a {
-      color: var(--primary);
+    .relational-cta a {
+      color: var(--success);
       text-decoration: none;
       font-weight: 600;
     }
 
-    .regular-path-link a:hover {
-      color: var(--text-main);
-    }
+    .relational-cta a:hover { color: var(--text-main); }
 
+    /* FOOTER */
     footer {
       text-align: center;
       padding: 60px 0;
@@ -283,122 +889,387 @@
       color: var(--text-soft);
       text-decoration: none;
     }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 <body>
 
   <header>
     <div class="header-inner">
-      <a href="../index.html" class="logo">un<span>scarred</span> <span style="font-size: 0.6em; color: var(--accent);">WAR</span></a>
+      <a href="/index.html" class="logo">un<span>scarred</span><span class="logo-tag">WAR</span></a>
       <nav>
-        <a href="../quizzes/index.html">Quizzes</a>
-        <a href="../blog.html">Blog</a>
-        <a href="../shop.html">Shop</a>
-        <a href="../services.html">Services</a>
+        <a href="quizzes.html">Quizzes</a>
+        <a href="tools.html">Tools</a>
+        <a href="container-builder.html">Container Builder</a>
+        <a href="/quiz/" class="nav-relational">Relational Path</a>
       </nav>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="container">
-      <div class="hero-badge">War Path</div>
-      <h1>Welcome to <em>Ground Zero</em></h1>
-      <p class="hero-sub">When standard trauma work fails. When you feel like the problem. When your nervous system is fighting wars that ended years ago.</p>
+      <div class="hero-badge">⚔️ War Path</div>
+      <h1>All Fronts <em>War</em></h1>
+      <p class="hero-sub">When love, stress, trauma, and identity collide, you don't need more insight. You need a battle plan.</p>
+      <div class="hero-cta">
+        <a href="war-mapping/index.html" class="btn btn-war">Take the War Map Quiz →</a>
+        <a href="container-builder.html" class="btn btn-secondary">Build a Container Plan</a>
+      </div>
     </div>
   </section>
 
   <div class="container">
 
-    <div class="ground-zero-intro">
-      <h2>What is Ground Zero?</h2>
-      <p>Ground Zero is where everything got built. Before age seven, your nervous system decided how to survive. It built <strong>shields</strong> to protect you. Then <strong>masks</strong> grew over the shields. Then the world gave you <strong>labels</strong> for what you became.</p>
-      <p>This is not regular relationship advice. This is not "just communicate better." <strong>This is for people whose whole system organized around early chaos</strong>, and now you are trying to live a normal life while your body thinks it is still in that house.</p>
-      <p>If you feel like you are too much, too broken, too complicated for normal healing content, <strong>you are in the right place.</strong></p>
+    <!-- CORE FRAME -->
+    <div class="core-frame">
+      <blockquote>"War is what you do when your nervous system is outnumbered."</blockquote>
+      <p>You are not "dramatic." You are managing internal fronts with limited resources. <strong>Strategic compartmentalization is the command skill.</strong></p>
     </div>
 
-    <div class="section-cards">
-
-      <a href="war-mapping/index.html" class="section-card">
-        <div class="section-card__image" style="background-image: url('../thumbnails/thumb-war-mapping.svg');"></div>
-        <div class="section-card__content">
-          <h3>Map Your War</h3>
-          <p>Find out which war you are fighting inside your own mind and body. Identify your shields, your maps, and the internal rules that run the show.</p>
-          <span class="section-card__btn">Take War Mapping Quizzes</span>
-        </div>
-      </a>
-
-      <div class="featured-grid">
-        <a href="survivor-types.html" class="section-card">
-          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-survivor-types.svg');"></div>
-          <div class="section-card__content">
-            <h3>Your Survivor Role</h3>
-            <p>Judge, Wolf, Ghost, Doll, Hero, Jester, Oracle, Machine. See which mask you built to survive, and what shield it is protecting.</p>
-            <span class="section-card__btn">Find Your Type</span>
-          </div>
-        </a>
-
-        <a href="patterns.html" class="section-card">
-          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-war-patterns.svg');"></div>
-          <div class="section-card__content">
-            <h3>What Is Actually Happening</h3>
-            <p>Deep breakdowns of BPD, narcissistic shields, autism confusion, fragmented selves, and the patterns that look like personality disorders.</p>
-            <span class="section-card__btn">Explore Patterns</span>
-          </div>
-        </a>
+    <!-- STRATEGIC COMPARTMENTALIZATION -->
+    <section class="sc-section">
+      <div class="section-header">
+        <div class="briefing-tag">Field Briefing 01</div>
+        <h2>Strategic Compartmentalization</h2>
+        <p>Not avoidance. Not denial. A controlled container so you can function, protect your life, and rebuild yourself.</p>
       </div>
 
-      <a href="../tools.html" class="section-card">
-        <div class="section-card__image" style="background-image: url('../thumbnails/thumb-stabilize-system.svg');"></div>
-        <div class="section-card__content">
-          <h3>Stabilize Your System</h3>
-          <p>Grounding scripts, pattern trackers, and small steps that calm war mode. Not healing. Stabilizing. Because you cannot heal while your system is still in crisis.</p>
-          <span class="section-card__btn">Get Tools</span>
+      <div class="sc-what-grid">
+        <div class="sc-what-box is">
+          <h4>What It Is</h4>
+          <p>A deliberate method for separating problems into safe containers so your identity does not get swallowed by one relationship, one argument, one mood, one spiral.</p>
         </div>
-      </a>
-
-      <div class="featured-grid">
-        <a href="glossary.html" class="section-card">
-          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-glossary.svg');"></div>
-          <div class="section-card__content">
-            <h3>Glossary of Terms</h3>
-            <p>Plain language definitions for dissociation, limerence, neurodivergence, trauma bonds, and other terms nobody explains properly.</p>
-            <span class="section-card__btn">Learn the Language</span>
-          </div>
-        </a>
-
-        <a href="strategic-compartmentalization.html" class="section-card">
-          <div class="section-card__image" style="background-image: url('../thumbnails/thumb-compartmentalization.svg');"></div>
-          <div class="section-card__content">
-            <h3>Strategic Compartmentalization</h3>
-            <p>How to function when your system is in chaos. Contain the fire so you can keep living while you figure things out.</p>
-            <span class="section-card__btn">Learn the Method</span>
-          </div>
-        </a>
+        <div class="sc-what-box not">
+          <h4>What It Is Not</h4>
+          <ul>
+            <li>Pretending nothing hurts</li>
+            <li>Stuffing emotions down</li>
+            <li>Being cold</li>
+            <li>Ghosting yourself</li>
+          </ul>
+        </div>
       </div>
 
-      <a href="../services.html" class="section-card">
-        <div class="section-card__image" style="background-image: url('../thumbnails/thumb-war-services.svg');"></div>
-        <div class="section-card__content">
-          <h3>Get Help That Speaks Your Language</h3>
-          <p>Sessions, text support, and workbooks made for people who feel like the problem. No judgment. No "just think positive." Real pattern work.</p>
-          <span class="section-card__btn">See War Programs</span>
-        </div>
-      </a>
+      <div class="sc-rule">
+        <p>Contain first. Process later. Repair after regulation.</p>
+      </div>
 
+      <div class="container-method">
+        <h3>The Container Method</h3>
+        <div class="method-steps">
+          <div class="method-step">
+            <div class="method-step__num">1</div>
+            <h4>Name the Front</h4>
+            <p>Relationship, Money, Family, Body, Shame, Anger</p>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">2</div>
+            <h4>Set a Time Box</h4>
+            <p>20 minutes, not 6 hours</p>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">3</div>
+            <h4>Choose the Objective</h4>
+            <p>Clarity, relief, decision, or boundary</p>
+          </div>
+          <div class="method-step">
+            <div class="method-step__num">4</div>
+            <h4>Close-Out Ritual</h4>
+            <p>Notes, breath, water, movement</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOSS OF SELF -->
+    <section class="loss-section">
+      <div class="section-header">
+        <div class="briefing-tag">Field Briefing 02</div>
+        <h2>Loss of Self</h2>
+        <p>This is a war injury, not a personality trait.</p>
+      </div>
+
+      <div class="loss-grid">
+        <div class="loss-item">
+          <span class="loss-item__icon">⚠</span>
+          <p>Your opinions disappear when someone gets upset</p>
+        </div>
+        <div class="loss-item">
+          <span class="loss-item__icon">⚠</span>
+          <p>You perform a version of you to keep peace</p>
+        </div>
+        <div class="loss-item">
+          <span class="loss-item__icon">⚠</span>
+          <p>You cannot tell what you want without checking their mood first</p>
+        </div>
+        <div class="loss-item">
+          <span class="loss-item__icon">⚠</span>
+          <p>You feel guilty for resting, saying no, or being quiet</p>
+        </div>
+        <div class="loss-item">
+          <span class="loss-item__icon">⚠</span>
+          <p>Your life shrinks into what is happening with them</p>
+        </div>
+        <div class="loss-item">
+          <span class="loss-item__icon">⚠</span>
+          <p>You stopped doing things you used to love</p>
+        </div>
+      </div>
+
+      <div class="loss-translation">
+        <p>"That is not love. That is <em>occupation</em>."</p>
+      </div>
+    </section>
+
+    <!-- ENEMY TACTICS -->
+    <section class="tactics-section">
+      <div class="section-header">
+        <div class="briefing-tag">Intelligence Report</div>
+        <h2>Tactics That Erase Identity</h2>
+        <p>Common patterns that wear you down. Not demonizing. Just precise.</p>
+      </div>
+
+      <div class="tactics-grid">
+        <div class="tactic-card">
+          <span class="tactic-card__label">Urgency Pressure</span>
+          <p>"Talk right now or else." Forces decisions before you can think.</p>
+        </div>
+        <div class="tactic-card">
+          <span class="tactic-card__label">Fog Talk</span>
+          <p>Long, circular explanations that exhaust you into compliance.</p>
+        </div>
+        <div class="tactic-card">
+          <span class="tactic-card__label">Moving Goalposts</span>
+          <p>You fix one thing, a new thing appears. The target keeps shifting.</p>
+        </div>
+        <div class="tactic-card">
+          <span class="tactic-card__label">Moral Inversion</span>
+          <p>Your reaction becomes the problem, not their behavior.</p>
+        </div>
+        <div class="tactic-card">
+          <span class="tactic-card__label">Intermittent Reinforcement</span>
+          <p>Affection, then distance, then blame. Keeps you hooked and confused.</p>
+        </div>
+      </div>
+
+      <div class="counter-box">
+        <h4>Your Counter Move</h4>
+        <p>Slow the pace. Clarify the claim. Require specifics. Exit the loop.</p>
+      </div>
+    </section>
+
+    <!-- RULES OF ENGAGEMENT -->
+    <section class="rules-section">
+      <div class="section-header">
+        <div class="briefing-tag">Field Briefing 03</div>
+        <h2>Rules of Engagement</h2>
+        <p>Concrete tactics you can use in real time.</p>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-card">
+          <div class="rule-card__num">1</div>
+          <div>
+            <h4>Do not fight without an objective</h4>
+            <p>Ask: "What outcome are we actually going for right now?"</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__num">2</div>
+          <div>
+            <h4>No war in the dark</h4>
+            <p>If it is after 9pm, hungry, drunk, or dysregulated—you pause.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__num">3</div>
+          <div>
+            <h4>One front at a time</h4>
+            <p>If they stack issues, you separate them.</p>
+            <div class="script">"Pick one topic. We are not doing a pile."</div>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__num">4</div>
+          <div>
+            <h4>Proof over theater</h4>
+            <p>If someone is sorry, it turns into one measurable behavior.</p>
+          </div>
+        </div>
+        <div class="rule-card">
+          <div class="rule-card__num">5</div>
+          <div>
+            <h4>Your nervous system is the commander</h4>
+            <p>If your body says unsafe, you do not debate it. You regulate and reassess.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WAR MAP -->
+    <section class="warmap-section">
+      <div class="section-header">
+        <div class="briefing-tag">Field Briefing 04</div>
+        <h2>The War Map</h2>
+        <p>Four quadrants to assess before making any move.</p>
+      </div>
+
+      <div class="warmap-grid">
+        <div class="warmap-card fronts">
+          <div class="warmap-card__icon">🎯</div>
+          <h4>Fronts</h4>
+          <p>Where the battles are happening. Relationship, work, family, health, money, identity.</p>
+        </div>
+        <div class="warmap-card supplies">
+          <div class="warmap-card__icon">🔋</div>
+          <h4>Supplies</h4>
+          <p>Sleep, money, social support, routine, therapy, faith, movement, nutrition.</p>
+        </div>
+        <div class="warmap-card signals">
+          <div class="warmap-card__icon">📡</div>
+          <h4>Signals</h4>
+          <p>Body tells: tight chest, nausea, jaw clench, dissociation, compulsive texting.</p>
+        </div>
+        <div class="warmap-card orders">
+          <div class="warmap-card__icon">📋</div>
+          <h4>Orders</h4>
+          <p>The next right action: pause, boundary, plan, repair request, exit, document, support.</p>
+        </div>
+      </div>
+
+      <div class="warmap-note">
+        <p><strong>If supplies are low, do not interpret the war.</strong> Replenish first.</p>
+      </div>
+    </section>
+
+    <!-- TACTICAL SCRIPTS -->
+    <section class="scripts-section">
+      <div class="section-header">
+        <div class="briefing-tag">Field Briefing 05</div>
+        <h2>Tactical Scripts</h2>
+        <p>Copy-paste lines for when you need words and cannot find them.</p>
+      </div>
+
+      <div class="scripts-grid">
+        <div class="script-card">
+          <div class="script-card__when">When you feel yourself disappearing</div>
+          <p class="script-card__line">"I'm starting to lose myself in this. I'm pausing so I can come back clear."</p>
+        </div>
+        <div class="script-card">
+          <div class="script-card__when">When they demand immediacy</div>
+          <p class="script-card__line">"I'm not doing urgent conflict. I'll talk at 6 tomorrow."</p>
+        </div>
+        <div class="script-card">
+          <div class="script-card__when">When they go vague</div>
+          <p class="script-card__line">"I can't respond to fog. Say it in one sentence."</p>
+        </div>
+        <div class="script-card">
+          <div class="script-card__when">When they stack topics</div>
+          <p class="script-card__line">"Stop. One issue. Choose the one that matters most."</p>
+        </div>
+        <div class="script-card">
+          <div class="script-card__when">When they flip it onto you</div>
+          <p class="script-card__line">"We can address my part after we name what happened first."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- REINTEGRATION -->
+    <section class="reintegration-section">
+      <div class="section-header">
+        <div class="briefing-tag">Field Briefing 06</div>
+        <h2>Reintegration</h2>
+        <p>War is not the destination. It leads back to self.</p>
+      </div>
+
+      <div class="return-protocol">
+        <h3>The Return Protocol</h3>
+        <div class="protocol-items">
+          <div class="protocol-item">
+            <div class="protocol-item__freq">Daily</div>
+            <p>Reclaim one preference</p>
+          </div>
+          <div class="protocol-item">
+            <div class="protocol-item__freq">Weekly</div>
+            <p>Reclaim one boundary</p>
+          </div>
+          <div class="protocol-item">
+            <div class="protocol-item__freq">Monthly</div>
+            <p>Reclaim one relationship with yourself</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="exercises-grid">
+        <div class="exercise-card">
+          "What do I want today that has nothing to do with them?"
+        </div>
+        <div class="exercise-card">
+          "What did I stop doing when this started?"
+        </div>
+        <div class="exercise-card">
+          "What part of me is on mute?"
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <div class="final-cta">
+      <h2>You are not broken. You are split into roles.</h2>
+      <p>We reunify you on purpose.</p>
+      <div class="btn-group">
+        <a href="war-mapping/index.html" class="btn btn-war">Take the War Map Quiz</a>
+        <a href="container-builder.html" class="btn btn-secondary">Build a Container Plan</a>
+        <a href="/calls.html" class="btn btn-secondary">Book a Pattern Audit</a>
+      </div>
     </div>
 
-    <div class="regular-path-link">
-      <p>Not in war mode? Looking for relationship and attachment content?</p>
-      <a href="../index.html">Go to Centered Path</a>
+    <!-- RELATIONAL CTA -->
+    <div class="relational-cta">
+      <p>Not in war mode? Looking for relationship patterns and attachment content?</p>
+      <a href="/quiz/">Go to the Relational Path →</a>
     </div>
 
   </div>
 
   <footer>
     <div class="container">
-      <p>© 2025 Unscarred. <a href="../privacy.html">Privacy</a> · <a href="../terms.html">Terms</a></p>
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="quizzes.html">Quizzes</a>
+        <a href="tools.html">Tools</a>
+        <a href="glossary.html">Glossary</a>
+        <a href="/coaching.html">Coaching</a>
+        <a href="/shop.html">Shop</a>
+      </div>
+      <p>© 2025 Unscarred. Your patterns are not your fault. Learning them is your power.</p>
     </div>
   </footer>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
 
 </body>
 </html>

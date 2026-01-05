@@ -1,216 +1,225 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ground Zero Assessment | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
-    <style>
-        :root {
-            --bg: #0a0a0a;
-            --card: #121212;
-            --primary: #3498db;
-            --primary-dark: #2980b9;
-            --text: #e9e4dc;
-            --text-soft: #a0a0a0;
-            --border: #1e1e1e;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6; color: var(--text); background: var(--bg);
-            padding: 20px; min-height: 100vh;
-        }
-        .quiz-container {
-            max-width: 800px; margin: 0 auto; background: var(--card);
-            border-radius: 16px; padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5); border: 1px solid var(--border);
-        }
-        .back-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            color: var(--text-soft); text-decoration: none; font-size: 0.85rem;
-            margin-bottom: 24px; transition: color 0.2s ease;
-        }
-        .back-link:hover { color: var(--text); }
-        h1 { color: var(--primary); margin-bottom: 10px; font-size: 2.2em; }
-        .subtitle { color: var(--text-soft); margin-bottom: 30px; font-size: 1.1em; }
-        .question { margin-bottom: 35px; padding-bottom: 25px; border-bottom: 1px solid var(--border); }
-        .question:last-of-type { border-bottom: none; }
-        .question-text { font-size: 1.1em; margin-bottom: 15px; font-weight: 500; color: var(--text); }
-        .options { display: flex; flex-direction: column; gap: 10px; }
-        .option {
-            padding: 15px 20px; border: 2px solid var(--border);
-            border-radius: 10px; cursor: pointer; transition: all 0.3s ease;
-            background: rgba(0,0,0,0.3); color: var(--text-soft);
-        }
-        .option:hover { border-color: var(--primary); background: rgba(52, 152, 219, 0.1); color: var(--text); }
-        .option.selected { border-color: var(--primary); background: rgba(52, 152, 219, 0.2); color: var(--text); font-weight: 600; }
-        .btn {
-            background: var(--primary); color: white; border: none;
-            padding: 15px 40px; font-size: 1.1em; border-radius: 10px;
-            cursor: pointer; transition: all 0.3s ease; margin-top: 20px; width: 100%; font-weight: 600;
-        }
-        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-        .btn:disabled { background: #333; cursor: not-allowed; transform: none; }
-        .results { display: none; }
-        .results.show { display: block; }
-        .result-box { background: rgba(0,0,0,0.3); padding: 30px; border-radius: 12px; margin-bottom: 25px; border-left: 5px solid var(--primary); }
-        .convergence-name { font-size: 2em; color: var(--primary); margin-bottom: 15px; }
-        .convergence-description { color: var(--text-soft); line-height: 1.8; margin-bottom: 20px; }
-        .pattern-section { background: rgba(0,0,0,0.2); padding: 20px; border-radius: 10px; margin-top: 20px; border: 1px solid var(--border); }
-        .pattern-section h3 { color: var(--primary); margin-bottom: 15px; }
-        .pattern-list { list-style: none; padding-left: 0; }
-        .pattern-list li { padding: 8px 0; padding-left: 25px; position: relative; color: var(--text-soft); }
-        .pattern-list li:before { content: "?"; position: absolute; left: 0; color: var(--primary); font-weight: bold; }
-        .hidden { display: none; }
-        .core-truth { padding: 15px; background: rgba(52, 152, 219, 0.1); border-radius: 10px; font-style: italic; color: var(--text); border-left: 3px solid var(--primary); }
-        .cta-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
-        .cta-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
-        .cta-links { display: flex; flex-wrap: wrap; gap: 10px; }
-        .cta-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 16px; background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border); border-radius: 10px;
-            color: var(--text-soft); text-decoration: none; font-size: 0.9rem; transition: all 0.2s ease;
-        }
-        .cta-link:hover { background: rgba(52, 152, 219, 0.1); border-color: var(--primary); color: var(--text); }
-        @media (max-width: 600px) { .quiz-container { padding: 25px; } h1 { font-size: 1.8em; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ground Zero Assessment | Unscarred</title>
+  <meta name="description" content="How early did the chaos start? Map what got built before age seven.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .statement-text { font-family: var(--font-display); font-size: 1.2rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .yn-options { display: flex; gap: 16px; justify-content: center; }
+    .yn-btn { padding: 16px 40px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+    .yn-btn:hover { border-color: rgba(201, 118, 61, 0.4); background: rgba(201, 118, 61, 0.05); color: var(--text-main); }
+    .yn-btn.selected { border-color: var(--accent); background: rgba(201, 118, 61, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #a85d2d); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(201, 118, 61, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(124, 92, 191, 0.1); border-left: 3px solid var(--secondary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(201, 118, 61, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
+  </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
-        <div id="quiz-section">
-            <h1>Ground Zero Assessment</h1>
-            <p class="subtitle">For people who are too many things at once</p>
-            <div id="questions"></div>
-            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Ground Zero <em>Assessment</em></h1>
+        <p>How early did the chaos start? Map what got built before age seven.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>Your nervous system wiring was largely established before age seven. Whatever was happening in your environment during those years became your definition of normal.</p>
+        <p>This assessment maps the early experiences that shaped how your system responds to the world.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="statement-text" id="question-text"></div>
+        <div class="yn-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
         </div>
-        <div id="results-section" class="results">
-            <div id="result-content"></div>
-            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/nervous-system.html" class="next-link">Nervous System Scan</a>
+          <a href="/quiz/parentification.html" class="next-link">Parentification Check</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
         </div>
+      </div>
     </div>
-    <script>
-        const questions = [
-            { text: "In relationships, do you find yourself both desperate for connection and terrified of it ", options: [{ text: "Yes, I chase and run at the same time", convergence: "anxious-avoidant" }, { text: "I feel this with my neurodivergence complicating everything", convergence: "trauma-neuro" }, { text: "I perform being fine while falling apart inside", convergence: "high-masking" }] },
-            { text: "What happens when someone gets close to you ", options: [{ text: "I want them closer but push them away", convergence: "anxious-avoidant" }, { text: "I can't tell if my response is trauma or just how my brain works", convergence: "trauma-neuro" }, { text: "I show them the version I think they need", convergence: "high-masking" }] },
-            { text: "When you're struggling, you:", options: [{ text: "Can't decide if you want support or space", convergence: "anxious-avoidant" }, { text: "Don't know if you're overreacting or if this is a real problem", convergence: "trauma-neuro" }, { text: "Keep functioning while everything crumbles internally", convergence: "high-masking" }] },
-            { text: "Your relationship to your own feelings is:", options: [{ text: "Intense and confusing - I want connection but it feels dangerous", convergence: "anxious-avoidant" }, { text: "Hard to interpret - is this trauma, neurodivergence, or both ", convergence: "trauma-neuro" }, { text: "Hidden behind competence - I can't let anyone see", convergence: "high-masking" }] },
-            { text: "Do you feel like you're constantly translating yourself ", options: [{ text: "Yes, between wanting closeness and needing distance", convergence: "anxious-avoidant" }, { text: "Yes, between trauma responses and neurodivergent traits", convergence: "trauma-neuro" }, { text: "Yes, between who I am and who I perform", convergence: "high-masking" }] },
-            { text: "What exhausts you most ", options: [{ text: "Never knowing if I should move toward or away from people", convergence: "anxious-avoidant" }, { text: "Not knowing which struggles are fixable and which are just my wiring", convergence: "trauma-neuro" }, { text: "Maintaining the performance while dying inside", convergence: "high-masking" }] },
-            { text: "When you try to explain your experience:", options: [{ text: "It sounds contradictory - I want opposite things simultaneously", convergence: "anxious-avoidant" }, { text: "I can't separate what's trauma and what's neurodivergence", convergence: "trauma-neuro" }, { text: "People don't believe I'm struggling because I look fine", convergence: "high-masking" }] },
-            { text: "Your biggest struggle is:", options: [{ text: "Being stuck between anxious and avoidant - I'm both and neither", convergence: "anxious-avoidant" }, { text: "Not knowing what's a trauma response vs neurodivergent trait", convergence: "trauma-neuro" }, { text: "Nobody sees how much I'm compensating just to appear normal", convergence: "high-masking" }] },
-            { text: "You feel most alone when:", options: [{ text: "I'm both desperately lonely and unable to tolerate closeness", convergence: "anxious-avoidant" }, { text: "My trauma and neurodivergence tangle into something unnamed", convergence: "trauma-neuro" }, { text: "Everyone thinks I'm thriving but I'm barely surviving", convergence: "high-masking" }] },
-            { text: "Traditional healing advice doesn't work because:", options: [{ text: "It addresses anxious OR avoidant, not the war between them", convergence: "anxious-avoidant" }, { text: "It separates trauma healing from neurodivergence when mine are fused", convergence: "trauma-neuro" }, { text: "It assumes people can see I'm struggling, but I hide it too well", convergence: "high-masking" }] }
-        ];
-        const convergences = {
-            "anxious-avoidant": {
-                name: "The Anxious-Avoidant Convergence",
-                description: "You exist in the impossible space between desperate and distant. You chase connection because abandonment feels lethal, but closeness triggers suffocation. You're stuck in a pattern where the thing you want most is also the thing you can't tolerate. Traditional attachment theory calls you 'disorganized' but that doesn't capture it - you're not chaotic, you're experiencing two completely valid but opposing survival strategies at once.",
-                patterns: ["You pursue connection and then panic when you get it", "You feel abandoned even when you're the one creating distance", "You can't trust that closeness is safe, but isolation feels like death", "Your nervous system is stuck between protest and shutdown", "You experience intense longing and intense fear simultaneously"],
-                core: "You're not broken - you're holding two conflicting attachment patterns that both saved you once but now trap you in an exhausting loop.",
-                ctas: [{ text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" }, { text: "Push Pull Guide", url: "/learn/push-pull.html", icon: "" }, { text: "Anxious Healing Program", url: "/program/anxious-healing.html", icon: "" }]
-            },
-            "trauma-neuro": {
-                name: "The Trauma-Neurodivergence Intersection",
-                description: "You can't separate your trauma responses from your neurodivergent traits because they've been woven together since the beginning. Did you develop hypervigilance from trauma or is that your ADHD pattern recognition  Is the sensory overwhelm autism or PTSD  The systems were never separate, so healing them separately doesn't work. You need an approach that sees the whole convergence, not just the parts.",
-                patterns: ["You can't tell where trauma ends and neurodivergence begins", "Your coping mechanisms serve both trauma and neurodivergent needs", "Traditional trauma therapy ignores your neurodivergent nervous system", "Neurodivergent support often bypasses your trauma adaptations", "Your experience doesn't fit cleanly into either framework"],
-                core: "Your trauma and neurodivergence aren't separate issues - they're an integrated system that requires integrated healing.",
-                ctas: [{ text: "Dysregulation Quiz", url: "dysregulation.html", icon: "🧠" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }]
-            },
-            "high-masking": {
-                name: "The High-Masking Convergence",
-                description: "You're drowning in plain sight. You've learned to perform competence so well that no one sees the cost. You show up, stay functional, and keep everything together on the outside while collapsing on the inside. The mask works too well - people don't believe you're struggling because you've trained yourself to hide it perfectly. This isn't strength, it's survival, and it's costing you everything.",
-                patterns: ["You appear high-functioning while barely holding on", "No one takes your struggles seriously because you 'seem fine'", "You can't stop performing even when you want to", "The gap between your external and internal reality is enormous", "You've mastered hiding the cost of survival"],
-                core: "Your ability to mask isn't a superpower - it's a trauma adaptation that's keeping you isolated in your pain.",
-                ctas: [{ text: "Fawn Response Quiz", url: "fawn-response.html", icon: "🦌" }, { text: "Mask & Shield Quiz", url: "mask-shield.html", icon: "🎭" }, { text: "Book a Session", url: "../booking.html", icon: "📅" }]
-            }
-        };
-        let answers = {};
-        function renderQuestions() {
-            const container = document.getElementById('questions');
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <div class="question-text">${index + 1}. ${q.text}</div>
-                    <div class="options" id="options-${index}">
-                        ${q.options.map((opt, optIndex) => `<div class="option" onclick="selectOption(${index}, ${optIndex}, '${opt.convergence}')">${opt.text}</div>`).join('')}
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-        }
-        function selectOption(questionIndex, optionIndex, convergence) {
-            const optionsContainer = document.getElementById(`options-${questionIndex}`);
-            const options = optionsContainer.getElementsByClassName('option');
-            Array.from(options).forEach(opt => opt.classList.remove('selected'));
-            options[optionIndex].classList.add('selected');
-            answers[questionIndex] = convergence;
-            if (Object.keys(answers).length === questions.length) {
-                document.getElementById('submit-btn').disabled = false;
-            }
-        }
-        function calculateResults() {
-            const scores = {};
-            Object.values(answers).forEach(convergence => { scores[convergence] = (scores[convergence] || 0) + 1; });
-            const dominantConvergence = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
-            displayResults(dominantConvergence);
-        }
-        function displayResults(convergence) {
-            const result = convergences[convergence];
-            const resultContent = document.getElementById('result-content');
-            resultContent.innerHTML = `
-                <div class="result-box">
-                    <h2 class="convergence-name">${result.name}</h2>
-                    <p class="convergence-description">${result.description}</p>
-                    <div class="pattern-section">
-                        <h3>What This Looks Like:</h3>
-                        <ul class="pattern-list">${result.patterns.map(pattern => `<li>${pattern}</li>`).join('')}</ul>
-                    </div>
-                    <div class="pattern-section">
-                        <h3>The Core Truth:</h3>
-                        <p class="core-truth">${result.core}</p>
-                    </div>
-                </div>
-                <div class="cta-section">
-                    <h3>Recommended Next Steps</h3>
-                    <div class="cta-links">${result.ctas.map(cta => `<a href="${cta.url}" class="cta-link"><span>${cta.icon}</span>${cta.text}</a>`).join('')}</div>
-                </div>
-            `;
-            document.getElementById('quiz-section').classList.add('hidden');
-            document.getElementById('results-section').classList.add('show');
-        }
-        function resetQuiz() {
-            answers = {};
-            document.getElementById('questions').innerHTML = '';
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('results-section').classList.remove('show');
-            document.getElementById('submit-btn').disabled = true;
-            renderQuestions();
-        }
-        renderQuestions();
-    </script>
-<script id="unscarredRootRewriter">
-(function(){
-  if(window.location.protocol !== "file:") return;
-  var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
-  var root = match ? match[1] : null;
-  if(!root) return;
-  var afterRoot = path.slice(root.length);
-  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
-  document.querySelectorAll('a[href^="/"]').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href || href.startsWith('//')) return;
-    a.setAttribute('href', prefix + href.replace(/^\//,''));
+    <footer><p>Unscarred. What happened to you was not your fault.</p></footer>
+  </div>
+<script>
+const statements = [
+  "Before age seven, I experienced significant instability in my home",
+  "One or both of my parents were emotionally unavailable",
+  "I witnessed conflict or violence between adults in my home",
+  "I often felt scared or unsafe as a young child",
+  "One or both parents had addiction or mental health issues",
+  "I had to be quiet, invisible, or careful to avoid trouble",
+  "I experienced physical, emotional, or sexual abuse",
+  "I lost a parent or primary caregiver through death or abandonment",
+  "I was frequently criticized, shamed, or told I was a problem",
+  "I learned that having needs made me a burden",
+  "I did not receive consistent comfort when I was upset",
+  "I had to take care of a parent emotionally or physically",
+  "I experienced neglect or was often left alone as a young child",
+  "Love in my home felt conditional on my behavior or performance",
+  "I learned to read adults carefully to stay safe",
+  "I did not feel like I could be myself around my caregivers",
+  "I experienced significant medical trauma or illness",
+  "I grew up with poverty, housing instability, or food insecurity"
+];
+
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
+
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion];
+  optionsDiv.innerHTML = '';
+  ['Yes', 'Partially', 'No'].forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'yn-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
   });
-})();
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  
+  const score = answers.reduce((total, ans) => total + (ans === 0 ? 2 : ans === 1 ? 1 : 0), 0);
+  const max = statements.length * 2;
+  const percentage = Math.round(score / max * 100);
+  
+  let level, desc, meaning, adaptations;
+  if (percentage <= 20) {
+    level = 'Minimal Early Adversity';
+    desc = 'Your early childhood environment provided relative stability and safety. Your nervous system likely developed with a foundation of security.';
+    meaning = 'This does not mean your childhood was perfect, but the core building blocks of safety were largely present.';
+    adaptations = ['Relatively secure attachment patterns', 'Capacity to trust relationships', 'Ability to regulate emotions with support'];
+  } else if (percentage <= 45) {
+    level = 'Moderate Early Adversity';
+    desc = 'Your early childhood involved some significant challenges. Parts of your nervous system wiring were shaped by instability or lack of safety.';
+    meaning = 'Your system learned some protective patterns that made sense in that environment but may be less helpful now.';
+    adaptations = ['Hypervigilance in some situations', 'Difficulty with certain attachment patterns', 'Some challenges with emotional regulation'];
+  } else if (percentage <= 70) {
+    level = 'Significant Early Adversity';
+    desc = 'Your early childhood environment was marked by substantial challenges. Much of your nervous system wiring was shaped by the need to survive difficult circumstances.';
+    meaning = 'Your survival adaptations are deeply embedded. They were brilliant strategies for a child who had no other options.';
+    adaptations = ['Strong protective patterns', 'Difficulty trusting or relaxing fully', 'Complex emotional regulation patterns', 'Possible dissociation or numbing'];
+  } else {
+    level = 'Severe Early Adversity';
+    desc = 'Your early childhood was dominated by significant trauma, instability, or danger. Your nervous system developed primarily around survival.';
+    meaning = 'You learned to survive things no child should have to face. Everything you do now makes sense in light of what you adapted to.';
+    adaptations = ['Deep survival programming', 'Complex trauma responses', 'Difficulty with safety and trust', 'Multiple protective mechanisms', 'Possible fragmentation or dissociation'];
+  }
+  
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">🔥 Early Adversity Profile</div>
+    <div class="result-title">${level}</div>
+    <p class="result-desc">${desc}</p>
+    <div class="result-section"><h3>What This Means</h3><p>${meaning}</p></div>
+    <div class="result-section"><h3>Likely Adaptations</h3><ul>${adaptations.map(a => `<li>${a}</li>`).join('')}</ul></div>
+    <div class="result-section"><h3>Your Next Step</h3><p>Understanding where your patterns came from is the first step. They were not chosen. They were built from necessity. Now you can begin to choose which ones still serve you.</p><div class="script-box">"I did not choose these patterns. They were built to protect a child who had no other options. I can honor them while also updating them."</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
 </script>
 </body>
 </html>
-
-
-

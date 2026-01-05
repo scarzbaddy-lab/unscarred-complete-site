@@ -1,0 +1,56 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="weirdGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#c9763d" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#a33b5c" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#weirdGlow)"/>
+  
+  <!-- Decision Tree Visual -->
+  <g transform="translate(800, 300)">
+    <!-- Top question node -->
+    <circle cx="0" cy="-80" r="24" fill="none" stroke="#c9763d" stroke-width="3"/>
+    <text x="0" y="-74" font-family="Outfit, sans-serif" font-size="28" font-weight="600" fill="#c9763d" text-anchor="middle">?</text>
+    
+    <!-- Branches going down -->
+    <line x1="0" y1="-56" x2="0" y2="-30" stroke="#c9763d" stroke-width="2"/>
+    
+    <!-- Split point -->
+    <line x1="0" y1="-30" x2="-80" y2="20" stroke="#c9763d" stroke-width="2"/>
+    <line x1="0" y1="-30" x2="80" y2="20" stroke="#c9763d" stroke-width="2"/>
+    
+    <!-- Left branch nodes -->
+    <circle cx="-80" cy="30" r="16" fill="none" stroke="#c9763d" stroke-width="2" stroke-opacity="0.7"/>
+    <line x1="-80" y1="46" x2="-120" y2="90" stroke="#c9763d" stroke-width="2" stroke-opacity="0.6"/>
+    <line x1="-80" y1="46" x2="-40" y2="90" stroke="#c9763d" stroke-width="2" stroke-opacity="0.6"/>
+    <circle cx="-120" cy="100" r="12" fill="#c9763d" fill-opacity="0.4"/>
+    <circle cx="-40" cy="100" r="12" fill="#c9763d" fill-opacity="0.4"/>
+    
+    <!-- Right branch nodes -->
+    <circle cx="80" cy="30" r="16" fill="none" stroke="#c9763d" stroke-width="2" stroke-opacity="0.7"/>
+    <line x1="80" y1="46" x2="40" y2="90" stroke="#c9763d" stroke-width="2" stroke-opacity="0.6"/>
+    <line x1="80" y1="46" x2="120" y2="90" stroke="#c9763d" stroke-width="2" stroke-opacity="0.6"/>
+    <circle cx="40" cy="100" r="12" fill="#c9763d" fill-opacity="0.4"/>
+    <circle cx="120" cy="100" r="12" fill="#c9763d" fill-opacity="0.4"/>
+    
+    <!-- Card outline -->
+    <rect x="-160" y="-120" width="320" height="260" rx="16" fill="none" stroke="#c9763d" stroke-width="2" stroke-opacity="0.3"/>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#c9763d" text-anchor="middle">$7</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="80" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">"When People Are Weird"</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">ONE-PAGE DECISION TREE</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(201,118,61,0.3)" stroke-width="1"/>
+</svg>
+

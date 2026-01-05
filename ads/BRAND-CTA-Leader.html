@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=728">
+  <title>Unscarred Ad - Leaderboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      width: 728px;
+      height: 90px;
+      transform-origin: top left;
+      transform: scale(0.55);
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(90deg, #050507, #0a0a0f);
+      color: #ece8e1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-glow {
+      position: absolute;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 40% 150% at 0% 50%, rgba(163, 59, 92, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 150% at 100% 50%, rgba(124, 92, 191, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+
+    .left-section {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -1px;
+      white-space: nowrap;
+    }
+
+    .logo span { color: #a33b5c; }
+
+    .divider {
+      width: 1px;
+      height: 40px;
+      background: rgba(255,255,255,0.15);
+    }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      font-style: italic;
+      color: #9a958c;
+    }
+
+    .tagline em { color: #a33b5c; font-style: italic; }
+
+    .cta-btn {
+      display: inline-block;
+      padding: 16px 32px;
+      background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 6px 20px rgba(163, 59, 92, 0.4);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+
+  <div class="content">
+    <div class="left-section">
+      <div class="logo">un<span>scarred</span></div>
+      <div class="divider"></div>
+      <div class="tagline">Turn scars into <em>mirrors</em> — see what they reveal</div>
+    </div>
+    <a href="#" class="cta-btn">Take a Free Quiz →</a>
+  </div>
+</body>
+</html>
+

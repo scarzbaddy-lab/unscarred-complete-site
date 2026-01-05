@@ -1,788 +1,232 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Is My Partner a Narc  | Unscarred</title>
-    <meta name="description" content="Take the quiz everyone's taking. The answer might surprise you.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎭</text></svg>">
-    <style>
-        :root {
-            --bg-void: #050507;
-            --bg-deep: #0a0a0f;
-            --card-glass: rgba(12, 12, 18, 0.85);
-            --primary: #a33b5c;
-            --primary-glow: rgba(163, 59, 92, 0.4);
-            --secondary: #7c5cbf;
-            --accent: #c9763d;
-            --warning: #e74c3c;
-            --text-main: #ece8e1;
-            --text-soft: #9a958c;
-            --text-dim: #5c5955;
-            --border-glass: rgba(255,255,255,0.06);
-            --radius-lg: 20px;
-            --font-display: 'Cormorant Garamond', Georgia, serif;
-            --font-body: 'Outfit', system-ui, sans-serif;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: var(--font-body);
-            line-height: 1.6;
-            color: var(--text-main);
-            background: var(--bg-void);
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%),
-                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(124, 92, 191, 0.08) 0%, transparent 40%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            position: relative;
-            z-index: 1;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 40px;
-        }
-
-        .logo {
-            font-family: var(--font-display);
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--text-main);
-            text-decoration: none;
-        }
-
-        .logo span { color: var(--primary); }
-
-        .back-link {
-            color: var(--text-soft);
-            text-decoration: none;
-            font-size: 0.9rem;
-            padding: 8px 16px;
-            border: 1px solid var(--border-glass);
-            border-radius: 999px;
-            transition: all 0.2s ease;
-        }
-
-        .back-link:hover {
-            color: var(--text-main);
-            border-color: rgba(255,255,255,0.2);
-        }
-
-        .quiz-container {
-            background: var(--card-glass);
-            border-radius: var(--radius-lg);
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            border: 1px solid var(--border-glass);
-        }
-
-        h1 {
-            font-family: var(--font-display);
-            font-size: 2.5rem;
-            font-weight: 600;
-            font-style: italic;
-            margin-bottom: 10px;
-            color: var(--text-main);
-        }
-
-        .subtitle {
-            color: var(--text-soft);
-            margin-bottom: 24px;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .clickbait-hook {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .question {
-            margin-bottom: 32px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid var(--border-glass);
-        }
-
-        .question:last-of-type {
-            border-bottom: none;
-        }
-
-        .question-number {
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
-
-        .question-text {
-            font-size: 1.1rem;
-            margin-bottom: 16px;
-            font-weight: 500;
-            color: var(--text-main);
-            line-height: 1.5;
-        }
-
-        .options-grid {
-            display: grid;
-            gap: 10px;
-        }
-
-        .option {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 14px 16px;
-            background: rgba(0,0,0,0.3);
-            border: 2px solid var(--border-glass);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--text-soft);
-        }
-
-        .option:hover {
-            border-color: var(--primary);
-            background: rgba(163, 59, 92, 0.1);
-            color: var(--text-main);
-        }
-
-        .option.selected {
-            border-color: var(--primary);
-            background: rgba(163, 59, 92, 0.2);
-            color: var(--text-main);
-        }
-
-        .option input {
-            margin-top: 3px;
-            accent-color: var(--primary);
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 4px;
-            background: rgba(255,255,255,0.1);
-            margin-bottom: 30px;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: width 0.3s;
-        }
-
-        .navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 32px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-glass);
-        }
-
-        .btn {
-            padding: 14px 32px;
-            border: none;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            transition: all 0.3s ease;
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text-soft);
-            border: 1px solid var(--border-glass);
-        }
-
-        .btn-secondary:hover {
-            border-color: rgba(255,255,255,0.3);
-            color: var(--text-main);
-        }
-
-        .btn-primary {
-            background: linear-gradient(135deg, var(--primary), #8a2a4a);
-            color: white;
-            box-shadow: 0 8px 30px var(--primary-glow);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px var(--primary-glow);
-        }
-
-        .btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .quiz-section { display: none; }
-        .quiz-section.active { display: block; }
-        .result-page { display: none; }
-        .result-page.active { display: block; }
-
-        .result-header {
-            text-align: center;
-            margin-bottom: 32px;
-            padding-bottom: 24px;
-            border-bottom: 2px solid var(--border-glass);
-        }
-
-        .result-title {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            font-style: italic;
-            margin-bottom: 12px;
-            color: var(--text-main);
-        }
-
-        .result-content h2 {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            margin: 28px 0 16px 0;
-            color: var(--text-main);
-            font-style: italic;
-        }
-
-        .result-content h3 {
-            font-family: var(--font-display);
-            font-size: 1.2rem;
-            margin: 24px 0 12px 0;
-            color: var(--accent);
-        }
-
-        .result-content p {
-            margin-bottom: 16px;
-            color: var(--text-soft);
-            line-height: 1.8;
-        }
-
-        .result-content p strong {
-            color: var(--text-main);
-        }
-
-        .truth-reveal {
-            background: linear-gradient(165deg, rgba(201, 118, 61, 0.15), rgba(12, 11, 16, 0.95));
-            border: 1px solid rgba(201, 118, 61, 0.3);
-            border-radius: 16px;
-            padding: 28px;
-            margin: 32px 0;
-        }
-
-        .truth-reveal h3 {
-            color: var(--accent);
-            margin-top: 0;
-        }
-
-        .highlight-box {
-            background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95));
-            border: 1px solid rgba(163, 59, 92, 0.2);
-            border-radius: 16px;
-            padding: 28px;
-            margin: 32px 0;
-        }
-
-        .result-content ul {
-            margin: 16px 0;
-            padding-left: 0;
-            list-style: none;
-        }
-
-        .result-content li {
-            margin-bottom: 12px;
-            padding-left: 24px;
-            position: relative;
-            color: var(--text-soft);
-        }
-
-        .result-content li::before {
-            content: "?";
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--primary), #8a2a4a);
-            color: white;
-            padding: 16px 40px;
-            text-decoration: none;
-            border-radius: 999px;
-            font-weight: 600;
-            margin-top: 24px;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 30px var(--primary-glow);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px var(--primary-glow);
-        }
-
-        .secondary-link {
-            display: inline-block;
-            color: var(--text-soft);
-            text-decoration: none;
-            margin-top: 16px;
-            margin-left: 16px;
-            border-bottom: 1px solid var(--border-glass);
-            padding-bottom: 2px;
-        }
-
-        .secondary-link:hover {
-            color: var(--text-main);
-        }
-
-        @media (max-width: 600px) {
-            .quiz-container { padding: 24px; }
-            h1 { font-size: 1.8rem; }
-            .navigation { flex-direction: column; gap: 12px; }
-            .btn { width: 100%; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Pattern Scan | Unscarred</title>
+  <meta name="description" content="Not a diagnosis. A pattern scan for narcissistic traits and protective ego structures.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #a33b5c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.5rem, 4vw, 1.9rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .intense-badge { display: inline-block; background: rgba(163, 59, 92, 0.3); color: var(--primary); font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; margin-left: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--secondary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .warning-intro { padding: 16px; background: rgba(201, 118, 61, 0.1); border: 1px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-sm); margin-bottom: 24px; text-align: left; }
+    .warning-intro p { margin: 0; font-size: 0.9rem; color: var(--text-soft); }
+    .question-area { display: none; }
+    .statement-text { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .yn-options { display: flex; gap: 16px; justify-content: center; }
+    .yn-btn { padding: 16px 32px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+    .yn-btn:hover { border-color: rgba(163, 59, 92, 0.4); background: rgba(163, 59, 92, 0.05); color: var(--text-main); }
+    .yn-btn.selected { border-color: var(--accent); background: rgba(163, 59, 92, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #7a2a43); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(163, 59, 92, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(163, 59, 92, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; text-align: center; }
+    .result-title { font-family: var(--font-display); font-size: 1.7rem; font-style: italic; margin-bottom: 16px; text-align: center; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; text-align: center; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(125, 154, 140, 0.1); border-left: 3px solid #7d9a8c; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(163, 59, 92, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <a href="../index.html" class="logo">un<span>scarred</span></a>
-            <a href="/quizzes/" class="back-link">← All Quizzes</a>
-        </header>
-
-        <div class="quiz-container">
-            <!-- Intro -->
-            <div id="introSection">
-                <p class="clickbait-hook">🔥 The quiz everyone's taking...</p>
-                <h1>Is My Partner a Narc </h1>
-                <p class="subtitle">Answer 10 quick questions and find out the truth about your relationship.</p>
-                
-                <p style="color: var(--text-dim); font-size: 0.9rem; margin-bottom: 24px;">10 questions · 3 minutes · You might be surprised</p>
-
-                <button class="btn btn-primary" onclick="startQuiz()">Find Out Now ?</button>
-            </div>
-
-            <!-- Quiz Section -->
-            <div id="quizSection" class="quiz-section">
-                <div class="progress-bar">
-                    <div id="progressFill" class="progress-fill" style="width: 0%"></div>
-                </div>
-                
-                <div id="questionsContainer"></div>
-
-                <div class="navigation">
-                    <button class="btn btn-secondary" id="prevBtn" onclick="previousQuestion()" disabled>Previous</button>
-                    <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()" disabled>Next</button>
-                </div>
-            </div>
-
-            <!-- Result Page -->
-            <div id="resultPage" class="result-page"></div>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Partner Pattern <em>Scan</em><span class="intense-badge">Intense</span></h1>
+        <p>Not a diagnosis. A pattern scan for narcissistic traits.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <div class="warning-intro">
+          <p><strong>Important:</strong> This quiz cannot diagnose anyone. It maps patterns that may be present. Only a qualified professional can diagnose personality disorders. Use this for awareness, not labeling.</p>
         </div>
+        <p>Answer based on your observations of your partner's patterns over time, not individual incidents.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="statement-text" id="question-text"></div>
+        <div class="yn-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/gaslight-recognition.html" class="next-link">Gaslight Recognition</a>
+          <a href="/quiz/coercive-control.html" class="next-link">Coercive Control Check</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
+        </div>
+      </div>
     </div>
+    <footer><p>Unscarred. Patterns matter more than labels.</p></footer>
+  </div>
+<script>
+const statements = [
+  "They need constant admiration and attention",
+  "They have an inflated sense of their own importance",
+  "They react poorly to any criticism, even gentle feedback",
+  "They lack genuine empathy for others' feelings",
+  "They believe they are special and should only associate with special people",
+  "They exploit others to get what they want",
+  "They are envious of others or believe others are envious of them",
+  "They have a sense of entitlement to special treatment",
+  "They show arrogant or haughty behaviors",
+  "They take credit for others' work or achievements",
+  "They cannot handle when the spotlight is not on them",
+  "They devalue people who were previously idealized",
+  "They rage or withdraw when they do not get their way",
+  "They twist reality to make themselves look good",
+  "They show a different face in public than in private",
+  "They blame others for their own problems or mistakes",
+  "They manipulate situations to maintain control",
+  "They make you feel like you are going crazy",
+  "They show no genuine remorse for hurting others",
+  "The relationship started with intense idealization (love bombing)"
+];
 
-    <script>
-        const questions = [
-            {
-                text: "Does your partner ever make you feel like your concerns aren't valid ",
-                options: [
-                    { text: "Never - they always listen", value: 0 },
-                    { text: "Sometimes when they're stressed", value: 1 },
-                    { text: "Often - they dismiss my feelings", value: 2 },
-                    { text: "Constantly - everything I feel is 'wrong'", value: 3 }
-                ]
-            },
-            {
-                text: "When you try to talk about problems, does your partner:",
-                options: [
-                    { text: "Engage and try to understand", value: 0 },
-                    { text: "Get defensive but eventually come around", value: 1 },
-                    { text: "Turn it around to what YOU did wrong", value: 2 },
-                    { text: "Completely deny or rewrite what happened", value: 3 }
-                ]
-            },
-            {
-                text: "How does your partner react when you're upset about something they did ",
-                options: [
-                    { text: "They genuinely care and try to fix it", value: 0 },
-                    { text: "They apologize but seem uncomfortable", value: 1 },
-                    { text: "They get annoyed that I'm 'making drama'", value: 2 },
-                    { text: "They make ME comfort THEM about it", value: 3 }
-                ]
-            },
-            {
-                text: "Does your partner take accountability for mistakes ",
-                options: [
-                    { text: "Yes, they own up to things", value: 0 },
-                    { text: "Sometimes, after cooling down", value: 1 },
-                    { text: "Rarely - there's always an excuse", value: 2 },
-                    { text: "Never - everything is someone else's fault", value: 3 }
-                ]
-            },
-            {
-                text: "How does your partner treat you in public vs. private ",
-                options: [
-                    { text: "The same - consistent either way", value: 0 },
-                    { text: "Slightly more attentive in public", value: 1 },
-                    { text: "Very charming in public, cold in private", value: 2 },
-                    { text: "Two completely different people", value: 3 }
-                ]
-            },
-            {
-                text: "Do you find yourself walking on eggshells ",
-                options: [
-                    { text: "No - I can be myself", value: 0 },
-                    { text: "Only about certain sensitive topics", value: 1 },
-                    { text: "Often - I monitor what I say", value: 2 },
-                    { text: "Constantly - everything can set them off", value: 3 }
-                ]
-            },
-            {
-                text: "When something good happens to you, your partner:",
-                options: [
-                    { text: "Celebrates with genuine happiness for me", value: 0 },
-                    { text: "Is happy but doesn't make a big deal", value: 1 },
-                    { text: "Finds a way to make it about them", value: 2 },
-                    { text: "Seems threatened or tries to diminish it", value: 3 }
-                ]
-            },
-            {
-                text: "Do you sometimes feel like you're going crazy ",
-                options: [
-                    { text: "No - I trust my perceptions", value: 0 },
-                    { text: "Occasionally I second-guess myself", value: 1 },
-                    { text: "Often - I don't know what's real anymore", value: 2 },
-                    { text: "Constantly - I can't trust my own memory", value: 3 }
-                ]
-            },
-            {
-                text: "How do you feel about yourself since being in this relationship ",
-                options: [
-                    { text: "Good - they support my growth", value: 0 },
-                    { text: "Mostly okay but some insecurities grew", value: 1 },
-                    { text: "Less confident - I doubt myself more", value: 2 },
-                    { text: "I don't recognize who I've become", value: 3 }
-                ]
-            },
-            {
-                text: "When you set a boundary, what happens ",
-                options: [
-                    { text: "They respect it even if they don't like it", value: 0 },
-                    { text: "They push back but honor it eventually", value: 1 },
-                    { text: "They test it repeatedly", value: 2 },
-                    { text: "They punish me or find ways around it", value: 3 }
-                ]
-            }
-        ];
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
-        let currentQuestion = 0;
-        let answers = [];
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
 
-        function startQuiz() {
-            document.getElementById('introSection').style.display = 'none';
-            document.getElementById('quizSection').classList.add('active');
-            renderQuestion();
-        }
-
-        function renderQuestion() {
-            const q = questions[currentQuestion];
-            const container = document.getElementById('questionsContainer');
-            
-            container.innerHTML = `
-                <div class="question">
-                    <div class="question-number">Question ${currentQuestion + 1} of ${questions.length}</div>
-                    <div class="question-text">${q.text}</div>
-                    <div class="options-grid">
-                        ${q.options.map((opt, i) => `
-                            <div class="option ${answers[currentQuestion] === opt.value ? 'selected' : ''}" onclick="selectAnswer(${opt.value}, this)">
-                                <input type="radio" name="q${currentQuestion}" value="${opt.value}" ${answers[currentQuestion] === opt.value ? 'checked' : ''}>
-                                <span>${opt.text}</span>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            `;
-
-            updateProgress();
-            updateButtons();
-        }
-
-        function selectAnswer(value, element) {
-            answers[currentQuestion] = value;
-            document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-            element.classList.add('selected');
-            element.querySelector('input').checked = true;
-            updateButtons();
-        }
-
-        function updateProgress() {
-            const progress = ((currentQuestion + 1) / questions.length) * 100;
-            document.getElementById('progressFill').style.width = progress + '%';
-        }
-
-        function updateButtons() {
-            document.getElementById('prevBtn').disabled = currentQuestion === 0;
-            document.getElementById('nextBtn').disabled = answers[currentQuestion] === undefined;
-            document.getElementById('nextBtn').textContent = currentQuestion === questions.length - 1 ? 'See Results' : 'Next';
-        }
-
-        function nextQuestion() {
-            if (currentQuestion < questions.length - 1) {
-                currentQuestion++;
-                renderQuestion();
-            } else {
-                showResults();
-            }
-        }
-
-        function previousQuestion() {
-            if (currentQuestion > 0) {
-                currentQuestion--;
-                renderQuestion();
-            }
-        }
-
-        function showResults() {
-            const total = answers.reduce((a, b) => a + b, 0);
-            const maxScore = questions.length * 3;
-            const percentage = Math.round((total / maxScore) * 100);
-
-            document.getElementById('quizSection').style.display = 'none';
-            const resultPage = document.getElementById('resultPage');
-            resultPage.classList.add('active');
-
-            let resultContent;
-
-            if (percentage <= 25) {
-                resultContent = `
-                    <div class="result-header">
-                        <h1 class="result-title">Your Partner Is Not a Narcissist</h1>
-                    </div>
-                    <div class="result-content">
-                        <p>Based on your answers, your partner shows normal human imperfections, not narcissistic patterns.</p>
-                        
-                        <div class="truth-reveal">
-                            <h3>🎯 Here's the thing nobody tells you:</h3>
-                            <p><strong>I don't believe in "narcs."</strong></p>
-                            <p>Not the way the internet uses the word. The label has become a trash can where we throw everyone who hurts us, disappoints us, or fails to meet our needs.</p>
-                            <p>Actual Narcissistic Personality Disorder is rare. What's common is wounded people hurting other wounded people in predictable patterns.</p>
-                        </div>
-
-                        <h2>Why the "Narc" Label is Dangerous</h2>
-                        <p>When we slap "narcissist" on someone, we do three harmful things:</p>
-                        <ul>
-                            <li><strong>We dehumanize them</strong> - They become a monster, not a person with patterns</li>
-                            <li><strong>We lose our power</strong> - If they're a narc, nothing can change; we're just victims</li>
-                            <li><strong>We miss our own patterns</strong> - The label lets us off the hook for examining our part</li>
-                        </ul>
-
-                        <h2>What Actually Helps</h2>
-                        <p>Instead of asking "Is my partner a narc " ask:</p>
-                        <ul>
-                            <li>What patterns keep repeating between us </li>
-                            <li>What am I tolerating that I shouldn't </li>
-                            <li>What wounds in ME make me attracted to this dynamic </li>
-                            <li>Can this person see their patterns and try to change </li>
-                        </ul>
-
-                        <div class="highlight-box">
-                            <p><strong>The real question isn't "Are they a narc "</strong></p>
-                            <p>It's "Is this relationship making me smaller or helping me grow "</p>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 32px;">
-                            <a href="pattern-spectrum.html" class="cta-button">Take the Pattern Spectrum Quiz</a>
-                            <a href="../blog/not-narcissist-pattern-reader.html" class="secondary-link">Read: I'm Not a Narcissist, I'm a Pattern Reader</a>
-                        </div>
-                    </div>
-                `;
-            } else if (percentage <= 50) {
-                resultContent = `
-                    <div class="result-header">
-                        <h1 class="result-title">There Are Some Concerning Patterns</h1>
-                    </div>
-                    <div class="result-content">
-                        <p>Your answers show some difficult dynamics, but probably not what the internet calls "narcissism."</p>
-                        
-                        <div class="truth-reveal">
-                            <h3>🎯 Let me tell you what I actually believe:</h3>
-                            <p><strong>The "narc" label is mostly useless.</strong></p>
-                            <p>It's become internet shorthand for "person who hurt me" and it stops us from doing the real work: understanding patterns.</p>
-                            <p>What you're describing sounds like someone who is <strong>wounded, immature, or lacking skills</strong> - not a clinical narcissist.</p>
-                        </div>
-
-                        <h2>What's Probably Happening</h2>
-                        <ul>
-                            <li>They have <strong>unhealed wounds</strong> that make them defensive</li>
-                            <li>They never learned healthy <strong>conflict skills</strong></li>
-                            <li>They're in <strong>survival mode</strong> and can't see past their own pain</li>
-                            <li>Your <strong>patterns are triggering each other</strong> in loops</li>
-                        </ul>
-
-                        <h2>The Question That Actually Matters</h2>
-                        <p>Forget "Are they a narc " Ask this instead:</p>
-                        <p><strong>When you point out their patterns, can they eventually see them  Do they TRY to change, even if they fail </strong></p>
-                        <p>A wounded person who tries is different from someone who refuses to look.</p>
-
-                        <div class="highlight-box">
-                            <p><strong>The narc label gives you an enemy.</strong></p>
-                            <p>Pattern work gives you a map.</p>
-                            <p>Which one actually helps you </p>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 32px;">
-                            <a href="do-you-hurt-people-on-purpose.html" class="cta-button">Take "Do You Hurt People On Purpose " Quiz</a>
-                            <a href="../blog/google-calls-you-narcissist.html" class="secondary-link">Read: When Google Calls You a Narcissist</a>
-                        </div>
-                    </div>
-                `;
-            } else if (percentage <= 75) {
-                resultContent = `
-                    <div class="result-header">
-                        <h1 class="result-title">These Patterns Are Serious</h1>
-                    </div>
-                    <div class="result-content">
-                        <p>Your answers indicate significant harmful patterns. But I still won't call them a "narc."</p>
-                        
-                        <div class="truth-reveal">
-                            <h3>🎯 Why I refuse to use that label:</h3>
-                            <p>Calling someone a narcissist is <strong>intellectually lazy</strong>. It's a way to stop thinking.</p>
-                            <p>What matters isn't the LABEL. What matters is:</p>
-                            <ul>
-                                <li>Are they <strong>aware</strong> of what they're doing </li>
-                                <li>Do they have <strong>conscience</strong> about the harm </li>
-                                <li>Is the harm <strong>accidental or purposeful</strong> </li>
-                            </ul>
-                            <p>Those three questions tell you everything. "Narcissist" tells you nothing useful.</p>
-                        </div>
-
-                        <h2>What Your Answers Actually Show</h2>
-                        <p>Someone who:</p>
-                        <ul>
-                            <li>Consistently dismisses your reality</li>
-                            <li>Rarely takes genuine accountability</li>
-                            <li>Makes you question yourself</li>
-                            <li>Treats boundaries as suggestions</li>
-                        </ul>
-                        <p>This is a <strong>pattern that damages you</strong>. Whether it's "narcissism" or not is irrelevant.</p>
-
-                        <h2>Your Real Priority</h2>
-                        <p>Stop asking "what's wrong with them" and start asking:</p>
-                        <ul>
-                            <li>Am I safe </li>
-                            <li>Am I getting smaller </li>
-                            <li>What would I tell a friend in this situation </li>
-                        </ul>
-
-                        <div class="highlight-box">
-                            <p><strong>You don't need a diagnosis to protect yourself.</strong></p>
-                            <p>You need clarity about patterns and permission to act on what you see.</p>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 32px;">
-                            <a href="coercive-control.html" class="cta-button">Take the Safety Assessment</a>
-                            <a href="do-you-hurt-people-on-purpose.html" class="secondary-link">Take: Do You Hurt People On Purpose </a>
-                        </div>
-                    </div>
-                `;
-            } else {
-                resultContent = `
-                    <div class="result-header">
-                        <h1 class="result-title">This Is About Your Safety, Not Labels</h1>
-                    </div>
-                    <div class="result-content">
-                        <p>Your answers describe severe, pervasive harmful patterns. But I'm still not going to call them a narcissist.</p>
-                        
-                        <div class="truth-reveal">
-                            <h3>🎯 Here's why the label doesn't matter:</h3>
-                            <p>Whether they're a "narcissist" or not changes <strong>absolutely nothing</strong> about what you need to do.</p>
-                            <p>You're describing someone who:</p>
-                            <ul>
-                                <li>Systematically distorts your reality</li>
-                                <li>Shows no genuine remorse or change</li>
-                                <li>Has eroded your sense of self</li>
-                                <li>Makes you feel crazy</li>
-                            </ul>
-                            <p>Call that whatever you want. <strong>Your job is to protect yourself.</strong></p>
-                        </div>
-
-                        <h2>What Actually Helps</h2>
-                        <p>Not the narc label. These things:</p>
-                        <ul>
-                            <li><strong>Document incidents</strong> - Write down what happens with dates</li>
-                            <li><strong>Tell someone</strong> - Break the isolation</li>
-                            <li><strong>Talk to a professional</strong> who understands coercive dynamics</li>
-                            <li><strong>Make a safety plan</strong> even if you're not ready to leave</li>
-                        </ul>
-
-                        <h2>The Truth About "Narcs"</h2>
-                        <p>The internet has made "narcissist" into a boogeyman. But real harm doesn't require a clinical diagnosis.</p>
-                        <p><strong>Someone can destroy you without being diagnosable.</strong></p>
-                        <p>And someone with NPD traits might be capable of growth if they want it.</p>
-                        <p>The label is a distraction. The patterns are what matter.</p>
-
-                        <div class="highlight-box">
-                            <p><strong>You don't need them to be a narcissist to justify leaving.</strong></p>
-                            <p>You don't need their diagnosis to validate your pain.</p>
-                            <p>You just need to trust what you see.</p>
-                        </div>
-
-                        <div style="text-align: center; margin-top: 32px;">
-                            <a href="coercive-control.html" class="cta-button">Take the Safety Assessment Now</a>
-                        </div>
-                    </div>
-                `;
-            }
-
-            resultPage.innerHTML = resultContent;
-        }
-    </script>
-<script id="unscarredRootRewriter">
-(function(){
-  if(window.location.protocol !== "file:") return;
-  var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
-  var root = match ? match[1] : null;
-  if(!root) return;
-  var afterRoot = path.slice(root.length);
-  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
-  document.querySelectorAll('a[href^="/"]').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href || href.startsWith('//')) return;
-    a.setAttribute('href', prefix + href.replace(/^\//,''));
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion];
+  optionsDiv.innerHTML = '';
+  ['Yes', 'Sometimes', 'No'].forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'yn-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
   });
-})();
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See Results' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  
+  const score = answers.reduce((total, ans) => total + (ans === 0 ? 2 : ans === 1 ? 1 : 0), 0);
+  const max = statements.length * 2;
+  const percentage = Math.round(score / max * 100);
+  
+  let level, desc, meaning, next;
+  if (percentage <= 25) {
+    level = 'Low Trait Presence';
+    desc = 'Your responses indicate few narcissistic trait patterns in your partner. Some self-focused behavior is normal. This level does not suggest a concerning pattern.';
+    meaning = 'If you came here because something feels wrong, the issue may be in a different area. Consider other assessments or exploring specific incidents.';
+    next = ['Consider what brought you to this quiz', 'Explore other pattern scans', 'Trust your experience even if this score is low'];
+  } else if (percentage <= 50) {
+    level = 'Moderate Trait Presence';
+    desc = 'Your responses indicate some narcissistic trait patterns. This may represent normal human self-focus, situational behavior, or the beginning of a concerning pattern.';
+    meaning = 'At this level, the question is whether these traits are stable or situational, whether they are getting better or worse, and how they affect you.';
+    next = ['Notice whether patterns are improving or worsening', 'Pay attention to how you feel over time', 'Consider whether boundaries are respected'];
+  } else if (percentage <= 75) {
+    level = 'Significant Trait Presence';
+    desc = 'Your responses indicate significant narcissistic trait patterns. Multiple indicators are present across different areas. This suggests a concerning pattern rather than isolated incidents.';
+    meaning = 'This level of trait presence usually indicates a protective ego structure that prioritizes the self at others\' expense. Change is possible but requires significant motivation and professional help.';
+    next = ['Prioritize your own safety and wellbeing', 'Build support outside the relationship', 'Consider whether change is actually happening', 'Do not wait for a diagnosis to protect yourself'];
+  } else {
+    level = 'Severe Trait Presence';
+    desc = 'Your responses indicate pervasive narcissistic trait patterns. The pattern is consistent and affects multiple areas of the relationship.';
+    meaning = 'This level of trait presence suggests significant personality structure issues. These patterns are deeply embedded and rarely change without intensive intervention. Your experience in this relationship is likely very difficult.';
+    next = ['Your perception is valid', 'Build an exit plan if needed', 'Get individual support', 'Do not stay hoping they will change without evidence', 'Your safety matters most'];
+  }
+  
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">👁️ Partner Pattern Assessment</div>
+    <div class="result-title">${level}</div>
+    <p class="result-desc">${desc}</p>
+    <div class="result-section"><h3>What This Means</h3><p>${meaning}</p></div>
+    <div class="result-section"><h3>Your Next Steps</h3><ul>${next.map(n => `<li>${n}</li>`).join('')}</ul></div>
+    <div class="result-section"><h3>A Reminder</h3><div class="script-box">This quiz cannot diagnose anyone. Labels matter less than patterns, and patterns matter less than how you are being treated. If you are being harmed, you do not need a diagnosis to protect yourself.</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
 </script>
 </body>
 </html>
-
-
-

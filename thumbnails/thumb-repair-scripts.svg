@@ -1,0 +1,53 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="sageGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#7d9a8c" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#2d8f8f" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="repairGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7d9a8c"/>
+      <stop offset="100%" stop-color="#2d8f8f"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#sageGlow)"/>
+  
+  <!-- Repair/Mending Visual - Two pieces coming together -->
+  <g transform="translate(800, 340)">
+    <!-- Left piece (broken heart/connection) -->
+    <path d="M-100,-60 L-40,-60 L-30,-20 L-40,20 L-100,20 Z" 
+          fill="none" stroke="#7d9a8c" stroke-width="4" stroke-linejoin="round"/>
+    <!-- Right piece -->
+    <path d="M100,-60 L40,-60 L30,-20 L40,20 L100,20 Z" 
+          fill="none" stroke="#7d9a8c" stroke-width="4" stroke-linejoin="round"/>
+    
+    <!-- Connection lines (scripts/words) -->
+    <line x1="-20" y1="-40" x2="20" y2="-40" stroke="url(#repairGrad)" stroke-width="3" stroke-dasharray="8,4" stroke-linecap="round"/>
+    <line x1="-20" y1="-10" x2="20" y2="-10" stroke="url(#repairGrad)" stroke-width="3" stroke-dasharray="8,4" stroke-linecap="round"/>
+    <line x1="-20" y1="20" x2="20" y2="20" stroke="url(#repairGrad)" stroke-width="3" stroke-dasharray="8,4" stroke-linecap="round"/>
+    
+    <!-- Glow in center -->
+    <circle cx="0" cy="-10" r="60" fill="#7d9a8c" fill-opacity="0.08"/>
+    <circle cx="0" cy="-10" r="30" fill="#7d9a8c" fill-opacity="0.12"/>
+    
+    <!-- Script paper visual -->
+    <rect x="-120" y="60" width="240" height="80" rx="8" fill="none" stroke="#7d9a8c" stroke-width="2" stroke-opacity="0.4"/>
+    <line x1="-100" y1="85" x2="100" y2="85" stroke="#7d9a8c" stroke-opacity="0.3" stroke-width="6" stroke-linecap="round"/>
+    <line x1="-100" y1="110" x2="60" y2="110" stroke="#7d9a8c" stroke-opacity="0.25" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#7d9a8c" text-anchor="middle">$17</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Repair Scripts</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">12 COPY-PASTE SCRIPTS</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(125,154,140,0.3)" stroke-width="1"/>
+</svg>
+

@@ -1,147 +1,302 @@
-﻿<!doctype html>
-<html lang="en" class="h-full">
- <head>
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nervous System Response Scan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <title>Nervous System Response Scan | Unscarred</title>
+  <meta name="description" content="How does your body respond to threat? Map your primary nervous system response: fight, flight, freeze, fawn, or collapse.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    body{box-sizing:border-box}
-    .fade-in{animation:fadeIn .6s cubic-bezier(.16,1,.3,1)}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --accent-glow: rgba(201, 118, 61, 0.35);
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .question-text { font-family: var(--font-display); font-size: 1.3rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.4; }
+    .options { display: flex; flex-direction: column; gap: 12px; }
+    .option-btn { display: block; width: 100%; padding: 18px 24px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 1rem; text-align: left; cursor: pointer; transition: all 0.2s ease; }
+    .option-btn:hover { border-color: rgba(201, 118, 61, 0.4); background: rgba(201, 118, 61, 0.05); color: var(--text-main); }
+    .option-btn.selected { border-color: var(--accent); background: rgba(201, 118, 61, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #a85d2d); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px var(--accent-glow); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(124, 92, 191, 0.1); border-left: 3px solid var(--secondary); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(201, 118, 61, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
   </style>
-  <style>@view-transition{navigation:auto}</style>
- </head>
- <body class="h-full w-full" style="background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%); margin:0; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Inter',sans-serif; color:#fff;">
-  <div id="app" class="w-full" style="min-height:100%; padding:48px 24px;"></div>
-  <script>
-const defaultConfig = {
-  hero_text: "Nervous System Response Scan",
-  subtitle: "Discover how your body responds to stress, threat, and overwhelm.",
-  cta_button: "Take the Response Scan",
-  trust_line: "Pattern insight only. Not a diagnosis.",
-  primary_color: "#0f0f0f",
-  secondary_color: "#ffffff",
-  text_color: "#0f0f0f",
-  accent_color: "#8b5cf6",
-  button_color: "#8b5cf6",
-  font_family: "system-ui",
-  font_size: 16
-};
-
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Nervous System <em>Response Scan</em></h1>
+        <p>How does your body respond to threat? Map your primary survival response.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>Your nervous system has automatic responses that kick in when it senses danger. These responses were designed to keep you alive. But sometimes they run when you do not actually need them.</p>
+        <p>This quiz maps your primary response pattern: Fight, Flight, Freeze, Fawn, or Collapse.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="question-text" id="question-text"></div>
+        <div class="options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/war/tools.html" class="next-link">Stabilization Tools</a>
+          <a href="/war/container-builder.html" class="next-link">Container Builder</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
+        </div>
+      </div>
+    </div>
+    <footer><p>Unscarred. Your patterns are not your fault.</p></footer>
+  </div>
+<script>
 const questions = [
-  { id: 1, text: "I get blunt and confrontational when stressed.", category: "fight" },
-  { id: 6, text: "I argue fast and hard when I feel threatened.", category: "fight" },
-  { id: 11, text: "I feel heat in my body and a need to take control.", category: "fight" },
-  { id: 16, text: "I become protective, angry, or dominant.", category: "fight" },
-  { id: 21, text: "I push for resolution and hate feeling powerless.", category: "fight" },
-  { id: 2, text: "I overthink and plan my way out of discomfort.", category: "flight" },
-  { id: 7, text: "I stay busy to avoid feelings.", category: "flight" },
-  { id: 12, text: "I fixate on what might go wrong.", category: "flight" },
-  { id: 17, text: "I need movement, cleaning, tasks, scrolling.", category: "flight" },
-  { id: 22, text: "I cannot relax until everything is handled.", category: "flight" },
-  { id: 3, text: "My mind goes blank under pressure.", category: "freeze" },
-  { id: 8, text: "I feel stuck and cannot act even when I want to.", category: "freeze" },
-  { id: 13, text: "I disconnect from my body.", category: "freeze" },
-  { id: 18, text: "I procrastinate because starting feels impossible.", category: "freeze" },
-  { id: 23, text: "I feel numb during conflict.", category: "freeze" },
-  { id: 4, text: "I become extra agreeable when tension rises.", category: "fawn" },
-  { id: 9, text: "I apologize quickly to make it stop.", category: "fawn" },
-  { id: 14, text: "I manage other people's feelings before my own.", category: "fawn" },
-  { id: 19, text: "I say yes while feeling no.", category: "fawn" },
-  { id: 24, text: "I change myself to keep connection.", category: "fawn" },
-  { id: 5, text: "I feel heavy, sleepy, or collapsed when stressed.", category: "faint" },
-  { id: 10, text: "I want to disappear for days.", category: "faint" },
-  { id: 15, text: "I lose motivation and feel helpless.", category: "faint" },
-  { id: 20, text: "I stop caring because caring hurts.", category: "faint" },
-  { id: 25, text: "I feel like my system shuts off.", category: "faint" }
+  { text: "When someone raises their voice at me, I:", options: [
+    { text: "Get loud back or feel rage rising", type: "fight" },
+    { text: "Need to leave the room immediately", type: "flight" },
+    { text: "Go blank or cannot think of what to say", type: "freeze" },
+    { text: "Apologize and try to calm them down", type: "fawn" },
+    { text: "Feel my body go heavy and want to collapse", type: "collapse" }
+  ]},
+  { text: "In a conflict, my body tends to:", options: [
+    { text: "Tense up and feel ready to attack or defend", type: "fight" },
+    { text: "Get restless and want to escape", type: "flight" },
+    { text: "Go numb or feel disconnected", type: "freeze" },
+    { text: "Focus entirely on making the other person okay", type: "fawn" },
+    { text: "Shut down completely and feel exhausted", type: "collapse" }
+  ]},
+  { text: "When I feel overwhelmed, I:", options: [
+    { text: "Get irritable or snap at people", type: "fight" },
+    { text: "Distract myself or stay busy", type: "flight" },
+    { text: "Zone out or lose track of time", type: "freeze" },
+    { text: "Check in with everyone else first", type: "fawn" },
+    { text: "Cannot get out of bed or function", type: "collapse" }
+  ]},
+  { text: "My first instinct in a scary situation is:", options: [
+    { text: "Confront it head on", type: "fight" },
+    { text: "Find the nearest exit", type: "flight" },
+    { text: "Do nothing and hope it passes", type: "freeze" },
+    { text: "Figure out what they want and give it to them", type: "fawn" },
+    { text: "Play dead or go limp", type: "collapse" }
+  ]},
+  { text: "When someone criticizes me, I:", options: [
+    { text: "Defend myself or attack back", type: "fight" },
+    { text: "Want to end the conversation immediately", type: "flight" },
+    { text: "Cannot process what they are saying in the moment", type: "freeze" },
+    { text: "Agree with them and try to fix it right away", type: "fawn" },
+    { text: "Feel like giving up entirely", type: "collapse" }
+  ]},
+  { text: "After a stressful interaction, I:", options: [
+    { text: "Replay it thinking of what I should have said", type: "fight" },
+    { text: "Need to move or do something physical", type: "flight" },
+    { text: "Feel foggy for hours", type: "freeze" },
+    { text: "Worry about whether they are upset with me", type: "fawn" },
+    { text: "Need to sleep or feel completely drained", type: "collapse" }
+  ]},
+  { text: "In relationships, I tend to:", options: [
+    { text: "Push back or create conflict to feel safe", type: "fight" },
+    { text: "Keep some distance or have an exit plan", type: "flight" },
+    { text: "Check out emotionally when things get intense", type: "freeze" },
+    { text: "Lose myself trying to make them happy", type: "fawn" },
+    { text: "Feel like I cannot do anything right", type: "collapse" }
+  ]},
+  { text: "When I sense rejection coming, I:", options: [
+    { text: "Reject them first or push them away", type: "fight" },
+    { text: "Start making plans to leave", type: "flight" },
+    { text: "Pretend I do not notice", type: "freeze" },
+    { text: "Try harder to be what they want", type: "fawn" },
+    { text: "Feel like I deserve it", type: "collapse" }
+  ]}
 ];
 
-const scaleOptions = [ { value:0,label:"Never" },{ value:1,label:"Sometimes" },{ value:2,label:"Often" },{ value:3,label:"Almost always" } ];
+const results = {
+  fight: {
+    name: "Fight Response",
+    emoji: "🥊",
+    desc: "Your nervous system responds to threat by confronting it. When activated, you may feel anger, irritation, or the urge to control the situation. This response says: the best defense is offense.",
+    origin: "Fight responses often develop when aggression was modeled, when you had to defend yourself early, or when being passive meant getting hurt.",
+    signs: ["Quick to anger or frustration", "Feeling the need to control situations", "Difficulty backing down from conflict", "Physical tension in jaw, fists, shoulders", "Saying things you regret when activated"],
+    next: "Your work is learning to pause before reacting. The threat your body perceives is often not the threat that is actually present. Practice: take three breaths before you respond.",
+    script: "I notice my body is in fight mode. I can feel this without acting on it. I will respond when I am regulated."
+  },
+  flight: {
+    name: "Flight Response",
+    emoji: "🏃",
+    desc: "Your nervous system responds to threat by escaping it. When activated, you may feel restless, anxious, or the overwhelming need to get away. This response says: survival means outrunning danger.",
+    origin: "Flight responses often develop when leaving was the only safe option, when staying meant danger, or when you learned early that problems cannot be solved, only escaped.",
+    signs: ["Restlessness or inability to sit still", "Overworking or staying constantly busy", "Avoiding difficult conversations", "Physical urge to run or leave", "Panic when you feel trapped"],
+    next: "Your work is learning to stay when it is safe to stay. Not every situation requires an exit. Practice: stay in one uncomfortable moment five minutes longer than your body wants.",
+    script: "I notice my body wants to run. I can tolerate this discomfort. I am safe to stay and see what happens."
+  },
+  freeze: {
+    name: "Freeze Response",
+    emoji: "🧊",
+    desc: "Your nervous system responds to threat by shutting down. When activated, you may feel numb, blank, or disconnected from your body. This response says: if I do not move, maybe the danger will pass.",
+    origin: "Freeze responses often develop when neither fighting nor fleeing was possible, when you were trapped, or when doing nothing was the safest option available.",
+    signs: ["Going blank in stressful moments", "Difficulty making decisions under pressure", "Feeling disconnected from your body", "Losing time or zoning out", "Difficulty accessing emotions when you need them"],
+    next: "Your work is learning to come back to your body gently. Movement helps. Practice: when you notice freeze, wiggle your toes, press your feet into the floor, and name three things you see.",
+    script: "I notice I am frozen. This is my body protecting me. I can come back slowly. I will move one small part of my body."
+  },
+  fawn: {
+    name: "Fawn Response",
+    emoji: "🙏",
+    desc: "Your nervous system responds to threat by appeasing it. When activated, you may lose track of your own needs and focus entirely on making the other person calm or happy. This response says: if I make them okay, they will not hurt me.",
+    origin: "Fawn responses often develop when caregivers were unpredictable, when you had to manage adult emotions as a child, or when having your own needs was punished.",
+    signs: ["Difficulty saying no", "Apologizing when you did nothing wrong", "Losing yourself in relationships", "People pleasing at your own expense", "Not knowing what you want until you check their mood"],
+    next: "Your work is learning to check in with yourself before checking in with them. Practice: before you respond to anyone, ask yourself what do I actually want here.",
+    script: "I notice I am about to abandon myself to make them okay. I am allowed to have needs. I will pause and check in with myself first."
+  },
+  collapse: {
+    name: "Collapse Response",
+    emoji: "💫",
+    desc: "Your nervous system responds to extreme threat by shutting down completely. When activated, you may feel exhausted, hopeless, or unable to function. This response says: I cannot fight, flee, or appease. I will surrender.",
+    origin: "Collapse responses often develop after prolonged stress, chronic trauma, or when other responses failed repeatedly. It is a last resort protection.",
+    signs: ["Feeling unable to get up or function", "Hopelessness or giving up", "Dissociation or feeling far away", "Physical exhaustion without clear cause", "Feeling like nothing matters"],
+    next: "Your work is to gently resource yourself. This is not about trying harder. It is about small moments of safety. Practice: one tiny good thing per day. Just one.",
+    script: "I notice my body has collapsed. This means I have been carrying too much. I do not need to fix anything right now. I just need to rest."
+  }
+};
 
-const patterns = { fight:{ title:"Fight Response", description:"Mobilized, confrontational, controlling under stress", need:"Safety, respect, power restored without harm.", regulation:"Jaw unclench, long exhale, cold water on wrists, slow voice rule.", script:"\"I'm in fight mode. I want to solve this without hurting you.\"" }, flight:{ title:"Flight Response", description:"Overthinking, busy, planning, avoiding feelings", need:"Certainty, control, future clarity.", regulation:"5 minute brain dump then stop, box breathing, single next step.", script:"\"I'm spiraling. Give me one clear plan point and one reassurance point.\"" }, freeze:{ title:"Freeze Response", description:"Stuck, blank, disconnected, unable to act", need:"Time, gentleness, no pressure.", regulation:"Feet on floor, name 5 objects, small movement, low stakes action.", script:"\"I'm frozen. I need time and a softer approach.\"" }, fawn:{ title:"Fawn Response", description:"People-pleasing, appeasing, over-accommodating", need:"Permission to exist, safety to say no.", regulation:"Hand on chest, name one true need, practice one boundary sentence.", script:"\"I'm people pleasing. My real answer is no, and I still care.\"" }, faint:{ title:"Faint Response", description:"Shutdown, collapsed, numb, unmotivated", need:"Rest, support, reduced load, nervous system repair.", regulation:"Hydration, protein, sunlight, body warmth, sleep protection, ask for help.", script:"\"I'm in shutdown. I can't process this right now. I need recovery time.\"" } };
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
-let currentQuestion = 0, answers = {}, currentView = 'intro';
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
 
-function calculateScores(){
-  const fightScore = [1,6,11,16,21].reduce((s,id)=>s+(answers[id]||0),0);
-  const flightScore = [2,7,12,17,22].reduce((s,id)=>s+(answers[id]||0),0);
-  const freezeScore = [3,8,13,18,23].reduce((s,id)=>s+(answers[id]||0),0);
-  const fawnScore = [4,9,14,19,24].reduce((s,id)=>s+(answers[id]||0),0);
-  const faintScore = [5,10,15,20,25].reduce((s,id)=>s+(answers[id]||0),0);
-  const total = fightScore+flightScore+freezeScore+fawnScore+faintScore;
-  if(total===0){ return { fight:{score:fightScore,percent:20}, flight:{score:flightScore,percent:20}, freeze:{score:freezeScore,percent:20}, fawn:{score:fawnScore,percent:20}, faint:{score:faintScore,percent:20}, primary:'fight', all:[{name:'fight',percent:20},{name:'flight',percent:20},{name:'freeze',percent:20},{name:'fawn',percent:20},{name:'faint',percent:20}] } }
-  const fightPct=Math.round((fightScore/total)*100); const flightPct=Math.round((flightScore/total)*100); const freezePct=Math.round((freezeScore/total)*100); const fawnPct=Math.round((fawnScore/total)*100); const faintPct=Math.round((faintScore/total)*100);
-  const responsePatterns=[{name:'fight',score:fightScore,percent:fightPct},{name:'flight',score:flightScore,percent:flightPct},{name:'freeze',score:freezeScore,percent:freezePct},{name:'fawn',score:fawnScore,percent:fawnPct},{name:'faint',score:faintScore,percent:faintPct}];
-  responsePatterns.sort((a,b)=>b.percent-a.percent); const primary=responsePatterns[0].name;
-  return { fight:{score:fightScore,percent:fightPct}, flight:{score:flightScore,percent:flightPct}, freeze:{score:freezeScore,percent:freezePct}, fawn:{score:fawnScore,percent:fawnPct}, faint:{score:faintScore,percent:faintPct}, primary, all:responsePatterns };
+function showQuestion() {
+  const q = questions[currentQuestion];
+  questionText.textContent = q.text;
+  optionsDiv.innerHTML = '';
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = opt.text;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
+  });
+  progressBar.style.width = ((currentQuestion + 1) / questions.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${questions.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === questions.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
 }
 
-function renderIntro(){ const config=window.elementSdk?.config||defaultConfig; const heroText=config.hero_text||defaultConfig.hero_text; const subtitle=config.subtitle||defaultConfig.subtitle; const ctaButton=config.cta_button||defaultConfig.cta_button; const trustLine=config.trust_line||defaultConfig.trust_line; const buttonColor=config.button_color||defaultConfig.button_color; const secondaryColor=config.secondary_color||defaultConfig.secondary_color; return `
-  <div class="fade-in" style="max-width:680px;margin:0 auto;padding:64px 24px;">
-    <div style="text-align:center;margin-bottom:24px;">
-      <h1 style="font-size:32px;color:${secondaryColor};margin-bottom:12px;">${heroText}</h1>
-      <p style="color:${secondaryColor};opacity:.75;max-width:520px;margin:0 auto;">${subtitle}</p>
-    </div>
-    <div style="text-align:center;margin-top:28px;"><button onclick="startScan()" style="background:${buttonColor};color:#fff;padding:12px 24px;border-radius:10px;border:none;cursor:pointer;font-weight:700;">${ctaButton}</button>
-      <p style="margin-top:16px;color:${secondaryColor};opacity:.6;">${trustLine}</p>
-    </div>
-  </div>
-` }
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < questions.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
 
-function renderQuestion(){ const question=questions[currentQuestion]; const progress=((currentQuestion+1)/questions.length)*100; const isAnswered=answers[question.id]!==undefined; const secondaryColor=defaultConfig.secondary_color; const fontSize=defaultConfig.font_size; return `
-  <div class="fade-in" style="max-width:640px;margin:0 auto;padding:48px 24px;">
-    <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:999px;margin-bottom:20px;overflow:hidden;"><div style="height:100%;width:${progress}%;background:${defaultConfig.button_color};"></div></div>
-    <div style="text-align:center;margin-bottom:16px;color:${secondaryColor};">Question ${currentQuestion+1} of ${questions.length}</div>
-    <div style="background:rgba(255,255,255,0.03);padding:24px;border-radius:12px;margin-bottom:16px;">
-      <h2 style="color:${secondaryColor};margin-bottom:12px;">${question.text}</h2>
-      <div style="display:flex;flex-direction:column;gap:8px;">
-        ${scaleOptions.map(o=>`<button onclick="selectAnswer(${question.id},${o.value})" style="padding:12px;border-radius:10px;background:${answers[question.id]===o.value?'rgba(139,92,246,0.15)':'rgba(255,255,255,0.02)'};border:1px solid rgba(255,255,255,0.06);color:${secondaryColor};text-align:left;">${o.label}</button>`).join('')}
-      </div>
-    </div>
-    <div style="display:flex;gap:12px;">
-      ${currentQuestion>0?`<button onclick="previousQuestion()" style="flex:1;padding:10px;border-radius:8px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.06);color:#fff;">Previous</button>`:''}
-      <button onclick="${currentQuestion<questions.length-1?'nextQuestion()':'showResults()'}" ${!isAnswered?'disabled':''} style="flex:1;padding:10px;border-radius:8px;background:${isAnswered?defaultConfig.button_color:'rgba(255,255,255,0.08)'};color:#fff;border:none;">${currentQuestion<questions.length-1?'Next':'See Results'}</button>
-    </div>
-  </div>
-` }
-
-function renderResults(){ const scores=calculateScores(); const primaryPattern=patterns[scores.primary]; const secondaryColor=defaultConfig.secondary_color; return `
-  <div class="fade-in" style="max-width:760px;margin:0 auto;padding:48px 24px;">
-    <div style="text-align:center;margin-bottom:20px;">
-      <h1 style="color:${secondaryColor};">Your Response Profile</h1>
-      <p style="opacity:.75;">Primary response: ${primaryPattern.title}</p>
-    </div>
-    <div style="background:rgba(255,255,255,0.03);padding:20px;border-radius:12px;margin-bottom:16px;">
-      <h3 style="color:${secondaryColor};">${primaryPattern.title}</h3>
-      <p style="opacity:.8;">${primaryPattern.description}</p>
-      <div style="margin-top:12px;padding:12px;background:linear-gradient(135deg, rgba(139,92,246,0.15), rgba(139,92,246,0.05));border-radius:8px;">
-        <div style="font-weight:600;color:${secondaryColor};">Repair Script</div>
-        <div style="font-style:italic;opacity:.9;margin-top:8px;">${primaryPattern.script}</div>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:12px;">
-      <button onclick="restartScan()" style="background:rgba(255,255,255,0.06);color:${secondaryColor};padding:10px 18px;border-radius:8px;border:1px solid rgba(255,255,255,0.06);">Take Scan Again</button>
-      <div style="margin-top:16px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-        <a href="/quiz/relational-needs/" style="display:inline-block;padding:10px 16px;background:#8b5cf6;color:#fff;border-radius:8px;text-decoration:none;">Next: Relational Needs Matrix →</a>
-        <a href="/war/war-mapping/" style="display:inline-block;padding:10px 16px;background:#a33b5c;color:#fff;border-radius:8px;text-decoration:none;">Go to War Mapping →</a>
-      </div>
-    </div>
-
-    <div style="text-align:center;margin-top:22px;"><a href="/index.html" style="color:rgba(255,255,255,0.7);text-decoration:none">← Back to Home</a></div>
-  </div>
-` }
-
-function selectAnswer(qid,val){ answers[qid]=val; render(); }
-function startScan(){ currentView='question'; currentQuestion=0; answers={}; render(); }
-function nextQuestion(){ if(currentQuestion<questions.length-1){currentQuestion++; render();} }
-function previousQuestion(){ if(currentQuestion>0){currentQuestion--; render();} }
-function showResults(){ currentView='results'; render(); }
-function restartScan(){ startScan(); }
-function render(){ const app=document.getElementById('app'); if(currentView==='intro'){ app.innerHTML=renderIntro(); } else if(currentView==='question'){ app.innerHTML=renderQuestion(); } else if(currentView==='results'){ app.innerHTML=renderResults(); } }
-render();
-  </script>
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  const counts = { fight: 0, flight: 0, freeze: 0, fawn: 0, collapse: 0 };
+  answers.forEach((ans, i) => { counts[questions[i].options[ans].type]++; });
+  let primary = 'fight', max = 0;
+  for (const [type, count] of Object.entries(counts)) { if (count > max) { max = count; primary = type; } }
+  const r = results[primary];
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">${r.emoji} Your Primary Response</div>
+    <div class="result-title">${r.name}</div>
+    <p class="result-desc">${r.desc}</p>
+    <div class="result-section"><h3>Where This Comes From</h3><p>${r.origin}</p></div>
+    <div class="result-section"><h3>Signs You Are In This Response</h3><ul>${r.signs.map(s => `<li>${s}</li>`).join('')}</ul></div>
+    <div class="result-section"><h3>Your Next Step</h3><p>${r.next}</p></div>
+    <div class="result-section"><h3>A Script To Try</h3><div class="script-box">${r.script}</div></div>
+  `;
+}
+</script>
 <script id="unscarredRootRewriter">
 (function(){
   if(window.location.protocol !== "file:") return;
@@ -159,5 +314,5 @@ render();
   });
 })();
 </script>
- </body>
+</body>
 </html>

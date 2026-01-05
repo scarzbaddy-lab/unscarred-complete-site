@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>War Map Assessment | All Fronts Scan | Unscarred</title>
+  <meta name="description" content="Map your fronts, check your supplies, read your signals, and identify your next orders. A tactical assessment for when you're in war mode.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --bg-briefing: rgba(12, 11, 16, 0.95);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --accent-glow: rgba(201, 118, 61, 0.35);
+      --warning: #e74c3c;
+      --success: #7d9a8c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --border-war: rgba(201, 118, 61, 0.25);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(231, 76, 60, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-war);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+    }
+
+    .logo span { color: var(--accent); }
+    .logo-tag { font-size: 0.55em; color: var(--accent); margin-left: 8px; font-weight: 600; }
+
+    nav { display: flex; align-items: center; gap: 28px; }
+    nav a { font-size: 14px; font-weight: 500; color: var(--text-soft); text-decoration: none; }
+    nav a:hover { color: var(--text-main); }
+
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: rgba(201, 118, 61, 0.12);
+      border: 1px solid rgba(201, 118, 61, 0.25);
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-soft);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* ASSESSMENT SECTIONS */
+    .assessment-section {
+      margin: 60px 0;
+    }
+
+    .section-card {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), var(--bg-briefing));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+    }
+
+    .section-card.fronts::before { background: var(--warning); }
+    .section-card.supplies::before { background: var(--success); }
+    .section-card.signals::before { background: var(--secondary); }
+    .section-card.orders::before { background: var(--accent); }
+
+    .section-card__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-card__icon {
+      font-size: 2rem;
+    }
+
+    .section-card__header h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-style: italic;
+    }
+
+    .section-card.fronts .section-card__header h2 { color: var(--warning); }
+    .section-card.supplies .section-card__header h2 { color: var(--success); }
+    .section-card.signals .section-card__header h2 { color: var(--secondary); }
+    .section-card.orders .section-card__header h2 { color: var(--accent); }
+
+    .section-card p.intro {
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+
+    /* Checkbox Grid */
+    .check-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 600px) {
+      .check-grid { grid-template-columns: 1fr; }
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .check-item:hover {
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .check-item.checked {
+      border-color: var(--accent);
+      background: rgba(201, 118, 61, 0.08);
+    }
+
+    .check-item input {
+      display: none;
+    }
+
+    .check-item__box {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--text-dim);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .check-item.checked .check-item__box {
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .check-item__box::after {
+      content: "✓";
+      color: var(--bg-void);
+      font-size: 0.85rem;
+      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .check-item.checked .check-item__box::after {
+      opacity: 1;
+    }
+
+    .check-item span {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    .check-item.checked span {
+      color: var(--text-main);
+    }
+
+    /* Supply levels */
+    .supply-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      padding: 16px 20px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+    }
+
+    .supply-item span {
+      color: var(--text-soft);
+    }
+
+    .supply-levels {
+      display: flex;
+      gap: 8px;
+    }
+
+    .supply-level {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border-glass);
+      background: rgba(255,255,255,0.02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      transition: all 0.2s ease;
+    }
+
+    .supply-level:hover {
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    .supply-level.low { border-color: var(--warning); color: var(--warning); background: rgba(231, 76, 60, 0.1); }
+    .supply-level.mid { border-color: var(--accent); color: var(--accent); background: rgba(201, 118, 61, 0.1); }
+    .supply-level.high { border-color: var(--success); color: var(--success); background: rgba(125, 154, 140, 0.1); }
+
+    /* Text areas */
+    .text-area {
+      margin-top: 20px;
+    }
+
+    .text-area label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .text-area textarea {
+      width: 100%;
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text-main);
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .text-area textarea:focus {
+      outline: none;
+      border-color: rgba(201, 118, 61, 0.4);
+    }
+
+    /* Generate Button */
+    .generate-btn {
+      display: block;
+      width: 100%;
+      padding: 18px 32px;
+      background: linear-gradient(135deg, var(--accent), #a85d2d);
+      border: none;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 30px var(--accent-glow);
+      margin-top: 40px;
+    }
+
+    .generate-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--accent-glow);
+    }
+
+    /* RESULT */
+    .result {
+      display: none;
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), var(--bg-briefing));
+      border: 1px solid rgba(201, 118, 61, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 48px;
+      margin: 60px 0;
+    }
+
+    .result.visible { display: block; }
+
+    .result__header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .result__header h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-style: italic;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 600px) {
+      .result-grid { grid-template-columns: 1fr; }
+    }
+
+    .result-card {
+      padding: 24px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-sm);
+      position: relative;
+      padding-left: 32px;
+    }
+
+    .result-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      border-radius: 4px 0 0 4px;
+    }
+
+    .result-card.fronts::before { background: var(--warning); }
+    .result-card.supplies::before { background: var(--success); }
+    .result-card.signals::before { background: var(--secondary); }
+    .result-card.orders::before { background: var(--accent); }
+
+    .result-card h3 {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+    }
+
+    .result-card.fronts h3 { color: var(--warning); }
+    .result-card.supplies h3 { color: var(--success); }
+    .result-card.signals h3 { color: var(--secondary); }
+    .result-card.orders h3 { color: var(--accent); }
+
+    .result-card ul {
+      list-style: none;
+      margin: 0;
+    }
+
+    .result-card li {
+      color: var(--text-soft);
+      padding: 6px 0;
+      font-size: 0.95rem;
+    }
+
+    .result-card li::before {
+      content: "→ ";
+      color: var(--text-dim);
+    }
+
+    .result-card p {
+      color: var(--text-soft);
+      font-size: 0.95rem;
+    }
+
+    /* Recommendations */
+    .recommendations {
+      background: rgba(124, 92, 191, 0.1);
+      border: 1px solid rgba(124, 92, 191, 0.25);
+      border-radius: var(--radius-sm);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .recommendations h3 {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-style: italic;
+      color: var(--secondary);
+      margin-bottom: 16px;
+    }
+
+    .recommendations p {
+      color: var(--text-soft);
+      margin-bottom: 12px;
+    }
+
+    .recommendations p:last-child { margin-bottom: 0; }
+    .recommendations strong { color: var(--text-main); }
+
+    .result-actions {
+      display: flex;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .result-actions button {
+      flex: 1;
+      padding: 14px 24px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn {
+      background: rgba(124, 92, 191, 0.15);
+      border: 1px solid rgba(124, 92, 191, 0.3);
+      color: var(--secondary);
+    }
+
+    .reset-btn {
+      background: transparent;
+      border: 1px solid var(--border-glass);
+      color: var(--text-soft);
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 40px 0;
+    }
+
+    .back-link:hover { color: var(--text-main); }
+
+    footer {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a { color: var(--text-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">un<span>scarred</span><span class="logo-tag">WAR</span></a>
+      <nav>
+        <a href="index.html">War Home</a>
+        <a href="container-builder.html">Container Builder</a>
+        <a href="tools.html">Tools</a>
+        <a href="/quiz/">Relational Path</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">🗺️ War Map</div>
+      <h1>All Fronts <em>Scan</em></h1>
+      <p class="hero-sub">Assess your situation. Before you interpret the war, you need to know what you're working with.</p>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <div class="assessment-section" id="assessment">
+
+      <!-- FRONTS -->
+      <div class="section-card fronts">
+        <div class="section-card__header">
+          <span class="section-card__icon">🎯</span>
+          <h2>Fronts</h2>
+        </div>
+        <p class="intro">Where are the active battles? Check all that apply.</p>
+        <div class="check-grid" id="fronts-grid">
+          <label class="check-item"><input type="checkbox" value="Romantic relationship"><span class="check-item__box"></span><span>Romantic relationship</span></label>
+          <label class="check-item"><input type="checkbox" value="Family of origin"><span class="check-item__box"></span><span>Family of origin</span></label>
+          <label class="check-item"><input type="checkbox" value="Work / Career"><span class="check-item__box"></span><span>Work / Career</span></label>
+          <label class="check-item"><input type="checkbox" value="Money / Finances"><span class="check-item__box"></span><span>Money / Finances</span></label>
+          <label class="check-item"><input type="checkbox" value="Health / Body"><span class="check-item__box"></span><span>Health / Body</span></label>
+          <label class="check-item"><input type="checkbox" value="Identity / Self"><span class="check-item__box"></span><span>Identity / Self</span></label>
+          <label class="check-item"><input type="checkbox" value="Friendships"><span class="check-item__box"></span><span>Friendships</span></label>
+          <label class="check-item"><input type="checkbox" value="Parenting"><span class="check-item__box"></span><span>Parenting</span></label>
+        </div>
+      </div>
+
+      <!-- SUPPLIES -->
+      <div class="section-card supplies">
+        <div class="section-card__header">
+          <span class="section-card__icon">🔋</span>
+          <h2>Supplies</h2>
+        </div>
+        <p class="intro">What resources do you have? Rate each: Low (L), Medium (M), High (H).</p>
+        <div id="supplies-grid">
+          <div class="supply-item" data-supply="Sleep">
+            <span>Sleep quality</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Money">
+            <span>Money stability</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Social support">
+            <span>Social support</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Daily routine">
+            <span>Daily routine</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Therapy/support">
+            <span>Therapy / professional support</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Movement/exercise">
+            <span>Movement / exercise</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Nutrition">
+            <span>Nutrition</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+          <div class="supply-item" data-supply="Alone time">
+            <span>Alone time / rest</span>
+            <div class="supply-levels">
+              <button class="supply-level" data-level="low">L</button>
+              <button class="supply-level" data-level="mid">M</button>
+              <button class="supply-level" data-level="high">H</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGNALS -->
+      <div class="section-card signals">
+        <div class="section-card__header">
+          <span class="section-card__icon">📡</span>
+          <h2>Signals</h2>
+        </div>
+        <p class="intro">What is your body telling you? Check the signals you're experiencing.</p>
+        <div class="check-grid" id="signals-grid">
+          <label class="check-item"><input type="checkbox" value="Tight chest"><span class="check-item__box"></span><span>Tight chest</span></label>
+          <label class="check-item"><input type="checkbox" value="Jaw clenching"><span class="check-item__box"></span><span>Jaw clenching</span></label>
+          <label class="check-item"><input type="checkbox" value="Nausea"><span class="check-item__box"></span><span>Nausea / stomach issues</span></label>
+          <label class="check-item"><input type="checkbox" value="Can't sleep"><span class="check-item__box"></span><span>Can't sleep / racing thoughts</span></label>
+          <label class="check-item"><input type="checkbox" value="Dissociating"><span class="check-item__box"></span><span>Dissociating / spacing out</span></label>
+          <label class="check-item"><input type="checkbox" value="Compulsive checking"><span class="check-item__box"></span><span>Compulsive phone checking</span></label>
+          <label class="check-item"><input type="checkbox" value="Irritable"><span class="check-item__box"></span><span>Irritable / snapping easily</span></label>
+          <label class="check-item"><input type="checkbox" value="Crying easily"><span class="check-item__box"></span><span>Crying easily</span></label>
+          <label class="check-item"><input type="checkbox" value="Numb"><span class="check-item__box"></span><span>Feeling numb / flat</span></label>
+          <label class="check-item"><input type="checkbox" value="Hyper-focused on them"><span class="check-item__box"></span><span>Hyper-focused on one person</span></label>
+        </div>
+      </div>
+
+      <!-- ORDERS -->
+      <div class="section-card orders">
+        <div class="section-card__header">
+          <span class="section-card__icon">📋</span>
+          <h2>Orders</h2>
+        </div>
+        <p class="intro">What feels like the next right action? Check any that resonate.</p>
+        <div class="check-grid" id="orders-grid">
+          <label class="check-item"><input type="checkbox" value="Pause and regulate"><span class="check-item__box"></span><span>Pause and regulate</span></label>
+          <label class="check-item"><input type="checkbox" value="Set a boundary"><span class="check-item__box"></span><span>Set a boundary</span></label>
+          <label class="check-item"><input type="checkbox" value="Make a plan"><span class="check-item__box"></span><span>Make a plan</span></label>
+          <label class="check-item"><input type="checkbox" value="Request repair"><span class="check-item__box"></span><span>Request repair</span></label>
+          <label class="check-item"><input type="checkbox" value="Exit/leave"><span class="check-item__box"></span><span>Exit / leave</span></label>
+          <label class="check-item"><input type="checkbox" value="Document"><span class="check-item__box"></span><span>Document what happened</span></label>
+          <label class="check-item"><input type="checkbox" value="Get support"><span class="check-item__box"></span><span>Get support</span></label>
+          <label class="check-item"><input type="checkbox" value="Do nothing yet"><span class="check-item__box"></span><span>Do nothing yet</span></label>
+        </div>
+        <div class="text-area">
+          <label>Anything else on your mind?</label>
+          <textarea id="notes" placeholder="Optional: write anything that doesn't fit the boxes above..."></textarea>
+        </div>
+      </div>
+
+      <button class="generate-btn" id="generate-btn">Generate My War Map Report</button>
+
+    </div>
+
+    <!-- RESULT -->
+    <div class="result" id="result">
+      <div class="result__header">
+        <h2>Your War Map</h2>
+      </div>
+
+      <div class="result-grid">
+        <div class="result-card fronts">
+          <h3>Active Fronts</h3>
+          <ul id="result-fronts"></ul>
+        </div>
+        <div class="result-card supplies">
+          <h3>Supply Status</h3>
+          <ul id="result-supplies"></ul>
+        </div>
+        <div class="result-card signals">
+          <h3>Body Signals</h3>
+          <ul id="result-signals"></ul>
+        </div>
+        <div class="result-card orders">
+          <h3>Next Orders</h3>
+          <ul id="result-orders"></ul>
+        </div>
+      </div>
+
+      <div class="recommendations" id="recommendations">
+        <h3>Assessment</h3>
+        <p id="rec-text"></p>
+      </div>
+
+      <div class="result-actions">
+        <button class="copy-btn" id="copy-btn">📋 Copy Report</button>
+        <button class="reset-btn" id="reset-btn">↺ Start Over</button>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-link">← Back to War Path</a>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>© 2025 Unscarred. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+    </div>
+  </footer>
+
+<script>
+  // Checkbox toggle
+  document.querySelectorAll('.check-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      if (e.target.tagName === 'INPUT') return;
+      const checkbox = item.querySelector('input');
+      checkbox.checked = !checkbox.checked;
+      item.classList.toggle('checked', checkbox.checked);
+    });
+  });
+
+  // Supply level selection
+  const supplies = {};
+  document.querySelectorAll('.supply-item').forEach(item => {
+    const supplyName = item.dataset.supply;
+    const buttons = item.querySelectorAll('.supply-level');
+    
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('low', 'mid', 'high'));
+        btn.classList.add(btn.dataset.level);
+        supplies[supplyName] = btn.dataset.level;
+      });
+    });
+  });
+
+  // Generate report
+  document.getElementById('generate-btn').addEventListener('click', () => {
+    // Gather data
+    const fronts = [];
+    document.querySelectorAll('#fronts-grid .check-item.checked input').forEach(input => {
+      fronts.push(input.value);
+    });
+
+    const signals = [];
+    document.querySelectorAll('#signals-grid .check-item.checked input').forEach(input => {
+      signals.push(input.value);
+    });
+
+    const orders = [];
+    document.querySelectorAll('#orders-grid .check-item.checked input').forEach(input => {
+      orders.push(input.value);
+    });
+
+    // Populate results
+    const resultFronts = document.getElementById('result-fronts');
+    resultFronts.innerHTML = fronts.length ? fronts.map(f => `<li>${f}</li>`).join('') : '<li>No fronts selected</li>';
+
+    const resultSupplies = document.getElementById('result-supplies');
+    const supplyText = Object.entries(supplies).map(([name, level]) => {
+      const levelLabel = level === 'low' ? '🔴 Low' : level === 'mid' ? '🟡 Medium' : '🟢 High';
+      return `<li>${name}: ${levelLabel}</li>`;
+    }).join('');
+    resultSupplies.innerHTML = supplyText || '<li>No supplies rated</li>';
+
+    const resultSignals = document.getElementById('result-signals');
+    resultSignals.innerHTML = signals.length ? signals.map(s => `<li>${s}</li>`).join('') : '<li>No signals selected</li>';
+
+    const resultOrders = document.getElementById('result-orders');
+    resultOrders.innerHTML = orders.length ? orders.map(o => `<li>${o}</li>`).join('') : '<li>No orders selected</li>';
+
+    // Generate recommendation
+    const lowSupplies = Object.entries(supplies).filter(([, level]) => level === 'low');
+    let recText = '';
+
+    if (lowSupplies.length >= 3) {
+      recText = `<strong>Your supplies are critically low.</strong> Before you try to interpret or solve the war, you need to replenish. Focus on ${lowSupplies.slice(0, 2).map(([name]) => name.toLowerCase()).join(' and ')} first. Strategy comes after stabilization.`;
+    } else if (fronts.length >= 4) {
+      recText = `<strong>You have ${fronts.length} active fronts.</strong> That's a lot of simultaneous battles. Consider using the Container Builder to isolate one front at a time. You cannot win on all fronts at once.`;
+    } else if (signals.length >= 4) {
+      recText = `<strong>Your body is sending strong signals.</strong> With ${signals.length} active stress indicators, your nervous system is in war mode. Consider grounding tools before making any big decisions.`;
+    } else if (fronts.length === 0) {
+      recText = `No fronts selected. If nothing feels active, you may be in a maintenance phase. Use this time to build supplies.`;
+    } else {
+      recText = `You have ${fronts.length} active front${fronts.length > 1 ? 's' : ''} and ${Object.keys(supplies).length > 0 ? 'some' : 'unknown'} supply levels. Use the Container Builder to work on one front at a time. Remember: one front, one objective, one time box.`;
+    }
+
+    document.getElementById('rec-text').innerHTML = recText;
+
+    // Show result
+    document.getElementById('result').classList.add('visible');
+    document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  // Copy
+  document.getElementById('copy-btn').addEventListener('click', () => {
+    const fronts = [...document.querySelectorAll('#result-fronts li')].map(li => li.textContent).join('\n');
+    const supplies = [...document.querySelectorAll('#result-supplies li')].map(li => li.textContent).join('\n');
+    const signals = [...document.querySelectorAll('#result-signals li')].map(li => li.textContent).join('\n');
+    const orders = [...document.querySelectorAll('#result-orders li')].map(li => li.textContent).join('\n');
+    const rec = document.getElementById('rec-text').textContent;
+
+    const text = `WAR MAP ASSESSMENT
+==================
+
+ACTIVE FRONTS:
+${fronts}
+
+SUPPLY STATUS:
+${supplies}
+
+BODY SIGNALS:
+${signals}
+
+NEXT ORDERS:
+${orders}
+
+ASSESSMENT:
+${rec}
+
+---
+Generated at unscarred.com/war/war-map.html`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('copy-btn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy Report', 2000);
+    });
+  });
+
+  // Reset
+  document.getElementById('reset-btn').addEventListener('click', () => {
+    document.querySelectorAll('.check-item').forEach(item => {
+      item.classList.remove('checked');
+      item.querySelector('input').checked = false;
+    });
+    document.querySelectorAll('.supply-level').forEach(btn => {
+      btn.classList.remove('low', 'mid', 'high');
+    });
+    Object.keys(supplies).forEach(key => delete supplies[key]);
+    document.getElementById('notes').value = '';
+    document.getElementById('result').classList.remove('visible');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+

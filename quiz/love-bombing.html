@@ -1,449 +1,250 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Bombing vs Genuine Interest Quiz | Unscarred</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪞</text></svg>">
-    <style>
-        :root {
-            --bg: #0a0608;
-            --card: #120a0c;
-            --primary: #f5576c;
-            --primary-glow: rgba(245, 87, 108, 0.3);
-            --secondary: #f093fb;
-            --text: #f5f0eb;
-            --text-soft: #a89f97;
-            --border: #2a1a1e;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-            padding: 20px;
-            min-height: 100vh;
-        }
-        
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245, 87, 108, 0.1) 0%, transparent 50%);
-            pointer-events: none;
-        }
-        
-        .quiz-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--card);
-            border-radius: 16px;
-            padding: 40px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-            border: 1px solid var(--border);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--text-soft);
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 24px;
-            transition: color 0.2s ease;
-        }
-        
-        .back-link:hover { color: var(--text); }
-        
-        h1 { color: var(--primary); margin-bottom: 10px; font-size: 2.5em; font-weight: 700; }
-        .subtitle { color: var(--text-soft); margin-bottom: 30px; font-size: 1.2em; font-weight: 300; }
-        
-        .question {
-            margin-bottom: 35px;
-            padding-bottom: 25px;
-            border-bottom: 1px solid var(--border);
-        }
-        
-        .question:last-of-type { border-bottom: none; }
-        
-        .question-text { font-size: 1.15em; margin-bottom: 15px; font-weight: 600; color: var(--text); }
-        
-        .options { display: flex; flex-direction: column; gap: 12px; }
-        
-        .option {
-            padding: 18px 24px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            background: rgba(0,0,0,0.3);
-            font-size: 1.05em;
-            color: var(--text-soft);
-        }
-        
-        .option:hover {
-            border-color: var(--primary);
-            background: rgba(245, 87, 108, 0.1);
-            transform: translateX(5px);
-            color: var(--text);
-        }
-        
-        .option.selected {
-            border-color: var(--primary);
-            background: linear-gradient(135deg, rgba(240, 147, 251, 0.1), rgba(245, 87, 108, 0.1));
-            font-weight: 600;
-            color: var(--text);
-        }
-        
-        .btn {
-            background: linear-gradient(135deg, var(--secondary), var(--primary));
-            color: white;
-            border: none;
-            padding: 18px 40px;
-            font-size: 1.15em;
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-            width: 100%;
-            box-shadow: 0 4px 15px var(--primary-glow);
-        }
-        
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--primary-glow); }
-        .btn:disabled { background: #333; cursor: not-allowed; box-shadow: none; transform: none; }
-        
-        .results { display: none; }
-        .results.show { display: block; }
-        
-        .result-box {
-            background: rgba(0,0,0,0.3);
-            padding: 35px;
-            border-radius: 16px;
-            margin-bottom: 25px;
-            border-left: 6px solid var(--primary);
-        }
-        
-        .result-title { font-size: 2.2em; color: var(--primary); margin-bottom: 15px; font-weight: 700; }
-        .result-description { color: var(--text-soft); line-height: 1.9; margin-bottom: 25px; font-size: 1.05em; }
-        
-        .pattern-section {
-            background: rgba(0,0,0,0.2);
-            padding: 25px;
-            border-radius: 12px;
-            margin-top: 20px;
-            border: 1px solid var(--border);
-        }
-        
-        .pattern-section h3 { color: var(--primary); margin-bottom: 18px; font-size: 1.3em; font-weight: 600; }
-        .pattern-list { list-style: none; padding-left: 0; }
-        .pattern-list li { padding: 10px 0; padding-left: 30px; position: relative; font-size: 1.05em; color: var(--text-soft); }
-        .pattern-list li:before { content: "?"; position: absolute; left: 0; color: var(--primary); font-weight: bold; font-size: 1.3em; }
-        
-        .hidden { display: none; }
-        
-        .cta-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--border); }
-        .cta-section h3 { font-size: 1rem; margin-bottom: 12px; color: var(--text); }
-        .cta-links { display: flex; flex-wrap: wrap; gap: 10px; }
-        .cta-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 10px 16px; background: rgba(255,255,255,0.04);
-            border: 1px solid var(--border); border-radius: 10px;
-            color: var(--text-soft); text-decoration: none; font-size: 0.9rem;
-            transition: all 0.2s ease;
-        }
-        .cta-link:hover { background: rgba(245, 87, 108, 0.1); border-color: var(--primary); color: var(--text); }
-        
-        @media (max-width: 600px) { .quiz-container { padding: 25px; } h1 { font-size: 2em; } }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Bombing Detector | Unscarred</title>
+  <meta name="description" content="Is it real affection or strategic intensity? Map the difference between genuine connection and manipulation.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .statement-text { font-family: var(--font-display); font-size: 1.2rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .yn-options { display: flex; gap: 16px; justify-content: center; }
+    .yn-btn { padding: 16px 40px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+    .yn-btn:hover { border-color: rgba(201, 118, 61, 0.4); background: rgba(201, 118, 61, 0.05); color: var(--text-main); }
+    .yn-btn.selected { border-color: var(--accent); background: rgba(201, 118, 61, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #a85d2d); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(201, 118, 61, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .compare-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+    .compare-col { padding: 16px; border-radius: var(--radius-sm); }
+    .compare-col.real { background: rgba(125, 154, 140, 0.1); border: 1px solid rgba(125, 154, 140, 0.3); }
+    .compare-col.bomb { background: rgba(163, 59, 92, 0.1); border: 1px solid rgba(163, 59, 92, 0.3); }
+    .compare-col h4 { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+    .compare-col.real h4 { color: #7d9a8c; }
+    .compare-col.bomb h4 { color: var(--primary); }
+    .compare-col ul { margin: 0 0 0 16px; font-size: 0.9rem; }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(201, 118, 61, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
+    @media (max-width: 500px) { .compare-box { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body>
-    <div class="quiz-container">
-        <a href="/quizzes/" class="back-link">← Back to Quizzes</a>
-        
-        <div id="quiz-section">
-            <h1>Is This Real or Manipulation </h1>
-            <p class="subtitle">Love bombing vs genuine interest</p>
-            
-            <div id="questions"></div>
-            
-            <button class="btn" id="submit-btn" onclick="calculateResults()" disabled>See My Results</button>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Love Bombing <em>Detector</em></h1>
+        <p>Is it real affection or strategic intensity? Map the difference.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>Love bombing is not passionate love. It is strategic intensity designed to create quick attachment and dependency. The goal is to make you feel uniquely seen before they have actually taken time to see you.</p>
+        <p>This quiz helps you identify the difference between genuine connection and manipulation.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="statement-text" id="question-text"></div>
+        <div class="yn-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
         </div>
-        
-        <div id="results-section" class="results">
-            <div id="result-content"></div>
-            <button class="btn" onclick="resetQuiz()">Take Quiz Again</button>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/gaslight-recognition.html" class="next-link">Gaslight Recognition</a>
+          <a href="/war/tools.html" class="next-link">Stabilization Tools</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
         </div>
+      </div>
     </div>
+    <footer><p>Unscarred. Real love does not rush you.</p></footer>
+  </div>
+<script>
+const statements = [
+  "The intensity of their attention felt overwhelming very early on",
+  "They said 'I love you' or talked about forever within weeks",
+  "They wanted to spend every moment together from the start",
+  "They made me feel like the most special person in the world immediately",
+  "They shared deep secrets very quickly and expected me to do the same",
+  "They got upset when I needed space or time alone",
+  "The pace of the relationship felt faster than I was comfortable with",
+  "They made big future plans before we really knew each other",
+  "They showered me with gifts, compliments, or grand gestures early on",
+  "They seemed to know exactly what I needed to hear",
+  "When I tried to slow down, they pushed back or seemed hurt",
+  "They mirrored my interests, values, or personality closely",
+  "The attention felt less personal and more like a performance",
+  "They acted like I was their savior or the answer to their problems",
+  "The intensity decreased dramatically after I committed"
+];
 
-    <script>
-        const questions = [
-            {
-                text: "The intensity of their attention feels:",
-                options: [
-                    { text: "Overwhelming and too much too fast", type: "lovebomb" },
-                    { text: "Exciting but also a bit scary", type: "mixed" },
-                    { text: "Natural and building at a comfortable pace", type: "genuine" }
-                ]
-            },
-            {
-                text: "They talk about the future:",
-                options: [
-                    { text: "Constantly - marriage, kids, forever within days/weeks", type: "lovebomb" },
-                    { text: "Sometimes, but it feels premature", type: "mixed" },
-                    { text: "Occasionally and reasonably for how long you've known each other", type: "genuine" }
-                ]
-            },
-            {
-                text: "When you express a boundary or need space:",
-                options: [
-                    { text: "They get upset, push back, or make you feel guilty", type: "lovebomb" },
-                    { text: "They say they respect it but seem hurt", type: "mixed" },
-                    { text: "They respect it without making you feel bad", type: "genuine" }
-                ]
-            },
-            {
-                text: "Their attention feels:",
-                options: [
-                    { text: "Like pressure - I feel like I owe them something", type: "lovebomb" },
-                    { text: "Intense but flattering", type: "mixed" },
-                    { text: "Like genuine interest without strings attached", type: "genuine" }
-                ]
-            },
-            {
-                text: "They want to know everything about you:",
-                options: [
-                    { text: "Immediately and intensely, mining for information", type: "lovebomb" },
-                    { text: "Quickly, and it feels like a lot", type: "mixed" },
-                    { text: "Gradually, asking questions and really listening", type: "genuine" }
-                ]
-            },
-            {
-                text: "The relationship pace feels:",
-                options: [
-                    { text: "Like a runaway train I can't slow down", type: "lovebomb" },
-                    { text: "Fast, but maybe that's just chemistry ", type: "mixed" },
-                    { text: "Like we're both in control of the speed", type: "genuine" }
-                ]
-            },
-            {
-                text: "They mirror you:",
-                options: [
-                    { text: "Perfectly - same interests, values, everything", type: "lovebomb" },
-                    { text: "A lot, and it feels almost too coincidental", type: "mixed" },
-                    { text: "We have things in common but also clear differences", type: "genuine" }
-                ]
-            },
-            {
-                text: "When you're not available:",
-                options: [
-                    { text: "They text constantly, get upset, or make me feel guilty", type: "lovebomb" },
-                    { text: "They reach out a lot and seem disappointed", type: "mixed" },
-                    { text: "They respect my time and space", type: "genuine" }
-                ]
-            },
-            {
-                text: "The compliments feel:",
-                options: [
-                    { text: "Excessive, idealized, like I'm perfect", type: "lovebomb" },
-                    { text: "Intense and frequent, almost too much", type: "mixed" },
-                    { text: "Genuine and specific to who I actually am", type: "genuine" }
-                ]
-            },
-            {
-                text: "Your gut feeling is:",
-                options: [
-                    { text: "Something is off, this is too good to be true", type: "lovebomb" },
-                    { text: "Excited but also anxious or unsettled", type: "mixed" },
-                    { text: "This feels good and safe", type: "genuine" }
-                ]
-            }
-        ];
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
 
-        let answers = {};
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
 
-        function renderQuestions() {
-            const container = document.getElementById('questions');
-            questions.forEach((q, index) => {
-                const questionDiv = document.createElement('div');
-                questionDiv.className = 'question';
-                questionDiv.innerHTML = `
-                    <div class="question-text">${index + 1}. ${q.text}</div>
-                    <div class="options" id="options-${index}">
-                        ${q.options.map((opt, optIndex) => `
-                            <div class="option" onclick="selectOption(${index}, ${optIndex}, '${opt.type}')">
-                                ${opt.text}
-                            </div>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(questionDiv);
-            });
-        }
-
-        function selectOption(questionIndex, optionIndex, type) {
-            const optionsContainer = document.getElementById(`options-${questionIndex}`);
-            const options = optionsContainer.getElementsByClassName('option');
-            Array.from(options).forEach(opt => opt.classList.remove('selected'));
-            options[optionIndex].classList.add('selected');
-            answers[questionIndex] = type;
-            if (Object.keys(answers).length === questions.length) {
-                document.getElementById('submit-btn').disabled = false;
-            }
-        }
-
-        function calculateResults() {
-            const scores = { lovebomb: 0, mixed: 0, genuine: 0 };
-            Object.values(answers).forEach(type => { scores[type] = (scores[type] || 0) + 1; });
-            displayResults(scores);
-        }
-
-        function displayResults(scores) {
-            let color, title, description, signs, nextSteps, ctas;
-            
-            if (scores.lovebomb >= 6) {
-                color = "#e74c3c";
-                title = "This Is Love Bombing";
-                description = "The intensity you're experiencing isn't authentic connection, it's a manipulation tactic designed to overwhelm your judgment and create rapid attachment. Love bombing floods you with attention, affection, and promises to make you feel special while actually destabilizing your ability to think clearly. This almost always precedes control, devaluation, or abuse. Your gut is right to feel unsettled.";
-                signs = [
-                    "Excessive attention and affection too soon",
-                    "Pressure to move fast (commitment, intimacy, future)",
-                    "Idealization - you're perfect, soulmates, meant to be",
-                    "Boundary violations disguised as passion",
-                    "Mirroring everything about you suspiciously well",
-                    "Making you feel guilty for needing space",
-                    "Your instincts saying something is off"
-                ];
-                nextSteps = [
-                    "Trust your gut - it's telling you the truth",
-                    "Slow down deliberately, even if they resist",
-                    "Watch what happens when you set boundaries",
-                    "Talk to people outside the relationship about what you're experiencing",
-                    "Don't ignore red flags because the attention feels good",
-                    "Know that love bombing almost always precedes abuse"
-                ];
-                ctas = [
-                    { text: "Coercive Control Quiz", url: "coercive-control.html", icon: "🚩" },
-                    { text: "Pattern Spectrum Quiz", url: "pattern-spectrum.html", icon: "️" }
-                ];
-            } else if (scores.lovebomb >= 3 || scores.mixed >= 5) {
-                color = "#f39c12";
-                title = "Proceed With Caution";
-                description = "Some of what you're experiencing could be genuine enthusiasm, but there are enough red flags to warrant caution. The intensity, the pace, the pressure, these are concerning. It's possible this person is just excited, but it's also possible they're testing boundaries or setting up a dynamic where you feel indebted. Slow down. Pay attention. Trust your discomfort.";
-                signs = [
-                    "The pace feels too fast but also exciting",
-                    "You feel flattered but also pressured",
-                    "Some boundaries are being pushed",
-                    "You're questioning if this is normal",
-                    "The intensity feels good but also scary",
-                    "You're making excuses for concerning behavior"
-                ];
-                nextSteps = [
-                    "Intentionally slow the pace down",
-                    "Set clear boundaries and watch how they respond",
-                    "Talk to trusted friends about what's happening",
-                    "Don't ignore your instincts because you like the attention",
-                    "Give it time before making commitments",
-                    "Notice if the intensity changes when you set limits"
-                ];
-                ctas = [
-                    { text: "Gaslight Recognition Quiz", url: "gaslight-recognition.html", icon: "💡" },
-                    { text: "Safety Signals Guide", url: "../learn/safety-signals.html", icon: "📖" }
-                ];
-            } else {
-                color = "#27ae60";
-                title = "This Looks Like Genuine Interest";
-                description = "Based on your answers, this person seems to be showing authentic interest at a reasonable pace. They respect your boundaries, the intensity feels natural rather than overwhelming, and your gut isn't screaming warnings. This doesn't mean the relationship is guaranteed to work out, but the foundation looks healthy. Keep paying attention to how you feel.";
-                signs = [
-                    "The pace feels natural and mutual",
-                    "Your boundaries are respected",
-                    "Attention feels good without pressure",
-                    "You feel safe and comfortable",
-                    "The person shows interest in the real you, not an idealized version",
-                    "Your instincts feel calm, not alarmed"
-                ];
-                nextSteps = [
-                    "Continue building at a pace that feels right for both of you",
-                    "Keep paying attention to how you feel",
-                    "Maintain your boundaries and autonomy",
-                    "Stay connected to friends and life outside the relationship",
-                    "Trust yourself to notice if things change"
-                ];
-                ctas = [
-                    { text: "War Mapping Quiz", url: "/war/war-mapping/", icon: "️" },
-                    { text: "Self-Sabotage Quiz", url: "self-sabotage.html", icon: "🔄" }
-                ];
-            }
-            
-            const resultContent = document.getElementById('result-content');
-            resultContent.innerHTML = `
-                <div class="result-box" style="border-left-color: ${color}">
-                    <h2 class="result-title" style="color: ${color}">${title}</h2>
-                    <p class="result-description">${description}</p>
-                    
-                    <div class="pattern-section">
-                        <h3>What This Looks Like:</h3>
-                        <ul class="pattern-list">
-                            ${signs.map(sign => `<li>${sign}</li>`).join('')}
-                        </ul>
-                    </div>
-                    
-                    <div class="pattern-section">
-                        <h3>What To Do:</h3>
-                        <ul class="pattern-list">
-                            ${nextSteps.map(step => `<li>${step}</li>`).join('')}
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="cta-section">
-                    <h3>Recommended Next Steps</h3>
-                    <div class="cta-links">
-                        ${ctas.map(cta => `<a href="${cta.url}" class="cta-link"><span>${cta.icon}</span>${cta.text}</a>`).join('')}
-                    </div>
-                </div>
-            `;
-            
-            document.getElementById('quiz-section').classList.add('hidden');
-            document.getElementById('results-section').classList.add('show');
-        }
-
-        function resetQuiz() {
-            answers = {};
-            document.getElementById('questions').innerHTML = '';
-            document.getElementById('quiz-section').classList.remove('hidden');
-            document.getElementById('results-section').classList.remove('show');
-            document.getElementById('submit-btn').disabled = true;
-            renderQuestions();
-        }
-
-        renderQuestions();
-    </script>
-<script id="unscarredRootRewriter">
-(function(){
-  if(window.location.protocol !== "file:") return;
-  var path = window.location.pathname.replace(/\\/g,"/");
-  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
-  var root = match ? match[1] : null;
-  if(!root) return;
-  var afterRoot = path.slice(root.length);
-  var depth = afterRoot.split('/').filter(Boolean).length - 1; // steps up from current dir to root
-  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
-  document.querySelectorAll('a[href^="/"]').forEach(function(a){
-    var href = a.getAttribute('href');
-    if(!href || href.startsWith('//')) return;
-    a.setAttribute('href', prefix + href.replace(/^\//,''));
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion];
+  optionsDiv.innerHTML = '';
+  ['Yes', 'Somewhat', 'No'].forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'yn-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
   });
-})();
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  
+  const score = answers.reduce((total, ans) => total + (ans === 0 ? 2 : ans === 1 ? 1 : 0), 0);
+  const max = statements.length * 2;
+  const percentage = Math.round(score / max * 100);
+  
+  let level, desc, meaning;
+  if (percentage <= 25) {
+    level = 'Low Love Bombing Indicators';
+    desc = 'This relationship shows few love bombing patterns. The connection appears to be building at a healthy pace with appropriate boundaries.';
+    meaning = 'This does not guarantee the relationship is healthy, but the intensity pattern is not concerning.';
+  } else if (percentage <= 50) {
+    level = 'Moderate Intensity Patterns';
+    desc = 'Some love bombing indicators are present. The relationship may have moved faster than normal or involved early intensity that felt slightly uncomfortable.';
+    meaning = 'Pay attention to whether the intensity has normalized over time or if patterns of control have emerged.';
+  } else if (percentage <= 75) {
+    level = 'Significant Love Bombing Patterns';
+    desc = 'Many love bombing indicators are present. The relationship involved strategic intensity designed to create rapid attachment.';
+    meaning = 'This pattern is often followed by devaluation, where the intense attention disappears once you are committed. Be alert for signs of control.';
+  } else {
+    level = 'Strong Love Bombing Pattern';
+    desc = 'This relationship shows a clear love bombing pattern. The intensity was likely designed to create dependency and bypass your normal judgment.';
+    meaning = 'Love bombing is a manipulation tactic. It is often the first phase in a cycle that includes devaluation and control. Trust your discomfort.';
+  }
+  
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">💣 Love Bombing Assessment</div>
+    <div class="result-title">${level}</div>
+    <p class="result-desc">${desc}</p>
+    <div class="result-section"><h3>What This Means</h3><p>${meaning}</p></div>
+    <div class="result-section">
+      <h3>Real Connection vs Love Bombing</h3>
+      <div class="compare-box">
+        <div class="compare-col real">
+          <h4>Real Connection</h4>
+          <ul>
+            <li>Builds gradually over time</li>
+            <li>Respects your pace and boundaries</li>
+            <li>Curious about who you really are</li>
+            <li>Consistent over months</li>
+            <li>Feels safe, not overwhelming</li>
+          </ul>
+        </div>
+        <div class="compare-col bomb">
+          <h4>Love Bombing</h4>
+          <ul>
+            <li>Intense from the very start</li>
+            <li>Pushes against your boundaries</li>
+            <li>Tells you who you are</li>
+            <li>Intensity drops after commitment</li>
+            <li>Feels intoxicating but unstable</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="result-section"><h3>Your Next Step</h3><p>If you are currently in this pattern, slow down. Create space. See how they respond to boundaries and distance. Real love can handle space. Love bombing cannot.</p></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
 </script>
 </body>
 </html>
-
-
-

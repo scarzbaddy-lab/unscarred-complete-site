@@ -1,0 +1,49 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="miniGlow" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#7c5cbf" stop-opacity="0.35"/>
+      <stop offset="60%" stop-color="#a33b5c" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#miniGlow)"/>
+  
+  <!-- Magnifying glass / Focus Visual -->
+  <g transform="translate(800, 320)">
+    <!-- Magnifying glass circle -->
+    <circle cx="0" cy="-20" r="80" fill="none" stroke="#7c5cbf" stroke-width="4"/>
+    <circle cx="0" cy="-20" r="90" fill="#7c5cbf" fill-opacity="0.08"/>
+    
+    <!-- Handle -->
+    <line x1="60" y1="45" x2="120" y2="105" stroke="#7c5cbf" stroke-width="8" stroke-linecap="round"/>
+    
+    <!-- Pattern inside the lens (simplified pattern symbol) -->
+    <circle cx="0" cy="-20" r="30" fill="none" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.6"/>
+    <circle cx="0" cy="-20" r="15" fill="#a33b5c" fill-opacity="0.4"/>
+    <circle cx="0" cy="-20" r="6" fill="#a33b5c"/>
+    
+    <!-- Radial lines showing clarity -->
+    <line x1="-50" y1="-20" x2="-70" y2="-20" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.5"/>
+    <line x1="50" y1="-20" x2="70" y2="-20" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.5"/>
+    <line x1="0" y1="-70" x2="0" y2="-90" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.5"/>
+    <line x1="0" y1="30" x2="0" y2="50" stroke="#7c5cbf" stroke-width="2" stroke-opacity="0.5"/>
+    
+    <!-- 20 min indicator -->
+    <text x="0" y="120" font-family="Outfit, sans-serif" font-size="24" font-weight="500" fill="#7c5cbf" text-anchor="middle" fill-opacity="0.7">20 min</text>
+  </g>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#7c5cbf" text-anchor="middle">$27</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="96" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Pattern Clarity Mini</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="700" font-family="Outfit, sans-serif" font-size="32" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">LASER-FOCUSED CALL</text>
+  
+  <line x1="600" y1="780" x2="1000" y2="780" stroke="rgba(124,92,191,0.3)" stroke-width="1"/>
+</svg>
+

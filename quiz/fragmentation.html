@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fragmentation Assessment | Unscarred</title>
+  <meta name="description" content="For people who feel like they contain multitudes. Parts work, not pathology.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #a33b5c;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .intense-badge { display: inline-block; background: rgba(163, 59, 92, 0.3); color: var(--primary); font-size: 0.7rem; padding: 4px 8px; border-radius: 4px; margin-left: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--secondary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .statement-text { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .scale-options { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+    .scale-btn { padding: 14px 20px; min-width: 90px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 0.9rem; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+    .scale-btn:hover { border-color: rgba(163, 59, 92, 0.4); background: rgba(163, 59, 92, 0.05); color: var(--text-main); }
+    .scale-btn.selected { border-color: var(--accent); background: rgba(163, 59, 92, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #7a2a43); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(163, 59, 92, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(163, 59, 92, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(125, 154, 140, 0.1); border-left: 3px solid #7d9a8c; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(163, 59, 92, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Fragmentation <em>Assessment</em><span class="intense-badge">Intense</span></h1>
+        <p>For people who feel like they contain multitudes. Parts work, not pathology.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>Fragmentation is not disorder. It is a survival strategy. When the environment was too much, parts of you split off to carry what the whole could not hold.</p>
+        <p>This assessment maps signs of fragmentation. It is not a diagnosis. It is a map.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="statement-text" id="question-text"></div>
+        <div class="scale-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/dissociation-check.html" class="next-link">Dissociation Check</a>
+          <a href="/war/tools.html" class="next-link">Stabilization Tools</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
+        </div>
+      </div>
+    </div>
+    <footer><p>Unscarred. All parts of you belong.</p></footer>
+  </div>
+<script>
+const statements = [
+  "I sometimes feel like different people depending on who I am with",
+  "I have internal voices or dialogues that feel like more than just thinking",
+  "Parts of me seem to want different things at the same time",
+  "I sometimes act in ways that feel like someone else did them",
+  "I have memories that feel like they belong to a different version of me",
+  "I feel like I contain multiple selves or identities",
+  "I sometimes find things I wrote or did that I do not remember",
+  "I experience sudden shifts in mood or personality that feel involuntary",
+  "Parts of me feel frozen at different ages",
+  "I sometimes feel like I am watching myself from the outside",
+  "I have skills or knowledge that seem to come from nowhere",
+  "I feel like I have to be completely different people in different contexts",
+  "I have gaps in my memory that are not explained by normal forgetting",
+  "I sometimes feel like parts of me are fighting each other",
+  "I have experienced myself responding to things as if I were a child",
+  "I feel like there are parts of me I do not have access to"
+];
+
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
+
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion];
+  optionsDiv.innerHTML = '';
+  ['Never', 'Rarely', 'Sometimes', 'Often', 'Always'].forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'scale-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
+  });
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Statement ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  
+  const total = answers.reduce((a, b) => a + b, 0);
+  const max = statements.length * 4;
+  const percentage = Math.round(total / max * 100);
+  
+  let level, desc, meaning, next;
+  if (percentage <= 20) {
+    level = 'Minimal Fragmentation';
+    desc = 'Your responses suggest a relatively integrated sense of self. You may have parts or moods, but they do not significantly disrupt your sense of continuity.';
+    meaning = 'Everyone has parts. The difference is whether those parts work together or against each other, and whether you maintain a continuous sense of self.';
+    next = 'Continue developing self-awareness. Parts work can still be valuable for understanding your internal landscape.';
+  } else if (percentage <= 45) {
+    level = 'Moderate Fragmentation';
+    desc = 'Your responses suggest noticeable fragmentation. You may experience distinct parts, age regression, or internal conflict that feels like more than just mixed feelings.';
+    meaning = 'This level of fragmentation often comes from childhood environments where you had to be different selves to survive. The parts were adaptive.';
+    next = 'Parts work or Internal Family Systems therapy may be helpful. Learning to communicate between parts rather than suppress them.';
+  } else if (percentage <= 70) {
+    level = 'Significant Fragmentation';
+    desc = 'Your responses suggest significant fragmentation. You may experience distinct parts with different ages, opinions, or even memories. Switching between parts may feel involuntary.';
+    meaning = 'This level of fragmentation usually indicates early and significant trauma. Your system split to survive things that were too much to integrate.';
+    next = 'Professional support is recommended, specifically someone trained in dissociation and parts work. This is not about getting rid of parts. It is about building cooperation.';
+  } else {
+    level = 'Severe Fragmentation';
+    desc = 'Your responses suggest severe fragmentation. You may experience distinct identities, significant memory gaps, and involuntary switching. Daily functioning may be affected.';
+    meaning = 'This level of fragmentation is a survival response to overwhelming early trauma. Your system did something brilliant to keep you alive.';
+    next = 'Specialized professional support is strongly recommended. Look for therapists trained in dissociative disorders, EMDR, or IFS. Safety and stabilization first.';
+  }
+  
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">🧩 Fragmentation Assessment</div>
+    <div class="result-title">${level}</div>
+    <p class="result-desc">${desc}</p>
+    <div class="result-section"><h3>What This Means</h3><p>${meaning}</p></div>
+    <div class="result-section"><h3>Your Next Step</h3><p>${next}</p></div>
+    <div class="result-section"><h3>A Note On Parts</h3><div class="script-box">All parts of you were created to help. Even the ones that cause problems now were solutions once. The goal is not to get rid of parts. It is to help them work together, to update their information, and to let them know they are safe now.</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
+</script>
+</body>
+</html>
+

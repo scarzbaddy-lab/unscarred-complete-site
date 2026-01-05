@@ -1,288 +1,245 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ego Structure Scan</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ego Structure Scan | Unscarred</title>
+  <meta name="description" content="Grandiose, collapsed, compensatory, or oscillating. How your ego protects you.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root { --bg:#050507; --bg2:#0a0a0f; --card:rgba(18,18,24,0.92); --text:#f5f5f7; --muted:#b8b8c4; --accent:#a33b5c; --accent2:rgba(163,59,92,0.30); --radius:20px; }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Outfit',system-ui,sans-serif;background:linear-gradient(180deg,var(--bg),var(--bg2));color:var(--text);min-height:100vh;padding:28px 16px;}
-    .wrap{max-width:960px;margin:0 auto;}
-    .panel{background:var(--card);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:28px;box-shadow:0 20px 50px rgba(0,0,0,0.45);}
-    h1{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;margin-bottom:8px;}
-    p.lead{color:var(--muted);margin-bottom:18px;}
-    .pillrow{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 20px;}
-    .pill{padding:8px 12px;border-radius:999px;border:1px solid rgba(255,255,255,0.10);background:rgba(255,255,255,0.03);color:var(--text);font-size:13px;}
-    button.primary{background:linear-gradient(135deg,var(--accent),#8a2a4a);color:#fff;border:none;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer;box-shadow:0 12px 28px rgba(163,59,92,0.35);} 
-    button.primary:active{transform:translateY(1px);}
-    .question{margin-top:16px;padding:18px;border-radius:16px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.03);}
-    .q-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;font-weight:600;}
-    .choices{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:12px;}
-    .choice{padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);cursor:pointer;text-align:center;font-size:14px;}
-    .choice.selected{border-color:var(--accent);background:rgba(163,59,92,0.12);}
-    .results{margin-top:22px;}
-    .card{margin-top:12px;padding:16px;border-radius:14px;border:1px solid rgba(255,255,255,0.08);background:rgba(255,255,255,0.04);} 
-    .small{color:var(--muted);font-size:13px;margin-top:6px;}
-    .score-bar-wrap{margin-bottom:14px;}
-    .score-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:var(--muted);}
-    .score-track{height:10px;background:rgba(255,255,255,0.08);border-radius:999px;overflow:hidden;}
-    .score-fill{height:100%;border-radius:999px;transition:width 0.5s ease;}
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #7c5cbf;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(124, 92, 191, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .question-text { font-family: var(--font-display); font-size: 1.2rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .scale-options { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px; }
+    .scale-btn { padding: 14px 16px; min-width: 70px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 0.85rem; text-align: center; cursor: pointer; transition: all 0.2s ease; }
+    .scale-btn:hover { border-color: rgba(124, 92, 191, 0.4); background: rgba(124, 92, 191, 0.05); color: var(--text-main); }
+    .scale-btn.selected { border-color: var(--accent); background: rgba(124, 92, 191, 0.12); color: var(--text-main); }
+    .scale-labels { display: flex; justify-content: space-between; font-size: 0.7rem; color: var(--text-dim); margin-bottom: 8px; max-width: 350px; margin-left: auto; margin-right: auto; }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #5a3d9e); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(124, 92, 191, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(124, 92, 191, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(124, 92, 191, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(125, 154, 140, 0.1); border-left: 3px solid #7d9a8c; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(124, 92, 191, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="panel" id="app"></div>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Ego Structure <em>Scan</em></h1>
+        <p>Grandiose, collapsed, compensatory, or oscillating. How your ego protects you.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>Your ego is not your enemy. It is a protective structure built to manage shame, fear, and survival. This quiz maps which structure your ego uses to keep you safe.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="question-text" id="question-text"></div>
+        <div class="scale-labels"><span>Strongly Disagree</span><span>Strongly Agree</span></div>
+        <div class="scale-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/shame-core.html" class="next-link">Shame Core Scan</a>
+          <a href="/quiz/mirror-archetype.html" class="next-link">Mirror Archetype</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
+        </div>
+      </div>
+    </div>
+    <footer><p>Unscarred. Your ego was built to survive.</p></footer>
   </div>
+<script>
+const statements = [
+  { text: "I often feel superior to most people around me", type: "grandiose" },
+  { text: "I feel fundamentally worthless or defective", type: "collapsed" },
+  { text: "I work hard to appear confident even when I feel insecure", type: "compensatory" },
+  { text: "I swing between feeling special and feeling like nothing", type: "oscillating" },
+  { text: "I deserve special treatment or recognition", type: "grandiose" },
+  { text: "I feel like I take up too much space or burden others", type: "collapsed" },
+  { text: "I need external validation to feel okay about myself", type: "compensatory" },
+  { text: "My self-image shifts dramatically depending on the situation", type: "oscillating" },
+  { text: "I am better than most people at what I do", type: "grandiose" },
+  { text: "I feel shame at my core", type: "collapsed" },
+  { text: "I overachieve to prove my worth", type: "compensatory" },
+  { text: "I can feel like a genius one moment and worthless the next", type: "oscillating" },
+  { text: "I struggle to admit when I am wrong", type: "grandiose" },
+  { text: "I apologize constantly even when nothing is my fault", type: "collapsed" },
+  { text: "I carefully manage how others perceive me", type: "compensatory" },
+  { text: "My confidence is unstable and easily shaken", type: "oscillating" },
+  { text: "I feel entitled to things others do not deserve", type: "grandiose" },
+  { text: "I feel invisible or unimportant", type: "collapsed" },
+  { text: "I hide my insecurities behind accomplishments or appearance", type: "compensatory" },
+  { text: "I am never sure if I am amazing or terrible", type: "oscillating" }
+];
 
-  <script>
-    const QUESTIONS = [
-      { id: 1, text: "I feel disrespected when people do not recognize what I bring.", cat: "grandiose" },
-      { id: 2, text: "Criticism makes me want to prove I am superior.", cat: "grandiose" },
-      { id: 3, text: "I believe rules apply differently when someone is incompetent.", cat: "grandiose" },
-      { id: 4, text: "I avoid situations where I might look average.", cat: "grandiose" },
-      { id: 5, text: "I feel anger when someone questions my authority or competence.", cat: "grandiose" },
-      { id: 6, text: "I rewrite the story in my head so I am not the one at fault.", cat: "grandiose" },
-      { id: 7, text: "I feel entitled to distance people who 'don't get it.'", cat: "grandiose" },
-      { id: 8, text: "After conflict, I assume I am the problem.", cat: "collapsed" },
-      { id: 9, text: "I feel a heavy shame hangover even when I did nothing wrong.", cat: "collapsed" },
-      { id: 10, text: "I disappear when I feel I disappointed someone.", cat: "collapsed" },
-      { id: 11, text: "Compliments make me uncomfortable because I fear they are not true.", cat: "collapsed" },
-      { id: 12, text: "I tolerate disrespect because speaking up feels dangerous.", cat: "collapsed" },
-      { id: 13, text: "I secretly feel behind in life, no matter what I accomplish.", cat: "collapsed" },
-      { id: 14, text: "When I fail, I want to give up completely.", cat: "collapsed" },
-      { id: 15, text: "I over give so nobody can accuse me of being selfish.", cat: "comp" },
-      { id: 16, text: "I perform being 'the mature one' to avoid vulnerability.", cat: "comp" },
-      { id: 17, text: "I need to be seen as helpful, wise, or above drama.", cat: "comp" },
-      { id: 18, text: "I use logic or spirituality to bypass feelings.", cat: "comp" },
-      { id: 19, text: "I choose people I can fix because equal intimacy scares me.", cat: "comp" },
-      { id: 20, text: "I feel resentful when my effort is not appreciated, but I act fine.", cat: "comp" },
-      { id: 21, text: "I keep my real needs hidden and call it independence.", cat: "comp" },
-      { id: 22, text: "People experience me as very confident or very shut down, not steady.", cat: "osc" },
-      { id: 23, text: "I can go from 'I'm amazing' to 'I'm nothing' fast.", cat: "osc" },
-      { id: 24, text: "When I feel admired, I feel safe. When I feel ignored, I feel rage or despair.", cat: "osc" },
-      { id: 25, text: "I alternate between chasing closeness and pushing it away.", cat: "osc" },
-      { id: 26, text: "I love intensity, then I get overwhelmed by it.", cat: "osc" },
-      { id: 27, text: "I feel misunderstood often, then I isolate.", cat: "osc" },
-      { id: 28, text: "I crave control, then I hate myself for it.", cat: "osc" }
-    ];
-
-    const PATTERNS = {
-      grandiose: {
-        title: "Grandiose Pattern",
-        subtitle: "Your ego protects you by inflating.",
-        explain: "When you feel exposed, criticized, or not enough, your system puffs up. You become the smartest, the most capable, the one who doesn't need anyone. It's not arrogance. It's armor. Underneath is usually a fear of being seen as ordinary or incompetent.",
-        signs: "Getting defensive fast. Rewriting stories so you're not at fault. Feeling disrespected when people don't recognize what you bring. Needing to be right more than connected.",
-        shift: "The move is from 'respect me' to 'connect with me.' Practice short accountability: 'I got defensive. Here's what I can own.' You don't have to be perfect to be valued.",
-        script: "I got defensive because I felt exposed. Here's what I can own."
-      },
-      collapsed: {
-        title: "Collapsed Pattern",
-        subtitle: "Your ego protects you by shrinking.",
-        explain: "When you feel exposed or criticized, your system collapses inward. You become small, apologetic, invisible. You assume you're the problem before anyone says anything. It's not weakness. It's a survival strategy that kept you safe when being seen was dangerous.",
-        signs: "Over-apologizing. Disappearing after conflict. Tolerating disrespect because speaking up feels dangerous. Feeling behind in life no matter what you accomplish.",
-        shift: "The move is from 'I'm sorry' to 'Here's what I need.' One boundary per week. You're allowed to take up space without earning it first.",
-        script: "I'm not available for being talked to like that. I'll talk when it's respectful."
-      },
-      comp: {
-        title: "Compensatory Pattern",
-        subtitle: "Your ego protects you by performing.",
-        explain: "You look humble, helpful, wise. But underneath, you're controlling the narrative so no one sees the shame. You give so much that no one can call you selfish. You fix others so you don't have to feel your own needs. It's not fake. It's a very clever protection.",
-        signs: "Overgiving, then feeling resentful when it's not appreciated. Performing 'the mature one.' Using logic or spirituality to bypass feelings. Keeping your real needs hidden and calling it independence.",
-        shift: "The move is from helpfulness to honesty. Say one true need out loud. Not what you can offer, but what you actually want.",
-        script: "I've been overgiving to avoid feeling needy. What I actually need is..."
-      },
-      osc: {
-        title: "Oscillating Pattern",
-        subtitle: "Your ego swings between inflation and collapse.",
-        explain: "You don't stay in one pattern. You swing. One moment you're confident, in control, maybe even grandiose. The next, you're shame-spiraling, wanting to disappear. The swings are often tied to whether you feel admired or threatened. It's exhausting, and it's real.",
-        signs: "Going from 'I'm amazing' to 'I'm nothing' fast. Chasing closeness, then pushing it away. Loving intensity, then getting overwhelmed. Feeling misunderstood, then isolating.",
-        shift: "The move is to slow the swings. Regulation first. Notice when you're inflating or collapsing before it takes over. Consistent accountability scripts help anchor you in the middle.",
-        script: "I'm noticing I swing between control and retreat. I want to stay steady. Here's my next honest move."
-      }
-    };
-
-    const SCALE = ["Strongly disagree","Disagree","Neutral","Agree","Strongly agree"];
-    const state = { view: "intro", answers: {} };
-    const app = document.getElementById('app');
-
-    function score() {
-      const sum = (cat) => QUESTIONS.filter(q=>q.cat===cat).reduce((s,q)=>s+(state.answers[q.id]||0),0);
-      const g = sum('grandiose');
-      const c = sum('collapsed');
-      const p = sum('comp');
-      const o = sum('osc'); // oscillating is now scored the same way (out of 28)
-      
-      let scoreMap = {grandiose:g, collapsed:c, comp:p, osc:o};
-      const sorted = [{k:'grandiose',v:g},{k:'collapsed',v:c},{k:'comp',v:p},{k:'osc',v:o}].sort((a,b)=>b.v-a.v);
-      
-      // Primary is simply whoever scored highest
-      let primary = sorted[0].k;
-      
-      // If top two are within 3 points AND oscillating is in top 2, call it oscillating
-      // (This catches genuine oscillators without overriding clear patterns)
-      const gap = sorted[0].v - sorted[1].v;
-      if(gap <= 3 && (sorted[0].k === 'osc' || sorted[1].k === 'osc')) {
-        primary = 'osc';
-      }
-      
-      return { primary, scoreMap };
-    }
-
-    function renderIntro(){
-      app.innerHTML = `
-        <h1>Ego Structure Scan</h1>
-        <p class="lead">Not a diagnosis. This maps how your ego protects you when exposed, criticized, rejected, or not enough.</p>
-        <div class="pillrow">
-          <span class="pill">Grandiose � Inflated / Dominance</span>
-          <span class="pill">Collapsed � Shame / Disappear</span>
-          <span class="pill">Compensatory � Helpful / Controlling</span>
-          <span class="pill">Oscillating � Swings</span>
-        </div>
-        <button class="primary" onclick="startScan()">Start the scan</button>
-        <p class="small">28 statements � ~6 minutes</p>
-      `;
-    }
-
-    function renderQuiz(){
-      const blocks = QUESTIONS.map(q=>{
-        const val = state.answers[q.id];
-        const choices = SCALE.map((label,idx)=>{
-          const sel = val===idx ? 'selected' : '';
-          return `<div class="choice ${sel}" data-q="${q.id}" data-v="${idx}">${label}</div>`;
-        }).join('');
-        return `<div class="question"><div class="q-head"><div>Q${q.id}</div><div style="flex:1">${q.text}</div></div><div class="choices">${choices}</div></div>`;
-      }).join('');
-
-      app.innerHTML = `
-        <h1>Ego Structure Scan</h1>
-        <p class="lead">Tap one answer per line. Score is instant.</p>
-        ${blocks}
-        <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
-          <button class="primary" onclick="showResults()">See my result</button>
-          <button class="primary" style="background:rgba(255,255,255,0.05);color:var(--text);border:1px solid rgba(255,255,255,0.12);" onclick="resetScan()">Reset</button>
-          <p class="small" id="progress"></p>
-        </div>
-      `;
-
-      app.querySelectorAll('.choice').forEach(el=>{
-        el.addEventListener('click',()=>{
-          const q = Number(el.getAttribute('data-q'));
-          const v = Number(el.getAttribute('data-v'));
-          state.answers[q] = v;
-          renderQuiz();
-        });
-      });
-      updateProgress();
-    }
-
-    function updateProgress(){
-      const done = Object.keys(state.answers).length;
-      const total = QUESTIONS.length;
-      const p = app.querySelector('#progress');
-      if(p) p.textContent = `${done} of ${total} answered`;
-    }
-
-    function showResults(){
-      if(Object.keys(state.answers).length < QUESTIONS.length){
-        alert('Answer all questions first.');
-        return;
-      }
-      const {primary, scoreMap} = score();
-      const info = PATTERNS[primary];
-      
-      // Calculate percentages for visual bars (max score is 28 for all patterns)
-      const gPct = Math.round((scoreMap.grandiose / 28) * 100);
-      const cPct = Math.round((scoreMap.collapsed / 28) * 100);
-      const pPct = Math.round((scoreMap.comp / 28) * 100);
-      const oPct = Math.round((scoreMap.osc / 28) * 100);
-      
-      // Build score bars HTML
-      const scoreBars = `
-        <div class="score-bar-wrap">
-          <div class="score-label"><span>Grandiose</span><span>${scoreMap.grandiose}/28</span></div>
-          <div class="score-track"><div class="score-fill" style="width:${gPct}%;background:${primary==='grandiose'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-label"><span>Collapsed</span><span>${scoreMap.collapsed}/28</span></div>
-          <div class="score-track"><div class="score-fill" style="width:${cPct}%;background:${primary==='collapsed'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-label"><span>Compensatory</span><span>${scoreMap.comp}/28</span></div>
-          <div class="score-track"><div class="score-fill" style="width:${pPct}%;background:${primary==='comp'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
-        </div>
-        <div class="score-bar-wrap">
-          <div class="score-label"><span>Oscillating</span><span>${scoreMap.osc}/28</span></div>
-          <div class="score-track"><div class="score-fill" style="width:${oPct}%;background:${primary==='osc'?'var(--accent)':'rgba(255,255,255,0.3)'}"></div></div>
-        </div>
-      `;
-
-      app.innerHTML = `
-        <h1>${info.title}</h1>
-        <p class="lead" style="font-size:1.1rem;color:var(--text);margin-bottom:24px;">${info.subtitle}</p>
-        
-        <div class="card">
-          <strong>What this means</strong>
-          <p style="color:var(--muted);margin-top:8px;line-height:1.7;">${info.explain}</p>
-        </div>
-        
-        <div class="card">
-          <strong>Signs this is running</strong>
-          <p style="color:var(--muted);margin-top:8px;line-height:1.7;">${info.signs}</p>
-        </div>
-        
-        <div class="card">
-          <strong>The shift</strong>
-          <p style="color:var(--muted);margin-top:8px;line-height:1.7;">${info.shift}</p>
-        </div>
-        
-        <div class="card" style="background:rgba(163,59,92,0.1);border-color:rgba(163,59,92,0.25);">
-          <strong>A script to try</strong>
-          <p style="color:var(--text);margin-top:8px;font-style:italic;line-height:1.7;">"${info.script}"</p>
-        </div>
-        
-        <div class="card">
-          <strong>Your scores</strong>
-          <p style="color:var(--muted);margin:8px 0 16px;font-size:14px;">Higher scores mean that pattern showed up more in your answers. Most people have a mix.</p>
-          ${scoreBars}
-        </div>
-        
-        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
-          <button class="primary" onclick="renderQuiz()">Back to questions</button>
-          <button class="primary" style="background:rgba(255,255,255,0.05);color:var(--text);border:1px solid rgba(255,255,255,0.12);" onclick="resetScan()">Start over</button>
-        </div>
-      `;
-    }
-
-    function startScan(){ state.view='quiz'; renderQuiz(); }
-    function resetScan(){ state.answers={}; renderQuiz(); }
-
-    renderIntro();
-  </script>
-
-<script id="unscarredRootRewriter">
-(function(){
-  if (location.protocol !== 'file:') return;
-  const parts = location.pathname.split('/');
-  const idx = parts.lastIndexOf('unscarred.site');
-  const root = idx > -1 ? parts.slice(0, idx + 1).join('/') + '/' : location.pathname;
-  function toLocal(url){
-    if(!url) return null;
-    if(/^[a-z]+:|^\/\//i.test(url)) return url; // http/https/mailto/tel
-    if(url.startsWith('/')) return root + url.slice(1);
-    return root + url;
+const results = {
+  grandiose: {
+    name: "Grandiose Ego Structure",
+    emoji: "👑",
+    desc: "Your ego protects you by inflating your sense of self. You feel special, superior, and deserving of more than others. This structure keeps shame at bay by staying above it.",
+    function: "The grandiose ego was built because somewhere, you learned that being ordinary was dangerous. Inflation became protection.",
+    shadow: "Difficulty with vulnerability, feedback, or genuine connection. The inflation requires constant maintenance and can leave you isolated.",
+    truth: "You are not better than others. You are also not worse. You are human. Your worth does not require superiority.",
+    script: "I can be ordinary and still be valuable. I do not need to be above others to be okay."
+  },
+  collapsed: {
+    name: "Collapsed Ego Structure",
+    emoji: "🕳️",
+    desc: "Your ego protects you by staying small. You feel worthless, defective, and like a burden. This structure manages shame by agreeing with it.",
+    function: "The collapsed ego was built because somewhere, you learned that taking up space was punished. Smallness became protection.",
+    shadow: "Chronic shame, inability to receive, difficulty asserting needs. The collapse can become a self-fulfilling prophecy.",
+    truth: "You are not worthless. You were taught to believe you were. That teaching was wrong.",
+    script: "I am allowed to take up space. My existence is not a burden. I have value that does not need to be earned."
+  },
+  compensatory: {
+    name: "Compensatory Ego Structure",
+    emoji: "🎭",
+    desc: "Your ego protects you by performing strength over felt weakness. You appear confident while feeling insecure. This structure manages shame by covering it.",
+    function: "The compensatory ego was built because somewhere, you learned that showing vulnerability would be punished. The mask became protection.",
+    shadow: "Exhaustion from constant performance. Feeling unknown even in close relationships. The gap between the mask and the self widens over time.",
+    truth: "The performance is not a lie. It is protection. But it is also exhausting. You are allowed to be seen without the mask.",
+    script: "I can show my real face sometimes. The mask was protection, not deception. I can choose when to wear it."
+  },
+  oscillating: {
+    name: "Oscillating Ego Structure",
+    emoji: "🔄",
+    desc: "Your ego protects you by swinging between inflation and collapse. You feel special one moment and worthless the next. This structure manages shame by being unstable.",
+    function: "The oscillating ego was built because you received mixed messages. Sometimes you were special, sometimes you were nothing. The instability became normal.",
+    shadow: "No stable sense of self. Relationships that swing between idealization and devaluation. Exhaustion from the internal rollercoaster.",
+    truth: "You are not special and you are not worthless. You are consistently human. Finding the middle is the work.",
+    script: "I can be okay without being amazing. I can struggle without being broken. The middle is where I live."
   }
-  document.querySelectorAll('a[href]').forEach(a => {
-    const options = [a.getAttribute('href'), a.getAttribute('data-fallback'), a.getAttribute('data-alt')].filter(Boolean);
-    for (const opt of options){
-      const local = toLocal(opt);
-      if(local){ a.setAttribute('href', local); break; }
-    }
+};
+
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
+
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion].text;
+  optionsDiv.innerHTML = '';
+  [1,2,3,4,5].forEach((val) => {
+    const btn = document.createElement('button');
+    btn.className = 'scale-btn' + (answers[currentQuestion] === val ? ' selected' : '');
+    btn.textContent = val;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = val;
+      document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
   });
-})();
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Statement ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  const scores = { grandiose: 0, collapsed: 0, compensatory: 0, oscillating: 0 };
+  answers.forEach((ans, i) => { scores[statements[i].type] += ans; });
+  let primary = 'grandiose', max = 0;
+  for (const [type, score] of Object.entries(scores)) { if (score > max) { max = score; primary = type; } }
+  const r = results[primary];
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">${r.emoji} Your Ego Structure</div>
+    <div class="result-title">${r.name}</div>
+    <p class="result-desc">${r.desc}</p>
+    <div class="result-section"><h3>What It Does</h3><p>${r.function}</p></div>
+    <div class="result-section"><h3>The Shadow Side</h3><p>${r.shadow}</p></div>
+    <div class="result-section"><h3>The Truth</h3><p>${r.truth}</p></div>
+    <div class="result-section"><h3>A New Script</h3><div class="script-box">${r.script}</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
 </script>
 </body>
 </html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exit Strategy Scan | Unscarred</title>
+  <meta name="description" content="Should you stay or go? A pattern-based assessment for when you are stuck in the decision.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --secondary: #7c5cbf;
+      --accent: #c9763d;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #5c5955;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-sm: 12px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-body); background: var(--bg-void); color: var(--text-main); min-height: 100vh; line-height: 1.7; }
+    body::before { content: ""; position: fixed; inset: 0; background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(201, 118, 61, 0.12) 0%, transparent 50%); pointer-events: none; }
+    .container { max-width: 700px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    header { padding: 24px 0; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text-main); text-decoration: none; }
+    .logo span { color: var(--accent); }
+    .back-link { font-size: 0.85rem; color: var(--text-soft); text-decoration: none; }
+    .quiz-card { background: var(--card-glass); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 40px 36px; margin: 20px 0 60px; backdrop-filter: blur(20px); }
+    .quiz-header { text-align: center; margin-bottom: 32px; }
+    .quiz-header h1 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2rem); font-weight: 600; font-style: italic; margin-bottom: 12px; }
+    .quiz-header h1 em { color: var(--accent); }
+    .quiz-header p { color: var(--text-soft); font-size: 0.95rem; }
+    .progress-wrap { background: rgba(0,0,0,0.4); border-radius: 999px; height: 6px; margin: 24px 0; overflow: hidden; }
+    .progress-bar { height: 100%; background: linear-gradient(90deg, var(--accent), var(--primary)); border-radius: 999px; transition: width 0.4s ease; width: 0%; }
+    .progress-text { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-bottom: 24px; }
+    .intro { text-align: center; }
+    .intro p { color: var(--text-soft); margin-bottom: 24px; }
+    .question-area { display: none; }
+    .statement-text { font-family: var(--font-display); font-size: 1.2rem; font-style: italic; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+    .yn-options { display: flex; gap: 16px; justify-content: center; }
+    .yn-btn { padding: 16px 40px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-glass); border-radius: var(--radius-sm); color: var(--text-soft); font-family: var(--font-body); font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+    .yn-btn:hover { border-color: rgba(201, 118, 61, 0.4); background: rgba(201, 118, 61, 0.05); color: var(--text-main); }
+    .yn-btn.selected { border-color: var(--accent); background: rgba(201, 118, 61, 0.12); color: var(--text-main); }
+    .btn { display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, var(--accent), #a85d2d); border: none; border-radius: 999px; color: white; font-family: var(--font-body); font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 8px 30px rgba(201, 118, 61, 0.35); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+    .nav-btns { display: flex; gap: 12px; margin-top: 24px; justify-content: center; }
+    .btn-secondary { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: var(--text-soft); box-shadow: none; }
+    .results-area { display: none; }
+    .result-box { background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95)); border: 1px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-lg); padding: 36px; margin-bottom: 24px; text-align: center; }
+    .result-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent); margin-bottom: 8px; }
+    .result-title { font-family: var(--font-display); font-size: 1.8rem; font-style: italic; margin-bottom: 16px; }
+    .result-desc { color: var(--text-soft); line-height: 1.7; }
+    .result-section { margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-glass); text-align: left; }
+    .result-section h3 { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .result-section p { color: var(--text-soft); margin-bottom: 12px; }
+    .result-section ul { margin: 0 0 16px 20px; color: var(--text-soft); }
+    .result-section li { margin-bottom: 8px; }
+    .script-box { padding: 16px 20px; background: rgba(125, 154, 140, 0.1); border-left: 3px solid #7d9a8c; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-style: italic; color: var(--text-main); }
+    .warning-box { padding: 16px 20px; background: rgba(163, 59, 92, 0.15); border: 1px solid rgba(163, 59, 92, 0.4); border-radius: var(--radius-sm); color: var(--text-main); margin: 16px 0; }
+    .next-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; justify-content: center; }
+    .next-link { padding: 12px 20px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 999px; color: var(--text-soft); text-decoration: none; font-size: 0.85rem; transition: all 0.2s ease; }
+    .next-link:hover { border-color: rgba(201, 118, 61, 0.4); color: var(--text-main); }
+    footer { text-align: center; padding: 40px 0; color: var(--text-dim); font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <a href="/war/quizzes.html" class="back-link">← All Quizzes</a>
+    </header>
+    <div class="quiz-card">
+      <div class="quiz-header">
+        <h1>Exit Strategy <em>Scan</em></h1>
+        <p>Should you stay or go? A pattern-based assessment.</p>
+      </div>
+      <div class="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
+      <div class="progress-text" id="progress-text"></div>
+      <div class="intro" id="intro-area">
+        <p>This quiz does not tell you what to do. It maps patterns that may be relevant to your decision. Only you can decide whether to stay or leave.</p>
+        <p>Answer based on your current relationship.</p>
+        <button class="btn" id="start-btn">Begin Assessment</button>
+      </div>
+      <div class="question-area" id="question-area">
+        <div class="statement-text" id="question-text"></div>
+        <div class="yn-options" id="options"></div>
+        <div class="nav-btns">
+          <button class="btn btn-secondary" id="prev-btn" style="display:none">Back</button>
+          <button class="btn" id="next-btn" disabled>Next</button>
+        </div>
+      </div>
+      <div class="results-area" id="results-area">
+        <div class="result-box" id="result-box"></div>
+        <div class="next-links">
+          <a href="/quiz/coercive-control.html" class="next-link">Coercive Control Check</a>
+          <a href="/war/tools.html" class="next-link">Stabilization Tools</a>
+          <a href="/war/quizzes.html" class="next-link">More Quizzes</a>
+        </div>
+      </div>
+    </div>
+    <footer><p>Unscarred. You are allowed to leave. You are allowed to stay.</p></footer>
+  </div>
+<script>
+const statements = [
+  { text: "I feel afraid of my partner sometimes", cat: "safety" },
+  { text: "My partner respects my boundaries when I set them", cat: "respect", reverse: true },
+  { text: "I often feel confused about what is real in this relationship", cat: "reality" },
+  { text: "I am losing connection with friends and family", cat: "isolation" },
+  { text: "My partner takes responsibility for their mistakes", cat: "respect", reverse: true },
+  { text: "I feel like I am walking on eggshells", cat: "safety" },
+  { text: "I trust my partner to tell me the truth", cat: "trust", reverse: true },
+  { text: "I often feel criticized or put down", cat: "respect" },
+  { text: "When we fight, I end up feeling like everything is my fault", cat: "reality" },
+  { text: "I feel like a smaller version of myself in this relationship", cat: "self" },
+  { text: "My partner supports my growth and independence", cat: "self", reverse: true },
+  { text: "I justify or explain away their behavior to myself or others", cat: "reality" },
+  { text: "I imagine my life being better without them", cat: "future" },
+  { text: "The good times are becoming rarer", cat: "pattern" },
+  { text: "I feel more like myself when I am away from them", cat: "self" },
+  { text: "I stay because I am afraid of what happens if I leave", cat: "safety" },
+  { text: "I have thought about leaving multiple times", cat: "future" },
+  { text: "They threaten me, themselves, or things I care about when I try to leave", cat: "safety" }
+];
+
+let currentQuestion = 0;
+let answers = [];
+const introArea = document.getElementById('intro-area');
+const questionArea = document.getElementById('question-area');
+const resultsArea = document.getElementById('results-area');
+const progressBar = document.getElementById('progress-bar');
+const progressText = document.getElementById('progress-text');
+const questionText = document.getElementById('question-text');
+const optionsDiv = document.getElementById('options');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+document.getElementById('start-btn').addEventListener('click', () => {
+  introArea.style.display = 'none';
+  questionArea.style.display = 'block';
+  showQuestion();
+});
+
+function showQuestion() {
+  questionText.textContent = statements[currentQuestion].text;
+  optionsDiv.innerHTML = '';
+  ['Yes', 'Sometimes', 'No'].forEach((label, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'yn-btn' + (answers[currentQuestion] === i ? ' selected' : '');
+    btn.textContent = label;
+    btn.addEventListener('click', () => {
+      answers[currentQuestion] = i;
+      document.querySelectorAll('.yn-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      nextBtn.disabled = false;
+    });
+    optionsDiv.appendChild(btn);
+  });
+  progressBar.style.width = ((currentQuestion + 1) / statements.length * 100) + '%';
+  progressText.textContent = `Question ${currentQuestion + 1} of ${statements.length}`;
+  prevBtn.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+  nextBtn.textContent = currentQuestion === statements.length - 1 ? 'See My Result' : 'Next';
+  nextBtn.disabled = answers[currentQuestion] === undefined;
+}
+
+prevBtn.addEventListener('click', () => { if (currentQuestion > 0) { currentQuestion--; showQuestion(); } });
+nextBtn.addEventListener('click', () => {
+  if (currentQuestion < statements.length - 1) { currentQuestion++; showQuestion(); }
+  else { showResults(); }
+});
+
+function showResults() {
+  questionArea.style.display = 'none';
+  resultsArea.style.display = 'block';
+  progressBar.style.width = '100%';
+  progressText.textContent = 'Assessment Complete';
+  
+  let concernScore = 0;
+  let safetyScore = 0;
+  answers.forEach((ans, i) => {
+    const s = statements[i];
+    let score = ans === 0 ? 2 : ans === 1 ? 1 : 0;
+    if (s.reverse) score = 2 - score;
+    concernScore += score;
+    if (s.cat === 'safety') safetyScore += score;
+  });
+  
+  const max = statements.length * 2;
+  const percentage = Math.round(concernScore / max * 100);
+  
+  let level, desc, consider;
+  if (safetyScore >= 6) {
+    level = 'Safety Concerns Present';
+    desc = 'Your responses indicate significant safety concerns. Fear, threats, and walking on eggshells suggest a pattern that prioritizes their needs over your safety.';
+    consider = [
+      'Safety planning before any decisions',
+      'Connecting with a domestic violence advocate',
+      'Building resources and support outside the relationship',
+      'Not announcing your plans to leave until you are ready and safe'
+    ];
+  } else if (percentage >= 60) {
+    level = 'Multiple Concern Areas';
+    desc = 'Your responses indicate multiple areas of concern across trust, respect, reality, and self-loss. The pattern suggests more harm than health.';
+    consider = [
+      'Whether the relationship is improving or declining over time',
+      'Whether your partner takes genuine responsibility',
+      'Whether staying costs more than leaving',
+      'Building individual support regardless of decision'
+    ];
+  } else if (percentage >= 35) {
+    level = 'Some Concern Areas',
+    desc = 'Your responses indicate some concerning patterns alongside some healthy ones. The relationship may be workable or may not be.';
+    consider = [
+      'Whether both people are willing to work on patterns',
+      'Whether you can get individual clarity on your part',
+      'Whether the concerning patterns are changing or static',
+      'What support would help you decide'
+    ];
+  } else {
+    level = 'Low Concern Indicators';
+    desc = 'Your responses indicate relatively low concern across safety, respect, trust, and self-loss. This does not mean the relationship is perfect, but these specific red flags are not prominent.';
+    consider = [
+      'What brought you to this quiz',
+      'Whether there are specific incidents worth examining',
+      'Whether your uncertainty comes from the relationship or from you',
+      'What support would help you feel clear'
+    ];
+  }
+  
+  document.getElementById('result-box').innerHTML = `
+    <div class="result-type">🚪 Exit Assessment</div>
+    <div class="result-title">${level}</div>
+    <p class="result-desc">${desc}</p>
+    <div class="result-section"><h3>Things To Consider</h3><ul>${consider.map(c => `<li>${c}</li>`).join('')}</ul></div>
+    ${safetyScore >= 4 ? '<div class="result-section"><div class="warning-box"><strong>Safety Note:</strong> If you are in danger, contact a domestic violence hotline before making any changes. Leaving can be the most dangerous time. Plan carefully. National Domestic Violence Hotline: 1-800-799-7233</div></div>' : ''}
+    <div class="result-section"><h3>A Reminder</h3><div class="script-box">You are allowed to leave a relationship that is not working. You are also allowed to stay and try. What matters is that you are making the choice consciously, with your eyes open, for your own reasons.</div></div>
+  `;
+}
+</script>
+<script id="unscarredRootRewriter">
+(function(){if(window.location.protocol!=="file:")return;var path=window.location.pathname.replace(/\\/g,"/");var match=path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);var root=match?match[1]:null;if(!root)return;var afterRoot=path.slice(root.length);var depth=afterRoot.split('/').filter(Boolean).length-1;var prefix=depth>0?new Array(depth+1).join('../'):'';document.querySelectorAll('a[href^="/"]').forEach(function(a){var href=a.getAttribute('href');if(!href||href.startsWith('//'))return;a.setAttribute('href',prefix+href.replace(/^\//,''));});})();
+</script>
+</body>
+</html>
+
