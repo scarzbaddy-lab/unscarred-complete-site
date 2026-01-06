@@ -114,6 +114,22 @@
 
     nav a:hover { color: var(--text-main); }
 
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .nav-dropdown > a::after { content: "▾"; font-size: 10px; opacity: 0.6; }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      min-width: 180px; background: rgba(12, 12, 18, 0.98); backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass); border-radius: 12px; padding: 8px 0;
+      opacity: 0; visibility: hidden; transition: all 0.2s ease; margin-top: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .dropdown-menu::before { content: ""; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+    .dropdown-menu a { display: block; padding: 10px 20px; font-size: 13px; color: var(--text-soft); text-decoration: none; transition: all 0.2s ease; }
+    .dropdown-menu a:hover { background: rgba(255,255,255,0.05); color: var(--text-main); }
+
     .nav-war {
       color: var(--accent) !important;
       display: flex;
@@ -513,6 +529,16 @@
         <a href="/shop.html">Shop</a>
         <a href="/coaching.html">Coaching</a>
         <a href="/blog.html">Blog</a>
+        <div class="nav-dropdown">
+          <a href="/about.html">About</a>
+          <div class="dropdown-menu">
+            <a href="/about.html">About Me</a>
+            <a href="/how-i-work.html">How I Work</a>
+            <a href="/start.html">Start Here</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/boundaries.html">Boundaries</a>
+          </div>
+        </div>
         <a href="/war/quizzes.html" class="nav-war">⚔️ War Path</a>
       </nav>
     </div>
@@ -543,7 +569,7 @@
           <div class="framework-step__content">
             <div class="framework-step__label">Step 1</div>
             <h3>Signal</h3>
-            <p>What behavior is showing up? What are they doing? What are you doing? This is the surface layer — the thing you can actually see and describe.</p>
+            <p>What behavior is showing up? What are they doing? What are you doing? This is the surface layer, the thing you can actually see and describe.</p>
             <p>Most people get stuck here, arguing about the behavior instead of understanding what it means.</p>
             <div class="framework-step__example">
               <strong>Example:</strong> "He withdraws every time I bring up how I feel."
@@ -558,7 +584,7 @@
             <div class="framework-step__label">Step 2</div>
             <h3>Meaning</h3>
             <p>What is the behavior actually trying to communicate? Every action is an attempt to meet a need, protect from a threat, or regulate an overwhelming feeling.</p>
-            <p>The meaning isn't always what it looks like. Withdrawal might mean "I'm flooded and can't process" — not "I don't care."</p>
+            <p>The meaning isn't always what it looks like. Withdrawal might mean "I'm flooded and can't process," not "I don't care."</p>
             <div class="framework-step__example">
               <strong>Example:</strong> His withdrawal = nervous system flooding + shame about not having the "right" response + fear of making things worse.
             </div>
@@ -585,10 +611,10 @@
           <div class="framework-step__content">
             <div class="framework-step__label">Step 4</div>
             <h3>Repair Move</h3>
-            <p>What's the one thing that could shift this pattern? Not fixing everything — just the next right move. A script to use. A pause to take. A signal to send.</p>
+            <p>What's the one thing that could shift this pattern? Not fixing everything, just the next right move. A script to use. A pause to take. A signal to send.</p>
             <p>Repair moves are small, specific, and nervous-system-informed. They break the loop.</p>
             <div class="framework-step__example">
-              <strong>Example:</strong> Her repair move: "I can see you're overwhelmed. I'm going to pause and give you 20 minutes. I still want to talk — I'm not going anywhere."<br><br>
+              <strong>Example:</strong> Her repair move: "I can see you're overwhelmed. I'm going to pause and give you 20 minutes. I still want to talk. I'm not going anywhere."<br><br>
               His repair move: "I'm shutting down. I need a few minutes. I'll come back."
             </div>
           </div>
@@ -610,7 +636,7 @@
         <div class="meaning-card">
           <div class="meaning-card__icon">🔊</div>
           <h4>You'll translate what they're actually saying</h4>
-          <p>Their words might be wrong, but their signal is usually clear. I help you hear what they're trying to communicate — even when they're doing it badly.</p>
+          <p>Their words might be wrong, but their signal is usually clear. I help you hear what they're trying to communicate, even when they're doing it badly.</p>
         </div>
 
         <div class="meaning-card">
@@ -631,7 +657,7 @@
     <!-- Philosophy Quote -->
     <div class="philosophy-box">
       <blockquote>"Your patterns are not your fault. Learning them is your power."</blockquote>
-      <p>— The whole point of this work</p>
+      <p>The whole point of this work</p>
     </div>
 
     <!-- CTA -->

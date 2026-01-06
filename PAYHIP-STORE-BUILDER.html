@@ -1,0 +1,1558 @@
+<!--
+====================================================
+PAYHIP STORE BUILDER - UNSCARRED COMPLETE DESIGN
+====================================================
+Last Updated: January 2026
+
+This file contains ALL custom code for Payhip Store Builder.
+Follow the instructions below to create a stunning store.
+
+OVERVIEW:
+- Section A: Header Code (includes hero banner)
+- Section B: Enhanced Custom CSS  
+- Section C: Footer Code
+- Section D: Product Page Additions
+
+====================================================
+SECTION A: HEADER CODE
+====================================================
+Go to: Settings > Store Settings > Custom Code > Header Code
+Paste EVERYTHING between the === HEADER START === and === HEADER END === markers
+
+=== HEADER START ===
+-->
+
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="https://unscarred.site/favicon.png">
+
+<!-- Meta -->
+<meta name="theme-color" content="#050507">
+<meta name="author" content="Scar Kade">
+
+<style>
+  /* Prevent flash of unstyled content */
+  html { background: #050507 !important; }
+  body { opacity: 0; transition: opacity 0.4s ease; }
+  body.loaded { opacity: 1; }
+</style>
+
+<!-- Custom Store Header Banner -->
+<div id="unscarred-store-header" style="
+  background: linear-gradient(180deg, #0a0a0f 0%, #050507 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+  overflow: hidden;
+">
+  <!-- Ambient glow effects -->
+  <div style="
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 80% 100% at 50% -30%, rgba(163, 59, 92, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 90% 50%, rgba(124, 92, 191, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(45, 143, 143, 0.06) 0%, transparent 40%);
+    pointer-events: none;
+  "></div>
+  
+  <!-- Top Navigation Bar -->
+  <div style="
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+  ">
+    <!-- Logo -->
+    <a href="https://shop.unscarred.site" style="
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #ece8e1;
+      text-decoration: none;
+      letter-spacing: -1px;
+    ">un<span style="color: #a33b5c;">scarred</span></a>
+    
+    <!-- Nav Links -->
+    <nav style="display: flex; align-items: center; gap: 24px;">
+      <a href="https://unscarred.site" style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #9a958c;
+        text-decoration: none;
+        transition: color 0.3s;
+      " onmouseover="this.style.color='#ece8e1'" onmouseout="this.style.color='#9a958c'">Website</a>
+      <a href="https://unscarred.site/quiz/" style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #9a958c;
+        text-decoration: none;
+        transition: color 0.3s;
+      " onmouseover="this.style.color='#ece8e1'" onmouseout="this.style.color='#9a958c'">Quizzes</a>
+      <a href="https://unscarred.site/coaching.html" style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 14px;
+        font-weight: 500;
+        color: #9a958c;
+        text-decoration: none;
+        transition: color 0.3s;
+      " onmouseover="this.style.color='#ece8e1'" onmouseout="this.style.color='#9a958c'">Coaching</a>
+      <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        background: linear-gradient(135deg, #a33b5c, #8a2a4a);
+        border-radius: 999px;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        transition: all 0.3s;
+      " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 24px rgba(163,59,92,0.4)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">Book a Call</a>
+    </nav>
+  </div>
+  
+  <!-- Hero Banner Section -->
+  <div style="
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+  ">
+    <!-- Badge -->
+    <div style="
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #c9763d;
+      padding: 8px 18px;
+      background: rgba(201, 118, 61, 0.1);
+      border-radius: 999px;
+      border: 1px solid rgba(201, 118, 61, 0.2);
+      margin-bottom: 24px;
+    ">✦ Pattern Support Resources</div>
+    
+    <!-- Main Headline -->
+    <h1 style="
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 600;
+      font-style: italic;
+      color: #ece8e1;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 30px rgba(163, 59, 92, 0.3);
+    ">Tools for the ones who <span style="color: #a33b5c;">feel too much</span></h1>
+    
+    <!-- Subtitle -->
+    <p style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: #9a958c;
+      max-width: 550px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    ">Programs, workbooks, and scripts built from survival—not theory. Your patterns are not your fault. Learning them is your power.</p>
+    
+    <!-- CTA Buttons -->
+    <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+      <a href="#free-resources" style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 14px 28px;
+        background: linear-gradient(135deg, #2d8f8f, #1f6b6b);
+        color: white;
+        text-decoration: none;
+        border-radius: 999px;
+        transition: all 0.3s;
+        box-shadow: 0 6px 20px rgba(45, 143, 143, 0.3);
+      " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">Get Free Resources</a>
+      <a href="#programs" style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        padding: 14px 28px;
+        background: transparent;
+        color: #9a958c;
+        text-decoration: none;
+        border-radius: 999px;
+        border: 1px solid rgba(255,255,255,0.15);
+        transition: all 0.3s;
+      " onmouseover="this.style.borderColor='rgba(255,255,255,0.3)'; this.style.color='#ece8e1'" onmouseout="this.style.borderColor='rgba(255,255,255,0.15)'; this.style.color='#9a958c'">Browse Programs</a>
+    </div>
+  </div>
+  
+  <!-- Decorative bottom edge -->
+  <div style="
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(163, 59, 92, 0.3), rgba(124, 92, 191, 0.2), transparent);
+  "></div>
+</div>
+
+<!-- Trust Bar -->
+<div style="
+  background: rgba(10, 10, 15, 0.8);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  padding: 16px 24px;
+">
+  <div style="
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    flex-wrap: wrap;
+  ">
+    <span style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      color: #5c5955;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    ">🔒 Secure Checkout</span>
+    <span style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      color: #5c5955;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    ">⚡ Instant Download</span>
+    <span style="
+      font-family: 'Outfit', sans-serif;
+      font-size: 12px;
+      color: #5c5955;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    ">💬 Direct Support from Scar</span>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    document.body.classList.add('loaded');
+  });
+</script>
+
+<!--
+=== HEADER END ===
+
+
+====================================================
+SECTION B: ENHANCED CUSTOM CSS
+====================================================
+Go to: Settings > Store Settings > Custom CSS
+REPLACE all existing CSS with everything between === CSS START === and === CSS END ===
+
+=== CSS START ===
+-->
+
+<style>
+/* ==========================================
+   UNSCARRED PAYHIP STORE - COMPLETE THEME
+   Dark elegant aesthetic with rose accents
+   ========================================== */
+
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ==========================================
+   CSS CUSTOM PROPERTIES
+   ========================================== */
+:root {
+  --bg-void: #050507;
+  --bg-deep: #0a0a0f;
+  --bg-card: rgba(20, 18, 25, 0.9);
+  --primary: #a33b5c;
+  --primary-light: #c9506e;
+  --primary-glow: rgba(163, 59, 92, 0.4);
+  --secondary: #7c5cbf;
+  --accent: #c9763d;
+  --teal: #2d8f8f;
+  --gold: #b8860b;
+  --text-main: #ece8e1;
+  --text-soft: #9a958c;
+  --text-dim: #5c5955;
+  --border-glass: rgba(255,255,255,0.06);
+  --border-glow: rgba(163, 59, 92, 0.3);
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --radius-lg: 20px;
+  --radius-md: 16px;
+  --radius-sm: 12px;
+  --radius-pill: 999px;
+}
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-body) !important;
+  background: var(--bg-void) !important;
+  color: var(--text-main) !important;
+  line-height: 1.6 !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+/* Ambient background glow */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(163, 59, 92, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 85% 60%, rgba(124, 92, 191, 0.06) 0%, transparent 40%),
+    radial-gradient(ellipse 50% 50% at 15% 80%, rgba(201, 118, 61, 0.04) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ==========================================
+   TYPOGRAPHY
+   ========================================== */
+h1, h2, h3, h4, h5, h6,
+.product-title,
+.product-name,
+[class*="title"],
+[class*="heading"] {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  color: var(--text-main) !important;
+  font-style: italic !important;
+  line-height: 1.2 !important;
+}
+
+h1 { font-size: 2.5rem !important; margin-bottom: 1rem !important; }
+h2 { font-size: 2rem !important; margin-bottom: 0.8rem !important; }
+h3 { font-size: 1.5rem !important; }
+
+p, span, div, li {
+  color: var(--text-soft) !important;
+}
+
+a {
+  color: var(--primary) !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease !important;
+}
+
+a:hover {
+  color: var(--primary-light) !important;
+}
+
+/* ==========================================
+   PAYHIP STORE HEADER (Override defaults)
+   ========================================== */
+.store-header,
+.profile-header,
+[class*="store-header"],
+[class*="profile-header"] {
+  display: none !important; /* Hide default, we use custom */
+}
+
+/* ==========================================
+   CATEGORY NAVIGATION
+   ========================================== */
+.category-nav,
+.categories,
+[class*="category-nav"],
+[class*="categories"],
+nav[class*="category"] {
+  background: var(--bg-deep) !important;
+  padding: 16px 0 !important;
+  margin-bottom: 40px !important;
+  border-bottom: 1px solid var(--border-glass) !important;
+}
+
+.category-item,
+.category-link,
+[class*="category-item"],
+[class*="category-link"] {
+  font-family: var(--font-body) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  color: var(--text-soft) !important;
+  padding: 10px 20px !important;
+  border-radius: var(--radius-pill) !important;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+.category-item:hover,
+.category-link:hover {
+  color: var(--primary) !important;
+  background: rgba(163, 59, 92, 0.1) !important;
+  border-color: rgba(163, 59, 92, 0.2) !important;
+}
+
+.category-item.active,
+.category-link.active,
+[class*="category-item"].active,
+[class*="category-link"].active {
+  color: var(--primary) !important;
+  background: rgba(163, 59, 92, 0.15) !important;
+  border-color: rgba(163, 59, 92, 0.3) !important;
+}
+
+/* ==========================================
+   PRODUCT GRID
+   ========================================== */
+.products-grid,
+.product-list,
+[class*="products-grid"],
+[class*="product-list"],
+[class*="product-grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)) !important;
+  gap: 28px !important;
+  padding: 0 24px 60px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+}
+
+/* ==========================================
+   PRODUCT CARDS
+   ========================================== */
+.product-card,
+.product-item,
+[class*="product-card"],
+[class*="product-item"] {
+  background: linear-gradient(165deg, var(--bg-card), rgba(12, 11, 16, 0.95)) !important;
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-lg) !important;
+  overflow: hidden !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+}
+
+.product-card:hover,
+.product-item:hover {
+  border-color: var(--border-glow) !important;
+  transform: translateY(-6px) !important;
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(163, 59, 92, 0.1) !important;
+}
+
+/* Product Image */
+.product-card__image,
+.product-image,
+[class*="product-image"],
+.product-card img,
+.product-item img {
+  width: 100% !important;
+  height: 200px !important;
+  object-fit: cover !important;
+  border-bottom: 1px solid var(--border-glass) !important;
+  transition: transform 0.4s ease !important;
+}
+
+.product-card:hover img,
+.product-item:hover img {
+  transform: scale(1.03) !important;
+}
+
+/* Product Content Area */
+.product-card__content,
+.product-content,
+[class*="product-content"],
+.product-card__details,
+.product-details {
+  padding: 24px !important;
+}
+
+/* Product Title */
+.product-title,
+.product-name,
+.product-card__title,
+[class*="product-title"],
+[class*="product-name"] {
+  font-family: var(--font-display) !important;
+  font-size: 1.35rem !important;
+  font-weight: 600 !important;
+  font-style: italic !important;
+  color: var(--text-main) !important;
+  margin-bottom: 8px !important;
+  line-height: 1.3 !important;
+}
+
+/* Product Description */
+.product-description,
+.product-card__description,
+[class*="product-description"] {
+  font-family: var(--font-body) !important;
+  font-size: 0.9rem !important;
+  color: var(--text-soft) !important;
+  line-height: 1.6 !important;
+  margin-bottom: 16px !important;
+}
+
+/* Product Price */
+.product-price,
+.price,
+[class*="product-price"],
+[class*="price"] {
+  font-family: var(--font-display) !important;
+  font-size: 1.6rem !important;
+  font-weight: 700 !important;
+  color: var(--primary) !important;
+  font-style: normal !important;
+}
+
+/* Free Products */
+.product-price.free,
+.price.free,
+[class*="free"] .product-price,
+[class*="free"] .price {
+  color: var(--teal) !important;
+}
+
+/* ==========================================
+   BADGES & TAGS
+   ========================================== */
+.badge,
+.tag,
+.label,
+[class*="badge"],
+[class*="tag"] {
+  font-family: var(--font-body) !important;
+  font-size: 0.65rem !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.12em !important;
+  padding: 6px 14px !important;
+  border-radius: var(--radius-pill) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+}
+
+/* Default badge */
+.badge,
+.tag {
+  background: rgba(163, 59, 92, 0.15) !important;
+  color: var(--primary) !important;
+  border: 1px solid rgba(163, 59, 92, 0.25) !important;
+}
+
+/* Free badge */
+.free-badge,
+[class*="free-badge"],
+.badge.free,
+.tag.free {
+  background: rgba(45, 143, 143, 0.15) !important;
+  color: var(--teal) !important;
+  border: 1px solid rgba(45, 143, 143, 0.3) !important;
+}
+
+/* Popular/Featured badge */
+.popular-badge,
+.featured-badge,
+[class*="popular"],
+[class*="featured"] {
+  background: rgba(163, 59, 92, 0.2) !important;
+  color: var(--primary) !important;
+  border: 1px solid rgba(163, 59, 92, 0.35) !important;
+}
+
+/* Bundle badge */
+.bundle-badge,
+[class*="bundle"] .badge {
+  background: rgba(184, 134, 11, 0.2) !important;
+  color: var(--gold) !important;
+  border: 1px solid rgba(184, 134, 11, 0.35) !important;
+}
+
+/* New badge */
+.new-badge,
+[class*="new"] .badge {
+  background: rgba(124, 92, 191, 0.2) !important;
+  color: var(--secondary) !important;
+  border: 1px solid rgba(124, 92, 191, 0.35) !important;
+}
+
+/* ==========================================
+   BUTTONS
+   ========================================== */
+button,
+.btn,
+.button,
+[class*="button"],
+[class*="btn"],
+input[type="submit"] {
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.85rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  padding: 14px 28px !important;
+  border-radius: var(--radius-pill) !important;
+  border: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+/* Primary Buttons (Buy, Add to Cart) */
+.btn-primary,
+.buy-button,
+[class*="buy"],
+[class*="purchase"],
+[class*="add-to-cart"],
+button[type="submit"],
+.product-card button,
+.product-item button {
+  background: linear-gradient(135deg, var(--primary) 0%, #8a2a4a 100%) !important;
+  color: white !important;
+  box-shadow: 0 8px 25px var(--primary-glow) !important;
+}
+
+.btn-primary:hover,
+.buy-button:hover,
+[class*="buy"]:hover,
+[class*="purchase"]:hover,
+button[type="submit"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 12px 35px rgba(163, 59, 92, 0.5) !important;
+}
+
+/* Secondary Buttons */
+.btn-secondary,
+.btn-outline {
+  background: transparent !important;
+  color: var(--text-soft) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+}
+
+.btn-secondary:hover,
+.btn-outline:hover {
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: var(--text-main) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+}
+
+/* Free Download Button */
+.btn-free,
+[class*="free"] button,
+[class*="free"] .buy-button {
+  background: linear-gradient(135deg, var(--teal) 0%, #1f6b6b 100%) !important;
+  box-shadow: 0 8px 25px rgba(45, 143, 143, 0.35) !important;
+}
+
+/* ==========================================
+   FORMS & INPUTS
+   ========================================== */
+input,
+textarea,
+select {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  background: rgba(20, 18, 25, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: var(--radius-sm) !important;
+  color: var(--text-main) !important;
+  padding: 16px 20px !important;
+  transition: all 0.3s ease !important;
+  width: 100% !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  border-color: rgba(163, 59, 92, 0.5) !important;
+  box-shadow: 0 0 0 4px rgba(163, 59, 92, 0.1) !important;
+  background: rgba(20, 18, 25, 0.95) !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-dim) !important;
+}
+
+label {
+  font-family: var(--font-body) !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
+  color: var(--text-soft) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 8px !important;
+  display: block !important;
+}
+
+/* ==========================================
+   SINGLE PRODUCT PAGE
+   ========================================== */
+.product-page,
+.single-product,
+[class*="product-page"],
+[class*="single-product"] {
+  background: var(--bg-void) !important;
+  padding: 40px 24px 80px !important;
+}
+
+.product-page .product-image,
+.single-product .product-image,
+.product-gallery img {
+  border-radius: var(--radius-lg) !important;
+  border: 1px solid var(--border-glass) !important;
+  max-width: 600px !important;
+}
+
+.product-page .product-details,
+.single-product .product-details {
+  background: linear-gradient(165deg, var(--bg-card), rgba(12, 11, 16, 0.98)) !important;
+  border: 1px solid var(--border-glass) !important;
+  border-radius: 24px !important;
+  padding: 40px !important;
+}
+
+.product-page .product-title,
+.single-product .product-title {
+  font-size: 2rem !important;
+  margin-bottom: 16px !important;
+}
+
+.product-page .product-price,
+.single-product .product-price {
+  font-size: 2.2rem !important;
+  margin-bottom: 24px !important;
+}
+
+/* ==========================================
+   CHECKOUT / CART
+   ========================================== */
+.cart,
+.checkout,
+[class*="cart"],
+[class*="checkout"] {
+  background: var(--bg-void) !important;
+}
+
+.cart-item,
+.checkout-item,
+.order-item {
+  background: var(--bg-card) !important;
+  border: 1px solid var(--border-glass) !important;
+  border-radius: var(--radius-md) !important;
+  padding: 24px !important;
+  margin-bottom: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+}
+
+.cart-item:hover,
+.checkout-item:hover {
+  border-color: rgba(163, 59, 92, 0.2) !important;
+}
+
+.cart-item img,
+.checkout-item img {
+  width: 80px !important;
+  height: 80px !important;
+  object-fit: cover !important;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--border-glass) !important;
+}
+
+.cart-total,
+.checkout-total,
+.order-total {
+  font-family: var(--font-display) !important;
+  font-size: 1.8rem !important;
+  font-weight: 700 !important;
+  color: var(--text-main) !important;
+}
+
+.checkout-total .amount,
+.order-total .amount,
+.grand-total .amount {
+  color: var(--primary) !important;
+}
+
+/* ==========================================
+   MODALS / POPUPS
+   ========================================== */
+.modal,
+.popup,
+[class*="modal"],
+[class*="popup"] {
+  background: rgba(5, 5, 7, 0.95) !important;
+  backdrop-filter: blur(24px) !important;
+}
+
+.modal-content,
+.popup-content {
+  background: linear-gradient(165deg, rgba(20, 18, 25, 0.98), rgba(12, 11, 16, 0.99)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 24px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6) !important;
+  padding: 40px !important;
+}
+
+/* ==========================================
+   ALERTS & MESSAGES
+   ========================================== */
+.alert,
+.message,
+.notification {
+  border-radius: var(--radius-sm) !important;
+  padding: 16px 24px !important;
+  margin-bottom: 20px !important;
+  font-size: 0.95rem !important;
+}
+
+.alert-success,
+.message-success,
+.success-message {
+  background: rgba(45, 143, 143, 0.1) !important;
+  border: 1px solid rgba(45, 143, 143, 0.3) !important;
+  color: var(--teal) !important;
+}
+
+.alert-error,
+.message-error,
+.error-message {
+  background: rgba(163, 59, 92, 0.1) !important;
+  border: 1px solid rgba(163, 59, 92, 0.3) !important;
+  color: var(--primary-light) !important;
+}
+
+/* ==========================================
+   SCROLLBAR
+   ========================================== */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(163, 59, 92, 0.4);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(163, 59, 92, 0.6);
+}
+
+/* ==========================================
+   TEXT SELECTION
+   ========================================== */
+::selection {
+  background: rgba(163, 59, 92, 0.4);
+  color: var(--text-main);
+}
+
+/* ==========================================
+   FOOTER (Hide default, use custom)
+   ========================================== */
+footer.payhip-footer,
+.payhip-footer {
+  display: none !important;
+}
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.6rem !important; }
+  
+  .products-grid,
+  .product-list,
+  [class*="products-grid"] {
+    grid-template-columns: 1fr !important;
+    padding: 0 16px 40px !important;
+    gap: 20px !important;
+  }
+  
+  .product-card,
+  .product-item {
+    border-radius: var(--radius-md) !important;
+  }
+  
+  button,
+  .btn {
+    padding: 12px 24px !important;
+    font-size: 0.8rem !important;
+    width: 100% !important;
+  }
+  
+  .category-nav {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+/* ==========================================
+   CUSTOM SECTION HEADERS (for category pages)
+   ========================================== */
+.section-header-custom {
+  text-align: center;
+  padding: 60px 24px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.section-header-custom h2 {
+  font-size: 2.2rem !important;
+  margin-bottom: 12px !important;
+}
+
+.section-header-custom p {
+  font-size: 1.1rem !important;
+  color: var(--text-soft) !important;
+  line-height: 1.7 !important;
+}
+
+/* ==========================================
+   ANIMATION ENHANCEMENTS
+   ========================================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-card,
+.product-item {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.product-card:nth-child(1) { animation-delay: 0.05s; }
+.product-card:nth-child(2) { animation-delay: 0.1s; }
+.product-card:nth-child(3) { animation-delay: 0.15s; }
+.product-card:nth-child(4) { animation-delay: 0.2s; }
+.product-card:nth-child(5) { animation-delay: 0.25s; }
+.product-card:nth-child(6) { animation-delay: 0.3s; }
+</style>
+
+<!--
+=== CSS END ===
+
+
+====================================================
+SECTION C: FOOTER CODE
+====================================================
+Go to: Settings > Store Settings > Custom Code > Footer Code
+Paste EVERYTHING between the === FOOTER START === and === FOOTER END === markers
+
+=== FOOTER START ===
+-->
+
+<!-- Custom Store Footer -->
+<footer id="unscarred-footer" style="
+  background: linear-gradient(180deg, transparent 0%, rgba(10, 10, 15, 0.95) 15%, #0a0a0f 100%);
+  padding: 80px 24px 40px;
+  margin-top: 80px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  position: relative;
+">
+  <!-- Decorative top line -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(163, 59, 92, 0.5), transparent);
+  "></div>
+  
+  <div style="max-width: 1000px; margin: 0 auto;">
+    <!-- Main Footer Grid -->
+    <div style="
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    ">
+      <!-- Brand Column -->
+      <div>
+        <a href="https://unscarred.site" style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 32px;
+          font-weight: 700;
+          color: #ece8e1;
+          text-decoration: none;
+          display: inline-block;
+          margin-bottom: 16px;
+        ">un<span style="color: #a33b5c;">scarred</span></a>
+        <p style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.95rem;
+          color: #5c5955;
+          line-height: 1.7;
+          max-width: 300px;
+        ">Pattern support for the ones who feel too much and see too clearly. I turn scars into mirrors.</p>
+        
+        <!-- Quick Stats -->
+        <div style="
+          display: flex;
+          gap: 24px;
+          margin-top: 24px;
+        ">
+          <div>
+            <span style="
+              font-family: 'Cormorant Garamond', serif;
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: #a33b5c;
+              display: block;
+            ">40+</span>
+            <span style="
+              font-family: 'Outfit', sans-serif;
+              font-size: 0.7rem;
+              color: #5c5955;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+            ">Resources</span>
+          </div>
+          <div>
+            <span style="
+              font-family: 'Cormorant Garamond', serif;
+              font-size: 1.5rem;
+              font-weight: 700;
+              color: #7c5cbf;
+              display: block;
+            ">1:1</span>
+            <span style="
+              font-family: 'Outfit', sans-serif;
+              font-size: 0.7rem;
+              color: #5c5955;
+              text-transform: uppercase;
+              letter-spacing: 0.1em;
+            ">Support</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Shop Column -->
+      <div>
+        <h4 style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #ece8e1;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          margin-bottom: 20px;
+        ">Shop</h4>
+        <a href="https://shop.unscarred.site" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">All Products</a>
+        <a href="https://shop.unscarred.site" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#2d8f8f'" onmouseout="this.style.color='#5c5955'">Free Resources</a>
+        <a href="https://shop.unscarred.site" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Programs</a>
+        <a href="https://shop.unscarred.site" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Workbooks</a>
+        <a href="https://shop.unscarred.site" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #b8860b;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#d4a017'" onmouseout="this.style.color='#b8860b'">Bundles</a>
+      </div>
+      
+      <!-- Support Column -->
+      <div>
+        <h4 style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #ece8e1;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          margin-bottom: 20px;
+        ">Support</h4>
+        <a href="https://unscarred.site/coaching.html" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Coaching</a>
+        <a href="https://unscarred.site/text-support.html" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Text Support</a>
+        <a href="https://unscarred.site/calls.html" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Phone Calls</a>
+        <a href="https://calendar.app.google/aySTQmpfSfueAD6V9" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #a33b5c;
+          text-decoration: none;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#c9506e'" onmouseout="this.style.color='#a33b5c'">Book a Call →</a>
+      </div>
+      
+      <!-- Explore Column -->
+      <div>
+        <h4 style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.75rem;
+          font-weight: 700;
+          color: #ece8e1;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          margin-bottom: 20px;
+        ">Explore</h4>
+        <a href="https://unscarred.site" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Main Website</a>
+        <a href="https://unscarred.site/quiz/" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Free Quizzes</a>
+        <a href="https://unscarred.site/blog.html" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">Blog</a>
+        <a href="https://unscarred.site/about.html" style="
+          display: block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #5c5955;
+          text-decoration: none;
+          margin-bottom: 12px;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">About Scar</a>
+      </div>
+    </div>
+    
+    <!-- Disclaimer -->
+    <div style="
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 24px;
+    ">
+      <p style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.8rem;
+        color: #5c5955;
+        text-align: center;
+        line-height: 1.6;
+        max-width: 600px;
+        margin: 0 auto;
+      ">⚠️ This is education, not therapy. These resources are for pattern awareness and personal growth. Please seek professional help for clinical needs.</p>
+    </div>
+    
+    <!-- Bottom Bar -->
+    <div style="
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    ">
+      <p style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.85rem;
+        color: #5c5955;
+        margin: 0;
+      ">© 2025–2026 Unscarred · Scar Kade</p>
+      
+      <div style="display: flex; gap: 24px;">
+        <a href="mailto:hello@unscarred.site" style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.85rem;
+          color: #5c5955;
+          text-decoration: none;
+          transition: color 0.3s;
+        " onmouseover="this.style.color='#9a958c'" onmouseout="this.style.color='#5c5955'">hello@unscarred.site</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Mobile Footer Responsive Fix -->
+<style>
+  @media (max-width: 768px) {
+    #unscarred-footer > div > div:first-child {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 32px !important;
+    }
+    #unscarred-footer > div > div:first-child > div:first-child {
+      grid-column: span 2;
+    }
+  }
+  @media (max-width: 480px) {
+    #unscarred-footer > div > div:first-child {
+      grid-template-columns: 1fr !important;
+    }
+    #unscarred-footer > div > div:first-child > div:first-child {
+      grid-column: span 1;
+    }
+  }
+</style>
+
+<!-- Smooth Scroll -->
+<script>
+  document.documentElement.style.scrollBehavior = 'smooth';
+</script>
+
+<!--
+=== FOOTER END ===
+
+
+====================================================
+SECTION D: OPTIONAL ENHANCEMENTS
+====================================================
+These are additional code snippets you can use to customize
+specific aspects of your store.
+
+D1. FEATURED PRODUCTS BANNER
+Add this AFTER your main header code if you want to highlight
+specific products at the top of your store.
+-->
+
+<!-- Featured Products Showcase (Optional - add to header) -->
+<div id="featured-showcase" style="
+  background: linear-gradient(165deg, rgba(163, 59, 92, 0.08) 0%, rgba(124, 92, 191, 0.05) 50%, transparent 100%);
+  padding: 60px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <!-- Section Label -->
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span style="
+        font-family: 'Outfit', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: #c9763d;
+        display: block;
+        margin-bottom: 8px;
+      ">Most Popular</span>
+      <h2 style="
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-size: 1.8rem;
+        font-weight: 600;
+        font-style: italic;
+        color: #ece8e1;
+        margin: 0;
+      ">Where people start</h2>
+    </div>
+    
+    <!-- Featured Cards Grid -->
+    <div style="
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    ">
+      <!-- Card 1: Free Resource -->
+      <a href="https://shop.unscarred.site/product/crisis-toolkit" style="
+        background: linear-gradient(165deg, rgba(45, 143, 143, 0.15) 0%, rgba(12, 11, 16, 0.95) 100%);
+        border: 1px solid rgba(45, 143, 143, 0.25);
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: block;
+      " onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+        <span style="
+          display: inline-block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.6rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #2d8f8f;
+          background: rgba(45, 143, 143, 0.2);
+          padding: 4px 12px;
+          border-radius: 999px;
+          margin-bottom: 16px;
+        ">Free Download</span>
+        <h3 style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.3rem;
+          font-weight: 600;
+          font-style: italic;
+          color: #ece8e1;
+          margin: 0 0 8px;
+        ">Crisis Toolkit</h3>
+        <p style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.85rem;
+          color: #9a958c;
+          line-height: 1.5;
+          margin: 0;
+        ">Emergency regulation techniques when everything feels overwhelming.</p>
+      </a>
+      
+      <!-- Card 2: Program -->
+      <a href="https://shop.unscarred.site/product/anxious-healing" style="
+        background: linear-gradient(165deg, rgba(163, 59, 92, 0.12) 0%, rgba(12, 11, 16, 0.95) 100%);
+        border: 1px solid rgba(163, 59, 92, 0.2);
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: block;
+      " onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+        <span style="
+          display: inline-block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.6rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #a33b5c;
+          background: rgba(163, 59, 92, 0.15);
+          padding: 4px 12px;
+          border-radius: 999px;
+          margin-bottom: 16px;
+        ">4-Week Program</span>
+        <h3 style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.3rem;
+          font-weight: 600;
+          font-style: italic;
+          color: #ece8e1;
+          margin: 0 0 8px;
+        ">Anxious Healing</h3>
+        <p style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.85rem;
+          color: #9a958c;
+          line-height: 1.5;
+          margin: 0;
+        ">Calm body. Clean asks. Steady connection you can feel.</p>
+      </a>
+      
+      <!-- Card 3: Bundle -->
+      <a href="https://shop.unscarred.site/product/survivor-bundle" style="
+        background: linear-gradient(165deg, rgba(184, 134, 11, 0.12) 0%, rgba(12, 11, 16, 0.95) 100%);
+        border: 1px solid rgba(184, 134, 11, 0.2);
+        border-radius: 20px;
+        padding: 28px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: block;
+      " onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 20px 40px rgba(0,0,0,0.3)'" onmouseout="this.style.transform='none'; this.style.boxShadow='none'">
+        <span style="
+          display: inline-block;
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.6rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          color: #b8860b;
+          background: rgba(184, 134, 11, 0.15);
+          padding: 4px 12px;
+          border-radius: 999px;
+          margin-bottom: 16px;
+        ">Save 50%</span>
+        <h3 style="
+          font-family: 'Cormorant Garamond', Georgia, serif;
+          font-size: 1.3rem;
+          font-weight: 600;
+          font-style: italic;
+          color: #ece8e1;
+          margin: 0 0 8px;
+        ">Survivor Type Bundle</h3>
+        <p style="
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.85rem;
+          color: #9a958c;
+          line-height: 1.5;
+          margin: 0;
+        ">All 6 survivor type workbooks. Understand your defense patterns.</p>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Featured Showcase Fix -->
+<style>
+  @media (max-width: 900px) {
+    #featured-showcase > div > div:last-child {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>
+
+<!--
+====================================================
+D2. PROMOTIONAL BANNER
+Add this to highlight sales, new products, or special offers.
+Place in Header Code below the trust bar.
+====================================================
+-->
+
+<!-- Promotional Banner (Optional) -->
+<div id="promo-banner" style="
+  background: linear-gradient(90deg, rgba(163, 59, 92, 0.2) 0%, rgba(124, 92, 191, 0.15) 50%, rgba(163, 59, 92, 0.2) 100%);
+  border-bottom: 1px solid rgba(163, 59, 92, 0.2);
+  padding: 14px 24px;
+  text-align: center;
+">
+  <p style="
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: #ece8e1;
+    margin: 0;
+  ">🔥 <strong style="color: #a33b5c;">New Year Sale:</strong> Use code <code style="background: rgba(163,59,92,0.2); padding: 2px 8px; border-radius: 4px; font-family: monospace; color: #c9506e;">HEAL2026</code> for 20% off all programs</p>
+</div>
+
+<!--
+====================================================
+INSTALLATION CHECKLIST
+====================================================
+
+[ ] 1. Copy HEADER CODE (Section A) to:
+       Settings > Store Settings > Custom Code > Header Code
+
+[ ] 2. Copy CUSTOM CSS (Section B - the <style> contents only) to:
+       Settings > Store Settings > Custom CSS
+       (Remove the <style> tags, just paste the CSS)
+
+[ ] 3. Copy FOOTER CODE (Section C) to:
+       Settings > Store Settings > Custom Code > Footer Code
+
+[ ] 4. (Optional) Add FEATURED SHOWCASE (Section D1) to Header Code
+       after the trust bar section
+
+[ ] 5. (Optional) Add PROMO BANNER (Section D2) when running sales
+
+[ ] 6. Preview store and adjust any colors if needed
+
+[ ] 7. Test on mobile devices
+
+====================================================
+COLOR CUSTOMIZATION REFERENCE
+====================================================
+
+To change any color, search for these hex codes:
+
+Primary Rose:       #a33b5c  (main accent)
+Primary Light:      #c9506e  (hover states)
+Secondary Purple:   #7c5cbf  (programs, alt accent)
+Accent Orange:      #c9763d  (labels, badges)
+Teal:               #2d8f8f  (free items, success)
+Gold:               #b8860b  (bundles, premium)
+
+Background Dark:    #050507  (deepest)
+Background Deep:    #0a0a0f  (surfaces)
+
+Text Main:          #ece8e1  (headlines)
+Text Soft:          #9a958c  (body)
+Text Dim:           #5c5955  (footer, muted)
+
+====================================================
+-->
+
