@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Contact | Unscarred</title>
+  <meta name="description" content="Get in touch. Questions about coaching, programs, or just need to know where to start.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-void: #050507;
+      --bg-deep: #0a0a0f;
+      --card-glass: rgba(12, 12, 18, 0.85);
+      --primary: #a33b5c;
+      --primary-glow: rgba(163, 59, 92, 0.4);
+      --secondary: #7c5cbf;
+      --secondary-glow: rgba(124, 92, 191, 0.3);
+      --accent: #c9763d;
+      --teal: #2d8f8f;
+      --sage: #7d9a8c;
+      --sage-glow: rgba(125, 154, 140, 0.3);
+      --gold: #b8860b;
+      --text-main: #ece8e1;
+      --text-soft: #9a958c;
+      --text-dim: #7a7670;
+      --border-glass: rgba(255,255,255,0.06);
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Outfit', system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-void);
+      color: var(--text-main);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: 
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(124, 92, 191, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 60% 40% at 80% 60%, rgba(125, 154, 140, 0.08) 0%, transparent 40%),
+        radial-gradient(ellipse 50% 50% at 20% 80%, rgba(163, 59, 92, 0.06) 0%, transparent 40%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 20px 0;
+      background: rgba(5, 5, 7, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .logo span { color: var(--sage); }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-soft);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover { color: var(--text-main); }
+
+    /* Dropdown */
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > a { display: flex; align-items: center; gap: 4px; }
+    .nav-dropdown > a::after { content: "▾"; font-size: 10px; opacity: 0.6; }
+    .dropdown-menu {
+      position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+      min-width: 180px; background: rgba(12, 12, 18, 0.98); backdrop-filter: blur(20px);
+      border: 1px solid var(--border-glass); border-radius: 12px; padding: 8px 0;
+      opacity: 0; visibility: hidden; transition: all 0.2s ease; margin-top: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .dropdown-menu::before { content: ""; position: absolute; top: -12px; left: 0; right: 0; height: 12px; }
+    .nav-dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; }
+    .dropdown-menu a { display: block; padding: 10px 20px; font-size: 13px; color: var(--text-soft); text-decoration: none; transition: all 0.2s ease; }
+    .dropdown-menu a:hover { background: rgba(255,255,255,0.05); color: var(--text-main); }
+
+    .nav-war {
+      color: var(--accent) !important;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Mobile Navigation */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+      z-index: 1001;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-main);
+      margin: 5px 0;
+      transition: all 0.3s ease;
+      border-radius: 2px;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle { display: block; }
+      nav {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: rgba(10, 10, 15, 0.98);
+        backdrop-filter: blur(20px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        transition: right 0.3s ease;
+        border-left: 1px solid var(--border-glass);
+      }
+      nav.active { right: 0; }
+      nav a { font-size: 1.1rem; }
+    }
+
+    /* Hero */
+    .hero {
+      padding: 160px 0 60px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--secondary);
+      padding: 10px 20px;
+      background: rgba(124, 92, 191, 0.12);
+      border-radius: 999px;
+      border: 1px solid rgba(124, 92, 191, 0.25);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 600;
+      font-style: italic;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em { 
+      color: var(--secondary); 
+      font-style: italic; 
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: var(--text-soft);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Form */
+    .form-section {
+      padding: 40px 0 80px;
+    }
+
+    .contact-form {
+      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-soft);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 14px 18px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary);
+      box-shadow: 0 0 0 3px var(--secondary-glow);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .form-group select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239a958c' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+    }
+
+    .form-group select option {
+      background: #0a0a0f;
+      color: var(--text-main);
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 16px 40px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary), #5a3d9e);
+      color: white;
+      box-shadow: 0 8px 30px var(--secondary-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px var(--secondary-glow);
+    }
+
+    /* Success message */
+    .success-message {
+      text-align: center;
+      padding: 60px 40px;
+      display: none;
+    }
+
+    .success-message.active {
+      display: block;
+    }
+
+    .success-message h2 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-style: italic;
+      margin-bottom: 16px;
+      color: var(--sage);
+    }
+
+    .success-message p {
+      color: var(--text-soft);
+      margin-bottom: 24px;
+    }
+
+    /* Other ways */
+    .other-ways {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .other-ways h3 {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      margin-bottom: 24px;
+    }
+
+    .ways-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 500px) {
+      .ways-grid { grid-template-columns: 1fr; }
+    }
+
+    .way-card {
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border-glass);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .way-card:hover {
+      border-color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .way-card__icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .way-card h4 {
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .way-card p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-dim);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border-glass);
+    }
+
+    footer a {
+      color: var(--text-soft);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text-main); }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <a href="/index.html" class="logo">un<span>scarred</span></a>
+      <button class="nav-toggle" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav id="main-nav">
+        <a href="/programs.html">Programs</a>
+        <a href="/quiz/">Quizzes</a>
+        <a href="/learn.html">Learn</a>
+        <a href="/shop.html">Shop</a>
+        <a href="/coaching.html">Coaching</a>
+        <a href="/blog.html">Blog</a>
+        <div class="nav-dropdown">
+          <a href="/about.html">About</a>
+          <div class="dropdown-menu">
+            <a href="/about.html">About Me</a>
+            <a href="/how-i-work.html">How I Work</a>
+            <a href="/start.html">Start Here</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/boundaries.html">Boundaries</a>
+          </div>
+        </div>
+        <a href="/war/quizzes.html" class="nav-war">⚔️ War Path</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero-badge">✉️ Get in Touch</div>
+      <h1>Let's <em>connect</em></h1>
+      <p class="hero-sub">Questions about coaching, programs, or where to start? I read every message.</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <section class="form-section">
+      <div class="contact-form" id="formContainer">
+        <!-- Netlify Forms: just add data-netlify="true" -->
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="contactForm">
+          <input type="hidden" name="form-name" value="contact">
+          
+          <!-- Honeypot for spam -->
+          <p class="hidden">
+            <label>Don't fill this out: <input name="bot-field"></label>
+          </p>
+
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required placeholder="What should I call you?">
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="Where can I reach you?">
+          </div>
+
+          <div class="form-group">
+            <label for="topic">What's this about?</label>
+            <select id="topic" name="topic" required>
+              <option value="">Select a topic...</option>
+              <option value="coaching">Coaching inquiry</option>
+              <option value="programs">Question about programs</option>
+              <option value="where-to-start">Not sure where to start</option>
+              <option value="collaboration">Collaboration / Partnership</option>
+              <option value="feedback">Feedback or suggestion</option>
+              <option value="other">Something else</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" required placeholder="What's on your mind? No need to have it all figured out."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send Message →</button>
+        </form>
+
+        <div class="success-message" id="successMessage">
+          <h2>Message sent ✓</h2>
+          <p>I'll get back to you within 24-48 hours. In the meantime, you might find answers in the <a href="/faq.html" style="color: var(--secondary);">FAQ</a>.</p>
+          <a href="/index.html" class="btn btn-primary" style="width: auto; display: inline-block;">Back to Home</a>
+        </div>
+      </div>
+
+      <div class="other-ways">
+        <h3>Other ways to connect</h3>
+        <div class="ways-grid">
+          <a href="/coaching.html" class="way-card">
+            <div class="way-card__icon">📞</div>
+            <h4>Book a Call</h4>
+            <p>Schedule a coaching session directly</p>
+          </a>
+          <a href="/quiz/" class="way-card">
+            <div class="way-card__icon">🎯</div>
+            <h4>Take a Quiz</h4>
+            <p>Find your starting point</p>
+          </a>
+          <a href="/start.html" class="way-card">
+            <div class="way-card__icon">🧭</div>
+            <h4>Start Here</h4>
+            <p>Guided path to begin</p>
+          </a>
+          <a href="/faq.html" class="way-card">
+            <div class="way-card__icon">❓</div>
+            <h4>FAQ</h4>
+            <p>Common questions answered</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-links">
+        <a href="/index.html">Home</a>
+        <a href="/start.html">Start Here</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/boundaries.html">Boundaries</a>
+      </div>
+      <p>© 2025 Unscarred. Your patterns are not your fault. Learning them is your power.</p>
+    </div>
+  </footer>
+
+<script>
+// Form submission handling
+const form = document.getElementById('contactForm');
+const formContainer = document.getElementById('formContainer');
+const successMessage = document.getElementById('successMessage');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const formData = new FormData(form);
+  
+  try {
+    const response = await fetch('/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams(formData).toString()
+    });
+    
+    if (response.ok) {
+      form.style.display = 'none';
+      successMessage.classList.add('active');
+    }
+  } catch (error) {
+    // Fallback: let the form submit normally
+    form.submit();
+  }
+});
+
+// Mobile nav toggle
+const toggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('main-nav');
+
+if (toggle && nav) {
+  toggle.addEventListener('click', function() {
+    nav.classList.toggle('active');
+    toggle.classList.toggle('active');
+  });
+}
+</script>
+
+<script id="unscarredRootRewriter">
+(function(){
+  if(window.location.protocol !== "file:") return;
+  var path = window.location.pathname.replace(/\\/g,"/");
+  var match = path.toLowerCase().match(/^(.*\/unscarred-complete-site\/)/);
+  var root = match ? match[1] : null;
+  if(!root) return;
+  var afterRoot = path.slice(root.length);
+  var depth = afterRoot.split('/').filter(Boolean).length - 1;
+  var prefix = depth > 0 ? new Array(depth + 1).join('../') : '';
+  document.querySelectorAll('a[href^="/"]').forEach(function(a){
+    var href = a.getAttribute('href');
+    if(!href || href.startsWith('//')) return;
+    a.setAttribute('href', prefix + href.replace(/^\//,''));
+  });
+})();
+</script>
+
+</body>
+</html>
+

@@ -644,6 +644,85 @@
       color: var(--text-main);
     }
 
+    /* Save Results */
+    .result-save {
+      margin: 32px 0;
+    }
+
+    .save-box {
+      background: linear-gradient(135deg, rgba(124, 92, 191, 0.15), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(124, 92, 191, 0.25);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      text-align: center;
+    }
+
+    .save-box h4 {
+      font-size: 1rem;
+      margin-bottom: 8px;
+      color: var(--text-main);
+    }
+
+    .save-box > p {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .save-inputs {
+      display: flex;
+      gap: 8px;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .save-inputs input {
+      flex: 1;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.3);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      color: var(--text-main);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+    }
+
+    .save-inputs input:focus {
+      outline: none;
+      border-color: rgba(124, 92, 191, 0.5);
+    }
+
+    .save-inputs button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #7c5cbf, #5a3d9e);
+      border: none;
+      border-radius: 999px;
+      color: white;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .save-inputs button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(124, 92, 191, 0.3);
+    }
+
+    .save-success p {
+      color: var(--sage);
+      font-weight: 500;
+    }
+
+    @media (max-width: 500px) {
+      .save-inputs {
+        flex-direction: column;
+      }
+      .save-inputs button {
+        width: 100%;
+      }
+    }
+
     .result-footer {
       text-align: center;
       padding: 24px;
@@ -1579,11 +1658,57 @@
           <a href="${cluster.secondaryCTA.url}" class="cta-btn cta-btn--secondary">${cluster.secondaryCTA.text}</a>
         </div>
 
+        <div class="result-save">
+          <div class="save-box" id="saveBox">
+            <h4>📧 Save your results</h4>
+            <p>Get a copy emailed to you (plus personalized next steps)</p>
+            <form name="quiz-results" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="save-form" id="saveForm">
+              <input type="hidden" name="form-name" value="quiz-results">
+              <input type="hidden" name="quiz" value="Mirror Quiz">
+              <input type="hidden" name="result-cluster" value="${cluster.name}">
+              <input type="hidden" name="result-war" value="${labelWar(r.topWar[0])}">
+              <input type="hidden" name="result-mask" value="${labelMask(r.topMask[0])}">
+              <input type="hidden" name="result-attach" value="${labelAttach(r.topAttach[0])}">
+              <input type="hidden" name="result-partner" value="${labelPartner(r.topPartner[0])}">
+              <input type="hidden" name="result-neuro" value="${labelNeuro(r.topNeuro[0])}">
+              <p style="display:none"><input name="bot-field"></p>
+              <div class="save-inputs">
+                <input type="email" name="email" placeholder="Your email" required>
+                <button type="submit">Send →</button>
+              </div>
+            </form>
+            <div class="save-success" id="saveSuccess" style="display:none;">
+              <p>✓ Sent! Check your inbox.</p>
+            </div>
+          </div>
+        </div>
+
         <div class="result-footer">
           <p>Your pattern is not your fault. Healing it is your power.</p>
           <a href="../index.html" class="back-link">← Back to Home</a>
         </div>
       `;
+
+      // Handle save form submission
+      const saveForm = document.getElementById('saveForm');
+      const saveSuccess = document.getElementById('saveSuccess');
+      if (saveForm) {
+        saveForm.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const formData = new FormData(saveForm);
+          try {
+            await fetch('/', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+              body: new URLSearchParams(formData).toString()
+            });
+            saveForm.style.display = 'none';
+            saveSuccess.style.display = 'block';
+          } catch (err) {
+            saveForm.submit();
+          }
+        });
+      }
     }
   </script>
 <script id="unscarredRootRewriter">

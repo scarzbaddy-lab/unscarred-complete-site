@@ -401,6 +401,16 @@
     .program-card__image {
       height: 160px;
       position: relative;
+      overflow: hidden;
+    }
+
+    .program-card__image img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .program-card__badge {
@@ -708,7 +718,7 @@
       <div class="program-grid">
         <a href="program/anxious-healing.html" class="program-card">
           <div class="program-card__image" style="background: linear-gradient(135deg, rgba(163, 59, 92, 0.3), rgba(232, 165, 171, 0.2));">
-            <img src="thumbnails/thumb-anxious-healing.svg" alt="Anxious Healing Program" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="thumbnails/thumb-anxious-healing.svg" alt="Anxious Healing Program">
             <span class="program-card__badge">Anxious</span>
           </div>
           <div class="program-card__content">
@@ -720,7 +730,7 @@
 
         <a href="program/centered-man.html" class="program-card">
           <div class="program-card__image" style="background: linear-gradient(135deg, rgba(92, 125, 138, 0.3), rgba(125, 156, 132, 0.2));">
-            <img src="thumbnails/thumb-centered-man.svg" alt="Centered Man Blueprint" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="thumbnails/thumb-centered-man.svg" alt="Centered Man Blueprint">
             <span class="program-card__badge">Men</span>
           </div>
           <div class="program-card__content">
@@ -732,7 +742,7 @@
 
         <a href="program/centered-woman.html" class="program-card">
           <div class="program-card__image" style="background: linear-gradient(135deg, rgba(196, 97, 108, 0.3), rgba(163, 59, 92, 0.2));">
-            <img src="thumbnails/thumb-centered-woman.svg" alt="Centered Woman Blueprint" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="thumbnails/thumb-centered-woman.svg" alt="Centered Woman Blueprint">
             <span class="program-card__badge">Women</span>
           </div>
           <div class="program-card__content">
