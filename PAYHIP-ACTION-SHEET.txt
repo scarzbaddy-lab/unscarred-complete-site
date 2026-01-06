@@ -1,0 +1,584 @@
+====================================================
+PAYHIP ACTION SHEET - EVERYTHING IN ONE PLACE
+====================================================
+Unscarred | Scar Kade
+Last Updated: January 5, 2026
+Your Store: https://shop.unscarred.site
+
+Print this. Check things off as you go.
+
+====================================================
+PART 1: STORE SETUP (15 minutes)
+====================================================
+
+[ ] 1. Log into Payhip: https://payhip.com/auth/login
+
+[ ] 2. Settings > Store Settings:
+       - Store Name: Unscarred
+       - Tagline: Pattern support for the ones who feel too much and see too clearly.
+
+[ ] 3. Settings > Custom CSS:
+       - Open PAYHIP-CUSTOM-CSS.txt
+       - Copy ALL contents
+       - Paste into Custom CSS field
+       - Save
+
+[ ] 4. Settings > Custom Code > Header:
+       - Open PAYHIP-CODE-INJECTION.txt
+       - Copy HEADER CODE section
+       - Paste and Save
+
+[ ] 5. Settings > Custom Code > Footer:
+       - Open PAYHIP-CODE-INJECTION.txt
+       - Copy FOOTER CODE section
+       - Paste and Save
+
+[ ] 6. Settings > Payment Settings:
+       - Connect PayPal or Stripe
+       - Set payout preferences
+
+[ ] 7. Create Categories (Products > Categories):
+       [ ] Free Resources
+       [ ] Programs
+       [ ] Workbooks
+       [ ] Scripts & Tools
+       [ ] Survivor Types
+       [ ] Coaching
+       [ ] Translation
+       [ ] Pattern Tracking
+       [ ] Text Support
+       [ ] Bundles
+
+
+====================================================
+PART 2: CONVERT THUMBNAILS (10 minutes)
+====================================================
+
+Your thumbnails are SVG format. Payhip needs PNG.
+
+[ ] Option A: Run PowerShell script
+    - Open PowerShell in project folder
+    - Run: .\convert-thumbnails.ps1
+
+[ ] Option B: Use online converter
+    - Go to: https://cloudconvert.com/svg-to-png
+    - Batch upload all SVG files from thumbnails folder
+    - Download PNGs
+
+[ ] Option C: Convert in Canva (one by one if needed)
+
+
+====================================================
+PART 3: ALL PRODUCTS TO CREATE
+====================================================
+
+For EACH product below:
+1. Click "Add Product" in Payhip
+2. Set product type, name, price, URL slug
+3. Copy description from PAYHIP-PRODUCT-DESCRIPTIONS.txt
+4. Upload file (PDF/DOCX from your OneDrive)
+5. Upload thumbnail PNG
+6. Set category
+7. Publish
+
+----------------------------------------------------
+FREE PRODUCTS (Create these first - lead magnets!)
+----------------------------------------------------
+
+[ ] CRISIS TOOLKIT
+    Type: Digital Download
+    Price: $0 (Free)
+    Slug: crisis-toolkit
+    Category: Free Resources
+    Thumbnail: thumb-crisis-toolkit.png
+    IMPORTANT: Enable "Require email for download" = YES
+
+[ ] PATTERN TRACKING GUIDE
+    Type: Digital Download
+    Price: $0 (Free)
+    Slug: pattern-tracking-guide
+    Category: Free Resources
+    Thumbnail: thumb-pattern-tracking-guide.png
+    IMPORTANT: Enable "Require email for download" = YES
+
+----------------------------------------------------
+PROGRAMS (6 products)
+----------------------------------------------------
+
+[ ] ANXIOUS HEALING PROGRAM
+    Type: Digital Download (or Course if adding video)
+    Price: $147
+    Slug: anxious-healing
+    Category: Programs
+    Thumbnail: thumb-anxious-healing.png
+    File: Program content PDF/videos
+
+[ ] AVOIDANT HEALING PROGRAM
+    Type: Digital Download
+    Price: $197
+    Slug: avoidant-healing
+    Category: Programs
+    Thumbnail: thumb-avoidant-healing.png
+
+[ ] FEARFUL-AVOIDANT TRACK
+    Type: Digital Download
+    Price: $247
+    Slug: fearful-avoidant
+    Category: Programs
+    Thumbnail: thumb-fearful-avoidant.png
+
+[ ] BREAK THE TRAUMA BOND
+    Type: Digital Download
+    Price: $47
+    Slug: break-trauma-bond
+    Category: Programs
+    Thumbnail: thumb-break-trauma-bond.png
+
+[ ] CENTERED MAN BLUEPRINT
+    Type: Digital Download
+    Price: $197
+    Slug: centered-man
+    Category: Programs
+    Thumbnail: thumb-centered-man.png
+
+[ ] CENTERED WOMAN BLUEPRINT
+    Type: Digital Download
+    Price: $197
+    Slug: centered-woman
+    Category: Programs
+    Thumbnail: thumb-centered-woman.png
+
+----------------------------------------------------
+WORKBOOKS (7 products)
+----------------------------------------------------
+
+[ ] BPD HEALING WORKBOOK
+    Type: Digital Download
+    Price: $37
+    Slug: bpd-healing
+    Category: Workbooks
+    Thumbnail: thumb-bpd-healing.png
+    File: BPD_Healing_Workbook.pdf
+
+[ ] REGULATION WORKBOOK
+    Type: Digital Download
+    Price: $37
+    Slug: regulation-workbook
+    Category: Workbooks
+    Thumbnail: thumb-regulation-workbook.png
+    File: Unscarred_The_Regulation_Workbook_Edition_2.pptx
+
+[ ] COMING HOME WORKBOOK
+    Type: Digital Download
+    Price: $37
+    Slug: coming-home
+    Category: Workbooks
+    Thumbnail: thumb-coming-home.png
+    File: coming_home_workbook.pdf
+
+[ ] CONFLICT SCRIPTS PACK
+    Type: Digital Download
+    Price: $29
+    Slug: conflict-scripts
+    Category: Scripts & Tools
+    Thumbnail: thumb-conflict-scripts.png
+
+[ ] FA MICRO-DRILLS
+    Type: Digital Download
+    Price: $37
+    Slug: fa-drills
+    Category: Scripts & Tools
+    Thumbnail: thumb-fa-drills.png
+
+[ ] DATE BETTER TOOLKIT
+    Type: Digital Download
+    Price: $33
+    Slug: date-better
+    Category: Scripts & Tools
+    Thumbnail: thumb-date-better.png
+
+[ ] COUPLE REPAIR WORKBOOK
+    Type: Digital Download
+    Price: $37
+    Slug: couple-repair-workbook
+    Category: Workbooks
+    Thumbnail: thumb-couple-repair-workbook.png
+    File: Couple Repair Workbook PDF
+
+----------------------------------------------------
+SURVIVOR TYPE WORKBOOKS (7 products)
+----------------------------------------------------
+
+[ ] FIXER WORKBOOK
+    Type: Digital Download
+    Price: $15
+    Slug: fixer-workbook
+    Category: Survivor Types
+    Thumbnail: thumb-fixer-workbook.png
+    File: The_Fixer_Workbook.docx
+
+[ ] ANALYZER WORKBOOK
+    Type: Digital Download
+    Price: $15
+    Slug: analyzer-workbook
+    Category: Survivor Types
+    Thumbnail: thumb-analyzer-workbook.png
+    File: Unscarred_Analyzer_Complete_Workbook2.docx
+
+[ ] CHAMELEON WORKBOOK
+    Type: Digital Download
+    Price: $15
+    Slug: chameleon-workbook
+    Category: Survivor Types
+    Thumbnail: thumb-chameleon-workbook.png
+    File: Unscarred_Chameleon_Complete_Workbook.docx
+
+[ ] PERFORMER WORKBOOK
+    Type: Digital Download
+    Price: $15
+    Slug: performer-workbook
+    Category: Survivor Types
+    Thumbnail: thumb-performer-workbook.png
+    File: Unscarred_Performer_Complete_Workbook.docx
+
+[ ] VANISHER WORKBOOK
+    Type: Digital Download
+    Price: $15
+    Slug: vanisher-workbook
+    Category: Survivor Types
+    Thumbnail: thumb-vanisher-workbook.png
+    File: Unscarred_Vanisher_Complete_Workbook.docx
+
+[ ] WARRIOR WORKBOOK
+    Type: Digital Download
+    Price: $15
+    Slug: warrior-workbook
+    Category: Survivor Types
+    Thumbnail: thumb-warrior-workbook.png
+    File: Unscarred_Warrior_Complete_Workbook.docx
+
+[ ] SURVIVOR TYPE BUNDLE (All 6)
+    Type: Digital Download
+    Price: $47
+    Slug: survivor-bundle
+    Category: Bundles
+    Thumbnail: thumb-survivor-bundle.png
+    File: Upload ALL 6 workbooks together
+
+----------------------------------------------------
+COACHING PRODUCTS (8 products)
+----------------------------------------------------
+
+NOTE: For coaching products, you deliver a "booking instructions" PDF
+with your calendar link: https://calendar.app.google/aySTQmpfSfueAD6V9
+
+[ ] NPD COACHING - SINGLE SESSION
+    Type: Digital Download
+    Price: $67
+    Slug: npd-coach-single
+    Category: Coaching
+    Thumbnail: thumb-npd-coach-single.png
+    Deliver: Booking instructions PDF with calendar link
+
+[ ] NPD COACHING - 4-SESSION BUNDLE
+    Type: Digital Download
+    Price: $227
+    Slug: npd-coach-bundle
+    Category: Coaching
+    Thumbnail: thumb-npd-coach-bundle.png
+
+[ ] BPD COACHING - SINGLE SESSION
+    Type: Digital Download
+    Price: $67
+    Slug: bpd-coach-single
+    Category: Coaching
+    Thumbnail: thumb-bpd-coach-single.png
+
+[ ] BPD COACHING - 4-SESSION BUNDLE
+    Type: Digital Download
+    Price: $227
+    Slug: bpd-coach-bundle
+    Category: Coaching
+    Thumbnail: thumb-bpd-coach-bundle.png
+
+[ ] ADHD BODY DOUBLING
+    Type: Digital Download
+    Price: $17
+    Slug: adhd-body-doubling
+    Category: Coaching
+    Thumbnail: thumb-adhd-body-doubling.png
+
+[ ] ADHD COACHING - SINGLE SESSION
+    Type: Digital Download
+    Price: $57
+    Slug: adhd-coach-single
+    Category: Coaching
+    Thumbnail: thumb-adhd-coach-single.png
+
+[ ] ADHD MONTHLY ACCOUNTABILITY
+    Type: Digital Download
+    Price: $147
+    Slug: adhd-monthly
+    Category: Coaching
+    Thumbnail: thumb-adhd-monthly.png
+
+----------------------------------------------------
+TRANSLATION SESSIONS (4 products)
+----------------------------------------------------
+
+[ ] COUPLES TRANSLATION
+    Type: Digital Download
+    Price: $97
+    Slug: couples-translation
+    Category: Translation
+    Thumbnail: thumb-couples-translation.png
+
+[ ] PARENT-CHILD TRANSLATION
+    Type: Digital Download
+    Price: $87
+    Slug: parent-child-translation
+    Category: Translation
+    Thumbnail: thumb-parent-child.png
+
+[ ] SIBLING TRANSLATION
+    Type: Digital Download
+    Price: $87
+    Slug: sibling-translation
+    Category: Translation
+    Thumbnail: thumb-sibling.png
+
+[ ] RELATIONSHIP TRANSLATION
+    Type: Digital Download
+    Price: $87
+    Slug: relationship-translation
+    Category: Translation
+    Thumbnail: thumb-relationship-translation.png
+
+----------------------------------------------------
+PATTERN TRACKING SESSIONS (3 products)
+----------------------------------------------------
+
+[ ] PATTERN TRACKING SESSION
+    Type: Digital Download
+    Price: $47
+    Slug: pattern-tracking-single
+    Category: Pattern Tracking
+    Thumbnail: thumb-pattern-tracking-single.png
+
+[ ] PATTERN TRACKING BUNDLE (4 Sessions)
+    Type: Digital Download
+    Price: $157
+    Slug: pattern-tracking-bundle
+    Category: Pattern Tracking
+    Thumbnail: thumb-pattern-tracking-bundle.png
+
+[ ] WEEKLY PATTERN REVIEW (Monthly)
+    Type: Digital Download
+    Price: $127
+    Slug: pattern-tracking-weekly
+    Category: Pattern Tracking
+    Thumbnail: thumb-pattern-tracking-weekly.png
+
+----------------------------------------------------
+TEXT SUPPORT (5 products)
+----------------------------------------------------
+
+[ ] SCREENSHOT REVIEW
+    Type: Digital Download
+    Price: $33
+    Slug: screenshot-review
+    Category: Text Support
+    Thumbnail: thumb-screenshot-review.png
+
+[ ] CRISIS WEEK (7 Days)
+    Type: Digital Download
+    Price: $27
+    Slug: crisis-week
+    Category: Text Support
+    Thumbnail: thumb-crisis-week.png
+
+[ ] PATTERN INTERRUPT (14 Days)
+    Type: Digital Download
+    Price: $47
+    Slug: pattern-interrupt
+    Category: Text Support
+    Thumbnail: thumb-pattern-interrupt.png
+
+[ ] BEST FRIEND MODE (30 Days)
+    Type: Digital Download
+    Price: $127
+    Slug: best-friend-mode
+    Category: Text Support
+    Thumbnail: thumb-best-friend.png
+
+[ ] VIP INTENSIVE (Monthly)
+    Type: Digital Download
+    Price: $197
+    Slug: vip-intensive
+    Category: Text Support
+    Thumbnail: thumb-vip-intensive.png
+
+----------------------------------------------------
+PHONE CALLS (4 products)
+----------------------------------------------------
+
+[ ] 30-MINUTE CHECK-IN
+    Type: Digital Download
+    Price: $27
+    Slug: 30min-checkin
+    Category: Coaching
+    Thumbnail: thumb-30min-checkin.png
+
+[ ] SINGLE CALL (60 min)
+    Type: Digital Download
+    Price: $47
+    Slug: single-call
+    Category: Coaching
+    Thumbnail: thumb-single-call.png
+
+[ ] 2-CALL STARTER
+    Type: Digital Download
+    Price: $87
+    Slug: 2call-starter
+    Category: Coaching
+    Thumbnail: thumb-2call-starter.png
+
+[ ] 4-CALL BUNDLE
+    Type: Digital Download
+    Price: $147
+    Slug: 4call-bundle
+    Category: Coaching
+    Thumbnail: thumb-4call-bundle.png
+
+----------------------------------------------------
+BIG BUNDLES (2 products)
+----------------------------------------------------
+
+[ ] COMPLETE WORKBOOK BUNDLE
+    Type: Digital Download
+    Price: $97
+    Slug: complete-bundle
+    Category: Bundles
+    Thumbnail: thumb-complete-bundle.png
+    File: ALL workbooks in one ZIP
+
+[ ] ALL PROGRAMS BUNDLE
+    Type: Digital Download
+    Price: $497
+    Slug: all-programs
+    Category: Bundles
+    Thumbnail: thumb-all-programs.png
+    File: ALL programs + workbooks in one ZIP
+
+[ ] COUPLES REPAIR BUNDLE
+    Type: Digital Download
+    Price: $117
+    Slug: couples-repair-bundle
+    Category: Bundles
+    Thumbnail: thumb-couples-repair-bundle.png
+    File: Workbook PDF + Booking instructions
+    NOTE: Includes Couple Repair Workbook + Couples Translation Session
+
+
+====================================================
+PART 4: FINAL SETUP TASKS
+====================================================
+
+[ ] Create booking instructions PDF:
+    Include:
+    - Calendar link: https://calendar.app.google/aySTQmpfSfueAD6V9
+    - How to prepare for call
+    - What to expect
+    - Contact info
+
+[ ] Create text support onboarding PDF:
+    Include:
+    - How to reach you (phone/app)
+    - Response time expectations
+    - What to do in emergency
+    - Ground rules
+
+[ ] Test purchase:
+    - Create 100% off coupon for testing
+    - Buy a free product with test email
+    - Buy a paid product with test coupon
+    - Verify file delivery works
+
+[ ] Preview store on mobile:
+    - Check product cards display
+    - Check checkout works
+    - Check dark theme loads
+
+
+====================================================
+QUICK REFERENCE: PRODUCT COUNT
+====================================================
+
+Free Products:          2
+Programs:               6
+Workbooks:              7 (including Couple Repair)
+Survivor Types:         7 (6 individual + 1 bundle)
+Coaching:               8 (NPD/BPD/ADHD)
+Translation:            4
+Pattern Tracking:       3
+Text Support:           5
+Phone Calls:            4
+Big Bundles:            3 (including Couples Repair Bundle)
+------------------------------------
+TOTAL PRODUCTS:        49
+
+
+====================================================
+YOUR FILES
+====================================================
+
+Descriptions:     PAYHIP-PRODUCT-DESCRIPTIONS.txt
+CSS Styling:      PAYHIP-CUSTOM-CSS.txt
+Code Injection:   PAYHIP-CODE-INJECTION.txt
+Store Setup:      PAYHIP-STORE-SETUP.txt
+URL Reference:    PRODUCT-URL-MAPPING.txt
+Thumbnails:       thumbnails\ folder (convert to PNG)
+
+Workbook Files:
+- C:\Users\unsca\OneDrive\workbook\survivor type workbook\
+- C:\Users\unsca\OneDrive\workbook\
+
+Your Calendar:
+https://calendar.app.google/aySTQmpfSfueAD6V9
+
+
+====================================================
+SUGGESTED ORDER OF OPERATIONS
+====================================================
+
+1. Store setup (Part 1) - 15 min
+2. Convert thumbnails (Part 2) - 10 min
+3. Create FREE products first (lead magnets) - 5 min
+4. Create SURVIVOR TYPE workbooks (already have files) - 30 min
+5. Create OTHER workbooks (already have files) - 20 min
+6. Create COACHING products - 30 min
+7. Create PROGRAMS - 30 min
+8. Create TEXT SUPPORT products - 20 min
+9. Create BUNDLES last - 10 min
+10. Final testing - 15 min
+
+TOTAL TIME: ~3-4 hours (can split into sessions)
+
+Start with what you already have complete files for.
+Add programs as you finalize the content.
+
+
+====================================================
+DONE! 🎉
+====================================================
+
+When all boxes are checked, your Payhip store is live!
+
+After this, update your website links in:
+- shop.html
+- programs.html
+- services.html
+- coaching.html
+
+
+

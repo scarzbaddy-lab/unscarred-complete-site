@@ -483,6 +483,72 @@ For anyone who feels like a stranger in their own life.
 
 ---
 
+----- COUPLE REPAIR WORKBOOK -----
+Name: Couple Repair Workbook
+Price: $37
+Category: Workbooks
+URL Slug: couple-repair-workbook
+Thumbnail: thumb-couple-repair-workbook.svg
+
+SHORT DESCRIPTION:
+Regulate first. Then repair. For couples who want clarity, not blame.
+
+FULL DESCRIPTION:
+This is not a read-once workbook. It's a repair tool.
+
+Use it when things feel off, tense, or confusing.
+Use it after fights.
+Use it before deciding whether to stay or leave.
+
+What's inside:
+
+Section 1: Repair Readiness Check
+• Are we even in a repairable dynamic?
+• Scoring system to assess repair potential
+• The honest question: What are you trying to repair?
+
+Section 2: Nervous System Translation
+• Why anxious and avoidant systems clash
+• Translation exercise for both partners
+• What if neither of you was wrong—just dysregulated?
+
+Section 3: Regulate Before You Talk
+• 90-second reset protocol
+• The rule: No repair happens inside activation
+• How to know when both bodies are settled
+
+Section 4: The Repair Conversation Structure
+• 5-step script for repair (not arguing)
+• Name the moment, name your body state
+• Ask for translation, name the repair
+
+Section 5: What Real Repair Looks Like
+• Acknowledgment + changed behavior + consistency
+• Repair checklist
+• Pattern prompt: Am I staying because repair happens or because I hope it will?
+
+Section 6: Common Repair Blockers
+• Circle what shows up (defensiveness, minimizing, shutting down)
+• Identify recurring patterns
+
+Section 7: When to Pause Repair
+• When repair becomes unsafe
+• Script for pausing without abandoning
+
+Section 8: Viability Check
+• The truth questions
+• Do I feel safer over time? Is repair mutual? Am I growing or shrinking?
+
+Section 9: Closure or Continuation
+• Repair agreement template
+• Clarity statement for closing
+
+Rule of use: No section should be done while either person is dysregulated.
+
+For couples who mean well but keep missing each other—and are ready to see clearly.
+
+---
+
 
 ====================================================
 4. SURVIVOR TYPE WORKBOOKS
@@ -1253,6 +1319,42 @@ After purchase, you'll receive onboarding materials and scheduling access.
 9. BUNDLES
 ====================================================
 
+----- COUPLES REPAIR BUNDLE -----
+Name: Couples Repair Bundle
+Price: $117
+Category: Bundles
+URL Slug: couples-repair-bundle
+Thumbnail: thumb-couples-repair-bundle.svg
+
+SHORT DESCRIPTION:
+Workbook + live session. Complete repair package for couples ready to do the work.
+
+FULL DESCRIPTION:
+The complete couples repair package.
+
+Includes:
+• Couple Repair Workbook ($37) — Work through together before the session
+• Couples Translation Session ($97) — 90-minute live mediation with Scar
+
+How it works:
+1. You both work through the workbook together
+2. Identify where you're stuck
+3. Bring your patterns to the live session
+4. I translate what you're both actually trying to say
+5. You leave with scripts and a shared vocabulary
+
+This bundle is for couples who:
+• Mean well but keep missing each other
+• Are stuck in the same fight on repeat
+• Want clarity, not blame
+• Are both willing to show up and do the work
+
+Save $17 compared to buying separately.
+
+Both partners must be willing to participate.
+
+---
+
 ----- COMPLETE WORKBOOK BUNDLE -----
 Name: Complete Workbook Bundle
 Price: $97
@@ -1332,6 +1434,8 @@ NEXT STEPS:
 6. Mark as complete in PRODUCT-URL-MAPPING.txt
 
 QUESTIONS? DM @unscarred or email hello@unscarred.site
+
+
 
 
 

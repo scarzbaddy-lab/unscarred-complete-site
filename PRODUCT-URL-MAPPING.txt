@@ -50,6 +50,7 @@ Survivor Type Bundle (all 6)    $47      /l/survivor-bundle           [ ] Create
 HEALING WORKBOOKS:
 BPD Healing Workbook            $37      /l/bpd-healing               [ ] Create in Payhip
 Coming Home Workbook            $37      /l/coming-home               [ ] Create in Payhip
+Couple Repair Workbook          $37      /l/couple-repair-workbook    [ ] Create in Payhip
 
 
 ====================================================
@@ -138,6 +139,7 @@ PRODUCT                         PRICE    PAYHIP URL SLUG              STATUS
 ------------------------------------------------------------------------------------------
 Complete Workbook Bundle        $97      /l/complete-bundle           [ ] Create in Payhip
 All Programs Bundle             $497     /l/all-programs              [ ] Create in Payhip
+Couples Repair Bundle           $117     /l/couples-repair-bundle     [ ] Create in Payhip
 
 
 ====================================================

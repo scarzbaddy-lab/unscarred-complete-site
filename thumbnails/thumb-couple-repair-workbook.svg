@@ -1,0 +1,62 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="repairGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#b8860b" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#050507" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="linkGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#a33b5c"/>
+      <stop offset="50%" stop-color="#b8860b"/>
+      <stop offset="100%" stop-color="#7d9a8c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1600" height="900" fill="#050507"/>
+  <rect width="1600" height="900" fill="url(#repairGlow)"/>
+  
+  <!-- Two Circles Connected by Repair Link -->
+  <g transform="translate(800, 340)">
+    <!-- Left person circle -->
+    <circle cx="-180" cy="0" r="80" fill="none" stroke="#a33b5c" stroke-width="3"/>
+    <circle cx="-180" cy="-25" r="25" fill="none" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.6"/>
+    <path d="M-220,30 Q-180,70 -140,30" fill="none" stroke="#a33b5c" stroke-width="2" stroke-opacity="0.6"/>
+    
+    <!-- Right person circle -->
+    <circle cx="180" cy="0" r="80" fill="none" stroke="#7d9a8c" stroke-width="3"/>
+    <circle cx="180" cy="-25" r="25" fill="none" stroke="#7d9a8c" stroke-width="2" stroke-opacity="0.6"/>
+    <path d="M140,30 Q180,70 220,30" fill="none" stroke="#7d9a8c" stroke-width="2" stroke-opacity="0.6"/>
+    
+    <!-- Repair bridge in center -->
+    <line x1="-90" y1="0" x2="90" y2="0" stroke="url(#linkGradient)" stroke-width="4" stroke-linecap="round"/>
+    
+    <!-- Central repair symbol (broken then mended) -->
+    <circle cx="0" cy="0" r="40" fill="#b8860b" fill-opacity="0.15" stroke="#b8860b" stroke-width="2"/>
+    <path d="M-12,-12 L0,0 L-12,12" fill="none" stroke="#b8860b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M12,-12 L0,0 L12,12" fill="none" stroke="#b8860b" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    
+    <!-- Small pulse rings around center -->
+    <circle cx="0" cy="0" r="55" fill="none" stroke="#b8860b" stroke-width="1" stroke-opacity="0.3"/>
+    <circle cx="0" cy="0" r="70" fill="none" stroke="#b8860b" stroke-width="1" stroke-opacity="0.15"/>
+  </g>
+  
+  <!-- Badge -->
+  <rect x="60" y="60" width="180" height="50" rx="25" fill="rgba(184,134,11,0.15)" stroke="rgba(184,134,11,0.4)" stroke-width="1"/>
+  <text x="150" y="95" font-family="Outfit, sans-serif" font-size="20" font-weight="500" fill="#b8860b" text-anchor="middle" letter-spacing="0.1em">WORKBOOK</text>
+  
+  <!-- Price -->
+  <text x="1480" y="100" font-family="Cormorant Garamond, Georgia, serif" font-size="48" font-weight="700" fill="#b8860b" text-anchor="middle">$37</text>
+  
+  <!-- Headline -->
+  <text x="800" y="620" font-family="Cormorant Garamond, Georgia, serif" font-size="76" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Couple Repair</text>
+  <text x="800" y="700" font-family="Cormorant Garamond, Georgia, serif" font-size="56" font-weight="600" font-style="italic" fill="#ece8e1" text-anchor="middle">Workbook</text>
+  
+  <!-- Subtext -->
+  <text x="800" y="780" font-family="Outfit, sans-serif" font-size="28" font-weight="400" fill="#9a958c" text-anchor="middle" letter-spacing="0.12em">REGULATE FIRST. THEN REPAIR.</text>
+  
+  <line x1="600" y1="840" x2="1000" y2="840" stroke="rgba(184,134,11,0.3)" stroke-width="1"/>
+</svg>
+
+
+
+
