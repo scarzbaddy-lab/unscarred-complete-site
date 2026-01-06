@@ -84,11 +84,12 @@
 
     .logo span { color: var(--primary); }
 
+    nav { display: flex; align-items: center; gap: 32px; }
+
     nav a {
       font-size: 14px;
       color: var(--text-soft);
       text-decoration: none;
-      margin-left: 32px;
     }
 
     nav a:hover { color: var(--text-main); }
@@ -145,119 +146,282 @@
       margin: 0 auto;
     }
 
-    /* Blog Grid */
-    .blog-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-      margin: 48px 0;
+    /* Path Cards at Top */
+    .path-selector {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 60px;
     }
 
-    .blog-card {
-      background: linear-gradient(165deg, rgba(20, 18, 25, 0.9), rgba(12, 11, 16, 0.95));
-      border: 1px solid var(--border-glass);
+    @media (max-width: 600px) {
+      .path-selector { grid-template-columns: 1fr; }
+    }
+
+    .path-card {
+      display: block;
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.1), rgba(12, 11, 16, 0.95));
+      border: 1px solid rgba(163, 59, 92, 0.2);
       border-radius: var(--radius-lg);
-      padding: 36px;
+      padding: 28px;
       text-decoration: none;
       transition: all 0.3s ease;
-      display: block;
+      text-align: center;
     }
 
-    .blog-card:hover {
-      border-color: rgba(163, 59, 92, 0.3);
+    .path-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
 
-    .blog-card__badge {
-      display: inline-block;
-      padding: 4px 12px;
-      background: rgba(163, 59, 92, 0.15);
-      border-radius: 999px;
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 16px;
+    .path-card.war {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.1), rgba(12, 11, 16, 0.95));
+      border-color: rgba(201, 118, 61, 0.2);
     }
 
-    .blog-card h3 {
+    .path-card__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+    }
+
+    .path-card__title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .path-card.war .path-card__title {
+      color: var(--accent);
+    }
+
+    .path-card__desc {
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      margin: 0;
+    }
+
+    /* Path Sections */
+    .path-section {
+      margin-bottom: 48px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(163, 59, 92, 0.15);
+      overflow: hidden;
+    }
+
+    .path-section.war {
+      border-color: rgba(201, 118, 61, 0.15);
+    }
+
+    .path-section__header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 24px 28px;
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.08), transparent);
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .path-section.war .path-section__header {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.08), transparent);
+    }
+
+    .path-section__header:hover {
+      background: linear-gradient(165deg, rgba(163, 59, 92, 0.12), transparent);
+    }
+
+    .path-section.war .path-section__header:hover {
+      background: linear-gradient(165deg, rgba(201, 118, 61, 0.12), transparent);
+    }
+
+    .path-section__icon {
+      font-size: 1.8rem;
+    }
+
+    .path-section__title {
+      flex: 1;
+    }
+
+    .path-section__title h2 {
       font-family: var(--font-display);
       font-size: 1.6rem;
-      font-weight: 600;
+      font-style: italic;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .path-section.war .path-section__title h2 {
+      color: var(--accent);
+    }
+
+    .path-section__title p {
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    /* Category Dropdowns */
+    .category {
+      border-top: 1px solid var(--border-glass);
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 28px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      background: rgba(10, 10, 15, 0.4);
+    }
+
+    .category-header:hover {
+      background: rgba(20, 18, 25, 0.6);
+    }
+
+    .category-header__icon {
+      font-size: 1.1rem;
+      width: 28px;
+      text-align: center;
+    }
+
+    .category-header__title {
+      flex: 1;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
       font-style: italic;
       color: var(--text-main);
-      margin-bottom: 12px;
-      line-height: 1.3;
     }
 
-    .blog-card p {
-      font-size: 1rem;
-      color: var(--text-soft);
-      margin-bottom: 16px;
-      line-height: 1.7;
-    }
-
-    .blog-card__meta {
-      font-size: 0.8rem;
+    .category-header__count {
+      font-size: 0.75rem;
       color: var(--text-dim);
+      padding: 4px 10px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
     }
 
-    .blog-card__link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-top: 16px;
-    }
-
-    .blog-card__link::after {
-      content: "→";
+    .category-header__arrow {
+      font-size: 0.7rem;
+      color: var(--text-dim);
       transition: transform 0.3s ease;
     }
 
-    .blog-card:hover .blog-card__link::after {
-      transform: translateX(4px);
+    .category.open .category-header__arrow {
+      transform: rotate(180deg);
     }
 
-    /* Featured */
-    .blog-card.featured {
-      background: linear-gradient(165deg, rgba(163, 59, 92, 0.12), rgba(12, 11, 16, 0.95));
-      border-color: rgba(163, 59, 92, 0.2);
+    .category-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
     }
 
-    .blog-card.featured h3 {
-      font-size: 2rem;
+    .category.open .category-content {
+      max-height: 2000px;
     }
 
-    /* Category Filter */
-    .categories {
+    /* Article List */
+    .article-list {
+      padding: 8px 28px 20px;
+    }
+
+    .article-item {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-bottom: 48px;
+      gap: 16px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      text-decoration: none;
+      transition: all 0.2s ease;
     }
 
-    .category-btn {
-      padding: 10px 20px;
-      background: transparent;
-      border: 1px solid var(--border-glass);
+    .article-item:last-child {
+      border-bottom: none;
+    }
+
+    .article-item:hover {
+      padding-left: 8px;
+    }
+
+    .article-item__badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--primary);
+      padding: 4px 10px;
+      background: rgba(163, 59, 92, 0.12);
       border-radius: 999px;
-      color: var(--text-soft);
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 2px;
     }
 
-    .category-btn:hover,
-    .category-btn.active {
-      background: rgba(163, 59, 92, 0.15);
-      border-color: rgba(163, 59, 92, 0.3);
+    .article-item.war-article .article-item__badge {
+      color: var(--accent);
+      background: rgba(201, 118, 61, 0.12);
+    }
+
+    .article-item.purple .article-item__badge {
+      color: var(--secondary);
+      background: rgba(124, 92, 191, 0.12);
+    }
+
+    .article-item.danger .article-item__badge {
+      color: #e74c3c;
+      background: rgba(231, 76, 60, 0.12);
+    }
+
+    .article-item__content {
+      flex: 1;
+    }
+
+    .article-item__title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
       color: var(--text-main);
+      margin-bottom: 4px;
+      transition: color 0.2s ease;
+    }
+
+    .article-item:hover .article-item__title {
+      color: var(--primary);
+    }
+
+    .article-item.war-article:hover .article-item__title {
+      color: var(--accent);
+    }
+
+    .article-item__desc {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .article-item__meta {
+      font-size: 0.75rem;
+      color: var(--text-dim);
+      margin-top: 6px;
+    }
+
+    .article-item__arrow {
+      color: var(--text-dim);
+      align-self: center;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.2s ease;
+    }
+
+    .article-item:hover .article-item__arrow {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     /* Footer */
@@ -267,11 +431,16 @@
       color: var(--text-dim);
       font-size: 0.85rem;
       border-top: 1px solid var(--border-glass);
+      margin-top: 40px;
     }
 
     footer a {
       color: var(--text-soft);
       text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--text-main);
     }
   </style>
 </head>
@@ -308,361 +477,461 @@
   <section class="hero">
     <div class="container">
       <h1>Blog</h1>
-      <p class="hero-sub">Pattern education, nervous system tools, and the truth about healing that standard advice won't tell you. Choose your path below.</p>
+      <p class="hero-sub">Pattern education, nervous system tools, and truth about healing. Choose your path.</p>
     </div>
   </section>
 
   <div class="container">
 
-    <!-- PATH SELECTOR -->
-    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 60px;">
-      <a href="#regular-path" class="path-card" style="display: block; background: linear-gradient(165deg, rgba(163, 59, 92, 0.15), rgba(12, 11, 16, 0.95)); border: 2px solid rgba(163, 59, 92, 0.3); border-radius: var(--radius-lg); padding: 32px; text-decoration: none; transition: all 0.3s ease;">
-        <div style="font-size: 2rem; margin-bottom: 12px;">💜</div>
-        <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-style: italic; color: var(--primary); margin-bottom: 8px;">Centered Path</h2>
-        <p style="color: var(--text-soft); font-size: 0.95rem; margin: 0;">Attachment, relationships, communication. For when you want better connections.</p>
+    <!-- Path Selector -->
+    <div class="path-selector">
+      <a href="#centered-section" class="path-card" onclick="openSection('centered')">
+        <div class="path-card__icon">💜</div>
+        <h2 class="path-card__title">Centered Path</h2>
+        <p class="path-card__desc">Attachment, relationships, communication</p>
       </a>
-      <a href="#war-path" class="path-card" style="display: block; background: linear-gradient(165deg, rgba(201, 118, 61, 0.15), rgba(12, 11, 16, 0.95)); border: 2px solid rgba(201, 118, 61, 0.3); border-radius: var(--radius-lg); padding: 32px; text-decoration: none; transition: all 0.3s ease;">
-        <div style="font-size: 2rem; margin-bottom: 12px;">⚔️</div>
-        <h2 style="font-family: var(--font-display); font-size: 1.5rem; font-style: italic; color: var(--accent); margin-bottom: 8px;">War Path</h2>
-        <p style="color: var(--text-soft); font-size: 0.95rem; margin: 0;">Complex trauma, survival mode, masks and shields. When standard advice doesn't fit.</p>
+      <a href="#war-section" class="path-card war" onclick="openSection('war')">
+        <div class="path-card__icon">⚔️</div>
+        <h2 class="path-card__title">War Path</h2>
+        <p class="path-card__desc">Complex trauma, survival mode, masks</p>
       </a>
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- Centered Path -->
+    <!-- Centered Path Section -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
     
-    <div id="regular-path" style="margin-bottom: 80px; padding: 40px; background: linear-gradient(165deg, rgba(163, 59, 92, 0.05), transparent); border-radius: var(--radius-lg); border: 1px solid rgba(163, 59, 92, 0.15);">
-      
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span style="font-size: 2.5rem;">💜</span>
-        <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-style: italic; color: var(--primary); margin: 16px 0 8px;">Centered Path</h2>
-        <p style="color: var(--text-soft); max-width: 500px; margin: 0 auto;">Attachment styles, relationship dynamics, and building healthier connections.</p>
+    <div id="centered-section" class="path-section">
+      <div class="path-section__header" onclick="toggleAllInSection(this)">
+        <div class="path-section__icon">💜</div>
+        <div class="path-section__title">
+          <h2>Centered Path</h2>
+          <p>Attachment styles, relationship dynamics, healthier connections</p>
+        </div>
       </div>
 
       <!-- For Women -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(163, 59, 92, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--primary);">For Women</h3>
-      </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/the-flip-love-triggers-alarm.html" class="blog-card" style="border-color: rgba(163, 59, 92, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(163, 59, 92, 0.15); color: var(--primary);">Attachment</span>
-          <h3>The Flip: When Love Triggers Your Alarm System</h3>
-          <p>People think being afraid of love only looks like running away. Sometimes it looks like clinging harder.</p>
-          <span class="blog-card__meta">10 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/emotional-brain-not-enemy.html" class="blog-card" style="border-color: rgba(163, 59, 92, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(163, 59, 92, 0.15); color: var(--primary);">Nervous System</span>
-          <h3>Your Emotional Brain Is Not The Enemy</h3>
-          <p>Your emotional brain is not stupid. It is fast. It picks up tiny cues your logical brain has not processed yet.</p>
-          <span class="blog-card__meta">10 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="learn/centered-women.html" class="blog-card" style="border-color: rgba(163, 59, 92, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(163, 59, 92, 0.15); color: var(--primary);">Program</span>
-          <h3>The Centered Woman Blueprint</h3>
-          <p>Learn to stop chasing, overthinking, and overgiving. Build the kind of calm that makes the right people lean in.</p>
-          <span class="blog-card__meta">Program Overview</span>
-          <span class="blog-card__link">Learn More</span>
-        </a>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">👩</span>
+          <span class="category-header__title">For Women</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/the-flip-love-triggers-alarm.html" class="article-item">
+              <span class="article-item__badge">Attachment</span>
+              <div class="article-item__content">
+                <div class="article-item__title">The Flip: When Love Triggers Your Alarm System</div>
+                <div class="article-item__desc">People think being afraid of love only looks like running away. Sometimes it looks like clinging harder.</div>
+                <div class="article-item__meta">10 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/emotional-brain-not-enemy.html" class="article-item">
+              <span class="article-item__badge">Nervous System</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Your Emotional Brain Is Not The Enemy</div>
+                <div class="article-item__desc">Your emotional brain is not stupid. It is fast. It picks up tiny cues your logical brain has not processed yet.</div>
+                <div class="article-item__meta">10 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="learn/centered-women.html" class="article-item">
+              <span class="article-item__badge">Program</span>
+              <div class="article-item__content">
+                <div class="article-item__title">The Centered Woman Blueprint</div>
+                <div class="article-item__desc">Learn to stop chasing, overthinking, and overgiving. Build the kind of calm that makes the right people lean in.</div>
+                <div class="article-item__meta">Program Overview</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- For Men -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(124, 92, 191, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--secondary);">For Men</h3>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">👨</span>
+          <span class="category-header__title">For Men</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/avoidant-breakdown.html" class="article-item purple">
+              <span class="article-item__badge">Avoidant</span>
+              <div class="article-item__content">
+                <div class="article-item__title">When Avoidant Hearts Break Down</div>
+                <div class="article-item__desc">Your shutdown isn't proof that you're broken. It's proof your nervous system learned going offline was the safest way to survive.</div>
+                <div class="article-item__meta">15 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/shutdown-guide.html" class="article-item purple">
+              <span class="article-item__badge">Workbook</span>
+              <div class="article-item__content">
+                <div class="article-item__title">When You Shut Down: A Survival Mode Guide</div>
+                <div class="article-item__desc">Scripts, tools, and exercises for staying present when your system wants to go offline.</div>
+                <div class="article-item__meta">20 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="learn/centered-leadership.html" class="article-item purple">
+              <span class="article-item__badge">Program</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Centered Leadership For Men</div>
+                <div class="article-item__desc">Stop chasing validation. Lead from calm instead of fear. Build presence that doesn't need to prove anything.</div>
+                <div class="article-item__meta">Program Overview</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/avoidant-breakdown.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Avoidant</span>
-          <h3>When Avoidant Hearts Break Down</h3>
-          <p>Your shutdown isn't proof that you're broken. It's proof your nervous system learned going offline was the safest way to survive.</p>
-          <span class="blog-card__meta">15 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/shutdown-guide.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Workbook</span>
-          <h3>When You Shut Down: A Survival Mode Guide</h3>
-          <p>Scripts, tools, and exercises for staying present when your system wants to go offline.</p>
-          <span class="blog-card__meta">20 min read</span>
-          <span class="blog-card__link">Read Workbook</span>
-        </a>
-
-        <a href="learn/centered-leadership.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Program</span>
-          <h3>Centered Leadership For Men</h3>
-          <p>Stop chasing validation. Lead from calm instead of fear. Build presence that doesn't need to prove anything.</p>
-          <span class="blog-card__meta">Program Overview</span>
-          <span class="blog-card__link">Learn More</span>
-        </a>
-      </div>
-
     </div>
 
     <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- WAR PATH -->
+    <!-- War Path Section -->
     <!-- ═══════════════════════════════════════════════════════════════ -->
     
-    <div id="war-path" style="margin-bottom: 80px; padding: 40px; background: linear-gradient(165deg, rgba(201, 118, 61, 0.05), transparent); border-radius: var(--radius-lg); border: 1px solid rgba(201, 118, 61, 0.15);">
-      
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span style="font-size: 2.5rem;">⚔️</span>
-        <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-style: italic; color: var(--accent); margin: 16px 0 8px;">War Path</h2>
-        <p style="color: var(--text-soft); max-width: 500px; margin: 0 auto;">When standard trauma work fails. Masks, shields, survival mode, and the heavy stuff.</p>
+    <div id="war-section" class="path-section war">
+      <div class="path-section__header" onclick="toggleAllInSection(this)">
+        <div class="path-section__icon">⚔️</div>
+        <div class="path-section__title">
+          <h2>War Path</h2>
+          <p>When standard trauma work fails. Masks, shields, survival mode</p>
+        </div>
       </div>
 
-      <!-- Deep Dives / Frameworks -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201, 118, 61, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--accent);">🔥 Deep Dives</h3>
-      </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/personality-disorders-masks-shields.html" class="blog-card featured" style="border-color: rgba(201, 118, 61, 0.3); background: linear-gradient(165deg, rgba(201, 118, 61, 0.12), rgba(12, 11, 16, 0.95));">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">✨ NEW</span>
-          <h3>Personality Disorders As Masks, Shields And Missing Information</h3>
-          <p>You did not build a personality. You built armor. Then you got stuck inside it.</p>
-          <span class="blog-card__meta">15 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/early-trauma-shapes-self.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">✨ NEW</span>
-          <h3>How Early Trauma Shapes The Self</h3>
-          <p>Trauma is not only the awful things. It is also everything that was supposed to be installed but never had a chance.</p>
-          <span class="blog-card__meta">14 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/trauma-blocks-emotional-tools.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Framework</span>
-          <h3>Trauma Is Anything That Blocks Your Access To Emotional Tools</h3>
-          <p>Trauma is not just the bad thing that happened. It is what that thing did to your access to self control, self comfort, and self trust.</p>
-          <span class="blog-card__meta">11 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
+      <!-- Deep Dives -->
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">🔥</span>
+          <span class="category-header__title">Deep Dives</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/personality-disorders-masks-shields.html" class="article-item war-article">
+              <span class="article-item__badge">✨ NEW</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Personality Disorders As Masks, Shields And Missing Information</div>
+                <div class="article-item__desc">You did not build a personality. You built armor. Then you got stuck inside it.</div>
+                <div class="article-item__meta">15 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/early-trauma-shapes-self.html" class="article-item war-article">
+              <span class="article-item__badge">✨ NEW</span>
+              <div class="article-item__content">
+                <div class="article-item__title">How Early Trauma Shapes The Self</div>
+                <div class="article-item__desc">Trauma is not only the awful things. It is also everything that was supposed to be installed but never had a chance.</div>
+                <div class="article-item__meta">14 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/trauma-blocks-emotional-tools.html" class="article-item war-article">
+              <span class="article-item__badge">Framework</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Trauma Is Anything That Blocks Your Access To Emotional Tools</div>
+                <div class="article-item__desc">Trauma is not just the bad thing that happened. It is what that thing did to your access to self control, self comfort, and self trust.</div>
+                <div class="article-item__meta">11 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Survival Mode -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201, 118, 61, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--accent);">⚡ Survival Mode</h3>
-      </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/survival-mode-treated-like-crime.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Survival Mode</span>
-          <h3>When Survival Mode Gets Treated Like A Crime</h3>
-          <p>It is not normal to punish people for the things they did in survival mode. We treat the breaking point like the whole story.</p>
-          <span class="blog-card__meta">8 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/survival-mode-not-character-flaw.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Survival Mode</span>
-          <h3>Survival Mode Is Not A Character Flaw</h3>
-          <p>We applaud survivors in theory. In real life we punish them for the ways they learned to live.</p>
-          <span class="blog-card__meta">9 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/high-functioning-survival-mode.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Survival Mode</span>
-          <h3>High Functioning In Survival Mode Is Not Healing</h3>
-          <p>The world praises high-functioning survival as strength, but it's still survival mode.</p>
-          <span class="blog-card__meta">10 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">⚡</span>
+          <span class="category-header__title">Survival Mode</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/survival-mode-treated-like-crime.html" class="article-item war-article">
+              <span class="article-item__badge">Survival</span>
+              <div class="article-item__content">
+                <div class="article-item__title">When Survival Mode Gets Treated Like A Crime</div>
+                <div class="article-item__desc">It is not normal to punish people for the things they did in survival mode. We treat the breaking point like the whole story.</div>
+                <div class="article-item__meta">8 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/survival-mode-not-character-flaw.html" class="article-item war-article">
+              <span class="article-item__badge">Survival</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Survival Mode Is Not A Character Flaw</div>
+                <div class="article-item__desc">We applaud survivors in theory. In real life we punish them for the ways they learned to live.</div>
+                <div class="article-item__meta">9 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/high-functioning-survival-mode.html" class="article-item war-article">
+              <span class="article-item__badge">Survival</span>
+              <div class="article-item__content">
+                <div class="article-item__title">High Functioning In Survival Mode Is Not Healing</div>
+                <div class="article-item__desc">The world praises high-functioning survival as strength, but it's still survival mode.</div>
+                <div class="article-item__meta">10 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Abuse & Manipulation -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(231, 76, 60, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: #e74c3c;">🚨 Abuse & Manipulation</h3>
-      </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/woman-abused-for-years.html" class="blog-card featured" style="border-color: rgba(231, 76, 60, 0.3); background: linear-gradient(165deg, rgba(231, 76, 60, 0.08), rgba(12, 11, 16, 0.95));">
-          <span class="blog-card__badge" style="background: rgba(231, 76, 60, 0.15); color: #e74c3c;">Abuse</span>
-          <h3>To The Woman Who Has Been Abused For Years</h3>
-          <p>If you have been abused for years, you do not always look like a victim. You look like the strong one.</p>
-          <span class="blog-card__meta">12 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/you-are-not-crazy-he-needed-you-to-look-like-it.html" class="blog-card" style="border-color: rgba(231, 76, 60, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(231, 76, 60, 0.15); color: #e74c3c;">Manipulation</span>
-          <h3>You Are Not Crazy. He Just Needed You To Look Like It.</h3>
-          <p>There is a particular kind of manipulation that begins when someone learns your nervous system patterns.</p>
-          <span class="blog-card__meta">8 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/bpd-easy-targets-manipulators.html" class="blog-card" style="border-color: rgba(231, 76, 60, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(231, 76, 60, 0.15); color: #e74c3c;">BPD</span>
-          <h3>Why People With BPD Become Easy Targets For Manipulators</h3>
-          <p>Deep loyalty plus intense fear of loss is a gold mine for abusers.</p>
-          <span class="blog-card__meta">12 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">🚨</span>
+          <span class="category-header__title">Abuse & Manipulation</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/woman-abused-for-years.html" class="article-item danger">
+              <span class="article-item__badge">Abuse</span>
+              <div class="article-item__content">
+                <div class="article-item__title">To The Woman Who Has Been Abused For Years</div>
+                <div class="article-item__desc">If you have been abused for years, you do not always look like a victim. You look like the strong one.</div>
+                <div class="article-item__meta">12 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/you-are-not-crazy-he-needed-you-to-look-like-it.html" class="article-item danger">
+              <span class="article-item__badge">Manipulation</span>
+              <div class="article-item__content">
+                <div class="article-item__title">You Are Not Crazy. He Just Needed You To Look Like It.</div>
+                <div class="article-item__desc">There is a particular kind of manipulation that begins when someone learns your nervous system patterns.</div>
+                <div class="article-item__meta">8 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/bpd-easy-targets-manipulators.html" class="article-item danger">
+              <span class="article-item__badge">BPD</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Why People With BPD Become Easy Targets For Manipulators</div>
+                <div class="article-item__desc">Deep loyalty plus intense fear of loss is a gold mine for abusers.</div>
+                <div class="article-item__meta">12 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Family Roles -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201, 118, 61, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--accent);">👥 Family Roles</h3>
-      </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/scapegoat-golden-child-breakdown.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Family</span>
-          <h3>Scapegoat And Golden Child: A Complete Breakdown</h3>
-          <p>Same house. Same parents. Two completely different versions of reality.</p>
-          <span class="blog-card__meta">15 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/scapegoat-golden-child-woman.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Family</span>
-          <h3>The Scapegoat, The Golden Child, And The Woman</h3>
-          <p>Same family, same history, two completely different stories. Both vulnerable to abuse.</p>
-          <span class="blog-card__meta">14 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/holiday-movie-girl-black-sheep.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Family</span>
-          <h3>The Holiday Movie Girl And The Black Sheep</h3>
-          <p>"I do not think you even see me." That line hit harder than all the comedy.</p>
-          <span class="blog-card__meta">8 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">👥</span>
+          <span class="category-header__title">Family Roles</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/scapegoat-golden-child-breakdown.html" class="article-item war-article">
+              <span class="article-item__badge">Family</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Scapegoat And Golden Child: A Complete Breakdown</div>
+                <div class="article-item__desc">Same house. Same parents. Two completely different versions of reality.</div>
+                <div class="article-item__meta">15 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/scapegoat-golden-child-woman.html" class="article-item war-article">
+              <span class="article-item__badge">Family</span>
+              <div class="article-item__content">
+                <div class="article-item__title">The Scapegoat, The Golden Child, And The Woman</div>
+                <div class="article-item__desc">Same family, same history, two completely different stories. Both vulnerable to abuse.</div>
+                <div class="article-item__meta">14 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/holiday-movie-girl-black-sheep.html" class="article-item war-article">
+              <span class="article-item__badge">Family</span>
+              <div class="article-item__content">
+                <div class="article-item__title">The Holiday Movie Girl And The Black Sheep</div>
+                <div class="article-item__desc">"I do not think you even see me." That line hit harder than all the comedy.</div>
+                <div class="article-item__meta">8 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Neurodivergence -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(124, 92, 191, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--secondary);">🧠 Neurodivergence</h3>
-      </div>
-      
-      <div class="blog-grid" style="margin-bottom: 40px;">
-        <a href="blog/trauma-or-autism-or-both.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">ND</span>
-          <h3>Trauma, Autism, Or Both?</h3>
-          <p>When you've lived through both, telling them apart feels impossible.</p>
-          <span class="blog-card__meta">8 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/growing-up-undiagnosed-neurodivergence.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">ND</span>
-          <h3>Growing Up In A House Full Of Undiagnosed Neurodivergence</h3>
-          <p>I did not learn about neurodivergence from the internet. I watched it live in my house.</p>
-          <span class="blog-card__meta">12 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/you-are-the-nerves.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">ND</span>
-          <h3>You Are The Nerves Of This Time Period</h3>
-          <p>You are the alarm system. Of course you look dramatic to people committed to staying numb.</p>
-          <span class="blog-card__meta">6 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">🧠</span>
+          <span class="category-header__title">Neurodivergence</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/trauma-or-autism-or-both.html" class="article-item purple">
+              <span class="article-item__badge">ND</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Trauma, Autism, Or Both?</div>
+                <div class="article-item__desc">When you've lived through both, telling them apart feels impossible.</div>
+                <div class="article-item__meta">8 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/growing-up-undiagnosed-neurodivergence.html" class="article-item purple">
+              <span class="article-item__badge">ND</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Growing Up In A House Full Of Undiagnosed Neurodivergence</div>
+                <div class="article-item__desc">I did not learn about neurodivergence from the internet. I watched it live in my house.</div>
+                <div class="article-item__meta">12 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/you-are-the-nerves.html" class="article-item purple">
+              <span class="article-item__badge">ND</span>
+              <div class="article-item__content">
+                <div class="article-item__title">You Are The Nerves Of This Time Period</div>
+                <div class="article-item__desc">You are the alarm system. Of course you look dramatic to people committed to staying numb.</div>
+                <div class="article-item__meta">6 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
 
       <!-- Self Discovery -->
-      <div class="section-header" style="margin: 32px 0 20px; padding-bottom: 12px; border-bottom: 1px solid rgba(201, 118, 61, 0.2);">
-        <h3 style="font-family: var(--font-display); font-size: 1.4rem; font-style: italic; color: var(--accent);">🪞 Self Discovery</h3>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">🪞</span>
+          <span class="category-header__title">Self Discovery</span>
+          <span class="category-header__count">3 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/google-calls-you-narcissist.html" class="article-item war-article">
+              <span class="article-item__badge">Identity</span>
+              <div class="article-item__content">
+                <div class="article-item__title">When Google Calls You A Narcissist But Your Heart Knows Better</div>
+                <div class="article-item__desc">My personality type would probably be called narcissistic. But my intentions are not to hurt people.</div>
+                <div class="article-item__meta">10 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/not-narcissist-pattern-reader.html" class="article-item war-article">
+              <span class="article-item__badge">Identity</span>
+              <div class="article-item__content">
+                <div class="article-item__title">I Am Not A Narcissist I Am The Pattern Reader</div>
+                <div class="article-item__desc">I grew up reading people to survive. That is not a hunger for power. That is a nervous system on surveillance duty since childhood.</div>
+                <div class="article-item__meta">10 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/mask-rage-quiet-version.html" class="article-item war-article">
+              <span class="article-item__badge">Identity</span>
+              <div class="article-item__content">
+                <div class="article-item__title">The Mask, The Rage, And The Quiet Version Of You</div>
+                <div class="article-item__desc">A version that explodes. A version that shuts down. A version that performs. All trying to protect you.</div>
+                <div class="article-item__meta">9 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-      
-      <div class="blog-grid" style="margin-bottom: 20px;">
-        <a href="blog/google-calls-you-narcissist.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Identity</span>
-          <h3>When Google Calls You A Narcissist But Your Heart Knows Better</h3>
-          <p>My personality type would probably be called narcissistic. But my intentions are not to hurt people.</p>
-          <span class="blog-card__meta">10 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/not-narcissist-pattern-reader.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Identity</span>
-          <h3>I Am Not A Narcissist I Am The Pattern Reader</h3>
-          <p>I grew up reading people to survive. That is not a hunger for power. That is a nervous system on surveillance duty since childhood.</p>
-          <span class="blog-card__meta">10 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/mask-rage-quiet-version.html" class="blog-card" style="border-color: rgba(201, 118, 61, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(201, 118, 61, 0.15); color: var(--accent);">Identity</span>
-          <h3>The Mask, The Rage, And The Quiet Version Of You</h3>
-          <p>A version that explodes. A version that shuts down. A version that performs. All trying to protect you.</p>
-          <span class="blog-card__meta">9 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-      </div>
-
     </div>
 
-    <!-- Additional Articles Not In Categories Above -->
-    <div style="margin-bottom: 60px; padding: 40px; background: linear-gradient(165deg, rgba(124, 92, 191, 0.05), transparent); border-radius: var(--radius-lg); border: 1px solid rgba(124, 92, 191, 0.15);">
-      
-      <div style="text-align: center; margin-bottom: 40px;">
-        <span style="font-size: 2.5rem;">📚</span>
-        <h2 style="font-family: var(--font-display); font-size: 2.2rem; font-style: italic; color: var(--secondary); margin: 16px 0 8px;">More Reading</h2>
-        <p style="color: var(--text-soft); max-width: 500px; margin: 0 auto;">Additional articles on healing, patterns, and self-discovery.</p>
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    <!-- More Reading Section -->
+    <!-- ═══════════════════════════════════════════════════════════════ -->
+    
+    <div class="path-section" style="border-color: rgba(124, 92, 191, 0.15);">
+      <div class="path-section__header" onclick="toggleAllInSection(this)" style="background: linear-gradient(165deg, rgba(124, 92, 191, 0.08), transparent);">
+        <div class="path-section__icon">📚</div>
+        <div class="path-section__title">
+          <h2 style="color: var(--secondary);">More Reading</h2>
+          <p>Additional articles on healing, patterns, and self-discovery</p>
+        </div>
       </div>
 
-      <div class="blog-grid">
-        <a href="blog/nervous-system-on-trial.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Nervous System</span>
-          <h3>Your Nervous System Is On Trial</h3>
-          <p>You are not dramatic. You are living in a body that has been scrutinized since childhood.</p>
-          <span class="blog-card__meta">8 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/doctors-stop-listening.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Medical Trauma</span>
-          <h3>Why Doctors Stop Listening And You Start Doubting Yourself</h3>
-          <p>On paper, you are fine. In your body, you are falling apart. Both are true at the same time.</p>
-          <span class="blog-card__meta">10 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/second-brain-never-stops.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">ADHD</span>
-          <h3>I Need A Second Brain Because Mine Never Stops</h3>
-          <p>A second brain is not just a productivity tool. It is a trauma accommodation.</p>
-          <span class="blog-card__meta">7 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/seven-minutes-after-death.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Reflection</span>
-          <h3>Seven Minutes After Death</h3>
-          <p>Would I feel like I had lived as myself, or as a version edited to keep everyone else comfortable?</p>
-          <span class="blog-card__meta">7 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/blog-post-patterns-and-walkingaway.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Patterns</span>
-          <h3>When You Finally See Your Patterns</h3>
-          <p>Once you see your patterns, you can't unsee them. And once you start working on them, you realize most people have no idea they even have patterns.</p>
-          <span class="blog-card__meta">12 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
-
-        <a href="blog/why-i-keep-stopping.html" class="blog-card" style="border-color: rgba(124, 92, 191, 0.2);">
-          <span class="blog-card__badge" style="background: rgba(124, 92, 191, 0.15); color: var(--secondary);">Self-Sabotage</span>
-          <h3>Why I Keep Stopping Even When I Want It So Bad</h3>
-          <p>Stopping is not random. It is your body trying to keep you in what feels like the safest zone.</p>
-          <span class="blog-card__meta">9 min read</span>
-          <span class="blog-card__link">Read Article</span>
-        </a>
+      <div class="category" onclick="toggleCategory(this)">
+        <div class="category-header">
+          <span class="category-header__icon">✨</span>
+          <span class="category-header__title">All Additional Articles</span>
+          <span class="category-header__count">6 articles</span>
+          <span class="category-header__arrow">▾</span>
+        </div>
+        <div class="category-content">
+          <div class="article-list">
+            <a href="blog/nervous-system-on-trial.html" class="article-item purple">
+              <span class="article-item__badge">Nervous System</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Your Nervous System Is On Trial</div>
+                <div class="article-item__desc">You are not dramatic. You are living in a body that has been scrutinized since childhood.</div>
+                <div class="article-item__meta">8 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/doctors-stop-listening.html" class="article-item purple">
+              <span class="article-item__badge">Medical Trauma</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Why Doctors Stop Listening And You Start Doubting Yourself</div>
+                <div class="article-item__desc">On paper, you are fine. In your body, you are falling apart. Both are true at the same time.</div>
+                <div class="article-item__meta">10 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/second-brain-never-stops.html" class="article-item purple">
+              <span class="article-item__badge">ADHD</span>
+              <div class="article-item__content">
+                <div class="article-item__title">I Need A Second Brain Because Mine Never Stops</div>
+                <div class="article-item__desc">A second brain is not just a productivity tool. It is a trauma accommodation.</div>
+                <div class="article-item__meta">7 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/seven-minutes-after-death.html" class="article-item purple">
+              <span class="article-item__badge">Reflection</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Seven Minutes After Death</div>
+                <div class="article-item__desc">Would I feel like I had lived as myself, or as a version edited to keep everyone else comfortable?</div>
+                <div class="article-item__meta">7 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/blog-post-patterns-and-walkingaway.html" class="article-item purple">
+              <span class="article-item__badge">Patterns</span>
+              <div class="article-item__content">
+                <div class="article-item__title">When You Finally See Your Patterns</div>
+                <div class="article-item__desc">Once you see your patterns, you can't unsee them. And once you start working on them, you realize most people have no idea they even have patterns.</div>
+                <div class="article-item__meta">12 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+            <a href="blog/why-i-keep-stopping.html" class="article-item purple">
+              <span class="article-item__badge">Self-Sabotage</span>
+              <div class="article-item__content">
+                <div class="article-item__title">Why I Keep Stopping Even When I Want It So Bad</div>
+                <div class="article-item__desc">Stopping is not random. It is your body trying to keep you in what feels like the safest zone.</div>
+                <div class="article-item__meta">9 min read</div>
+              </div>
+              <span class="article-item__arrow">→</span>
+            </a>
+          </div>
+        </div>
       </div>
-
     </div>
 
   </div>
@@ -682,6 +951,40 @@
     </div>
   </footer>
 
+  <script>
+    function toggleCategory(category) {
+      // Don't toggle if clicking on a link
+      if (event.target.closest('.article-item')) return;
+      
+      category.classList.toggle('open');
+    }
+
+    function toggleAllInSection(header) {
+      const section = header.closest('.path-section');
+      const categories = section.querySelectorAll('.category');
+      const anyOpen = Array.from(categories).some(c => c.classList.contains('open'));
+      
+      categories.forEach(cat => {
+        if (anyOpen) {
+          cat.classList.remove('open');
+        } else {
+          cat.classList.add('open');
+        }
+      });
+    }
+
+    function openSection(type) {
+      // Smooth scroll handled by href
+      // Open first category of clicked section
+      setTimeout(() => {
+        const section = document.getElementById(type + '-section');
+        const firstCategory = section.querySelector('.category');
+        if (firstCategory && !firstCategory.classList.contains('open')) {
+          firstCategory.classList.add('open');
+        }
+      }, 300);
+    }
+  </script>
+
 </body>
 </html>
-
