@@ -1,0 +1,18 @@
+[build]
+  publish = "."
+
+# Google Analytics snippet injection - adds to all pages
+[[snippets]]
+  name = "google-analytics"
+  position = "after_head_open"
+  text = '''
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-YS02QCC08N"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-YS02QCC08N');
+</script>
+'''
